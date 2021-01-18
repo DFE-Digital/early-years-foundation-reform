@@ -1,0 +1,35 @@
+version: "3.8"
+
+volumes:
+  data-db: {}
+
+services:
+  db:
+    image: postgres:9.6.12
+    ports:
+      - "5432"
+    container_name: db.dev
+    volumes:
+      - data-db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=developmentpassword
+
+  app:
+    build: .
+    image: "eyfs-reform"
+    container_name: "eyfs-reform.dev"
+    command: ash -c "bundle exec rails server -b '0.0.0.0'"
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      - DB_DATABASE=govuk_rails_boilerplate_development
+      - DB_HOST=db
+      - DB_PASSWORD=developmentpassword
+      - DB_USERNAME=postgres
+      - RAILS_ENV=development
+      - RAILS_SERVE_STATIC_FILES=true
+      - SECRET_KEY_BASE=abcd1234
+      - WEB_CONCURRENCY=2
+      - RAILS_MAX_THREADS=16
