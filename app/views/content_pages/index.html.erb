@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pages</h1>
+
+<p>This will be the list of content that can be presented on the site</p>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+  <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Title</th>
+      <th scope="col" class="govuk-table__header">Slug (url)</th>
+      <th scope="col" class="govuk-table__header">Markdown</th>
+      <th scope="col" class="govuk-table__header">Search Engine words</th>
+      <th scope="col" class="govuk-table__header"></th>
+      <th scope="col" class="govuk-table__header"></th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    <% @content_pages.each do |content_page| %>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><%= content_page.title %></td>
+        <td class="govuk-table__cell"><%= content_page.slug %></td>
+        <td class="govuk-table__cell"><%= content_page.markdown %></td>
+        <td class="govuk-table__cell"><%= content_page.seo %></td>
+        <td class="govuk-table__cell"><%= link_to 'Edit', edit_content_page_path(content_page) %></td>
+        <td class="govuk-table__cell"><%= link_to 'Destroy', content_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add a new Page', new_content_page_path %>

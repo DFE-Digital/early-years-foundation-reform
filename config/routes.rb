@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get "/pages", to: "pages#show"
+  resources :content_pages
+
+  root 'content_pages#index'
 
   get "/404", to: "errors#not_found", via: :all
   get "/422", to: "errors#unprocessable_entity", via: :all

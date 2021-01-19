@@ -1,6 +1,29 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# GOV.UK Rails Boilerplate
+# Tim's secret Spike
+
+## Getting started
+
+(Tony will correct these notes)
+
+To run locally with docker
+
+1. docker_compose build
+2. docker_compose up
+
+Then in a docker terminal,  
+
+rake db:setup
+rake db:migrate
+rake:db:seed
+
+## Styling pages
+
+See [this guide](https://design-system.service.gov.uk/get-started/) for 
+advice about how to layout html
+
+
+# The following is from the template repository GOV.UK Rails Boilerplate
 
 ## Prerequisites
 
