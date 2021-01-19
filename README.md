@@ -2,24 +2,33 @@
 
 # Tim's secret Spike
 
-## Getting started
+## Getting started on Docker
 
-(Tony will correct these notes)
+On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
+will need to be installed first
 
-To run locally with docker
+To run the application locally with docker:
 
-1. docker_compose build
-2. docker_compose up
+`docker-compose build && docker-compose up`
 
-Then in a docker terminal,  
+To setup the database running in a docker container:
 
-rake db:setup
-rake db:migrate
-rake:db:seed
+`docker-compose exec app bundle exec rake db:setup`
+`docker-compose exec app bundle exec rake db:migrate`
+
+If there are issues with postgres password authentication failure:
+
+`> FATAL:  password authentication failed for user "dfe"`
+
+You can manually set a password for the user `dfe` by following these steps:
+
+1. `docker-compose exec database psql -d postgres -U dfe`
+1. in the postgres cli run `\password`
+1. set the `DATABASE_PASSWORD` from `.env`
 
 ## Styling pages
 
-See [this guide](https://design-system.service.gov.uk/get-started/) for 
+See [this guide](https://design-system.service.gov.uk/get-started/) for
 advice about how to layout html
 
 
