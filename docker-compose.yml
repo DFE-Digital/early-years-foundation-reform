@@ -1,35 +1,29 @@
 version: "3.8"
 
 volumes:
-  data-db: {}
+  gem_cache:
+  db_data:
+  node_modules:
 
 services:
-  db:
-    image: postgres:9.6.12
-    ports:
-      - "5432"
-    container_name: db.dev
-    volumes:
-      - data-db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=developmentpassword
-
   app:
     build: .
-    image: "eyfs-reform"
-    container_name: "eyfs-reform.dev"
-    command: ash -c "bundle exec rails server -b '0.0.0.0'"
-    ports:
-      - 3000:3000
     depends_on:
-      - db
+      - database
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle/gems
+      - node_modules:/app/node_modules
+    env_file: .env
     environment:
-      - DB_DATABASE=govuk_rails_boilerplate_development
-      - DB_HOST=db
-      - DB_PASSWORD=developmentpassword
-      - DB_USERNAME=postgres
-      - RAILS_ENV=development
-      - RAILS_SERVE_STATIC_FILES=true
-      - SECRET_KEY_BASE=abcd1234
-      - WEB_CONCURRENCY=2
-      - RAILS_MAX_THREADS=16
+      RAILS_ENV: development
+
+  database:
+    image: postgres:13.1
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
