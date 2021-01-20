@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @content_asset.title %>
+</p>
+
+<% if @content_asset.avatar.attached? %>
+<%= image_tag(url_for(@content_asset.avatar)) %>
+<% end %>
+
+<%= link_to 'Edit', edit_content_asset_path(@content_asset) %> |
+<%= link_to 'Back', content_assets_path %>

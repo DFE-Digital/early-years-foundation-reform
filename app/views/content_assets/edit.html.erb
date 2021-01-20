@@ -1,0 +1,10 @@
+<h1>Editing Content Asset</h1>
+
+<%= render 'form', content_asset: @content_asset %>
+
+<% if @content_asset.avatar.attached? %>
+<%= image_tag(url_for(@content_asset.avatar)) %>
+<% end %>
+
+<%= link_to 'Show', @content_asset %> |
+<%= link_to 'Back', content_assets_path %>

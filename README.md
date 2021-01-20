@@ -1,27 +1,40 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# Tim's secret Spike
+# EYFS Reform Spike
 
 ## Getting started on Docker
 
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
-will need to be installed first
+will need to be installed first and running
+
+Mac users should disable any other local postgres server running in the background as this will prevent rails from connecting to the docker db
 
 Setup a `.env` file to hold environment variables and fill in the missing values
 (do not commit this file)
 
 `cp .env.example .env`
 
-To run the application locally with docker:
+add development database to .env: govuk_rails_boilerplate_development
+
+### To run the application locally with docker:
 
 `docker-compose build && docker-compose up`
 
-To setup the database running in a docker container:
+### To restart the server
+
+cancel the running docker process and then run `docker-compose down` (for a full reset on your environment)
+
+### To ssh into the running docker container
+
+docker container ls
+docker exec -it <CONTAINER ID> sh
+
+### To setup the database running in a docker container:
 
 `docker-compose exec app bundle exec rake db:setup`
 `docker-compose exec app bundle exec rake db:migrate`
 
-If there are issues with postgres password authentication failure:
+### If there are issues with postgres password authentication failure:
 
 `> FATAL:  password authentication failed for user "boilerplate_user"`
 
@@ -83,6 +96,8 @@ or
 
 bundle exec scss-lint app/webpacker/styles
 ```
+
+Vscode - Rubocop has a vscode extension, linting may need to be turned on
 
 ## Deploying on GOV.UK PaaS
 
