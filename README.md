@@ -23,11 +23,11 @@ To setup the database running in a docker container:
 
 If there are issues with postgres password authentication failure:
 
-`> FATAL:  password authentication failed for user "dfe"`
+`> FATAL:  password authentication failed for user "boilerplate_user"`
 
-You can manually set a password for the user `dfe` by following these steps:
+You can manually set a password for the user `boilerplate_user` by following these steps:
 
-1. `docker-compose exec database psql -d postgres -U dfe`
+1. `docker-compose exec database psql -d postgres -U boilerplate_user`
 1. in the postgres cli run `\password`
 1. set the `DATABASE_PASSWORD` from `.env`
 
