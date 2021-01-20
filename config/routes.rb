@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :content_assets
   resources :content_pages
 
   root 'content_pages#index'
