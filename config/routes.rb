@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :content_pages
 
   root 'content_pages#index'
