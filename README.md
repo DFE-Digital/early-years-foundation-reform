@@ -7,7 +7,7 @@
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 will need to be installed first and running
 
-Mac users should disable any other local postgres server running in the background as this will prevent rails from connecting to the docker db
+Mac users should disable any other local postgres server running in the background as this will prevent rails from connecting to the docker db. If you installed homebrew: `brew services stop postgresql`
 
 Setup a `.env` file to hold environment variables and fill in the missing values
 (do not commit this file)
@@ -19,6 +19,12 @@ add development database to .env: govuk_rails_boilerplate_development
 ### To run the application locally with docker:
 
 `docker-compose build && docker-compose up`
+
+If docker has been setup correctly you should see 2 containers running like this:
+
+CONTAINER ID   IMAGE                   COMMAND                  CREATED       STATUS         PORTS                    NAMES
+005b86d0b4dc   eyfs-reform-spike_app   "./entrypoints/docke…"   5 hours ago   Up 5 minutes   0.0.0.0:3000->3000/tcp   eyfs-reform-spike_app_1
+460c5fe17d37   postgres:13.1           "docker-entrypoint.s…"   5 hours ago   Up 5 minutes   0.0.0.0:5432->5432/tcp   eyfs-reform-spike_database_1
 
 ### To restart the server
 
