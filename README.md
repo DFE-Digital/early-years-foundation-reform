@@ -20,25 +20,25 @@ add development database to .env: govuk_rails_boilerplate_development
 
 `docker-compose build && docker-compose up`
 
-If docker has been setup correctly you should see 2 containers running like this:
+If docker has been setup correctly, running `sudo docker ps`, you should see 2 containers running like this:
 
 CONTAINER ID   IMAGE                   COMMAND                  CREATED       STATUS         PORTS                    NAMES
 005b86d0b4dc   eyfs-reform-spike_app   "./entrypoints/docke…"   5 hours ago   Up 5 minutes   0.0.0.0:3000->3000/tcp   eyfs-reform-spike_app_1
 460c5fe17d37   postgres:13.1           "docker-entrypoint.s…"   5 hours ago   Up 5 minutes   0.0.0.0:5432->5432/tcp   eyfs-reform-spike_database_1
 
+### To setup the database running in a docker container (runs terminal command inside of your docker container):
+
+`docker-compose exec app bundle exec rake db:setup`
+`docker-compose exec app bundle exec rake db:migrate`
+
 ### To restart the server
 
 cancel the running docker process and then run `docker-compose down` (for a full reset on your environment)
 
-### To ssh into the running docker container
+### To ssh into the a docker container
 
 docker container ls
 docker exec -it <CONTAINER ID> sh
-
-### To setup the database running in a docker container:
-
-`docker-compose exec app bundle exec rake db:setup`
-`docker-compose exec app bundle exec rake db:migrate`
 
 ### If there are issues with postgres password authentication failure:
 
