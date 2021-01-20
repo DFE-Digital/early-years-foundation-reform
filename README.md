@@ -7,6 +7,11 @@
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 will need to be installed first
 
+Setup a `.env` file to hold environment variables and fill in the missing values
+(do not commit this file)
+
+`cp .env.example .env`
+
 To run the application locally with docker:
 
 `docker-compose build && docker-compose up`
