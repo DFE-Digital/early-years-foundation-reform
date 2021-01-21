@@ -7,13 +7,12 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 # S3 credentials
-# TODO: replace these sample credentials with DoE credentials, create bucket
 amazon:
   service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
-  region: eu-west-2
-  bucket: eyfsreformspike
+  access_key_id: <%= ENV['ACCESS_KEY_ID'] %>
+  secret_access_key: <%= ENV['SECRET_ACCESS_KEY'] %>
+  region: <%= ENV['REGION'] %>
+  bucket: <%= ENV['BUCKET'] %>
 
 # Remember not to checkin your GCS keyfile to a repository
 # google:
