@@ -150,4 +150,3 @@ Note: Docker can't be used to connect to AWS
 
 Check the file `manifest.yml` for customisation of name (you may need to change it as there could be a conflict on that name), buildpacks and eventual services (PostgreSQL needs to be [set up](https://docs.cloud.service.gov.uk/deploying_services/postgresql/)).
 
-The app should be available at https://govuk-rails-boilerplate.london.cloudapps.digital
