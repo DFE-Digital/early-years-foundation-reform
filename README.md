@@ -7,9 +7,6 @@
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 will need to be installed first and running
 
-Mac users should disable any other local postgres server running in the background as this will prevent rails from connecting to the docker db. 
-That command if you installed homebrew: `brew services stop postgresql`
-
 Setup a `.env` file to hold environment variables and fill in the missing values
 (do not commit this file)
 
@@ -18,6 +15,13 @@ Setup a `.env` file to hold environment variables and fill in the missing values
 add development database to .env: govuk_rails_boilerplate_development
 
 ### To run the application locally with docker:
+
+NOTE: Ensure no instances of PostgreSQL are running in the background as this can cause conflicts when attempting to run the docker instance of PostgreSQL
+If PostgreSQL was installed using homebrew, in the terminal use:
+1. `brew services` - to check for any running instances,
+2. `brew services stop postgres`
+
+To run the application locally with docker:
 
 `docker-compose build && docker-compose up`
 
@@ -48,8 +52,8 @@ docker exec -it <CONTAINER ID> sh
 You can manually set a password for the user `boilerplate_user` by following these steps:
 
 1. `docker-compose exec database psql -d postgres -U boilerplate_user`
-1. in the postgres cli run `\password`
-1. set the `DATABASE_PASSWORD` from `.env`
+2. in the postgres cli run `\password`
+3. set the `DATABASE_PASSWORD` from `.env`
 
 ## Styling pages
 

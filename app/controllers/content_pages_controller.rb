@@ -1,4 +1,5 @@
 class ContentPagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_content_page, only: [:show, :edit, :update, :destroy]
 
   # GET /content_pages
