@@ -7,7 +7,8 @@
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 will need to be installed first and running
 
-Mac users should disable any other local postgres server running in the background as this will prevent rails from connecting to the docker db. If you installed homebrew: `brew services stop postgresql`
+Mac users should disable any other local postgres server running in the background as this will prevent rails from connecting to the docker db. 
+That command if you installed homebrew: `brew services stop postgresql`
 
 Setup a `.env` file to hold environment variables and fill in the missing values
 (do not commit this file)
@@ -104,6 +105,32 @@ bundle exec scss-lint app/webpacker/styles
 ```
 
 Vscode - Rubocop has a vscode extension, linting may need to be turned on
+
+## Using Amazon S3 Bucket for asset storage (e.g. in production)
+
+Ensure you have added 4 parameters to the .env file, these are (ACCESS_KEY_ID, SECRET_ACCESS_KEY, REGION, BUCKET) e.g:
+
+```
+ACCESS_KEY_ID=7867867687
+SECRET_ACCESS_KEY=876876876
+REGION=eu-west-2
+BUCKET=eyfsreformspike
+
+```
+
+These 4 parameters will be picked up by the Amazon config setting in config/storage.yml
+You can obtain the access key ID and secret access key as a download from the AWS account
+Region should be eu-west-2 (London)
+You must create the parent bucket in AWS first and then add this bucket name to the final parameter(line)
+Do not encapsulate the strings
+
+Ensure that the appropriate environment file (e.g. environments/production.rb) has been set to use Amazon as storage service:
+
+```
+config.active_storage.service = :amazon
+```
+
+Note: Docker can't be used to connect to AWS
 
 ## Deploying on GOV.UK PaaS
 
