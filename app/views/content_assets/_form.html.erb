@@ -26,7 +26,7 @@
 
   <% unless @content_asset.new_record? %>
   <div class="govuk-grid-column-one-half align-right">
-    <%= button_to "delete", {:controller => :content_assets, :action => 'destroy', :id => @content_asset.id }, method: "delete", class: "govuk-button", data: { confirm: 'Are you sure you want to delete this asset?' } %>
+    <%= button_to "delete", {:controller => :content_assets, :action => 'destroy', :id => @content_asset.id }, method: "delete", class: "govuk-button", onclick: "return confirm('Do you really want to delete this asset?');" %>
   </div> 
   <% end %>
 
