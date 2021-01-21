@@ -1,7 +1,7 @@
 <%= form_with(model: content_asset) do |form| %>
   <% if content_asset.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(content_asset.errors.count, "error") %> prohibited this content_asset from being saved:</h2>
+      <h2><%= pluralize(content_asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
 
       <ul>
         <% content_asset.errors.each do |error| %>
@@ -11,13 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="govuk-form-group">
+    <%= form.label :title, :class => 'govuk-label' %>
+    <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
     <%= form.file_field :avatar %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+    
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <%= form.submit 'Submit', :class => "govuk-button" %>
   </div>
+
+  <% unless @content_asset.new_record? %>
+  <div class="govuk-grid-column-one-half align-right">
+    <%= button_to "delete", {:controller => :content_assets, :action => 'destroy', :id => @content_asset.id }, method: "delete", class: "govuk-button", data: { confirm: 'Are you sure you want to delete this asset?' } %>
+  </div> 
+  <% end %>
+
+</div>
+
 <% end %>

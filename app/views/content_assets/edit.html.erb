@@ -1,10 +1,13 @@
-<h1>Editing Content Asset</h1>
+<h1 class="govuk-heading-m">Edit Asset</h1>
+
+<% if @content_asset.avatar.attached? %>
+<div id='content-asset-wrapper'>
+<%= image_tag(url_for(@content_asset.avatar), :class=>'govuk-!-width-full') %>
+</div>
+<% end %>
 
 <%= render 'form', content_asset: @content_asset %>
 
-<% if @content_asset.avatar.attached? %>
-<%= image_tag(url_for(@content_asset.avatar)) %>
-<% end %>
-
-<%= link_to 'Show', @content_asset %> |
-<%= link_to 'Back', content_assets_path %>
+<div class="govuk-grid-row govuk-grid-column-one-half">
+    <%= link_to 'Back', content_assets_path, :class => "govuk-link" %>
+</div>
