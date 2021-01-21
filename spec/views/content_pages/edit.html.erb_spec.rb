@@ -4,6 +4,7 @@ RSpec.describe "content_pages/edit", type: :view do
   before(:each) do
     @content_page = assign(:content_page, ContentPage.create!(
       title: "MyString",
+      subtitle: "MyString",
       slug: "MyString",
       markdown: "MyString",
       seo: "MyString"

@@ -10,10 +10,10 @@ RSpec.describe "content_pages/index", type: :view do
         seo: "Seo"
       ),
       ContentPage.create!(
-        title: "Title",
-        slug: "Slug",
-        markdown: "Markdown",
-        seo: "Seo"
+        title: "Title2",
+        slug: "Slug2",
+        markdown: "Markdown2",
+        seo: "Seo2"
       )
     ])
   end
