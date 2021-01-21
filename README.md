@@ -12,6 +12,16 @@ Setup a `.env` file to hold environment variables and fill in the missing values
 
 `cp .env.example .env`
 
+NOTE: Ensure no instances of PostgreSQL are running in the background as this can cause conflicts when attempting to run the docker instance of PostgreSQL
+If PostgreSQL was installed using homebrew, in the terminal use:
+1. `brew services` - to check for any running instances,
+2. `brew services stop postgres`
+
+Add the following lines at the end of the `docker-compose.yml` file (if not already present):
+
+`environment:`
+      `POSTGRES_PASSWORD: [REPLACE WITH THE DATABASE_PASSWORD IN .env FILE]`
+
 To run the application locally with docker:
 
 `docker-compose build && docker-compose up`
@@ -28,8 +38,8 @@ If there are issues with postgres password authentication failure:
 You can manually set a password for the user `boilerplate_user` by following these steps:
 
 1. `docker-compose exec database psql -d postgres -U boilerplate_user`
-1. in the postgres cli run `\password`
-1. set the `DATABASE_PASSWORD` from `.env`
+2. in the postgres cli run `\password`
+3. set the `DATABASE_PASSWORD` from `.env`
 
 ## Styling pages
 
