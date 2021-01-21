@@ -47,6 +47,8 @@ group :development, :test do
   gem "capybara", "~> 3.34"
 
   gem "dotenv-rails"
+
+  gem 'factory_bot_rails'
 end
 
 group :development do

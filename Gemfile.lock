@@ -95,6 +95,11 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     ffi (1.14.2)
     foreman (0.87.2)
     globalid (0.4.2)
@@ -285,6 +290,7 @@ DEPENDENCIES
   capybara (~> 3.34)
   devise
   dotenv-rails
+  factory_bot_rails
   foreman
   listen (>= 3.0.5, < 3.5)
   pg (>= 0.18, < 2.0)
