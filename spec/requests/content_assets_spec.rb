@@ -41,6 +41,8 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
+      sign_in FactoryBot.create(:user)
+      
       get new_content_asset_url
       expect(response).to be_successful
     end

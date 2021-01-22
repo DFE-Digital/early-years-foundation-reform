@@ -37,6 +37,7 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED       ST
 
 `docker-compose exec app bundle exec rake db:setup`
 `docker-compose exec app bundle exec rake db:migrate`
+`docker-compose exec app bundle exec rake db:seed`
 
 ### To restart the server
 
@@ -45,7 +46,7 @@ cancel the running docker process and then run `docker-compose down` (for a full
 ### To ssh into the a docker container
 
 `docker container ls`
-`docker exec -it <CONTAINER ID> shz
+`docker exec -it <CONTAINER ID> sh`
 
 ### If there are issues with postgres password authentication failure:
 
