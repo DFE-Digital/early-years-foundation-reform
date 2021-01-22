@@ -45,7 +45,7 @@ cancel the running docker process and then run `docker-compose down` (for a full
 ### To ssh into the a docker container
 
 `docker container ls`
-docker exec -it <CONTAINER ID> sh
+`docker exec -it <CONTAINER ID> shz
 
 ### If there are issues with postgres password authentication failure:
 
