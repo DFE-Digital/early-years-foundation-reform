@@ -1,4 +1,5 @@
 class ContentAssetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_content_asset, only: [:show, :edit, :update, :destroy]
 
   # GET /content_assets
