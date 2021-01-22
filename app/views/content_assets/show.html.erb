@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<main class="govuk-main-wrapper " id="main-content" role="main">
+  <h1 class="govuk-heading-xl"><%= @content_asset.title %></h1>
+
+  <% if @content_asset.avatar.attached? %>
+  <%= image_tag(url_for(@content_asset.avatar)) %>
+  <% end %>
+  
+  <%= link_to 'Edit', edit_content_asset_path(@content_asset), { :class => "govuk-link" } %> |
+  <%= link_to 'Back', content_assets_path, { :class => "govuk-link" } %>
+
+</main>
+
+
+

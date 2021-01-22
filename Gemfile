@@ -15,8 +15,11 @@ gem "puma", "~> 5.1"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
+gem "aws-sdk-s3", require: false
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'bcrypt', '~> 3.1.16'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false

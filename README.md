@@ -1,37 +1,54 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# Tim's secret Spike
+# EYFS Reform Spike
 
 ## Getting started on Docker
 
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
-will need to be installed first
+will need to be installed first and running
 
 Setup a `.env` file to hold environment variables and fill in the missing values
 (do not commit this file)
 
 `cp .env.example .env`
 
+add development database to .env: govuk_rails_boilerplate_development
+
+### To run the application locally with docker:
+
 NOTE: Ensure no instances of PostgreSQL are running in the background as this can cause conflicts when attempting to run the docker instance of PostgreSQL
 If PostgreSQL was installed using homebrew, in the terminal use:
 1. `brew services` - to check for any running instances,
 2. `brew services stop postgres`
 
-Add the following lines at the end of the `docker-compose.yml` file (if not already present):
-
-`environment:`
-      `POSTGRES_PASSWORD: [REPLACE WITH THE DATABASE_PASSWORD IN .env FILE]`
-
 To run the application locally with docker:
 
 `docker-compose build && docker-compose up`
 
-To setup the database running in a docker container:
+If docker has been setup correctly, running `sudo docker ps`, you should see 2 containers running like this:
+
+```
+CONTAINER ID   IMAGE                   COMMAND                  CREATED       STATUS         PORTS                    NAMES
+005b86d0b4dc   eyfs-reform-spike_app   "./entrypoints/docke…"   5 hours ago   Up 5 minutes   0.0.0.0:3000->3000/tcp   eyfs-reform-spike_app_1
+460c5fe17d37   postgres:13.1           "docker-entrypoint.s…"   5 hours ago   Up 5 minutes   0.0.0.0:5432->5432/tcp   eyfs-reform-spike_database_1
+```
+
+### To setup the database running in a docker container (runs terminal command inside of your docker container):
 
 `docker-compose exec app bundle exec rake db:setup`
 `docker-compose exec app bundle exec rake db:migrate`
+`docker-compose exec app bundle exec rake db:seed`
 
-If there are issues with postgres password authentication failure:
+### To restart the server
+
+cancel the running docker process and then run `docker-compose down` (for a full reset on your environment)
+
+### To ssh into the a docker container
+
+`docker container ls`
+`docker exec -it <CONTAINER ID> sh`
+
+### If there are issues with postgres password authentication failure:
 
 `> FATAL:  password authentication failed for user "boilerplate_user"`
 
@@ -94,6 +111,34 @@ or
 bundle exec scss-lint app/webpacker/styles
 ```
 
+Vscode - Rubocop has a vscode extension, linting may need to be turned on
+
+## Using Amazon S3 Bucket for asset storage (e.g. in production)
+
+Ensure you have added 4 parameters to the .env file, these are (ACCESS_KEY_ID, SECRET_ACCESS_KEY, REGION, BUCKET) e.g:
+
+```
+ACCESS_KEY_ID=7867867687
+SECRET_ACCESS_KEY=876876876
+REGION=eu-west-2
+BUCKET=eyfsreformspike
+
+```
+
+These 4 parameters will be picked up by the Amazon config setting in config/storage.yml
+You can obtain the access key ID and secret access key as a download from the AWS account
+Region should be eu-west-2 (London)
+You must create the parent bucket in AWS first and then add this bucket name to the final parameter(line)
+Do not encapsulate the strings
+
+Ensure that the appropriate environment file (e.g. environments/production.rb) has been set to use Amazon as storage service:
+
+```
+config.active_storage.service = :amazon
+```
+
+Note: Docker can't be used to connect to AWS
+
 ## Deploying on GOV.UK PaaS
 
 ### Prerequisites
@@ -112,4 +157,3 @@ bundle exec scss-lint app/webpacker/styles
 
 Check the file `manifest.yml` for customisation of name (you may need to change it as there could be a conflict on that name), buildpacks and eventual services (PostgreSQL needs to be [set up](https://docs.cloud.service.gov.uk/deploying_services/postgresql/)).
 
-The app should be available at https://govuk-rails-boilerplate.london.cloudapps.digital

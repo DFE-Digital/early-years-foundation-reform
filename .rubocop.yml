@@ -5,6 +5,7 @@ inherit_gem:
 
 AllCops:
   Exclude:
+    - "**/*.erb"
     - 'bin/*'
     - 'db/schema.rb'
     - 'node_modules/**/*'
