@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :content_assets
   devise_for :users
   devise_scope :user do
     get 'sign_in', to: 'devise/sessions#new'
