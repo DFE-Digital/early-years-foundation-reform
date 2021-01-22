@@ -302,6 +302,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-s3
+  bcrypt (~> 3.1.16)
   bootsnap (>= 1.1.0)
   byebug
   canonical-rails
@@ -329,4 +330,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.0
+   2.2.6
