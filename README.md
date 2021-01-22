@@ -27,9 +27,11 @@ To run the application locally with docker:
 
 If docker has been setup correctly, running `sudo docker ps`, you should see 2 containers running like this:
 
+```
 CONTAINER ID   IMAGE                   COMMAND                  CREATED       STATUS         PORTS                    NAMES
 005b86d0b4dc   eyfs-reform-spike_app   "./entrypoints/docke…"   5 hours ago   Up 5 minutes   0.0.0.0:3000->3000/tcp   eyfs-reform-spike_app_1
 460c5fe17d37   postgres:13.1           "docker-entrypoint.s…"   5 hours ago   Up 5 minutes   0.0.0.0:5432->5432/tcp   eyfs-reform-spike_database_1
+```
 
 ### To setup the database running in a docker container (runs terminal command inside of your docker container):
 
