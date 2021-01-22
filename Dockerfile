@@ -2,7 +2,7 @@
 FROM ruby:2.7.2-alpine
 
 # Set bundler version
-ENV BUNDLER_VERSION=2.1.4
+ENV BUNDLER_VERSION=2.2.6
 
 # Add the timezone as it's not configured by default in Alpine
 RUN apk add --update --no-cache tzdata && \
