@@ -1,12 +1,10 @@
 <div class="govuk-width-container">
-  <a href="#" class="govuk-back-link">Back</a>
-
   <main class="govuk-main-wrapper">
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
         <h3 class="govuk-heading-m">Details</h3>
-        <%= form_with(model: content_page) do |form| %>
+        <%= form_for(@content_page) do |form| %>
           <% if content_page.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this content_page from being saved:</h2>
@@ -18,45 +16,45 @@
             </div>
           <% end %>
 
-        <fieldset class="govuk-fieldset">
+          <fieldset class="govuk-fieldset">
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="address-line-1">
-              <%= form.label :title %>
-            </label>
-            <input class="govuk-input" id="title" name="title" type="text">
-          </div>
-
-          <div class="govuk-form-group">
-            <div id="markdown-hint" class="govuk-hint">
-              Markdown
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="address-line-1">
+                <%= form.label :title %>
+              </label>
+              <input class="govuk-input" id="title" name="title" type="text">
             </div>
-            <textarea class="govuk-textarea" id="markdown" name="markdown" rows="5" aria-describedby="markdown-hint"></textarea>
-          </div>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="slug">
-              Last part of URL for the page, eg physical_development
-            </label>
-            <input class="govuk-input govuk-input--width-10" id="slug" name="slug" type="text"></div>
+            <div class="govuk-form-group">
+              <div id="markdown-hint" class="govuk-hint">
+                Markdown
+              </div>
+              <textarea class="govuk-textarea" id="markdown" name="markdown" rows="5" aria-describedby="markdown-hint"></textarea>
+            </div>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="seo">
-              Search Engine Words
-            </label>
-            <input class="govuk-input govuk-!-width-two-thirds" id="seo" name="seo" type="text"></div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="slug">
+                Last part of URL for the page, eg physical_development
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="slug" name="slug" type="text"></div>
 
-          <div>
-            <%= form.submit :class => "govuk-button"%>
-          </div>
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="seo">
+                Search Engine Words
+              </label>
+              <input class="govuk-input govuk-!-width-two-thirds" id="seo" name="seo" type="text"></div>
 
-        </fieldset>
+            <div>
+              <%= form.submit :class => "govuk-button"%>
+            </div>
+
+          </fieldset>
         <% end %>
       </div>
 
       <div class="govuk-grid-column-one-half">
           <h3 class="govuk-heading-m">What it will look like</h3>
-          <p class="govuk-body">This is where the markdown would be shown as HTML</p>
+          <p class="govuk-body">This is where the markdown will shown as HTML</p>
       </div>
     </div>
   </main>
