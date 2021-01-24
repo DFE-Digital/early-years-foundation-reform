@@ -1,5 +1,5 @@
 class ContentPagesController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_content_page, only: [:show, :edit, :update, :destroy]
 
   # GET /content_pages
@@ -54,6 +54,8 @@ class ContentPagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def content_page_params
-      params.require(:content_page).permit(:title, :slug, :markdown, :seo)
+      # TODO I had to remove .require(:content_page), because the form was
+      # submitted without this enclosing hash - Why ?
+      params.permit(:title, :slug, :markdown, :seo, :subtitle)
     end
 end
