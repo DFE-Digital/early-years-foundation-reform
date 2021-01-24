@@ -9,12 +9,11 @@
 
     <% @content_pages.each_with_index do |content_page, index| %>
 
-      <div class="govuk-accordion__section-header">
-        <h2 class="govuk-accordion__section-heading">
-          <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-<%= index %>>">
+
             <%= content_page.title %>
-          </span>
-        </h2>
+
+            <%= link_to 'Edit', edit_content_page_path(content_page), { :class => "govuk-link" } %>
+
         <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-<%= index %>">
           <%= content_page.subtitle %>
         </div>
