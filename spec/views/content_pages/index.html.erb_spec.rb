@@ -2,27 +2,20 @@ require 'rails_helper'
 
 RSpec.describe "content_pages/index", type: :view do
   before(:each) do
-    assign(:content_pages, [
-      ContentPage.create!(
-        title: "Title",
-        slug: "Slug",
-        markdown: "Markdown",
-        seo: "Seo"
-      ),
-      ContentPage.create!(
-        title: "Title2",
-        slug: "Slug2",
-        markdown: "Markdown2",
-        seo: "Seo2"
-      )
-    ])
+    @content_pages = [
+        FactoryBot.create(:content_page),
+        FactoryBot.create(:content_page)
+    ]
   end
 
   it "renders a list of content_pages" do
     render
-    assert_select "tr>td", text: "Title".to_s, count: 2
-    assert_select "tr>td", text: "Slug".to_s, count: 2
-    assert_select "tr>td", text: "Markdown".to_s, count: 2
-    assert_select "tr>td", text: "Seo".to_s, count: 2
+    @content_pages.each do | funky_page |
+      rendered.include? funky_page.title
+      rendered.include? funky_page.subtitle
+      rendered.include? funky_page.slug
+      rendered.include? funky_page.markdown
+      rendered.include? funky_page.seo
+    end
   end
 end
