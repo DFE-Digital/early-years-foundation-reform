@@ -4,6 +4,8 @@ RSpec.describe ContentAsset, type: :model do
 
   describe "with a valid file" do
 
+    #let(:content_asset) { create :content_asset, :with_avatar }
+
     before(:each) do
       @content_asset = ContentAsset.new(title: "test title")
       @content_asset.avatar.attach(
