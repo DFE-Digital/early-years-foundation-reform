@@ -10,16 +10,13 @@ RSpec.describe "content_pages/edit", type: :view do
 
     assert_select "form[action=?][method=?]", content_page_path(@content_page), "post" do
 
-      # TODO The input names should be nexted in content_page, for example
-      # assert_select "input[name=?]", "content_page[title]"
-      # See controller
-      assert_select "input[name=?]", "title"
+      assert_select "input[name=?]", "content_page[title]"
 
-      assert_select "input[name=?]", "slug"
+      assert_select "input[name=?]", "content_page[slug]"
 
-      assert_select "textarea[name=?]", "markdown"
+      assert_select "textarea[name=?]", "content_page[markdown]"
 
-      assert_select "input[name=?]", "seo"
+      assert_select "input[name=?]", "content_page[seo]"
     end
   end
 end

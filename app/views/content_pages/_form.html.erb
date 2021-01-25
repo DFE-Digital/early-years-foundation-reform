@@ -22,35 +22,35 @@
               <label class="govuk-label" for="title">
                 <%= form.label :title %>
               </label>
-              <input class="govuk-input" id="title" name="title" type="text">
+              <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="subtitle">
                 <%= form.label :subtitle %>
               </label>
-              <textarea class="govuk-textarea" id="subtitle" name="subtitle" rows="5" aria-describedby="subtitle-hint"></textarea>
+              <%= form.text_area :subtitle, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-              <textarea class="govuk-textarea" id="markdown" name="markdown" rows="5" aria-describedby="markdown-hint"></textarea>
+              <%= form.text_area :markdown, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="slug">
                 Last part of URL for the page, eg physical_development
               </label>
-              <input class="govuk-input govuk-input--width-10" id="slug" name="slug" type="text">
+              <%= form.text_field :slug, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="seo">
                 Search Engine Words
               </label>
-              <input class="govuk-input govuk-!-width-two-thirds" id="seo" name="seo" type="text">
+              <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div>
@@ -63,7 +63,11 @@
 
       <div class="govuk-grid-column-one-half">
           <h3 class="govuk-heading-m">What it will look like</h3>
-          <p class="govuk-body">This is where the markdown will shown as HTML</p>
+          <p class="govuk-body">This is where the markdown will shown as HTML
+          </p>
+          <p>
+            <%= sanitize @md %>
+          </p>
       </div>
     </div>
   </main>

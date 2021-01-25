@@ -18,6 +18,9 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+
+    @md = markdown.render(@content_page.markdown)
   end
 
   # POST /content_pages
@@ -54,8 +57,6 @@ class ContentPagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def content_page_params
-      # TODO I had to remove .require(:content_page), because the form was
-      # submitted without this enclosing hash - Why ?
-      params.permit(:title, :slug, :markdown, :seo, :subtitle)
+      params.require(:content_page).permit(:title, :slug, :markdown, :seo, :subtitle)
     end
 end
