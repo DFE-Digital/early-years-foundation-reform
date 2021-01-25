@@ -18,6 +18,9 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
+    @md = markdown.render(@content_page.markdown)
+    @content_page
   end
 
   # POST /content_pages
@@ -54,6 +57,6 @@ class ContentPagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def content_page_params
-      params.require(:content_page).permit(:title, :slug, :markdown, :seo)
+      params.require(:content_page).permit(:title, :slug, :markdown, :seo, :subtitle)
     end
 end
