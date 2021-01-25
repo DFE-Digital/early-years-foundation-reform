@@ -68,19 +68,14 @@ RSpec.describe "/content_pages", type: :request do
       it "creates a new ContentPage" do
 
         expect {
-          # TODO The params should be in an enclosing content_page attr,
-          # see the note in the content_pages_controller content_page_params
-          # method
-          # Should be
-          # post content_pages_url, params: { content_page: valid_attributes }
-          post content_pages_url, params:  valid_attributes
+          post content_pages_url, params: { content_page: valid_attributes }
         }.to change(ContentPage, :count).by(1)
       end
 
       it "redirects to the created content_page" do
 
-        post content_pages_url, params:  valid_attributes
-        # TODO see above
+        post content_pages_url, params: { content_page: valid_attributes }
+
         expect(response).to redirect_to(content_page_url(ContentPage.last))
       end
     end
