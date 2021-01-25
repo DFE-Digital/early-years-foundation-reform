@@ -4,10 +4,10 @@ require 'faker'
 
 FactoryBot.define do
   factory :content_page do
-    title { Faker::Lorem.words(number: 4).join(' ') }
+    title { Faker::Lorem.sentence(word_count: 4) }
     subtitle { Faker::Lorem.paragraph }
-    slug { "Slug " + Faker::Lorem.words(number: 4).join(' ') }
-    seo { "SEO " + Faker::Lorem.words(number: 4).join(' ') }
+    slug { "Slug " + Faker::Lorem.sentence(word_count: 4) }
+    seo { "SEO " + Faker::Lorem.sentence(word_count: 4) }
     markdown { Faker::Markdown.headers }
   end
 end

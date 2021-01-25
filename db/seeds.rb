@@ -65,8 +65,11 @@ content_pages = [
     }
 ]
 
-content_pages.each do |page|
-  new_page = ContentPage.new page
+if ContentPage.count === 0
+  content_pages.each do |page|
+    new_page = ContentPage.new page
 
-  new_page.save!
+    new_page.save!
+  end
 end
+

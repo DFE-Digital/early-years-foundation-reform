@@ -19,8 +19,8 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/1/edit
   def edit
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-
     @md = markdown.render(@content_page.markdown)
+    @content_page
   end
 
   # POST /content_pages
