@@ -6,7 +6,7 @@ RSpec.describe "content_pages/edit", type: :view do
   end
 
   it "renders the edit content_page form" do
-    render
+     render
 
     assert_select "form[action=?][method=?]", content_page_path(@content_page), "post" do
 
