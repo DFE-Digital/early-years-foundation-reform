@@ -2,16 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "content_pages/edit", type: :view do
   before(:each) do
-    @content_page = assign(:content_page, ContentPage.create!(
-      title: "MyString",
-      slug: "MyString",
-      markdown: "MyString",
-      seo: "MyString"
-    ))
+    @content_page = FactoryBot.create(:content_page)
   end
 
   it "renders the edit content_page form" do
-    render
+     render
 
     assert_select "form[action=?][method=?]", content_page_path(@content_page), "post" do
 
@@ -19,7 +14,7 @@ RSpec.describe "content_pages/edit", type: :view do
 
       assert_select "input[name=?]", "content_page[slug]"
 
-      assert_select "input[name=?]", "content_page[markdown]"
+      assert_select "textarea[name=?]", "content_page[markdown]"
 
       assert_select "input[name=?]", "content_page[seo]"
     end

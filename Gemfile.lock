@@ -116,6 +116,8 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
+    faker (2.15.1)
+      i18n (>= 1.6, < 2)
     ffi (1.14.2)
     foreman (0.87.2)
     globalid (0.4.2)
@@ -196,6 +198,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redcarpet (3.5.1)
     regexp_parser (1.8.2)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -310,12 +313,14 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_bot_rails
+  faker
   foreman
   listen (>= 3.0.5, < 3.5)
   pg (>= 0.18, < 2.0)
   pry-byebug
   puma (~> 5.1)
   rails (~> 6.1.1)
+  redcarpet
   rspec-rails (~> 4.0.2)
   rubocop-govuk
   scss_lint-govuk

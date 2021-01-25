@@ -15,13 +15,18 @@
 RSpec.describe "/content_pages", type: :request do
   # ContentPage. As you add validations to ContentPage, be sure to
   # adjust the attributes here as well.
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:content_page)
   }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
+
+  before(:each) do
+    sign_in FactoryBot.create(:user)
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -33,6 +38,7 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
+
       content_page = ContentPage.create! valid_attributes
       get content_page_url(content_page)
       expect(response).to be_successful
@@ -41,7 +47,6 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
-      sign_in FactoryBot.create(:user)
 
       get new_content_page_url
       expect(response).to be_successful
@@ -50,6 +55,7 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
+
       content_page = ContentPage.create! valid_attributes
       get edit_content_page_url(content_page)
       expect(response).to be_successful
@@ -59,19 +65,23 @@ RSpec.describe "/content_pages", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new ContentPage" do
+
         expect {
           post content_pages_url, params: { content_page: valid_attributes }
         }.to change(ContentPage, :count).by(1)
       end
 
       it "redirects to the created content_page" do
+
         post content_pages_url, params: { content_page: valid_attributes }
+
         expect(response).to redirect_to(content_page_url(ContentPage.last))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new ContentPage" do
+
         expect {
           post content_pages_url, params: { content_page: invalid_attributes }
         }.to change(ContentPage, :count).by(0)
