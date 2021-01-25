@@ -2,6 +2,11 @@
 
 # EYFS Reform Spike
 
+## Prerequisites
+
+Ruby version `2.7.2`
+
+Node version `14.x.x`
 ## Getting started on Docker
 
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
