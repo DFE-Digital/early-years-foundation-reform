@@ -9,6 +9,7 @@ end
 
 FactoryBot.define do
   factory :content_asset do
-    title { "Sample Content Asset" }
+    title { "Title" }
+    avatar { Rack::Test::UploadedFile.new("spec/fixtures/sample.jpeg", "image/jpeg") }
   end
 end
