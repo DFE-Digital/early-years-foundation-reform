@@ -6,6 +6,8 @@ volumes:
 services:
   app:
     build: .
+    image: eyfs-reform-spike-web:latest
+    command: ./entrypoints/docker-entrypoint.sh
     depends_on:
       - database
     ports:
@@ -23,3 +25,14 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
+
+  webpack:
+    image: eyfs-reform-spike-web:latest
+    command: sh -c "npm rebuild node-sass && ./bin/webpack-dev-server"
+    depends_on:
+      - app
+    volumes:
+      - .:/app
+    ports:
+      - '3035:3035'
+    env_file: .env
