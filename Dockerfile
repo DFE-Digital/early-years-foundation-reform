@@ -1,5 +1,5 @@
 # Build compilation image
-FROM ruby:2.7.2-alpine
+FROM ruby:2.7.2-alpine3.13
 
 # Set bundler version
 ENV BUNDLER_VERSION=2.2.6
@@ -14,10 +14,11 @@ RUN apk add --update --no-cache tzdata && \
 # nodejs: JavaScript runtime built on Chrome's V8 JavaScript engine
 # yarn: node package manager
 # postgresql-dev: postgres driver and libraries
-RUN apk add --no-cache --update \
+RUN apk --no-cache add --update \
   build-base \
   git \
   nodejs \
+  npm \
   yarn \
   postgresql-dev
 
@@ -33,13 +34,7 @@ RUN gem update --system \
 
 # Install node packages defined in package.json, including webpack
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copy all files to /app (except what is defined in .dockerignore)
 COPY . ./
-
-# Compile assets and run webpack
-# RUN bundle exec rails assets:precompile
-
-# Start the application with an entrypoint script
-ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
