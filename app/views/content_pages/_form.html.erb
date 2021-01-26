@@ -1,37 +1,75 @@
-<%= form_with(model: content_page, local: true) do |form| %>
-  <% if content_page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this content_page from being saved:</h2>
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
 
-      <ul>
-        <% content_page.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <h3 class="govuk-heading-m">Details</h3>
+        <%= form_with(model: content_page) do |form| %>
+          <% if content_page.errors.any? %>
+            <div id="error_explanation" class="govuk-error-message" >
+              <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this content_page from being saved:</h2>
+              <ul>
+                <% content_page.errors.each do |error| %>
+                  <li><%= error.full_message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <fieldset class="govuk-fieldset">
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="title">
+                <%= form.label :title %>
+              </label>
+              <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="subtitle">
+                <%= form.label :subtitle %>
+              </label>
+              <%= form.text_area :subtitle, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
+            <div class="govuk-form-group">
+              <div id="markdown-hint" class="govuk-hint">
+                Markdown
+              </div>
+              <%= form.text_area :markdown, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="slug">
+                Last part of URL for the page, eg physical_development
+              </label>
+              <%= form.text_field :slug, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="seo">
+                Search Engine Words
+              </label>
+              <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
+            <div>
+              <%= form.submit :class => "govuk-button"%>
+            </div>
+
+          </fieldset>
+
         <% end %>
-      </ul>
+      </div>
+
+      <div class="govuk-grid-column-one-half">
+          <h3 class="govuk-heading-m">What it will look like</h3>
+          <p class="govuk-body">This is where the markdown will shown as HTML
+          </p>
+          <p>
+            <%= sanitize @md %>
+          </p>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug %>
-  </div>
-
-  <div class="field">
-    <%= form.label :markdown %>
-    <%= form.text_field :markdown %>
-  </div>
-
-  <div class="field">
-    <%= form.label :seo %>
-    <%= form.text_field :seo %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+  </main>
+</div>

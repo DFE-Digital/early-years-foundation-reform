@@ -2,19 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "content_pages/show", type: :view do
   before(:each) do
-    @content_page = assign(:content_page, ContentPage.create!(
-      title: "Title",
-      slug: "Slug",
-      markdown: "Markdown",
-      seo: "Seo"
-    ))
+    @content_page = FactoryBot.create(:content_page)
   end
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Title/)
-    expect(rendered).to match(/Slug/)
-    expect(rendered).to match(/Markdown/)
-    expect(rendered).to match(/Seo/)
+    expect(rendered).to include(@content_page.title)
+    expect(rendered).to include(@content_page.subtitle)
+    expect(rendered).to include(@content_page.seo)
+    expect(rendered).to include(@content_page.markdown)
+    expect(rendered).to include(@content_page.slug)
+
   end
 end
