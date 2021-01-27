@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "content_pages/show", type: :view do
   before(:each) do
@@ -12,6 +12,5 @@ RSpec.describe "content_pages/show", type: :view do
     expect(rendered).to include(@content_page.seo)
     expect(rendered).to include(@content_page.markdown)
     expect(rendered).to include(@content_page.slug)
-
   end
 end

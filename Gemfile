@@ -19,7 +19,7 @@ gem "aws-sdk-s3", require: false
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'bcrypt', '~> 3.1.16'
+gem "bcrypt", "~> 3.1.16"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
@@ -31,10 +31,10 @@ gem "foreman"
 gem "canonical-rails"
 
 # User accounts; required in config/application.rb
-gem 'devise', require: false
+gem "devise", require: false
 
 # For generating HTML from Markdown
-gem 'redcarpet'
+gem "redcarpet"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,9 +54,9 @@ group :development, :test do
 
   gem "dotenv-rails"
 
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
 
-  gem 'faker'
+  gem "faker"
 end
 
 group :development do
