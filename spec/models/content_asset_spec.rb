@@ -3,7 +3,9 @@ require "rails_helper"
 RSpec.describe ContentAsset, type: :model do
   describe "with an attached file" do
     before(:each) do
-      @content_asset = FactoryBot.create(:content_asset)
+      @content_asset = ContentAsset.new(title: "Title")
+      @content_asset.avatar.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+      @content_asset.save!
     end
 
     it "has a file attached" do
