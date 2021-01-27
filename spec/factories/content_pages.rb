@@ -1,6 +1,6 @@
 # spec/factories/content_pages.rb
 
-require 'faker'
+require "faker"
 
 FactoryBot.define do
   factory :content_page do
