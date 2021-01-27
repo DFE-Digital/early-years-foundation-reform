@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "content_assets/show", type: :view do
   before(:each) do

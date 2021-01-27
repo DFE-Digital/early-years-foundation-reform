@@ -1,8 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "content_assets/index", type: :view do
   before(:each) do
-
     @content_asset = FactoryBot.create(:content_asset)
     @content_asset2 = FactoryBot.create(:content_asset)
 

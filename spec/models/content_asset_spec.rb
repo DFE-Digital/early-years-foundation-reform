@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ContentAsset, type: :model do
   describe "with an attached file" do
