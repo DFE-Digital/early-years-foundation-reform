@@ -18,7 +18,6 @@ RSpec.describe ContentPagesController, type: :routing do
       expect(get: "/content_pages/1/edit").to route_to("content_pages#edit", id: "1")
     end
 
-
     it "routes to #create" do
       expect(post: "/content_pages").to route_to("content_pages#create")
     end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "content_pages/edit", type: :view do
   before(:each) do
@@ -6,10 +6,9 @@ RSpec.describe "content_pages/edit", type: :view do
   end
 
   it "renders the edit content_page form" do
-     render
+    render
 
     assert_select "form[action=?][method=?]", content_page_path(@content_page), "post" do
-
       assert_select "input[name=?]", "content_page[title]"
 
       assert_select "input[name=?]", "content_page[slug]"
