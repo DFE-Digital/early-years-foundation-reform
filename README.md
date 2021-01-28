@@ -50,8 +50,7 @@ cancel the running docker process and then run `docker-compose down` (for a full
 
 ### To ssh into the a docker container
 
-`docker container ls`
-`docker exec -it <CONTAINER ID> sh`
+`docker exec -i -t eyfs-reform-spike_app_1 sh`
 
 ### If there are issues with postgres password authentication failure:
 
