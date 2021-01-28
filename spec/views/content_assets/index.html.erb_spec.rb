@@ -2,14 +2,10 @@ require "rails_helper"
 
 RSpec.describe "content_assets/index", type: :view do
   before(:each) do
-    assign(:content_assets, [
-      ContentAsset.create!(
-        title: "Title",
-      ),
-      ContentAsset.create!(
-        title: "Title",
-      ),
-    ])
+    @content_asset = FactoryBot.create(:content_asset)
+    @content_asset2 = FactoryBot.create(:content_asset)
+
+    assign(:content_assets, [@content_asset, @content_asset2])
   end
 
   it "renders a list of content_assets" do

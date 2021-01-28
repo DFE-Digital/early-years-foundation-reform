@@ -2,9 +2,7 @@ require "rails_helper"
 
 RSpec.describe "content_assets/new", type: :view do
   before(:each) do
-    assign(:content_asset, ContentAsset.new(
-                             title: "MyString",
-                           ))
+    assign(:content_asset, FactoryBot.build(:content_asset))
   end
 
   it "renders new content_asset form" do
