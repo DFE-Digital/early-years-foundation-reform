@@ -4,7 +4,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages
   def index
-    @content_pages = ContentPage.all
+    @content_pages = ContentPage.top_level
   end
 
   # GET /content_pages/1

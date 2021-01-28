@@ -12,130 +12,138 @@
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/content_pages", type: :request do
-  # ContentPage. As you add validations to ContentPage, be sure to
-  # adjust the attributes here as well.
+ RSpec.describe "/content_pages", type: :request do
+   # ContentPage. As you add validations to ContentPage, be sure to
+   # adjust the attributes here as well.
 
-  let(:valid_attributes) {
-    FactoryBot.attributes_for(:content_page)
-  }
+   let(:valid_attributes) {
+     FactoryBot.attributes_for(:content_page)
+   }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+   let(:invalid_attributes) {
+     skip("Add a hash of attributes invalid for your model")
+   }
 
-  before(:each) do
-    sign_in FactoryBot.create(:user)
-  end
+   before(:each) do
+     sign_in FactoryBot.create(:user)
+   end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      ContentPage.create! valid_attributes
-      get content_pages_url
-      expect(response).to be_successful
-    end
-  end
+   describe "GET /index" do
+     parent_page = FactoryBot.create(:content_page)
+     child_page = FactoryBot.create(:content_page)
 
-  describe "GET /show" do
-    it "renders a successful response" do
+     it "renders a successful response" do
+       ContentPage.create! valid_attributes
+       get content_pages_url
+       expect(response).to be_successful
+     end
 
-      content_page = ContentPage.create! valid_attributes
-      get content_page_url(content_page)
-      expect(response).to be_successful
-    end
-  end
+     it "renders a page with children" do
+     end
+   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+   describe "GET /show" do
+     it "renders a successful response" do
 
-      get new_content_page_url
-      expect(response).to be_successful
-    end
-  end
+       content_page = ContentPage.create! valid_attributes
+       get content_page_url(content_page)
+       expect(response).to be_successful
+     end
+   end
 
-  describe "GET /edit" do
-    it "render a successful response" do
+   describe "GET /new" do
+     it "renders a successful response" do
 
-      content_page = ContentPage.create! valid_attributes
-      get edit_content_page_url(content_page)
-      expect(response).to be_successful
-    end
-  end
+       get new_content_page_url
+       expect(response).to be_successful
+     end
+   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new ContentPage" do
+   describe "GET /edit" do
+     it "render a successful response" do
 
-        expect {
-          post content_pages_url, params: { content_page: valid_attributes }
-        }.to change(ContentPage, :count).by(1)
-      end
+       content_page = ContentPage.create! valid_attributes
+       get edit_content_page_url(content_page)
+       expect(response).to be_successful
+     end
+   end
 
-      it "redirects to the created content_page" do
+   describe "POST /create" do
+     context "with valid parameters" do
+       it "creates a new ContentPage" do
 
-        post content_pages_url, params: { content_page: valid_attributes }
+         expect {
+           post content_pages_url, params: { content_page: valid_attributes }
+         }.to change(ContentPage, :count).by(1)
+       end
 
-        expect(response).to redirect_to(content_page_url(ContentPage.last))
-      end
-    end
+       it "redirects to the created content_page" do
 
-    context "with invalid parameters" do
-      it "does not create a new ContentPage" do
+         post content_pages_url, params: { content_page: valid_attributes }
 
-        expect {
-          post content_pages_url, params: { content_page: invalid_attributes }
-        }.to change(ContentPage, :count).by(0)
-      end
+         expect(response).to redirect_to(content_page_url(ContentPage.last))
+       end
+     end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post content_pages_url, params: { content_page: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
+     context "with invalid parameters" do
+       it "does not create a new ContentPage" do
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+         expect {
+           post content_pages_url, params: { content_page: invalid_attributes }
+         }.to change(ContentPage, :count).by(0)
+       end
 
-      it "updates the requested content_page" do
-        content_page = ContentPage.create! valid_attributes
-        patch content_page_url(content_page), params: { content_page: new_attributes }
-        content_page.reload
-        skip("Add assertions for updated state")
-      end
+       it "renders a successful response (i.e. to display the 'new' template)" do
+         post content_pages_url, params: { content_page: invalid_attributes }
+         expect(response).to be_successful
+       end
+     end
+   end
 
-      it "redirects to the content_page" do
-        content_page = ContentPage.create! valid_attributes
-        patch content_page_url(content_page), params: { content_page: new_attributes }
-        content_page.reload
-        expect(response).to redirect_to(content_page_url(content_page))
-      end
-    end
+   describe "PATCH /update" do
+     context "with valid parameters" do
+       let(:new_attributes) {
+         skip("Add a hash of attributes valid for your model")
+       }
 
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        content_page = ContentPage.create! valid_attributes
-        patch content_page_url(content_page), params: { content_page: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
+       it "updates the requested content_page" do
+         content_page = ContentPage.create! valid_attributes
+         patch content_page_url(content_page), params: { content_page: new_attributes }
+         content_page.reload
+         skip("Add assertions for updated state")
+       end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested content_page" do
-      content_page = ContentPage.create! valid_attributes
-      expect {
-        delete content_page_url(content_page)
-      }.to change(ContentPage, :count).by(-1)
-    end
+       it "redirects to the content_page" do
+         content_page = ContentPage.create! valid_attributes
+         patch content_page_url(content_page), params: { content_page: new_attributes }
+         content_page.reload
+         expect(response).to redirect_to(content_page_url(content_page))
+       end
+     end
 
-    it "redirects to the content_pages list" do
-      content_page = ContentPage.create! valid_attributes
-      delete content_page_url(content_page)
-      expect(response).to redirect_to(content_pages_url)
-    end
-  end
-end
+     context "with invalid parameters" do
+       it "renders a successful response (i.e. to display the 'edit' template)" do
+         content_page = ContentPage.create! valid_attributes
+         patch content_page_url(content_page), params: { content_page: invalid_attributes }
+         expect(response).to be_successful
+       end
+     end
+   end
+
+   describe "DELETE /destroy" do
+     it "destroys the requested content_page" do
+       content_page = ContentPage.create! valid_attributes
+       expect {
+         delete content_page_url(content_page)
+       }.to change(ContentPage, :count).by(-1)
+     end
+
+     it "redirects to the content_pages list" do
+       content_page = ContentPage.create! valid_attributes
+       delete content_page_url(content_page)
+       expect(response).to redirect_to(content_pages_url)
+     end
+   end
+
+
+ end

@@ -36,7 +36,7 @@
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-              <%= form.text_area :markdown, :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%= form.text_area :markdown, :class => 'govuk-input govuk-!-width-three-quarters', rows: "20" %>
             </div>
 
             <div class="govuk-form-group">
@@ -53,12 +53,7 @@
               <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="parent_id">
-                (parent_id will be hidden)
-              </label>
-              <%= form.text_field :parent_id, :class => 'govuk-input govuk-!-width-three-quarters' %>
-            </div>
+            <%= form.hidden_field :parent_id, :class => 'govuk-input govuk-!-width-three-quarters' %>
 
             <div>
               <%= form.submit :class => "govuk-button"%>
