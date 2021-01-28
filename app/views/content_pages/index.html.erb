@@ -7,7 +7,7 @@
 
 <div>
 
-  <% @content_pages.top_level.each_with_index do |content_page, index| %>
+  <% @content_pages.each_with_index do |content_page, index| %>
 
     <%= render partial: 'details_for_a_single_page', locals: {page_to_render: content_page, level: 1} %>
 
