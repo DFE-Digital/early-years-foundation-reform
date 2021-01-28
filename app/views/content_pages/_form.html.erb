@@ -53,6 +53,13 @@
               <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="parent_id">
+                (parent_id will be hidden)
+              </label>
+              <%= form.text_field :parent_id, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
             <div>
               <%= form.submit :class => "govuk-button"%>
             </div>
@@ -63,7 +70,6 @@
 
       <div class="govuk-grid-column-one-half">
           <h3 class="govuk-heading-m">What it will look like</h3>
-          <p class="govuk-body">This is where the markdown will shown as HTML
           </p>
           <p>
             <%= sanitize @md %>
