@@ -3,7 +3,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
-        <h3 class="govuk-heading-m">Details</h3>
+        <h3 class="govuk-heading-m">About the page</h3>
         <%= form_with(model: content_page) do |form| %>
           <% if content_page.errors.any? %>
             <div id="error_explanation" class="govuk-error-message" >
@@ -29,21 +29,14 @@
               <label class="govuk-label" for="subtitle">
                 <%= form.label :subtitle %>
               </label>
-              <%= form.text_area :subtitle, :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%= form.text_area :subtitle, :rows => 5, :cols => 35 %>
             </div>
 
             <div class="govuk-form-group">
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-              <%= form.text_area :markdown, :class => 'govuk-input govuk-!-width-three-quarters' %>
-            </div>
-
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="slug">
-                Last part of URL for the page, eg physical_development
-              </label>
-              <%= form.text_field :slug, :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%= form.text_area :markdown, :rows => 20, :cols => 35  %>
             </div>
 
             <div class="govuk-form-group">
@@ -52,6 +45,8 @@
               </label>
               <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
+
+            <%= form.hidden_field :parent_id %>
 
             <div>
               <%= form.submit :class => "govuk-button"%>
@@ -63,8 +58,7 @@
       </div>
 
       <div class="govuk-grid-column-one-half">
-          <h3 class="govuk-heading-m">What it will look like</h3>
-          <p class="govuk-body">This is where the markdown will shown as HTML
+          <h3 class="govuk-heading-m">Preview</h3>
           </p>
           <p>
             <%= sanitize @md %>

@@ -13,6 +13,11 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/new
   def new
     @content_page = ContentPage.new
+    # If the new page is a child, pass through its parent id
+    if params[:parent_id]
+      @content_page.parent_id = params[:parent_id]
+    end
+    @content_page
   end
 
   # GET /content_pages/1/edit
@@ -57,6 +62,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :slug, :markdown, :seo, :subtitle)
+    params.require(:content_page).permit(:title, :slug, :markdown, :seo, :subtitle, :parent_id)
   end
 end
