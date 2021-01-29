@@ -36,7 +36,8 @@
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-              <%= form.text_area :markdown, :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%= form.text_area :markdown, :id => 'markdown-editor', :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%#= button_to "Preview", :class => "govuk-button" %>
             </div>
 
             <div class="govuk-form-group">
