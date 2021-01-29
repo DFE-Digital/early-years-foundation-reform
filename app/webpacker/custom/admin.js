@@ -1,15 +1,12 @@
+import $ from 'jquery';
+
 export function createPreview(el, target) {
 
   const showdown = require('showdown');
+  const previewContent = $(el).val();
+  const sanitizeContent = previewContent.replace(/<\/?[^>]+(>|$)/g, ""); //remove tags
+  const converter = new showdown.Converter();
 
-  document.getElementById(el).addEventListener('keyup', function() {
-
-    const previewContent = document.getElementById(el).value;
-    const santizedContent = previewContent.replace(/<\/?[^>]+(>|$)/g, ""); //remove tags
-
-    let converter = new showdown.Converter();
-    document.getElementById(target).innerHTML = converter.makeHtml(santizedContent);
-
-  });
+  $(target).html(converter.makeHtml(sanitizeContent))
 
 }
