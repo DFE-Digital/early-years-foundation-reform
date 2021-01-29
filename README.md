@@ -28,7 +28,7 @@ If PostgreSQL was installed using homebrew, in the terminal use:
 
 To run the application locally with docker:
 
-`docker-compose build && docker exec -it eyfs-reform-spike_app_1 sh`
+`docker-compose build && docker-compose up`
 
 If docker has been setup correctly, running `sudo docker ps`, you should see 2 containers running like this:
 
