@@ -8,6 +8,11 @@
 
 <%= render 'form', content_asset: @content_asset %>
 
-<div class="govuk-grid-row govuk-grid-column-one-half">
-    <%= link_to 'Back', content_assets_path, :class => "govuk-link" %>
+<div class="govuk-grid-row ">
+    <div class="govuk-grid-column-one-half">
+        <%= link_to 'Back', content_assets_path, :class => "govuk-link" %>
+    </div>
+    <div class="govuk-grid-column-one-half align-right">
+    <%= button_to "delete", {:controller => :content_assets, :action => 'destroy', :id => @content_asset.id }, method: "delete", class: "govuk-button", onclick: "return confirm('Do you really want to delete this asset?');" %>
+    </div> 
 </div>
