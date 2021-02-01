@@ -10,3 +10,4 @@ export function createPreview(el, target) {
   $(target).html(converter.makeHtml(sanitizeContent))
 
 }
+
