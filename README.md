@@ -167,3 +167,36 @@ Note: Docker can't be used to connect to AWS
 
 Check the file `manifest.yml` for customisation of name (you may need to change it as there could be a conflict on that name), buildpacks and eventual services (PostgreSQL needs to be [set up](https://docs.cloud.service.gov.uk/deploying_services/postgresql/)).
 
+## Cucumber Tests
+
+### To run
+- They can be run manually in IDE
+- Command line
+- Intention for these integration / e2e tests to run in AWS CI pipeline
+
+#### IDE
+Right click on 'Feature' and run 
+Or 
+Run - Edit Configurations (depending on IDE)
+
+#### Command Line  
+cucumber --color -r e2etestname.feature
+ 
+#### AWS CI pipeline (Drone.yml configuration)
+``` 
+- Ruby E2E Tests
+-   e2e-test:
+-     group: ?
+-     image: ruby:2.7.2
+-     commands:
+-       - cd e2etests
+-       - gem install bundler
+-       - bundle install
+-       - cucumber --color -r features -p [insert env]
+-     when:
+-       trigger:
+-         branch:
+-           - tbc/*
+-         event:
+-           - push
+

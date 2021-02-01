@@ -59,6 +59,17 @@ group :development, :test do
   gem "factory_bot_rails"
 
   gem "faker"
+
+  gem 'axe-matchers'
+  # DM '2.4.0'
+  gem 'cucumber'
+  gem 'debase'
+  # DM '3.9.0'
+  gem 'rspec'
+  # DM '3.9.0'
+  gem 'rspec-expectations'
+  # DM '3.142.7'
+  gem 'selenium-webdriver'
 end
 
 group :development do
