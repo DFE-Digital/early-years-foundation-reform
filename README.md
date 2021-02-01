@@ -48,7 +48,7 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED       ST
 
 cancel the running docker process and then run `docker-compose down` (for a full reset on your environment)
 
-### To ssh into the a docker container
+### To connect to the a docker container
 
 `docker exec -i -t eyfs-reform-spike_app_1 sh`
 
