@@ -7,6 +7,7 @@ RSpec.describe "content_assets/show", type: :view do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Title/)
+    expect(rendered).to include(@content_asset.title)
+    expect(rendered).to include(@content_asset.alt)
   end
 end
