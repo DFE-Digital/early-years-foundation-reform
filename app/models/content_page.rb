@@ -1,7 +1,11 @@
 class ContentPage < ApplicationRecord
-  validates :title, presence: true, uniqueness: true
+  validates :title, format: { with: /\A[a-zA-Z0-9 ]+\Z/, message: "Title should only contain alphabet, numeric and space characters" }, presence: true, uniqueness: true
   validates :subtitle, presence: true
-  validates :slug, presence: true, uniqueness: true
   validates :markdown, presence: true
   validates :seo, presence: true
+
+  def slug
+    title.gsub(/ /, '-')
+  end
+
 end

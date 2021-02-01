@@ -57,6 +57,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :slug, :markdown, :seo, :subtitle)
+    params.require(:content_page).permit(:title, :markdown, :seo, :subtitle)
   end
 end
