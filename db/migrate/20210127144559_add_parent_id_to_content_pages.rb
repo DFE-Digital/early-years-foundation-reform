@@ -1,6 +1,6 @@
 class AddParentIdToContentPages < ActiveRecord::Migration[6.1]
-  def change
-    add_column :content_pages, :parent_id, :integer
-    add_column :content_pages, :position, :integer
+  change_table :content_pages, bulk: true do |t|
+    t.integer :parent_id
+    t.integer :position
   end
 end

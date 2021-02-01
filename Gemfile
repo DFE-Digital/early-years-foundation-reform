@@ -36,9 +36,7 @@ gem "devise", require: false
 # For generating HTML from Markdown
 gem "redcarpet"
 
-gem 'acts_as_tree'
-
-gem 'acts_as_tree'
+gem "acts_as_tree"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
