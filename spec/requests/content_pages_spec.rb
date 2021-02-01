@@ -36,10 +36,11 @@ RSpec.describe "/content_pages", type: :request do
      ContentPage.create! valid_attributes
      get content_pages_url
      expect(response).to be_successful
+
+     expect(response.body).to include(parent_page.title)
+     expect(response.body).to include(child_page.title)
    end
 
-   it "renders a page with children" do
-   end
  end
 
  describe "GET /show" do
