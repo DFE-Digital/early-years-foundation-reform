@@ -26,7 +26,7 @@ RSpec.describe ContentAsset, type: :model do
       subject.validate
       expect(subject.errors[:avatar]).to include("can't be blank")
     end
-    it "requires an alt text to be uploaded" do
+    it "requires an alt text for the asset" do
       subject.validate
       expect(subject.errors[:alt]).to include("can't be blank")
     end
