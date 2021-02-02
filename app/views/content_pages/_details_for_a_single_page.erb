@@ -1,0 +1,25 @@
+<div class="nesting_level_<%= level %>">
+
+  <div class="summary">
+    <h3 class="govuk-heading-m">
+      <%= page_to_render.title %>
+      <span class="links">
+        <%= link_to 'Edit', edit_content_page_path(page_to_render), { :class => "govuk-link" } %>
+        |<%= link_to 'Add a child page', new_content_page_path(:parent_id => page_to_render.id) %>
+      </span>
+    </h3>
+    <p>
+      <%= page_to_render.subtitle %>
+    </p>
+  </div>
+  <br/>
+  <div>
+    <ul class="govuk-list">
+      <% page_to_render.children.each_with_index do |child, index| %>
+        <li>
+          <%= render partial: 'details_for_a_single_page', locals: {page_to_render: child, level: level + 1} %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
