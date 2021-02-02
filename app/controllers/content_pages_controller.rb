@@ -12,12 +12,9 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/new
   def new
-    @content_page = ContentPage.new
     # If the new page is a child, pass through its parent id
-    if params[:parent_id]
-      @content_page.parent_id = params[:parent_id]
-    end
-    @content_page
+    # Pages with a nil parent_id are top_level
+    @content_page = ContentPage.new(parent_id: params[:parent_id])
   end
 
   # GET /content_pages/1/edit

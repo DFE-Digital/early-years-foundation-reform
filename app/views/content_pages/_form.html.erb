@@ -29,14 +29,15 @@
               <label class="govuk-label" for="subtitle">
                 <%= form.label :subtitle %>
               </label>
-              <%= form.text_area :subtitle, :rows => 5, :cols => 35 %>
+              <%= form.text_area :subtitle, :rows => 5, :cols => 35, :class => "govuk-textarea"%>
             </div>
 
             <div class="govuk-form-group">
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-              <%= form.text_area :markdown, :rows => 20, :cols => 35  %>
+
+              <%= form.text_area :markdown, :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
             </div>
 
             <div class="govuk-form-group">
