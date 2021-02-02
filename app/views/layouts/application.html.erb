@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template ">
   <head>
-    <title>Early Years Reforms Content System</title>
+    <title>Help for early years providers (editing content)</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= canonical_tag %>
@@ -42,7 +42,7 @@
           <% end %>
         </div>
         <div class="govuk-header__content">
-          <%= link_to "Early Years Reforms Content Spike", "/", class: "govuk-header__link govuk-header__link--service-name" %>
+          <%= link_to "Edit content for: Help for early years providers", "/", class: "govuk-header__link govuk-header__link--service-name" %>
           <button type="button" role="button" data-module="govuk-button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
           <nav>
             <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
@@ -57,6 +57,20 @@
         </div>
       </div>
     </header>
+    <div class="govuk-width-container">
+
+      <div class="govuk-phase-banner">
+        <p class="govuk-phase-banner__content">
+          <strong class="govuk-tag govuk-phase-banner__content__tag">
+            Beta
+          </strong>
+          <span class="govuk-phase-banner__text">
+        This is a Beta. Content is likely to change rapidly.
+      </span>
+        </p>
+      </div>
+
+    </div>
 
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper " id="main-content" role="main">
