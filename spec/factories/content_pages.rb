@@ -12,9 +12,14 @@ FactoryBot.define do
     subtitle { Faker::Lorem.paragraph }
     seo { "SEO " + Faker::Lorem.sentence(word_count: 4) }
     markdown { Faker::Markdown.headers }
+    parent_id { nil }
   end
 
   trait :with_special_chars_in_title do
     title { Faker::Lorem.sentence(word_count: 4) + "$" }
+  end
+
+  trait :top_level do
+    parent_id { nil }
   end
 end
