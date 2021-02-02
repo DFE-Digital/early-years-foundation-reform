@@ -29,10 +29,15 @@ RSpec.describe "/content_pages", type: :request do
   end
 
   describe "GET /index" do
+    parent_page = FactoryBot.create(:content_page)
+    child_page = FactoryBot.create(:content_page)
+
     it "renders a successful response" do
       ContentPage.create! valid_attributes
       get content_pages_url
       expect(response).to be_successful
+      expect(response.body).to include(parent_page.title)
+      expect(response.body).to include(child_page.title)
     end
   end
 
@@ -66,10 +71,8 @@ RSpec.describe "/content_pages", type: :request do
           post content_pages_url, params: { content_page: valid_attributes }
         }.to change(ContentPage, :count).by(1)
       end
-
       it "redirects to the created content_page" do
         post content_pages_url, params: { content_page: valid_attributes }
-
         expect(response).to redirect_to(content_page_url(ContentPage.last))
       end
     end
