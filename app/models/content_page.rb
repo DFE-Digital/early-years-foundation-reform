@@ -9,7 +9,7 @@ class ContentPage < ApplicationRecord
   validates :seo, presence: true
 
   def slug
-    title.gsub(/ /, '-')
+    title.downcase.gsub(/ /, '-')
   end
 
 end

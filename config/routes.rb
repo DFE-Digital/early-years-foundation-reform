@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :content_assets
   resources :content_pages
 
+  get '/content/:the_path', to: 'content#show'
+
   devise_for :users
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
