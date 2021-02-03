@@ -18,8 +18,6 @@ RSpec.describe "content_pages/new", type: :view do
 
       assert_select "textarea[name=?]", "content_page[subtitle]"
 
-      assert_select "input[name=?]", "content_page[slug]"
-
       assert_select "textarea[name=?]", "content_page[markdown]"
 
       assert_select "input[name=?]", "content_page[seo]"

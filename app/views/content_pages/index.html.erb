@@ -1,35 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h2 class="govuk-heading-xl">Pages</h2>
+<h2 class="govuk-heading-l">Pages</h2>
 
-<%= link_to 'Add a new Page', new_content_page_path %>
+<%= link_to 'Add a top level Page', new_content_page_path %>
 <br/><br/>
 
-<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+<div>
 
   <% @content_pages.each_with_index do |content_page, index| %>
 
-    <%= content_page.title %>
+    <%= render partial: 'details_for_a_single_page', locals: {page_to_render: content_page, level: 1} %>
 
-    <%= link_to 'Edit', edit_content_page_path(content_page), { :class => "govuk-link" } %>
-
-    <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-<%= index %>">
-      <%= content_page.subtitle %>
-    </div>
-
-    <div id="accordion-with-summary-sections-content-<%= index %>" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-<%= index %>">
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link" href="#">Agile and government services: an introduction</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="#">Agile methods: an introduction</a>
-        </li>
-        <li>
-          <a class="govuk-link" href="#">Core principles of agile</a>
-        </li>
-      </ul>
-    </div>
   <% end %>
 </div>
 <br>
