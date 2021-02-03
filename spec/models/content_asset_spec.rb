@@ -18,16 +18,16 @@ RSpec.describe ContentAsset, type: :model do
 
   describe "required attributes" do
     subject { ContentAsset.new }
-    it "requires a title" do
+    before(:each) do
       subject.validate
+    end
+    it "requires a title" do
       expect(subject.errors[:title]).to include("can't be blank")
     end
     it "requires an asset to be uploaded" do
-      subject.validate
       expect(subject.errors[:avatar]).to include("can't be blank")
     end
     it "requires an alt text for the asset" do
-      subject.validate
       expect(subject.errors[:alt]).to include("can't be blank")
     end
   end
