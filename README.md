@@ -1,6 +1,11 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# EYFS Reform Spike
+# Early Years Reform Framework
+
+This is a minimalistic content management system, written in Ruby on Rails
+for use by content editors in the EYRF project.
+
+
 
 ## Prerequisites
 
