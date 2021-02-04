@@ -16,5 +16,5 @@ AllCops:
 Layout/LineLength:
   IgnoredPatterns: ['^Given', '^When', '^Then', '^And']
 
-Naming/VariableNumber:
-  EnforcedStyle: snake_case
+# Naming/VariableNumber:
+#  EnforcedStyle: snake_case
