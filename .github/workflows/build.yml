@@ -66,3 +66,20 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.13.5
+
+      - name: Terraform init, plan & apply
+        id: terraform_deploy
+        working-directory: terraform
+        # env:
+        run: echo "TODO"
+
+      - name: Update deployment to ${{ env.DEPLOY_ENV }} status
+        if: ${{ always() }}
+        uses: bobheadxi/deployments@v0.4.2
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ env.DEPLOY_ENV }}
+          status: ${{ job.status }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          ref: ${{ github.event.inputs.sha }}
