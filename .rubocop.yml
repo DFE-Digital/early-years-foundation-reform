@@ -13,6 +13,8 @@ AllCops:
     - 'config/puma.rb'
     - 'vendor/**/*'
 
-GlobalVars:
-  AllowedVariables:
-    - $app
+Layout/LineLength:
+  IgnoredPatterns: ['^Given', '^When', '^Then', '^And']
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
