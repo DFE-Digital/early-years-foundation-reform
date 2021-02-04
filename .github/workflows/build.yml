@@ -1,9 +1,6 @@
 name: Build
 
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 env:
   RAILS_ENV: production
@@ -39,3 +36,33 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set Environment variable
+        run: |
+          echo "DOCKER_IMAGE=$DOCKER_IMAGE" >> $GITHUB_ENV
+          echo "DEPLOY_ENV=$DEPLOY_ENV" >> $GITHUB_ENV
+        env:
+          DOCKER_IMAGE: ${{ format('dfedigital/eyfsreform:{0}', github.sha) }}
+          DEPLOY_ENV: development
+
+      - name: Start Deployment to ${{ env.DEPLOY_ENV }}
+        uses: bobheadxi/deployments@v0.4.2
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.inputs.sha }}
+          env: ${{ env.DEPLOY_ENV }}
+
+      - name: Use Terraform v0.13.5
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.13.5
