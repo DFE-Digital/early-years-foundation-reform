@@ -8,6 +8,6 @@ RSpec.describe "content_assets/show", type: :view do
   it "renders attributes" do
     render
     expect(rendered).to include(@content_asset.title)
-    expect(rendered).to include(@content_asset.alt)
+    expect(rendered).to include(@content_asset.alt_text)
   end
 end

@@ -6,13 +6,13 @@ RSpec.describe ContentAsset, type: :model do
 
     before(:each) do
       subject.title = "Title"
-      subject.alt = "Sample Alt Text"
-      subject.avatar.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+      subject.alt_text = "Sample Alt Text"
+      subject.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
       subject.save!
     end
 
     it "has a file attached" do
-      expect(subject.avatar).to be_attached
+      expect(subject.asset_file).to be_attached
     end
   end
 
@@ -25,10 +25,10 @@ RSpec.describe ContentAsset, type: :model do
       expect(subject.errors[:title]).to include("can't be blank")
     end
     it "requires an asset to be uploaded" do
-      expect(subject.errors[:avatar]).to include("can't be blank")
+      expect(subject.errors[:asset_file]).to include("can't be blank")
     end
     it "requires an alt text for the asset" do
-      expect(subject.errors[:alt]).to include("can't be blank")
+      expect(subject.errors[:alt_text]).to include("can't be blank")
     end
   end
 end
