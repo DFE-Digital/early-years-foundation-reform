@@ -46,6 +46,13 @@
               <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="position">
+                Position (relative to sibling pages)
+              </label>
+              <%= form.text_field :position, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
             <%= form.hidden_field :parent_id %>
 
             <div>

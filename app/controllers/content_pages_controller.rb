@@ -4,7 +4,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages
   def index
-    @content_pages = ContentPage.top_level
+    @content_pages = ContentPage.top_level.order_by_position
   end
 
   # GET /content_pages/1
@@ -59,6 +59,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :seo, :subtitle, :parent_id)
+    params.require(:content_page).permit(:title, :markdown, :seo, :subtitle, :parent_id, :position)
   end
 end
