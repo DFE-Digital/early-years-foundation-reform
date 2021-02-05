@@ -13,6 +13,7 @@ FactoryBot.define do
     seo { "SEO " + Faker::Lorem.sentence(word_count: 4) }
     markdown { Faker::Markdown.headers }
     parent_id { nil }
+    position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }
   end
 
   trait :with_special_chars_in_title do

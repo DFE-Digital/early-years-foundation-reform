@@ -1,6 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Contents", type: :request do
+  before(:each) do
+    sign_in FactoryBot.create(:user)
+  end
 
   let(:a_page) do
     FactoryBot.create(:content_page)
@@ -12,5 +15,4 @@ RSpec.describe "Contents", type: :request do
       expect(response).to be_successful
     end
   end
-
 end
