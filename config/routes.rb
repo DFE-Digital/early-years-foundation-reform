@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :content_assets
   resources :content_pages
 
-  get '/content/:slug', to: 'content#show'
+  get "/content/:slug", to: "content#show"
 
   devise_for :users
   devise_scope :user do
