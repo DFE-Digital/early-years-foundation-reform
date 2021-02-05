@@ -10,6 +10,7 @@ RSpec.describe "content_assets/edit", type: :view do
 
     assert_select "form[action=?][method=?]", content_asset_path(@content_asset), "post" do
       assert_select "input[name=?]", "content_asset[title]"
+      assert_select "input[name=?]", "content_asset[alt_text]"
     end
   end
 end
