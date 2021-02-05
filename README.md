@@ -48,9 +48,9 @@ CONTAINER ID   IMAGE                   COMMAND                  CREATED       ST
 
 cancel the running docker process and then run `docker-compose down` (for a full reset on your environment)
 
-### To ssh into the a docker container
+### To connect to the docker container and run commands
 
-`docker exec -i -t eyfs-reform-spike_app_1 sh`
+`docker exec -it eyfs-reform-spike_app_1 sh`
 
 ### If there are issues with postgres password authentication failure:
 

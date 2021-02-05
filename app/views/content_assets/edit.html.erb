@@ -1,8 +1,8 @@
 <h1 class="govuk-heading-l">Edit Asset</h1>
 
-<% if @content_asset.avatar.attached? %>
+<% if @content_asset.asset_file.attached? %>
 <div id='content-asset-wrapper'>
-<%= image_tag(url_for(@content_asset.avatar), :class=>'govuk-!-width-full') %>
+<%= image_tag(url_for(@content_asset.asset_file), :class=>'govuk-!-width-full') %>
 </div>
 <% end %>
 
