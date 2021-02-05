@@ -65,7 +65,10 @@
 
       <div class="govuk-grid-column-one-half">
           <h3 class="govuk-heading-m">Preview</h3>
-          </p>
+          <% if @content_page.parent %>
+            <span class="govuk-caption-l"><%= @content_page.parent.title %></span>
+          <% end %>
+          <h1 class="govuk-heading-l"><%= @content_page.title %></h1>
           <p>
             <%= sanitize @md %>
           </p>

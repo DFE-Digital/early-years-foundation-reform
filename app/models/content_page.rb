@@ -8,8 +8,9 @@ class ContentPage < ApplicationRecord
   validates :subtitle, presence: true
   validates :markdown, presence: true
   validates :seo, presence: true
-  # TODO Position needs to be unique for pages with the same parent
-  validates :position, presence: true, uniqueness: true, format: { with: /\A\d+\z/, message: "Integer only, no sign allowed" }
+
+  validates :position, presence: true, format: { with: /\A\d+\z/, message: "Integer only, no sign allowed" }
+  validates_uniqueness_of :position, scope: :parent_id
 
   before_save :set_slug_from_title
   before_create :set_slug_from_title
