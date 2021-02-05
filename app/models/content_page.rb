@@ -1,5 +1,4 @@
 class ContentPage < ApplicationRecord
-
   acts_as_tree
 
   scope :top_level, -> { where("parent_id IS NULL") }
