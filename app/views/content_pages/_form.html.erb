@@ -20,15 +20,14 @@
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="title">
-                <%= form.label :heading %>
-                <%= form.label :Heading %>
+                <%= form.label :title, "Heading" %>
               </label>
               <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="subtitle">
-                <%= form.label :overview %>
+                <%= form.label :subtitle, "Overview" %>
               </label>
               <%= form.text_area :subtitle, :rows => 5, :cols => 35, :class => "govuk-textarea"%>
             </div>
