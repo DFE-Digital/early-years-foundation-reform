@@ -14,7 +14,8 @@ class ContentPagesController < ApplicationController
   def new
     # If the new page is a child, pass through its parent id
     # Pages with a nil parent_id are top_level
-    @content_page = ContentPage.new(parent_id: params[:parent_id])
+    next_position = ContentPage.maximum("position") + 1
+    @content_page = ContentPage.new(parent_id: params[:parent_id], position: next_position)
   end
 
   # GET /content_pages/1/edit

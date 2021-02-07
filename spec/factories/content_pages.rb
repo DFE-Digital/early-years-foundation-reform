@@ -3,7 +3,7 @@
 require "faker"
 
 def sentence_without_puncutation
-  Faker::Lorem.sentence(word_count: 4).gsub(",", "").gsub(".", "").gsub("\'", "") + rand(1000).to_s
+  Faker::Lorem.words(number: 4).join(" ") + rand(1000).to_s
 end
 
 FactoryBot.define do

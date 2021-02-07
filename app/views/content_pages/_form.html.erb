@@ -4,10 +4,10 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
         <h3 class="govuk-heading-m">About the page</h3>
-        <%= form_with(model: content_page) do |form| %>
+        <%= form_with(model: content_page, local: true) do |form| %>
           <% if content_page.errors.any? %>
             <div id="error_explanation" class="govuk-error-message" >
-              <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this content_page from being saved:</h2>
+              <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this page from being saved:</h2>
               <ul>
                 <% content_page.errors.each do |error| %>
                   <li><%= error.full_message %></li>
