@@ -3,11 +3,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
-<<<<<<< HEAD
         <h3 class="govuk-heading-m">Details</h3>
-=======
-        <h3 class="govuk-heading-m">About the page</h3>
->>>>>>> 34569b4b1d3b770c67d37d606784bbf18a721bd2
         <%= form_with(model: content_page, local: true) do |form| %>
           <% if content_page.errors.any? %>
             <div id="error_explanation" class="govuk-error-message" >
@@ -40,7 +36,7 @@
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-              <%= form.text_area :markdown, :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
+              <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
             </div>
             <div class="govuk-form-group">
               <label class="govuk-label" for="seo">
@@ -68,18 +64,10 @@
       </div>
 
       <div class="govuk-grid-column-one-half">
-<<<<<<< HEAD
+
           <h3 class="govuk-heading-m">Live Preview</h3>
           <div id='markdown-render'>
-=======
-          <h3 class="govuk-heading-m">Preview</h3>
-          <% if @content_page.parent %>
-            <span class="govuk-caption-l"><%= @content_page.parent.title %></span>
-          <% end %>
-          <h1 class="govuk-heading-l"><%= @content_page.title %></h1>
-          <p>
->>>>>>> 34569b4b1d3b770c67d37d606784bbf18a721bd2
-            <%= sanitize @md %>
+          <%= sanitize @md %>
           </div>
       </div>
     </div>
