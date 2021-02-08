@@ -3,8 +3,9 @@
 <main class="govuk-main-wrapper " id="main-content" role="main">
   <h1 class="govuk-heading-xl"><%= @content_asset.title %></h1>
 
-  <% if @content_asset.avatar.attached? %>
-  <%= image_tag(url_for(@content_asset.avatar)) %>
+
+  <% if @content_asset.asset_file.attached? %>
+  <%= image_tag(url_for(@content_asset.asset_file), :alt_text => @content_asset.alt_text) %>
   <% end %>
   
   <%= link_to 'Edit', edit_content_asset_path(@content_asset), { :class => "govuk-link" } %> |

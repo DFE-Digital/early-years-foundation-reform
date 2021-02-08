@@ -14,10 +14,77 @@ $govuk-image-url-function: frontend-image-url;
 @import "content-pages-edit.scss";
 
 /* TODO: specific custom styles css/scss needed */
-#content_asset_avatar, #content-asset-wrapper {
-padding-top: govuk-spacing(6);
+#content_asset_asset_file, #content-asset-wrapper {
+  padding-top: govuk-spacing(6);
 }
 
 .align-right {
   text-align:right;
+}
+
+.nesting_level_1 {
+  margin-left: 0em;
+}
+
+.nesting_level_2 {
+  margin-left: 2em;
+}
+
+.nesting_level_3 {
+  margin-left: 4em;
+}
+
+.summary {
+  border-left: 3px solid #ccc;
+  padding-left: 1em;
+}
+
+.links {
+  margin-left: 3em;
+  font-size: 0.5em;
+}
+
+/**
+ * These are temporary, until we use the proper
+ * typography.scss @media queries
+ */
+#main-content h1, .desktop-menu h1 {
+    color: #0b0c0c;
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 24px;
+    font-size: 2.3rem;
+    line-height: 1.04167;
+    display: block;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+#main-content h2, .desktop-menu h2 {
+  color: #0b0c0c;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
+  font-size: 18px;
+  font-size: 1.125rem;
+  line-height: 1.11111;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+#main-content p {
+  color: #0b0c0c;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 15px;
 }

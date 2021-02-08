@@ -4,7 +4,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages
   def index
-    @content_pages = ContentPage.all
+    @content_pages = ContentPage.top_level.order_by_position
   end
 
   # GET /content_pages/1
@@ -12,7 +12,10 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/new
   def new
-    @content_page = ContentPage.new
+    # If the new page is a child, pass through its parent id
+    # Pages with a nil parent_id are top_level
+    next_position = ContentPage.maximum("position") + 1
+    @content_page = ContentPage.new(parent_id: params[:parent_id], position: next_position)
   end
 
   # GET /content_pages/1/edit
@@ -57,6 +60,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :slug, :markdown, :seo, :subtitle)
+    params.require(:content_page).permit(:title, :markdown, :seo, :subtitle, :parent_id, :position)
   end
 end

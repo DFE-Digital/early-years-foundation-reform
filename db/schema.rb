@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_094052) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "alt_text", default: "", null: false
   end
 
   create_table "content_pages", force: :cascade do |t|
