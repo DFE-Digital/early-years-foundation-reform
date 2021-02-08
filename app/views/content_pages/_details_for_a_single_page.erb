@@ -6,6 +6,7 @@
       <span class="links">
         <%= link_to 'Edit', edit_content_page_path(page_to_render), { :class => "govuk-link" } %>
         |<%= link_to 'Add a child page', new_content_page_path(:parent_id => page_to_render.id) %>
+        |<%= link_to 'Preview', '/content/' + page_to_render.slug, target: "_blank" %>
       </span>
     </h3>
     <p>
