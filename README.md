@@ -1,6 +1,13 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# EYFS Reform Spike
+# Early Years Reform Framework
+
+This is a minimalistic content management system, written in Ruby on Rails
+for use by content editors in the Early Years Reform Framework project.
+
+It allows editors to create a set of nested pages, and to edit the headings,
+overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
+
 
 ## Prerequisites
 

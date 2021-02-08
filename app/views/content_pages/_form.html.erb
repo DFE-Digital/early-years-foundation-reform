@@ -4,10 +4,10 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-one-half">
         <h3 class="govuk-heading-m">About the page</h3>
-        <%= form_with(model: content_page) do |form| %>
+        <%= form_with(model: content_page, local: true) do |form| %>
           <% if content_page.errors.any? %>
             <div id="error_explanation" class="govuk-error-message" >
-              <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this content_page from being saved:</h2>
+              <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this page from being saved:</h2>
               <ul>
                 <% content_page.errors.each do |error| %>
                   <li><%= error.full_message %></li>
@@ -20,14 +20,14 @@
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="title">
-                <%= form.label :title %>
+                <%= form.label :title, "Heading" %>
               </label>
               <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
               <label class="govuk-label" for="subtitle">
-                <%= form.label :subtitle %>
+                <%= form.label :subtitle, "Overview" %>
               </label>
               <%= form.text_area :subtitle, :rows => 5, :cols => 35, :class => "govuk-textarea"%>
             </div>
@@ -36,15 +36,20 @@
               <div id="markdown-hint" class="govuk-hint">
                 Markdown
               </div>
-
               <%= form.text_area :markdown, :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
             </div>
-
             <div class="govuk-form-group">
               <label class="govuk-label" for="seo">
                 Search Engine Words
               </label>
               <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="position">
+                Position (relative to sibling pages)
+              </label>
+              <%= form.text_field :position, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <%= form.hidden_field :parent_id %>
@@ -60,7 +65,10 @@
 
       <div class="govuk-grid-column-one-half">
           <h3 class="govuk-heading-m">Preview</h3>
-          </p>
+          <% if @content_page.parent %>
+            <span class="govuk-caption-l"><%= @content_page.parent.title %></span>
+          <% end %>
+          <h1 class="govuk-heading-l"><%= @content_page.title %></h1>
           <p>
             <%= sanitize @md %>
           </p>
