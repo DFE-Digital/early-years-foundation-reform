@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_02_05_094052) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "alt_text", default: "", null: false
   end
 
   create_table "content_pages", force: :cascade do |t|
@@ -63,7 +64,6 @@ ActiveRecord::Schema.define(version: 2021_02_05_094052) do
     t.string "subtitle"
     t.integer "parent_id"
     t.integer "position"
-    t.string "published_status"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
     t.index ["position"], name: "index_content_pages_on_position", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true

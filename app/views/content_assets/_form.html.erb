@@ -14,7 +14,9 @@
   <div class="govuk-form-group">
     <%= form.label :title, :class => 'govuk-label' %>
     <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
-    <%= form.file_field :avatar %>
+    <%= form.label :alt_text, :class => 'govuk-label' %>
+    <%= form.text_field :alt_text, :class => 'govuk-input govuk-!-width-three-quarters' %>
+    <%= form.file_field :asset_file %>
   </div>
 
 <div class="govuk-grid-row">
@@ -25,3 +27,4 @@
 
 <% end %>
 
+<%= link_to 'GOV.UK image upload guidelines', 'https://design-system.service.gov.uk/styles/images/', target: "_blank" %> | 
