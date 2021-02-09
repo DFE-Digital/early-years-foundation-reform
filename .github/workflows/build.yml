@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - config-host
 
 env:
   RAILS_ENV: production
