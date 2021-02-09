@@ -61,7 +61,7 @@ variable paas_web_app_memory {
 }
 
 variable paas_web_app_start_command {
-  default = "bundle exec rake cf:on_first_instance db:migrate && rails s"
+  default = "bundle exec rake db:prepare && bundle exec rails s  -b 0.0.0.0"
 }
 
 variable paas_worker_app_deployment_strategy {
@@ -88,5 +88,5 @@ locals {
     var.secret_paas_app_env_values
   )
   is_production = var.environment == "production"
-  service_name = "ecf"
+  service_name = "eyfs"
 }

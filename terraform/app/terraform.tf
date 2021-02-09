@@ -20,14 +20,15 @@ provider cloudfoundry {
 Store infrastructure state in a remote store (instead of local machine):
 https://www.terraform.io/docs/state/purpose.html
 */
-terraform {
+# terraform {
 
-  backend "s3" {
-    key     = "terraform.tfstate"
-    region  = "eu-west-2"
-    encrypt = "true"
-  }
-}
+#   backend "s3" {
+#     key     = "terraform.tfstate"
+#     region  = "eu-west-2"
+#     encrypt = "true"
+#     bucket    = "eyfs-terraform-backend"
+#   }
+# }
 
 module paas {
   source = "./modules/paas"
