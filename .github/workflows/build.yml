@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - health-check-endpoint-gitflow
 
 env:
   RAILS_ENV: production
