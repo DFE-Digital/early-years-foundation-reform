@@ -8,6 +8,12 @@ for use by content editors in the Early Years Reform Framework project.
 It allows editors to create a set of nested pages, and to edit the headings,
 overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
+These are some examples of the cut down CMS and two resulting pages
+all in UK.GOV style
+
+![The CMS view](docs/cms-view.png?raw=true "The CMS view")
+![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
+![Landing Page](docs/landing-page-view.png?raw=true "Landing Page")
 
 ## Prerequisites
 

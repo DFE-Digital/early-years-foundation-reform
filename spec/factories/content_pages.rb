@@ -23,4 +23,16 @@ FactoryBot.define do
   trait :top_level do
     parent_id { nil }
   end
+
+  trait :hyphen_in_title do
+    title { Faker::Lorem.word + "-" + Faker::Lorem.word }
+  end
+
+  trait :comma_in_title do
+    title { Faker::Lorem.word + "," + Faker::Lorem.word }
+  end
+
+  trait :fullstop_in_title do
+    title { Faker::Lorem.word + "." + Faker::Lorem.word }
+  end
 end

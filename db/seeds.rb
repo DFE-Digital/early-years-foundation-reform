@@ -52,49 +52,49 @@ MARKDOWN_FOR_COUNTING
 content_pages = [
   {
     title: "Communication and language",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 1,
   },
   {
-    title: "Personal social and emotional development",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    title: "Personal, social and emotional development",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 2,
   },
   {
     title: "Physical development",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 3,
   },
   {
     title: "Literacy",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 4,
   },
   {
-    title: "Mathematics",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    title: "Maths",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 5,
   },
   {
     title: "Understanding the world",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 6,
   },
   {
     title: "Expressive arts and design",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 7,
@@ -110,13 +110,13 @@ if ContentPage.count.zero?
 
   about_counting = {
     title: "Counting",
-    subtitle: "Information, guidance, practical support and training for delivering the Early Years foundation Stage (EYFS)",
+    subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Counting Early Years",
     position: 111,
   }
   counting_page = ContentPage.new about_counting
-  counting_page.parent_id = ContentPage.find_by(title: "Mathematics").id
+  counting_page.parent_id = ContentPage.find_by(title: "Maths").id
   counting_page.markdown = markdown_for_counting
   counting_page.save!
 end
