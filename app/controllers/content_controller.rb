@@ -6,7 +6,6 @@ class ContentController < ApplicationController
     @page = ContentPage.find_by_slug params["slug"]
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     @markdown = markdown.render(@page.markdown)
-    @top_level = ContentPage.top_level_nav
     @page
   end
 

@@ -2,9 +2,6 @@ class ContentPage < ApplicationRecord
   acts_as_tree
 
   scope :top_level, -> { where("parent_id IS NULL") }
-  # TODO I don't think we need this duplication
-  scope :top_level_nav, -> { where("parent_id IS NULL").select("id, title, slug") }
-
   scope :order_by_position, -> { order("position ASC") }
 
   ONLY_ALPHA_NUMERIC_AND_SPACE = /\A[a-zA-Z0-9 ]+\Z/.freeze
