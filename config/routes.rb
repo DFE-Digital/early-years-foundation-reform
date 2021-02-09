@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   root "content_pages#index"
+  get "check" => "application#check"
 
   get "/404", to: "errors#not_found", via: :all
   get "/422", to: "errors#unprocessable_entity", via: :all
