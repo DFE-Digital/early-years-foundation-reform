@@ -58,14 +58,14 @@ content_pages = [
     position: 1,
   },
   {
-    title: "Personal, social and emotional development",
+    title: "Physical development",
     subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",
     position: 2,
   },
   {
-    title: "Physical development",
+    title: "Personal, social and emotional development",
     subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
     markdown: "#None yet",
     seo: "Early-Years-Foundation-Stage",

@@ -16,10 +16,6 @@ class ContentPage < ApplicationRecord
 
   before_save :set_slug_from_title
 
-  # Infer the slug from the title
-  # Spaces in the title are replaced by a hypen
-  # hypens are left unchanged
-  # commas are not translated into the slug
   def set_slug_from_title
     self.slug = title.downcase.gsub(/ /, "-").gsub(",", "").gsub(".", "")
   end
