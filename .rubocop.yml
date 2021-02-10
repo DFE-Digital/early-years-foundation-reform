@@ -12,3 +12,4 @@ AllCops:
     - 'config/application.rb'
     - 'config/puma.rb'
     - 'vendor/**/*'
+    - 'config/*'

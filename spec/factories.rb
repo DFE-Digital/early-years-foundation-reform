@@ -1,5 +1,3 @@
-include ActionDispatch::TestProcess
-
 FactoryBot.define do
   factory :user do
     email { "test@test.com" }
