@@ -8,7 +8,6 @@ import $ from 'jquery';
 import {createPreview} from "custom/admin";
 
 Rails.start();
-Turbolinks.start();
 initAll();
 
 $(document).ready(function() {
@@ -16,6 +15,5 @@ $(document).ready(function() {
   $('#markdown-editor').keyup(function() {
     createPreview('#markdown-editor','#markdown-render');
   });
-
   
 });
