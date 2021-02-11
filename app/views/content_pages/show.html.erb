@@ -11,12 +11,12 @@
 </p>
 
 <p>
-  <strong>Markdown:</strong>
-  <%= @content_page.markdown %>
+  <strong>Content (Govspeak):</strong>
+  <%= @content_page.markdown.html_safe %>
 </p>
 
 <p>
-  <strong>Seo:</strong>
+  <strong>SEO:</strong>
   <%= @content_page.seo %>
 </p>
 
