@@ -30,3 +30,16 @@ yarn-debug.log*
 *.log
 /.idea
 .DS_Store
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/environment
+terraform.tfplan
+terraform.tfstate
+terraform.tfstate.d/
+./*.tfstate
+.terraform/
+.terraform.tfstate.lock.info
+.terraform.lock.hcl
+tokens
