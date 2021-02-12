@@ -2,7 +2,6 @@ require "rails_helper"
 
 RSpec.describe GovspeakController, type: :controller do
   describe "POST /govspeak" do
-
     context "with valid parameters" do
       let(:valid_params) do
         {
@@ -23,6 +22,5 @@ RSpec.describe GovspeakController, type: :controller do
         expect(JSON.parse(response.body)["html"]).to include('<h2 id="govspeak-is-magic">Govspeak is magic!</h2>')
       end
     end
-
   end
 end
