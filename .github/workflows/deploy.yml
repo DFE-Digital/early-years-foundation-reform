@@ -77,3 +77,17 @@ jobs:
           terraform init -reconfigure -input=false -backend-config="bucket=paas-s3-broker-prod-lon-ada4696b-4443-4c3b-92ef-5e2c1e464fc8"
           terraform plan -var-file ../workspace-variables/dev.tfvars
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/dev.tfvars
+
+      - name: Deploy to test
+        if: ${{ github.event.inputs.environment == 'test' }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_TEST }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_TEST }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME_TEST }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD_TEST }}
+        run: |
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
+          cd terraform/app
+          terraform init -reconfigure -input=false -backend-config="bucket=paas-s3-broker-prod-lon-9db1b27b-6fa2-42a9-a92c-84384e40d1a9"
+          terraform plan -var-file ../workspace-variables/test.tfvars
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/test.tfvars
