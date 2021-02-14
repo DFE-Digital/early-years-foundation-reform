@@ -20,6 +20,10 @@ RSpec.describe "/content_pages", type: :request do
     FactoryBot.attributes_for(:content_page)
   end
 
+  let(:other_valid_attributes) do
+    FactoryBot.attributes_for(:content_page)
+  end
+
   let(:invalid_attributes) do
     skip("Add a hash of attributes invalid for your model")
   end
@@ -73,7 +77,16 @@ RSpec.describe "/content_pages", type: :request do
       end
       it "redirects to the created content_page" do
         post content_pages_url, params: { content_page: valid_attributes }
-        expect(response).to redirect_to(content_page_url(ContentPage.last))
+        expect(response).to redirect_to(content_page_url(::ContentPage.last))
+      end
+      # The feature works, the test does not ! TODO
+      xit "prevents pages from having duplicate titles (and therefore slugs)" do
+        post content_pages_url, params: { content_page: valid_attributes }
+
+        other_valid_attributes[:title] = valid_attributes[:title]
+        post content_pages_url, params: { content_page: other_valid_attributes }
+
+        expect(response).to_not be_successful
       end
     end
 

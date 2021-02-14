@@ -11,9 +11,18 @@ $govuk-image-url-function: frontend-image-url;
 
 @import "~govuk-frontend/govuk/all";
 
-/* TODO: a custom styles css/scss is needed */
+@import "_subnav.scss";
+@import "_content.scss";
+@import "_eyfs-header.scss";
+@import "_eyfs-mobile-navigation.scss";
+@import "_cookie-banner.scss";
+@import "_next-prev.scss";
+@import "_cards.scss";
+@import "layout-eyfs/landing-page.scss";
+
+
 #content_asset_avatar, #content-asset-wrapper {
-padding-top: govuk-spacing(6);
+  padding-top: govuk-spacing(6);
 }
 
 .align-right {
@@ -41,3 +50,5 @@ padding-top: govuk-spacing(6);
   margin-left: 3em;
   font-size: 0.5em;
 }
+
+

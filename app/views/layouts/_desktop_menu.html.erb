@@ -1,0 +1,14 @@
+<nav class="app-subnav">
+  <% ContentPage.top_level.each do |top_level_page| %>
+    <a class="govuk-link app-subnav__link govuk-link--no-visited-state" href="<%= path_for_this_page(top_level_page) %>">
+      <h4 class="app-subnav__theme"><%= top_level_page.title %></h4>
+    </a>
+    <ul class="app-subnav__section ">
+      <% top_level_page.children.each do |child| %>
+        <li class=" app-subnav__section-item ">
+          <a class="govuk-link app-subnav__link govuk-link--no-visited-state govuk-!-margin-bottom-2" href="<%= path_for_this_page(child) %>"><%= child.title %></a>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</nav>

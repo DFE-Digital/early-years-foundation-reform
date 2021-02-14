@@ -36,5 +36,9 @@ RUN gem update --system \
 COPY package.json yarn.lock ./
 RUN yarn install
 
+
 # Copy all files to /app (except what is defined in .dockerignore)
 COPY . ./
+
+# Compile assets
+RUN bundle exec rake assets:precompile

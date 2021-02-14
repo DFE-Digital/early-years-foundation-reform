@@ -1,0 +1,155 @@
+.gem-c-pagination {
+    display:block;
+    margin:50px 0
+   }
+   .gem-c-pagination__list {
+    margin:0;
+    padding:0
+   }
+   .gem-c-pagination__item {
+    font-family:"GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    font-weight:400;
+    font-size:14px;
+    font-size:.875rem;
+    line-height:1.25;
+    list-style:none
+   }
+   @media print {
+    .gem-c-pagination__item {
+     font-family:sans-serif
+    }
+   }
+   @media (min-width: 40.0625em) {
+    .gem-c-pagination__item {
+     font-size:16px;
+     font-size:1rem;
+     line-height:1.25
+    }
+   }
+   @media print {
+    .gem-c-pagination__item {
+     font-size:14pt;
+     line-height:1.25
+    }
+   }
+   .gem-c-pagination__item:first-child {
+    margin-bottom:20px
+   }
+   .gem-c-pagination__link {
+    display:block;
+    text-decoration:none;
+    padding-bottom:20px
+   }
+   .gem-c-pagination__link:hover,
+   .gem-c-pagination__link:active,
+   .gem-c-pagination__link:visited {
+    color:#1d70b8
+   }
+   .gem-c-pagination__link:hover,
+   .gem-c-pagination__link:active {
+    background-color:#f3f2f1
+   }
+   .gem-c-pagination__link:focus {
+    outline:3px solid transparent;
+    color:#0b0c0c;
+    background-color:#fd0;
+    box-shadow:0 -2px #fd0,0 4px #0b0c0c;
+    text-decoration:none
+   }
+   .gem-c-pagination__link:focus .gem-c-pagination__link-title {
+    border-top-color:transparent
+   }
+   .gem-c-pagination__link:focus .gem-c-pagination__link-icon {
+    fill:#0b0c0c
+   }
+   .gem-c-pagination__link-title {
+    display:block;
+    border-top:1px solid #b1b4b6;
+    padding-top:15px
+   }
+   .gem-c-pagination__link-divider {
+    position:absolute !important;
+    width:1px !important;
+    height:1px !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    clip:rect(0 0 0 0) !important;
+    -webkit-clip-path:inset(50%) !important;
+    clip-path:inset(50%) !important;
+    border:0 !important;
+    white-space:nowrap !important
+   }
+   .gem-c-pagination__link-text {
+    font-family:"GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    font-weight:700;
+    font-size:16px;
+    font-size:1rem;
+    line-height:1.25;
+    margin-left:10px
+   }
+   @media print {
+    .gem-c-pagination__link-text {
+     font-family:sans-serif
+    }
+   }
+   @media (min-width: 40.0625em) {
+    .gem-c-pagination__link-text {
+     font-size:19px;
+     font-size:1.1875rem;
+     line-height:1.3157894737
+    }
+   }
+   @media print {
+    .gem-c-pagination__link-text {
+     font-size:14pt;
+     line-height:1.15
+    }
+   }
+   .gem-c-pagination__link-icon {
+    font-family:"GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    font-weight:400;
+    font-size:18px;
+    font-size:1.125rem;
+    line-height:1.25;
+    display:inline-block;
+    margin-bottom:1px;
+    height:.482em;
+    width:.63em;
+    fill:#505a5f
+   }
+   @media print {
+    .gem-c-pagination__link-icon {
+     font-family:sans-serif
+    }
+   }
+   @media (min-width: 40.0625em) {
+    .gem-c-pagination__link-icon {
+     font-size:24px;
+     font-size:1.5rem;
+     line-height:1.25
+    }
+   }
+   @media print {
+    .gem-c-pagination__link-icon {
+     font-size:18pt;
+     line-height:1.25
+    }
+   }
+   .gem-c-pagination__link-label {
+    display:inline-block;
+    margin-top:.1em;
+    text-decoration:underline;
+    margin-left:25px
+   }
+   @media (min-width: 40.0625em) {
+    .gem-c-pagination__link-label {
+     margin-left:30px
+    }
+   }

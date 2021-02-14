@@ -1,0 +1,10 @@
+<% if @page.parent %>
+  <span class="govuk-caption-l"><%= @page.parent.title %></span>
+<% end %>
+<h1 class="govuk-heading-l">
+  <%= @page.title %>
+</h1>
+<p>
+  <%= @page.subtitle %>
+</p>
+<%= sanitize @markdown %>

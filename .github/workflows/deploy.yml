@@ -1,36 +1,93 @@
-name: Deploy
+name: Deploy to Environment
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Environment
+        required: true
+        default: dev
+      ref:
+        description: Git ref to deploy
+        required: true
+        default: main
 
 jobs:
-  deploy:
-    name: Deploy to Production
-
-    runs-on: ubuntu-latest
-
+  turnstyle:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: softprops/turnstyle@v1
+        name: Check workflow concurrency
+        with:
+          poll-interval-seconds: 20
+          same-branch-only: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install cf client
-      env:
-        CF_CLI_VERSION: 7.1.0
-      run: |
-        curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=${CF_CLI_VERSION}" | tar -zx -C /tmp
-        sudo cp /tmp/cf7 /usr/local/bin/cf7
+  deploy:
+    name: build docker image and deploy
+    needs: turnstyle
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout Code
+        with:
+          ref: ${{ github.event.inputs.ref }}
 
-    - name: Deploy to production
-      env:
-        CF_USERNAME: ${{ secrets.CF_USERNAME }}
-        CF_PASSWORD: ${{ secrets.CF_PASSWORD }}
-        CF_API_ENDPOINT: ${{ secrets.CF_API_ENDPOINT }}
-        CF_SPACE: ${{ secrets.CF_SPACE }}
-        CF_ORG: ${{ secrets.CF_ORG }}
-      run: |
-        cf7 api $CF_API_ENDPOINT
-        cf7 auth
-        cf7 target -o $CF_ORG -s $CF_SPACE
-        cf7 push
+      - name: Pin Terraform version
+        uses: hashicorp/setup-terraform@v1.2.1
+        with:
+          terraform_version: 0.14.0
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Set DOCKER_IMAGE Environment Variable
+        run:  echo "DOCKER_IMAGE=dfedigital/eyfsreform:${{ github.sha }}" >> $GITHUB_ENV
+
+      - name: Build and push docker image to DockerHub
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ${{ env.DOCKER_IMAGE }}
+          build-args: COMMIT_SHA=${{ github.sha }}
+
+      - name: Docker image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Deploy to dev
+        if: ${{ github.event.inputs.environment == 'dev' }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
+        run: |
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
+          cd terraform/app
+          terraform init -reconfigure -input=false -backend-config="bucket=paas-s3-broker-prod-lon-ada4696b-4443-4c3b-92ef-5e2c1e464fc8"
+          terraform plan -var-file ../workspace-variables/dev.tfvars
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/dev.tfvars
+
+      - name: Deploy to test
+        if: ${{ github.event.inputs.environment == 'test' }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_TEST }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_TEST }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME_TEST }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD_TEST }}
+        run: |
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
+          cd terraform/app
+          terraform init -reconfigure -input=false -backend-config="bucket=paas-s3-broker-prod-lon-9db1b27b-6fa2-42a9-a92c-84384e40d1a9"
+          terraform plan -var-file ../workspace-variables/test.tfvars
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/test.tfvars
