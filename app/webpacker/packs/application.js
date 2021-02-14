@@ -1,6 +1,9 @@
 require.context('govuk-frontend/govuk/assets');
 
 import '../styles/application.scss';
+
+const images = require.context('../images', true)
+
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 import { initAll } from 'govuk-frontend';
