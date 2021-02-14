@@ -16,6 +16,7 @@ public/packs-test
 node_modules
 yarn-error.log
 coverage/
+/terraform/*
 
 .env
 *.log
