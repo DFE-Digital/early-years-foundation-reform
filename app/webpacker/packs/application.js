@@ -32,6 +32,5 @@ $(document).ready(function() {
   $('.learning-section-mobile-nav .top-level-link').click(function(e) {
     e.preventDefault();
   });
-  
 
 });
