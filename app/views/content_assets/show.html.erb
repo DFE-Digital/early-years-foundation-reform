@@ -8,6 +8,9 @@
   <%= image_tag(url_for(@content_asset.asset_file), :alt_text => @content_asset.alt_text) %>
   <% end %>
   
+  <input name="" value="<%= polymorphic_url(@content_asset.asset_file) %>" size=100 >
+  <input type=button onclick='' value='copy to clipboard'>
+  <br/>
   <%= link_to 'Edit', edit_content_asset_path(@content_asset), { :class => "govuk-link" } %> |
   <%= link_to 'Back', content_assets_path, { :class => "govuk-link" } %>
 
