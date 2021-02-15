@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_160639) do
     t.integer "parent_id"
     t.integer "position"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
-    t.index ["position"], name: "index_content_pages_on_position", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
 
