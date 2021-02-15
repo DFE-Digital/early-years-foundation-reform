@@ -114,37 +114,37 @@ $card-border-hover-color: #003078;
   ========================================================================== */
 
   .nhsuk-card--icon {
-    background-image: url(/public/images/chevron.svg); // sass-lint:disable-line quotes
+    background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
     background-position: right 8px top 50%;
     background-repeat: no-repeat;
-  
+
     @include mq($until: desktop) {
       background-position: right 4px top 50%;
     }
-  
+
     &:hover,
     &:active {
-      background-image: url(/public/images/chevron--hover.svg); // sass-lint:disable-line quotes
+      background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
     }
-  
+
     a {
       text-decoration: none;
     }
-  
+
     .nhsuk-card__content {
       @include govuk-responsive-padding(8, 'right');
     }
-  
+
     &.nhsuk-card--clickable {
       &:hover,
       &:active {
         a {
           text-decoration: underline;
-  
+
           &:hover {
             text-decoration: underline;
           }
-  
+
           &:focus {
             text-decoration: none;
           }
@@ -152,3 +152,4 @@ $card-border-hover-color: #003078;
       }
     }
   }
+
