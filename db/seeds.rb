@@ -152,13 +152,13 @@ if ContentPage.count.zero?
       seo: "Resolving Conflict",
       position: 19,
       parent_id: 1,
-    }
+    },
   ]
 
   communication_subsections.each do |subsection|
     page = ContentPage.new subsection
     page.markdown = "lorem ispum..."
     page.save!
-  end 
+  end
 
 end
