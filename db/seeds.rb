@@ -119,4 +119,46 @@ if ContentPage.count.zero?
   counting_page.parent_id = ContentPage.find_by(title: "Maths").id
   counting_page.markdown = markdown_for_counting
   counting_page.save!
+
+  communication_subsections = [
+    {
+      title: "Overview",
+      subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
+      markdown: "#None yet",
+      seo: "Overview",
+      position: 16,
+      parent_id: 1,
+    },
+    {
+      title: "Managing Emotions",
+      subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
+      markdown: "#None yet",
+      seo: "Managing Emotions",
+      position: 17,
+      parent_id: 1,
+    },
+    {
+      title: "Personal Needs",
+      subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
+      markdown: "#None yet",
+      seo: "Personal Needs",
+      position: 18,
+      parent_id: 1,
+    },
+    {
+      title: "Resolving Conflict",
+      subtitle: "Information, guidance, practical support and training for delivering the early years foundation stage (EYFS)",
+      markdown: "#None yet",
+      seo: "Resolving Conflict",
+      position: 19,
+      parent_id: 1,
+    }
+  ]
+
+  communication_subsections.each do |subsection|
+    page = ContentPage.new subsection
+    page.markdown = "lorem ispum..."
+    page.save!
+  end 
+
 end
