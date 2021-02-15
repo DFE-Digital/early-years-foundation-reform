@@ -11,11 +11,11 @@
   }
   
   .app-mobile-nav--active {
-    display:block
+    display:block;
    }
    @media (min-width: 40.0625em) {
     .app-subnav--mobile {
-     display:none
+     display:none;
     }
     .js-enabled .govuk-header__menu-button {
       display: none;
