@@ -15,7 +15,7 @@ Access resources, activity ideas and advice for teaching personal, social and em
 
 ### What the early years foundation stage (EYFS) framework says about personal, social and emotional development
 
-Children’s personal, social and emotional development (PSED) is crucial for children to lead healthy and happy lives, and is fundamental to their cognitive development. 
+Children’s personal, social and emotional development (PSED) is crucial for children to lead healthy and happy lives, and is fundamental to their cognitive development.
 
 ### Read more
 
@@ -39,7 +39,7 @@ personal_social_and_emotional_development = {
     subtitle: "Access resources, activity ideas and advice for teaching personal, social and emotional development to early years children.",
     markdown: markdown_for_personal_social_and_emotional_development,
     seo: "Early-Years-Foundation-Stage",
-    position: 2,
+    position: 3,
   }
 personal_social_and_emotional_development_page = ContentPage.new personal_social_and_emotional_development
 personal_social_and_emotional_development_page.save!
@@ -76,13 +76,13 @@ Support children’s development by providing words and meanings to name and exp
 Provide an emotionally consistent response, following basic emotional coaching steps:
 
 - recognition
- 
+
 - empathy
- 
+
 - validation by labelling feelings
- 
+
 - offering guidance or boundaries
- 
+
 - problem solving
 
 Support self-expression opportunities throughout the day, through stories, drawing, crafts, roleplay and general play, while naming feelings with visual supports.
@@ -98,11 +98,11 @@ You should have your own safe space to reflect, as children’s emotional needs 
 What you need:
 
 - Laminated expressive emotion faces, including photos of children, their families, you or other nursery staff.
- 
+
 - Laminated feelings cards you can carry, as well as an extra set with Velcro backs for a feelings board.
- 
+
 - A feelings board, to stick feelings cards to.
- 
+
 - A laminated thermometer, to show emotion levels.
 
 Instructions:
@@ -110,38 +110,38 @@ Instructions:
 Use the daily routine to support children in naming their emotions, for instance:
 
 - use feelings cards to ask children how they are as they arrive and separate, involving parents and carers where possible. Then, talk about how children feel as a group
- 
+
 - use the thermometer or feelings cards when children try tricky new things, like climbing or building something, or during a day transition they find difficult
- 
+
 - when there are conflicts, use feelings cards to help children express and name their related emotions
- 
+
 - when sharing a story, song or circle time activity which mentions a particular emotion, use feelings cards to connect children to it
 
 Adapting the activity:
 
 - These ongoing activities are accessible to children at every developmental stage.
- 
+
 - Support children by meeting their emotion, mirroring and modelling feelings and responses.
 
 Challenging the children:
 
 - Children confident with expressing and understanding emotions will start to empathise with others, modelling curiosity, guidance and solutions.
- 
+
 - Encourage children through peer conflict resolution.
- 
+
 - Invite children to anticipate arising feelings for themselves and others in specific contexts, such as stories, role play or transitions.
 
 Outcomes:
 
 - Increase in confidence.
- 
+
 - Expressing and labelling various emotions.
- 
+
 - Stronger independence and confidence, with providers and other children.
- 
+
 - Improving emotions vocabulary.
 - Showing increasing self-control, better self-regulation.
- 
+
 - Developing a stronger sense of self.
 
 ###The child's emotion story
@@ -149,23 +149,23 @@ Outcomes:
 What you need:
 
 - Laminated photographs of the child playing, their family, favourite objects or characters.
- 
+
 - Laminated visual timetable cards, representing daily routine.
- 
+
 - Laminated feelings cards.
- 
+
 - Paper, card, pens etc.
 
 Instructions:
 
 - A best-known adult creates a simple, laminated book. The front page features the child’s face, name and favourite things, so it’s personal and unique.
- 
+
 - A basic narrative follows specific challenge stages, such as tidy-up time, saying goodbye to parents and carers, interactions with other children.
- 
+
 - Use short, simple sentences and clear language.
- 
+
 - Refer to feelings throughout, with words and symbols, for example ‘tidy-up time is noisy, which can make me feel worried.’
- 
+
 - Create 2 copies, 1 for them to read at nursery, alongside an adult or independently. The other goes home, to share with family.
 
 Adapting the activity:
@@ -175,11 +175,11 @@ This activity supports children facing specific emotional challenges, for instan
 You can adapt it for other situations, including:
 
 - understanding the daily routine
- 
+
 - a new setting or transition to school
- 
+
 - preparing for a change of routine. trip out
- 
+
 - daily routine difficulties, such as arriving at nursery
 
 Challenging the children:
@@ -189,11 +189,11 @@ As children develop and reflect on their emotions, additional stories can be mad
 Outcomes:
 
 - Children mentally rehearse parts of the daily routine that could cause adverse emotional responses, increasing their feelings of familiarity, safety and confidence.
- 
+
 - Children are able to reflect on difficult experiences and feelings in an emotionally safe way, from a ‘distance’ and alongside an emotionally attuned adult.
- 
+
 - Children build on their emotional literacy and develop a growing ability to recognise and name feelings as they arise.
- 
+
 - Children develop increasing awareness and control over their feelings, and can begin to develop and use strategies to cope when feelings overwhelm them, such as asking an adult for help.
 
 ###Non-Verbal Storying
@@ -201,50 +201,50 @@ Outcomes:
 What you need:
 
 - Various junk modelling materials, such as newspaper, cardboard boxes and tubes.
- 
+
 - A large whiteboard or paper
- 
+
 - A simple script based on a familiar conflict, such as sharing, or their parent or carer leaving them in the morning
 
 Instructions:
 
 - Gather the children for storytime.
- 
+
 - Draw their attention to a masking tape line on the floor, a ‘stage’ area.
- 
+
 - Use modelling materials to create characters and props in front of children, as the story takes place.
- 
+
 - Focus on an emotional learning aspect that challenges children, such as sharing, or their parent or carer leaving them in the morning, following a basic 3 point story arc:
-  - setup  
-  - problem  
+  - setup
+  - problem
   - solution
-   
+
 - Use words, voices, expression in your voice and drawn symbols or faces to signal thoughts and feelings.
- 
+
 - Pause throughout for ‘I wonder’ moments, allowing children to contribute ideas around character feelings or potential resolutions.
 
 Adapting the activity:
 
 - This storytelling style supports many curriculum areas, providing an inclusive platform to explore feelings, learning and experiences.
- 
+
 - Very effective for early literacy. By retelling and innovating familiar stories, children develop narrative understanding, empowering them to tell their own stories.
 
 Challenging the children:
- 
+
 - Leave resources available after the story, so children can explore. Use pre-made characters to re-tell, improve or invent stories, or create new props and characters.
- 
- 
- 
+
+
+
 Outcomes:
 
 - The non-verbal aspect enables children to access and engage at their level, regardless of developmental stage or home language.
- 
+
 - Children tune in to non-verbal prompts, recognising and identifying others feelings.
- 
+
 - Children can reflect on difficult situations from a safe distance, developing empathy towards others.
- 
+
 - Children develop strategies to express and communicate their feelings.
- 
+
 - Children learn practical steps to resolve conflict, such as using a sand-timer to support sharing.
 
 ##Other activities
@@ -284,23 +284,23 @@ Supporting children’s emotional development and wellbeing is linked to all EYF
 ##Summary
 
 - Children need emotionally safe relationships and environments, to explore their emotions.
- 
+
 - You should be emotionally present and available, supporting children by recognising, understanding, regulating and expressing emotions.
- 
+
 - Children’s behaviour can often be a result of an emotion or unmet need.
- 
+
 - You need time, support and space to consider how children’s emotions and behaviour evoke their own feelings and responses.
 
 ##Next Steps
 
 - Reflect on your environment and daily routine, and how these support children and their emotions.
- 
+
 - Create and keep visual prompts, to support children expressing emotions through storytelling.
- 
+
 - Practice potential steps, or a sample script, that could support children to manage their emotions. Share this with parents and carers.
- 
+
 - Consider your personal, social and emotional development policies, making sure emotional development and needs are clear.
- 
+
 - Consider talking about how children’s emotional outbursts make you feel with other providers.
 MARKDOWN_FOR_EMOTIONS
 emotions = {
@@ -383,17 +383,17 @@ By the age of 2 children can recognise themselves in photos or video and recogni
 You could:
 
 - provide opportunities for children and babies to see their own image
- 
+
 - take photos of children and display them in a book or on the walls or take a video of them and watch it back with them
- 
+
 - listen intently to what they say about themselves
- 
+
 - see if they recognise themselves
- 
+
 - take a photo or video of them alongside other familiar adults or children
- 
+
 - see if they can tell the difference between themselves and someone else
- 
+
 - see if the children can make comparisons between their own bodies and images and the bodies and images of others
 
 These comparisons help them gain a growing understanding of the distinction between themselves and others.
@@ -457,13 +457,13 @@ Consider this as a possible activity to examine how well you know each child. Th
 Imagine the child is asking you these questions. What would you answer on the child’s behalf?
 
 - Do you know me?
- 
+
 - Can I trust you?
- 
+
 - Do you hear me?
- 
+
 - Will you let me fly?
- 
+
 - Is this a fair place for me?
 
 Consider how your environment supports children to play independently.

@@ -51,7 +51,7 @@ personal_experiences = {
     markdown: markdown_for_personal_experiences,
     seo: "Early-Years-Foundation-Stage",
     position: 1,
-    parent_id: understanding_the_world.id
+    parent_id: understanding_the_world_page.id
 }
 personal_experiences_page = ContentPage.new personal_experiences
 personal_experiences_page.save!
@@ -71,7 +71,7 @@ diverse_world = {
     markdown: markdown_for_diverse_world,
     seo: "Early-Years-Foundation-Stage",
     position: 2,
-    parent_id: understanding_the_world.id
+    parent_id: understanding_the_world_page.id
 }
 diverse_world_page = ContentPage.new diverse_world
 diverse_world_page.save!
@@ -91,7 +91,7 @@ widening_vocabulary = {
     markdown: markdown_for_widening_vocabulary,
     seo: "Early-Years-Foundation-Stage",
     position: 3,
-    parent_id: understanding_the_world.id
+    parent_id: understanding_the_world_page.id
 }
 widening_vocabulary_page = ContentPage.new widening_vocabulary
 widening_vocabulary_page.save!

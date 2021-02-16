@@ -29,7 +29,7 @@ MARKDOWN_FOR_LITERACY
 
 literacy = {
     title: "Literacy",
-    subtitle: "",
+    subtitle: "Literacy subtitle",
     markdown: markdown_for_literacy,
     seo: "Early-Years-Foundation-Stage",
     position: 4,
@@ -52,7 +52,7 @@ comprehension = {
     markdown: markdown_for_comprehension,
     seo: "Early-Years-Foundation-Stage",
     position: 1,
-    parent_id: literacy.id
+    parent_id: literacy_page.id
 }
 comprehension_page = ContentPage.new comprehension
 comprehension_page.save!
@@ -72,7 +72,7 @@ word_reading = {
     markdown: markdown_for_word_reading,
     seo: "Early-Years-Foundation-Stage",
     position: 2,
-    parent_id: literacy.id
+    parent_id: literacy_page.id
 }
 word_reading_page = ContentPage.new word_reading
 word_reading_page.save!
@@ -92,7 +92,7 @@ writing = {
     markdown: markdown_for_writing,
     seo: "Early-Years-Foundation-Stage",
     position: 3,
-    parent_id: literacy.id
+    parent_id: literacy_page.id
 }
 writing_page = ContentPage.new writing
 writing_page.save!

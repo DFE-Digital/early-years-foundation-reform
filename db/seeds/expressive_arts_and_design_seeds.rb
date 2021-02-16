@@ -53,7 +53,7 @@ imagination_and_creativity = {
     markdown: markdown_for_imagination_and_creativity,
     seo: "Early-Years-Foundation-Stage",
     position: 1,
-    parent_id: expressive_arts_and_design.id
+    parent_id: expressive_arts_and_design_page.id
 }
 imagination_and_creativity_page = ContentPage.new imagination_and_creativity
 imagination_and_creativity_page.save!
@@ -73,7 +73,7 @@ self_expression = {
     markdown: markdown_for_self_expression,
     seo: "Early-Years-Foundation-Stage",
     position: 2,
-    parent_id: expressive_arts_and_design.id
+    parent_id: expressive_arts_and_design_page.id
 }
 self_expression_page = ContentPage.new self_expression
 self_expression_page.save!
@@ -93,7 +93,7 @@ communicating_through_arts = {
     markdown: markdown_for_communicating_through_arts,
     seo: "Early-Years-Foundation-Stage",
     position: 3,
-    parent_id: expressive_arts_and_design.id
+    parent_id: expressive_arts_and_design_page.id
 }
 communicating_through_arts_page = ContentPage.new communicating_through_arts
 communicating_through_arts_page.save!

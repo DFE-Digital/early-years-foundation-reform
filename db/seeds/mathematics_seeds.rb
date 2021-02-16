@@ -33,7 +33,7 @@ mathematics = {
     subtitle: "Access resources, activity ideas and advice for teaching early years maths.",
     markdown: markdown_for_mathematics,
     seo: "Early-Years-Foundation-Stage",
-    position: 5,
+    position: 2,
   }
 mathematics_page = ContentPage.new mathematics
 mathematics_page.save!
@@ -48,7 +48,7 @@ markdown_for_counting = <<-MARKDOWN_FOR_COUNTING
 It is an often overlooked fact that we all, whether children or adults, are constantly using and applying mathematics in our everyday lives.
 
 - Research confirms that early experiences have long-lasting outcomes in terms of educational achievement and life chances
- 
+
 - You can make a real difference to ensure every child has a chance to become a confident learner and user of mathematics.
 
 In this video, an expert in early years maths explains what’s changed in the new EYFS for counting in maths and offers some top tips on getting the most out of a child in this area.
@@ -98,12 +98,12 @@ The children are now offered a counting collection in a different area of pre-sc
 ### Check your understanding
 
 - Research confirms that early experiences have long-lasting outcomes in terms of educational achievement and life chances
- 
+
 - You can make a real difference to ensure every child has a chance to become a confident learner and user of mathematics
 
- 
+
 - Be positive about maths. Don't say things like “I can’t do maths” or “I hated maths at school”
- 
+
 - Point out the maths in everyday life. Include children in activities involving maths such as using money, cooking, travelling or finding the correct house number
 
 - Praise children for effort rather than talent. This shows them that by working hard they can always improve
@@ -114,7 +114,7 @@ counting = {
     markdown: markdown_for_counting,
     seo: "Early-Years-Foundation-Stage",
     position: 1,
-    parent_id: mathematics.id
+    parent_id: mathematics_page.id
 }
 counting_page = ContentPage.new counting
 counting_page.save!
@@ -134,7 +134,7 @@ number_patterns = {
     markdown: markdown_for_number_patterns,
     seo: "Early-Years-Foundation-Stage",
     position: 2,
-    parent_id: mathematics.id
+    parent_id: mathematics_page.id
 }
 number_patterns_page = ContentPage.new number_patterns
 number_patterns_page.save!
@@ -154,7 +154,7 @@ spatial_reasoning = {
     markdown: markdown_for_spatial_reasoning,
     seo: "Early-Years-Foundation-Stage",
     position: 3,
-    parent_id: mathematics.id
+    parent_id: mathematics_page.id
 }
 spatial_reasoning_page = ContentPage.new spatial_reasoning
 spatial_reasoning_page.save!
