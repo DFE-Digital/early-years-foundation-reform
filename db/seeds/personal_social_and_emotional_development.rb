@@ -2,7 +2,7 @@
 # Markdown depends on this indentation, rubocop wants to enforce
 # two leading space.  Rubocop can get lost
 
-markdown_for_personal_social_and_emotional_development = <<-MARKDOWN_FOR_PERSONAL
+markdown_for_personal_social_and_emotional_development = <<-MARKDOWN_FOR_PERSONAL_SOCIAL_AND_DEVELOPMENT
 Access resources, activity ideas and advice for teaching personal, social and emotional development to early years children.
 
 ### Personal, social and emotional development resources
@@ -32,7 +32,7 @@ Through supported interaction with other children they learn how to make good fr
 These attributes will provide a secure platform from which children can achieve at school and in later life.
 
 
-MARKDOWN_FOR_PERSONAL
+MARKDOWN_FOR_PERSONAL_SOCIAL_AND_DEVELOPMENT
 
 personal_social_and_emotional_development = {
     title: "Personal, social and emotional development",
