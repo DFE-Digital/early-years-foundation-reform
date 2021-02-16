@@ -21,6 +21,7 @@ $govuk-image-url-function: frontend-image-url;
 @import "layout-eyfs/landing-page.scss";
 
 @import "_content-pages-edit.scss";
+@import "_content-assets-edit.scss";
 
 #content_asset_avatar, #content-asset-wrapper {
   padding-top: govuk-spacing(6);
