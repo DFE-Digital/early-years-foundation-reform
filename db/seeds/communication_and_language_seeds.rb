@@ -5,6 +5,7 @@
 markdown_for_communication_and_language = <<-MARKDOWN_FOR_COMMUNICATION
 
 ## Communication and language
+
 Access resources, activity ideas and advice for teaching communication and language to early years children.
 
 ## Communication and language resources
