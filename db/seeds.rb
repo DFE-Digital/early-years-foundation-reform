@@ -4,7 +4,6 @@
 
 ContentPage.destroy_all
 
-Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each do |seed|
+Dir[Rails.root.join("db/seeds/*.rb")].sort.each do |seed|
   load seed
 end
-

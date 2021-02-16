@@ -35,19 +35,18 @@ These attributes will provide a secure platform from which children can achieve 
 MARKDOWN_FOR_PERSONAL_SOCIAL_AND_DEVELOPMENT
 
 personal_social_and_emotional_development = {
-    title: "Personal, social and emotional development",
-    subtitle: "Access resources, activity ideas and advice for teaching personal, social and emotional development to early years children.",
-    markdown: markdown_for_personal_social_and_emotional_development,
-    seo: "Early-Years-Foundation-Stage",
-    position: 3,
-  }
+  title: "Personal, social and emotional development",
+  subtitle: "Access resources, activity ideas and advice for teaching personal, social and emotional development to early years children.",
+  markdown: markdown_for_personal_social_and_emotional_development,
+  seo: "Early-Years-Foundation-Stage",
+  position: 3,
+}
 personal_social_and_emotional_development_page = ContentPage.new personal_social_and_emotional_development
 personal_social_and_emotional_development_page.save!
 
 #####################################################################################
 # Child pages below
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_emotions = <<-MARKDOWN_FOR_EMOTIONS
 Understanding children’s emotional worlds are critical to understanding their behaviour. Early years children feel a range of emotions, but often cannot articulate, interpret or process them like us.
 
@@ -304,12 +303,12 @@ Supporting children’s emotional development and wellbeing is linked to all EYF
 - Consider talking about how children’s emotional outbursts make you feel with other providers.
 MARKDOWN_FOR_EMOTIONS
 emotions = {
-    title: "Emotions",
-    subtitle: "Emotions Subtitle",
-    markdown: markdown_for_emotions,
-    seo: "Early-Years-Foundation-Stage",
-    position: 1,
-    parent_id: personal_social_and_emotional_development_page.id
+  title: "Emotions",
+  subtitle: "Emotions Subtitle",
+  markdown: markdown_for_emotions,
+  seo: "Early-Years-Foundation-Stage",
+  position: 1,
+  parent_id: personal_social_and_emotional_development_page.id,
 }
 emotions_page = ContentPage.new emotions
 emotions_page.save!
@@ -317,19 +316,18 @@ emotions_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_relationships = <<-MARKDOWN_FOR_RELATIONSHIPS
 
 This page is still being written.
 
 MARKDOWN_FOR_RELATIONSHIPS
 relationships = {
-    title: "Relationships",
-    subtitle: "Relationships Subtitle",
-    markdown: markdown_for_relationships,
-    seo: "Early-Years-Foundation-Stage",
-    position: 2,
-    parent_id: personal_social_and_emotional_development_page.id
+  title: "Relationships",
+  subtitle: "Relationships Subtitle",
+  markdown: markdown_for_relationships,
+  seo: "Early-Years-Foundation-Stage",
+  position: 2,
+  parent_id: personal_social_and_emotional_development_page.id,
 }
 relationships_page = ContentPage.new relationships
 relationships_page.save!
@@ -337,7 +335,6 @@ relationships_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_sense_of_self = <<-MARKDOWN_FOR_SENSE_OF_SELF
 
 Babies develop a sense of self by interacting with others and by exploring their bodies and objects around them, indoors and outdoors.
@@ -470,12 +467,13 @@ Consider how your environment supports children to play independently.
 
 MARKDOWN_FOR_SENSE_OF_SELF
 sense_of_self = {
-    title: "Sense of self",
-    subtitle: "Sense of self Subtitle",
-    markdown: markdown_for_sense_of_self,
-    seo: "Early-Years-Foundation-Stage",
-    position: 3,
-    parent_id: personal_social_and_emotional_development_page.id
+  title: "Sense of self",
+  subtitle: "Sense of self Subtitle",
+  markdown: markdown_for_sense_of_self,
+  seo: "Early-Years-Foundation-Stage",
+  position: 3,
+  parent_id: personal_social_and_emotional_development_page.id,
 }
 sense_of_self_page = ContentPage.new sense_of_self
 sense_of_self_page.save!
+# rubocop:enable Layout/HeredocIndentation

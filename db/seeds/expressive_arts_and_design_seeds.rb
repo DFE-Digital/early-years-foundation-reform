@@ -29,31 +29,30 @@ It is important that children develop positive attitudes and interests in mathem
 MARKDOWN_FOR_EXPRESSIVE_ARTS_AND_DESIGN
 
 expressive_arts_and_design = {
-    title: "Expressive arts and design",
-    subtitle: "Access resources, activity ideas and advice for teaching expressive arts and design to early years children.",
-    markdown: markdown_for_expressive_arts_and_design,
-    seo: "Early-Years-Foundation-Stage",
-    position: 7,
-  }
+  title: "Expressive arts and design",
+  subtitle: "Access resources, activity ideas and advice for teaching expressive arts and design to early years children.",
+  markdown: markdown_for_expressive_arts_and_design,
+  seo: "Early-Years-Foundation-Stage",
+  position: 4,
+}
 expressive_arts_and_design_page = ContentPage.new expressive_arts_and_design
 expressive_arts_and_design_page.save!
 
 #####################################################################################
 # Child pages below
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_imagination_and_creativity = <<-MARKDOWN_FOR_IMAGINATION_AND_CREATIVITY
 
 This page is still being written.
 
 MARKDOWN_FOR_IMAGINATION_AND_CREATIVITY
 imagination_and_creativity = {
-    title: "Imagination and creativity",
-    subtitle: "Imagination and creativity Subtitle",
-    markdown: markdown_for_imagination_and_creativity,
-    seo: "Early-Years-Foundation-Stage",
-    position: 1,
-    parent_id: expressive_arts_and_design_page.id
+  title: "Imagination and creativity",
+  subtitle: "Imagination and creativity Subtitle",
+  markdown: markdown_for_imagination_and_creativity,
+  seo: "Early-Years-Foundation-Stage",
+  position: 1,
+  parent_id: expressive_arts_and_design_page.id,
 }
 imagination_and_creativity_page = ContentPage.new imagination_and_creativity
 imagination_and_creativity_page.save!
@@ -61,19 +60,18 @@ imagination_and_creativity_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_self_expression = <<-MARKDOWN_FOR_SELF_EXPRESSION
 
 This page is still being written.
 
 MARKDOWN_FOR_SELF_EXPRESSION
 self_expression = {
-    title: "Self expression",
-    subtitle: "Self expression Subtitle",
-    markdown: markdown_for_self_expression,
-    seo: "Early-Years-Foundation-Stage",
-    position: 2,
-    parent_id: expressive_arts_and_design_page.id
+  title: "Self expression",
+  subtitle: "Self expression Subtitle",
+  markdown: markdown_for_self_expression,
+  seo: "Early-Years-Foundation-Stage",
+  position: 2,
+  parent_id: expressive_arts_and_design_page.id,
 }
 self_expression_page = ContentPage.new self_expression
 self_expression_page.save!
@@ -81,19 +79,19 @@ self_expression_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_communicating_through_arts = <<-MARKDOWN_FOR_COMMUNICATING_THROUGH_ARTS
 
 This page is still being written.
 
 MARKDOWN_FOR_COMMUNICATING_THROUGH_ARTS
 communicating_through_arts = {
-    title: "Communicating through arts",
-    subtitle: "Communicating through arts Subtitle",
-    markdown: markdown_for_communicating_through_arts,
-    seo: "Early-Years-Foundation-Stage",
-    position: 3,
-    parent_id: expressive_arts_and_design_page.id
+  title: "Communicating through arts",
+  subtitle: "Communicating through arts Subtitle",
+  markdown: markdown_for_communicating_through_arts,
+  seo: "Early-Years-Foundation-Stage",
+  position: 3,
+  parent_id: expressive_arts_and_design_page.id,
 }
 communicating_through_arts_page = ContentPage.new communicating_through_arts
 communicating_through_arts_page.save!
+# rubocop:enable Layout/HeredocIndentation

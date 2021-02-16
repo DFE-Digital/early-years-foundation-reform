@@ -4,8 +4,6 @@
 
 markdown_for_communication_and_language = <<-MARKDOWN_FOR_COMMUNICATION
 
-## Communication and language
-
 Access resources, activity ideas and advice for teaching communication and language to early years children.
 
 ## Communication and language resources
@@ -14,6 +12,7 @@ Access resources, activity ideas and advice for teaching communication and langu
 [Exploring language]()
 
 [Listening and understanding]()
+
 
 ## What the early years foundation stage (EYFS) framework says about communication and language
 The development of children's spoken language underpins all seven areas of learning and development.
@@ -27,19 +26,18 @@ Through conversation, story-telling and role play, where children share their id
 MARKDOWN_FOR_COMMUNICATION
 
 communication_and_language = {
-    title: "Communication and language",
-    subtitle: "Communication and language",
-    markdown: markdown_for_communication_and_language,
-    seo: "Early-Years-Foundation-Stage",
-    position: 1,
-  }
+  title: "Communication and language",
+  subtitle: "Communication and language",
+  markdown: markdown_for_communication_and_language,
+  seo: "Early-Years-Foundation-Stage",
+  position: 1,
+}
 communication_and_language_page = ContentPage.new communication_and_language
 communication_and_language_page.save!
 
 #####################################################################################
 # Child pages below
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_exploring_language = <<-MARKDOWN_FOR_EXPLORING_LANGUAGE
 Hundreds of hours of interactions enable a child to develop from babble, to words, to simple sentences.Studies show that once babies begin to understand words their vocabulary increases rapidly:
 
@@ -117,12 +115,12 @@ Familiar objects to model telling a story create a point of shared understanding
 - Strengthen partnerships with parents and professionals to support children's speech, language and communication
 MARKDOWN_FOR_EXPLORING_LANGUAGE
 exploring_language = {
-    title: "Exploring language",
-    subtitle: "Exploring language",
-    markdown: markdown_for_exploring_language,
-    seo: "Early-Years-Foundation-Stage",
-    position: 1,
-    parent_id: communication_and_language_page.id
+  title: "Exploring language",
+  subtitle: "Exploring language",
+  markdown: markdown_for_exploring_language,
+  seo: "Early-Years-Foundation-Stage",
+  position: 1,
+  parent_id: communication_and_language_page.id,
 }
 exploring_language_page = ContentPage.new exploring_language
 exploring_language_page.save!
@@ -130,7 +128,6 @@ exploring_language_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_interactions = <<-MARKDOWN_FOR_INTERACTIONS
 
 ## Why interactions are important
@@ -244,12 +241,12 @@ Positive interactions that children have, both adult-child and child-child, enco
 - How do you know that the learning environments inside and out are organised to enable communication and talk?
 MARKDOWN_FOR_INTERACTIONS
 interactions = {
-    title: "Interactions",
-    subtitle: "Interactions",
-    markdown: markdown_for_interactions,
-    seo: "Early-Years-Foundation-Stage",
-    position: 2,
-    parent_id: communication_and_language_page.id
+  title: "Interactions",
+  subtitle: "Interactions",
+  markdown: markdown_for_interactions,
+  seo: "Early-Years-Foundation-Stage",
+  position: 2,
+  parent_id: communication_and_language_page.id,
 }
 interactions_page = ContentPage.new interactions
 interactions_page.save!
@@ -257,19 +254,20 @@ interactions_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_listening_and_understanding = <<-MARKDOWN_FOR_LISTENING_AND_UNDERSTANDING
 
 This page is still being written
 
 MARKDOWN_FOR_LISTENING_AND_UNDERSTANDING
 listening_and_understanding = {
-    title: "Listening and understanding",
-    subtitle: "This should not appear !",
-    markdown: markdown_for_listening_and_understanding,
-    seo: "Early-Years-Foundation-Stage",
-    position: 3,
-    parent_id: communication_and_language_page.id
+  title: "Listening and understanding",
+  subtitle: "This should not appear !",
+  markdown: markdown_for_listening_and_understanding,
+  seo: "Early-Years-Foundation-Stage",
+  position: 3,
+  parent_id: communication_and_language_page.id,
 }
 listening_page = ContentPage.new listening_and_understanding
 listening_page.save!
+
+# rubocop:enable Layout/HeredocIndentation

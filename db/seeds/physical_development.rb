@@ -37,11 +37,57 @@ Repeated and varied opportunities to explore and play with small world activitie
 MARKDOWN_FOR_PHYSICAL_DEVELOPMENT
 
 physical_development = {
-    title: "Physical development",
-    subtitle: "Physical development",
-    markdown: markdown_for_physical_development,
-    seo: "Early-Years-Foundation-Stage",
-    position: 5,
+  title: "Physical development",
+  subtitle: "Physical development",
+  markdown: markdown_for_physical_development,
+  seo: "Early-Years-Foundation-Stage",
+  position: 2,
 }
 physical_development_page = ContentPage.new physical_development
 physical_development_page.save!
+
+#####################################################################################
+# Child pages below
+#
+markdown_for_core_strength = <<-MARKDOWN_FOR_CORE_STRENGTH
+### To be completed
+MARKDOWN_FOR_CORE_STRENGTH
+core_strength = {
+  title: "Core strength and coordination",
+  subtitle: "PCore strength and coordination",
+  markdown: markdown_for_core_strength,
+  seo: "Early-Years-Foundation-Stage",
+  position: 1,
+  parent_id: physical_development_page.id,
+}
+core_strength_page = ContentPage.new core_strength
+core_strength_page.save!
+
+markdown_for_fine_motor_skills = <<-MARKDOWN_FOR_FINE_MOTOR_SKILS
+### To be completed
+MARKDOWN_FOR_FINE_MOTOR_SKILS
+fine_motor_skills = {
+  title: "Fine motor skills",
+  subtitle: "Fine motor skills",
+  markdown: markdown_for_fine_motor_skills,
+  seo: "Early-Years-Foundation-Stage",
+  position: 2,
+  parent_id: physical_development_page.id,
+}
+fine_motor_skills_page = ContentPage.new fine_motor_skills
+fine_motor_skills_page.save!
+
+markdown_for_gross_motor_skills = <<-MARKDOWN_FOR_GROSS_MOTOR_SKILLS
+### To be completed
+MARKDOWN_FOR_GROSS_MOTOR_SKILLS
+gross_motor_skills = {
+  title: "Gross Motor Skills",
+  subtitle: "Gross Motor Skills",
+  markdown: markdown_for_gross_motor_skills,
+  seo: "Early-Years-Foundation-Stage",
+  position: 3,
+  parent_id: physical_development_page.id,
+}
+gross_motor_skills_page = ContentPage.new gross_motor_skills
+gross_motor_skills_page.save!
+# rubocop:enable Layout/HeredocIndentation

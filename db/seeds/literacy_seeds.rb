@@ -15,7 +15,7 @@ Access resources, activity ideas and advice for teaching literacy skills to earl
 
 ### What the early years foundation stage (EYFS) framework says about literacy
 
-It is crucial for children to develop a life-long love of reading. Reading consists of two dimensions: language comprehension and word reading. 
+It is crucial for children to develop a life-long love of reading. Reading consists of two dimensions: language comprehension and word reading.
 
 ### Read more
 Language comprehension (necessary for both reading and writing) starts from birth.
@@ -28,31 +28,30 @@ Writing involves transcription (spelling and handwriting) and composition (artic
 MARKDOWN_FOR_LITERACY
 
 literacy = {
-    title: "Literacy",
-    subtitle: "Literacy subtitle",
-    markdown: markdown_for_literacy,
-    seo: "Early-Years-Foundation-Stage",
-    position: 4,
-  }
+  title: "Literacy",
+  subtitle: "Literacy subtitle",
+  markdown: markdown_for_literacy,
+  seo: "Early-Years-Foundation-Stage",
+  position: 5,
+}
 literacy_page = ContentPage.new literacy
 literacy_page.save!
 
 #####################################################################################
 # Child pages below
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_comprehension = <<-MARKDOWN_FOR_COMPREHENSION
 
 This page is still being written.
 
 MARKDOWN_FOR_COMPREHENSION
 comprehension = {
-    title: "Comprehension",
-    subtitle: "Comprehension Subtitle",
-    markdown: markdown_for_comprehension,
-    seo: "Early-Years-Foundation-Stage",
-    position: 1,
-    parent_id: literacy_page.id
+  title: "Comprehension",
+  subtitle: "Comprehension Subtitle",
+  markdown: markdown_for_comprehension,
+  seo: "Early-Years-Foundation-Stage",
+  position: 1,
+  parent_id: literacy_page.id,
 }
 comprehension_page = ContentPage.new comprehension
 comprehension_page.save!
@@ -60,19 +59,18 @@ comprehension_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_word_reading = <<-MARKDOWN_FOR_WORD_READING
 
 This page is still being written.
 
 MARKDOWN_FOR_WORD_READING
 word_reading = {
-    title: "Word reading",
-    subtitle: "Word reading Subtitle",
-    markdown: markdown_for_word_reading,
-    seo: "Early-Years-Foundation-Stage",
-    position: 2,
-    parent_id: literacy_page.id
+  title: "Word reading",
+  subtitle: "Word reading Subtitle",
+  markdown: markdown_for_word_reading,
+  seo: "Early-Years-Foundation-Stage",
+  position: 2,
+  parent_id: literacy_page.id,
 }
 word_reading_page = ContentPage.new word_reading
 word_reading_page.save!
@@ -80,19 +78,19 @@ word_reading_page.save!
 #####################################################################################
 #
 #
-# rubocop:disable Layout/HeredocIndentation
 markdown_for_writing = <<-MARKDOWN_FOR_WRITING
 
 This page is still being written.
 
 MARKDOWN_FOR_WRITING
 writing = {
-    title: "Writing",
-    subtitle: "Writing Subtitle",
-    markdown: markdown_for_writing,
-    seo: "Early-Years-Foundation-Stage",
-    position: 3,
-    parent_id: literacy_page.id
+  title: "Writing",
+  subtitle: "Writing Subtitle",
+  markdown: markdown_for_writing,
+  seo: "Early-Years-Foundation-Stage",
+  position: 3,
+  parent_id: literacy_page.id,
 }
 writing_page = ContentPage.new writing
 writing_page.save!
+# rubocop:enable Layout/HeredocIndentation
