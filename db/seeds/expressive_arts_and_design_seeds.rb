@@ -47,7 +47,7 @@ markdown_for_imagination_and_creativity = <<-MARKDOWN_FOR_IMAGINATION_AND_CREATI
 This page is still being written.
 
 MARKDOWN_FOR_IMAGINATION_AND_CREATIVITY
-counting = {
+imagination_and_creativity = {
     title: "Imagination and creativity",
     subtitle: "Imagination and creativity Subtitle",
     markdown: markdown_for_imagination_and_creativity,
