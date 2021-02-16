@@ -16,6 +16,7 @@ $(document).ready(function() {
     createPreview('#markdown-editor','#markdown-render');
   });
 
+  
   //----- mobile nav -----//
   
   //show mobile nav when clicking hamburger
