@@ -5,12 +5,13 @@
 
 
   <% if @content_asset.asset_file.attached? %>
-  <%= image_tag(url_for(@content_asset.asset_file), :alt_text => @content_asset.alt_text) %>
+    <%= image_tag(url_for(@content_asset.asset_file), :alt_text => @content_asset.alt_text) %>
+    <div id='asset-details'>
+    <h3>Asset Details</h3>
+    <%= render partial: 'clipboard', locals: { clipboard_content: polymorphic_url(@content_asset.asset_file) } %>
+    </div>
   <% end %>
   
-  <input name="" value="<%= polymorphic_url(@content_asset.asset_file) %>" size=100 >
-  <input type=button onclick='' value='copy to clipboard'>
-  <br/>
   <%= link_to 'Edit', edit_content_asset_path(@content_asset), { :class => "govuk-link" } %> |
   <%= link_to 'Back', content_assets_path, { :class => "govuk-link" } %>
 

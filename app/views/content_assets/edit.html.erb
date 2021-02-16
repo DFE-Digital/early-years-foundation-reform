@@ -4,7 +4,10 @@
 
 <div id='content-asset-wrapper'>
     <%= image_tag(url_for(@content_asset.asset_file), :class=>'govuk-!-width-full') %>
+    <div id='asset-details'>
+    <h3>Asset Details</h3>
     <%= render partial: 'clipboard', locals: { clipboard_content: polymorphic_url(@content_asset.asset_file) } %>
+    </div>
 </div>
 
 <% end %>
