@@ -269,7 +269,7 @@
           ideas for activities you can do with early years children.</p>
         <ul class="govuk-grid-row nhsuk-card-group">
           <% # Compensate for the left to right ordering with this array of adjusted positions %>
-          <% [1,5,2,6,3,7,6].each do |next_position| %>
+          <% [1,2,3,5,6,7,4].each do |next_position| %>
             <% content_page = ContentPage.top_level.find_by_position next_position %>
             <li class="govuk-grid-column-one-half nhsuk-card-group__item">
               <div class="nhsuk-card nhsuk-card--clickable nhsuk-card--icon">
