@@ -124,9 +124,16 @@ GEM
     foreman (0.87.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    govspeak (3.5.0)
+      htmlentities (~> 4)
+      kramdown (~> 1.5.0)
+      nokogiri (~> 1.5)
+      sanitize (~> 2.1.0)
+    htmlentities (4.3.4)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
+    kramdown (1.5.0)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -248,6 +255,8 @@ GEM
       rubocop (>= 0.87.0)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.0)
+    sanitize (2.1.1)
+      nokogiri (>= 1.4.4)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -301,6 +310,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-darwin-20
   x86_64-linux-musl
 
 DEPENDENCIES
@@ -316,6 +326,8 @@ DEPENDENCIES
   factory_bot_rails
   faker
   foreman
+  govspeak
+  htmlentities (= 4.3.4)
   listen (>= 3.0.5, < 3.5)
   pg (>= 0.18, < 2.0)
   pry-byebug

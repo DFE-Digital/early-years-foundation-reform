@@ -4,8 +4,9 @@ class ContentController < ApplicationController
   # GET /content/page_title
   def show
     @page = ContentPage.find_by_slug params["slug"]
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-    @markdown = markdown.render(@page.markdown)
+
+    doc = Govspeak::Document.new @page.markdown
+    @markdown = doc.to_html
     @page
   end
 
