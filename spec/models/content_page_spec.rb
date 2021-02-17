@@ -15,24 +15,24 @@ RSpec.describe ContentPage, type: :model do
   it "sets the slug from the title, converting spaces to hyphens" do
     page = FactoryBot.create(:content_page)
 
-    expect { page.save! }.to_not raise_exception(expected_exception_message)
+    expect { page.save! }.to_not raise_error
   end
 
   it "sets the slug from the title, removing commas" do
     page = FactoryBot.create(:content_page, :comma_in_title)
 
-    expect { page.save! }.to_not raise_exception(expected_exception_message)
+    expect { page.save! }.to_not raise_error
   end
 
   it "sets the slug from the title, removing fullstops" do
     page = FactoryBot.create(:content_page, :fullstop_in_title)
 
-    expect { page.save! }.to_not raise_exception(expected_exception_message)
+    expect { page.save! }.to_not raise_error
   end
 
   it "sets the slug from the title, removing fullstops" do
     page = FactoryBot.create(:content_page, :fullstop_in_title)
 
-    expect { page.save! }.to_not raise_exception(expected_exception_message)
+    expect { page.save! }.to_not raise_error
   end
 end
