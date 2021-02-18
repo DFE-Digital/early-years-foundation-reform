@@ -15,8 +15,6 @@ services:
     volumes:
       - .:/app
     env_file: .env
-    environment:
-      RAILS_ENV: development
 
   database:
     image: postgres:13.1
