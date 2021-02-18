@@ -32,7 +32,7 @@ literacy = {
   subtitle: "Literacy subtitle",
   markdown: markdown_for_literacy,
   seo: "Early-Years-Foundation-Stage",
-  position: 5,
+  position: 4,
 }
 literacy_page = ContentPage.new literacy
 literacy_page.save!
