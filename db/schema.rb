@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_160639) do
     t.integer "position"
     t.string "published_status"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
+    t.index ["slug"], name: "index_content_pages_on_slug", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
 
