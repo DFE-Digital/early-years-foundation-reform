@@ -18,6 +18,12 @@
     },
     "SECRET_KEY_BASE": {
       "required": true
+    },
+    "GOVUK_APP_DOMAIN": {
+      "value": "www.gov.uk"
+    },
+    "GOVUK_WEBSITE_ROOT": {
+      "value": "https://www.gov.uk"
     }
   },
   "formation": {
