@@ -9,6 +9,7 @@ export function createPreview(el, target) {
 
 }
 
+/* copies to clipboard in content_assets/_clipboard.html.erb */
 export function copyToClipboard() {
   var copyText = document.getElementById("clipboard_content");
   copyText.select();
