@@ -236,6 +236,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redcarpet (3.5.1)
     regexp_parser (2.0.3)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -352,6 +353,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
 
 DEPENDENCIES
@@ -362,7 +364,7 @@ DEPENDENCIES
   byebug
   canonical-rails
   capybara (~> 3.34)
-  devise
+  devise (>= 4.7.3)
   dotenv-rails
   factory_bot_rails
   faker
@@ -374,6 +376,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 5.1)
   rails (~> 6.1.1)
+  redcarpet
   rspec-rails (~> 4.0.2)
   rubocop-govuk
   scss_lint-govuk
