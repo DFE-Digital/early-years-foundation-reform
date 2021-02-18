@@ -59,8 +59,6 @@ jobs:
         with:
           push: true
           tags: ${{ env.DOCKER_IMAGE }}
-          secrets: |
-            "RAILS_MASTER_KEY=${{ secrets.RAILS_MASTER_KEY_DEV }}"
           build-args: COMMIT_SHA=${{ github.sha }}
 
       - name: Docker image digest
