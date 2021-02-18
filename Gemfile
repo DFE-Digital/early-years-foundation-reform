@@ -33,9 +33,6 @@ gem "canonical-rails"
 # User accounts; required in config/application.rb
 gem "devise", require: false
 
-# For generating HTML from Markdown
-gem "redcarpet"
-
 gem "acts_as_tree"
 
 gem "govspeak"
