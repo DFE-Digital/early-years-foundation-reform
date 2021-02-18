@@ -20,7 +20,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
-    doc = Govspeak::Document.new params[:markdown]
+    doc = Govspeak::Document.new @content_page.markdown
     @md = doc.to_html
     @content_page
   end
