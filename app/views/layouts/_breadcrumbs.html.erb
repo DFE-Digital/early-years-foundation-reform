@@ -5,14 +5,14 @@
     </li>
     <% if @page.parent %>
       <li class="govuk-breadcrumbs__list-item">
-        <a class="govuk-breadcrumbs__link" href=#">
+        <a class="govuk-breadcrumbs__link" href="<%= path_for_this_page(@page.parent) %>">
           <%= @page.parent.title %>
         </a>
       </li>
     <% end %>
 
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href=#">
+      <a class="govuk-breadcrumbs__link" href="<%= path_for_this_page(@page)%>">
         <%= @page.title %>
       </a>
     </li>

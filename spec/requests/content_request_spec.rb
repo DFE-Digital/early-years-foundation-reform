@@ -6,7 +6,7 @@ RSpec.describe "Contents", type: :request do
   end
 
   let(:a_page) do
-    ContentPage.first
+    FactoryBot.create(:content_page)
   end
 
   describe "GET /show" do
