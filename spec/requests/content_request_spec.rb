@@ -17,10 +17,9 @@ RSpec.describe "Contents", type: :request do
   end
 
   describe "GET /" do
-    xit "renders the landing page / hub page" do
-      # The first seven top level pages should be show in order
-      #
-      # The desktop
+    it "renders the landing page / hub page" do
+      get "/content"
+      expect(response).to be_successful
     end
 
     xit "renders the desktop menu of content pages, two levels, in correct order" do
