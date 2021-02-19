@@ -31,7 +31,7 @@ understanding_the_world = {
   subtitle: "Access resources, activity ideas and advice for teaching understanding the world to early years children.",
   markdown: markdown_for_understanding_the_world,
   seo: "Early-Years-Foundation-Stage",
-  position: 7,
+  position: 6,
 }
 understanding_the_world_page = ContentPage.new understanding_the_world
 understanding_the_world_page.save!

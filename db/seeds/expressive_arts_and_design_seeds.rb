@@ -33,7 +33,7 @@ expressive_arts_and_design = {
   subtitle: "Access resources, activity ideas and advice for teaching expressive arts and design to early years children.",
   markdown: markdown_for_expressive_arts_and_design,
   seo: "Early-Years-Foundation-Stage",
-  position: 4,
+  position: 7,
 }
 expressive_arts_and_design_page = ContentPage.new expressive_arts_and_design
 expressive_arts_and_design_page.save!

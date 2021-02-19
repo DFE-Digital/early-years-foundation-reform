@@ -33,7 +33,7 @@ mathematics = {
   subtitle: "Access resources, activity ideas and advice for teaching early years maths.",
   markdown: markdown_for_mathematics,
   seo: "Early-Years-Foundation-Stage",
-  position: 6,
+  position: 5,
 }
 mathematics_page = ContentPage.new mathematics
 mathematics_page.save!

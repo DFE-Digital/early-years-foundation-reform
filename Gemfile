@@ -6,6 +6,9 @@ ruby File.read(".ruby-version").chomp
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.1.1"
 
+# User accounts; required in config/application.rb
+gem "devise", ">= 4.7.3"
+
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 
@@ -15,14 +18,11 @@ gem "puma", "~> 5.1"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem "bcrypt", "~> 3.1.16"
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.1.0", require: false
 
 # Manage multiple processes i.e. web server and webpack
 gem "foreman"
@@ -30,16 +30,15 @@ gem "foreman"
 # Canonical meta tag
 gem "canonical-rails"
 
-# User accounts; required in config/application.rb
-gem "devise", require: false
-
-# For generating HTML from Markdown
-gem "redcarpet"
-
 gem "acts_as_tree"
 
 gem "govspeak"
 gem "htmlentities", "4.3.4"
+# For generating HTML from Markdown
+gem "redcarpet"
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", ">= 1.1.0", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
