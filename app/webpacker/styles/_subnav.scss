@@ -136,8 +136,8 @@ border-bottom-color: currentColor;
   padding: govuk-spacing(2) govuk-spacing(3) govuk-spacing(0) 0;
   font-size: govuk-px-to-rem(19px);
   font-weight: bold;
-  display: inline-block;
-
+  display: inline;
+  
   &:first-of-type {
 
     padding-top: 0;
