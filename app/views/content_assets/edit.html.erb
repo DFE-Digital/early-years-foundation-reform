@@ -1,12 +1,19 @@
 <h1 class="govuk-heading-l">Edit Asset</h1>
 
 <% if @content_asset.asset_file.attached? %>
+
 <div id='content-asset-wrapper'>
-<%= image_tag(url_for(@content_asset.asset_file), :class=>'govuk-!-width-full') %>
+    <%= image_tag(url_for(@content_asset.asset_file), :class=>'govuk-!-width-full') %>
+    <div id='asset-details'>
+    <h3>Asset Details</h3>
+    <%= render partial: 'clipboard', locals: { clipboard_content: polymorphic_url(@content_asset.asset_file) } %>
+    </div>
 </div>
+
 <% end %>
 
 <%= render 'form', content_asset: @content_asset %>
+
 
 <div class="govuk-grid-row ">
     <div class="govuk-grid-column-one-half">

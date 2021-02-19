@@ -175,10 +175,14 @@ GEM
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     minitest (5.14.3)
     msgpack (1.4.2)
     multipart-post (2.1.1)
     nio4r (2.5.5)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.1-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.1-x86_64-linux)
@@ -238,6 +242,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redcarpet (3.5.1)
     regexp_parser (2.0.3)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -354,8 +359,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  x86_64-darwin-19
-  x86_64-linux-musl
+  ruby
 
 DEPENDENCIES
   acts_as_tree
@@ -365,7 +369,7 @@ DEPENDENCIES
   byebug
   canonical-rails
   capybara (~> 3.34)
-  devise
+  devise (>= 4.7.3)
   dotenv-rails
   factory_bot_rails
   faker
@@ -377,6 +381,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 5.1)
   rails (~> 6.1.1)
+  redcarpet
   rspec-rails (~> 4.0.2)
   rubocop-govuk
   scss_lint-govuk

@@ -9,5 +9,6 @@ RSpec.describe "content_assets/show", type: :view do
     render
     expect(rendered).to include(@content_asset.title)
     expect(rendered).to include(@content_asset.alt_text)
+    expect(rendered).to include(polymorphic_url(@content_asset.asset_file))
   end
 end

@@ -4,6 +4,20 @@ FROM ruby:2.7.2-alpine3.13
 # Set bundler version
 ENV BUNDLER_VERSION=2.2.6
 
+ARG RAILS_ENV=production
+ENV LANG=C.UTF-8 \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    BUNDLE_PATH=/usr/local/bundle \
+    RAILS_ENV=${RAILS_ENV} \
+    RACK_ENV=${RAILS_ENV} \
+    RAILS_SERVE_STATIC_FILES=true \
+    RAILS_LOG_TO_STDOUT=true \
+    GOVUK_APP_DOMAIN=www.gov.uk \
+    GOVUK_WEBSITE_ROOT=https://www.gov.uk \
+    SECRET_KEY_BASE=TestKey \
+    IGNORE_SECRETS_FOR_BUILD=1
+
 # Add the timezone as it's not configured by default in Alpine
 RUN apk add --update --no-cache tzdata && \
   cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
@@ -29,16 +43,13 @@ WORKDIR /app
 COPY .ruby-version Gemfile Gemfile.lock ./
 RUN gem update --system \
     && gem install bundler:${BUNDLER_VERSION} --no-document \
-    && bundle install --jobs=4 --no-binstubs \
+    && bundle config set --local without 'development test' \
+    && bundle install --no-binstubs  \
     && gem cleanup
 
-# Install node packages defined in package.json, including webpack
 COPY package.json yarn.lock ./
 RUN yarn install
 
+COPY . /app/
 
-# Copy all files to /app (except what is defined in .dockerignore)
-COPY . ./
-
-# Compile assets
 RUN bundle exec rake assets:precompile
