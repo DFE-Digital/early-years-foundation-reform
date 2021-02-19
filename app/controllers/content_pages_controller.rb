@@ -20,8 +20,8 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-    @md = markdown.render(@content_page.markdown)
+    doc = Govspeak::Document.new @content_page.markdown
+    @md = doc.to_html
     @content_page
   end
 
