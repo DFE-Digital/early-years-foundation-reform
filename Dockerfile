@@ -12,7 +12,11 @@ ENV LANG=C.UTF-8 \
     RAILS_ENV=${RAILS_ENV} \
     RACK_ENV=${RAILS_ENV} \
     RAILS_SERVE_STATIC_FILES=true \
-    RAILS_LOG_TO_STDOUT=true
+    RAILS_LOG_TO_STDOUT=true \
+    GOVUK_APP_DOMAIN=www.gov.uk \
+    GOVUK_WEBSITE_ROOT=https://www.gov.uk \
+    SECRET_KEY_BASE=TestKey \
+    IGNORE_SECRETS_FOR_BUILD=1
 
 # Add the timezone as it's not configured by default in Alpine
 RUN apk add --update --no-cache tzdata && \
@@ -39,7 +43,8 @@ WORKDIR /app
 COPY .ruby-version Gemfile Gemfile.lock ./
 RUN gem update --system \
     && gem install bundler:${BUNDLER_VERSION} --no-document \
-    && bundle install --no-binstubs --without=development test  \
+    && bundle config set --local without 'development test' \
+    && bundle install --no-binstubs  \
     && gem cleanup
 
 COPY package.json yarn.lock ./
