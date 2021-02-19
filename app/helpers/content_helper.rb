@@ -3,12 +3,7 @@ module ContentHelper
     "#{content_url}/#{page.slug}"
   end
 
-  def has_active_css(href)
-    "app-mobile-nav__subnav-item--current" if current_page?(href)
-  end
-
-  def is_selected(page)
+  def is_current?(page)
     page.slug == params[:slug]
   end
-
 end
