@@ -91,3 +91,17 @@ jobs:
           terraform init -reconfigure -input=false -backend-config="bucket=paas-s3-broker-prod-lon-9db1b27b-6fa2-42a9-a92c-84384e40d1a9"
           terraform plan -var-file ../workspace-variables/test.tfvars
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/test.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_TEST}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_TEST}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_TEST}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_TEST}}"}'
+
+      - name: Deploy to pre-prod
+        if: ${{ github.event.inputs.environment == 'pre-prod' }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PREPROD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PREPROD }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME_PREPROD }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD_PREPROD }}
+        run: |
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
+          cd terraform/app
+          terraform init -reconfigure -input=false -backend-config=""
+          terraform plan -var-file ../workspace-variables/preprod.tfvars
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/preprod.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_PREPROD}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_PREPROD}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_PREPROD}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_PREPROD}}"}'
