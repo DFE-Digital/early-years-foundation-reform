@@ -4,7 +4,7 @@ FROM ruby:2.7.2-alpine3.13
 # Set bundler version
 ENV BUNDLER_VERSION=2.2.6
 
-ARG RAILS_ENV=production
+ARG RAILS_ENV=development
 ENV LANG=C.UTF-8 \
     BUNDLE_JOBS=4 \
     BUNDLE_RETRY=3 \
@@ -43,7 +43,6 @@ WORKDIR /app
 COPY .ruby-version Gemfile Gemfile.lock ./
 RUN gem update --system \
     && gem install bundler:${BUNDLER_VERSION} --no-document \
-    && bundle config set --local without 'development test' \
     && bundle install --no-binstubs  \
     && gem cleanup
 
