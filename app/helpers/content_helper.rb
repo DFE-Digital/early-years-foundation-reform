@@ -3,7 +3,7 @@ module ContentHelper
     "#{content_url}/#{page.slug}"
   end
 
-  def is_selected(page)
+  def is_current?(page)
     page.slug == params[:slug]
   end
 end
