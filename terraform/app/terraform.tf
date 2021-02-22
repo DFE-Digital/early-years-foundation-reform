@@ -38,6 +38,7 @@ module paas {
   app_start_timeout                 = var.paas_app_start_timeout
   app_stopped                       = var.paas_app_stopped
   service_name                      = local.service_name
+  postgres_create_timeout           = var.paas_postgres_create_timeout
   postgres_service_plan             = var.paas_postgres_service_plan
   space_name                        = var.paas_space_name
   web_app_deployment_strategy       = var.paas_web_app_deployment_strategy
