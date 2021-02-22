@@ -25,6 +25,10 @@ variable app_environment {
   default = "dev"
 }
 
+variable paas_postgres_create_timeout {
+  default = 900 # 15 minutes
+}
+
 variable paas_postgres_service_plan {
   default = "tiny-unencrypted-11"
 }
