@@ -372,7 +372,7 @@ DEPENDENCIES
   foreman
   govspeak
   htmlentities (= 4.3.4)
-  listen
+  listen (>= 3.0.5, < 3.5)
   pg (>= 0.18, < 2.0)
   pry-byebug
   puma (~> 5.1)
