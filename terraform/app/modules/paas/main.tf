@@ -3,7 +3,7 @@ resource cloudfoundry_service_instance postgres_instance {
   space = data.cloudfoundry_space.space.id
   service_plan = data.cloudfoundry_service.postgres.service_plans[var.postgres_service_plan]
   json_params = "{\"enable_extensions\": [\"pgcrypto\", \"fuzzystrmatch\", \"plpgsql\"]}"
-  timeout {
+  timeouts {
     create = var.postgres_create_timeout
   }
 }
