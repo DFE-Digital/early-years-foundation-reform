@@ -15,6 +15,10 @@ variable app_stopped {
   default = false
 }
 
+variable postgres_create_timeout {
+  default = "15m"
+}
+
 variable postgres_service_plan {
 }
 
