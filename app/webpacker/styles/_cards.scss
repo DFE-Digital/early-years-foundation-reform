@@ -14,16 +14,16 @@ $card-border-hover-color: #003078;
   width: 100%;
 }
 
-.nhsuk-card__content {
+.eyfs-card__content {
   // @include top-and-bottom();
   @include govuk-responsive-padding(5);
 
   position: relative;
 }
 
-.nhsuk-card__heading,
-.nhsuk-card__metadata,
-.nhsuk-card__description {
+.eyfs-card__heading,
+.eyfs-card__metadata,
+.eyfs-card__description {
   margin-bottom: govuk-spacing(3);
 }
 
@@ -37,8 +37,8 @@ $card-border-hover-color: #003078;
   &:active {
     cursor: pointer;
 
-    .nhsuk-card__heading a,
-    .nhsuk-card__link {
+    .eyfs-card__heading a,
+    .eyfs-card__link {
       color: $govuk-link-hover-colour;
       text-decoration: none;
 
