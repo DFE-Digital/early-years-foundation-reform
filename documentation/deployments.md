@@ -35,11 +35,17 @@ This application runs through four environments:
 
 `dev` is deployed to automatically when a PR is merged into the `main` branch.
 
-`test`, `pre prod` and `prod` deployments are triggered manually from the Github workflow tab/
+`test`, `pre prod` and `prod` deployments are triggered manually from the Github workflow tab
 
 Each environment has a dedicated PaaS user account to run CI/CD jobs using Github workflows.
 
 To find out the user account details, contact the org manager.
+
+### Seed data
+
+[Seed data is destroyed](../db/seeds.rb) and recreated in `dev`, `test` and `pre prod` environments.
+
+`prod` does not get seeded with data automatically.
 
 ### Environment variables
 
