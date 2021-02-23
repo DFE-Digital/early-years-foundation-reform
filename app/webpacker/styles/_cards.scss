@@ -5,7 +5,7 @@ $card-border-bottom-width: 3px;
 $card-border-color: #1d70b8;
 $card-border-hover-color: #003078;
 
-.nhsuk-card {
+.eyfs-card {
   @include govuk-responsive-margin(5, 'bottom');
 
   background: govuk-colour("white");
@@ -30,7 +30,7 @@ $card-border-hover-color: #003078;
 /* Clickable card
   ========================================================================== */
 
-.nhsuk-card--clickable {
+.eyfs-card--clickable {
   border-bottom-width: $card-border-bottom-width;
 
   &:hover,
@@ -60,8 +60,7 @@ $card-border-hover-color: #003078;
   }
 }
 
-
-.nhsuk-card-group {
+.eyfs-card-group {
   display: flex;
   flex-wrap: wrap;
 
@@ -73,36 +72,36 @@ $card-border-hover-color: #003078;
   }
 }
 
-.nhsuk-card-group__item {
+.eyfs-card-group__item {
   display: flex;
 
   list-style-type: none;
   margin-bottom: 0;
 
-  .nhsuk-card {
+  .eyfs-card {
     margin-bottom: govuk-spacing(5);
   }
 
   @include mq($until: desktop) {
 
-    .nhsuk-card {
+    .eyfs-card {
       margin-bottom: govuk-spacing(3);
     }
 
-    &:last-child .nhsuk-card {
+    &:last-child .eyfs-card {
       margin-bottom: 0;
     }
   }
 
-  .nhsuk-card--feature {
+  .eyfs-card--feature {
     margin-top: 0;
   }
 }
 
-.nhsuk-card-group--list {
-  .nhsuk-card-group__item {
+.eyfs-card-group--list {
+  .eyfs-card-group__item {
     &:not(:last-child) {
-      .nhsuk-card {
+      .eyfs-card {
         border-bottom-width: 0;
         margin-bottom: 0;
       }
@@ -113,7 +112,7 @@ $card-border-hover-color: #003078;
 /* With icon
   ========================================================================== */
 
-  .nhsuk-card--icon {
+  .eyfs-card--icon {
     background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
     background-position: right 8px top 50%;
     background-repeat: no-repeat;
@@ -131,11 +130,11 @@ $card-border-hover-color: #003078;
       text-decoration: none;
     }
 
-    .nhsuk-card__content {
+    .eyfs-card__content {
       @include govuk-responsive-padding(8, 'right');
     }
 
-    &.nhsuk-card--clickable {
+    &.eyfs-card--clickable {
       &:hover,
       &:active {
         a {
