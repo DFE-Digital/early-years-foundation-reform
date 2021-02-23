@@ -15,9 +15,9 @@ $(document).ready(function() {
   $('#markdown-editor').keyup(function() {
     createPreview('#markdown-editor','#markdown-render');
   });
-  
+
   //----- mobile nav -----//
-  
+
   //show mobile nav when clicking hamburger
   $( ".govuk-js-header-toggle" ).click(function() {
     $( ".app-subnav--mobile" ).toggleClass('app-mobile-nav--active');
@@ -26,7 +26,7 @@ $(document).ready(function() {
   //show subnav links when clicking top level
   $('.learning-section-mobile-nav > a').click(function() {
     $(this).parent().children('ul.app-mobile-subnav-section').toggle();
-  }); 
+  });
 
   //disable top level section click on mobile nav
   $('.learning-section-mobile-nav .top-level-link').click(function(e) {
@@ -38,7 +38,7 @@ $(document).ready(function() {
     copyToClipboard();
   });
 
-  document.querySelectorAll('.nhsuk-card--clickable').forEach((panel) => {
+  document.querySelectorAll('.eyfs-card--clickable').forEach((panel) => {
     // Check if panel has a link within it
     if (panel.querySelector('a') !== null) {
       // Clicks the link within the heading to navigate to desired page
@@ -47,5 +47,5 @@ $(document).ready(function() {
       });
     }
   });
-  
+
 });
