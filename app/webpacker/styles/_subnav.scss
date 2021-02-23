@@ -14,7 +14,6 @@
   flex-direction: column;
 }
 
-
 .app-subnav {
   // Since the back to top link is outside the flow of the document we need to create a space for it.
   // This number is magic and was determined by manually judging the visual spacing.
@@ -30,10 +29,6 @@
   }
 
 }
-
-
-
-
 
 .app-subnav--mobile {
 
@@ -57,12 +52,6 @@
 
 }
 
-
-
-
-
-
-
 .js-app-mobile-nav-toggler.is-active::after {
 display: inline-block;
 width: 0;
@@ -75,7 +64,6 @@ border-width: 0 5px 8.66px 5px;
 border-bottom-color: inherit;
 border-bottom-color: currentColor;
 }
-
 
 .app-subnav__section {
   margin: govuk-spacing(2) 0 govuk-spacing(4);
@@ -144,8 +132,3 @@ border-bottom-color: currentColor;
   }
 
 }
-
-
-
-// Subnav new styles
-
