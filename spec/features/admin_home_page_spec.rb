@@ -1,7 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.feature "Admin Homepage", type: :feature do
-
   context "without session" do
     scenario "go to login page" do
       visit root_path
@@ -26,5 +25,4 @@ RSpec.feature "Admin Homepage", type: :feature do
       expect(current_path).to eq("/users/sign_in")
     end
   end
-
 end
