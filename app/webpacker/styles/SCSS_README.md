@@ -40,6 +40,19 @@ govspeak/helpers/_markdown-typography.scss.
   
 ```
 
+As well as doing this in the pages seen by the public, we also do the same thing in the
+form used by editors, see how the class gem-c-govspeak is applied in
+app/views/content_pages/_form.html.erb
+
+```
+      <div class="govuk-grid-column-one-half">
+          <h3 class="govuk-heading-m">Live Preview</h3>
+          <div id='markdown-render' class='gem-c-govspeak'>
+            <%= sanitize @md %>
+          </div>
+      </div>
+```
+
 ## Updating the styles
 Because the markdown styling is copied, it will need to be kept in step with the Gov Front End, but
 its not likely to change often.
