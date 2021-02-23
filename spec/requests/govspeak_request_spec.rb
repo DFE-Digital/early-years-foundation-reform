@@ -9,7 +9,7 @@ RSpec.describe "Govspeak", type: :request do
 
   describe "POST /show" do
     context "without a valid session" do
-      it "redirect to login" do
+      it "redirects to login" do
         post "/govspeak", params: valid_params
         expect(response).to redirect_to("/users/sign_in")
       end
