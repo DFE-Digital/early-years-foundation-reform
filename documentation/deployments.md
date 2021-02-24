@@ -65,3 +65,15 @@ The Conduit plugin on Cloud Foundry can be used [to connect to a PostgreSQL data
 ### Managing apps
 
 PaaS hosted applications are run in a container. [Connecting using SSH](https://docs.cloud.service.gov.uk/managing_apps.html#connecting-with-ssh) gives you secure access to the applications container.
+
+
+### Documentation cross reference
+
+Lots of how the infrastructure is created for this project has been made ontop of the shoulders of the Become a teacher team (BAT)
+They have more comprehensive documentation that shouldn't be repeated but referenced for completness
+
+[BAT Gov.uk PaaS](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1905066044/Gov.uk+PaaS)
+[BAT Github Actions](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1649672271/Github+Actions)
+[DockerHub](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1602650124/DockerHub)
+[DNS](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1905262678/DNS)
+[Terraform](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1935179870/Terraform)
