@@ -56,11 +56,16 @@ The application requires the following environment variables to deploy to an env
 - TF_VAR_paas_password
 - AWS_ACCESS_KEY_ID
 - AWS_SECRET_ACCESS_KEY
+
+They are stored in github secrets and consumed by the deploy jobs.
+
 ### Databases
 
 The application is backed by a [PostgreSQL database hosted on PaaS](https://docs.cloud.service.gov.uk/deploying_services/postgresql/#postgresql).
 
 The Conduit plugin on Cloud Foundry can be used [to connect to a PostgreSQL database from your local machine](https://docs.cloud.service.gov.uk/deploying_services/postgresql/#connect-to-a-postgresql-service-from-your-local-machine)
+
+If you don't want to use Conduit, you can [connect to a backing service via an SSH tunnel from your local machine](https://docs.cloud.service.gov.uk/managing_apps.html#connecting-to-a-non-publicly-available-backing-service). You might want to do this is to access the Postgres via a GUI for example.
 
 ### Managing apps
 
