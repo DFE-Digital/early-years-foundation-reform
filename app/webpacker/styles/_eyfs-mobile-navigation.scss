@@ -1,43 +1,65 @@
-  // Edit this and delete as necessary
-
-  .app-mobile-nav__subnav--active {
-    display: block
+  div.govuk-header__content button.govuk-header__menu-button {
+    border: 3px solid #fff;
+    background: #0a0c0c;
+    padding: 5px;
+    color: #fff;
   }
 
   .app-mobile-nav {
     border-bottom: 1px solid #b1b4b6;
+    color: #fff;
   }
-
-
+  
   .app-mobile-nav--active {
-    display:block
+    display:block;
    }
    @media (min-width: 40.0625em) {
-    .app-mobile-nav--active {
-     display:none
+    .app-subnav--mobile {
+     display:none;
+    }
+    .js-enabled .govuk-header__menu-button {
+      display: none;
+    }
+    .app-mobile-nav {
+      display: none;
     }
    }
+
    @media (max-width: 40.0525em) {
     .no-js .app-mobile-nav {
      display:block
     }
    }
-   .app-mobile-nav__list {
+    .app-mobile-nav__list {
     margin:0;
     padding:0;
-    list-style:none
-   }
+    list-style:none;
+    }
+    .app-mobile-subnav-section {
+      display:none;
+      .app-mobile-nav__subnav-item {
+        //padding: 12px 0px;
+
+      }
+    }
+    
    .app-mobile-nav-subnav-toggler {
     position:relative;
-    padding:16px 20px 17px 20px;
-    background-color:#f8f8f8
+  
    }
+
+   .learning-section-mobile-nav {
+    position: relative;
+    padding: 16px 0px 16px 0px;
+    background-color: #f8f8f8;
+  }
 
    .app-mobile-nav-subnav-toggler__link {
     font-weight:700;
     font-size:19px;
     font-size:1.1875rem
    }
+
    .app-mobile-nav-subnav-toggler__link:not(:focus):hover {
     color:#1d70b8
    }
@@ -56,10 +78,7 @@
    }
    .app-mobile-nav__subnav {
     display:none;
-    padding-top:10px;
-    padding-bottom:10px;
-    border-top:1px solid #f3f2f1;
-    border-bottom:1px solid #f3f2f1
+    margin-top: 4px;
    }
    .js-enabled .app-mobile-nav__subnav--active {
     display:block
@@ -67,7 +86,8 @@
    .app-mobile-nav__subnav-item {
     display:block;
     position:relative;
-    padding:12px 20px
+    padding:12px 20px;
+    background-color: #ffffff;
    }
    .app-mobile-nav__subnav-item--current {
     padding-left:16px;
