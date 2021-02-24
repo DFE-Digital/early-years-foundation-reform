@@ -41,6 +41,26 @@ Each environment has a dedicated PaaS user account to run CI/CD jobs using Githu
 
 To find out the user account details, contact the org manager.
 
+
+### Github Actions
+
+Actions are standalone commands that are combined into steps to create a job.
+
+Workflows are made up of one or more jobs and can be scheduled or triggered by an event. The workflow is used to build, test, package, release, and deploy the application.
+
+
+[This repo has the following actions](https://github.com/DFE-Digital/early-years-foundation-reform/actions):
+
+- Build: This builds the Docker image
+- Test: Runs RSpec
+- Rubocop: Runs Rubocop
+- Deploy to Dev: Automatically triggers the 'Deploy to Environment' workflow when a PR is merged to `main`
+- Deploy to Test: Manual deployment trigger. Choose a a branch and that will trigger the 'Deploy to Environment' workflow
+- Deploy to Pre Prod: Manual deployment trigger. Choose a a branch and that will trigger the 'Deploy to Environment' workflow
+- Deploy to Production: Manual deployment trigger. Choose a a branch and that will trigger the 'Deploy to Environment' workflow
+- Deploy to Environment: Triggered by one of the above workflows. This is a generic workflow that accepts a target environment and git ref to checkout the code, build the docker image and deploy to the target environment.
+
+
 ### Seed data
 
 [Seed data is destroyed](../db/seeds.rb) and recreated in `dev`, `test` and `pre prod` environments.
