@@ -30,6 +30,7 @@ yarn-debug.log*
 *.log
 /.idea
 .DS_Store
+/coverage
 
 # Terraform
 *.tfstate
