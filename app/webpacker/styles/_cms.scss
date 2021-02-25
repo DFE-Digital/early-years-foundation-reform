@@ -1,0 +1,39 @@
+#content-asset-wrapper {
+  padding-top: govuk-spacing(6);
+}
+
+.align-right {
+  text-align:right;
+}
+
+.nesting_level_1 {
+  margin-left: 0em;
+}
+
+.nesting_level_2 {
+  margin-left: 2em;
+}
+
+.nesting_level_3 {
+  margin-left: 4em;
+}
+
+#markdown-editor {
+  height: 350px;
+}
+
+.copy-to-clipboard {
+  margin-bottom: 20px;
+  background: #f3f2f1;
+  padding: 10px;
+}
+
+.summary {
+  border-left: 3px solid #ccc;
+  padding-left: 1em;
+}
+
+.links {
+  margin-left: 3em;
+  font-size: 0.5em;
+}
