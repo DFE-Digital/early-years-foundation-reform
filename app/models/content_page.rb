@@ -17,7 +17,7 @@ class ContentPage < ApplicationRecord
   before_save :set_slug_from_title
 
   after_commit do
-    ContentPage.reorder # Cause _ordering to be recalculated
+    ContentPage.reorder
   end
 
   def set_slug_from_title

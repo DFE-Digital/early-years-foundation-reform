@@ -87,7 +87,7 @@ RSpec.describe ContentPage, type: :model do
       expect(@child1_of_top_level2.previous_page).to eq(@top_level2)
     end
 
-    it "should reorder the pages when a page is changed" do
+    it "Should reorder the pages when a page is changed" do
       @page_in_the_middle = FactoryBot.create(:content_page, position: 5)
       expect(@child2_of_top_level1.next_page).to eq(@page_in_the_middle)
     end
