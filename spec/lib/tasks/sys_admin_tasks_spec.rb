@@ -25,7 +25,7 @@ describe "sys_admin_tasks" do
 
     context "User not found" do
       it "raises error" do
-        expect { run_destroy_user }.to raise_error(NoMethodError)
+        expect { run_destroy_user }.to raise_error(StandardError)
       end
     end
   end
