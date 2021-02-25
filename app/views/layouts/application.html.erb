@@ -55,6 +55,9 @@
               <li class="govuk-header__navigation-item">
                 <%= link_to "See the site", "/content", class: "govuk-header__link" %>
               </li>
+              <li class="govuk-header__navigation-item">
+                <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "govuk-header__link") %>
+              </li>
             </ul>
           </nav>
         </div>
@@ -72,7 +75,6 @@
       </span>
         </p>
       </div>
-
     </div>
 
     <div class="govuk-width-container">
