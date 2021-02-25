@@ -326,7 +326,7 @@ relationships = {
   subtitle: "Relationships Subtitle",
   markdown: markdown_for_relationships,
   seo: "Early-Years-Foundation-Stage",
-  position: 2,
+  position: 3,
   parent_id: personal_social_and_emotional_development_page.id,
 }
 relationships_page = ContentPage.new relationships
@@ -471,7 +471,7 @@ sense_of_self = {
   subtitle: "Sense of self Subtitle",
   markdown: markdown_for_sense_of_self,
   seo: "Early-Years-Foundation-Stage",
-  position: 3,
+  position: 2,
   parent_id: personal_social_and_emotional_development_page.id,
 }
 sense_of_self_page = ContentPage.new sense_of_self
