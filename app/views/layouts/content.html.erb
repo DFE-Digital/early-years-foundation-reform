@@ -48,7 +48,7 @@
     </div>
   </header>
 
-  <div class="govuk-width-container">
+  <nav class="govuk-width-container">
     <%= render 'layouts/mobile_menu' %>
     <div class="govuk-phase-banner">
       <p class="govuk-phase-banner__content">
@@ -61,24 +61,24 @@
       </p>
     </div>
     <%= render 'layouts/breadcrumbs' %>
-  </div>
+  </nav>
 
 
-  <div class="govuk-width-container">
-    <div class="govuk-main-wrapper">
+  <main class="govuk-main-wrapper" role="main" id="main-content" >
+    <div class="govuk-width-container">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third desktop-menu">
           <%= render 'layouts/desktop_menu' %>
         </div>
 
         <div class="govuk-grid-column-two-thirds">
-          <main id="main-content" class="app-content gem-c-govspeak" role="main">
+          <div class="app-content gem-c-govspeak">
             <%= yield %>
-          </main>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer class="govuk-footer " role="contentinfo">
     <div class="govuk-width-container ">
