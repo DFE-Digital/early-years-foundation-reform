@@ -74,6 +74,7 @@ group :development do
 end
 
 group :test do
+  gem "simplecov", require: false
   gem "webdrivers", "~> 4.4"
 end
 
