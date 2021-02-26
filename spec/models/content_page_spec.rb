@@ -5,10 +5,6 @@ RSpec.describe ContentPage, type: :model do
     /should only contain alphabetic, numeric, comma, fullstop, hyphen and space characters/
   end
 
-  before(:each) do
-    ContentPage.destroy_all
-  end
-
   it "only allows alphanumeric and spaces in the title" do
     attributes_for_page = FactoryBot.attributes_for(:content_page, :with_special_chars_in_title)
 
@@ -51,7 +47,7 @@ RSpec.describe ContentPage, type: :model do
   # The order is a depth first search
   context "Next and Previous pages" do
     before(:each) do
-      ContentPage.destroy_all
+      ContentPage.destroy_all # Otherwise the pages created above spoil this test
 
       @top_level1 = FactoryBot.create(:content_page, position: 1)
       @top_level2 = FactoryBot.create(:content_page, position: 10)
@@ -63,33 +59,37 @@ RSpec.describe ContentPage, type: :model do
       @child2_of_top_level2 = FactoryBot.create(:content_page, position: 2, parent_id: @top_level2.id)
     end
 
-    it "The next_page should return the first child page when called on a parent" do
-      expect(@top_level1.next_page).to eq(@child1_of_top_level1)
+    context "Navigating to the Next page" do
+      it "The next_page should return the first child page when called on a parent" do
+        expect(@top_level1.next_page).to eq(@child1_of_top_level1)
+      end
+
+      it "The next_page should return the parents next sibling when called on the last child page" do
+        expect(@child2_of_top_level1.next_page).to eq(@top_level2)
+      end
+
+      it "The next_page should return the first page when called with the last page (loop around)" do
+        expect(@child2_of_top_level2.next_page).to eq(@top_level1)
+      end
     end
 
-    it "The next_page should return the parents next sibling when called on the last child page" do
-      expect(@child2_of_top_level1.next_page).to eq(@top_level2)
-    end
+    context "Navigating to the Previous page" do
+      it "The previous_page should return the last child of the second parent when called on a first parent" do
+        expect(@top_level1.previous_page).to eq(@child2_of_top_level2)
+      end
 
-    it "The next_page should return the first page when called with the last page (loop around)" do
-      expect(@child2_of_top_level2.next_page).to eq(@top_level1)
-    end
+      it "The previous_page should return the previous sibling of a child if a sibling exists" do
+        expect(@child2_of_top_level1.previous_page).to eq(@child1_of_top_level1)
+      end
 
-    it "The previous_page should return the last child of the second parent when called on a first parent" do
-      expect(@top_level1.previous_page).to eq(@child2_of_top_level2)
-    end
+      it "The previous_page of a first child should return the parent" do
+        expect(@child1_of_top_level2.previous_page).to eq(@top_level2)
+      end
 
-    it "The previous_page should return the previous sibling of a child if a sibling exists" do
-      expect(@child2_of_top_level1.previous_page).to eq(@child1_of_top_level1)
-    end
-
-    it "The previous_page of a first child should return the parent" do
-      expect(@child1_of_top_level2.previous_page).to eq(@top_level2)
-    end
-
-    it "Should reorder the pages when a page is changed" do
-      @page_in_the_middle = FactoryBot.create(:content_page, position: 5)
-      expect(@child2_of_top_level1.next_page).to eq(@page_in_the_middle)
+      it "Should reorder the pages when a page is changed" do
+        @page_in_the_middle = FactoryBot.create(:content_page, position: 5)
+        expect(@child2_of_top_level1.next_page).to eq(@page_in_the_middle)
+      end
     end
   end
 end
