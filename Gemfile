@@ -32,6 +32,8 @@ gem "canonical-rails"
 
 gem "acts_as_tree"
 
+gem "acts_as_paranoid", "~> 0.7.0"
+
 gem "govspeak"
 gem "htmlentities", "4.3.4"
 # For generating HTML from Markdown
