@@ -17,6 +17,8 @@ $(document).ready(function() {
   });
 
   //----- mobile nav -----//
+  
+  $('.app-mobile-nav__subnav-item--current').parent().show();
 
   //show mobile nav when clicking hamburger
   $( ".govuk-js-header-toggle" ).click(function() {
