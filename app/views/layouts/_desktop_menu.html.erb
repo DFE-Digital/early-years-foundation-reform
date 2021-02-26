@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
 <nav class="app-subnav">
   <% ContentPage.top_level.order_by_position.each do |top_level_page| %>
     <a class="govuk-link app-subnav__link govuk-link--no-visited-state <%= is_current?(top_level_page) ? 'app-subnav__section-item--current' : '' %>" href="<%= path_for_this_page(top_level_page) %>">
@@ -12,3 +14,4 @@
     </ul>
   <% end %>
 </nav>
+<html>
