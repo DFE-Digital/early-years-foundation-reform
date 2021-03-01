@@ -60,6 +60,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts_as_paranoid (0.7.0)
+      activerecord (>= 5.2, < 7.0)
+      activesupport (>= 5.2, < 7.0)
     acts_as_tree (2.9.1)
       activerecord (>= 3.0.0)
     addressable (2.7.0)
@@ -365,6 +368,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_paranoid (~> 0.7.0)
   acts_as_tree
   aws-sdk-s3
   bcrypt (~> 3.1.16)
