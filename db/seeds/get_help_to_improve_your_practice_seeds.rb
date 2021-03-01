@@ -52,7 +52,7 @@ page = ContentPage.new attrs
 page.save!
 
 #####################################################################################
-# 
+#
 #
 markdown = <<-MARKDOWN
 This content will cover why reducing paperwork is one of the key aims of the reforms. It will provide guidance on what should and shouldn’t be recorded, and how to make effective observations.
@@ -144,3 +144,4 @@ attrs = {
 }
 page = ContentPage.new attrs
 page.save!
+# rubocop:enable Layout/HeredocIndentation

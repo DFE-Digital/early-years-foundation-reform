@@ -19,6 +19,4 @@ RSpec.describe "content/index", type: :view do
     render
     rendered.should_not include("Is this page useful?")
   end
-
-
 end
