@@ -16,6 +16,9 @@
     line-height:1.25;
     list-style:none
    }
+   .gem-c-govspeak ul.gem-c-pagination__list {
+     margin-left: 0;
+   }
    @media print {
     .gem-c-pagination__item {
      font-family:sans-serif
