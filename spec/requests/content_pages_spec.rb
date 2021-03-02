@@ -33,11 +33,10 @@ RSpec.describe "/content_pages", type: :request do
   end
 
   describe "GET /index" do
-    parent_page = FactoryBot.create(:content_page)
-    child_page = FactoryBot.create(:content_page)
-
     it "renders a successful response" do
-      ContentPage.create! valid_attributes
+      parent_page = FactoryBot.create(:content_page)
+      child_page = FactoryBot.create(:content_page)
+
       get content_pages_url
       expect(response).to be_successful
       expect(response.body).to include(parent_page.title)
