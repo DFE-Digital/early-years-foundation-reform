@@ -1,247 +1,277 @@
 .eyfs-helpful-tools {
-    border-top: 2px solid govuk-colour("blue") ;
-    @include govuk-responsive-padding(6, "top");
+  border-top: 2px solid govuk-colour("blue");
+  @include govuk-responsive-padding(6, "top");
 }
 
 .app-back-to-top__icon {
-    display: inline-block;
-    width: .8em;
-    height: 1em;
-    margin-top: -5px;
-    margin-right: 10px;
-    vertical-align: middle;
+  display: inline-block;
+  width: .8em;
+  height: 1em;
+  margin-top: -5px;
+  margin-right: 10px;
+  vertical-align: middle;
 }
 
 .gem-c-print-link {
-    display:none
-   }
-   .gem-c-print-link.gem-c-print-link--show-without-js {
-    display:block
-   }
-   .js-enabled .gem-c-print-link {
-    display:block
-   }
-   .gem-c-print-link__link,
-   .gem-c-print-link__button {
-    background:url(../images/icon-print@1x.png) no-repeat 10px 50%;
-    background-size:16px 18px;
-    padding:10px 10px 10px 36px
-   }
-   @media only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (min-resolution: 192dpi),only screen and (min-resolution: 2dppx) {
-    .gem-c-print-link__link,
-    .gem-c-print-link__button {
-     background-image: url(../images/icon-print@1x.png)
-    }
-   }
-   .gem-c-print-link__link:hover,
-   .gem-c-print-link__button:hover {
-    background-color:#f3f2f1
-   }
-   .gem-c-print-link__link {
-    box-shadow:inset 0 0 0 1px #b1b4b6;
-    text-decoration:none
-   }
-   .gem-c-print-link__link:focus {
-    border:0;
-    box-shadow:0 3px #0b0c0c
-   }
-   .gem-c-print-link__button {
-    border:1px solid #b1b4b6;
-    color:#1d70b8 !important;
-    cursor:pointer;
-    margin:0
-   }
-   .gem-c-print-link__button:focus {
-    outline:3px solid transparent;
-    color:#0b0c0c;
-    background-color:#fd0;
-    box-shadow:0 -2px #fd0,0 4px #0b0c0c;
-    text-decoration:none;
-    background-color:#fd0;
-    border-color:transparent
-   }
+  display: none
+}
+
+.gem-c-print-link.gem-c-print-link--show-without-js {
+  display: block
+}
+
+.js-enabled .gem-c-print-link {
+  display: block
+}
+
+.gem-c-print-link__link,
+.gem-c-print-link__button {
+  background: url(../images/icon-print@1x.png) no-repeat 10px 50%;
+  background-size: 16px 18px;
+  padding: 10px 10px 10px 36px
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .gem-c-print-link__link,
+  .gem-c-print-link__button {
+    background-image: url(../images/icon-print@1x.png)
+  }
+}
+
+.gem-c-print-link__link:hover,
+.gem-c-print-link__button:hover {
+  background-color: #f3f2f1
+}
+
+.gem-c-print-link__link {
+  box-shadow: inset 0 0 0 1px #b1b4b6;
+  text-decoration: none
+}
+
+.gem-c-print-link__link:focus {
+  border: 0;
+  box-shadow: 0 3px #0b0c0c
+}
 
 .gem-c-print-link__button {
-border:1px solid #b1b4b6;
-color:#1d70b8;
-cursor:pointer;
-margin:0
+  border: 1px solid #b1b4b6;
+  color: #1d70b8 !important;
+  cursor: pointer;
+  margin: 0
 }
+
 .gem-c-print-link__button:focus {
-outline:3px solid transparent;
-color:#0b0c0c;
-background-color:#fd0;
-box-shadow:0 -2px #fd0,0 4px #0b0c0c;
-text-decoration:none;
-background-color:#fd0;
-border-color:transparent
+  outline: 3px solid transparent;
+  color: #0b0c0c;
+  background-color: #fd0;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  text-decoration: none;
+  background-color: #fd0;
+  border-color: transparent
+}
+
+.gem-c-print-link__button {
+  border: 1px solid #b1b4b6;
+  color: #1d70b8;
+  cursor: pointer;
+  margin: 0
+}
+
+.gem-c-print-link__button:focus {
+  outline: 3px solid transparent;
+  color: #0b0c0c;
+  background-color: #fd0;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  text-decoration: none;
+  background-color: #fd0;
+  border-color: transparent
 }
 
 .gem-c-print-link__button,
 .gem-c-govspeak .mc-toggle-button,
 .govuk-body-s {
- color:#0b0c0c;
- font-family:"GDS Transport",arial,sans-serif;
- -webkit-font-smoothing:antialiased;
- -moz-osx-font-smoothing:grayscale;
- font-weight:400;
- font-size:14px;
- font-size:.875rem;
- line-height:1.1428571429;
- margin-top:0;
- margin-bottom:15px
+  color: #0b0c0c;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  font-size: .875rem;
+  line-height: 1.1428571429;
+  margin-top: 0;
+  margin-bottom: 15px
 }
+
 @media print {
- .gem-c-print-link__button,
- .gem-c-govspeak .mc-toggle-button,
- .govuk-body-s {
-  color:#000
- }
+  .gem-c-print-link__button,
+  .gem-c-govspeak .mc-toggle-button,
+  .govuk-body-s {
+    color: #000
+  }
 }
+
 @media print {
- .gem-c-print-link__button,
- .gem-c-govspeak .mc-toggle-button,
- .govuk-body-s {
-  font-family:sans-serif
- }
+  .gem-c-print-link__button,
+  .gem-c-govspeak .mc-toggle-button,
+  .govuk-body-s {
+    font-family: sans-serif
+  }
 }
+
 @media (min-width: 40.0625em) {
- .gem-c-print-link__button,
- .gem-c-govspeak .mc-toggle-button,
- .govuk-body-s {
-  font-size:16px;
-  font-size:1rem;
-  line-height:1.25
- }
+  .gem-c-print-link__button,
+  .gem-c-govspeak .mc-toggle-button,
+  .govuk-body-s {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25
+  }
 }
+
 @media print {
- .gem-c-print-link__button,
- .gem-c-govspeak .mc-toggle-button,
- .govuk-body-s {
-  font-size:14pt;
-  line-height:1.2
- }
+  .gem-c-print-link__button,
+  .gem-c-govspeak .mc-toggle-button,
+  .govuk-body-s {
+    font-size: 14pt;
+    line-height: 1.2
+  }
 }
+
 @media (min-width: 40.0625em) {
- .gem-c-print-link__button,
- .gem-c-govspeak .mc-toggle-button,
- .govuk-body-s {
-  margin-bottom:20px
- }
+  .gem-c-print-link__button,
+  .gem-c-govspeak .mc-toggle-button,
+  .govuk-body-s {
+    margin-bottom: 20px
+  }
 }
 
 .call-to-action {
-    margin:2em 0;
-    background-color:#f3f2f1;
-    padding:2em
-   }
-   .call-to-action:first-child {
-    margin-top:0
-   }
-   .call-to-action p:last-child,
-   .call-to-action ul:last-child,
-   .call-to-action ol:last-child {
-    margin-bottom:0
+  margin: 2em 0;
+  background-color: #f3f2f1;
+  padding: 2em
 }
+
+.call-to-action:first-child {
+  margin-top: 0
+}
+
+.call-to-action p:last-child,
+.call-to-action ul:last-child,
+.call-to-action ol:last-child {
+  margin-bottom: 0
+}
+
 .eyfs-youtube-video {
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 56.25%;
 }
+
 .eyfs-youtube-video > iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .eyfs-topic-images {
-    display: inline-block;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    overflow: hidden;
-    @include govuk-responsive-margin(1, "bottom");
+  display: inline-block;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  @include govuk-responsive-margin(1, "bottom");
 }
 
 // styles for showing ordered steps in govspeak style
 .steps {
-    padding-left:0;
-    margin-left:0;
-    overflow:hidden
-   }
-   .steps>li {
-    background-position:0 .87em;
-    background-repeat:no-repeat;
-    list-style-type:decimal;
-    margin-left:0;
-    padding:.75em 0 .75em 2.5em
-   }
-   .steps>li:nth-child(1) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E1%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(2) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E2%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(3) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E3%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(4) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E4%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(5) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E5%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(6) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E6%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(7) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E7%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(8) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E8%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(9) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E9%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
-   .steps>li:nth-child(10) {
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E10%3C/text%3E%3C/svg%3E");
-    background-repeat:no-repeat;
-    background-position:left 10px;
-    background-size:35px 35px
-   }
+  padding-left: 0;
+  margin-left: 0;
+  overflow: hidden
+}
+
+.steps > li {
+  background-position: 0 .87em;
+  background-repeat: no-repeat;
+  list-style-type: decimal;
+  margin-left: 0;
+  padding: .75em 0 .75em 2.5em
+}
+
+.steps > li:nth-child(1) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E1%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(2) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E2%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(3) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E3%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(4) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E4%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(5) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E5%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(6) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E6%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(7) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E7%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(8) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E8%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(9) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E9%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
+
+.steps > li:nth-child(10) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Ccircle cx='125' cy='125' r='100' fill='black' /%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' alignment-baseline='middle' font-family='sans-serif' font-size='100px' fill='white'%3E10%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px;
+  background-size: 35px 35px
+}
