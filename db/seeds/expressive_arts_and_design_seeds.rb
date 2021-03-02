@@ -11,7 +11,7 @@ Access resources, activity ideas and advice for teaching early years maths.
 
 [Numbers in context]()
 
-[easoning]()
+[Reasoning]()
 
 ### What the EYFS framework says about maths
 
