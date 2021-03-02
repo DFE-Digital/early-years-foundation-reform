@@ -245,7 +245,7 @@ interactions = {
   subtitle: "Interactions",
   markdown: markdown_for_interactions,
   seo: "Early-Years-Foundation-Stage",
-  position: 3,
+  position: 1,
   parent_id: communication_and_language_page.id,
 }
 interactions_page = ContentPage.new interactions
@@ -264,7 +264,7 @@ listening_and_understanding = {
   subtitle: "This should not appear !",
   markdown: markdown_for_listening_and_understanding,
   seo: "Early-Years-Foundation-Stage",
-  position: 1,
+  position: 3,
   parent_id: communication_and_language_page.id,
 }
 listening_page = ContentPage.new listening_and_understanding
