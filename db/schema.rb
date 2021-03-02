@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_160639) do
+ActiveRecord::Schema.define(version: 2021_02_24_143228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,9 +64,7 @@ ActiveRecord::Schema.define(version: 2021_02_12_160639) do
     t.string "subtitle"
     t.integer "parent_id"
     t.integer "position"
-    t.string "published_status"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
-    t.index ["slug"], name: "index_content_pages_on_slug", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
 
@@ -78,6 +76,8 @@ ActiveRecord::Schema.define(version: 2021_02_12_160639) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

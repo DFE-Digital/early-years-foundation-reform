@@ -22,7 +22,7 @@
               <label class="govuk-label" for="title">
                 <%= form.label :title, "Heading" %>
               </label>
-              <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
+              <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id) %>
             </div>
 
             <div class="govuk-form-group">
@@ -32,9 +32,9 @@
               <%= form.text_area :subtitle, :rows => 5, :cols => 35, :class => "govuk-textarea"%>
             </div>
 
-            <div class="govuk-form-group">
+            <div class="govuk-form-group gem-c-govspeak">
               <div id="markdown-hint" class="govuk-hint">
-                Content (Govspeak)
+                Content
               </div>
               <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
             </div>
@@ -64,10 +64,9 @@
       </div>
 
       <div class="govuk-grid-column-one-half">
-
           <h3 class="govuk-heading-m">Live Preview</h3>
-          <div id='markdown-render'>
-          <%= sanitize @md %>
+          <div id='markdown-render' class='gem-c-govspeak'>
+            <%= sanitize @md %>
           </div>
       </div>
     </div>

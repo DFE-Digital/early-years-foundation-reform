@@ -1,1 +1,17 @@
-<span>Place holder for Mobile menu</span>
+<nav class="app-subnav--mobile app-mobile-nav js-app-mobile-nav">
+  <% ContentPage.top_level.order_by_position.each do |top_level_page| %>
+    <div class="learning-section-mobile-nav app-mobile-nav-subnav-toggler">
+      <%= link_to(raw('<h4 class="app-subnav__theme ">' + top_level_page.title + '</h4>'), path_for_this_page(top_level_page), class: "govuk-link app-subnav__link govuk-link--no-visited-state top-level-link") %>
+      <ul class="app-mobile-nav__list app-mobile-subnav-section app-mobile-nav__subnav">
+        <li class="app-mobile-nav__subnav-item <%= is_current?(top_level_page) ? 'app-mobile-nav__subnav-item--current' : '' %>">
+          <%= link_to('Overview', path_for_this_page(top_level_page), class: "govuk-link app-subnav__link govuk-link--no-visited-state") %>
+        </li>
+        <% top_level_page.children.order_by_position.each do |child| %>
+          <li class="app-mobile-nav__subnav-item <%= is_current?(child) ? 'app-mobile-nav__subnav-item--current' : '' %>">
+            <%= link_to(child.title, path_for_this_page(child), class: "govuk-link app-subnav__link govuk-link--no-visited-state") %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</nav>
