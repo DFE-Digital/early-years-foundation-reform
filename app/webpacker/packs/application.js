@@ -18,6 +18,9 @@ $(document).ready(function() {
 
   //----- mobile nav -----//
 
+  //2nd level nav stays visible
+  $('.app-mobile-nav__subnav-item--current').parent().show();
+
   //show mobile nav when clicking hamburger
   $( ".govuk-js-header-toggle" ).click(function() {
     $( ".app-subnav--mobile" ).toggleClass('app-mobile-nav--active');
