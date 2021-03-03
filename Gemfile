@@ -34,10 +34,10 @@ gem "acts_as_tree"
 
 gem "acts_as_paranoid", "~> 0.7.0"
 
+gem "audited", "~> 4.9"
+
 gem "govspeak"
 gem "htmlentities", "4.3.4"
-# For generating HTML from Markdown
-gem "redcarpet"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
