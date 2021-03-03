@@ -1,7 +1,7 @@
 class ContentController < ApplicationController
   layout "content"
 
-  ALLOWED_TAGS = %w(details summary p h1 h2 h3 h4 ul li img div ol a span).freeze
+  ALLOWED_TAGS = %w([details summary p h1 h2 h3 h4 ul li img div ol a span]).freeze
 
   # GET /content/page_title
   def show
