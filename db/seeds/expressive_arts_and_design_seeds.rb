@@ -9,9 +9,9 @@ Access resources, activity ideas and advice for teaching early years maths.
 
 [Counting]()
 
-[Number patterns]()
+[Numbers in context]()
 
-[Spatial reasoning]()
+[Reasoning]()
 
 ### What the EYFS framework says about maths
 

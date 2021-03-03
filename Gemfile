@@ -13,7 +13,7 @@ gem "devise", ">= 4.7.3"
 gem "pg", ">= 0.18", "< 2.0"
 
 # Use Puma as the app server
-gem "puma", "~> 5.1"
+gem "puma", "~> 5.2"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
@@ -77,7 +77,7 @@ end
 
 group :test do
   gem "simplecov", require: false
-  gem "webdrivers", "~> 4.4"
+  gem "webdrivers", "~> 4.6"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template ">
 <head>
+  <meta name="robots" content="noindex, nofollow">
   <title>Help for early years providers</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -16,7 +17,6 @@
   <%= favicon_link_tag asset_pack_path('media/images/govuk-apple-touch-icon-180x180.png'), rel: 'apple-touch-icon', type: 'image/png', size: '180x180' %>
   <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload', media: 'all' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-
 </head>
 
 <body class="govuk-template__body ">
@@ -107,6 +107,19 @@
               </ul>
             </nav>
           </main>
+
+          <div class="eyfs-helpful-tools">
+            <div class="app-back-to-top govuk-!-margin-bottom-7" data-module="app-back-to-top">
+              <a class="govuk-link govuk-link--no-visited-state app-back-to-top__link" href="#top">
+                <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+                  <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+                </svg>Back to top
+              </a>
+            </div>
+            <div class="gem-c-print-link govuk-!-margin-top-3 govuk-!-margin-bottom-6">
+              <button class="govuk-link gem-c-print-link__button" onclick="window.print()" data-module="print-link" >Print this page</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
