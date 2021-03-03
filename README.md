@@ -86,6 +86,9 @@ When a branch is merged into `main`
 
 - a docker image is built and pushed to [DockerHub](https://hub.docker.com/repository/docker/dfedigital/eyfsreform)
 
+### Documentation
+
+Check out [documentation](/documentation) folder
 
 # The following is from the template repository GOV.UK Rails Boilerplate
 
