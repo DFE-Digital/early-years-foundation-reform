@@ -12,9 +12,7 @@ RSpec.describe "content_pages/index", type: :view do
     render
     @content_pages.each do |funky_page|
       rendered.include? funky_page.title
-      rendered.include? funky_page.subtitle
       rendered.include? funky_page.markdown
-      rendered.include? funky_page.seo
     end
   end
 end
