@@ -53,8 +53,8 @@ markdown_for_core_strength = <<-MARKDOWN_FOR_CORE_STRENGTH
 ### To be completed
 MARKDOWN_FOR_CORE_STRENGTH
 core_strength = {
-  title: "Core strength and coordination",
-  subtitle: "PCore strength and coordination",
+  title: "Core strength and co-ordination",
+  subtitle: "PCore strength and co-ordination",
   markdown: markdown_for_core_strength,
   seo: "Early-Years-Foundation-Stage",
   position: 1,
@@ -71,7 +71,7 @@ fine_motor_skills = {
   subtitle: "Fine motor skills",
   markdown: markdown_for_fine_motor_skills,
   seo: "Early-Years-Foundation-Stage",
-  position: 2,
+  position: 3,
   parent_id: physical_development_page.id,
 }
 fine_motor_skills_page = ContentPage.new fine_motor_skills
@@ -81,11 +81,11 @@ markdown_for_gross_motor_skills = <<-MARKDOWN_FOR_GROSS_MOTOR_SKILLS
 ### To be completed
 MARKDOWN_FOR_GROSS_MOTOR_SKILLS
 gross_motor_skills = {
-  title: "Gross Motor Skills",
-  subtitle: "Gross Motor Skills",
+  title: "Gross motor Skills",
+  subtitle: "Gross motor Skills",
   markdown: markdown_for_gross_motor_skills,
   seo: "Early-Years-Foundation-Stage",
-  position: 3,
+  position: 2,
   parent_id: physical_development_page.id,
 }
 gross_motor_skills_page = ContentPage.new gross_motor_skills
