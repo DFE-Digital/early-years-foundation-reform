@@ -6,9 +6,7 @@ class ContentController < ApplicationController
   # GET /content/page_title
   def show
     @page = ContentPage.find_by_slug params["slug"]
-
-    # HTML is sanitized in the view, with an option for allowing
-    # <summary> and <details>
+    
     doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
     @markdown = doc.to_html
     @page
