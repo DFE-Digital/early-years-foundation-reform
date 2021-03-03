@@ -1,4 +1,4 @@
-name: Deploy to Pre Prod
+name: Delete User
 
 on:
   workflow_dispatch:
@@ -14,25 +14,53 @@ on:
 
 jobs:
   delete_user:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-20.04
     steps:
-      - name: Install CF CLI
+      - name: Install CF CLI on Dev
         uses: DFE-Digital/github-actions/setup-cf-cli@master
+        if: ${{ github.event.inputs.environment == 'dev' }}
         with:
-          if: ${{ github.event.inputs.environment == 'dev' }}
-            CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME }}
-            CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD }}
-          if: ${{ github.event.inputs.environment == 'test' }}
-            CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_TEST }}
-            CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_TEST }}
-          if: ${{ github.event.inputs.environment == 'pre-prod' }}
-            CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PREPROD }}
-            CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PREPROD }}
-          if: ${{ github.event.inputs.environment == 'prod' }}
-            CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PROD }}
-            CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD }}
+          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: true # default: false
 
+      - name: Install CF CLI on Test
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        if: ${{ github.event.inputs.environment == 'test' }}
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_TEST }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_TEST }}
+          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: true # default: false
+
+      - name: Install CF CLI on Pre Prod
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        if: ${{ github.event.inputs.environment == 'pre-prod' }}
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PREPROD }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PREPROD }}
+          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: true # default: false
+
+      - name: Install CF CLI on Prod
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        if: ${{ github.event.inputs.environment == 'prod' }}
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PROD }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
           CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
           # Optional inputs
           CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
