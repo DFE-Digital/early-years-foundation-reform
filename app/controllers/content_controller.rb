@@ -1,10 +1,14 @@
 class ContentController < ApplicationController
   layout "content"
 
+  ALLOWED_TAGS = %w(details summary p h1 h2 h3 h4 ul li img div ol a span).freeze
+
   # GET /content/page_title
   def show
     @page = ContentPage.find_by_slug params["slug"]
 
+    # HTML is sanitized in the view, with an option for allowing
+    # <summary> and <details>
     doc = Govspeak::Document.new(@page.markdown, sanitize: false)
     @markdown = doc.to_html
     @page

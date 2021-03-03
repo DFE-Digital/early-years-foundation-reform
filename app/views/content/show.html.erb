@@ -4,4 +4,4 @@
 <h1 class="govuk-heading-l">
   <%= @page.title %>
 </h1>
-<%= sanitize(@markdown, tags: %w(strong em a details summary p h1 h2 h3 h4 ul li img a div),) %>
+<%= sanitize(@markdown, tags: ContentController::ALLOWED_TAGS ) %>
