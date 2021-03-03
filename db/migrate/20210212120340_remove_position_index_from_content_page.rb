@@ -1,15 +1,9 @@
 class RemovePositionIndexFromContentPage < ActiveRecord::Migration[6.1]
   def up
-    remove_column :content_pages, bulk: true do |t|
-      t.string  :seo
-      t.string  :subtitle
-    end
+    remove_index :content_pages, name: "index_content_pages_on_position"
   end
 
   def down
-    add_column :content_pages, bulk: true do |t|
-      t.string  :seo
-      t.string  :subtitle
-    end
+    add_index :content_pages, :position, unique: true
   end
 end
