@@ -29,9 +29,7 @@ MARKDOWN_FOR_LITERACY
 
 literacy = {
   title: "Literacy",
-  subtitle: "Literacy subtitle",
   markdown: markdown_for_literacy,
-  seo: "Early-Years-Foundation-Stage",
   position: 4,
 }
 literacy_page = ContentPage.new literacy
@@ -47,9 +45,7 @@ This page is still being written.
 MARKDOWN_FOR_COMPREHENSION
 comprehension = {
   title: "Comprehension",
-  subtitle: "Comprehension Subtitle",
   markdown: markdown_for_comprehension,
-  seo: "Early-Years-Foundation-Stage",
   position: 1,
   parent_id: literacy_page.id,
 }
@@ -66,9 +62,7 @@ This page is still being written.
 MARKDOWN_FOR_WORD_READING
 word_reading = {
   title: "Word reading",
-  subtitle: "Word reading Subtitle",
   markdown: markdown_for_word_reading,
-  seo: "Early-Years-Foundation-Stage",
   position: 2,
   parent_id: literacy_page.id,
 }
@@ -85,9 +79,7 @@ This page is still being written.
 MARKDOWN_FOR_WRITING
 writing = {
   title: "Writing",
-  subtitle: "Writing Subtitle",
   markdown: markdown_for_writing,
-  seo: "Early-Years-Foundation-Stage",
   position: 3,
   parent_id: literacy_page.id,
 }

@@ -21,9 +21,7 @@ MARKDOWN
 
 attrs = {
   title: "Get help to improve your practice",
-  subtitle: "Get help to improve your practice subtitle",
   markdown: markdown,
-  seo: "get-help-to-improve-your-practice",
   position: 8,
 }
 parent_page = ContentPage.new attrs
@@ -42,9 +40,7 @@ MARKDOWN
 
 attrs = {
   title: "Planning",
-  subtitle: "Planning subtitle",
   markdown: markdown,
-  seo: "Planning",
   position: 1,
   parent_id: parent_page.id,
 }
@@ -64,9 +60,7 @@ MARKDOWN
 
 attrs = {
   title: "Reducing paperwork",
-  subtitle: "Reducing paperwork subtitle",
   markdown: markdown,
-  seo: "Reducing-paperwork",
   position: 2,
   parent_id: parent_page.id,
 }
@@ -86,9 +80,7 @@ MARKDOWN
 
 attrs = {
   title: "Identifying and supporting children with special educational needs and disability",
-  subtitle: "Identifying and supporting children with special educational needs and disability (SEND) subtitle",
   markdown: markdown,
-  seo: "Identifying-and-supporting-children-with-special-educational-needs-and-disability",
   position: 3,
   parent_id: parent_page.id,
 }
@@ -107,9 +99,7 @@ MARKDOWN
 
 attrs = {
   title: "Promoting oral health as part of the safeguarding and welfare requirements",
-  subtitle: "Promoting oral health as part of the safeguarding and welfare requirements subtitle",
   markdown: markdown,
-  seo: "promoting-oral-health",
   position: 4,
   parent_id: parent_page.id,
 }
@@ -136,9 +126,7 @@ MARKDOWN
 
 attrs = {
   title: "Working in partnership with parents",
-  subtitle: "Working in partnership with parents subtitle",
   markdown: markdown,
-  seo: "working-in-partnership-with-parents",
   position: 5,
   parent_id: parent_page.id,
 }

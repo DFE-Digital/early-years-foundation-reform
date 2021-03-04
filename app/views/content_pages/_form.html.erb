@@ -25,24 +25,11 @@
               <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id) %>
             </div>
 
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="subtitle">
-                <%= form.label :subtitle, "Overview" %>
-              </label>
-              <%= form.text_area :subtitle, :rows => 5, :cols => 35, :class => "govuk-textarea"%>
-            </div>
-
             <div class="govuk-form-group gem-c-govspeak">
               <div id="markdown-hint" class="govuk-hint">
                 Content
               </div>
               <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
-            </div>
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="seo">
-                Search Engine Words
-              </label>
-              <%= form.text_field :seo, :class => 'govuk-input govuk-!-width-three-quarters' %>
             </div>
 
             <div class="govuk-form-group">
