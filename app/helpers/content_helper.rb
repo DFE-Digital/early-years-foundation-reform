@@ -6,4 +6,8 @@ module ContentHelper
   def is_current?(page)
     page.slug == params[:slug]
   end
+
+  def find_children_for_page_with_title(title)
+    ContentPage.find_by_title(title)&.children
+  end
 end
