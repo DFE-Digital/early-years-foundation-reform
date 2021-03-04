@@ -9,7 +9,7 @@ It allows editors to create a set of nested pages, and to edit the headings,
 overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
 
 These are some examples of the cut down CMS and two resulting pages
-all in UK.GOV style
+all in UK.GOV style;
 
 ![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
 ![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
@@ -86,6 +86,9 @@ When a branch is merged into `main`
 
 - a docker image is built and pushed to [DockerHub](https://hub.docker.com/repository/docker/dfedigital/eyfsreform)
 
+### Documentation
+
+Check out [documentation](/documentation) folder
 
 # The following is from the template repository GOV.UK Rails Boilerplate
 
