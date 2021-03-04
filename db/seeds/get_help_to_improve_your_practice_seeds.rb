@@ -20,7 +20,7 @@ Working in partnership with parents
 MARKDOWN
 
 attrs = {
-  title: "Get help to improve your practice",
+  title: "Get help to improve your practice (SEND)",
   markdown: markdown,
   position: 8,
 }
