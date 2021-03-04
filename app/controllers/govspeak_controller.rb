@@ -6,7 +6,7 @@ class GovspeakController < ApplicationController
 
   def show
     Rails.logger.silence do
-      doc = Govspeak::Document.new params[:input]
+      doc = Govspeak::Document.new params[:input], sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS
       render json: { html: doc.to_html }
     end
   end

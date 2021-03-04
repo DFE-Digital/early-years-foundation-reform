@@ -20,7 +20,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
-    doc = Govspeak::Document.new @content_page.markdown
+    doc = Govspeak::Document.new @content_page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS
     @md = doc.to_html
     @content_page
   end
