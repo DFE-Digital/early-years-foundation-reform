@@ -1,5 +1,6 @@
 class ContentPage < ApplicationRecord
   acts_as_tree
+  audited
 
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
