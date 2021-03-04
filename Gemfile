@@ -13,7 +13,7 @@ gem "devise", ">= 4.7.3"
 gem "pg", ">= 0.18", "< 2.0"
 
 # Use Puma as the app server
-gem "puma", "~> 5.1"
+gem "puma", "~> 5.2"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
@@ -34,10 +34,10 @@ gem "acts_as_tree"
 
 gem "acts_as_paranoid", "~> 0.7.0"
 
+gem "audited", "~> 4.9"
+
 gem "govspeak"
 gem "htmlentities", "4.3.4"
-# For generating HTML from Markdown
-gem "redcarpet"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
@@ -77,7 +77,7 @@ end
 
 group :test do
   gem "simplecov", require: false
-  gem "webdrivers", "~> 4.4"
+  gem "webdrivers", "~> 4.6"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

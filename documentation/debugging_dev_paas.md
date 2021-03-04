@@ -40,3 +40,48 @@ Then,
 and finally
 
 `/usr/local/bin/bundle exec rails console`
+
+### ssh connect to PaaS
+
+Make sure you have been added to the PasS services list for the app:
+
+Which you can do by messaging the channel #digital-tools-support and requesting access
+
+We are using docker for deployment not a standard build pack
+
+Install the cloud foundry CLI https://github.com/cloudfoundry/cli/wiki/V7-CLI-Installation-Guide
+
+On a Mac this is:
+
+`brew install cloudfoundry/tap/cf-cli@7`
+
+Connecting to test server
+
+`cf login`
+
+and enter the the following:
+
+- API endpoint: https://api.london.cloud.service.gov.uk
+- Email: <youremailaddedtopaas>
+- Password: <asecretthing>
+
+If you have access to multiple spaces, select one to be the target:
+
+e.g.
+
+1. eyfs-dev
+1. eyfs-pre-prod
+1. eyfs-test
+1. eyfs-production
+
+To verify you have targeted the correct space:
+
+`cf target`
+
+Ssh connection:
+
+`cf ssh -i 0 <spacename>`
+
+To inspect logs
+
+`cf logs --recent <spacename>`

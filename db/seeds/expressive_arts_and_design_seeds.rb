@@ -9,9 +9,9 @@ Access resources, activity ideas and advice for teaching early years maths.
 
 [Counting]()
 
-[Number patterns]()
+[Numbers in context]()
 
-[Spatial reasoning]()
+[Reasoning]()
 
 ### What the EYFS framework says about maths
 
@@ -30,9 +30,7 @@ MARKDOWN_FOR_EXPRESSIVE_ARTS_AND_DESIGN
 
 expressive_arts_and_design = {
   title: "Expressive arts and design",
-  subtitle: "Access resources, activity ideas and advice for teaching expressive arts and design to early years children.",
   markdown: markdown_for_expressive_arts_and_design,
-  seo: "Early-Years-Foundation-Stage",
   position: 7,
 }
 expressive_arts_and_design_page = ContentPage.new expressive_arts_and_design
@@ -48,9 +46,7 @@ This page is still being written.
 MARKDOWN_FOR_IMAGINATION_AND_CREATIVITY
 imagination_and_creativity = {
   title: "Imagination and creativity",
-  subtitle: "Imagination and creativity Subtitle",
   markdown: markdown_for_imagination_and_creativity,
-  seo: "Early-Years-Foundation-Stage",
   position: 1,
   parent_id: expressive_arts_and_design_page.id,
 }
@@ -67,9 +63,7 @@ This page is still being written.
 MARKDOWN_FOR_SELF_EXPRESSION
 self_expression = {
   title: "Self expression",
-  subtitle: "Self expression Subtitle",
   markdown: markdown_for_self_expression,
-  seo: "Early-Years-Foundation-Stage",
   position: 2,
   parent_id: expressive_arts_and_design_page.id,
 }
@@ -86,9 +80,7 @@ This page is still being written.
 MARKDOWN_FOR_COMMUNICATING_THROUGH_ARTS
 communicating_through_arts = {
   title: "Communicating through arts",
-  subtitle: "Communicating through arts Subtitle",
   markdown: markdown_for_communicating_through_arts,
-  seo: "Early-Years-Foundation-Stage",
   position: 3,
   parent_id: expressive_arts_and_design_page.id,
 }

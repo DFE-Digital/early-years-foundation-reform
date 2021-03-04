@@ -36,9 +36,7 @@ MARKDOWN_FOR_PERSONAL_SOCIAL_AND_DEVELOPMENT
 
 personal_social_and_emotional_development = {
   title: "Personal, social and emotional development",
-  subtitle: "Access resources, activity ideas and advice for teaching personal, social and emotional development to early years children.",
   markdown: markdown_for_personal_social_and_emotional_development,
-  seo: "Early-Years-Foundation-Stage",
   position: 3,
 }
 personal_social_and_emotional_development_page = ContentPage.new personal_social_and_emotional_development
@@ -304,9 +302,7 @@ Supporting children’s emotional development and wellbeing is linked to all EYF
 MARKDOWN_FOR_EMOTIONS
 emotions = {
   title: "Emotions",
-  subtitle: "Emotions Subtitle",
   markdown: markdown_for_emotions,
-  seo: "Early-Years-Foundation-Stage",
   position: 1,
   parent_id: personal_social_and_emotional_development_page.id,
 }
@@ -323,10 +319,8 @@ This page is still being written.
 MARKDOWN_FOR_RELATIONSHIPS
 relationships = {
   title: "Relationships",
-  subtitle: "Relationships Subtitle",
   markdown: markdown_for_relationships,
-  seo: "Early-Years-Foundation-Stage",
-  position: 2,
+  position: 3,
   parent_id: personal_social_and_emotional_development_page.id,
 }
 relationships_page = ContentPage.new relationships
@@ -468,10 +462,8 @@ Consider how your environment supports children to play independently.
 MARKDOWN_FOR_SENSE_OF_SELF
 sense_of_self = {
   title: "Sense of self",
-  subtitle: "Sense of self Subtitle",
   markdown: markdown_for_sense_of_self,
-  seo: "Early-Years-Foundation-Stage",
-  position: 3,
+  position: 2,
   parent_id: personal_social_and_emotional_development_page.id,
 }
 sense_of_self_page = ContentPage.new sense_of_self

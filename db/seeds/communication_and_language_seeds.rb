@@ -27,9 +27,7 @@ MARKDOWN_FOR_COMMUNICATION
 
 communication_and_language = {
   title: "Communication and language",
-  subtitle: "Communication and language",
   markdown: markdown_for_communication_and_language,
-  seo: "Early-Years-Foundation-Stage",
   position: 1,
 }
 communication_and_language_page = ContentPage.new communication_and_language
@@ -116,9 +114,7 @@ Familiar objects to model telling a story create a point of shared understanding
 MARKDOWN_FOR_EXPLORING_LANGUAGE
 exploring_language = {
   title: "Exploring language",
-  subtitle: "Exploring language",
   markdown: markdown_for_exploring_language,
-  seo: "Early-Years-Foundation-Stage",
   position: 2,
   parent_id: communication_and_language_page.id,
 }
@@ -242,10 +238,8 @@ Positive interactions that children have, both adult-child and child-child, enco
 MARKDOWN_FOR_INTERACTIONS
 interactions = {
   title: "Interactions",
-  subtitle: "Interactions",
   markdown: markdown_for_interactions,
-  seo: "Early-Years-Foundation-Stage",
-  position: 3,
+  position: 1,
   parent_id: communication_and_language_page.id,
 }
 interactions_page = ContentPage.new interactions
@@ -261,10 +255,8 @@ This page is still being written
 MARKDOWN_FOR_LISTENING_AND_UNDERSTANDING
 listening_and_understanding = {
   title: "Listening and understanding",
-  subtitle: "This should not appear !",
   markdown: markdown_for_listening_and_understanding,
-  seo: "Early-Years-Foundation-Stage",
-  position: 1,
+  position: 3,
   parent_id: communication_and_language_page.id,
 }
 listening_page = ContentPage.new listening_and_understanding

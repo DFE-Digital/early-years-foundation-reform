@@ -9,9 +9,9 @@ Access resources, activity ideas and advice for teaching early years maths.
 
 [Counting]()
 
-[Number patterns]()
+[Numbers in context]()
 
-[Spatial reasoning]()
+[Reasoning]()
 
 ### What the EYFS framework says about maths
 
@@ -30,9 +30,7 @@ MARKDOWN_FOR_MATHEMATICS
 
 mathematics = {
   title: "Maths",
-  subtitle: "Access resources, activity ideas and advice for teaching early years maths.",
   markdown: markdown_for_mathematics,
-  seo: "Early-Years-Foundation-Stage",
   position: 5,
 }
 mathematics_page = ContentPage.new mathematics
@@ -108,11 +106,9 @@ The children are now offered a counting collection in a different area of pre-sc
 - Praise children for effort rather than talent. This shows them that by working hard they can always improve
 MARKDOWN_FOR_COUNTING
 counting = {
-  title: "Counting",
-  subtitle: "Counting Subtitle",
+  title: "Patterns and connections",
   markdown: markdown_for_counting,
-  seo: "Early-Years-Foundation-Stage",
-  position: 1,
+  position: 2,
   parent_id: mathematics_page.id,
 }
 counting_page = ContentPage.new counting
@@ -127,11 +123,9 @@ This page is still being written.
 
 MARKDOWN_FOR_NUMBER_PATTERNS
 number_patterns = {
-  title: "Number Patterns",
-  subtitle: "Number Patterns Subtitle",
+  title: "Numbers in context",
   markdown: markdown_for_number_patterns,
-  seo: "Early-Years-Foundation-Stage",
-  position: 2,
+  position: 1,
   parent_id: mathematics_page.id,
 }
 number_patterns_page = ContentPage.new number_patterns
@@ -146,10 +140,8 @@ This page is still being written.
 
 MARKDOWN_FOR_SPATIAL_REASONING
 spatial_reasoning = {
-  title: "Spatial reasoning",
-  subtitle: "Spatial reasoning Subtitle",
+  title: "Reasoning",
   markdown: markdown_for_spatial_reasoning,
-  seo: "Early-Years-Foundation-Stage",
   position: 3,
   parent_id: mathematics_page.id,
 }

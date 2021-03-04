@@ -5,7 +5,6 @@ RSpec.describe "content_pages/new", type: :view do
     assign(:content_page, ContentPage.new(
                             title: "MyString",
                             markdown: "MyString",
-                            seo: "MyString",
                           ))
   end
 
@@ -15,11 +14,7 @@ RSpec.describe "content_pages/new", type: :view do
     assert_select "form[action=?][method=?]", content_pages_path, "post" do
       assert_select "input[name=?]", "content_page[title]"
 
-      assert_select "textarea[name=?]", "content_page[subtitle]"
-
       assert_select "textarea[name=?]", "content_page[markdown]"
-
-      assert_select "input[name=?]", "content_page[seo]"
     end
   end
 end

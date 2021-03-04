@@ -20,7 +20,7 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
-    doc = Govspeak::Document.new @content_page.markdown
+    doc = Govspeak::Document.new @content_page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS
     @md = doc.to_html
     @content_page
   end
@@ -60,6 +60,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :seo, :subtitle, :parent_id, :position)
+    params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
   end
 end
