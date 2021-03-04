@@ -53,7 +53,7 @@
       <div class="govuk-grid-column-one-half">
           <h3 class="govuk-heading-m">Live Preview</h3>
           <div id='markdown-render' class='gem-c-govspeak'>
-            <%= sanitize @md %>
+            <%= sanitize(@md, tags: ContentController::ALLOWED_TAGS) %>
           </div>
       </div>
     </div>
