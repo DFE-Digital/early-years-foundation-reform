@@ -9,8 +9,6 @@ end
 FactoryBot.define do
   factory :content_page do
     title { sentence_without_puncutation }
-    subtitle { Faker::Lorem.paragraph }
-    seo { "SEO#{Faker::Lorem.sentence(word_count: 4)}" }
     markdown { Faker::Markdown.headers }
     parent_id { nil }
     position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }

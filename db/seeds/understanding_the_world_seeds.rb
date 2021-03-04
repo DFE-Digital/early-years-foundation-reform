@@ -28,9 +28,7 @@ MARKDOWN_FOR_UNDERSTANDING_THE_WORLD
 
 understanding_the_world = {
   title: "Understanding the world",
-  subtitle: "Access resources, activity ideas and advice for teaching understanding the world to early years children.",
   markdown: markdown_for_understanding_the_world,
-  seo: "Early-Years-Foundation-Stage",
   position: 6,
 }
 understanding_the_world_page = ContentPage.new understanding_the_world
@@ -46,9 +44,7 @@ This page is still being written.
 MARKDOWN_FOR_PERSONAL_EXPERIENCES
 personal_experiences = {
   title: "Personal experiences",
-  subtitle: "Personal experiences Subtitle",
   markdown: markdown_for_personal_experiences,
-  seo: "Early-Years-Foundation-Stage",
   position: 1,
   parent_id: understanding_the_world_page.id,
 }
@@ -65,9 +61,7 @@ This page is still being written.
 MARKDOWN_FOR_DIVERSE_WORLD
 diverse_world = {
   title: "Diverse world",
-  subtitle: "Diverse world Subtitle",
   markdown: markdown_for_diverse_world,
-  seo: "Early-Years-Foundation-Stage",
   position: 2,
   parent_id: understanding_the_world_page.id,
 }
@@ -84,9 +78,7 @@ This page is still being written.
 MARKDOWN_FOR_WIDENING_VOCABULARY
 widening_vocabulary = {
   title: "Widening vocabulary",
-  subtitle: "Widening vocabulary Subtitle",
   markdown: markdown_for_widening_vocabulary,
-  seo: "Early-Years-Foundation-Stage",
   position: 3,
   parent_id: understanding_the_world_page.id,
 }

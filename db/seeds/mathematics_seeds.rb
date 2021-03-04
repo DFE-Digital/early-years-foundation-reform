@@ -30,9 +30,7 @@ MARKDOWN_FOR_MATHEMATICS
 
 mathematics = {
   title: "Maths",
-  subtitle: "Access resources, activity ideas and advice for teaching early years maths.",
   markdown: markdown_for_mathematics,
-  seo: "Early-Years-Foundation-Stage",
   position: 5,
 }
 mathematics_page = ContentPage.new mathematics
@@ -109,9 +107,7 @@ The children are now offered a counting collection in a different area of pre-sc
 MARKDOWN_FOR_COUNTING
 counting = {
   title: "Patterns and connections",
-  subtitle: "Patterns and connections Subtitle",
   markdown: markdown_for_counting,
-  seo: "Early-Years-Foundation-Stage",
   position: 2,
   parent_id: mathematics_page.id,
 }
@@ -128,9 +124,7 @@ This page is still being written.
 MARKDOWN_FOR_NUMBER_PATTERNS
 number_patterns = {
   title: "Numbers in context",
-  subtitle: "Numbers in context Subtitle",
   markdown: markdown_for_number_patterns,
-  seo: "Early-Years-Foundation-Stage",
   position: 1,
   parent_id: mathematics_page.id,
 }
@@ -147,9 +141,7 @@ This page is still being written.
 MARKDOWN_FOR_SPATIAL_REASONING
 spatial_reasoning = {
   title: "Reasoning",
-  subtitle: "Reasoning Subtitle",
   markdown: markdown_for_spatial_reasoning,
-  seo: "Early-Years-Foundation-Stage",
   position: 3,
   parent_id: mathematics_page.id,
 }

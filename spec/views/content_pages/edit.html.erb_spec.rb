@@ -12,8 +12,6 @@ RSpec.describe "content_pages/edit", type: :view do
       assert_select "input[name=?]", "content_page[title]"
 
       assert_select "textarea[name=?]", "content_page[markdown]"
-
-      assert_select "input[name=?]", "content_page[seo]"
     end
   end
 end
