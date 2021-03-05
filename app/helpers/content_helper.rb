@@ -2,9 +2,9 @@ module ContentHelper
   def path_for_this_page(page)
     # Add parent links
     if (page.parent_id)
-      "#{content_url}/#{page.parent.slug}/#{page.slug}"
+      "/#{page.parent.slug}/#{page.slug}"
     else
-      "#{content_url}/#{page.slug}"
+      "/#{page.slug}"
     end
   end
 
