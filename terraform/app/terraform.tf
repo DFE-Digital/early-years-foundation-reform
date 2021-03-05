@@ -45,4 +45,5 @@ module paas {
   web_app_instances                 = var.paas_web_app_instances
   web_app_memory                    = var.paas_web_app_memory
   web_app_start_command             = var.paas_web_app_start_command
+  cms_app_start_command             = var.paas_cms_app_start_command
 }
