@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   post "/govspeak/", to: "govspeak#show"
 
-  get "/content/:slug", to: "content#show"
   get "/content", to: "content#index"
+  get "/content/*section/:slug", to: 'content#show'
+  get "/content/:slug", to: 'content#show'
 
   devise_for :users
   devise_scope :user do
