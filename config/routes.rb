@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  resources :content_assets
-  resources :content_pages
 
   post "/govspeak/", to: "govspeak#show"
+
+  resources :content_pages, path: '/cms/pages'
+  get "/cms/pages", to: "content_pages#index"
+  get "/cms/pages*section/:slug", to: 'content_pages#show'
+  get "/cms/pages:slug", to: 'content_pages#show'
+
+  resources :content_assets, path: '/cms/assets'
 
   get "/", to: "content#index"
   get "/*section/:slug", to: 'content#show'
@@ -13,7 +18,8 @@ Rails.application.routes.draw do
     get "sign_in", to: "devise/sessions#new"
   end
 
-  root "content_pages#index"
+  root to: "content#index"
+
   get "check" => "application#check"
 
   get "/404", to: "errors#not_found", via: :all

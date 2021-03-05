@@ -12,7 +12,7 @@ RSpec.feature "Admin Content Pages", type: :feature do
     scenario "should get index page" do
       login_as(FactoryBot.create(:user))
       visit content_pages_path
-      expect(current_path).to eq("/content_pages")
+      expect(current_path).to eq("/cms/pages")
     end
     scenario "with logout button visible" do
       login_as(FactoryBot.create(:user))
