@@ -1,7 +1,13 @@
 <div>
-  <h2 class="govuk-heading-l"><%= title_of_page_to_render %></h2>
+  <% if (featured_page = find_page_with_title(title_of_page_to_render)) %>
 
-  <% (find_children_for_page_with_title(title_of_page_to_render) || []).each do |child| %>
-      <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(child) %>"><%= child.title %></a></p>
+    <h2 class="govuk-heading-l"><%= title_of_page_to_render %></h2>
+    <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(featured_page) %>">Overview</a></p>
+
+    <% (featured_page&.children || []).each do |child| %>
+        <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(child) %>"><%= child.title %></a></p>
+    <% end %>
+  <% else %>
+    <p class="govuk-error-summary"><%= "Error: Could not find page called #{title_of_page_to_render}" %></p>
   <% end %>
 </div>
