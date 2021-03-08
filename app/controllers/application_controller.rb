@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
     render json: { status: "OK", version: ENV["SHA"], environment: Rails.env }, status: :ok
   end
 
-  def not_found
-    raise ActionController::RoutingError.new("Not Found")
-  end
-
 private
 
   def layout_by_resource

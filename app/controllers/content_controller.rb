@@ -7,9 +7,8 @@ class ContentController < ApplicationController
   def show
     @page = ContentPage.find_by_slug params["slug"]
 
-    render text: 'Not Found', :status => '404' unless @page
-
-    # TODO Check the pages parents are in the path
+    # TODO: Check the page is found
+    # TODO: Check the pages parents are in the path
 
     doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
     @markdown = doc.to_html

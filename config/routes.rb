@@ -1,22 +1,19 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+  devise_scope :user do
+    get "sign_in", to: "devise/sessions#new"
+    delete "sign_out", to: "devise/sessions#destroy"
+  end
+
   post "/govspeak/", to: "govspeak#show"
 
   resources :content_pages, path: '/cms/pages'
-  get "/cms/pages", to: "content_pages#index"
-  get "/cms/pages*section/:slug", to: 'content_pages#show'
-  get "/cms/pages:slug", to: 'content_pages#show'
-
   resources :content_assets, path: '/cms/assets'
 
   get "/", to: "content#index"
   get "/*section/:slug", to: 'content#show'
   get "/:slug", to: 'content#show'
-
-  devise_for :users
-  devise_scope :user do
-    get "sign_in", to: "devise/sessions#new"
-  end
 
   root to: "content#index"
 

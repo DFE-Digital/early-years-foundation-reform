@@ -18,7 +18,7 @@ RSpec.describe "Contents", type: :request do
 
   describe "GET /" do
     it "renders the landing page / hub page" do
-      get "/content"
+      get "/"
       expect(response).to be_successful
     end
 
