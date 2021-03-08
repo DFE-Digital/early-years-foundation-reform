@@ -14,13 +14,13 @@ class ContentPagesController < ApplicationController
   def new
     # If the new page is a child, pass through its parent id
     # Pages with a nil parent_id are top_level
-    next_position = ContentPage.maximum("position") + 1
+    next_position = ContentPage.maximum("position") ? (ContentPage.maximum("position") + 1) : 1
     @content_page = ContentPage.new(parent_id: params[:parent_id], position: next_position)
   end
 
   # GET /content_pages/1/edit
   def edit
-    doc = Govspeak::Document.new @content_page.markdown
+    doc = Govspeak::Document.new @content_page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS
     @md = doc.to_html
     @content_page
   end
@@ -60,6 +60,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :seo, :subtitle, :parent_id, :position)
+    params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
   end
 end
