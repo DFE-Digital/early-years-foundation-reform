@@ -25,9 +25,7 @@ resource cloudfoundry_app web_app {
     for_each = local.app_service_bindings
     content {
       service_instance = service_binding.value
-      params_json = <<JSON
-        { "read_only": true }
-      JSON
+      params = { read_only = true }
     }
   }
   routes {
