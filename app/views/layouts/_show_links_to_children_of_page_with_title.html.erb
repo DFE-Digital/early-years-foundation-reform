@@ -1,13 +1,13 @@
 <div>
-  <% if (featured_page = find_page_with_title(title_of_page_to_render)) %>
+  <% if (@featured_page) %>
 
-    <h2 class="govuk-heading-l"><%= title_of_page_to_render %></h2>
-    <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(featured_page) %>">Overview</a></p>
+    <h2 class="govuk-heading-l"><%= @featured_page.title %></h2>
+    <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(@featured_page) %>">Overview</a></p>
 
-    <% (featured_page&.children || []).each do |child| %>
+    <% (@featured_page&.children || []).each do |child| %>
         <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(child) %>"><%= child.title %></a></p>
     <% end %>
   <% else %>
-    <p class="govuk-error-summary"><%= "Error: Could not find page called #{title_of_page_to_render}" %></p>
+    <p class="govuk-error-summary"><%= "Error: Could not find page called #{ContentController::FEATURED_PAGE_TITLE}" %></p>
   <% end %>
 </div>

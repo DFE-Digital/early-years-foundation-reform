@@ -76,6 +76,11 @@
           </h1>
           <p class="govuk-body-l">Information, guidance, practical support and training for delivering the early years
             foundation stage (EYFS).</p>
+          <% if !@featured_page %>
+            <div class="govuk-error-message">
+              <%= "Error: cannot find featured page called #{ContentController::FEATURED_PAGE_TITLE}" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -106,7 +111,7 @@
     <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
-          <%= render partial: 'layouts/show_links_to_children_of_page_with_title', locals: {title_of_page_to_render: "Get help to improve your practice"} %>
+          <%= render partial: 'layouts/show_links_to_children_of_page_with_title' %>
           <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
           <h2 class="govuk-heading-l">Other useful resources</h2>
           <p class="govuk-body">Use the links below to find out other resources that may be useful</p>
