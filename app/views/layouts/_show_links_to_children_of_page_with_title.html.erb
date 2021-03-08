@@ -1,7 +1,10 @@
 <div>
-  <h2 class="govuk-heading-l"><%= title_of_page_to_render %></h2>
+  <% if (@featured_page) %>
+    <h2 class="govuk-heading-l"><%= @featured_page.title %></h2>
+    <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(@featured_page) %>">Overview</a></p>
 
-  <% (find_children_for_page_with_title(title_of_page_to_render) || []).each do |child| %>
-      <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(child) %>"><%= child.title %></a></p>
+    <% (@featured_page&.children || []).each do |child| %>
+        <p class="govuk-body"><a class="govuk-link" href="<%= path_for_this_page(child) %>"><%= child.title %></a></p>
+    <% end %>
   <% end %>
 </div>
