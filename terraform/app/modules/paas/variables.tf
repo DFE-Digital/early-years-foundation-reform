@@ -40,6 +40,8 @@ variable web_app_memory {
 
 variable web_app_start_command {
 }
+variable cms_app_start_command {
+}
 
 locals {
 
@@ -60,4 +62,5 @@ locals {
   )
   postgres_service_name    = "${var.service_name}-postgres-${var.environment}"
   web_app_name             = "${var.service_name}-${var.environment}"
+  cms_app_name             = "${var.service_name}-cms-${var.environment}"
 }
