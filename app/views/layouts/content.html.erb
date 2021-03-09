@@ -65,13 +65,13 @@
 
 
 
-    <main class="govuk-width-container govuk-main-wrapper" role="main" id="main-content">
+    <main class="govuk-width-container govuk-main-wrapper" role="main">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-third desktop-menu">
           <%= render 'layouts/desktop_menu' %>
         </div>
 
-        <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-column-two-thirds" id="main-content">
           <div class="app-content gem-c-govspeak">
             <%= yield %>
             <nav class="gem-c-pagination" role="navigation" aria-label="Pagination">
