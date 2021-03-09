@@ -6,9 +6,7 @@ class ContentController < ApplicationController
   # GET /page_title
   def show
     @page = ContentPage.find_by_slug params["slug"]
-
-    # TODO: Check the page is found
-    # TODO: Check the pages parents are in the path
+    return not_found unless @page
 
     doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
     @markdown = doc.to_html

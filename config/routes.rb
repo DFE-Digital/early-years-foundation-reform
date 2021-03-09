@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   post "/govspeak/", to: "govspeak#show"
 
+  # Note These have to be above the wildcard route
+  get "/404", to: "errors#not_found", via: :all
+  get "/422", to: "errors#unprocessable_entity", via: :all
+  get "/500", to: "errors#internal_server_error", via: :all
+
   resources :content_pages, path: '/cms/pages'
   resources :content_assets, path: '/cms/assets'
 
@@ -19,7 +24,4 @@ Rails.application.routes.draw do
 
   get "check" => "application#check"
 
-  get "/404", to: "errors#not_found", via: :all
-  get "/422", to: "errors#unprocessable_entity", via: :all
-  get "/500", to: "errors#internal_server_error", via: :all
 end
