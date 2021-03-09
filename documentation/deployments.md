@@ -104,8 +104,11 @@ cf bind-service eyfs-ENV eyfs-postgres-ENV -c '{"read_only": true}'
 
 This has been set on each environment because it can not be done using Terraform.
 
+Note: When deploying to a new space or recreating the environment from scratch, this is a required
+manual step
 
-2. DNS remapping in production (Action required)
+
+2. DNS remapping in production
 
 On deploy to production, the DNS mapping is lost, meaning to the domain will 404.
 The the DNS route needs to be remapped to the domain again.
@@ -115,6 +118,8 @@ Running the following using CF CLI will set the domain again.
 cf target -s eyfs-prod
 cf map-route eyfs-prod education.gov.uk --hostname help-for-early-years-providers
 ```
+
+After deployment to production, this is run as part of the deploy task, no manual intervention required.
 
 ### Documentation cross reference
 
