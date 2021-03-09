@@ -8,6 +8,12 @@ class ContentController < ApplicationController
     @page = ContentPage.find_by_slug params["slug"]
     return not_found unless @page
 
+    if @page.parent
+      if params["section"] != @page.parent.slug
+        return not_found
+      end
+    end
+
     doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
     @markdown = doc.to_html
     @page
@@ -20,5 +26,11 @@ class ContentController < ApplicationController
     respond_to do |format|
       format.html { render layout: "landing_page_layout" }
     end
+  end
+
+private
+
+  def content_params
+    params.require(:content_page).permit(:section, :slug)
   end
 end

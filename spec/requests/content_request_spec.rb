@@ -6,13 +6,19 @@ RSpec.describe "Contents", type: :request do
   end
 
   let(:a_page) do
-    FactoryBot.create(:content_page)
+    parent = FactoryBot.create(:content_page)
+    FactoryBot.create(:content_page, parent_id: parent.id)
   end
 
   describe "GET /show" do
     it "renders a final page as html" do
-      get content_page_url(a_page)
+      get a_page.full_path
       expect(response).to be_successful
+    end
+
+    it "validates the full path, including parent slugs" do
+      get "/rubbish#{a_page.full_path}"
+      expect(response).to_not be_successful
     end
   end
 

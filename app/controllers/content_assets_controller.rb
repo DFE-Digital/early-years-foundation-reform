@@ -1,4 +1,6 @@
 class ContentAssetsController < ApplicationController
+  layout "cms"
+
   before_action :authenticate_user!
   before_action :set_content_asset, only: %i[show edit update destroy]
 
