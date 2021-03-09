@@ -91,14 +91,39 @@ If you don't want to use Conduit, you can [connect to a backing service via an S
 
 PaaS hosted applications are run in a container. [Connecting using SSH](https://docs.cloud.service.gov.uk/managing_apps.html#connecting-with-ssh) gives you secure access to the applications container.
 
+### Some thigns to be aware of... querks
+
+1. Read only DB mapping to the website (FYI)
+
+The following command has been run on the CF CLI to restricts the website
+app to read only permissions of the Postgres instance
+
+```
+cf bind-service eyfs-ENV eyfs-postgres-ENV -c '{"read_only": true}'
+```
+
+This has been set on each environment because it can not be done using Terraform.
+
+
+2. DNS remapping in production (Action required)
+
+On deploy to production, the DNS mapping is lost, meaning to the domain will 404.
+The the DNS route needs to be remapped to the domain again.
+Running the following using CF CLI will set the domain again.
+
+```
+cf target -s eyfs-prod
+cf map-route eyfs-prod education.gov.uk --hostname help-for-early-years-providers
+```
 
 ### Documentation cross reference
 
 Lots of how the infrastructure is created for this project has been made ontop of the shoulders of the Become a teacher team (BAT)
 They have more comprehensive documentation that shouldn't be repeated but referenced for completness
 
-[BAT Gov.uk PaaS](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1905066044/Gov.uk+PaaS)
-[BAT Github Actions](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1649672271/Github+Actions)
-[DockerHub](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1602650124/DockerHub)
-[DNS](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1905262678/DNS)
-[Terraform](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1935179870/Terraform)
+- [BAT Gov.uk PaaS](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1905066044/Gov.uk+PaaS)
+- [BAT Github Actions](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1649672271/Github+Actions)
+- [DockerHub](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1602650124/DockerHub)
+- [DNS](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1905262678/DNS)
+- [Custom Domain setup](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/2012938241/Create+a+custom+domain)
+- [Terraform](https://dfedigital.atlassian.net/wiki/spaces/BaT/pages/1935179870/Terraform)
