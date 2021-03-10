@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :content_assets
   resources :content_pages
+  post "/content_page/preview", to: "content_pages#preview"
 
   post "/govspeak/", to: "govspeak#show"
 
