@@ -11,7 +11,8 @@ class ContentController < ApplicationController
   def show
     @page = ContentPage.find_by_slug params["slug"]
 
-    doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
+    # doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
+    doc = MarkdownToHtml.translate_markdown(@page.markdown)
     @markdown = doc.to_html
     @page
   end
