@@ -17,9 +17,10 @@ RSpec.describe "Contents", type: :request do
     end
 
     it "renders a final page as html" do
-      get a_page.full_path + "rubbish"
-      expect(response.status).to eq(404)
-      expect(response).to_raise raise_error(ActionController::RoutingError)
+      without_detailed_exceptions do
+        get a_page.full_path + "rubbish"
+        expect(response).to have_http_status :not_found
+      end
     end
   end
 
