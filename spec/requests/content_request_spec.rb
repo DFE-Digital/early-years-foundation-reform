@@ -16,9 +16,10 @@ RSpec.describe "Contents", type: :request do
       expect(response).to be_successful
     end
 
-    it "validates the full path, including parent slugs" do
-      get "/rubbish#{a_page.full_path}"
-      expect(response).to_not be_successful
+    it "renders a final page as html" do
+      get a_page.full_path + "rubbish"
+      expect(response.status).to eq(404)
+      expect(response).to_raise raise_error(ActionController::RoutingError)
     end
   end
 
