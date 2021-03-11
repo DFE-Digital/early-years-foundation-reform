@@ -66,7 +66,6 @@ group :development, :test do
 
   gem "axe-matchers"
   gem "cucumber"
-  gem "debase"
   gem "rspec"
   gem "rspec-expectations"
   gem "selenium-webdriver"

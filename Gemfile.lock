@@ -146,9 +146,6 @@ GEM
       cucumber-core (~> 8.0, >= 8.0.1)
       cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
       cucumber-messages (~> 13.0, >= 13.0.1)
-    debase (2.3.0)
-      debase-ruby_core_source (~> 0.10.10)
-    debase-ruby_core_source (0.10.12)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.7.3)
@@ -445,7 +442,6 @@ DEPENDENCIES
   canonical-rails
   capybara (~> 3.34)
   cucumber
-  debase
   devise (>= 4.7.3)
   dotenv-rails
   factory_bot_rails
