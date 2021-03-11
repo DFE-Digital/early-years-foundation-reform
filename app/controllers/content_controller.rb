@@ -9,8 +9,7 @@ class ContentController < ApplicationController
 
   # GET /page_title
   def show
-    @page = ContentPage.find_by_slug params["slug"]
-    return not_found unless @page
+    @page = ContentPage.find_by_slug!(params["slug"]) rescue not_found
 
     if @page.parent
       if params["section"] != @page.parent.slug
