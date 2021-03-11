@@ -12,7 +12,3 @@ AllCops:
     - 'config/application.rb'
     - 'config/puma.rb'
     - 'vendor/**/*'
-
-Layout/LineLength:
-  IgnoredPatterns: ['^Given', '^When', '^Then', '^And']
-    - 'config/*'
