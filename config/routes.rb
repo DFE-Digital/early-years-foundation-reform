@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :content_assets, path: 'assets'
   end
 
-  get "/*section/:slug", to: 'content#show'
+  get "/:section/:slug", to: 'content#show'
   get "/:slug", to: 'content#show'
 
   root to: "content#index"
