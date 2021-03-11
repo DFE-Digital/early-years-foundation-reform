@@ -44,6 +44,19 @@ RSpec.describe ContentPage, type: :model do
     expect(saved_page.title.count("-")).to be(2)
   end
 
+  it "Generates the correct full path for a top level ContentPage" do
+    parent = FactoryBot.create(:content_page)
+
+    expect(parent.full_path).to eq(parent.slug)
+  end
+
+  it "Generates the correct full path for a child ContentPage" do
+    parent = FactoryBot.create(:content_page)
+    child = FactoryBot.create(:content_page, parent_id: parent.id)
+
+    expect(child.full_path).to eq("/" + parent.slug + "/" + child.slug)
+  end
+
   # The order is a depth first search
   context "Next and Previous pages" do
     before(:each) do
