@@ -2,6 +2,12 @@ import $ from 'jquery';
 
 export function createPreview(el, target) {
 
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
   $.post( "/govspeak", { input: $(el).val() })
   .done(function( response ) {
     $(target).html( response.html );
