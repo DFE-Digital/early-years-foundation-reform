@@ -26,7 +26,7 @@
 
     <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
-    <header class="govuk-header" role="banner" data-module="govuk-header">
+    <header class="govuk-header app-header" role="banner" data-module="govuk-header">
       <div class="govuk-header__container govuk-width-container">
         <div class="govuk-header__logo">
           <%= link_to "/", class: "govuk-header__link govuk-header__link--homepage" do %>
@@ -47,10 +47,16 @@
           <nav>
             <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
               <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-                <%= link_to "Pages", "/content_pages", class: "govuk-header__link" %>
+                <%= link_to "Pages", content_pages_path, class: "govuk-header__link" %>
               </li>
               <li class="govuk-header__navigation-item">
-                <%= link_to "Assets", "/content_assets", class: "govuk-header__link" %>
+                <%= link_to "Assets", content_assets_url, class: "govuk-header__link" %>
+              </li>
+              <li class="govuk-header__navigation-item">
+                <%= link_to "See the site", "/", class: "govuk-header__link" %>
+              </li>
+              <li class="govuk-header__navigation-item">
+                <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "govuk-header__link") %>
               </li>
             </ul>
           </nav>
@@ -69,7 +75,6 @@
       </span>
         </p>
       </div>
-
     </div>
 
     <div class="govuk-width-container">

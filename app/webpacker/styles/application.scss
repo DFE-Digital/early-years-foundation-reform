@@ -10,34 +10,17 @@ $govuk-font-url-function: frontend-font-url;
 $govuk-image-url-function: frontend-image-url;
 
 @import "~govuk-frontend/govuk/all";
+@import "govspeak";
 
-/* TODO: a custom styles css/scss is needed */
-#content_asset_asset_file, #content-asset-wrapper {
-padding-top: govuk-spacing(6);
-}
+// See SCSS_README.md for an explanation
 
-.align-right {
-  text-align:right;
-}
-
-.nesting_level_1 {
-  margin-left: 0em;
-}
-
-.nesting_level_2 {
-  margin-left: 2em;
-}
-
-.nesting_level_3 {
-  margin-left: 4em;
-}
-
-.summary {
-  border-left: 3px solid #ccc;
-  padding-left: 1em;
-}
-
-.links {
-  margin-left: 3em;
-  font-size: 0.5em;
-}
+@import "_subnav.scss";
+@import "_eyfs-header.scss";
+@import "_eyfs-mobile-navigation.scss";
+@import "_eyfs-resource-template.scss";
+@import "_cookie-banner.scss";
+@import "_next-prev.scss";
+@import "_cards";
+@import "layout-eyfs/landing-page.scss";
+@import "_cms.scss";
+@import "_links.scss";

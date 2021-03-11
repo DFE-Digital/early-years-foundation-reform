@@ -6,23 +6,23 @@ ruby File.read(".ruby-version").chomp
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 6.1.1"
 
+# User accounts; required in config/application.rb
+gem "devise", ">= 4.7.3"
+
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
 
 # Use Puma as the app server
-gem "puma", "~> 5.1"
+gem "puma", "~> 5.2"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem "bcrypt", "~> 3.1.16"
-
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.1.0", require: false
 
 # Manage multiple processes i.e. web server and webpack
 gem "foreman"
@@ -30,13 +30,17 @@ gem "foreman"
 # Canonical meta tag
 gem "canonical-rails"
 
-# User accounts; required in config/application.rb
-gem "devise", require: false
-
-# For generating HTML from Markdown
-gem "redcarpet"
-
 gem "acts_as_tree"
+
+gem "acts_as_paranoid", "~> 0.7.0"
+
+gem "audited", "~> 4.9"
+
+gem "govspeak"
+gem "htmlentities", "4.3.4"
+
+# Reduces boot times through caching; required in config/boot.rb
+gem "bootsnap", ">= 1.1.0", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,7 +54,7 @@ group :development, :test do
   gem "pry-byebug"
 
   # Testing framework
-  gem "rspec-rails", "~> 4.0.2"
+  gem "rspec-rails", "~> 5.0.0"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 3.34"
 
@@ -79,7 +83,8 @@ group :development do
 end
 
 group :test do
-  gem "webdrivers", "~> 4.4"
+  gem "simplecov", require: false
+  gem "webdrivers", "~> 4.6"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

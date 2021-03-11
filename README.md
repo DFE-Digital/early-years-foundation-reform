@@ -1,6 +1,19 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# EYFS Reform Spike
+# Early Years Reform Framework
+
+This is a minimalistic content management system, written in Ruby on Rails
+for use by content editors in the Early Years Reform Framework project.
+
+It allows editors to create a set of nested pages, and to edit the headings,
+overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
+
+These are some examples of the cut down CMS and two resulting pages
+all in UK.GOV style;
+
+![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
+![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
+![Landing Page](docs/landing-page-view.png?raw=true "Landing Page")
 
 ## Prerequisites
 
@@ -73,6 +86,9 @@ When a branch is merged into `main`
 
 - a docker image is built and pushed to [DockerHub](https://hub.docker.com/repository/docker/dfedigital/eyfsreform)
 
+### Documentation
+
+Check out [documentation](/documentation) folder
 
 # The following is from the template repository GOV.UK Rails Boilerplate
 

@@ -5,7 +5,9 @@ volumes:
 
 services:
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     image: eyfs-reform-spike-web:latest
     command: ./entrypoints/docker-entrypoint.sh
     depends_on:
@@ -15,8 +17,6 @@ services:
     volumes:
       - .:/app
     env_file: .env
-    environment:
-      RAILS_ENV: development
 
   database:
     image: postgres:13.1

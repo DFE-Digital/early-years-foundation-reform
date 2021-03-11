@@ -8,9 +8,6 @@ RSpec.describe "content_pages/show", type: :view do
   it "renders attributes in <p>" do
     render
     expect(rendered).to include(@content_page.title)
-    expect(rendered).to include(@content_page.subtitle)
-    expect(rendered).to include(@content_page.seo)
     expect(rendered).to include(@content_page.markdown)
-    expect(rendered).to include(@content_page.slug)
   end
 end
