@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   get "/422", to: "errors#unprocessable_entity", via: :all
   get "/500", to: "errors#internal_server_error", via: :all
 
-  resources :content_pages, path: '/cms/pages'
-  resources :content_assets, path: '/cms/assets'
+  scope :cms do
+    resources :content_pages, path: 'pages'
+    resources :content_assets, path: 'assets'
+  end
 
-  get "/", to: "content#index"
   get "/*section/:slug", to: 'content#show'
   get "/:slug", to: 'content#show'
 

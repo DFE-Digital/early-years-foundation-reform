@@ -47,10 +47,10 @@
           <nav>
             <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
               <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
-                <%= link_to "Pages", "/cms/pages", class: "govuk-header__link" %>
+                <%= link_to "Pages", content_pages_path, class: "govuk-header__link" %>
               </li>
               <li class="govuk-header__navigation-item">
-                <%= link_to "Assets", "/cms/assets", class: "govuk-header__link" %>
+                <%= link_to "Assets", content_assets_url, class: "govuk-header__link" %>
               </li>
               <li class="govuk-header__navigation-item">
                 <%= link_to "See the site", "/", class: "govuk-header__link" %>
