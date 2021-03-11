@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/check" => "application#check"
 
   devise_for :users
   devise_scope :user do
@@ -22,7 +23,4 @@ Rails.application.routes.draw do
   get "/:slug", to: 'content#show'
 
   root to: "content#index"
-
-  get "check" => "application#check"
-
 end
