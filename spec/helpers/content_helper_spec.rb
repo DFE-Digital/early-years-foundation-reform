@@ -1,15 +1,21 @@
 require "rails_helper"
 
 # Specs in this file have access to a helper object that includes
-# the ContentHelper. For example:
-#
-# describe ContentHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
+# the ContentHelper.
+
 RSpec.describe ContentHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:child) do
+    parent = FactoryBot.create(:content_page)
+    FactoryBot.create(:content_page, parent_id: parent.id)
+  end
+
+  describe "paths for content" do
+    it "returns the correct path for a top level page" do
+      expect(path_for_this_page(child.parent)).to eq("/" + child.parent.slug)
+    end
+
+    it "returns the correct path for a child level page" do
+      expect(path_for_this_page(child)).to eq("/" + child.parent.slug + "/" + child.slug)
+    end
+  end
 end

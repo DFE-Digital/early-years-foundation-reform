@@ -19,6 +19,15 @@ class ContentPage < ApplicationRecord
     ContentPage.reorder
   end
 
+  # TODO: only works for two levels
+  def full_path
+    if parent
+      "/" + parent.slug.to_s + "/" + slug.to_s
+    else
+      slug.to_s
+    end
+  end
+
   def set_slug_from_title
     self.slug = title.downcase.gsub(/ /, "-").gsub(",", "").gsub(".", "")
   end
