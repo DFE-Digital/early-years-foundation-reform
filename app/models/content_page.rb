@@ -32,7 +32,7 @@ class ContentPage < ApplicationRecord
   def set_slug_from_title
     self.slug = title.downcase.gsub(/ /, "-")
     CHARS_TO_OMIT_FROM_SLUG.each_char do |character|
-      self.slug = self.slug.gsub(character, "")
+      self.slug = slug.gsub(character, "")
     end
   end
 
