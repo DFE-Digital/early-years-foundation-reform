@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/check" => "application#check"
 
   devise_for :users
   devise_scope :user do
@@ -14,15 +15,12 @@ Rails.application.routes.draw do
   get "/500", to: "errors#internal_server_error", via: :all
 
   scope :cms do
-    resources :content_pages, path: 'pages'
-    resources :content_assets, path: 'assets'
+    resources :content_pages, path: "pages"
+    resources :content_assets, path: "assets"
   end
 
-  get "/:section/:slug", to: 'content#show'
-  get "/:slug", to: 'content#show'
+  get "/:section/:slug", to: "content#show"
+  get "/:slug", to: "content#show"
 
   root to: "content#index"
-
-  get "check" => "application#check"
-
 end
