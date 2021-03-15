@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ContentPage, type: :model do
   let(:expected_exception_message) do
-    /should only contain alphabetic, numeric, comma, fullstop, hyphen and space characters/
+    /#{ContentPage::TITLE_FORMAT_ERROR_MESSAGE}/
   end
 
   it "only allows alphanumeric and spaces in the title" do
@@ -20,6 +20,12 @@ RSpec.describe ContentPage, type: :model do
 
   it "sets the slug from the title, removing commas" do
     page = FactoryBot.create(:content_page, :comma_in_title)
+
+    expect { page.save! }.to_not raise_error
+  end
+
+  it "sets the slug from the title, removing round braces" do
+    page = FactoryBot.create(:content_page, :round_braces_in_title)
 
     expect { page.save! }.to_not raise_error
   end
