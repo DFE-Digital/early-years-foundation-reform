@@ -41,7 +41,7 @@ class ContentPagesController < ApplicationController
   # PATCH/PUT /content_pages/1
   def update
     if @content_page.update(content_page_params)
-      redirect_to @content_page, notice: "Content page was successfully updated."
+      redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
     else
       render :edit
     end
