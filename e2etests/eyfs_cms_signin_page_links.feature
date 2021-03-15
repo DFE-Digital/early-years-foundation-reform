@@ -28,7 +28,7 @@ Feature: EYFS Signin Page Links
     When user clicks "Terms and conditions"
     Then the "Terms and conditions" page is displayed
     And the following is "displayed":
-      "Welcome to DfE Sign-in, the Department for Education's secure single sign-in system for access to DfE online services."
+  "Welcome to DfE Sign-in, the Department for Education's secure single sign-in system for access to DfE online services."
 
 
   Scenario:  Signin Page - Links - Footer link - Need help using this service
