@@ -34,6 +34,10 @@ FactoryBot.define do
     title { "#{Faker::Lorem.word}.#{Faker::Lorem.word}" }
   end
 
+  trait :round_braces_in_title do
+    title { "#{Faker::Lorem.word}(#{Faker::Lorem.word})" }
+  end
+
   trait :two_hyphens_and_a_space_in_title do
     title { "#{Faker::Lorem.word}-#{Faker::Lorem.word} #{Faker::Lorem.word}-#{Faker::Lorem.word}" }
   end
