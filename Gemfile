@@ -32,7 +32,7 @@ gem "canonical-rails"
 
 gem "acts_as_tree"
 
-gem "acts_as_paranoid", "~> 0.7.0"
+gem "acts_as_paranoid", "~> 0.7.1"
 
 gem "audited", "~> 4.9"
 
