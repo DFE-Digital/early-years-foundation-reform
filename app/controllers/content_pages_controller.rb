@@ -1,4 +1,6 @@
 class ContentPagesController < ApplicationController
+  layout "cms"
+
   before_action :authenticate_user!
   before_action :set_content_page, only: %i[show edit update destroy]
 

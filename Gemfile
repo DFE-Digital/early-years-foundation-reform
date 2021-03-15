@@ -32,7 +32,7 @@ gem "canonical-rails"
 
 gem "acts_as_tree"
 
-gem "acts_as_paranoid", "~> 0.7.0"
+gem "acts_as_paranoid", "~> 0.7.1"
 
 gem "audited", "~> 4.9"
 
@@ -63,6 +63,12 @@ group :development, :test do
   gem "factory_bot_rails"
 
   gem "faker"
+
+  gem "axe-matchers"
+  gem "cucumber"
+  gem "rspec"
+  gem "rspec-expectations"
+  gem "selenium-webdriver"
 end
 
 group :development do
