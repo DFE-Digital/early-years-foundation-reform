@@ -15,12 +15,12 @@ Rails.application.routes.draw do
   get "/500", to: "errors#internal_server_error", via: :all
 
   scope :cms do
-    resources :content_pages, path: 'pages'
-    resources :content_assets, path: 'assets'
+    resources :content_pages, path: "pages"
+    resources :content_assets, path: "assets"
   end
 
-  get "/:section/:slug", to: 'content#show'
-  get "/:slug", to: 'content#show'
+  get "/:section/:slug", to: "content#show"
+  get "/:slug", to: "content#show"
 
   root to: "content#index"
 end
