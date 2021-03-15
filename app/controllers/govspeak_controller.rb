@@ -5,7 +5,7 @@ class GovspeakController < ApplicationController
 
   def show
     Rails.logger.silence do
-      html = MarkdownToHtml.new.translate_markdown(params["input"])
+      html = GovspeakToHTML.new.translate_markdown(params["input"])
 
       render json: { html: html }
     end

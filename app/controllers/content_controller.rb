@@ -19,7 +19,7 @@ class ContentController < ApplicationController
       end
     end
 
-    @markdown = MarkdownToHtml.new.translate_markdown(@page.markdown)
+    @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
     @page
   end
 
