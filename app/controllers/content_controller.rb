@@ -5,7 +5,6 @@ class ContentController < ApplicationController
   # a block in the landing_page_layout template
   FEATURED_PAGE_TITLE = "Get help to improve your practice".freeze
 
-
   # GET /page_title
   def show
     begin
