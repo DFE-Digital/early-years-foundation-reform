@@ -1,24 +1,28 @@
 require "rails_helper"
 
 RSpec.describe "Contents", type: :request do
-  before(:each) do
-    sign_in FactoryBot.create(:user)
-  end
-
   let(:a_page) do
-    FactoryBot.create(:content_page)
+    parent = FactoryBot.create(:content_page)
+    FactoryBot.create(:content_page, parent_id: parent.id)
   end
 
   describe "GET /show" do
-    it "renders a final page as html" do
-      get content_page_url(a_page)
+    it "renders a page" do
+      get a_page.full_path
       expect(response).to be_successful
+    end
+
+    it "renders a 404 when the page is not found" do
+      without_detailed_exceptions do
+        get a_page.full_path + "rubbish"
+        expect(response).to have_http_status :not_found
+      end
     end
   end
 
   describe "GET /" do
     it "renders the landing page / hub page" do
-      get "/content"
+      get "/"
       expect(response).to be_successful
     end
 

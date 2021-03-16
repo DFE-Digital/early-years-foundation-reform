@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <main class="govuk-main-wrapper">
+  <main class="govuk-main-wrapper" id="main-content">
     <div class="govuk-width-container govuk-!-margin-bottom-7">
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds landing-page_header-text-container govuk-!-margin-bottom-0 govuk-!-padding-bottom-0">
@@ -91,7 +91,7 @@
             <li class="govuk-grid-column-one-half eyfs-card-group__item">
               <div class="eyfs-card eyfs-card--clickable eyfs-card--icon">
                 <div class="eyfs-card__content">
-                  <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="<%= content_url + '/' + content_page.slug %>"><%= content_page.title %></a>
+                  <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="<%= '/' + content_page.slug %>"><%= content_page.title %></a>
                 </div>
               </div>
             </li>
