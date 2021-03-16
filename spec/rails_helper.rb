@@ -1,6 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"
-require "support/devise_spec_helpers"
 require "support/without_detailed_exceptions"
 
 ENV["RAILS_ENV"] ||= "test"
@@ -39,8 +38,6 @@ end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.include DeviseRequestSpecHelpers, type: :request
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
