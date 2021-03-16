@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :content_pages, path: "pages"
     resources :content_assets, path: "assets"
   end
-  post "/content_page/preview", to: "content_pages#preview"
+  post "/preview", to: "content_pages#preview"
 
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"

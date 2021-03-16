@@ -2,10 +2,16 @@ import $ from 'jquery';
 
 export function createPreview(el, target) {
 
-  $.post( "/preview", { input: $(el).val() })
-  .done(function( response ) {
-    $(target).html( response.html );
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
   });
+
+  $.post( "/preview", { input: $(el).val() })
+    .done(function( response ) {
+      $(target).html( response.html );
+    });
 
 }
 
