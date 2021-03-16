@@ -5,7 +5,6 @@ class ContentController < ApplicationController
   # a block in the landing_page_layout template
   FEATURED_PAGE_TITLE = "Get help to improve your practice".freeze
 
-
   # GET /page_title
   def show
     begin
@@ -20,7 +19,7 @@ class ContentController < ApplicationController
       end
     end
 
-    @markdown = MarkdownToHtml.new.translate_markdown(@page.markdown)
+    @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
     @page
   end
 
