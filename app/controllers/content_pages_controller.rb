@@ -53,10 +53,10 @@ class ContentPagesController < ApplicationController
     redirect_to content_pages_url, notice: "Content page was successfully destroyed."
   end
 
-  # POST of preview markdown, returns html
+  # POST of preview, returns html
   def preview
     Rails.logger.silence do
-      html = GovspeakToHTML.new.translate_markdown(params["input"])
+      html = GovspeakToHTML.new.translate_markdown(params["markdown"])
 
       render json: { html: html }
     end

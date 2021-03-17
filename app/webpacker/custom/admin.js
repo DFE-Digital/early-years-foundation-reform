@@ -8,11 +8,10 @@ export function createPreview(el, target) {
     }
   });
 
-  $.post( "/preview", { input: $(el).val() })
+  $.post( "/cms/preview_markdown", { markdown: $(el).val() })
     .done(function( response ) {
       $(target).html( response.html );
     });
-
 }
 
 /* copies to clipboard in content_assets/_clipboard.html.erb */
