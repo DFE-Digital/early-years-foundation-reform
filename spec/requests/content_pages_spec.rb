@@ -150,7 +150,7 @@ RSpec.describe "/content_pages", type: :request do
   describe "Previewing markdown" do
     let(:valid_params) do
       {
-        input: "## Govspeak is magic!",
+        markdown: "## Govspeak is magic!",
       }
     end
 
