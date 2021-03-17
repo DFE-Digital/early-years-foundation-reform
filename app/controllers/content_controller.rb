@@ -5,8 +5,6 @@ class ContentController < ApplicationController
   # a block in the landing_page_layout template
   FEATURED_PAGE_TITLE = "Get help to improve your practice".freeze
 
-  ALLOWED_TAGS = %w[details summary p h1 h2 h3 h4 ul li img div ol a span].freeze
-
   # GET /page_title
   def show
     begin
@@ -21,8 +19,7 @@ class ContentController < ApplicationController
       end
     end
 
-    doc = Govspeak::Document.new(@page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS)
-    @markdown = doc.to_html
+    @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
     @page
   end
 
