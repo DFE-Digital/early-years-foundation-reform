@@ -7,8 +7,6 @@ Rails.application.routes.draw do
     delete "sign_out", to: "devise/sessions#destroy"
   end
 
-  post "/govspeak/", to: "govspeak#show"
-
   # Note These have to be above the wildcard route
   get "/404", to: "errors#not_found", via: :all
   get "/422", to: "errors#unprocessable_entity", via: :all
@@ -17,6 +15,8 @@ Rails.application.routes.draw do
   scope :cms do
     resources :content_pages, path: "pages"
     resources :content_assets, path: "assets"
+    #  This is not a resource route
+    post "preview_markdown", to: "content_pages#preview"
   end
 
   get "/:section/:slug", to: "content#show"
