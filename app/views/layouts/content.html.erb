@@ -9,6 +9,7 @@
   <%= tag :meta, name: 'viewport', content: 'width=device-width, initial-scale=1' %>
   <%= tag :meta, property: 'og:image', content: asset_pack_path('media/images/govuk-opengraph-image.png') %>
   <%= tag :meta, name: 'theme-color', content: '#0b0c0c' %>
+  <%= render 'layouts/google_analytics_header' %>
   <%= favicon_link_tag asset_pack_path('media/images/favicon.ico') %>
   <%= favicon_link_tag asset_pack_path('media/images/govuk-mask-icon.svg'), rel: 'mask-icon', type: 'image/svg', color: "#0b0c0c" %>
   <%= favicon_link_tag asset_pack_path('media/images/govuk-apple-touch-icon.png'), rel: 'apple-touch-icon', type: 'image/png' %>
@@ -23,7 +24,8 @@
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
-
+  <%= render 'layouts/google_analytics_body' %>
+  
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
   <header class="govuk-header app-header" role="banner" data-module="govuk-header">
