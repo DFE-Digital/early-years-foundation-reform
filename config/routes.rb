@@ -12,13 +12,11 @@ Rails.application.routes.draw do
   get "/422", to: "errors#unprocessable_entity", via: :all
   get "/500", to: "errors#internal_server_error", via: :all
 
-  constraints subdomain: /.*cms.*/ do
-    scope :cms do
-      resources :content_pages, path: "pages"
-      resources :content_assets, path: "assets"
-      #  This is not a resource route
-      post "preview_markdown", to: "content_pages#preview"
-    end
+  scope :cms do
+    resources :content_pages, path: "pages"
+    resources :content_assets, path: "assets"
+    #  This is not a resource route
+    post "preview_markdown", to: "content_pages#preview"
   end
 
   get "/:section/:slug", to: "content#show"
