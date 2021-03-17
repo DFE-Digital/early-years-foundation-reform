@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/422", to: "errors#unprocessable_entity", via: :all
   get "/500", to: "errors#internal_server_error", via: :all
 
-  constraints :subdomain => /.*cms.*/ do
+  constraints subdomain: /.*cms.*/ do
     scope :cms do
       resources :content_pages, path: "pages"
       resources :content_assets, path: "assets"
