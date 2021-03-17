@@ -22,8 +22,8 @@ class ContentPagesController < ApplicationController
 
   # GET /content_pages/1/edit
   def edit
-    doc = Govspeak::Document.new @content_page.markdown, sanitize: true, allowed_elements: ContentController::ALLOWED_TAGS
-    @md = doc.to_html
+    @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
+
     @content_page
   end
 
@@ -41,7 +41,7 @@ class ContentPagesController < ApplicationController
   # PATCH/PUT /content_pages/1
   def update
     if @content_page.update(content_page_params)
-      redirect_to @content_page, notice: "Content page was successfully updated."
+      redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
     else
       render :edit
     end
@@ -51,6 +51,15 @@ class ContentPagesController < ApplicationController
   def destroy
     @content_page.destroy!
     redirect_to content_pages_url, notice: "Content page was successfully destroyed."
+  end
+
+  # POST of preview, returns html
+  def preview
+    Rails.logger.silence do
+      html = GovspeakToHTML.new.translate_markdown(params["markdown"])
+
+      render json: { html: html }
+    end
   end
 
 private
