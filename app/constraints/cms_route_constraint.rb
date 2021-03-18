@@ -8,7 +8,7 @@ class CmsRouteConstraint
     if Rails.env.production?
       /.*cms.*/.match request.subdomain
     else
-      return true
+      true
     end
   end
 end
