@@ -30,14 +30,14 @@ RSpec.describe ContentPage, type: :model do
     expect { page.save! }.to_not raise_error
   end
 
-  it "sets the slug from the title, removing fullstops" do
-    page = FactoryBot.create(:content_page, :fullstop_in_title)
+  it "sets the slug from the title, removing colons" do
+    page = FactoryBot.create(:content_page, :colon_in_title)
 
     expect { page.save! }.to_not raise_error
 
     saved_page = ContentPage.find_by_title page.title
-    expect(saved_page.slug.count(".")).to be(0)
-    expect(saved_page.title.count(".")).to be(1)
+    expect(saved_page.slug.count(":")).to be(0)
+    expect(saved_page.title.count(":")).to be(1)
   end
 
   it "sets the slug from the title, preserving hyphens" do
