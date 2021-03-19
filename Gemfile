@@ -54,7 +54,7 @@ group :development, :test do
   gem "pry-byebug"
 
   # Testing framework
-  gem "rspec-rails", "~> 5.0.0"
+  gem "rspec-rails", "~> 5.0.1"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 3.34"
 
