@@ -20,6 +20,7 @@ gem "webpacker"
 
 gem "active_storage_validations"
 gem "aws-sdk-s3"
+gem "active_storage_validations"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
