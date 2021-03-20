@@ -18,4 +18,14 @@ private
       "application"
     end
   end
+
+  def set_cookie_pref(pref)
+    if pref == "Yes"
+      cookies.permanent[:track_google_analytics] = "Yes"
+    else
+      cookies.permanent[:track_google_analytics] = "No"
+    end
+    flash[:notice] = "Preferences Saved."
+  end
+
 end

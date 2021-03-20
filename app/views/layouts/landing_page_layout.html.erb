@@ -28,6 +28,10 @@
 
 <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
+<% if !cookies[:track_google_analytics] %>
+<%= render 'layouts/cookies_notice'  %>
+<% end %>
+
 <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__logo govuk-!-padding-right-0">

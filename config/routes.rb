@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get "/check" => "application#check"
 
+  resources :settings, only: %i[show create]
+
   devise_for :users
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"

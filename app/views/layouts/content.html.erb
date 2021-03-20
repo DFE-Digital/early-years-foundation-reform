@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template ">
+<html lang="en" class="govuk-template">
 <head>
   <meta name="robots" content="noindex, nofollow">
   <title>Help for early years providers</title>
@@ -26,7 +26,9 @@
 
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
-  <%= render 'layouts/cookies_notice' %>
+  <% if !cookies[:track_google_analytics] %>
+  <%= render 'layouts/cookies_notice'  %>
+  <% end %>
 
   <header class="govuk-header app-header" role="banner" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-container">
