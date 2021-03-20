@@ -2,11 +2,16 @@ import $ from 'jquery';
 
 export function createPreview(el, target) {
 
-  $.post( "/govspeak", { input: $(el).val() })
-  .done(function( response ) {
-    $(target).html( response.html );
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
   });
 
+  $.post( "/cms/preview_markdown", { markdown: $(el).val() })
+    .done(function( response ) {
+      $(target).html( response.html );
+    });
 }
 
 /* copies to clipboard in content_assets/_clipboard.html.erb */

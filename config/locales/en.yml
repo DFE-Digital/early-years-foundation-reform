@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        content_asset:
+          attributes:
+            asset_file:
+              invalid_extension:  "invalid extension. Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG"

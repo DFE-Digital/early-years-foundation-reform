@@ -18,6 +18,7 @@ gem "puma", "~> 5.2"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
+gem "active_storage_validations"
 gem "aws-sdk-s3"
 
 # Use ActiveStorage variant
@@ -32,7 +33,7 @@ gem "canonical-rails"
 
 gem "acts_as_tree"
 
-gem "acts_as_paranoid", "~> 0.7.0"
+gem "acts_as_paranoid", "~> 0.7.1"
 
 gem "audited", "~> 4.9"
 
@@ -54,7 +55,7 @@ group :development, :test do
   gem "pry-byebug"
 
   # Testing framework
-  gem "rspec-rails", "~> 5.0.0"
+  gem "rspec-rails", "~> 5.0.1"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 3.34"
 

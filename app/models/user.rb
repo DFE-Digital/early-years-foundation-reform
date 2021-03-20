@@ -5,5 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :rememberable,
          :validatable,
-         :timeoutable
+         :timeoutable,
+         :lockable
 end
