@@ -3,7 +3,7 @@
 <head>
   <meta name="robots" content="noindex, nofollow">
   <title>Help for early years providers</title>
-  <%= render 'layouts/google_analytics_header' %>
+  <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= canonical_tag %>
@@ -24,7 +24,7 @@
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
-  <%= render 'layouts/google_analytics_body' %>
+  <%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
 
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 

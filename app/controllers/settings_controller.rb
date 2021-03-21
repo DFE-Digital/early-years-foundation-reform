@@ -4,7 +4,6 @@ class SettingsController < ApplicationController
   def create
     if params.key?(:track_google_analytics)
       set_cookie_pref(params[:track_google_analytics])
-      flash[:notice] = "Preferences Saved."
       redirect_to params[:return_url]
     else
       raise "Missing parameters"
@@ -15,4 +14,10 @@ class SettingsController < ApplicationController
     render template: "settings/#{params[:id]}"
   end
 
+private
+
+  def set_cookie_pref(cookie_value)
+    cookies[:track_google_analytics] = { value: cookie_value, expires: 6.months.from_now }
+    flash[:notice] = "Preferences Saved."
+  end
 end
