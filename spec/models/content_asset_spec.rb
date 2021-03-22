@@ -15,7 +15,7 @@ RSpec.describe ContentAsset, type: :model do
       expect(content_asset.asset_file).to be_attached
     end
 
-    %w[pdf doc docx xls xlsx png jpg jpeg].each do |extension|
+    %w[pdf doc docx xls xlsx png jpg jpeg PDF DOC DOCX XLS XLSX PNG JPG JPEG].each do |extension|
       it "has valid extension" do
         content_asset.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.#{extension}", content_type: "image/jpeg")
         content_asset.validate

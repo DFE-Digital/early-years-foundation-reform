@@ -20,6 +20,6 @@ class ContentAsset < ApplicationRecord
   def asset_file_ext_validation
     return unless asset_file.attached?
 
-    errors.add(:asset_file, :invalid_extension) if VALID_FILE_EXTENSIONS.none? { |extension| asset_file.blob.filename.to_s.end_with?(extension) }
+    errors.add(:asset_file, :invalid_extension) if VALID_FILE_EXTENSIONS.none? { |extension| asset_file.blob.filename.to_s.downcase.end_with?(extension) }
   end
 end
