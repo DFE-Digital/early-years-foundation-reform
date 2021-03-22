@@ -18,6 +18,7 @@ gem "puma", "~> 5.2"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
+gem "active_storage_validations"
 gem "aws-sdk-s3"
 
 # Use ActiveStorage variant

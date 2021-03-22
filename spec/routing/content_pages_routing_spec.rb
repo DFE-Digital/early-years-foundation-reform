@@ -34,4 +34,12 @@ RSpec.describe ContentPagesController, type: :routing do
       expect(delete: "/cms/pages/1").to route_to("content_pages#destroy", id: "1")
     end
   end
+
+  context "CMS routes should be disabled on production" do
+    it "does not route to cms routes in production if the subdomain does not contain the string 'cms'" do
+      allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
+
+      expect(get: "/cms/pages").to_not route_to("content_pages#index")
+    end
+  end
 end
