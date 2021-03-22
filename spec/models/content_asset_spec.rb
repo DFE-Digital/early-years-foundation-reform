@@ -25,6 +25,7 @@ RSpec.describe ContentAsset, type: :model do
 
     %w[
       image/jpeg
+      image/png
       application/pdf
       application/msword
       application/vnd.ms-excel

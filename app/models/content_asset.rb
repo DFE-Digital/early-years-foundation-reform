@@ -2,6 +2,7 @@ class ContentAsset < ApplicationRecord
   VALID_FILE_EXTENSIONS = %w[.pdf .doc .docx .xls .xlsx .jpeg .jpg .png].freeze
   VALID_CONTENT_TYPE = %w[
     image/jpeg
+    image/png
     application/pdf
     application/msword
     application/vnd.ms-excel
