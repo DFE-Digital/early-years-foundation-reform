@@ -192,12 +192,12 @@ GEM
       nokogumbo (~> 2)
       rinku (~> 2.0)
       sanitize (>= 5.2.1, < 6)
-    govuk_app_config (2.8.4)
+    govuk_app_config (2.9.1)
       logstasher (>= 1.2.2, < 2.2.0)
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.5.0)
       unicorn (>= 5.4, < 5.9)
-    govuk_publishing_components (24.5.0)
+    govuk_publishing_components (24.7.0)
       govuk_app_config
       kramdown
       plek
@@ -210,7 +210,7 @@ GEM
     ice_nine (0.11.2)
     jmespath (1.4.0)
     kgio (2.11.3)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -229,18 +229,14 @@ GEM
     middleware (0.1.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.7)
-    nokogiri (1.11.2)
-      mini_portile2 (~> 2.5.0)
-      racc (~> 1.4)
     nokogiri (1.11.2-x86_64-darwin)
       racc (~> 1.4)
-    nokogumbo (2.0.4)
+    nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
@@ -434,7 +430,6 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
   x86_64-darwin-19
 
 DEPENDENCIES
