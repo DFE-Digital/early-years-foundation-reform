@@ -75,7 +75,7 @@ markdown_for_gross_motor_skills = <<-MARKDOWN_FOR_GROSS_MOTOR_SKILLS
 ### To be completed
 MARKDOWN_FOR_GROSS_MOTOR_SKILLS
 gross_motor_skills = {
-  title: "Gross motor Skills",
+  title: "Gross motor skills",
   markdown: markdown_for_gross_motor_skills,
   position: 2,
   parent_id: physical_development_page.id,

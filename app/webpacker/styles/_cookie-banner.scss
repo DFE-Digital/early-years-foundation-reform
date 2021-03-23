@@ -18,7 +18,39 @@
 }
 
 @include govuk-media-query($media-type: print) {
-  .app-cookie-banner {
+  .govuk-cookie-banner {
     display: none !important;
   }
+}
+
+.govuk-cookie-banner {
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include govuk-font(16);
+  @include govuk-text-colour;
+  padding-top: 20px;
+  border-bottom: 10px solid transparent;
+  background-color: #f3f2f1;
+
+  .govuk-cookie-banner__content {
+    p {
+      @include govuk-font(19);
+    }
+  }
+
+  a.govuk-link {
+    @include govuk-font(19);
+    line-height: 2em !important;
+    color: $govuk-brand-colour;
+  }
+
+  .govuk-button-group .govuk-button {
+    margin-right: 15px;
+  }
+
+  form {
+    display: inline-block;
+  }
+
 }
