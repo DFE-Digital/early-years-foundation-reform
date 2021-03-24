@@ -72,8 +72,6 @@ GEM
     ast (2.4.2)
     audited (4.10.0)
       activerecord (>= 4.2, < 6.2)
-    awesome_nested_set (3.4.0)
-      activerecord (>= 4.0.0, < 7.0)
     aws-eventstream (1.1.1)
     aws-partitions (1.434.0)
     aws-sdk-core (3.113.0)
@@ -439,7 +437,6 @@ DEPENDENCIES
   acts_as_paranoid (~> 0.7.1)
   acts_as_tree
   audited (~> 4.9)
-  awesome_nested_set
   aws-sdk-s3
   axe-matchers
   bcrypt (~> 3.1.16)
