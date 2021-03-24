@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template ">
+<html lang="en" class="govuk-template">
 <head>
   <meta name="robots" content="noindex, nofollow">
   <title>Help for early years providers</title>
-  <%= render 'layouts/google_analytics_header' %>
+  <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= canonical_tag %>
@@ -24,9 +24,13 @@
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
-  <%= render 'layouts/google_analytics_body' %>
+  <%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
 
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
+
+  <% if !cookies[:track_google_analytics] %>
+  <%= render 'layouts/cookies_notice'  %>
+  <% end %>
 
   <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-width-container">
@@ -54,16 +58,7 @@
 
   <div class="govuk-width-container">
     <%= render 'layouts/mobile_menu' %>
-    <div class="govuk-phase-banner">
-      <p class="govuk-phase-banner__content">
-        <strong class="govuk-tag govuk-phase-banner__content__tag">
-          Beta
-        </strong>
-        <span class="govuk-phase-banner__text">
-          This is a Beta. Content is likely to change rapidly.
-        </span>
-      </p>
-    </div>
+    <%= render 'layouts/phase_banner' %>
     <%= render 'layouts/breadcrumbs' %>
   </div>
 
