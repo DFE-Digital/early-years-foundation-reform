@@ -72,6 +72,8 @@ GEM
     ast (2.4.2)
     audited (4.10.0)
       activerecord (>= 4.2, < 6.2)
+    awesome_nested_set (3.4.0)
+      activerecord (>= 4.0.0, < 7.0)
     aws-eventstream (1.1.1)
     aws-partitions (1.434.0)
     aws-sdk-core (3.113.0)
@@ -197,7 +199,7 @@ GEM
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.5.0)
       unicorn (>= 5.4, < 5.9)
-    govuk_publishing_components (24.7.0)
+    govuk_publishing_components (24.7.1)
       govuk_app_config
       kramdown
       plek
@@ -227,7 +229,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     middleware (0.1.0)
-    mimemagic (0.3.5)
+    mimemagic (0.3.6)
     mini_mime (1.0.2)
     minitest (5.14.4)
     msgpack (1.4.2)
@@ -437,6 +439,7 @@ DEPENDENCIES
   acts_as_paranoid (~> 0.7.1)
   acts_as_tree
   audited (~> 4.9)
+  awesome_nested_set
   aws-sdk-s3
   axe-matchers
   bcrypt (~> 3.1.16)
@@ -475,4 +478,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.10
+   2.2.6
