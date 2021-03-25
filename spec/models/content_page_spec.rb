@@ -76,6 +76,15 @@ RSpec.describe ContentPage, type: :model do
 
       @child1_of_top_level2 = FactoryBot.create(:content_page, position: 1, parent_id: @top_level2.id)
       @child2_of_top_level2 = FactoryBot.create(:content_page, position: 2, parent_id: @top_level2.id)
+
+      # The reordering happens after_create, so need to refetch these
+      # to get their updated next/previous state
+      @top_level1 = ContentPage.find @top_level1.id
+      @top_level2 = ContentPage.find @top_level2.id
+      @child1_of_top_level1 = ContentPage.find @child1_of_top_level1.id
+      @child2_of_top_level1 = ContentPage.find @child2_of_top_level1.id
+      @child1_of_top_level2 = ContentPage.find @child1_of_top_level2.id
+      @child2_of_top_level2 = ContentPage.find @child2_of_top_level2.id
     end
 
     context "Navigating to the Next page" do
@@ -107,6 +116,9 @@ RSpec.describe ContentPage, type: :model do
 
       it "Should reorder the pages when a page is changed" do
         @page_in_the_middle = FactoryBot.create(:content_page, position: 5)
+        # The reordering happens after_create, so need to refetch these
+        @page_in_the_middle = ContentPage.find @page_in_the_middle.id
+        @child2_of_top_level1 = ContentPage.find @child2_of_top_level1.id
         expect(@child2_of_top_level1.next_page).to eq(@page_in_the_middle)
       end
     end
