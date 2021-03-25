@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_123635) do
+ActiveRecord::Schema.define(version: 2021_03_24_120426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_123635) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "parent_id"
     t.integer "position"
+    t.integer "next_id"
+    t.integer "previous_id"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
