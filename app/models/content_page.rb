@@ -21,6 +21,12 @@ class ContentPage < ApplicationRecord
     ContentPage.reorder
   end
 
+  after_save do
+    if saved_change_to_position?
+      ContentPage.reorder
+    end
+  end
+
   def full_path
     if parent
       "/" + parent.slug.to_s + "/" + slug.to_s
@@ -44,7 +50,7 @@ class ContentPage < ApplicationRecord
     ContentPage.find previous_id
   end
 
-  # Call if a page is created, destroyed or a position changes
+  # Called when a page is created or a position attribute changes
   class << self
     def reorder
       page_order = []
