@@ -18,6 +18,6 @@ private
 
   def set_cookie_pref(cookie_value)
     cookies[:track_google_analytics] = { value: cookie_value, expires: 6.months.from_now }
-    flash[:notice] = "Preferences Saved."
+    flash[:notice] = t(:preferences_saved_html, return_url: helpers.root_path, scope: :settings)
   end
 end
