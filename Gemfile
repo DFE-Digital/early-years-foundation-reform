@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(".ruby-version").chomp
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.1"
+gem "rails", "~> 6.1.3"
 
 # User accounts; required in config/application.rb
 gem "devise", ">= 4.7.3"
