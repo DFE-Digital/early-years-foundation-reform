@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template ">
+<html lang="en" class="govuk-template">
 <head>
   <meta charset="utf-8">
   <title>
@@ -23,7 +23,7 @@
 
   <meta property="og:image" content="/govuk/assets/images/govuk-opengraph-image.png">
 </head>
-<body class="govuk-template__body ">
+<body class="govuk-template__body">
 
 <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 <%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
@@ -56,16 +56,14 @@
   </div>
 </header>
 
-<div class="eyfs-wrapper">
-
+<main class="eyfs-wrapper" role="main">
   <div class="govuk-width-container">
     <%= render 'layouts/phase_banner' %>
   </div>
-
   <%= yield %>
-</div>
+</main>
 
-<footer class="govuk-footer " role="contentinfo">
+<footer class="govuk-footer" role="contentinfo">
   <%= render 'layouts/footer_content' %>
 </footer>
 </body>
