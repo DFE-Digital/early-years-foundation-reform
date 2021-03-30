@@ -55,22 +55,24 @@
   </div>
   </header>
 
-  <div class="govuk-width-container">
-    <%= render 'layouts/mobile_menu' %>
+  <aside class="govuk-width-container" role="complementary">
     <%= render 'layouts/phase_banner' %>
+  </aside>
+
+  <nav class="govuk-width-container" role="navigation">
+    <%= render 'layouts/mobile_menu' %>
     <%= render 'layouts/breadcrumbs' %>
-  </div>
+  </nav>
 
-
-  <div class="govuk-width-container">
+  <main class="govuk-width-container" role="main">
     <div class="govuk-main-wrapper">
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third desktop-menu">
+        <nav role="navigation" class="govuk-grid-column-one-third desktop-menu">
           <%= render 'layouts/desktop_menu' %>
-        </div>
+        </nav>
 
         <div class="govuk-grid-column-two-thirds">
-          <main id="main-content" class="app-content gem-c-govspeak" role="main">
+          <div id="main-content" class="app-content gem-c-govspeak">
             <%= yield %>
             <nav class="gem-c-pagination" role="navigation" aria-label="Pagination">
               <ul class="gem-c-pagination__list">
@@ -104,7 +106,7 @@
                 </li>
               </ul>
             </nav>
-          </main>
+          </div>
 
           <div class="eyfs-helpful-tools">
             <div class="app-back-to-top govuk-!-margin-bottom-7" data-module="app-back-to-top">
@@ -121,7 +123,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer class="govuk-footer " role="contentinfo">
     <%= render 'layouts/footer_content' %>
