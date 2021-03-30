@@ -26,13 +26,12 @@
   </script>
   <%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
 
-  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-
   <% if !cookies[:track_google_analytics] %>
   <%= render 'layouts/cookies_notice'  %>
   <% end %>
 
   <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__logo govuk-!-padding-right-0">
       <a href="https://www.gov.uk/" class="govuk-header__link govuk-header__link--homepage">
@@ -56,22 +55,24 @@
   </div>
   </header>
 
-  <div class="govuk-width-container">
-    <%= render 'layouts/mobile_menu' %>
+  <aside class="govuk-width-container" role="complementary">
     <%= render 'layouts/phase_banner' %>
+  </aside>
+
+  <nav class="govuk-width-container" role="navigation">
+    <%= render 'layouts/mobile_menu' %>
     <%= render 'layouts/breadcrumbs' %>
-  </div>
+  </nav>
 
-
-  <div class="govuk-width-container">
+  <main class="govuk-width-container" role="main">
     <div class="govuk-main-wrapper">
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third desktop-menu">
+        <nav role="navigation" class="govuk-grid-column-one-third desktop-menu">
           <%= render 'layouts/desktop_menu' %>
-        </div>
+        </nav>
 
         <div class="govuk-grid-column-two-thirds">
-          <main id="main-content" class="app-content gem-c-govspeak" role="main">
+          <div id="main-content" class="app-content gem-c-govspeak">
             <%= yield %>
             <nav class="gem-c-pagination" role="navigation" aria-label="Pagination">
               <ul class="gem-c-pagination__list">
@@ -105,7 +106,7 @@
                 </li>
               </ul>
             </nav>
-          </main>
+          </div>
 
           <div class="eyfs-helpful-tools">
             <div class="app-back-to-top govuk-!-margin-bottom-7" data-module="app-back-to-top">
@@ -122,7 +123,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer class="govuk-footer " role="contentinfo">
     <%= render 'layouts/footer_content' %>

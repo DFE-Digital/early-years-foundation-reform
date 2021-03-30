@@ -24,9 +24,9 @@
   document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 </script>
 
-<a href="#main-content" class="govuk-skip-link">Skip to main content</a>
 
   <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__logo govuk-!-padding-right-0">
       <a href="https://www.gov.uk/" class="govuk-header__link govuk-header__link--homepage">
@@ -50,17 +50,17 @@
   </div>
   </header>
   
-<div class="govuk-width-container">
+<aside role="complementary" class="govuk-width-container">
   <%= render 'layouts/phase_banner' %>
-</div>
+</aside>
 
-<div class="govuk-width-container">
-  <main class="govuk-main-wrapper " id="main-content" role="main">
+<main role="main" class="govuk-width-container">
+  <div class="govuk-main-wrapper" id="main-content">
     <%= yield %>
-  </main>
-</div>
+  </div>
+</main>
 
-<footer class="govuk-footer " role="contentinfo">
+<footer class="govuk-footer" role="contentinfo">
   <%= render 'layouts/footer_content' %>
 </footer>
 </body>
