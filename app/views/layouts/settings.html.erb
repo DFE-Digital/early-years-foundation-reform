@@ -54,17 +54,15 @@
   </header>
 
 
-  <div class="govuk-width-container">
+  <main class="govuk-width-container" role="main">
     <div class="govuk-main-wrapper">
       <div class="govuk-grid-row">
-
-          <main id="main-content" class="app-content gem-c-govspeak" role="main">
+          <div id="main-content" class="app-content gem-c-govspeak">
             <%= yield %>
-          </main>
-
+          </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer class="govuk-footer " role="contentinfo">
     <div class="govuk-width-container ">
