@@ -13,7 +13,7 @@ class GovspeakDecorator < DelegateClass(Govspeak::Document)
                raw_html.sanitize(allowed_elements: allowed_elements)
              else
                kramdown_doc.to_html
-      end
+             end
       Govspeak::PostProcessor.process(html, self)
     end
   end

@@ -7,6 +7,6 @@ class GovspeakToHTML
   end
 
   def doc(markdown)
-    doc = Govspeak::Document.new(markdown, sanitize: true, allowed_elements: ALLOWED_TAGS)
+    Govspeak::Document.new(markdown, sanitize: true, allowed_elements: ALLOWED_TAGS)
   end
 end
