@@ -132,7 +132,8 @@ From birth, babies want to connect with others and are eager to interact. For ex
 Being with others helps children to build social relationships which provide opportunities for friendship, empathy and sharing emotions.
 Research shows that high-quality interactions between adults and children make a big difference to how well communication and language skills develop. Children benefit from the company of responsive and enthusiastic adults who are genuinely interested in talking to them.
 In this video, an early years interactions expert explains what has changed within the early years foundation stage framework on interactions, and why. There are also some tips on getting the most out of a child in this area.
-[![Early Years Foundation Stage: Children build a number line](http://img.youtube.com/vi/SYhhCcokBF8/0.jpg)](http://www.youtube.com/watch?v=SYhhCcokBF8)
+
+$YoutubeVideo[Early Years Foundation Stage: Children build a number line](http://www.youtube.com/watch?v=SYhhCcokBF8)$EndYoutubeVideo
 
 ## What the early years foundation stage (EYFS) framework says
 Children's back-and-forth interactions from an early age form the foundations for language and mental development.
