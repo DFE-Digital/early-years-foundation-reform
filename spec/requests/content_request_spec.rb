@@ -6,6 +6,10 @@ RSpec.describe "Contents", type: :request do
     FactoryBot.create(:content_page, parent_id: parent.id)
   end
 
+  before :all do
+    cookies[:track_google_analytics] = "true"
+  end
+
   describe "GET /show" do
     it "renders a page" do
       get a_page.full_path
@@ -30,6 +34,37 @@ RSpec.describe "Contents", type: :request do
     end
 
     xit "renders the mobile menu of content pages, two levels, in correct order" do
+    end
+  end
+
+  describe "Temporary authorisation on public site" do
+    # login to http basic auth
+    include AuthHelper
+
+    context "With the environment variable USE_BASIC_AUTH set" do
+      it "shows a basic auth dialog if the user is not already logged in with Basic Auth" do
+        cached_env_var = ENV["USE_BASIC_AUTH"]
+        ENV["USE_BASIC_AUTH"] = "true"
+
+        get "/"
+        expect(response.status).to eq(401)
+
+        ENV["USE_BASIC_AUTH"] = cached_env_var
+      end
+
+      # This test needs to pass before the PR is accepted
+      xit "does not show a basic auth dialog if the user is already logged in with Basic Auth" do
+        user = FactoryBot.create :user
+
+        ENV["USE_BASIC_AUTH"] = "true"
+        request.env["HTTP_AUTHORIZATION"] = http_login(user.email, user.encrypted_password)
+
+        get "/"
+
+        expect(response.status).to eq(200)
+
+        ENV["USE_BASIC_AUTH"] = cached_env_var
+      end
     end
   end
 end
