@@ -12,7 +12,7 @@
   </div>
   <div>
     <ul class="govuk-list">
-      <% page_to_render.children.each_with_index do |child, index| %>
+      <% page_to_render.children.order_by_position.each_with_index do |child, index| %>
         <li>
           <%= render partial: 'details_for_a_single_page', locals: {page_to_render: child, level: level + 1} %>
         </li>

@@ -1,0 +1,50 @@
+<div class="govuk-main-wrapper" id="main-content">
+  <div class="govuk-width-container govuk-!-margin-bottom-7">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds landing-page_header-text-container govuk-!-margin-bottom-0 govuk-!-padding-bottom-0">
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+          Help for early years providers
+        </h1>
+        <p class="govuk-body-l">Information, guidance, practical support and training for delivering the early years
+          foundation stage (EYFS).</p>
+      </div>
+    </div>
+  </div>
+
+  <!--Cards section-->
+  <div class="landing-page__section--grey">
+    <div class="govuk-width-container">
+      <h2 class="govuk-heading-l">Areas of learning</h2>
+      <p class="govuk-body govuk-!-margin-bottom-7">Find information about each area of learning in the EYFS and get
+        ideas for activities you can do with early years children.</p>
+      <ul class="govuk-grid-row eyfs-card-group">
+        <% @content_pages.each do |content_page| %>
+          <li class="govuk-grid-column-one-half eyfs-card-group__item">
+            <div class="eyfs-card eyfs-card--clickable eyfs-card--icon">
+              <div class="eyfs-card__content">
+                <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="<%= '/' + content_page.slug %>"><%= content_page.title %></a>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <!--End of cards section-->
+
+  <!--Get help to improve your practice-->
+    <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <%= render partial: 'layouts/show_links_to_children_of_page_with_title' %>
+          <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+          <h2 class="govuk-heading-l">Other useful resources</h2>
+          <p class="govuk-body">Use the links below to find out other resources that may be useful</p>
+          <p class="govuk-body"><a class="govuk-link" href="#">EYFS Framework</a></p>
+          <p class="govuk-body"><a class="govuk-link" href="#">EYFS Framework support</a></p>
+          <p class="govuk-body"><a class="govuk-link" href="#">Development Matters</a></p>
+        </div>
+      </div>
+    </div>
+    <!--End of-->
+</div>

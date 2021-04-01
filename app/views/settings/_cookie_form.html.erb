@@ -1,0 +1,25 @@
+<%= form_with url: "/settings", method: :post, local: true do |form| %>
+
+  <%= form.hidden_field :return_url, value: request.path %>
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+        Do you want to accept analytics cookies?
+      </legend>
+      <div class="govuk-radios">
+        <div class="govuk-radios__item">
+          <%= form.text_field :track_google_analytics, id: "analytics-cookies", type: "radio", class: "govuk-radios__input", value: "Yes", checked: (cookies[:track_google_analytics] == "Yes") %>
+          <%= form.label "analytics-cookies", "Yes", class: "govuk-label govuk-radios__label" %>
+        </div>
+        <div class="govuk-radios__item">
+          <%= form.text_field :track_google_analytics, id: "analytics-cookies-2", type: "radio", class: "govuk-radios__input", value: "No", checked: (cookies[:track_google_analytics] == "No") %>
+          <%= form.label "analytics-cookies-2", "No", class: "govuk-label govuk-radios__label" %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <%= form.submit "Save cookie settings", class: "govuk-button" %>
+
+<% end %>
