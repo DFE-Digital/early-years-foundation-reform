@@ -3,9 +3,9 @@
 # two leading space.  Rubocop can get lost
 
 markdown_for_expressive_arts_and_design = <<-MARKDOWN_FOR_EXPRESSIVE_ARTS_AND_DESIGN
-Access resources, activity ideas and advice for teaching early years maths.
+Access resources, activity ideas and advice for teaching early years mathematics.
 
-### Early years maths resources
+### Early years mathematics resources
 
 [Counting]()
 
@@ -13,7 +13,7 @@ Access resources, activity ideas and advice for teaching early years maths.
 
 [Reasoning]()
 
-### What the EYFS framework says about maths
+### What the EYFS framework says about mathematics
 
 Developing a strong grounding in number is essential so that all children develop the necessary building blocks to excel mathematically.
 
