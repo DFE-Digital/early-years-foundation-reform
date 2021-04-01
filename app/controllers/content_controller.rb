@@ -11,6 +11,7 @@ class ContentController < ApplicationController
     if !ENV["USE_BASIC_AUTH"]
       return true
     end
+
     # rubocop:enable Style/NegatedIf
 
     authenticate_or_request_with_http_basic do |username, password|
