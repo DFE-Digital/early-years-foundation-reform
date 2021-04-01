@@ -1,9 +1,16 @@
 require "rails_helper"
 
 RSpec.describe "Contents", type: :request do
+  include AuthHelper
+
   let(:a_page) do
     parent = FactoryBot.create(:content_page)
     FactoryBot.create(:content_page, parent_id: parent.id)
+  end
+
+  let(:authorization) do
+    user = FactoryBot.create :user
+    http_login(user.email, user.password)
   end
 
   before :all do
@@ -12,13 +19,13 @@ RSpec.describe "Contents", type: :request do
 
   describe "GET /show" do
     it "renders a page" do
-      get a_page.full_path
+      get a_page.full_path, headers: { 'HTTP_AUTHORIZATION' => authorization }
       expect(response).to be_successful
     end
 
     it "renders a 404 when the page is not found" do
       without_detailed_exceptions do
-        get a_page.full_path + "rubbish"
+        get a_page.full_path + "rubbish", headers: { 'HTTP_AUTHORIZATION' => authorization }
         expect(response).to have_http_status :not_found
       end
     end
@@ -26,7 +33,7 @@ RSpec.describe "Contents", type: :request do
 
   describe "GET /" do
     it "renders the landing page / hub page" do
-      get "/"
+      get "/", headers: { 'HTTP_AUTHORIZATION' => authorization }
       expect(response).to be_successful
     end
 
@@ -53,13 +60,13 @@ RSpec.describe "Contents", type: :request do
       end
 
       # This test needs to pass before the PR is accepted
-      xit "does not show a basic auth dialog if the user is already logged in with Basic Auth" do
+      it "does not show a basic auth dialog if the user is already logged in with Basic Auth" do
+        cached_env_var = ENV["USE_BASIC_AUTH"] = "true"
+
         user = FactoryBot.create :user
+        authorization = http_login user.email, user.password
 
-        ENV["USE_BASIC_AUTH"] = "true"
-        request.env["HTTP_AUTHORIZATION"] = http_login(user.email, user.encrypted_password)
-
-        get "/"
+        get "/", headers: { 'HTTP_AUTHORIZATION' => authorization }
 
         expect(response.status).to eq(200)
 
