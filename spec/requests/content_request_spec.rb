@@ -19,13 +19,13 @@ RSpec.describe "Contents", type: :request do
 
   describe "GET /show" do
     it "renders a page" do
-      get a_page.full_path, headers: { 'HTTP_AUTHORIZATION' => authorization }
+      get a_page.full_path, headers: { "HTTP_AUTHORIZATION" => authorization }
       expect(response).to be_successful
     end
 
     it "renders a 404 when the page is not found" do
       without_detailed_exceptions do
-        get a_page.full_path + "rubbish", headers: { 'HTTP_AUTHORIZATION' => authorization }
+        get a_page.full_path + "rubbish", headers: { "HTTP_AUTHORIZATION" => authorization }
         expect(response).to have_http_status :not_found
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe "Contents", type: :request do
 
   describe "GET /" do
     it "renders the landing page / hub page" do
-      get "/", headers: { 'HTTP_AUTHORIZATION' => authorization }
+      get "/", headers: { "HTTP_AUTHORIZATION" => authorization }
       expect(response).to be_successful
     end
 
@@ -66,7 +66,7 @@ RSpec.describe "Contents", type: :request do
         user = FactoryBot.create :user
         authorization = http_login user.email, user.password
 
-        get "/", headers: { 'HTTP_AUTHORIZATION' => authorization }
+        get "/", headers: { "HTTP_AUTHORIZATION" => authorization }
 
         expect(response.status).to eq(200)
 
