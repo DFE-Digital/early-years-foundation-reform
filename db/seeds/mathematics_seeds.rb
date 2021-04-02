@@ -50,7 +50,7 @@ It is an often overlooked fact that we all, whether children or adults, are cons
 
 In this video, an expert in early years mathematics explains what’s changed in the new EYFS for counting in mathematics and offers some top tips on getting the most out of a child in this area.
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/SYhhCcokBF8/0.jpg)](http://www.youtube.com/watch?v=SYhhCcokBF8)
+$YoutubeVideo[IMAGE ALT TEXT HERE](http://www.youtube.com/watch?v=SYhhCcokBF8)$EndYoutubeVideo
 
 ### Video transcript
 
