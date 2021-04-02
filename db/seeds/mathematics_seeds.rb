@@ -3,9 +3,9 @@
 # two leading space.  Rubocop can get lost
 
 markdown_for_mathematics = <<-MARKDOWN_FOR_MATHEMATICS
-Access resources, activity ideas and advice for teaching early years maths.
+Access resources, activity ideas and advice for teaching early years mathematics.
 
-### Early years maths resources
+### Early years mathematics resources
 
 [Counting]()
 
@@ -13,7 +13,7 @@ Access resources, activity ideas and advice for teaching early years maths.
 
 [Reasoning]()
 
-### What the EYFS framework says about maths
+### What the EYFS framework says about mathematics
 
 Developing a strong grounding in number is essential so that all children develop the necessary building blocks to excel mathematically.
 
@@ -29,7 +29,7 @@ It is important that children develop positive attitudes and interests in mathem
 MARKDOWN_FOR_MATHEMATICS
 
 mathematics = {
-  title: "Maths",
+  title: "Mathematics",
   markdown: markdown_for_mathematics,
   position: 5,
 }
@@ -48,7 +48,7 @@ It is an often overlooked fact that we all, whether children or adults, are cons
 
 - You can make a real difference to ensure every child has a chance to become a confident learner and user of mathematics.
 
-In this video, an expert in early years maths explains what’s changed in the new EYFS for counting in maths and offers some top tips on getting the most out of a child in this area.
+In this video, an expert in early years mathematics explains what’s changed in the new EYFS for counting in mathematics and offers some top tips on getting the most out of a child in this area.
 
 $YoutubeVideo[IMAGE ALT TEXT HERE](http://www.youtube.com/watch?v=SYhhCcokBF8)$EndYoutubeVideo
 
@@ -66,13 +66,13 @@ Here we’ve suggested just a few examples of the toys and activities you can pr
 
 ## Counting activities
 
-[Download activity worksheet](https://eyfs-framework.herokuapp.com/main/ContentRound2Version1/maths/numbers-in-context#) (pdf size???)
+[Download activity worksheet](https://eyfs-framework.herokuapp.com/main/ContentRound2Version1/mathematics/numbers-in-context#) (pdf size???)
 
 ![Plates on a table in a nursery ready to start a counting exercise](https://i.ibb.co/nfB1hFc/counting-plates-960x640.jpg)
 
 In this activity, the children will learn about numbers using counters on plates.
 
-![Plates on a table in a nursery ready to start a counting exercise](https://i.ibb.co/R7NBgWc/outdoor-maths-960x640.jpg)
+![Plates on a table in a nursery ready to start a counting exercise](https://i.ibb.co/R7NBgWc/outdoor-mathematics-960x640.jpg)
 
 **Outdoor counting activities**
 
@@ -80,7 +80,7 @@ An example of an outdoor counting activity.
 
 ## How counting is linked to other areas of the EYFS
 
-If leaders, staff and parents can help to equip young children with a ‘can do’ attitude around maths, giving them the confidence to try things out and discover new skills in the same way they do for other areas of learning, we will have made a massive step in the right direction.
+If leaders, staff and parents can help to equip young children with a ‘can do’ attitude around mathematics, giving them the confidence to try things out and discover new skills in the same way they do for other areas of learning, we will have made a massive step in the right direction.
 
 ## What other nurseries and childminders are doing
 
@@ -99,9 +99,9 @@ The children are now offered a counting collection in a different area of pre-sc
 - You can make a real difference to ensure every child has a chance to become a confident learner and user of mathematics
 
 
-- Be positive about maths. Don't say things like “I can’t do maths” or “I hated maths at school”
+- Be positive about mathematics. Don't say things like “I can’t do mathematics” or “I hated mathematics at school”
 
-- Point out the maths in everyday life. Include children in activities involving maths such as using money, cooking, travelling or finding the correct house number
+- Point out the mathematics in everyday life. Include children in activities involving mathematics such as using money, cooking, travelling or finding the correct house number
 
 - Praise children for effort rather than talent. This shows them that by working hard they can always improve
 MARKDOWN_FOR_COUNTING
