@@ -27,6 +27,8 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+.env.docker
+.env.localhost
 *.log
 /.idea
 .DS_Store
