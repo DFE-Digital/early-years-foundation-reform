@@ -13,7 +13,6 @@ all in UK.GOV style;
 
 ![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
 ![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
-![Landing Page](docs/landing-page-view.png?raw=true "Landing Page")
 
 ## Prerequisites
 
@@ -64,6 +63,14 @@ cancel the running docker process and then run `docker-compose down` (for a full
 ### To connect to the docker container and run commands
 
 `docker exec -it eyfs-reform-spike_app_1 sh`
+
+### Authentication
+Devise is used for the CMS routes.  Basic Auth can be turned on for the whole site by setting 
+and environment variable called USE_BASIC_AUTH.
+
+The ContentController will then use the devise accounts to check the basic auth, but it does
+not log users in.
+
 
 ### If there are issues with postgres password authentication failure:
 
