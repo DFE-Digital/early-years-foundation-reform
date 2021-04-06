@@ -434,6 +434,8 @@ GEM
 PLATFORMS
   ruby
   x86_64-darwin-19
+  x86_64-darwin-20
+  x86_64-linux-musl
 
 DEPENDENCIES
   active_storage_validations
