@@ -1,1 +1,1 @@
-GovukContentSecurityPolicy.configure
+# GovukContentSecurityPolicy.configure
