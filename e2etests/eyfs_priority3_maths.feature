@@ -1,14 +1,14 @@
 # Example
 
-Feature: EYFS - Maths - Content
+Feature: EYFS - Mathematics - Content
 
   Background:
 
     Given "EYFS" user
-    When user proceeds to "Maths" page
+    When user proceeds to "Mathematics" page
 
 
-  Scenario:  Maths page - Content
+  Scenario:  Mathematics page - Content
 
     Then following is displayed:
       | Some Text |
@@ -17,7 +17,7 @@ Feature: EYFS - Maths - Content
       | Link 2 |
 
 
-  Scenario:  Maths - Sub-Category '?' content
+  Scenario:  Mathematics - Sub-Category '?' content
 
     And proceeds to "[Sub-category name]"
     #When "[Sub-category name / Section name]" is expanded
