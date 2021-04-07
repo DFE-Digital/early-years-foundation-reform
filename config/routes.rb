@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
-  #constraints CmsRouteConstraint.new do
+  # constraints CmsRouteConstraint.new do
   devise_for :users
   devise_scope :user do
     get "sign_in", to: "devise/sessions#new"
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     #  This is not a resource route
     post "preview_markdown", to: "content_pages#preview"
   end
-  #end
+  # end
 
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"
