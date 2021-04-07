@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"
 
+  get "/static_pages/:title", to: "static_pages#show"
+
   root to: "content#index"
 end
