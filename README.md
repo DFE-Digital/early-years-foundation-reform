@@ -66,7 +66,7 @@ cancel the running docker process and then run `docker-compose down` (for a full
 
 ### Authentication
 Devise is used for the CMS routes.  Basic Auth can be turned on for the whole site by setting 
-and environment variable called USE_BASIC_AUTH.
+and environment variable called AUTH_ON_EVERYTHING.
 
 The ContentController will then use the devise accounts to check the basic auth, but it does
 not log users in.
