@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
+  get "/static_pages/:title", to: "static_pages#show"
+
   constraints CmsRouteConstraint.new do
     devise_for :users
     devise_scope :user do
@@ -26,7 +28,6 @@ Rails.application.routes.draw do
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"
 
-  get "/static_pages/:title", to: "static_pages#show"
 
   root to: "content#index"
 end
