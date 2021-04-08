@@ -32,6 +32,11 @@ module GovukRailsBoilerplate
 
     config.exceptions_app = routes
 
+    # disable client-side XSS Auditors, as they have been removed from most
+    # modern browsers because they can cause additional vulnerabilities
+    # (see https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html#x-xss-protection-header)
+    config.action_dispatch.default_headers['X-XSS-Protection'] = "0"
+
     config.middleware.use Rack::Deflater
   end
 end
