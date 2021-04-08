@@ -19,7 +19,7 @@ RSpec.feature "Admin Content Pages", type: :feature do
       visit content_pages_path
       expect(page).to have_css("a[href='/users/sign_out']", visible: true)
       find("a[href='/users/sign_out']").click
-      # GR expect(current_path).to eq("/")
+      expect(current_path).to eq("/")
     end
   end
 end
