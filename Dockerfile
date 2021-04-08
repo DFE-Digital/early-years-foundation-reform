@@ -16,8 +16,7 @@ ENV LANG=C.UTF-8 \
     GOVUK_APP_DOMAIN=www.gov.uk \
     GOVUK_WEBSITE_ROOT=https://www.gov.uk \
     SECRET_KEY_BASE=TestKey \
-    IGNORE_SECRETS_FOR_BUILD=1 \
-    AUTH_ON_EVERYTHING=true
+    IGNORE_SECRETS_FOR_BUILD=1
 
 # Add the timezone as it's not configured by default in Alpine
 RUN apk add --update --no-cache tzdata && \
