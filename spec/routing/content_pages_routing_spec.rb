@@ -39,7 +39,7 @@ RSpec.describe ContentPagesController, type: :routing do
     it "does not route to cms routes in production if the subdomain does not contain the string 'cms'" do
       allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("production"))
 
-      # GR expect(get: "/cms/pages").to_not route_to("content_pages#index")
+      expect(get: "/cms/pages").to_not route_to("content_pages#index")
     end
   end
 end
