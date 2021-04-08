@@ -113,6 +113,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
           TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME_PROD }}
           TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
+          AUTH_ON_EVERYTHING: true
         run: |
           export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
           cd terraform/app
