@@ -55,11 +55,9 @@ class ContentPagesController < ApplicationController
 
   # POST of preview, returns html
   def preview
-    Rails.logger.silence do
-      html = GovspeakToHTML.new.translate_markdown(params["markdown"])
+    html = GovspeakToHTML.new.translate_markdown(params["markdown"])
 
-      render json: { html: html }
-    end
+    render json: { html: html }
   end
 
 private

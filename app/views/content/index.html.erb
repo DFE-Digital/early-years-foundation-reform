@@ -5,8 +5,7 @@
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
           Help for early years providers
         </h1>
-        <p class="govuk-body-l">Information, guidance, practical support and training for delivering the early years
-          foundation stage (EYFS).</p>
+        <p class="govuk-body-l">Information, guidance and practical support for delivering the early years foundation stage (EYFS) framework.</p>
       </div>
     </div>
   </div>
@@ -15,8 +14,12 @@
   <div class="landing-page__section--grey">
     <div class="govuk-width-container">
       <h2 class="govuk-heading-l">Areas of learning</h2>
-      <p class="govuk-body govuk-!-margin-bottom-7">Find information about each area of learning in the EYFS and get
-        ideas for activities you can do with early years children.</p>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <p class="govuk-body govuk-!-margin-bottom-7">Find information about each area of learning in the EYFS and get
+            ideas for activities you can do with early years children.</p>
+        </div>
+      </div>
       <ul class="govuk-grid-row eyfs-card-group">
         <% @content_pages.each do |content_page| %>
           <li class="govuk-grid-column-one-half eyfs-card-group__item">
