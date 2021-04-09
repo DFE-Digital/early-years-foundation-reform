@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
+  get "/accessibility-statement", to: "accessibility_page#show"
+
   constraints CmsRouteConstraint.new do
     devise_for :users
     devise_scope :user do
