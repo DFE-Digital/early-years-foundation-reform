@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
-  get "/static_pages/:title", to: "static_pages#show"
+  get "/accessibility-statement", to: "accessibility_page#show"
 
   constraints CmsRouteConstraint.new do
     devise_for :users
