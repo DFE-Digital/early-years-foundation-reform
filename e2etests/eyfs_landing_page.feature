@@ -16,7 +16,7 @@ Feature: EYFS - Help for early years providers - Links
       | Physical development                        |
       | Personal, social, and emotional development |
       | Literacy                                    |
-      | Maths                                       |
+      | Mathematics                                 |
       | Understanding the world                     |
       | Expressive arts and design                  |
     And following is "displayed":

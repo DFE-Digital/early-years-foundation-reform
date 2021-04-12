@@ -16,7 +16,7 @@ Feature: EYFS - Menu Item - Links
       | Physical development                        |
       | Personal, social, and emotional development |
       | Literacy                                    |
-      | Maths                                       |
+      | Mathematics                                 |
       | Understanding the world                     |
       | Expressive arts and design                  |
     When "Menu" is "collapsed"
@@ -25,7 +25,7 @@ Feature: EYFS - Menu Item - Links
       | Physical development                        |
       | Personal, social, and emotional development |
       | Literacy                                    |
-      | Maths                                       |
+      | Mathematics                                 |
       | Understanding the world                     |
       | Expressive arts and design                  |
 
@@ -86,14 +86,14 @@ Feature: EYFS - Menu Item - Links
       | Writing       |
 
 
-  Scenario:  Menu Item - Maths - Expand and Collapse
+  Scenario:  Menu Item - Mathematics - Expand and Collapse
 
-    And "Menu item Maths" is "expanded"
+    And "Menu item Mathematics" is "expanded"
     Then the following "menu links" are available:
       | Counting          |
       | Number patterns   |
       | Spatial reasoning |
-    When "Menu item Maths" is "collapsed"
+    When "Menu item Mathematics" is "collapsed"
     Then the following "menu links" are no longer available:
       | Counting          |
       | Number patterns   |

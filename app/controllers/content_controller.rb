@@ -1,7 +1,9 @@
 class ContentController < ApplicationController
+  before_action :authenticate_user!, if: proc { !ENV["AUTH_ON_EVERYTHING"].nil? }
+
   layout "content"
 
-  # This is a page whose title and children's titles are rendered in
+  # This is a page whose title and children's titles are rendered
   # a block in the landing_page_layout template
   FEATURED_PAGE_TITLE = "Get help to improve your practice".freeze
 

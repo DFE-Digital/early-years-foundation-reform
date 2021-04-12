@@ -3,25 +3,29 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-xl">Log in</h1>
+        <h1 class="govuk-heading-xl">Log in to Early Years Foundation Reform</h1>
         <div id="notice" class="govuk-error-message">
           <%= flash[:alert]%>
         </div>
         <br/>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true %>
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+              <%= f.label :email, class: "govuk-label govuk-label--l", for: "email_address"%>
+            </h1>
+            <%= f.email_field :email, autofocus: true, ariadescribed_by: "input-email_address", class: "govuk-input" %>
           </div>
 
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password %>
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+              <%= f.label :password, class: "govuk-label govuk-label--l", for: "input_password" %>
+            </h1>
+            <%= f.password_field :password, ariadescribed_by: "input-password", class: "govuk-input" %>
           </div>
           <br/>
           <% if devise_mapping.rememberable? %>
-            <div class="field">
+            <div class="govuk-form-group">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
             </div>
