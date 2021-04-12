@@ -13,12 +13,12 @@
 
 GOVUK_DOMAINS = [
   "*.education.gov.uk",
-  "*.london.cloudapps.digital"
+  "*.london.cloudapps.digital",
 ].uniq.freeze
 
 S3_DOMAINS = [
   "*.s3.eu-west-1.amazonaws.com",
-  "*.s3.eu-west-2.amazonaws.com"
+  "*.s3.eu-west-2.amazonaws.com",
 ].uniq.freeze
 
 GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
