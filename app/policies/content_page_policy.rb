@@ -1,4 +1,4 @@
-class ContentPagePolicy < ApplicationPolicy
+class ContentPagePolicy
   attr_reader :user, :content_page
 
   def initialize(user, content_page)
