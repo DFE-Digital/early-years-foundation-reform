@@ -57,14 +57,14 @@ RSpec.feature "View pages", type: :feature do
     page.find_field("content_page[markdown]").set(attributes[:markdown])
     page.find_field("content_page[position]").set(rand(10_000))
 
-    page.click_button("page.click_button('Create Content page')")
+    page.click_button("Create Content page")
 
     saved_page = ContentPage.find_by_title attributes[:title]
 
     expect(saved_page.title).to eq(attributes[:title])
   end
 
-  scenario "A user with the role of editor should NOT be able to create pages in the CMS" do
+  scenario "A user with the role of reader should NOT be able to create pages in the CMS" do
     sign_in FactoryBot.create(:user, :reader)
     attributes = FactoryBot.attributes_for :content_page
 
