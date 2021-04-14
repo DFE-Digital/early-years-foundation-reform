@@ -8,6 +8,7 @@ gem "rails", "~> 6.1.3"
 
 # User accounts; required in config/application.rb
 gem "devise", ">= 4.7.3"
+gem "pundit"
 
 # Use postgresql as the database for Active Record
 gem "pg", ">= 0.18", "< 2.0"
