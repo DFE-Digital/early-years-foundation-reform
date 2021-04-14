@@ -460,7 +460,6 @@ DEPENDENCIES
   faker
   foreman
   govspeak
-  govuk_app_config
   htmlentities (= 4.3.4)
   listen (>= 3.0.5, < 3.6)
   pg (>= 0.18, < 2.0)
