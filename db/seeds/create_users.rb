@@ -1,13 +1,13 @@
 unless User.exists?(email: "dev@hfeyp.com")
   User.create! do |u|
-    u.email = "developer@dev.com"
-    u.password = "devdev"
+    u.email = "dev@hfeyp.com"
+    u.password = "Partyw0rd"
     u.role = "editor"
   end
 
   User.create! do |u|
-    u.email = "reader@dev.com"
-    u.password = "readerreader"
-    u.role = "reader"
+    u.email = "guy@home.com"
+    u.password = "guyguy"
+    u.role = "editor"
   end
 end
