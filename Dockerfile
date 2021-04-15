@@ -37,6 +37,8 @@ RUN apk --no-cache add --update \
   postgresql-dev \
   shared-mime-info
 
+RUN apk add clamav clamav-daemon
+
 # The application runs from /app
 WORKDIR /app
 

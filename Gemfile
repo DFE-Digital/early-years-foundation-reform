@@ -20,6 +20,9 @@ gem "puma", "~> 5.2"
 gem "webpacker"
 
 gem "active_storage_validations"
+gem "ratonvirus"
+gem "ratonvirus-clamby"
+
 gem "aws-sdk-s3"
 
 # Use ActiveStorage variant
