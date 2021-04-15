@@ -18,12 +18,15 @@ class ContentAssetsController < ApplicationController
   end
 
   # GET /content_assets/1/edit
-  def edit; end
+  def edit
+    authorize @content_asset, :edit?
+  end
 
   # POST /content_assets
   def create
     @content_asset = ContentAsset.new(content_asset_params)
 
+    authorize @content_asset, :create?
     if @content_asset.save
       redirect_to @content_asset, notice: "Content asset was successfully created."
     else
@@ -33,6 +36,8 @@ class ContentAssetsController < ApplicationController
 
   # PATCH/PUT /content_assets/1
   def update
+    authorize @content_asset, :update?
+
     if @content_asset.update(content_asset_params)
       redirect_to @content_asset, notice: "Content asset was successfully updated."
     else
@@ -42,6 +47,8 @@ class ContentAssetsController < ApplicationController
 
   # DELETE /content_assets/1
   def destroy
+    authorize @content_asset, :destroy?
+
     @content_asset.destroy!
     redirect_to content_assets_url, notice: "Content asset was successfully destroyed."
   end
