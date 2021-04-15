@@ -16,6 +16,7 @@ class ContentAsset < ApplicationRecord
   validates :alt_text, presence: true
   validate :asset_file_ext_validation
   validates :asset_file, content_type: VALID_CONTENT_TYPE
+  validates :asset_file, antivirus: true
 
   def asset_file_ext_validation
     return unless asset_file.attached?

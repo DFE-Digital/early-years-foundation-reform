@@ -223,3 +223,7 @@ cucumber --color -r e2etestname.feature
 -         event:
 -           - push
 
+
+## Antivirus
+
+We use (clamav)[https://clamav.net] to scan files for viruses
