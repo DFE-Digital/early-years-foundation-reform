@@ -2,7 +2,6 @@ version: "3.8"
 
 volumes:
   db_data:
-  clam:
 
 services:
   app:
@@ -13,7 +12,6 @@ services:
     command: ./entrypoints/docker-entrypoint.sh
     depends_on:
       - database
-      - clamav
     ports:
       - "3000:3000"
     volumes:
@@ -39,11 +37,3 @@ services:
     ports:
       - '3035:3035'
     env_file: .env
-  
-  clamav:
-    image: quay.io/ukhomeofficedigital/clamav:latest
-    ports:
-      - "3310:3310"
-    volumes:
-      - clam:/var/lib/clamav
-
