@@ -9,7 +9,7 @@
         </div>
         <br/>
 
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name), autocomplete: "off") do |f| %>
           <div class="govuk-form-group">
             <h1 class="govuk-label-wrapper">
               <%= f.label :email, class: "govuk-label govuk-label--l", for: "email_address"%>
