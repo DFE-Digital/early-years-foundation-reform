@@ -16,7 +16,7 @@ RSpec.describe "/content_assets", type: :request do
   # ContentAsset. As you add validations to ContentAsset, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:content_asset)
   end
 
   let(:invalid_attributes) do
@@ -25,6 +25,8 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
+      sign_in FactoryBot.create(:user)
+
       ContentAsset.create! valid_attributes
       get content_assets_url
       expect(response).to be_successful
@@ -33,6 +35,8 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
+      sign_in FactoryBot.create(:user)
+
       content_asset = ContentAsset.create! valid_attributes
       get content_asset_url(content_asset)
       expect(response).to be_successful
@@ -50,6 +54,8 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
+      sign_in FactoryBot.create(:user)
+
       content_asset = ContentAsset.create! valid_attributes
       get edit_content_asset_url(content_asset)
       expect(response).to be_successful
@@ -59,12 +65,16 @@ RSpec.describe "/content_assets", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new ContentAsset" do
+        sign_in FactoryBot.create(:user)
+
         expect {
           post content_assets_url, params: { content_asset: valid_attributes }
         }.to change(ContentAsset, :count).by(1)
       end
 
       it "redirects to the created content_asset" do
+        sign_in FactoryBot.create(:user)
+
         post content_assets_url, params: { content_asset: valid_attributes }
         expect(response).to redirect_to(content_asset_url(ContentAsset.last))
       end
@@ -72,6 +82,8 @@ RSpec.describe "/content_assets", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new ContentAsset" do
+        sign_in FactoryBot.create(:user)
+
         expect {
           post content_assets_url, params: { content_asset: invalid_attributes }
         }.to change(ContentAsset, :count).by(0)
@@ -80,6 +92,27 @@ RSpec.describe "/content_assets", type: :request do
       it "renders a successful response (i.e. to display the 'new' template)" do
         post content_assets_url, params: { content_asset: invalid_attributes }
         expect(response).to be_successful
+      end
+    end
+
+    context "when the rate limit is exceeded" do
+      it "will not create two ContentAssets within 30 seconds of each other" do
+        sign_in FactoryBot.create(:user)
+
+        expect {
+          post content_assets_url, params: { content_asset: valid_attributes }
+
+          other_valid_attributes = FactoryBot.attributes_for(:content_asset)
+          post content_assets_url, params: { content_asset: other_valid_attributes }
+        }.to change(ContentAsset, :count).by(1)
+        # ie change by only 1, not 2, I could not get to_not working with change
+      end
+
+      it "redirects to the created content_asset" do
+        sign_in FactoryBot.create(:user)
+
+        post content_assets_url, params: { content_asset: valid_attributes }
+        expect(response).to redirect_to(content_asset_url(ContentAsset.last))
       end
     end
   end
@@ -116,6 +149,8 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested content_asset" do
+      sign_in FactoryBot.create(:user)
+
       content_asset = ContentAsset.create! valid_attributes
       expect {
         delete content_asset_url(content_asset)
@@ -123,6 +158,8 @@ RSpec.describe "/content_assets", type: :request do
     end
 
     it "redirects to the content_assets list" do
+      sign_in FactoryBot.create(:user)
+
       content_asset = ContentAsset.create! valid_attributes
       delete content_asset_url(content_asset)
       expect(response).to redirect_to(content_assets_url)
