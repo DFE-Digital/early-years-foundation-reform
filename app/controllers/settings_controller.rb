@@ -2,12 +2,8 @@ class SettingsController < ApplicationController
   layout "settings"
 
   def create
-    if params.key?(:track_google_analytics)
-      set_cookie_pref(params[:track_google_analytics])
-      redirect_to params[:return_url]
-    else
-      raise "Missing parameters"
-    end
+    set_cookie_pref(track_google_analytics)
+    redirect_to params[:return_url]
   end
 
   def show
@@ -15,6 +11,10 @@ class SettingsController < ApplicationController
   end
 
 private
+
+  def track_google_analytics
+    params.fetch(:track_google_analytics, "No")
+  end
 
   def set_cookie_pref(cookie_value)
     cookies[:track_google_analytics] = { value: cookie_value, expires: 6.months.from_now }
