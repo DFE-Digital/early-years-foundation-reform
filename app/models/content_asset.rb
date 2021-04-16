@@ -1,4 +1,6 @@
 class ContentAsset < ApplicationRecord
+  audited
+
   VALID_FILE_EXTENSIONS = %w[.pdf .doc .docx .xls .xlsx .jpeg .jpg .png].freeze
   VALID_CONTENT_TYPE = %w[
     image/jpeg

@@ -1,6 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="govuk-error-message" role="alert" aria-labelledby="error-summary-heading">
+  <span id="notice"><%= notice %></span>
+</div>
 
 <h1  class="govuk-heading-l">Assets</h1>
+
+<%= link_to 'Add Asset', new_content_asset_path, :class => "govuk-link" %>
 
 <table class="govuk-table">
   <thead class="govuk-table__head">

@@ -27,7 +27,10 @@ class ContentAssetsController < ApplicationController
     @content_asset = ContentAsset.new(content_asset_params)
 
     authorize @content_asset, :create?
-    if @content_asset.save
+
+    if upload_rate_limit_exceeded?
+      redirect_to content_assets_url, notice: "Only one upload is allowed in each 30 seconds, please wait"
+    elsif @content_asset.save
       redirect_to @content_asset, notice: "Content asset was successfully created."
     else
       render :new
@@ -54,6 +57,10 @@ class ContentAssetsController < ApplicationController
   end
 
 private
+
+  def upload_rate_limit_exceeded?
+    ContentAsset.where(updated_at: 30.seconds.ago..Time.now).count > 0
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_content_asset
