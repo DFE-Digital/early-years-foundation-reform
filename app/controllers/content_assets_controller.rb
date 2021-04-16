@@ -59,7 +59,7 @@ class ContentAssetsController < ApplicationController
 private
 
   def upload_rate_limit_exceeded?
-    ContentAsset.where(updated_at: 30.seconds.ago..Time.now).count > 0
+    ContentAsset.where(updated_at: 30.seconds.ago..Time.zone.now).count.positive?
   end
 
   # Use callbacks to share common setup or constraints between actions.
