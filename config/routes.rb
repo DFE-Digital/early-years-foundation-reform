@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
-  get "/accessibility-statement", to: "accessibility_page#show"
-
   constraints CmsRouteConstraint.new do
     devise_for :users
     devise_scope :user do
@@ -23,6 +21,10 @@ Rails.application.routes.draw do
       #  This is not a resource route
       post "preview_markdown", to: "content_pages#preview"
     end
+  end
+
+  %w[accessibility-statement disclaimer].each do |static_page|
+    get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
 
   get "/:section/:slug", to: "content#show"
