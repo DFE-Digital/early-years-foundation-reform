@@ -25,3 +25,7 @@ $govuk-image-url-function: frontend-image-url;
 @import "_cms.scss";
 @import "_links.scss";
 @import "_flash.scss";
+
+.email {
+  word-wrap: break-word;
+}
