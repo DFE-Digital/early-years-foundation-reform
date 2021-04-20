@@ -14,6 +14,6 @@ amazon:
   region: <%= ENV['AWS_REGION'] %>
   bucket: <%= ENV['AWS_BUCKET'] %>
   upload:
-  cache_control: 'max-age=86400, private'
-  public-read: true
+    cache_control: 'max-age=86400, private'
+    public-read: true
 
