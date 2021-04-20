@@ -13,7 +13,6 @@
 
 GOVUK_DOMAINS = [
   "*.education.gov.uk",
-  "*.london.cloudapps.digital",
 ].uniq.freeze
 
 S3_DOMAINS = [
