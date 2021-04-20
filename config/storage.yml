@@ -13,6 +13,3 @@ amazon:
   secret_access_key: <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
   region: <%= ENV['AWS_REGION'] %>
   bucket: <%= ENV['AWS_BUCKET'] %>
-  public-read: true
-  upload:
-    cache_control: 'private, max-age=31536000'
