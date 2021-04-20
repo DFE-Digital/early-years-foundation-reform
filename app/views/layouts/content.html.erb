@@ -50,7 +50,7 @@
       <a href="/" class="govuk-header__link govuk-header__link--service-name">
         Help for early years providers
       </a>
-      <button type="button" role="button" class=" govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <button type="button" role="button" class=" govuk-header__menu-button govuk-js-header-toggle" aria-controls="mobile-menu-nav" aria-label="Show or hide Top Level Navigation">Menu</button>
     </div>
   </div>
   </header>
@@ -59,15 +59,18 @@
     <%= render 'layouts/phase_banner' %>
   </aside>
 
-  <nav class="govuk-width-container" role="navigation" id="navigation">
+  <nav class="govuk-width-container" role="navigation" id="mobile-menu-nav" aria-label="Mobile menu navigation">
     <%= render 'layouts/mobile_menu' %>
+  </nav>
+
+  <nav class="govuk-width-container" role="navigation" aria-label="Breadcrumbs">
     <%= render 'layouts/breadcrumbs' %>
   </nav>
 
   <main class="govuk-width-container" role="main">
     <div class="govuk-main-wrapper">
       <div class="govuk-grid-row">
-        <nav role="navigation" class="govuk-grid-column-one-third desktop-menu">
+        <nav role="navigation" class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu navigation">
           <%= render 'layouts/desktop_menu' %>
         </nav>
 
