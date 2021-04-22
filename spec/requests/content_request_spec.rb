@@ -30,6 +30,11 @@ RSpec.describe "Contents", type: :request do
       expect(response).to be_successful
     end
 
+    it "renders the content pages with HTTP headers to allow caching" do
+      get "/"
+      expect(response.headers["Cache-Control"]).to eq("max-age=3600, public")
+    end
+
     xit "renders the desktop menu of content pages, two levels, in correct order" do
     end
 
