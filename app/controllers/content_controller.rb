@@ -5,7 +5,7 @@ class ContentController < ApplicationController
   def set_cache_headers
     response.headers["Cache-Control"] = "max-age=3600, public"
   end
-  
+
   layout "content"
 
   # This is a page whose title and children's titles are rendered
