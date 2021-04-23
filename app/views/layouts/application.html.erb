@@ -55,7 +55,11 @@
 
 <main role="main" class="govuk-width-container">
   <div class="govuk-main-wrapper app-content gem-c-govspeak" id="main-content">
-    <%= yield %>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <%= yield %>
+      </div>
+    </div>
   </div>
 </main>
 
