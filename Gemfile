@@ -19,6 +19,8 @@ gem "puma", "~> 5.2"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker"
 
+gem "haml"
+
 gem "active_storage_validations"
 gem "aws-sdk-s3"
 
@@ -34,7 +36,7 @@ gem "canonical-rails"
 
 gem "acts_as_tree"
 
-gem "acts_as_paranoid", "~> 0.7.1"
+gem "acts_as_paranoid", "~> 0.7.2"
 
 gem "audited", "~> 4.9"
 
