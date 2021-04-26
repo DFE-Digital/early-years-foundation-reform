@@ -57,14 +57,15 @@
     </div>
   </div>
   </header>
+  
+  <nav class="govuk-width-container" role="navigation" id="mobile-menu-nav" aria-label="Mobile menu navigation">
+    <%= render 'layouts/mobile_menu' %>
+  </nav>
 
   <aside class="govuk-width-container" role="complementary">
     <%= render 'layouts/phase_banner' %>
   </aside>
 
-  <nav class="govuk-width-container" role="navigation" id="mobile-menu-nav" aria-label="Mobile menu navigation">
-    <%= render 'layouts/mobile_menu' %>
-  </nav>
 
   <nav class="govuk-width-container" role="navigation" aria-label="Breadcrumbs">
     <%= render 'layouts/breadcrumbs' %>
