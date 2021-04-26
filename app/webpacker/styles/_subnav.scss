@@ -31,12 +31,22 @@
 }
 
 .app-subnav--mobile {
-
+  display: block;
+  
+  @include govuk-media-query($from: tablet) {
+    display:none;
+  }
+}
+  
+.js-enabled .app-subnav--mobile {
   display: none;
+}
 
-  &.is-open {
-    display: block;
+.js-enabled .app-mobile-nav--active.app-subnav--mobile {
+  display: block;
 
+  @include govuk-media-query($from: tablet) {
+    display:none;
   }
 }
 
