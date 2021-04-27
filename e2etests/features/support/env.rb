@@ -1,5 +1,4 @@
 # frozen_string_literal:true
-
 require "capybara/cucumber"
 require "selenium-webdriver"
 require "axe/cucumber/step_definitions"
