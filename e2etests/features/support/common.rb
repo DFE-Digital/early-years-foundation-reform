@@ -50,7 +50,7 @@ def check_page_heading(type, header)
     retry if (attempts += 1) < ATTEMPTS
   end
   if attempts == ATTEMPTS
-    fail("check_page_heading #{type}:#{header} Not Found after #{attempts} attempts")
+    raise("check_page_heading #{type}:#{header} Not Found after #{attempts} attempts")
   end
 end
 
@@ -63,25 +63,25 @@ def list_items(page_name)
   when "sub-areas"
     search(LEFT_PANE_MENU, LI_VALUES)
   else
-    ul = ""
+    @ul = ""
   end
   if @ul != ""
     @menu = @ul.collect(&:text)
   end
 end
 
-def check_page_obj(type, tbl, unused)
+def check_page_obj(type, tbl)
   case type.downcase
   when "links"
     expect_links(tbl)
   else
-    fail!(raise(ArgumentError.new("Argument not known '#{type}'")))
+    raise ArgumentError, "Argument not known: '#{type}'"
   end
 end
 
 def expect_links(tbl)
-  for i in 0..tbl.raw.count-1 do
-    tbl.raw[i].each {|lnk|
+  for i in 0..tbl.raw.count - 1 do
+    tbl.raw[i].each { |lnk|
       lnk_string(lnk)
       expect(page).to have_link(@lnk, visible: true, count: @lnk_count)
     }
@@ -113,7 +113,7 @@ def process_func(func, table)
       display_check(text[0])
     end
   else
-    fail!(raise(ArgumentError.new("Argument not known.  Expected: 'displayed' Actual: '#{func}'")))
+    raise ArgumentError, "Argument not known.  Expected: 'displayed' Actual: '#{func}'"
   end
 end
 
@@ -124,9 +124,9 @@ end
 def lnk_string(lnk)
   @lnk = lnk
   @lnk_count = 1
-  if lnk.index('[') != nil
-    @lnk_count = lnk[lnk.index('[')..lnk.index(']')].gsub("[","").gsub(" times]","")
-    @lnk = lnk[0..lnk.index("[")-1]
+  if lnk.index("[") != nil
+    @lnk_count = lnk[lnk.index("[")..lnk.index("]")].gsub("[", "").gsub(" times]", "")
+    @lnk = lnk[0..lnk.index("[") - 1]
   end
 end
 
@@ -142,32 +142,32 @@ end
 def check_value(actual, expected)
   if actual != expected
     puts "FAIL Expected: '#{actual}'  Actual: '#{expected}'"
-    @e = "e"
+    @excep = "e"
   end
 end
 
 def check_value_proc(obj, value)
-  @e = ""
+  @excep = ""
   actual = find(Object.const_get(obj.upcase.gsub!(" ","_"))).text
   check_value(value, actual)
   exception_call("'" + obj + "'" + " " + __method__.to_s)
 end
 
 def check_item(pos, desc)
-  if @menu[pos-1] != desc
-    puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos-1]}'"
-    @e = "e"
+  if @menu[pos - 1] != desc
+    puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos - 1]}'"
+    @excep = "e"
   end
 end
 
 def check_one_item(list, pos, desc)
-  @e = ""
+  @excep = ""
   check_item(pos.to_i, desc)
   exception_call(list.downcase + " " + __method__.to_s)
 end
 
 def exception_call(called_by)
-  if @e != ""
+  if @excep != ""
     raise("#{called_by} not as Expected. See 'FAIL(s)'")
   end
 end
