@@ -46,15 +46,11 @@ def check_page_heading(type, header)
   begin
     attempts ||= 1
     expect(page).to have_selector(type, text: header)
-  rescue
+  rescue StandardError
     retry if (attempts += 1) < ATTEMPTS
   end
   if attempts == ATTEMPTS
-<<<<<<< HEAD
     raise("check_page_heading #{type}:#{header} Not Found after #{attempts} attempts")
-=======
-    fail("check_page_heading #{type}:#{header} Not Found after #{attempts} attempts")
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
 end
 
@@ -67,47 +63,34 @@ def list_items(page_name)
   when "sub-areas"
     search(LEFT_PANE_MENU, LI_VALUES)
   else
-<<<<<<< HEAD
     @ul = ""
-=======
-    ul = ""
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
   if @ul != ""
     @menu = @ul.collect(&:text)
   end
 end
 
-<<<<<<< HEAD
 def check_page_obj(type, tbl)
-=======
-def check_page_obj(type, tbl, unused)
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   case type.downcase
   when "links"
     expect_links(tbl)
   else
-<<<<<<< HEAD
     raise ArgumentError, "Argument not known: '#{type}'"
-=======
-    fail!(raise(ArgumentError.new("Argument not known '#{type}'")))
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
 end
 
+# rubocop:disable all
+# I can't tell what the type of tbl is, so can't
+# convert the 'for' to an 'each'. 
 def expect_links(tbl)
-<<<<<<< HEAD
   for i in 0..tbl.raw.count - 1 do
-    tbl.raw[i].each { |lnk|
-=======
-  for i in 0..tbl.raw.count-1 do
-    tbl.raw[i].each {|lnk|
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
+    tbl.raw[i].each do |lnk|
       lnk_string(lnk)
       expect(page).to have_link(@lnk, visible: true, count: @lnk_count)
-    }
+    end
   end
 end
+# rubocop:enable all
 
 def clk(obj)
   case obj.downcase
@@ -119,11 +102,9 @@ def clk(obj)
 end
 
 def search(parameter, values)
-  begin
-    @ul = find(parameter).all(values)
-  rescue StandardError => e
-    puts "Fail: #{e}"
-  end
+  @ul = find(parameter).all(values)
+rescue StandardError => e
+  puts "Fail: #{e}"
 end
 
 def process_func(func, table)
@@ -134,11 +115,7 @@ def process_func(func, table)
       display_check(text[0])
     end
   else
-<<<<<<< HEAD
     raise ArgumentError, "Argument not known.  Expected: 'displayed' Actual: '#{func}'"
-=======
-    fail!(raise(ArgumentError.new("Argument not known.  Expected: 'displayed' Actual: '#{func}'")))
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
 end
 
@@ -149,20 +126,14 @@ end
 def lnk_string(lnk)
   @lnk = lnk
   @lnk_count = 1
-<<<<<<< HEAD
-  if lnk.index("[") != nil
+  if lnk.index("[")
     @lnk_count = lnk[lnk.index("[")..lnk.index("]")].gsub("[", "").gsub(" times]", "")
     @lnk = lnk[0..lnk.index("[") - 1]
-=======
-  if lnk.index('[') != nil
-    @lnk_count = lnk[lnk.index('[')..lnk.index(']')].gsub("[","").gsub(" times]","")
-    @lnk = lnk[0..lnk.index("[")-1]
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
 end
 
 def tab_click(obj, tab_cnt)
-  key_send = Array.new
+  key_send = []
   tab_cnt.to_i.times do
     key_send << :tab
   end
@@ -173,54 +144,32 @@ end
 def check_value(actual, expected)
   if actual != expected
     puts "FAIL Expected: '#{actual}'  Actual: '#{expected}'"
-<<<<<<< HEAD
     @excep = "e"
-=======
-    @e = "e"
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
 end
 
 def check_value_proc(obj, value)
-<<<<<<< HEAD
   @excep = ""
-=======
-  @e = ""
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
-  actual = find(Object.const_get(obj.upcase.gsub!(" ","_"))).text
+  actual = find(Object.const_get(obj.upcase.gsub!(" ", "_"))).text
   check_value(value, actual)
   exception_call("'" + obj + "'" + " " + __method__.to_s)
 end
 
 def check_item(pos, desc)
-<<<<<<< HEAD
   if @menu[pos - 1] != desc
     puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos - 1]}'"
     @excep = "e"
-=======
-  if @menu[pos-1] != desc
-    puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos-1]}'"
-    @e = "e"
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   end
 end
 
 def check_one_item(list, pos, desc)
-<<<<<<< HEAD
   @excep = ""
-=======
-  @e = ""
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
   check_item(pos.to_i, desc)
   exception_call(list.downcase + " " + __method__.to_s)
 end
 
 def exception_call(called_by)
-<<<<<<< HEAD
   if @excep != ""
-=======
-  if @e != ""
->>>>>>> 9b929cd68083161b662c3df224349135280029e5
     raise("#{called_by} not as Expected. See 'FAIL(s)'")
   end
 end
