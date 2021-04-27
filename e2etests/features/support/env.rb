@@ -1,5 +1,4 @@
 # frozen_string_literal:true
-
 require "capybara/cucumber"
 require "selenium-webdriver"
 require "axe/cucumber/step_definitions"
@@ -14,16 +13,13 @@ else
   Capybara.default_driver = :selenium
 end
 
-APP_ENV = "https://eyfs-framework.herokuapp.com/main/Round1Version1/hub"
-CMS_ENV = "https://early-years-foundation-reform.herokuapp.com/users/sign_in"
-CMS_USER = "TODO"
-CMS_P = "TODO"
+APP_ENV = "https://eyfs-test.london.cloudapps.digital"
+# APP_ENV = "https://eyfs-dev.london.cloudapps.digital"
+ATTEMPTS = 5
 
-# - - - - - - - - -
-# TODO take values from database and create dynamic runtime variables (for now hardcoded)
-# $writing1 = '/content_pages/24/edit'
-# @@writing1link3pos = 3
-WRITING1_LINK3POS = 3
-# $writing2 = '/content_pages/25/edit'
-# @@writing2link4pos = 4
-WRITING2_LINK4POS = 4
+HELP_FOR_EARLY_YEARS_PROVIDERS = "#main-content > div.landing-page__section--grey > div > ul"
+LI_VALUES = "li"
+LEFT_PANE_MENU = "body > main > div > div > nav > nav"
+LP_LEARNING_AREAS = "h4"
+PREVIOUS_PAGE = "li.gem-c-pagination__item.gem-c-pagination__item--previous > a > span.gem-c-pagination__link-label"
+NEXT_PAGE = "li.gem-c-pagination__item.gem-c-pagination__item--next > a > span.gem-c-pagination__link-label"

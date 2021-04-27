@@ -9,32 +9,29 @@ def user_access(user)
   open_app(env)
 end
 
-def proceed_to(page_name)
-  page_name = page_name.downcase.gsub!(" ", "")
+def proceed_to(page, func)
+  link = page
+  page_name = if func == ""
+                page.downcase
+              else
+                func.downcase
+              end
   case page_name
-  # temp for CMS PoC
-  when "writing1"
-    link_clk("Edit", WRITING1_LINK3POS)
-  # temp for CMS PoC
-  when "writing2"
-    link_clk("Edit", WRITING2_LINK4POS)
+  when "landing", "help for early years providers", "7 areas of learning blocks"
+    list_items(page_name)
+  when "communication and language", "physical development", "personal, social and emotional development", "literacy", "mathematics", "understanding the world", "expressive arts and design"
+    click_on link
+    list_items("learning areas")
+  when "left-menu sub-areas"
+    click_on link
+    list_items("sub-areas")
   else
-    puts "Case statement required: #{page}"
+    raise("Case statement required: #{page_name}")
   end
 end
 
-def process_event(obj, event) end
-
 def open_app(env)
   visit(env)
-  # temp for cms poc
-  if expect(page).to have_text("Log in")
-    enter("user_email", CMS_USER)
-    enter("user_password", CMS_P)
-    click_on "commit"
-  else
-    puts "Signed In"
-  end
 end
 
 def enter(fld, val)
@@ -43,4 +40,134 @@ end
 
 def link_clk(name, pos)
   page.all(:link, name)[pos].click
+end
+
+def check_page_heading(type, header)
+  begin
+    attempts ||= 1
+    expect(page).to have_selector(type, text: header)
+  rescue
+    retry if (attempts += 1) < ATTEMPTS
+  end
+  if attempts == ATTEMPTS
+    fail("check_page_heading #{type}:#{header} Not Found after #{attempts} attempts")
+  end
+end
+
+def list_items(page_name)
+  case page_name
+  when "help for early years providers", "7 areas of learning blocks"
+    search(HELP_FOR_EARLY_YEARS_PROVIDERS, LI_VALUES)
+  when "learning areas"
+    search(LEFT_PANE_MENU, LP_LEARNING_AREAS)
+  when "sub-areas"
+    search(LEFT_PANE_MENU, LI_VALUES)
+  else
+    ul = ""
+  end
+  if @ul != ""
+    @menu = @ul.collect(&:text)
+  end
+end
+
+def check_page_obj(type, tbl, unused)
+  case type.downcase
+  when "links"
+    expect_links(tbl)
+  else
+    fail!(raise(ArgumentError.new("Argument not known '#{type}'")))
+  end
+end
+
+def expect_links(tbl)
+  for i in 0..tbl.raw.count-1 do
+    tbl.raw[i].each {|lnk|
+      lnk_string(lnk)
+      expect(page).to have_link(@lnk, visible: true, count: @lnk_count)
+    }
+  end
+end
+
+def clk(obj)
+  case obj.downcase
+  when "btn"
+    click_button obj
+  else
+    first(:link, obj, visible: true).click
+  end
+end
+
+def search(parameter, values)
+  begin
+    @ul = find(parameter).all(values)
+  rescue StandardError => e
+    puts "Fail: #{e}"
+  end
+end
+
+def process_func(func, table)
+  tbl = table.raw
+  case func
+  when "displayed"
+    tbl.each do |text|
+      display_check(text[0])
+    end
+  else
+    fail!(raise(ArgumentError.new("Argument not known.  Expected: 'displayed' Actual: '#{func}'")))
+  end
+end
+
+def display_check(text)
+  expect(page).to have_text text
+end
+
+def lnk_string(lnk)
+  @lnk = lnk
+  @lnk_count = 1
+  if lnk.index('[') != nil
+    @lnk_count = lnk[lnk.index('[')..lnk.index(']')].gsub("[","").gsub(" times]","")
+    @lnk = lnk[0..lnk.index("[")-1]
+  end
+end
+
+def tab_click(obj, tab_cnt)
+  key_send = Array.new
+  tab_cnt.to_i.times do
+    key_send << :tab
+  end
+  key_send << :enter
+  find(:link, obj, visible: true).send_keys(key_send)
+end
+
+def check_value(actual, expected)
+  if actual != expected
+    puts "FAIL Expected: '#{actual}'  Actual: '#{expected}'"
+    @e = "e"
+  end
+end
+
+def check_value_proc(obj, value)
+  @e = ""
+  actual = find(Object.const_get(obj.upcase.gsub!(" ","_"))).text
+  check_value(value, actual)
+  exception_call("'" + obj + "'" + " " + __method__.to_s)
+end
+
+def check_item(pos, desc)
+  if @menu[pos-1] != desc
+    puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos-1]}'"
+    @e = "e"
+  end
+end
+
+def check_one_item(list, pos, desc)
+  @e = ""
+  check_item(pos.to_i, desc)
+  exception_call(list.downcase + " " + __method__.to_s)
+end
+
+def exception_call(called_by)
+  if @e != ""
+    raise("#{called_by} not as Expected. See 'FAIL(s)'")
+  end
 end
