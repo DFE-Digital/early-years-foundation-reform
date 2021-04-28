@@ -18,6 +18,11 @@ $(document).ready(function() {
 
   //----- mobile nav -----//
 
+  //toggle menu button arrow
+  $( ".govuk-js-header-toggle" ).click(function() {
+    $( ".app-header-mobile-nav-toggler" ).toggleClass('app-header-mobile-nav-toggler--active');
+  });
+
   //2nd level nav stays visible
   $('.app-mobile-nav__subnav-item--current').parent().show();
 
