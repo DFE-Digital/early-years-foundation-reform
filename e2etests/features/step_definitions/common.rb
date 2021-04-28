@@ -17,7 +17,7 @@ And(/^page has "([^"]*)" heading "([^"]*)"$/) do |type, page|
 end
 
 And(/^the following "([^"]*)" are available:$/) do |type, tbl|
-  check_page_obj(type, tbl, "")
+  check_page_obj(type, tbl)
 end
 
 And(/^following is "([^"]*)":$/) do |func, tbl|
