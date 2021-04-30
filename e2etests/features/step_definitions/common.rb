@@ -1,12 +1,10 @@
 # frozen_string_literal:true
 
-Given(/^"([^"]*)" user$/) do |user|
-  user_access(user)
+Given(/^EYFS Service user$/) do
+  visit("https://eyfs-test.london.cloudapps.digital")
 end
 
-When(/^user proceeds to "([^"]*)" page$/) do |page|
-  proceed_to(page, "")
-end
+
 
 Then(/^page has heading "([^"]*)"$/) do |page|
   check_page_heading("h1", page)
@@ -45,3 +43,4 @@ end
 When(/^on "([^"]*)" followed by "([^"]*)" tabs and click$/) do |obj, tab_cnt|
   tab_click(obj, tab_cnt)
 end
+
