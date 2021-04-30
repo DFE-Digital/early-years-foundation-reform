@@ -18,29 +18,6 @@ $(document).ready(function() {
 
   //----- mobile nav -----//
 
-  //toggle menu button arrow
-  $( ".govuk-js-header-toggle" ).click(function() {
-    $( ".app-header-mobile-nav-toggler" ).toggleClass('app-header-mobile-nav-toggler--active');
-  });
-
-  //2nd level nav stays visible
-  $('.app-mobile-nav__subnav-item--current').parent().show();
-
-  //show mobile nav when clicking hamburger
-  $( ".govuk-js-header-toggle" ).click(function() {
-    $( ".app-subnav--mobile" ).toggleClass('app-mobile-nav--active');
-  });
-
-  //show subnav links when clicking top level
-  $('.learning-section-mobile-nav > a').click(function() {
-    $(this).parent().children('ul.app-mobile-subnav-section').toggle();
-  });
-
-  //disable top level section click on mobile nav
-  $('.learning-section-mobile-nav .top-level-link').click(function(e) {
-    e.preventDefault();
-  });
-
   //clipboard
   $('#clipboard_copier').click(function() {
     copyToClipboard();
@@ -57,3 +34,59 @@ $(document).ready(function() {
   });
 
 });
+
+const menuButton = document.querySelector('.js-app-mobile-nav-toggler');
+const mobileSubNav = document.querySelector('.app-subnav--mobile');
+
+//Set aria attributes when JS is available
+menuButton.setAttribute('aria-expanded', 'false');
+mobileSubNav.setAttribute('aria-hidden', 'true');
+
+menuButton.addEventListener('click', function() {
+  //Menu open
+  if (menuButton.classList.contains('is-active')) {
+    menuButton.classList.add('is-active');
+    mobileSubNav.classList.add('app-mobile-nav--active');
+    menuButton.setAttribute('aria-expanded', 'false')
+    mobileSubNav.setAttribute('aria-hidden', 'true')
+  } else { //menu closed//
+    menuButton.classList.remove('is-active');
+    mobileSubNav.classList.remove('app-mobile-nav--active');
+    menuButton.setAttribute('aria-expanded', 'true')
+    mobileSubNav.setAttribute('aria-hidden', 'false')
+  }
+});
+
+// // Sub navigation
+
+// // Loop through and find all the sub headings
+const subLinks = document.querySelectorAll('.app-mobile-nav-subnav-toggler');
+const subNavActive = ('app-mobile-nav__subnav--active');
+
+// build an array of the subLinks
+Array.from(subLinks).forEach(link => {
+
+  // listen for a click on subLinks
+  link.addEventListener('click', function(e) {
+    //rules for aria attributes when submenu is closed
+    e.preventDefault();
+    if (this.nextElementSibling.classList.contains(subNavActive)) {
+      this.nextElementSibling.classList.remove(subNavActive)
+      this.firstElementChild.setAttribute('aria-expanded', 'false')
+      this.nextElementSibling.setAttribute('aria-hidden', 'true')
+    //rules for aria attributes when submenu is open
+    } else {
+      this.nextElementSibling.classList.add(subNavActive)
+      this.firstElementChild.setAttribute('aria-expanded', 'true')
+      this.nextElementSibling.setAttribute('aria-hidden', 'false')
+    }
+  });
+});
+
+const stickyMenu = document.querySelector('.js-app-mobile-nav-toggler');
+const mobileStickySubNav = document.querySelector('.app-subnav--mobile');
+
+stickyMenu.onclick = () => {
+  stickyMenu.classList.toggle('is-active');
+  mobileStickySubNav.classList.toggle('app-mobile-nav--active');
+}
