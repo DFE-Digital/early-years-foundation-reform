@@ -2,7 +2,7 @@ Feature: EYFS - Understanding the World - Links
 
   Background:
 
-    Given "EYFS service" user
+    Given an ordinary user visits the site
     When user proceeds to "Understanding the world" page
 
 

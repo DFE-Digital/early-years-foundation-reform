@@ -2,7 +2,7 @@ Feature: EYFS - Navigation to Cookie page
 
   Background:
 
-    Given "EYFS Service or CMS" user
+    Given an ordinary user visits the site
 
   Scenario:  Landing page - Cookie link navigation
 

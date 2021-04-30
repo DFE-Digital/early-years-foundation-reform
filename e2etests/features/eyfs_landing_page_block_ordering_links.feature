@@ -2,7 +2,7 @@ Feature: EYFS - Landing page - 7 Areas of Learning - Block Ordering of Links
 
   Background:
 
-    Given "EYFS service" user
+    Given an ordinary user visits the site
     When user proceeds to "7 areas of learning blocks" page
 
 

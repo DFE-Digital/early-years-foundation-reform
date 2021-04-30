@@ -1,7 +1,7 @@
-# frozen_string_literal:true
 require "capybara/cucumber"
 require "selenium-webdriver"
 require "axe/cucumber/step_definitions"
+require 'webdrivers/chromedriver'
 
 if ENV["headless"]
   Capybara.default_driver = :poltergeist
@@ -13,8 +13,7 @@ else
   Capybara.default_driver = :selenium
 end
 
-APP_ENV = "https://eyfs-test.london.cloudapps.digital"
-# APP_ENV = "https://eyfs-dev.london.cloudapps.digital"
+APP_ENV = "http://help-for-early-years-providers.education.gov.uk/"
 ATTEMPTS = 5
 
 HELP_FOR_EARLY_YEARS_PROVIDERS = "#main-content > div.landing-page__section--grey > div > ul"

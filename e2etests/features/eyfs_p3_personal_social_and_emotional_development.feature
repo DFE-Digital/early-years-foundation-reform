@@ -2,7 +2,7 @@ Feature: EYFS - Personal, Social and Emotional Development - Links
 
   Background:
 
-    Given "EYFS service" user
+    Given an ordinary user visits the site
     When user proceeds to "Personal, social and emotional development" page
 
 

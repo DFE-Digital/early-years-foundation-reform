@@ -2,7 +2,7 @@ Feature: EYFS - Help for early years providers - Landing page
 
   Background:
 
-    Given "EYFS Service" user
+    Given an ordinary user visits the site
     When user proceeds to "Help for early years providers" page
 
 
@@ -41,29 +41,8 @@ Feature: EYFS - Help for early years providers - Landing page
   Scenario:  Help for early years providers - Other useful resources - Links
 
     Then page has "h2" heading "Other useful resources"
-# Obsolete      | Use the links below to find out other resources that may be useful |
     And the following "links" are available:
       | Changes to the early years foundation stage framework                                       |
       | Statutory framework for the early years foundation stage                                    |
       | Development Matters, non-statutory curriculum guidance for the early years foundation stage |
 
-
-# Obsolete
-#  Scenario:  Help for early years providers - Pandemic notice
-#
-#    Then following is "displayed":
-#      | Stay up to date with GOV.UK |
-#    And the following "links" are available:
-#      | Sign up to get emails when we change any coronavirus information on the GOV.UK website |
-
-# Obsolete
-#  Scenario:  Help for early years providers - Social media
-#
-#    Then following is "displayed":
-#      | Share this page |
-#    And the following "links" are available:
-#      | Facebook  |
-#      | Pinterest |
-#      | Whatsapp  |
-#      | Email     |
-#      | Twitter   |

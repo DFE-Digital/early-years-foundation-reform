@@ -1,10 +1,10 @@
-# frozen_string_literal:true
-
-Given(/^EYFS Service user$/) do
-  visit("https://eyfs-test.london.cloudapps.digital")
+Given(/an ordinary user visits the site/) do
+  visit("https://help-for-early-years-providers.education.gov.uk")
 end
 
-
+When(/^user proceeds to "([^"]*)" page$/) do |page|
+  proceed_to(page, "")
+end
 
 Then(/^page has heading "([^"]*)"$/) do |page|
   check_page_heading("h1", page)

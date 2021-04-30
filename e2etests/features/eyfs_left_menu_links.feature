@@ -2,7 +2,7 @@ Feature: EYFS - Left-menu - Links
 
   Background:
 
-    Given "EYFS service" user
+    Given an ordinary user visits the site
 
 
   Scenario:  Left-menu - Sub-areas - Links
