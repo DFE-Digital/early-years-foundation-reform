@@ -43,4 +43,3 @@ end
 When(/^on "([^"]*)" followed by "([^"]*)" tabs and click$/) do |obj, tab_cnt|
   tab_click(obj, tab_cnt)
 end
-
