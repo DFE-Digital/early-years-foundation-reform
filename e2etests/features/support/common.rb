@@ -1,12 +1,3 @@
-def user_access(user)
-  env = if user.downcase == "cms"
-          CMS_ENV
-        else
-          APP_ENV
-        end
-  open_app(env)
-end
-
 def proceed_to(page, func)
   link = page
   page_name = if func == ""

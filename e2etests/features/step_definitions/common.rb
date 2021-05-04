@@ -1,5 +1,5 @@
-Given(/an ordinary user visits the site/) do
-  visit("https://help-for-early-years-providers.education.gov.uk")
+Given(/the site is visited/) do
+  visit(TARGET_URL)
 end
 
 When(/^user proceeds to "([^"]*)" page$/) do |page|
