@@ -3,7 +3,6 @@ require "selenium-webdriver"
 require "axe/cucumber/step_definitions"
 require "webdrivers/chromedriver"
 
-
 TARGET_URL = "http://help-for-early-years-providers.education.gov.uk/".freeze
 
 if ENV["headless"]
