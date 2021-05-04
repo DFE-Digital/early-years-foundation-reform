@@ -11,8 +11,8 @@ Feature: EYFS - Communication and Language - Links
     Then page has heading "Communication and language"
     Then "Left menu pane" item "1" is "Communication and language"
     And the following "links" are available:
-      | Interactions[3 times]                |
-      | Exploring language[2 times]          |
+      | Interactions[3 times]       |
+      | Exploring language[2 times] |
       | Listening and understanding[2 times] |
 
 

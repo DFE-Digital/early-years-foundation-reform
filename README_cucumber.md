@@ -1,7 +1,6 @@
-# Department for Education
+# Test Automation (Functional)
 
-## Early Years Foundation Stage (EYFS) Test Automation (Functional)
-
+These cucumber tests mostly test content, so it that changes, these tests will need to be updated (!)
 ## Pre-requisites
 
 ### Windows
@@ -16,6 +15,10 @@ brew install ruby
 brew install cucumber
 brew cask install chromedriver  - (This automatically installs the latest version so you may need to also update your chrome browser, more info - https://chromedriver.chromium.org/downloads)
 install IDE
+
+### To run in the terminal
+
+./script/cucumber ./e2etests/features --format pretty --color -r e2etests/features
 
 ## Project 
 
@@ -167,4 +170,3 @@ Run - Edit Configurations (depending on IDE)
 cucumber --color -r 'e2etestname'.feature
 
 ## TODO Robocop compliance
- 
