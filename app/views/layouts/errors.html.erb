@@ -53,11 +53,11 @@
   <%= render 'layouts/phase_banner' %>
 </aside>
 
-<main role="main" class="govuk-width-container">
-  <div class="govuk-main-wrapper" id="main-content">
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper" role="main" id="main-content">
     <%= yield %>
-  </div>
-</main>
+  </main>
+</div>
 
 <footer class="govuk-footer" role="contentinfo">
   <%= render 'layouts/footer_content' %>
