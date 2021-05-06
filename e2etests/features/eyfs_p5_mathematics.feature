@@ -2,7 +2,7 @@ Feature: EYFS - Mathematics - Links
 
   Background:
 
-    Given "EYFS service" user
+    Given the site is visited
     When user proceeds to "Mathematics" page
 
 

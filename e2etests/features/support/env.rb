@@ -3,6 +3,9 @@
 require "capybara/cucumber"
 require "selenium-webdriver"
 require "axe/cucumber/step_definitions"
+require "webdrivers/chromedriver"
+
+TARGET_URL = "http://help-for-early-years-providers.education.gov.uk/"
 
 if ENV["headless"]
   Capybara.default_driver = :poltergeist
@@ -14,8 +17,6 @@ else
   Capybara.default_driver = :selenium
 end
 
-APP_ENV = "https://eyfs-test.london.cloudapps.digital"
-# APP_ENV = "https://eyfs-dev.london.cloudapps.digital"
 ATTEMPTS = 5
 
 HELP_FOR_EARLY_YEARS_PROVIDERS = "#main-content > div.landing-page__section--grey > div > ul"
