@@ -74,7 +74,7 @@ def expect_links(tbl)
     tbl.raw[i].each {|lnk|
       lnk_string(lnk)
       expect(page).to have_link(@lnk, visible: true, count: @lnk_count)
-    }
+    end
   end
 end
 # rubocop:enable all
@@ -131,12 +131,12 @@ end
 def check_value(actual, expected)
   if actual != expected
     puts "FAIL Expected: '#{actual}'  Actual: '#{expected}'"
-    @e = "e"
+    @excep = "e"
   end
 end
 
 def check_value_proc(obj, value)
-  @e = ""
+  @excep = ""
   actual = find(Object.const_get(obj.upcase.gsub!(" ", "_"))).text
   check_value(value, actual)
   exception_call("'" + obj + "'" + " " + __method__.to_s)
@@ -145,18 +145,18 @@ end
 def check_item(pos, desc)
   if @menu[pos - 1] != desc
     puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos - 1]}'"
-    @e = "e"
+    @excep = "e"
   end
 end
 
 def check_one_item(list, pos, desc)
-  @e = ""
+  @excep = ""
   check_item(pos.to_i, desc)
   exception_call(list.downcase + " " + __method__.to_s)
 end
 
 def exception_call(called_by)
-  if @e != ""
+  if @excep != ""
     raise("#{called_by} not as Expected. See 'FAIL(s)'")
   end
 end
