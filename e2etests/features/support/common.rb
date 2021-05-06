@@ -74,7 +74,7 @@ def expect_links(tbl)
     tbl.raw[i].each {|lnk|
       lnk_string(lnk)
       expect(page).to have_link(@lnk, visible: true, count: @lnk_count)
-    end
+    }
   end
 end
 # rubocop:enable all
