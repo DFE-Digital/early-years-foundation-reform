@@ -1,7 +1,5 @@
-# frozen_string_literal:true
-
-Given(/^"([^"]*)" user$/) do |user|
-  user_access(user)
+Given(/the site is visited/) do
+  visit(TARGET_URL)
 end
 
 When(/^user proceeds to "([^"]*)" page$/) do |page|
