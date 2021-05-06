@@ -36,7 +36,7 @@ gem "canonical-rails", "~> 0.2"
 
 gem "acts_as_tree", "~> 2.9"
 
-gem "acts_as_paranoid", "~> 0.7.2"
+gem "acts_as_paranoid", "~> 0.7"
 
 gem "audited", "~> 4.9"
 
@@ -58,7 +58,7 @@ group :development, :test do
   gem "pry-byebug", "~> 3.9"
 
   # Testing framework
-  gem "rspec-rails", "~> 5.0.1"
+  gem "rspec-rails", "~> 5.0"
   # Adds support for Capybara system testing and selenium driver
   gem "capybara", "~> 3.34"
 
