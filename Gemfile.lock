@@ -144,11 +144,6 @@ GEM
       cucumber-messages (~> 15.0, >= 15.0.0)
     cucumber-messages (15.0.0)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
-    cucumber-rails (1.4.0)
-      capybara (>= 1.1.2)
-      cucumber (>= 1.2.0)
-      nokogiri (>= 1.5.0)
-      rails (>= 3.0.0)
     cucumber-tag-expressions (3.0.1)
     cucumber-wire (5.0.0)
       cucumber-core (~> 9.0, >= 9.0.0)
@@ -178,15 +173,8 @@ GEM
       railties (>= 5.0.0)
     faker (2.17.0)
       i18n (>= 1.6, < 2)
-    faraday (1.4.1)
-      faraday-excon (~> 1.1)
-      faraday-net_http (~> 1.0)
-      faraday-net_http_persistent (~> 1.1)
+    faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-      ruby2_keywords (>= 0.0.4)
-    faraday-excon (1.1.0)
-    faraday-net_http (1.0.1)
-    faraday-net_http_persistent (1.1.0)
     ffi (1.15.0)
     foreman (0.87.2)
     globalid (0.4.2)
@@ -242,6 +230,9 @@ GEM
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2021.0225)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.3)
     minitest (5.14.4)
     msgpack (1.4.2)
@@ -309,6 +300,13 @@ GEM
     rainbow (3.0.0)
     raindrops (0.19.1)
     rake (13.0.3)
+    ratonvirus (0.2.0)
+      activesupport (~> 6.0)
+    ratonvirus-resty (0.1.3)
+      activesupport
+      faraday (~> 1.0.0)
+      mimemagic (~> 0.3.5)
+      ratonvirus (~> 0.2.0)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -368,7 +366,6 @@ GEM
     rubocop-rspec (1.42.0)
       rubocop (>= 0.87.0)
     ruby-progressbar (1.11.0)
-    ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
     sanitize (5.2.3)
       crass (~> 1.0.2)
@@ -449,6 +446,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-19
+  x86_64-darwin-20
 
 DEPENDENCIES
   active_storage_validations (~> 0.9)
@@ -468,7 +466,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.1)
   faker (~> 2.17)
   foreman (~> 0.87)
-  govspeak (~> 6.7)
+  govspeak
   haml (~> 5.2)
   htmlentities (= 4.3.4)
   listen (>= 3.0.5, < 3.6)
@@ -477,6 +475,8 @@ DEPENDENCIES
   puma (~> 5.2)
   pundit (~> 2.1)
   rails (~> 6.1.3)
+  ratonvirus (~> 0.2.0)
+  ratonvirus-resty
   rspec (~> 3.10)
   rspec-expectations (~> 3.10)
   rspec-rails (~> 5.0)
