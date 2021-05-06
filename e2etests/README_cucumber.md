@@ -1,6 +1,13 @@
-# Department for Education
+# Test Automation (Functional)
 
-## Early Years Foundation Stage (EYFS) Test Automation (Functional)
+These cucumber tests mostly test content, so it that changes, these tests will need to be updated (!)
+
+The support/env.rb file defines which URL will be tests (TARGET_URL)
+
+### To run in the terminal
+
+./script/cucumber ./e2etests/features --format pretty --color -r e2etests/features
+
 
 ## Pre-requisites
 
@@ -167,4 +174,3 @@ Run - Edit Configurations (depending on IDE)
 cucumber --color -r 'e2etestname'.feature
 
 ## TODO Robocop compliance
- 

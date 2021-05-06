@@ -1,14 +1,3 @@
-# frozen_string_literal:true
-
-def user_access(user)
-  env = if user.downcase == "cms"
-          CMS_ENV
-        else
-          APP_ENV
-        end
-  open_app(env)
-end
-
 def proceed_to(page, func)
   link = page
   page_name = if func == ""
@@ -62,8 +51,6 @@ def list_items(page_name)
     search(LEFT_PANE_MENU, LP_LEARNING_AREAS)
   when "sub-areas"
     search(LEFT_PANE_MENU, LI_VALUES)
-  else
-    @ul = ""
   end
   if @ul != ""
     @menu = @ul.collect(&:text)
@@ -81,13 +68,13 @@ end
 
 # rubocop:disable all
 # I can't tell what the type of tbl is, so can't
-# convert the 'for' to an 'each'. 
+# convert the 'for' to an 'each'.
 def expect_links(tbl)
   for i in 0..tbl.raw.count - 1 do
-    tbl.raw[i].each do |lnk|
+    tbl.raw[i].each {|lnk|
       lnk_string(lnk)
       expect(page).to have_link(@lnk, visible: true, count: @lnk_count)
-    end
+    }
   end
 end
 # rubocop:enable all
