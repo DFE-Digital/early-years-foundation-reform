@@ -73,6 +73,7 @@ group :development, :test do
   gem "rspec"
   gem "rspec-expectations"
   gem "selenium-webdriver"
+  gem "webdrivers", "~> 4.0", require: false
 end
 
 group :development do
@@ -86,8 +87,8 @@ group :development do
 end
 
 group :test do
+  gem "cucumber-rails", require: false
   gem "simplecov", require: false
-  gem "webdrivers", "~> 4.6"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

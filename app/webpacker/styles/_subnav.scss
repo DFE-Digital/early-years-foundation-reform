@@ -84,7 +84,7 @@ border-bottom-color: currentColor;
 .app-subnav__link {
   padding: 2px 0;
   text-decoration: none;
-  //display: block;
+  display: block;
 
   &:not(:focus):hover {
     color: $govuk-link-colour;

@@ -2,7 +2,7 @@ Feature: EYFS - Literacy - Links
 
   Background:
 
-    Given "EYFS service" user
+    Given the site is visited
     When user proceeds to "Literacy" page
 
 
