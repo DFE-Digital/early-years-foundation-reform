@@ -53,15 +53,15 @@
   <%= render 'layouts/phase_banner' %>
 </aside>
 
-<main role="main" class="govuk-width-container">
-  <div class="govuk-main-wrapper app-content gem-c-govspeak" id="main-content">
+<div class="govuk-width-container">
+  <main role="main" class="govuk-main-wrapper app-content gem-c-govspeak" id="main-content">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <%= yield %>
       </div>
     </div>
-  </div>
-</main>
+  </main>
+</div>
 
 <footer class="govuk-footer" role="contentinfo">
   <%= render 'layouts/footer_content' %>
