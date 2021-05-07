@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template ">
 <head>
-  <meta name="robots" content="noindex, nofollow">
   <title>Help for early years providers</title>
   <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
@@ -53,15 +52,15 @@
   </header>
 
 
-  <main class="govuk-width-container" role="main">
-    <div class="govuk-main-wrapper">
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" role="main">
       <div class="govuk-grid-row">
           <div id="main-content" class="app-content gem-c-govspeak">
             <%= yield %>
           </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <footer class="govuk-footer " role="contentinfo">
     <div class="govuk-width-container ">

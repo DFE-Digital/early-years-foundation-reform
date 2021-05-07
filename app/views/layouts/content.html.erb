@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template">
 <head>
-  <meta name="robots" content="noindex, nofollow">
   <meta name="Cache-Control" content="max-age=3500, public">
   <title>Help for early years providers</title>
   <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
@@ -72,8 +71,8 @@
     <%= render 'layouts/breadcrumbs' %>
   </nav>
 
-  <main class="govuk-width-container" role="main">
-    <div class="govuk-main-wrapper">
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" role="main">
       <div class="govuk-grid-row">
         <nav role="navigation" class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu navigation">
           <%= render 'layouts/desktop_menu' %>
@@ -130,8 +129,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <footer class="govuk-footer " role="contentinfo">
     <%= render 'layouts/footer_content' %>
