@@ -2,7 +2,7 @@ Feature: EYFS - Help for early years providers - Header
 
   Background:
 
-    Given "EYFS Service" user
+    Given the site is visited
     When user proceeds to "Help for early years providers" page
 
 
