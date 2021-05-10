@@ -2,6 +2,7 @@ version: "3.8"
 
 volumes:
   db_data:
+  clamd_data:
 
 services:
   app:
@@ -42,6 +43,8 @@ services:
 
   clamav-rest:
     image: niilo/clamav-rest
+    volumes:
+      - clamd_data:/var/lib/clamav
     restart: unless-stopped
     ports:
       - "9000:9000"
