@@ -23,6 +23,8 @@ gem "haml", "~> 5.2"
 
 gem "active_storage_validations", "~> 0.9"
 gem "aws-sdk-s3", "~> 1.1"
+gem "ratonvirus", "~> 0.2.0"
+gem "ratonvirus-resty"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -40,7 +42,7 @@ gem "acts_as_paranoid", "~> 0.7"
 
 gem "audited", "~> 4.9"
 
-gem "govspeak", "~> 6.7"
+gem "govspeak"
 gem "htmlentities", "4.3.4"
 
 # Reduces boot times through caching; required in config/boot.rb

@@ -2,6 +2,7 @@ version: "3.8"
 
 volumes:
   db_data:
+  clamd_data:
 
 services:
   app:
@@ -17,6 +18,8 @@ services:
     volumes:
       - .:/app
     env_file: .env
+    environment:
+      - RESTY_SERVICE_URL=http://clamav-rest:9000/scan
 
   database:
     image: postgres:13.1
@@ -37,3 +40,11 @@ services:
     ports:
       - '3035:3035'
     env_file: .env
+
+  clamav-rest:
+    image: niilo/clamav-rest
+    volumes:
+      - clamd_data:/var/lib/clamav
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
