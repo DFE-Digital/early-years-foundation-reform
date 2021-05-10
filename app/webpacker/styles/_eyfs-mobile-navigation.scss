@@ -13,7 +13,7 @@
     border-bottom: 1px solid #b1b4b6;
     color: #fff;
   }
-  
+
   .app-mobile-nav--active {
     display:block;
    }
@@ -46,15 +46,15 @@
 
       }
     }
-    
+
    .app-mobile-nav-subnav-toggler {
     position:relative;
-  
+
    }
 
    .learning-section-mobile-nav {
     position: relative;
-    padding: 16px 0px 16px 0px;
+    padding: 16px 0px 16px 15px;
     background-color: #f8f8f8;
   }
 
@@ -95,7 +95,8 @@
    }
    .app-mobile-nav__subnav-item--current {
     padding-left:16px;
-    border-left:4px solid #1d70b8
+    border-left:4px solid #1d70b8;
+    margin-left: 2px;
    }
    .app-mobile-nav__theme {
     font-family:"GDS Transport",arial,sans-serif;
@@ -344,4 +345,3 @@
     overflow-x:hidden;
     border-right:0
    }
-  
