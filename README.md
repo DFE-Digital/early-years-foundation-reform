@@ -223,3 +223,16 @@ cucumber --color -r e2etestname.feature
 -         event:
 -           - push
 
+
+## Antivirus
+
+We use (clamav)[https://clamav.net] to scan files for viruses 
+via a clamav-rest docker image. To create locally follow the
+instructions on here:
+
+https://github.com/niilo/clamav-rest
+
+`docker run -p 9000:9000 --rm -it niilo/clamav-rest`
+
+This will run a clamav-rest server at http://localhost:9000
+
