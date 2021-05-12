@@ -2,7 +2,7 @@
 <html lang="en" class="govuk-template">
 <head>
   <meta name="Cache-Control" content="max-age=3500, public">
-  <title>Help for early years providers</title>
+  <title><%= @page.title %> | Help for early years providers</title>
   <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -45,34 +45,30 @@
           </span>
         </span>
       </a>
-      <div class="app-header-mobile-nav-toggler-wrapper">
-        <button aria-controls="mobile-menu-nav" id="app-mobile-nav-toggler" class="govuk-js-header-toggle govuk-button eyfs-menu-button--border app-header-mobile-nav-toggler js-app-mobile-nav-toggler" aria-expanded="false">Menu</button>
-      </div>
     </div>
     <div class="govuk-header__content">
       <a href="/" class="govuk-header__link govuk-header__link--service-name">
         Help for early years providers
       </a>
-    </div>
+      <button type="button" role="button" class=" govuk-header__menu-button govuk-js-header-toggle" aria-controls="mobile-menu-nav" aria-label="Show or hide Top Level Navigation">Menu</button>
     </div>
   </div>
   </header>
-
-  <div class="govuk-width-container" role="navigation" id="mobile-menu-nav" aria-label="Mobile menu navigation">
-    <%= render 'layouts/mobile_menu' %>
-  </div>
 
   <aside class="govuk-width-container" role="complementary">
     <%= render 'layouts/phase_banner' %>
   </aside>
 
+  <nav class="govuk-width-container" role="navigation" id="mobile-menu-nav" aria-label="Mobile menu navigation">
+    <%= render 'layouts/mobile_menu' %>
+  </nav>
 
   <nav class="govuk-width-container" role="navigation" aria-label="Breadcrumbs">
     <%= render 'layouts/breadcrumbs' %>
   </nav>
 
-  <div class="govuk-width-container">
-    <main class="govuk-main-wrapper" role="main">
+  <main class="govuk-width-container" role="main">
+    <div class="govuk-main-wrapper">
       <div class="govuk-grid-row">
         <nav role="navigation" class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu navigation">
           <%= render 'layouts/desktop_menu' %>
@@ -129,8 +125,8 @@
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 
   <footer class="govuk-footer " role="contentinfo">
     <%= render 'layouts/footer_content' %>

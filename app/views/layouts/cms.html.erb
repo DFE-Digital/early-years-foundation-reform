@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="govuk-template ">
   <head>
-    <title>Help for early years providers (editing content)</title>
+    <title>Editing content - Help for early years providers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= canonical_tag %>
@@ -63,11 +63,11 @@
       </div>
     </header>
 
-    <div class="govuk-width-container">
-      <main class="govuk-main-wrapper" role="main" id="main-content" >
+    <main role="main" id="main-content" class="govuk-width-container">
+      <div class="govuk-main-wrapper" >
         <%= yield %>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <footer class="govuk-footer " role="contentinfo">
       <%= render 'layouts/footer_content' %>
