@@ -50,6 +50,9 @@ gem "htmlentities", "4.3.4"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
 
+gem "factory_bot_rails", "~> 6.2"
+gem "faker", "~> 2.17"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -68,9 +71,7 @@ group :development, :test do
 
   gem "dotenv-rails", "~> 2.7"
 
-  gem "factory_bot_rails", "~> 6.2"
 
-  gem "faker", "~> 2.17"
 
   gem "axe-matchers", "~> 2.6"
   gem "cucumber", "~> 6.0"
