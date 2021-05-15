@@ -65,6 +65,9 @@ GEM
     acts_as_paranoid (0.7.3)
       activerecord (>= 5.2, < 7.0)
       activesupport (>= 5.2, < 7.0)
+    acts_as_tenant (0.5.0)
+      rails (>= 5.2)
+      request_store (>= 1.0.5)
     acts_as_tree (2.9.1)
       activerecord (>= 3.0.0)
     addressable (2.7.0)
@@ -234,11 +237,15 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.3)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.7)
+    nokogiri (1.11.3)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.3-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.3-x86_64-linux)
@@ -447,6 +454,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
   x86_64-darwin-20
   x86_64-linux
@@ -454,6 +462,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations (~> 0.9)
   acts_as_paranoid (~> 0.7)
+  acts_as_tenant
   acts_as_tree (~> 2.9)
   audited (~> 4.9)
   aws-sdk-s3 (~> 1.1)

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
 
+  set_current_tenant_by_subdomain(:site, :subdomain)
+
   def check
     render json: { status: "OK", version: ENV["SHA"], environment: Rails.env }, status: :ok
   end

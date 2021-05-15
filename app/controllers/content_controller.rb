@@ -30,7 +30,6 @@ class ContentController < ApplicationController
     @page
   end
 
-  # GET /
   def index
     @featured_page = ContentPage.find_by_title FEATURED_PAGE_TITLE
     # Don't show featured pages in the cards

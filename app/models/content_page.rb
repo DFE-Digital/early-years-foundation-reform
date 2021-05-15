@@ -2,6 +2,9 @@ class ContentPage < ApplicationRecord
   acts_as_tree
   audited
 
+  acts_as_tenant(:site)
+  # validates_uniqueness_to_tenant :name
+
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
 
@@ -43,11 +46,11 @@ class ContentPage < ApplicationRecord
   end
 
   def next_page
-    ContentPage.find next_id
+    self #TODO The page order needs to be scoped to the tenant
   end
 
   def previous_page
-    ContentPage.find previous_id
+    self
   end
 
   # Called when a page is created or a position attribute changes

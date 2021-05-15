@@ -6,10 +6,14 @@ def sentence_without_puncutation
   "#{Faker::Lorem.words(number: 4).join(' ')}#{rand(1000)}"
 end
 
+def invent_some_markdown
+  Faker::Markdown.sandwich(sentences: 1 + rand(2), repeat: 1 + rand(4))
+end
+
 FactoryBot.define do
   factory :content_page do
     title { sentence_without_puncutation }
-    markdown { Faker::Markdown.headers }
+    markdown { Faker::Markdown.sandwich(sentences: 5) }
     parent_id { nil }
     position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }
   end

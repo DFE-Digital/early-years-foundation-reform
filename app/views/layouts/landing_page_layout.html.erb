@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>
-    Help for early years providers
+    <%= ActsAsTenant.current_tenant.name %>
   </title>
   <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <meta Cache-Control="max-age=3500, public">
@@ -50,7 +50,7 @@
     </div>
     <div class="govuk-header__content">
       <a href="/" class="govuk-header__link govuk-header__link--service-name">
-        Help for early years providers
+        <%= ActsAsTenant.current_tenant.name %>
       </a>
     </div>
   </div>

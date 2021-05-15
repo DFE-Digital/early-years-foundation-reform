@@ -69,6 +69,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_asset_params
-    params.require(:content_asset).permit(:title, :asset_file, :alt_text)
+    params.require(:content_asset).permit(:title, :asset_file, :alt_text, :site_id)
   end
 end
