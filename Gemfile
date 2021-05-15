@@ -44,7 +44,7 @@ gem "acts_as_paranoid", "~> 0.7"
 
 gem "audited", "~> 4.9"
 
-gem "govspeak"
+gem "redcarpet"
 gem "htmlentities", "4.3.4"
 
 # Reduces boot times through caching; required in config/boot.rb
