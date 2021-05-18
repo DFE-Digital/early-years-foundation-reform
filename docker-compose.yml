@@ -40,11 +40,3 @@ services:
     ports:
       - '3035:3035'
     env_file: .env
-
-  clamav-rest:
-    image: niilo/clamav-rest
-    volumes:
-      - clamd_data:/var/lib/clamav
-    restart: unless-stopped
-    ports:
-      - "9000:9000"

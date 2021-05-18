@@ -236,3 +236,5 @@ https://github.com/niilo/clamav-rest
 
 This will run a clamav-rest server at http://localhost:9000
 
+Set RESTY_SERVICE_URL to "http://localhost:9000/scan"
+
