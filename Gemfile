@@ -17,7 +17,7 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 5.3"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 5.2"
+gem "webpacker", "~> 5.4"
 
 gem "haml", "~> 5.2"
 
@@ -71,7 +71,7 @@ group :development, :test do
   gem "faker", "~> 2.18"
 
   gem "axe-matchers", "~> 2.6"
-  gem "cucumber", "~> 6.0"
+  gem "cucumber", "~> 6.1"
   gem "rspec", "~> 3.10"
   gem "rspec-expectations", "~> 3.10"
   gem "selenium-webdriver", "~> 3"
