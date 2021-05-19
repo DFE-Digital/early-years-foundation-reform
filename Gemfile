@@ -17,7 +17,7 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 5.3"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "~> 5.2"
+gem "webpacker", "~> 5.4"
 
 gem "haml", "~> 5.2"
 

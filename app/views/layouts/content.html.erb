@@ -2,7 +2,7 @@
 <html lang="en" class="govuk-template">
 <head>
   <meta name="Cache-Control" content="max-age=3500, public">
-  <title>Help for early years providers</title>
+  <title><%= @page.title %> - Help for early years providers - GOV.UK</title>
   <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
