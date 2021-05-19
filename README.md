@@ -238,3 +238,12 @@ This will run a clamav-rest server at http://localhost:9000
 
 Set RESTY_SERVICE_URL to "http://localhost:9000/scan"
 
+The gem provides options also for using the following environment variables to be used for security at a later date. These are currently set to `nil`
+
+RESTY_USERNAME
+RESTY_PASSWORD
+PROXY_URL
+
+The `clamav-rest` server is set up at the following:
+
+https://eyfs-clamav-rest.london.cloudapps.digital

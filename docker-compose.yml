@@ -18,8 +18,6 @@ services:
     volumes:
       - .:/app
     env_file: .env
-    environment:
-      - RESTY_SERVICE_URL=http://clamav-rest:9000/scan
 
   database:
     image: postgres:13.1
