@@ -85,7 +85,7 @@ rspec
 There are cucumber tests in ./e2etests, that test the specific content for the EYFS project, not the workings of the CMS editor pages
 
 # Rubocop
-To run rubocop
+Rubocop lints the code before each commit.  To run it,
 ```
 rubocop
 ```
