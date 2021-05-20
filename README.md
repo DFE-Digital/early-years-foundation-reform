@@ -1,25 +1,96 @@
 ![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
 
-# Early Years Reform Framework
+# What it is and what it is for
 
-This is a minimalistic content management system, written in Ruby on Rails
-for use by content editors in the Early Years Reform Framework project.
+This project is really a tiny content management system for producing GOV.UK web sites.  
 
-It allows editors to create a set of nested pages, and to edit the headings,
-overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
+It was developed to create the [Help for Early Years Providers](https://help-for-early-years-providers.education.gov.uk/)
+web site. The aim is to remove as many technical barriers as possible between editors and the public
 
-These are some examples of the cut down CMS and two resulting pages
-all in UK.GOV style;
+Editors can create a set of nested pages, and edit the headings and content as 
+[GovSpeak Markdown](https://github.com/alphagov/govspeak). It is much simpler to use than Wordpress or Contentful because there are only about five things
+to learn about Govspeak.  
 
-![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
-![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
+The CSS and SCSS styling and html structure is all taken from the [UK GOV Design System](https://design-system.service.gov.uk)
+so pages will look like a typical government site.
 
-## Prerequisites
+The person editing pages does not have to learn anything about menus, styling or page layout.
 
-Ruby version `2.7.2`
+Here are a couple of screenshots of typical pages
 
-Node version `14.x.x`
-## Getting started on Docker
+![An example page](docs/cms-view.png?raw=true "An example page")
+<br/><br/><br/>
+Its easy to add pictures, lists, headings, links, paragraphs and embedded to You Tube videos
+<br/><br/><br/>
+![An embedded video](docs/public-view-of-a-page.png?raw=true "An embedded video")
+
+
+# Installing and running
+
+This is a Ruby on Rails project that uses a Postgres database.
+
+## Running locally
+This assumes you have ruby 2.7.2 installed, and postgres.
+
+```
+# Clone the repository
+git clone git@github.com:DFE-Digital/early-years-foundation-reform.git
+
+bundle install
+
+rake db:setup
+
+rake db:seed
+```
+
+In one terminal run 
+```
+rails server
+```
+and in another terminal, run web packer, which serves assets
+```
+yarn
+
+./bin/webpack-dev-server
+```
+
+Then open http://localhost:3000
+
+## To deploy to a cloud server
+Please read the documents in the ./documentation directory.
+
+## How to add CMS content
+The seed data gives some example of the markdown needed.   
+
+Add a user in the rails console
+```
+rails console
+u=User.new
+u.email="somebody@somewhere.com"
+u.password="oewrhourohawwieof"
+u.save!
+```
+
+Visit http://localhost:3000/cms/pages and login using the new credential
+
+
+
+
+## Run the tests
+
+```
+rspec
+```
+
+There are cucumber tests in ./e2etests, that test the specific content for the EYFS project, not the workings of the CMS editor pages
+
+# Rubocop
+To run rubocop
+```
+rubocop
+```
+
+## Running in a Docker instance
 
 On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
 will need to be installed first and running
@@ -97,54 +168,7 @@ When a branch is merged into `main`
 
 Check out [documentation](/documentation) folder
 
-# The following is from the template repository GOV.UK Rails Boilerplate
 
-## Prerequisites
-
-- Ruby 2.7.1
-- PostgreSQL
-- NodeJS 12.13.x
-- Yarn 1.12.x
-
-## Setting up the app in development
-
-1. Run `bundle install` to install the gem dependencies
-2. Run `yarn` to install node dependencies
-3. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
-4. Run `bundle exec rails server` to launch the app on http://localhost:3000
-5. Run `./bin/webpack-dev-server` in a separate shell for faster compilation of assets
-
-## Whats included in this boilerplate?
-
-- Rails 6.0 with Webpacker
-- [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend)
-- RSpec
-- Dotenv (managing environment variables)
-- Travis with Heroku deployment
-
-## Running specs, linter(without auto correct) and annotate models and serializers
-```
-bundle exec rake
-```
-
-## Running specs
-```
-bundle exec rspec
-```
-
-## Linting
-
-It's best to lint just your app directories and not those belonging to the framework, e.g.
-
-```bash
-bundle exec rubocop app config db lib spec Gemfile --format clang -a
-
-or
-
-bundle exec scss-lint app/webpacker/styles
-```
-
-Vscode - Rubocop has a vscode extension, linting may need to be turned on
 
 ## Using Amazon S3 Bucket for asset storage (e.g. in production)
 
