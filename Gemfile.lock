@@ -88,6 +88,22 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.3)
       aws-eventstream (~> 1, >= 1.0.2)
+    axe-core-api (4.1.0)
+      capybara
+      dumb_delegator
+      selenium-webdriver
+      virtus
+      watir
+    axe-core-capybara (4.1.0)
+      axe-core-api
+      dumb_delegator
+    axe-core-rspec (4.1.0)
+      axe-core-api
+      dumb_delegator
+      virtus
+    axe-core-selenium (4.1.0)
+      axe-core-api
+      dumb_delegator
     axe-matchers (2.6.1)
       dumb_delegator (~> 0.8)
       virtus (~> 1.0)
@@ -234,11 +250,15 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.3)
+    mini_portile2 (2.5.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.7)
+    nokogiri (1.11.4)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.4-x86_64-linux)
@@ -425,6 +445,9 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
+    watir (6.19.1)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (>= 3.142.7)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -447,6 +470,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-19
   x86_64-darwin-20
   x86_64-linux
@@ -457,6 +481,9 @@ DEPENDENCIES
   acts_as_tree (~> 2.9)
   audited (~> 4.9)
   aws-sdk-s3 (~> 1.1)
+  axe-core-capybara
+  axe-core-rspec
+  axe-core-selenium
   axe-matchers (~> 2.6)
   bcrypt (~> 3.1.16)
   bootsnap (>= 1.1.0)
@@ -485,7 +512,7 @@ DEPENDENCIES
   rspec-rails (~> 5.0)
   rubocop-govuk (~> 3.17)
   scss_lint-govuk
-  selenium-webdriver (~> 3)
+  selenium-webdriver
   simplecov (~> 0.21)
   spring (>= 2.1.1)
   spring-watcher-listen (~> 2.0.0)
