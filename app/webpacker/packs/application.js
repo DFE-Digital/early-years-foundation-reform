@@ -36,26 +36,32 @@ $(document).ready(function() {
 });
 
 const menuButton = document.querySelector('.js-app-mobile-nav-toggler');
+
+// The menu button is not rendered on the landing page
+if (menuButton) {
+  //Set aria attributes when JS is available
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.addEventListener('click', function() {
+    //Menu open
+    if (menuButton.classList.contains('is-active')) {
+      menuButton.classList.add('is-active');
+      mobileSubNav.classList.add('app-mobile-nav--active');
+      menuButton.setAttribute('aria-expanded', 'false')
+      mobileSubNav.setAttribute('aria-hidden', 'true')
+    } else { //menu closed//
+      menuButton.classList.remove('is-active');
+      mobileSubNav.classList.remove('app-mobile-nav--active');
+      menuButton.setAttribute('aria-expanded', 'true')
+      mobileSubNav.setAttribute('aria-hidden', 'false')
+    }
+  });
+}
+
 const mobileSubNav = document.querySelector('.app-subnav--mobile');
-
-//Set aria attributes when JS is available
-menuButton.setAttribute('aria-expanded', 'false');
-mobileSubNav.setAttribute('aria-hidden', 'true');
-
-menuButton.addEventListener('click', function() {
-  //Menu open
-  if (menuButton.classList.contains('is-active')) {
-    menuButton.classList.add('is-active');
-    mobileSubNav.classList.add('app-mobile-nav--active');
-    menuButton.setAttribute('aria-expanded', 'false')
-    mobileSubNav.setAttribute('aria-hidden', 'true')
-  } else { //menu closed//
-    menuButton.classList.remove('is-active');
-    mobileSubNav.classList.remove('app-mobile-nav--active');
-    menuButton.setAttribute('aria-expanded', 'true')
-    mobileSubNav.setAttribute('aria-hidden', 'false')
-  }
-});
+// Not present on the landing page
+if (mobileSubNav) {
+  mobileSubNav.setAttribute('aria-hidden', 'true');
+}
 
 // // Sub navigation
 
@@ -86,7 +92,10 @@ Array.from(subLinks).forEach(link => {
 const stickyMenu = document.querySelector('.js-app-mobile-nav-toggler');
 const mobileStickySubNav = document.querySelector('.app-subnav--mobile');
 
-stickyMenu.onclick = () => {
-  stickyMenu.classList.toggle('is-active');
-  mobileStickySubNav.classList.toggle('app-mobile-nav--active');
+// Not present on the landing page
+if (stickyMenu) {
+  stickyMenu.onclick = () => {
+    stickyMenu.classList.toggle('is-active');
+    mobileStickySubNav.classList.toggle('app-mobile-nav--active');
+  }
 }
