@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  before_action do |controller|
+    @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize)) 
+  end
 
-  layout :layout_by_resource
+  include Pundit
 
   def check
     render json: { status: "OK", version: ENV["SHA"], environment: Rails.env }, status: :ok
@@ -9,15 +11,5 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError, "Not Found"
-  end
-
-private
-
-  def layout_by_resource
-    if devise_controller?
-      "devise"
-    else
-      "application"
-    end
   end
 end
