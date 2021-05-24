@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action do |controller|
-    @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize)) 
+  before_action do |_controller|
+    @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
   end
 
   include Pundit
