@@ -7,9 +7,15 @@ RSpec.feature "View pages", type: :feature do
   scenario "Navigate to Content Pages" do
     sign_in FactoryBot.create(:user)
     visit "/cms/pages"
-    expect(page).to be_axe_clean
 
     expect(page).to have_text("Pages")
+  end
+
+  scenario "The CMS index page should not have any accessibility errors" do
+    sign_in FactoryBot.create(:user)
+    visit "/cms/pages"
+
+    expect(page).to be_axe_clean
   end
 
   scenario "Navigate to a top level page and see the title can't be edited" do
@@ -24,6 +30,14 @@ RSpec.feature "View pages", type: :feature do
     visit "/cms/pages/#{child_page.id}/edit"
 
     page.find_field("content_page[title]", disabled: false)
+  end
+
+  scenario "The CMS edit page should not have any accessibility errors" do
+    sign_in FactoryBot.create(:user)
+    visit "/cms/pages/#{parent_page.id}/edit"
+
+    pending("A PR to clean it up")
+    expect(page).to be_axe_clean
   end
 
   scenario "A user with the role of editor should be able to edit pages in the CMS" do
@@ -62,6 +76,15 @@ RSpec.feature "View pages", type: :feature do
     saved_page = ContentPage.find_by_title attributes[:title]
 
     expect(saved_page.title).to eq(attributes[:title])
+  end
+
+  scenario "The CMS create page page should not have any accessibility errors" do
+    sign_in FactoryBot.create(:user, :editor)
+
+    visit "/cms/pages/new?parent_id=#{child_page.id}"
+
+    pending("A PR to clean it up")
+    expect(page).to be_axe_clean
   end
 
   scenario "A user with the role of reader should NOT be able to create pages in the CMS" do
