@@ -22,4 +22,11 @@ class ErrorsController < ApplicationController
       format.json { render json: { error: "Unprocessable entity" }, status: :unprocessable_entity }
     end
   end
+
+  def service_unavailable
+    respond_to do |format|
+      format.html { render status: :service_unavailable }
+      format.json { render json: { error: "Service unavailable" }, status: :service_unavailable }
+    end
+  end
 end
