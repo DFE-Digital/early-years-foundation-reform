@@ -23,10 +23,10 @@ class ErrorsController < ApplicationController
     end
   end
 
-  def service_down
+  def service_unavailable
     respond_to do |format|
-      format.html { render status: :service_down }
-      format.json { render json: { error: "service down" }, status: :service_down }
+      format.html { render status: :service_unavailable }
+      format.json { render json: { error: "Service unavailable" }, status: :service_unavailable }
     end
   end
 end
