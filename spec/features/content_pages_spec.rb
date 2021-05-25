@@ -7,6 +7,7 @@ RSpec.feature "View pages", type: :feature do
   scenario "Navigate to Content Pages" do
     sign_in FactoryBot.create(:user)
     visit "/cms/pages"
+    expect(page).to be_axe_clean
 
     expect(page).to have_text("Pages")
   end
@@ -41,10 +42,9 @@ RSpec.feature "View pages", type: :feature do
 
   scenario "A user with the role of reader should be not be able to edit pages in the CMS" do
     sign_in FactoryBot.create(:user, :reader)
+    visit "/cms/pages/#{child_page.id}/edit"
 
-    expect {
-      visit "/cms/pages/#{child_page.id}/edit"
-    }.to raise_error(Pundit::NotAuthorizedError)
+    expect(page.body).to include("You don't have permission to edit pages")
   end
 
   scenario "A user with the role of editor should be able to create pages in the CMS" do
@@ -73,9 +73,8 @@ RSpec.feature "View pages", type: :feature do
     page.find_field("content_page[title]").set(attributes[:title])
     page.find_field("content_page[markdown]").set(attributes[:markdown])
     page.find_field("content_page[position]").set(rand(10_000))
+    page.click_button("Create Content page")
 
-    expect {
-      page.click_button("Create Content page")
-    }.to raise_error(Pundit::NotAuthorizedError)
+    expect(page.body).to include("You don't have permission to create pages")
   end
 end
