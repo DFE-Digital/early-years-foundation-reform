@@ -36,7 +36,6 @@ RSpec.feature "View pages", type: :feature do
     sign_in FactoryBot.create(:user)
     visit "/cms/pages/#{parent_page.id}/edit"
 
-    pending("A PR to clean it up")
     expect(page).to be_axe_clean
   end
 
@@ -83,7 +82,6 @@ RSpec.feature "View pages", type: :feature do
 
     visit "/cms/pages/new?parent_id=#{child_page.id}"
 
-    pending("A PR to clean it up")
     expect(page).to be_axe_clean
   end
 
