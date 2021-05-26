@@ -21,4 +21,11 @@ RSpec.describe ErrorsController, type: :controller do
       expect(response).to have_http_status(:unprocessable_entity)
     end
   end
+
+  describe "GET #service_unavailable" do
+    it "returns service_unavailable" do
+      get :service_unavailable
+      expect(response).to have_http_status(:service_unavailable)
+    end
+  end
 end
