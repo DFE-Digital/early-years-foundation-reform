@@ -471,7 +471,7 @@ DEPENDENCIES
   acts_as_paranoid (~> 0.7)
   acts_as_tree (~> 2.9)
   audited (~> 4.9)
-  aws-sdk-s3 (~> 1.1)
+  aws-sdk-s3 (~> 1.95)
   axe-core-capybara
   axe-core-rspec
   axe-core-selenium
