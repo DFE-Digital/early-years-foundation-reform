@@ -23,22 +23,28 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/1/edit
   def edit
     authorize @content_page, :edit?
-
     @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
 
     @content_page
+  rescue Pundit::NotAuthorizedError
+    flash[:notice] = "You don't have permission to edit pages"
+    redirect_to action: "index"
   end
 
   # POST /content_pages
   def create
     @content_page = ContentPage.new(content_page_params)
 
-    authorize @content_page, :create?
-
-    if @content_page.save
-      redirect_to @content_page, notice: "Content page was successfully created."
-    else
-      render :new
+    begin
+      authorize @content_page, :create?
+      if @content_page.save
+        redirect_to @content_page, notice: "Content page was successfully created."
+      else
+        render :new
+      end
+    rescue Pundit::NotAuthorizedError
+      flash[:notice] = "You don't have permission to create pages"
+      redirect_to action: "index"
     end
   end
 
