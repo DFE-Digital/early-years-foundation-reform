@@ -6,8 +6,6 @@ class ContentController < ApplicationController
     response.headers["Cache-Control"] = "max-age=3600, public"
   end
 
-  layout "content"
-
   # This is a page whose title and children's titles are rendered
   # a block in the landing_page_layout template
   FEATURED_PAGE_TITLE = "Get help to improve your practice".freeze
