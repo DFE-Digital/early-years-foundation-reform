@@ -73,7 +73,7 @@ GEM
     audited (4.10.0)
       activerecord (>= 4.2, < 6.2)
     aws-eventstream (1.1.1)
-    aws-partitions (1.451.0)
+    aws-partitions (1.462.0)
     aws-sdk-core (3.114.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -82,26 +82,26 @@ GEM
     aws-sdk-kms (1.43.0)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.94.1)
+    aws-sdk-s3 (1.95.1)
       aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.3)
       aws-eventstream (~> 1, >= 1.0.2)
-    axe-core-api (4.1.0)
+    axe-core-api (4.2.0)
       capybara
       dumb_delegator
       selenium-webdriver
       virtus
       watir
-    axe-core-capybara (4.1.0)
+    axe-core-capybara (4.2.0)
       axe-core-api
       dumb_delegator
-    axe-core-rspec (4.1.0)
+    axe-core-rspec (4.2.0)
       axe-core-api
       dumb_delegator
       virtus
-    axe-core-selenium (4.1.0)
+    axe-core-selenium (4.2.0)
       axe-core-api
       dumb_delegator
     axe-matchers (2.6.1)
@@ -174,7 +174,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
-    docile (1.3.5)
+    docile (1.4.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -191,7 +191,7 @@ GEM
       i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.15.0)
+    ffi (1.15.1)
     foreman (0.87.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -206,7 +206,7 @@ GEM
       nokogumbo (~> 2)
       rinku (~> 2.0)
       sanitize (>= 5.2.1, < 6)
-    govuk_app_config (3.0.0)
+    govuk_app_config (3.1.1)
       logstasher (>= 1.2.2, < 2.2.0)
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.5.0)
@@ -226,7 +226,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     jmespath (1.4.0)
-    kgio (2.11.3)
+    kgio (2.11.4)
     kramdown (2.3.1)
       rexml
     listen (3.5.1)
@@ -250,18 +250,12 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.0.3)
-    mini_portile2 (2.5.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.7)
-    nokogiri (1.11.4)
-      mini_portile2 (~> 2.5.0)
-      racc (~> 1.4)
-    nokogiri (1.11.4-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.4-x86_64-linux)
+    nokogiri (1.11.5-arm64-darwin)
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -283,7 +277,7 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.13.0)
     public_suffix (4.0.6)
-    puma (5.3.1)
+    puma (5.3.2)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -320,7 +314,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 1.0)
     rainbow (3.0.0)
-    raindrops (0.19.1)
+    raindrops (0.19.2)
     rake (13.0.3)
     ratonvirus (0.2.0)
       activesupport (~> 6.0)
@@ -329,7 +323,7 @@ GEM
       faraday (~> 1.0.0)
       mimemagic (~> 0.3.5)
       ratonvirus (~> 0.2.0)
-    rb-fsevent (0.10.4)
+    rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.1.1)
@@ -462,7 +456,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket-driver (0.7.3)
+    websocket-driver (0.7.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
@@ -470,10 +464,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
-  x86_64-darwin-19
-  x86_64-darwin-20
-  x86_64-linux
+  arm64-darwin-20
 
 DEPENDENCIES
   active_storage_validations (~> 0.9)
