@@ -1,4 +1,5 @@
 require "rails_helper"
+require "axe-rspec"
 
 RSpec.describe "Contents", type: :request do
   let(:a_page) do

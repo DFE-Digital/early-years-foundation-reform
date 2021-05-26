@@ -59,11 +59,6 @@ group :development, :test do
   # Debugging
   gem "pry-byebug", "~> 3.9"
 
-  # Testing framework
-  gem "rspec-rails", "~> 5.0"
-  # Adds support for Capybara system testing and selenium driver
-  gem "capybara", "~> 3.34"
-
   gem "dotenv-rails", "~> 2.7"
 
   gem "factory_bot_rails", "~> 6.2"
@@ -74,7 +69,6 @@ group :development, :test do
   gem "cucumber", "~> 6.1"
   gem "rspec", "~> 3.10"
   gem "rspec-expectations", "~> 3.10"
-  gem "selenium-webdriver", "~> 3"
 end
 
 group :development do
@@ -88,6 +82,13 @@ group :development do
 end
 
 group :test do
+  gem "axe-core-capybara"
+  gem "axe-core-rspec"
+  gem "axe-core-selenium"
+
+  gem "capybara", "~> 3.34"
+  gem "rspec-rails", "~> 5.0"
+  gem "selenium-webdriver"
   gem "simplecov",  "~> 0.21", require: false
   gem "webdrivers", "~> 4.6"
 end
