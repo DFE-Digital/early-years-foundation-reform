@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="govuk-template ">
+<html lang="en" class="govuk-template">
 <head>
-  <title>Help for early years providers - GOV.UK</title>
+  <meta name="Cache-Control" content="max-age=3500, public">
+  <title><%= @page.title %> - Help for early years providers - GOV.UK</title>
+  <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= canonical_tag %>
@@ -16,14 +18,17 @@
   <%= favicon_link_tag asset_pack_path('media/images/govuk-apple-touch-icon-180x180.png'), rel: 'apple-touch-icon', type: 'image/png', size: '180x180' %>
   <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload', media: 'all' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-
 </head>
 
 <body class="govuk-template__body ">
-<script>
-  document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-</script>
+  <script>
+    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+  </script>
+  <%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
 
+  <% if !cookies[:track_google_analytics] %>
+  <%= render 'layouts/cookies_notice'  %>
+  <% end %>
 
   <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
@@ -40,32 +45,107 @@
           </span>
         </span>
       </a>
+      <% if @page.navigation %>
+        <div class="app-header-mobile-nav-toggler-wrapper">
+          <button aria-controls="mobile-menu-nav" id="app-mobile-nav-toggler" class="govuk-js-header-toggle govuk-button eyfs-menu-button--border app-header-mobile-nav-toggler js-app-mobile-nav-toggler" aria-expanded="false">Menu</button>
+        </div>
+      <% end %>
     </div>
     <div class="govuk-header__content">
       <a href="/" class="govuk-header__link govuk-header__link--service-name">
         Help for early years providers
       </a>
     </div>
+    </div>
   </div>
   </header>
 
-<aside role="complementary" class="govuk-width-container">
-  <%= render 'layouts/phase_banner' %>
-</aside>
+  <%= render 'layouts/mobile_menu' %>
 
-<div class="govuk-width-container">
-  <main role="main" class="govuk-main-wrapper app-content gem-c-govspeak" id="main-content">
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <%= yield %>
+  <aside class="govuk-width-container" role="complementary">
+    <%= render 'layouts/phase_banner' %>
+  </aside>
+
+  <% if @page.breadcrumbs %>
+    <nav class="govuk-width-container" role="navigation" aria-label="Breadcrumbs">
+      <%= render 'layouts/breadcrumbs' %>
+    </nav>
+  <% end %>
+
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" role="main">
+      <div class="govuk-grid-row">
+        <% if @page.navigation %>
+          <nav role="navigation" class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu navigation">
+            <%= render 'layouts/desktop_menu' %>
+          </nav>
+        <% end %>
+
+        <div class="govuk-grid-column-two-thirds">
+          <div id="main-content" class="app-content gem-c-govspeak">
+            <%= yield %>
+            <% if @page.navigation %>
+              <nav class="gem-c-pagination" role="navigation" aria-label="Pagination">
+                <ul class="gem-c-pagination__list">
+                  <% if @page.previous_page %>
+                    <li class="gem-c-pagination__item gem-c-pagination__item--previous">
+                      <a href="<%= @page.previous_page.full_path %>" class="gem-c-pagination__link">
+                                    <span class="gem-c-pagination__link-title">
+                                        <svg class="gem-c-pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+                                        <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+                                        </svg>
+                                        <span class="gem-c-pagination__link-text">
+                                        Previous page
+                                        </span>
+                                    </span>
+                        <span class="gem-c-pagination__link-divider visually-hidden">:</span>
+                        <span class="gem-c-pagination__link-label"><%= @page.previous_page.title %></span>
+                      </a>
+                    </li>
+                  <% end %>
+                  <% if @page.next_page %>
+                    <li class="gem-c-pagination__item gem-c-pagination__item--next">
+                      <a href="<%= @page.next_page.full_path %>" class="gem-c-pagination__link">
+                                    <span class="gem-c-pagination__link-title">
+                                        <svg class="gem-c-pagination__link-icon" xmlns="http://www.w3.org/2000/svg" height="13" width="17" viewBox="0 0 17 13">
+                                        <path d="m10.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                                        </svg>
+                                        <span class="gem-c-pagination__link-text">
+                                        Next page
+                                        </span>
+                                    </span>
+                        <span class="gem-c-pagination__link-divider visually-hidden">:</span>
+                        <span class="gem-c-pagination__link-label"><%= @page.next_page.title %></span>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </nav>
+            <% end %>
+          </div>
+
+          <% if @page.helpful_tools %>
+            <div class="eyfs-helpful-tools">
+              <div class="app-back-to-top govuk-!-margin-bottom-7" data-module="app-back-to-top">
+                <a class="govuk-link govuk-link--no-visited-state app-back-to-top__link" href="#top">
+                  <svg role="presentation" focusable="false" class="app-back-to-top__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17">
+                    <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+                  </svg>Back to top
+                </a>
+              </div>
+              <div class="gem-c-print-link govuk-!-margin-top-3 govuk-!-margin-bottom-6">
+                <button class="govuk-link gem-c-print-link__button" onclick="window.print()" data-module="print-link" >Print this page</button>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
-  </main>
-</div>
+    </main>
+  </div>
 
-<footer class="govuk-footer" role="contentinfo">
-  <%= render 'layouts/footer_content' %>
-</footer>
+  <footer class="govuk-footer " role="contentinfo">
+    <%= render 'layouts/footer_content' %>
+  </footer>
+
 </body>
 </html>
-

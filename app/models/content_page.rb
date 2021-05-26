@@ -50,6 +50,18 @@ class ContentPage < ApplicationRecord
     ContentPage.find previous_id
   end
 
+  def navigation
+    true
+  end
+
+  def breadcrumbs
+    true
+  end
+
+  def helpful_tools
+    true
+  end
+
   # Called when a page is created or a position attribute changes
   class << self
     def reorder
