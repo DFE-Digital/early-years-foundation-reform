@@ -63,7 +63,7 @@ Workflows are made up of one or more jobs and can be scheduled or triggered by a
 
 ### Seed data
 
-[Seed data is destroyed](../db/seeds.rb) and recreated in `dev`, `test` and `pre prod` environments.
+Seed is no longer run (../db/seeds.rb)
 
 `prod` does not get seeded with data automatically.
 
