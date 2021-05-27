@@ -1,6 +1,6 @@
 Ratonvirus::Resty.configure do |config|
   # Sets the base url for api requests
-  config.service_url = ENV.fetch("RESTY_SERVICE_URL", "https://eyfs-clamav-rest.london.cloudapps.digital/scan")
+  config.service_url = ENV.fetch("RESTY_SERVICE_URL", "http://eyfs-clamav-rest-private.apps.internal:9000/scan")
   # Optional sets the username for api requests
   config.username = ENV.fetch("RESTY_USERNAME", nil)
   # Optional sets the password for api requests

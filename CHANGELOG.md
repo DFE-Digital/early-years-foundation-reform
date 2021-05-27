@@ -10,6 +10,14 @@ we do not currently follow Semantic Versioning or track version numbers.
 
 ### Added
 ### Changed
+  [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
+
+  [HFEYP-405]( https://dfedigital.atlassian.net/browse/HFEYP-405 )
+
+  Explain the clamav-rest server set up in CLAMAV.md
+    * manifest.yml file used to create private servers in eyfs-prod
+    * default clamav service url points to new server in eyfs-prod
+
 ### Deprecated
 ### Removed
 ### Fixed
