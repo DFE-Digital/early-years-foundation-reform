@@ -97,3 +97,5 @@ end
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "activerecord-session_store", "~> 2.0"
+
+gem "devise-security", "~> 0.16.0"
