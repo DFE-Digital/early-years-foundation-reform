@@ -49,6 +49,12 @@ GEM
     activerecord (6.1.3.2)
       activemodel (= 6.1.3.2)
       activesupport (= 6.1.3.2)
+    activerecord-session_store (2.0.0)
+      actionpack (>= 5.2.4.1)
+      activerecord (>= 5.2.4.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.8, < 3)
+      railties (>= 5.2.4.1)
     activestorage (6.1.3.2)
       actionpack (= 6.1.3.2)
       activejob (= 6.1.3.2)
@@ -252,6 +258,7 @@ GEM
     mini_mime (1.0.3)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multi_json (1.15.0)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.7)
@@ -465,9 +472,11 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  x86_64-darwin-20
 
 DEPENDENCIES
   active_storage_validations (~> 0.9)
+  activerecord-session_store (~> 2.0)
   acts_as_paranoid (~> 0.7)
   acts_as_tree (~> 2.9)
   audited (~> 4.9)
