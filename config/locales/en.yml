@@ -32,6 +32,7 @@
 en:
   static_pages:
     accessibility_statement: Accessibility statement for the Help for early years providers service
+    contact: Contact Help for early years providers 
   activerecord:
     errors:
       models:
