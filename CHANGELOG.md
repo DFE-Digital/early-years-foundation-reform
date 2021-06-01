@@ -22,7 +22,6 @@ we do not currently follow Semantic Versioning or track version numbers.
 
   Update page titles (394) and add contact page (410), cookie-policy page now uses standard layout
 
-   
 ### Changed
   [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
 
