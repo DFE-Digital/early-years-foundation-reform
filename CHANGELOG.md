@@ -14,6 +14,14 @@ we do not currently follow Semantic Versioning or track version numbers.
   [HFEYP-239]( https://dfedigital.atlassian.net/browse/HFEYP-239 )
 
   Add devise-security gem to enable :session_limitable
+
+  [PR-269]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/269 )
+
+  [HFEYP-394]( https://dfedigital.atlassian.net/browse/HFEYP-394 )
+  [HFEYP-410]( https://dfedigital.atlassian.net/browse/HFEYP-410 )
+
+  Update page titles (394) and add contact page (410), cookie-policy page now uses standard layout
+
    
 ### Changed
   [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
