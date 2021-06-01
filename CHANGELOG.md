@@ -9,6 +9,12 @@ we do not currently follow Semantic Versioning or track version numbers.
 ## [Unreleased]
 
 ### Added
+  [PR-267]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/267 )
+
+  [HFEYP-239]( https://dfedigital.atlassian.net/browse/HFEYP-239 )
+
+  Add devise-security gem to enable :session_limitable
+   
 ### Changed
   [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
 
