@@ -18,10 +18,8 @@ class ContentController < ApplicationController
       not_found
     end
 
-    if @page.parent
-      if params["section"] != @page.parent.slug
-        return not_found
-      end
+    if @page.parent && (params["section"] != @page.parent.slug)
+      return not_found
     end
 
     @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
