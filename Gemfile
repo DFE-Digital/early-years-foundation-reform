@@ -53,7 +53,7 @@ group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
 
   # GOV.UK interpretation of rubocop for linting Ruby
-  gem "rubocop-govuk", "~> 3.17"
+  gem "rubocop-govuk", "~> 4.0"
   gem "scss_lint-govuk"
 
   # Debugging
@@ -95,7 +95,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
-
-gem "activerecord-session_store", "~> 2.0"
 
 gem "devise-security", "~> 0.16.0"
