@@ -139,7 +139,7 @@ def check_value_proc(obj, value)
   @excep = ""
   actual = find(Object.const_get(obj.upcase.gsub!(" ", "_"))).text
   check_value(value, actual)
-  exception_call("'" + obj + "'" + " " + __method__.to_s)
+  exception_call("'#{obj}' #{__method__}")
 end
 
 def check_item(pos, desc)
@@ -152,7 +152,7 @@ end
 def check_one_item(list, pos, desc)
   @excep = ""
   check_item(pos.to_i, desc)
-  exception_call(list.downcase + " " + __method__.to_s)
+  exception_call("#{list.downcase} #{__method__}")
 end
 
 def exception_call(called_by)
