@@ -55,9 +55,17 @@ RSpec.feature "View pages", type: :feature do
 
   scenario "A user with the role of reader should be not be able to edit pages in the CMS" do
     sign_in FactoryBot.create(:user, :reader)
+    attributes = FactoryBot.attributes_for :content_page
+
     visit "/cms/pages/#{child_page.id}/edit"
 
-    expect(page.body).to include("You don't have permission to edit pages")
+    page.find_field("content_page[title]").set(attributes[:title])
+    page.find_field("content_page[markdown]").set(attributes[:markdown])
+    page.find_field("content_page[position]").set(rand(10_000))
+
+    page.click_button("Update Content page")
+
+    expect(page.body).to include("You don't have permission to change pages")
   end
 
   scenario "A user with the role of editor should be able to create pages in the CMS" do
