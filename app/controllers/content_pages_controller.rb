@@ -30,7 +30,6 @@ class ContentPagesController < ApplicationController
   # POST /content_pages
   def create
     @content_page = ContentPage.new(content_page_params)
-
     begin
       authorize @content_page, :create?
       if @content_page.save
@@ -47,23 +46,19 @@ class ContentPagesController < ApplicationController
   # PATCH/PUT /content_pages/1
   def update
     authorize @content_page, :update?
-
     if @content_page.update(content_page_params)
       redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
     else
       render :edit
     end
-
   rescue Pundit::NotAuthorizedError
     @content_page.errors.add(:base, "You don't have permission to change pages")
     render :edit
   end
 
-
   # DELETE /content_pages/1
   def destroy
     authorize @content_page, :destroy?
-
     @content_page.destroy!
     redirect_to content_pages_url, notice: "Content page was successfully destroyed."
   end
