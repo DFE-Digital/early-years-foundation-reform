@@ -2,7 +2,7 @@
 FROM ruby:2.7.2-alpine3.13
 
 # Set bundler version
-ENV BUNDLER_VERSION=2.2.6
+ENV BUNDLER_VERSION=2.2.16
 
 ARG RAILS_ENV=production
 ENV LANG=C.UTF-8 \
