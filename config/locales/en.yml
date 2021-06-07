@@ -30,6 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  static_pages:
+    accessibility_statement: Accessibility statement for the Help for early years providers service
+    contact: Contact Help for early years providers 
   activerecord:
     errors:
       models:
@@ -38,6 +41,7 @@ en:
             asset_file:
               invalid_extension:  "invalid extension. Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG"
   settings:
+    cookie-policy: Cookies
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
       
     

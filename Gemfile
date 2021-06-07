@@ -22,7 +22,7 @@ gem "webpacker", "~> 5.4"
 gem "haml", "~> 5.2"
 
 gem "active_storage_validations", "~> 0.9"
-gem "aws-sdk-s3", "~> 1.1"
+gem "aws-sdk-s3", "~> 1.96"
 gem "ratonvirus", "~> 0.2.0"
 gem "ratonvirus-resty"
 
@@ -53,16 +53,11 @@ group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
 
   # GOV.UK interpretation of rubocop for linting Ruby
-  gem "rubocop-govuk", "~> 3.17"
+  gem "rubocop-govuk", "~> 4.0"
   gem "scss_lint-govuk"
 
   # Debugging
   gem "pry-byebug", "~> 3.9"
-
-  # Testing framework
-  gem "rspec-rails", "~> 5.0"
-  # Adds support for Capybara system testing and selenium driver
-  gem "capybara", "~> 3.34"
 
   gem "dotenv-rails", "~> 2.7"
 
@@ -74,7 +69,6 @@ group :development, :test do
   gem "cucumber", "~> 6.1"
   gem "rspec", "~> 3.10"
   gem "rspec-expectations", "~> 3.10"
-  gem "selenium-webdriver", "~> 3"
 end
 
 group :development do
@@ -88,9 +82,18 @@ group :development do
 end
 
 group :test do
+  gem "axe-core-capybara"
+  gem "axe-core-rspec"
+  gem "axe-core-selenium"
+
+  gem "capybara", "~> 3.34"
+  gem "rspec-rails", "~> 5.0"
+  gem "selenium-webdriver"
   gem "simplecov",  "~> 0.21", require: false
   gem "webdrivers", "~> 4.6"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "devise-security", "~> 0.16.0"

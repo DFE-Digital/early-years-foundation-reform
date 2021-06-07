@@ -1,4 +1,5 @@
 require "rails_helper"
+require "axe-rspec"
 
 RSpec.describe "Contents", type: :request do
   let(:a_page) do
@@ -18,7 +19,7 @@ RSpec.describe "Contents", type: :request do
 
     it "renders a 404 when the page is not found" do
       without_detailed_exceptions do
-        get a_page.full_path + "rubbish"
+        get "#{a_page.full_path}rubbish"
         expect(response).to have_http_status :not_found
       end
     end

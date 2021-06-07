@@ -3,7 +3,7 @@
     <% ContentPage.top_level.order_by_position.each do |top_level_page| %>
       <li>
         <div class="learning-section-mobile-nav app-mobile-nav-subnav-toggler">
-          <%= link_to(raw('<h4 class="app-subnav__theme ">' + top_level_page.title + '</h4>'), path_for_this_page(top_level_page), class: "govuk-link app-subnav__link govuk-link--no-visited-state top-level-link") %>
+          <%= link_to(raw('<p class="app-subnav__theme ">' + top_level_page.title + '</p>'), path_for_this_page(top_level_page), class: "govuk-link app-subnav__link govuk-link--no-visited-state top-level-link") %>
         </div>
         <ul class="app-mobile-nav__list app-mobile-subnav-section app-mobile-nav__subnav <%= is_mobile_menu_section_current?(top_level_page) ? 'app-mobile-nav__subnav--active' : '' %>">
           <li class="app-mobile-nav__subnav-item <%= is_current?(top_level_page) ? 'app-mobile-nav__subnav-item--current' : '' %>">
