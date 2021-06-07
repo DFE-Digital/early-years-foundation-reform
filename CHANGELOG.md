@@ -22,6 +22,7 @@ we do not currently follow Semantic Versioning or track version numbers.
 
   Update page titles (394) and add contact page (410), cookie-policy page now uses standard layout
 
+  [HYEYP-425](https://dfedigital.atlassian.net/browse/HFEYP-425) - allow JS to reach hotjar.com
 ### Changed
   [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
 
