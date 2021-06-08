@@ -61,16 +61,6 @@ resource cloudfoundry_app cms_app {
   environment = local.app_environment
 }
 
-resource "cloudfoundry_network_policy" "clamav-rest-private" {
-  policy {
-    source_app = local.cms_app_name
-    destination_app = "eyfs-clamav-rest-private"
-    space = data.prod_space
-    protocol = "tcp"
-    port = "9000"
-  }
-}
-
 resource cloudfoundry_route web_app_route {
   domain   = data.cloudfoundry_domain.cloudapps_digital.id
   space    = data.cloudfoundry_space.space.id
