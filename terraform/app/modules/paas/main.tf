@@ -61,7 +61,7 @@ resource cloudfoundry_app cms_app {
   environment = local.app_environment
 }
 
-resource "cf_network_policy" "clamav-rest-private" {
+resource "cloudfoundry_network_policy" "clamav-rest-private" {
   source_app = local.cms_app_name
   destination_app = "eyfs-clamav-rest-private"
   space = data.prod_space
