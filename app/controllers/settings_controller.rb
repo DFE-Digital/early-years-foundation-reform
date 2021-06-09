@@ -4,7 +4,8 @@ class SettingsController < ApplicationController
   end
 
   def create
-    set_cookie_pref(track_google_analytics)
+    cookies.delete :track_google_analytics
+    set_cookie_pref
     redirect_to params[:return_url]
   end
 
@@ -14,12 +15,12 @@ class SettingsController < ApplicationController
 
 private
 
-  def track_google_analytics
-    params.fetch(:track_google_analytics, "No")
+  def track_analytics
+    params.fetch(:track_analytics, "No")
   end
 
-  def set_cookie_pref(cookie_value)
-    cookies[:track_google_analytics] = { value: cookie_value, expires: 6.months.from_now }
+  def set_cookie_pref
+    cookies[:track_analytics] = { value: track_analytics, expires: 6.months.from_now }
     flash[:notice] = t(:preferences_saved_html, return_url: helpers.root_path, scope: :settings)
   end
 end

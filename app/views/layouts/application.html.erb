@@ -3,7 +3,7 @@
 <head>
   <meta name="Cache-Control" content="max-age=3500, public">
   <title><%= @page.title %> - Help for early years providers - GOV.UK</title>
-  <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
+  <%= render 'layouts/analytics_header' if cookies[:track_analytics] == 'Yes' %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= canonical_tag %>
@@ -24,9 +24,9 @@
   <script>
     document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
   </script>
-  <%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
+  <%= render 'layouts/analytics_body' if cookies[:track_analytics] == 'Yes' %>
 
-  <% if !cookies[:track_google_analytics] %>
+  <% if !cookies[:track_analytics] %>
   <%= render 'layouts/cookies_notice'  %>
   <% end %>
 
