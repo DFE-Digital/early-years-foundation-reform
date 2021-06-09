@@ -21,7 +21,10 @@ we do not currently follow Semantic Versioning or track version numbers.
   [HFEYP-410]( https://dfedigital.atlassian.net/browse/HFEYP-410 )
 
   Update page titles (394) and add contact page (410), cookie-policy page now uses standard layout
+ 
+  [HFEYP-435]( https://dfedigital.atlassian.net/browse/HFEYP-435) Updates style of cookie-banner to keep the default black on yellow colour of selected links
 
+  [HYEYP-425](https://dfedigital.atlassian.net/browse/HFEYP-425) - allow JS to reach hotjar.com
 ### Changed
   [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
 
