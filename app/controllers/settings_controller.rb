@@ -4,7 +4,6 @@ class SettingsController < ApplicationController
   end
 
   def create
-    cookies.delete :track_google_analytics
     set_cookie_pref
     redirect_to params[:return_url]
   end
