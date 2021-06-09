@@ -17,4 +17,11 @@ RSpec.feature "Public Content", type: :feature do
 
     expect(page).to be_axe_clean
   end
+
+  scenario "Navigate to a child page" do
+    sign_in FactoryBot.create(:user)
+    visit "/#{parent_page.slug}/#{child_page.slug}"
+
+    expect(page).to be_axe_clean
+  end
 end
