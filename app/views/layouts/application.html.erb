@@ -73,9 +73,9 @@
     <main class="govuk-main-wrapper" role="main">
       <div class="govuk-grid-row">
         <% if @page.navigation %>
-          <nav role="navigation" class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu navigation">
+          <div class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu">
             <%= render 'layouts/desktop_menu' %>
-          </nav>
+          </div>
         <% end %>
 
         <div class="govuk-grid-column-two-thirds">
