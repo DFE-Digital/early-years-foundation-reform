@@ -1,5 +1,7 @@
 class SettingsController < ApplicationController
-  layout "settings"
+  before_action do |_controller|
+    @page = OpenStruct.new(title: t(params[:id], scope: params[:controller].parameterize))
+  end
 
   def create
     set_cookie_pref(track_google_analytics)

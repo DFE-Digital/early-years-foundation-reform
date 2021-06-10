@@ -15,6 +15,8 @@ require "action_view/railtie"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+require_relative "../lib/rack/reject_trace"
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -37,6 +39,7 @@ module GovukRailsBoilerplate
     # (see https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html#x-xss-protection-header)
     config.action_dispatch.default_headers['X-XSS-Protection'] = "0"
 
+    config.middleware.use Rack::RejectTrace
     config.middleware.use Rack::Deflater
   end
 end

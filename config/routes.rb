@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  %w[accessibility-statement disclaimer].each do |static_page|
+  %w[accessibility-statement contact disclaimer].each do |static_page|
     get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
 

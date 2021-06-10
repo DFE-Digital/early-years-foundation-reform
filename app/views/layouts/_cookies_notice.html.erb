@@ -10,8 +10,8 @@
         </div>
       </div>
       <div class="govuk-button-group">
-        <%= button_to "Accept analytics cookies", { controller: "settings", action: "create" }, params: { track_google_analytics: "Yes", return_url: request.path }, :method => :post, class: "govuk-button" %>
-        <%= button_to "Reject analytics cookies", { controller: "settings", action: "create" }, params: { track_google_analytics: "No", return_url: request.path }, :method => :post, class: "govuk-button" %>
+        <%= button_to "Accept analytics cookies", { controller: "/settings", action: "create" }, params: { track_google_analytics: "Yes", return_url: request.path }, :method => :post, class: "govuk-button" %>
+        <%= button_to "Reject analytics cookies", { controller: "/settings", action: "create" }, params: { track_google_analytics: "No", return_url: request.path }, :method => :post, class: "govuk-button" %>
         <%= link_to "View cookies", "/settings/cookie-policy", class: "govuk-link" %> 
       </div>
     </div>

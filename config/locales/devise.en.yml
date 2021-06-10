@@ -1,6 +1,8 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
 
 en:
+  devise-sessions:
+    new: "Login Page"
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

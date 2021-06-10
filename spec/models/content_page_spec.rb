@@ -60,7 +60,7 @@ RSpec.describe ContentPage, type: :model do
     parent = FactoryBot.create(:content_page)
     child = FactoryBot.create(:content_page, parent_id: parent.id)
 
-    expect(child.full_path).to eq("/" + parent.slug + "/" + child.slug)
+    expect(child.full_path).to eq("/#{parent.slug}/#{child.slug}")
   end
 
   # The order is a depth first search

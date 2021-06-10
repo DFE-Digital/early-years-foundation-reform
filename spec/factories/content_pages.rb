@@ -9,7 +9,7 @@ end
 FactoryBot.define do
   factory :content_page do
     title { sentence_without_puncutation }
-    markdown { Faker::Markdown.headers }
+    markdown { "# Fake title - #{Faker::Lorem.word}" }
     parent_id { nil }
     position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }
   end

@@ -42,7 +42,6 @@
   a.govuk-link {
     @include govuk-font(19);
     line-height: 2em !important;
-    color: $govuk-brand-colour;
   }
 
   .govuk-button-group .govuk-button {

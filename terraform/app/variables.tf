@@ -69,7 +69,7 @@ variable paas_web_app_start_command {
 }
 
 variable paas_cms_app_start_command {
-  default = "bundle exec rake db:prepare && bundle exec rake db:seed && bundle exec rails s  -b 0.0.0.0"
+  default = "bundle exec rake db:prepare && bundle exec rails s  -b 0.0.0.0"
 }
 
 variable paas_worker_app_deployment_strategy {
