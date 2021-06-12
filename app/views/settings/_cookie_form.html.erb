@@ -7,13 +7,13 @@
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
         Do you want to accept analytics cookies?
       </legend>
-      <div class="govuk-radios">
+      <div class="govuk-radios govuk-radios--inline">
         <div class="govuk-radios__item">
-          <%= form.text_field :track_google_analytics, id: "analytics-cookies", type: "radio", class: "govuk-radios__input", value: "Yes", checked: (cookies[:track_google_analytics] == "Yes") %>
+          <%= form.text_field :track_analytics, id: "analytics-cookies", type: "radio", class: "govuk-radios__input", value: "Yes", checked: (cookies[:track_analytics] == "Yes") %>
           <%= form.label "analytics-cookies", "Yes", class: "govuk-label govuk-radios__label" %>
         </div>
         <div class="govuk-radios__item">
-          <%= form.text_field :track_google_analytics, id: "analytics-cookies-2", type: "radio", class: "govuk-radios__input", value: "No", checked: (cookies[:track_google_analytics] == "No") %>
+          <%= form.text_field :track_analytics, id: "analytics-cookies-2", type: "radio", class: "govuk-radios__input", value: "No", checked: (cookies[:track_analytics] == "No") %>
           <%= form.label "analytics-cookies-2", "No", class: "govuk-label govuk-radios__label" %>
         </div>
       </div>

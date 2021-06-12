@@ -40,7 +40,7 @@ gem "acts_as_tree", "~> 2.9"
 
 gem "acts_as_paranoid", "~> 0.7"
 
-gem "audited", "~> 4.9"
+gem "audited", "~> 5.0"
 
 gem "govspeak"
 gem "htmlentities", "4.3.4"

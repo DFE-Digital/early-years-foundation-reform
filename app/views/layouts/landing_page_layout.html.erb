@@ -6,7 +6,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= canonical_tag %>
-  <%= render 'layouts/google_analytics_header' if cookies[:track_google_analytics] == 'Yes' %>
+  <%= render 'layouts/analytics_header' if cookies[:track_analytics] == 'Yes' %>
   <meta Cache-Control="max-age=3500, public">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
@@ -27,9 +27,9 @@
 <body class="govuk-template__body">
 
 <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
-<%= render 'layouts/google_analytics_body' if cookies[:track_google_analytics] == 'Yes' %>
+<%= render 'layouts/analytics_body' if cookies[:track_analytics] == 'Yes' %>
 
-<% if !cookies[:track_google_analytics] %>
+<% if !cookies[:track_analytics] %>
 <%= render 'layouts/cookies_notice'  %>
 <% end %>
 

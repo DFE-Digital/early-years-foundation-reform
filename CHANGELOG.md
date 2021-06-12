@@ -28,6 +28,14 @@ we do not currently follow Semantic Versioning or track version numbers.
 
   [HYEYP-444](https://dfedigital.atlassian.net/browse/HFEYP-444) - two specs to run Axe accessibility tests and some fixes for the issues found
 ### Changed
+  [PR-289]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/289 )
+
+  [HFEYP-427]( https://dfedigital.atlassian.net/browse/HFEYP-427 )
+  [HFEYP-434]( https://dfedigital.atlassian.net/browse/HFEYP-434 )
+
+  Change `contact` to `contact-us`
+  Add hotjar cookies to cookie policy
+
   [PR-262]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/262 )
 
   [HFEYP-405]( https://dfedigital.atlassian.net/browse/HFEYP-405 )
