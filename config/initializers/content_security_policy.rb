@@ -49,10 +49,11 @@ Rails.application.config.content_security_policy do |policy|
                      # document all the inline scripts we use,
                      # and there's a better way to filter out junk reports
                      :unsafe_inline
-  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS
+  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :unsafe_inline
   if Rails.env.development?
     policy.connect_src :self,
                        :https,
+                       :wss,
                        *GOVUK_DOMAINS,
                        *GOOGLE_ANALYTICS_DOMAINS,
                        "http://localhost:3035",
@@ -60,6 +61,7 @@ Rails.application.config.content_security_policy do |policy|
   else
     policy.connect_src :self,
                        :https,
+                       :wss,
                        *GOVUK_DOMAINS,
                        *GOOGLE_ANALYTICS_DOMAINS
   end
