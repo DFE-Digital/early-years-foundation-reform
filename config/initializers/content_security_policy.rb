@@ -26,7 +26,7 @@ GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
                               www.googletagmanager.com
                               static.hotjar.com].freeze
 
-GOOGLE_STATIC_DOMAINS = %w[www.gstatic.com].freeze
+GOOGLE_STATIC_DOMAINS = %w[www.gstatic.com static.hotjar.com].freeze
 
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self, :https, *GOVUK_DOMAINS
