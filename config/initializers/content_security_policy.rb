@@ -24,9 +24,9 @@ GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
                               ssl.google-analytics.com
                               stats.g.doubleclick.net
                               www.googletagmanager.com
-                              static.hotjar.com].freeze
+                              *.hotjar.com].freeze
 
-GOOGLE_STATIC_DOMAINS = %w[www.gstatic.com].freeze
+GOOGLE_STATIC_DOMAINS = %w[www.gstatic.com *.hotjar.com].freeze
 
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self, :https, *GOVUK_DOMAINS
@@ -49,10 +49,11 @@ Rails.application.config.content_security_policy do |policy|
                      # document all the inline scripts we use,
                      # and there's a better way to filter out junk reports
                      :unsafe_inline
-  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS
+  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :unsafe_inline
   if Rails.env.development?
     policy.connect_src :self,
                        :https,
+                       :wss,
                        *GOVUK_DOMAINS,
                        *GOOGLE_ANALYTICS_DOMAINS,
                        "http://localhost:3035",
@@ -60,6 +61,7 @@ Rails.application.config.content_security_policy do |policy|
   else
     policy.connect_src :self,
                        :https,
+                       :wss,
                        *GOVUK_DOMAINS,
                        *GOOGLE_ANALYTICS_DOMAINS
   end
