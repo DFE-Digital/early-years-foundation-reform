@@ -47,7 +47,9 @@
       </a>
       <% if @page.navigation %>
         <div class="app-header-mobile-nav-toggler-wrapper">
-          <button aria-controls="mobile-menu-nav" id="app-mobile-nav-toggler" class="govuk-js-header-toggle govuk-button eyfs-menu-button--border app-header-mobile-nav-toggler js-app-mobile-nav-toggler" aria-expanded="false">Menu</button>
+          <button aria-controls="mobile-menu-nav" id="app-mobile-nav-toggler" class="govuk-js-header-toggle govuk-button eyfs-menu-button--border app-header-mobile-nav-toggler js-app-mobile-nav-toggler" aria-expanded="false">
+            Menu
+          </button>
         </div>
       <% end %>
     </div>
@@ -73,9 +75,9 @@
     <main class="govuk-main-wrapper" role="main">
       <div class="govuk-grid-row">
         <% if @page.navigation %>
-          <nav role="navigation" class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu navigation">
+          <div class="govuk-grid-column-one-third desktop-menu" aria-label="Desktop menu">
             <%= render 'layouts/desktop_menu' %>
-          </nav>
+          </div>
         <% end %>
 
         <div class="govuk-grid-column-two-thirds">
