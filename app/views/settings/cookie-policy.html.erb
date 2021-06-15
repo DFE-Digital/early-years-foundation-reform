@@ -31,8 +31,8 @@
 
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">track_google_analytics</td>
-            <td class="govuk-table__cell">Saves your Google Analytics cookie consent settings</td>
+            <td class="govuk-table__cell">track_analytics</td>
+            <td class="govuk-table__cell">Saves your cookie consent settings</td>
             <td class="govuk-table__cell">6 months</td>
           </tr>
           <tr class="govuk-table__row">
@@ -45,19 +45,19 @@
 
       <h2 class="govuk-heading-l">Analytics cookies (optional)</h2>
 
-      <p class="govuk-body">With your permission, we use Google Analytics to collect data about how you use Help for early years providers. This information helps us to improve our service.</p>
+      <p class="govuk-body">With your permission, we use Google Analytics and Hotjar software to collect anonymised data about how you use Help for early years providers. This information helps us to improve our service.</p>
 
       <p class="govuk-body">Google is not allowed to use or share our analytics data with anyone.</p>
 
       <p class="govuk-body">Google Analytics stores anonymised information about:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-      <li>how you got to Help for early years providers</li>
-      <li>the pages you visit on Help for early years providers and how long you spend on them</li>
-      <li>any errors you see while using Help for early years providers</li>
-    </ul>
+        <li>how you got to Help for early years providers</li>
+        <li>the pages you visit on Help for early years providers and how long you spend on them</li>
+        <li>any errors you see while using Help for early years providers</li>
+      </ul>
 
-      <p class="govuk-body">Google Analytics sets the following cookies.</p>
+      <p class="govuk-body">Google Analytics sets the following cookies:</p>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -87,8 +87,98 @@
         </tbody>
       </table>
 
-      <h2 class="govuk-heading-l">Change your cookie settings</h2>
-      <%= render 'settings/cookie_form' %>
+      <p class="govuk-body">Hotjar Analytic cookies store data about:</p>
 
+      <ul class="govuk-list govuk-list--bullet">
+        <li>whether you have participated in a Hotjar survey</li>
+        <li>the way in which you interact with a page</li>
+        <li>what you click on while you are visiting the site</li>
+      </ul>
+
+      <p class="govuk-body">Hotjar sets the following cookies:</p>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Name</th>
+            <th scope="col" class="govuk-table__header">Purpose</th>
+            <th scope="col" class="govuk-table__header">Expires</th>
+          </tr>
+        </thead>
+
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjClosedSurveyInvites</td>
+            <td class="govuk-table__cell"> Tell us whether a Hotjar survey invite has been closed to stop it displaying again</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjDonePolls</td>
+            <td class="govuk-table__cell"> Tell us whether a Hotjar feedback poll has been completed to stop the same poll reappearing</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjMinimizedPolls</td>
+            <td class="govuk-table__cell"> Keep Hotjar feedback poll widgets minimised (once minimised by the user) when the user navigates through the website</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+         
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjDoneTestersWidgets</td>
+            <td class="govuk-table__cell"> Set when a user submits information in the Hotjar recruit user testers widget. They stop the form reappearing once it has been completed</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjIncludedInSample</td>
+            <td class="govuk-table__cell"> Lets Hotjar know whether a user is included in the sample for tracking user journeys to important pages on the website</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjShownFeedbackMessage</td>
+            <td class="govuk-table__cell"> Set when a user minimises or completes a Hotjar feedback survey. The survey will stay minimised if the user navigates to a page where it is set to show</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">_hjid</td>
+            <td class="govuk-table__cell"> Help us track users who visit the website multiple times. A unique Hotjar user ID is used to link their visits together</td>
+            <td class="govuk-table__cell"> 1 year</td>
+          </tr>
+  
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjRecordingLastActivity</td>
+            <td class="govuk-table__cell"> Updated when a user recording starts and when a user performs an action on a page that Hotjar records. Found in sessionStorage rather than cookies</td>
+            <td class="govuk-table__cell"> Per session</td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjTLDTest</td>
+            <td class="govuk-table__cell"> Stored temporarily and used to determine the root (or top-level) domain so that tracking works on all pages</td>
+            <td class="govuk-table__cell"> Per session</td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjUserAttributesHash</td>
+            <td class="govuk-table__cell"> Store user attributes during a user’s browser session so Hotjar knows when an attribute has changed and needs to be updated</td>
+            <td class="govuk-table__cell"> Per session</td>
+          </tr>
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjCachedUserAttributes</td>
+            <td class="govuk-table__cell"> Store user attributes that are sent through the Hotjar identify API whenever the user is not in the sample. Attributes are only saved if the user interacts with a feedback tool</td>
+            <td class="govuk-table__cell"> Per session</td>
+          </tr>
+          
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"> _hjLocalStorageTest</td>
+            <td class="govuk-table__cell"> Used to check if the Hotjar tracking script can use local browser storage</td>
+            <td class="govuk-table__cell"> Per session</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 class="govuk-heading-l">Change your cookie settings</h2>
+        <%= render 'settings/cookie_form' %>
       </div>
     </div>

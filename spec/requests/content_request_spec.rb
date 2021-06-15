@@ -8,7 +8,7 @@ RSpec.describe "Contents", type: :request do
   end
 
   before :all do
-    cookies[:track_google_analytics] = "true"
+    cookies[:track_analytics] = "true"
   end
 
   describe "GET /show" do
