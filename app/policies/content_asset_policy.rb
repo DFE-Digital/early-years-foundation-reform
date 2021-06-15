@@ -15,22 +15,22 @@ class ContentAssetPolicy
   end
 
   def create?
-    user.role == "editor"
+    user.editor?
   end
 
   def new?
-    user.role == "editor"
+    user.editor?
   end
 
   def update?
-    user.role == "editor"
+    user.editor?
   end
 
   def edit?
-    user.role == "editor"
+    user.editor?
   end
 
   def destroy?
-    user.role == "editor"
+    user.editor?
   end
 end

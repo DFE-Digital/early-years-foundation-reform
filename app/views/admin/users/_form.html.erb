@@ -1,0 +1,13 @@
+<%= form_with(model: [:admin, user], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+  <%= form.govuk_error_summary %>
+  <%= form.govuk_fieldset do %>
+		<%= form.govuk_text_field :first_name, label: {text: "First name"} %>
+		<%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
+		<%= form.govuk_email_field :email, label: {text: "Email" } %>
+		<%= form.govuk_password_field :password, hint: {text: t(:password_hint)} %>
+		<%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
+		<%= form.govuk_collection_radio_buttons(:role, User.valid_roles, :last, :first, inline: true) %>
+		<%= form.govuk_submit "Save" %>
+	<% end %>
+
+<% end %>

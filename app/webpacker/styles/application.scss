@@ -29,3 +29,9 @@ $govuk-image-url-function: frontend-image-url;
 .email {
   word-wrap: break-word;
 }
+
+a {
+	.align-right {
+		float: right;
+	}
+}
