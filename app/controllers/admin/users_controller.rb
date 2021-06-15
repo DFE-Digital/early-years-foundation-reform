@@ -32,9 +32,9 @@ module Admin
 
       if user_params[:password].blank?
         if @user.update_without_password(user_params)
-           redirect_to admin_users_path, notice: "User #{@user.name} updated" # rubocop:todo Layout/IndentationWidth
+          redirect_to admin_users_path, notice: "User #{@user.name} updated"
         else
-           render :edit # rubocop:todo Layout/IndentationWidth
+          render :edit
         end
       else
         @user.reset_password_token = "admin_reset"

@@ -7,8 +7,7 @@ Devise.setup do |config|
   # Should the password expire (e.g 3.months)
   # config.expire_password_after = false
 
-  # Need 0-9
-  config.password_complexity = { digit: 1 }
+  config.password_complexity = { digit: 2, lower: 2, symbol: 2, upper: 2 }
 
   # How many passwords to keep in archive
   # config.password_archiving_count = 5
