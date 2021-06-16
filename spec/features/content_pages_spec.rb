@@ -86,7 +86,7 @@ RSpec.feature "View pages", type: :feature do
   end
 
   scenario "The CMS create page page should not have any accessibility errors" do
-    sign_in FactoryBot.create(:user, :editor)
+    sign_in FactoryBot.create(:editor)
 
     visit "/cms/pages/new?parent_id=#{child_page.id}"
 
@@ -94,7 +94,7 @@ RSpec.feature "View pages", type: :feature do
   end
 
   scenario "A user with the role of reader should NOT be able to create pages in the CMS" do
-    sign_in FactoryBot.create(:user, :reader)
+    sign_in FactoryBot.create(:reader)
     attributes = FactoryBot.attributes_for :content_page
 
     visit "/cms/pages/new?parent_id=#{child_page.id}"
