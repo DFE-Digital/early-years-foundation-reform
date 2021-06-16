@@ -1,0 +1,3 @@
+class ContentBlock < ApplicationRecord
+
+end
