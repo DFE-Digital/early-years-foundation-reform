@@ -1,11 +1,4 @@
 class ContentPagePolicy < ApplicationPolicy
-  attr_reader :user, :content_page
-
-  def initialize(user, content_page)
-    @user = user
-    @content_page = content_page
-  end
-
   def index?
     user.present?
   end
