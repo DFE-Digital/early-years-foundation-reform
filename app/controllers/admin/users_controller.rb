@@ -52,8 +52,14 @@ module Admin
 
     def destroy
       authorize @user, :destroy?
-      @user.destroy!
-      redirect_to admin_user_path, notice: "User was successfully destroyed."
+
+      if @current_user == @user
+        @user.errors.add(:base, "You cannot delete yourself")
+        render :edit
+      else
+        @user.destroy!
+        redirect_to admin_users_path, notice: "User was successfully destroyed."
+      end
     end
 
   private

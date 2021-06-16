@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   acts_as_paranoid
 
-  enum role: { reader: "reader", editor: "editor", admin: "admin" }
+  ADMIN = "admin".freeze
+
+  enum role: { reader: "reader", editor: "editor", admin: ADMIN }
+  scope :admins, -> { where("role = 'admin'") }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,6 +16,7 @@ class User < ApplicationRecord
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
   validates :role, presence: true
+  validates :role, with: :ensure_at_least_one_user_has_admin_role
 
   def name
     [first_name, last_name].join(" ")
@@ -30,6 +34,12 @@ class User < ApplicationRecord
   end
 
   def self.valid_roles
-    valid = roles.slice("editor", "admin") # rubocop:todo Lint/UselessAssignment
+    valid = roles.slice("editor", ADMIN) # rubocop:todo Lint/UselessAssignment
+  end
+
+  def ensure_at_least_one_user_has_admin_role
+    if changes["role"] && (changes["role"].first == ADMIN) && (User.admins.count <= 1)
+      errors.add(:role, "Can not remove the 'admin' role, there would be no admin left")
+    end
   end
 end
