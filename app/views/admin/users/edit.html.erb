@@ -1,0 +1,11 @@
+<h1 class="govuk-heading-l">Edit user</h1>
+<%= link_to 'Delete', [:admin, @user], method: 'delete', class: "right govuk-button govuk-button--warning" %>
+<div class="govuk-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+			<%= render 'form', user: @user %>
+		</div>
+	</div>
+</div>
+<%= link_to 'Refresh', edit_admin_user_path(@user), { :class => "govuk-link" } %> |
+<%= link_to 'Back', admin_users_path %>
