@@ -1,0 +1,11 @@
+<h1 class="govuk-heading-l">Edit blocks</h1>
+
+<br/>
+
+<div>
+<ul>
+  <% @content_blocks.each_with_index do |content_block, index| %>
+    <li> <%=content_block.name %> </li>    
+  <% end %>
+</ul>
+</div>
