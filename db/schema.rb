@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 2021_06_11_142356) do
     t.datetime "locked_at"
     t.string "role", default: "", null: false
     t.string "unique_session_id"
-    t.string "username"
     t.string "first_name"
     t.string "last_name"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
