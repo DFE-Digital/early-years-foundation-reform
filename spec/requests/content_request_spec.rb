@@ -57,7 +57,7 @@ RSpec.describe "Contents", type: :request do
 
       it "does not show an auth dialog if the user is already logged" do
         cached_env_var = ENV["AUTH_ON_EVERYTHING"] = "true"
-        sign_in FactoryBot.create(:user)
+        sign_in FactoryBot.create(:editor)
 
         get "/"
 
