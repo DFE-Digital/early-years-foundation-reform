@@ -84,7 +84,7 @@ RSpec.describe "/content_pages", type: :request do
         other_valid_attributes[:title] = valid_attributes[:title]
         post content_pages_url, params: { content_page: other_valid_attributes }
 
-        expect(response.body).to include("Title has already been taken")
+        expect(response.body).to include("has already been taken")
       end
     end
 
