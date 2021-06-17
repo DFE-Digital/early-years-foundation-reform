@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
   validates :role, presence: true
-  validates :role, with: :ensure_at_least_one_user_has_admin_role
+  validates :role, with: :presence_of_role
 
   def name
     [first_name, last_name].join(" ")
@@ -39,6 +39,12 @@ class User < ApplicationRecord
   def ensure_at_least_one_user_has_admin_role
     if changes["role"] && (changes["role"].first == ADMIN) && (User.admin.count <= 1)
       errors.add(:role, "Can not remove the 'admin' role, there would be no admin left")
+    end
+  end
+
+  def presence_of_role
+    if !role
+      errors.add(:role, "Role is required stupid")
     end
   end
 end
