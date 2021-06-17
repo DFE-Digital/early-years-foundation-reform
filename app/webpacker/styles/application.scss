@@ -80,3 +80,11 @@ $govuk-image-url-function: frontend-image-url;
 .icon-info {
   background-image: image-url("../images/icon-info.svg");
 }
+
+.banner-with-tick {
+  padding: 15px 45px;
+  background-image: url("../images/tick.png");
+  background-repeat: no-repeat;
+  background-size: 19px;
+  background-position: 15px 15px;
+}
