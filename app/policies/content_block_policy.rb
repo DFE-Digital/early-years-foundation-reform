@@ -33,5 +33,4 @@ class ContentBlockPolicy
       def destroy?
         user.role == "editor"
       end
-
 end
