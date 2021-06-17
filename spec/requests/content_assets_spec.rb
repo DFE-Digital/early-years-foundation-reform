@@ -20,12 +20,12 @@ RSpec.describe "/content_assets", type: :request do
   end
 
   let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
+    { title: "" }
   end
 
   describe "GET /index" do
     it "renders a successful response" do
-      sign_in FactoryBot.create(:user)
+      sign_in FactoryBot.create(:editor)
 
       ContentAsset.create! valid_attributes
       get content_assets_url
@@ -35,7 +35,7 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      sign_in FactoryBot.create(:user)
+      sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
       get content_asset_url(content_asset)
@@ -45,7 +45,7 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
-      sign_in FactoryBot.create(:user)
+      sign_in FactoryBot.create(:editor)
 
       get new_content_asset_url
       expect(response).to be_successful
@@ -54,7 +54,7 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "GET /edit" do
     it "render a successful response" do
-      sign_in FactoryBot.create(:user)
+      sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
       get edit_content_asset_url(content_asset)
@@ -65,7 +65,7 @@ RSpec.describe "/content_assets", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new ContentAsset" do
-        sign_in FactoryBot.create(:user)
+        sign_in FactoryBot.create(:editor)
 
         expect {
           post content_assets_url, params: { content_asset: valid_attributes }
@@ -73,7 +73,7 @@ RSpec.describe "/content_assets", type: :request do
       end
 
       it "redirects to the created content_asset" do
-        sign_in FactoryBot.create(:user)
+        sign_in FactoryBot.create(:editor)
 
         post content_assets_url, params: { content_asset: valid_attributes }
         expect(response).to redirect_to(content_asset_url(ContentAsset.last))
@@ -82,7 +82,7 @@ RSpec.describe "/content_assets", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new ContentAsset" do
-        sign_in FactoryBot.create(:user)
+        sign_in FactoryBot.create(:editor)
 
         expect {
           post content_assets_url, params: { content_asset: invalid_attributes }
@@ -90,6 +90,7 @@ RSpec.describe "/content_assets", type: :request do
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
+        sign_in FactoryBot.create(:editor)
         post content_assets_url, params: { content_asset: invalid_attributes }
         expect(response).to be_successful
       end
@@ -97,7 +98,7 @@ RSpec.describe "/content_assets", type: :request do
 
     context "when the rate limit is exceeded" do
       it "will not create two ContentAssets within 30 seconds of each other" do
-        sign_in FactoryBot.create(:user)
+        sign_in FactoryBot.create(:editor)
 
         expect {
           post content_assets_url, params: { content_asset: valid_attributes }
@@ -109,7 +110,7 @@ RSpec.describe "/content_assets", type: :request do
       end
 
       it "redirects to the created content_asset" do
-        sign_in FactoryBot.create(:user)
+        sign_in FactoryBot.create(:editor)
 
         post content_assets_url, params: { content_asset: valid_attributes }
         expect(response).to redirect_to(content_asset_url(ContentAsset.last))
@@ -120,10 +121,11 @@ RSpec.describe "/content_assets", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
+        { title: "Asset Title", alt_text: "Asset Alternate Text" }
       end
 
       it "updates the requested content_asset" do
+        sign_in FactoryBot.create(:editor)
         content_asset = ContentAsset.create! valid_attributes
         patch content_asset_url(content_asset), params: { content_asset: new_attributes }
         content_asset.reload
@@ -131,6 +133,7 @@ RSpec.describe "/content_assets", type: :request do
       end
 
       it "redirects to the content_asset" do
+        sign_in FactoryBot.create(:editor)
         content_asset = ContentAsset.create! valid_attributes
         patch content_asset_url(content_asset), params: { content_asset: new_attributes }
         content_asset.reload
@@ -140,6 +143,7 @@ RSpec.describe "/content_assets", type: :request do
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
+        sign_in FactoryBot.create(:editor)
         content_asset = ContentAsset.create! valid_attributes
         patch content_asset_url(content_asset), params: { content_asset: invalid_attributes }
         expect(response).to be_successful
@@ -149,7 +153,7 @@ RSpec.describe "/content_assets", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested content_asset" do
-      sign_in FactoryBot.create(:user)
+      sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
       expect {
@@ -158,7 +162,7 @@ RSpec.describe "/content_assets", type: :request do
     end
 
     it "redirects to the content_assets list" do
-      sign_in FactoryBot.create(:user)
+      sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
       delete content_asset_url(content_asset)

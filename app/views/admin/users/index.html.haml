@@ -1,0 +1,18 @@
+= link_to "Back", content_pages_path, class: 'govuk-back-link'
+
+%h1.govuk-heading-xl
+  User Administration
+
+= link_to "Add User", new_admin_user_path, class: 'govuk-button'
+%table.govuk-table
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{scope: 'col'}
+        Name
+      %th.govuk-table__header{scope: 'col'}
+        Email
+      %th.govuk-table__header{scope: 'col'}
+        Role (CMS)
+      %th.govuk-table__header{ scope: 'col' }
+  %tbody.govuk-table__body
+    =render @users
