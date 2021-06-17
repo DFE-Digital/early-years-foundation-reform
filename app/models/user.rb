@@ -43,8 +43,8 @@ class User < ApplicationRecord
   end
 
   def presence_of_role
-    if !role
-      errors.add(:role, "Role is required stupid")
+    unless role
+      errors.add(:role, "Role is required")
     end
   end
 end
