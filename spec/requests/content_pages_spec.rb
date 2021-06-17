@@ -85,7 +85,6 @@ RSpec.describe "/content_pages", type: :request do
         post content_pages_url, params: { content_page: other_valid_attributes }
 
         expect(response.body).to match(/Title has already been taken/)
-
       end
     end
 

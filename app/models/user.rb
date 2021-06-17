@@ -18,7 +18,6 @@ class User < ApplicationRecord
   validates :role, presence: true
   validates :role, with: :ensure_at_least_one_user_has_admin_role
 
-
   def name
     [first_name, last_name].join(" ")
   end
