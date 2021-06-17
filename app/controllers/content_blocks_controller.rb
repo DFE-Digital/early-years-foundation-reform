@@ -7,7 +7,7 @@ class ContentBlocksController < ApplicationController
 
     # GET /content_blocks
     def index
-        @content_blocks = ContentBlock.all
+      @content_blocks = ContentBlock.all
     end
 
     # GET /content_blocks/1
@@ -15,20 +15,20 @@ class ContentBlocksController < ApplicationController
 
     # GET /content_blocks/new
     def new
-        @content_block = ContentBlock.new
+      @content_block = ContentBlock.new
     end
 
     # GET /content_blocks/1/edit
     def edit
-        @md = GovspeakToHTML.new.translate_markdown(@content_block.markdown)
+      @md = GovspeakToHTML.new.translate_markdown(@content_block.markdown)
 
-        @content_block
+      @content_block
     end
 
     # POST /content_blocks
     def create
-        @content_block = ContentBlock.new(content_block_params)
-        begin
+      @content_block = ContentBlock.new(content_block_params)
+      begin
             authorize @content_block, :create?
             if @content_block.save
                 redirect_to @content_block, notice: "Content block was successfully created."
@@ -77,6 +77,6 @@ private
   
     # Only allow a list of trusted parameters through.
     def content_block_params
-      params.require(:content_block).permit(:markdown)
+      params.require(:content_block).permit(:name, :description, :markdown)
     end
 end
