@@ -4,7 +4,6 @@ class User < ApplicationRecord
   ADMIN = "admin".freeze
 
   enum role: { reader: "reader", editor: "editor", admin: ADMIN }
-  scope :admins, -> { where("role = 'admin'") }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -38,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def ensure_at_least_one_user_has_admin_role
-    if changes["role"] && (changes["role"].first == ADMIN) && (User.admins.count <= 1)
+    if changes["role"] && (changes["role"].first == ADMIN) && (User.admin.count <= 1)
       errors.add(:role, "Can not remove the 'admin' role, there would be no admin left")
     end
   end
