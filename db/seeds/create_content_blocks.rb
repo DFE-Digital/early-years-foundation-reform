@@ -230,6 +230,4 @@ unless ContentBlock.exists?(name: "accessibility")
   end
 end
 
-
-
 # rubocop:enable Layout/HeredocIndentation

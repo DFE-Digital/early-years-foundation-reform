@@ -24,10 +24,10 @@ module ContentHelper
     block = ContentBlock.find_by_name(block_name)
     html_to_use = "Error - block not found"
     if block
-      markdown = ContentBlock.find_by_name(block_name).markdown
+      html_to_use = ContentBlock.find_by_name(block_name).markdown
     end
 
     # GovspeakToHTML.new.translate_markdown markdown
-    # markdown
+    html_to_use
   end
 end

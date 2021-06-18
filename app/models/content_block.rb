@@ -1,11 +1,11 @@
 class ContentBlock < ApplicationRecord
-    audited
+  audited
 
-    validates :name,
-              presence: true,
-              format: { without: /\s/, message: "must contain no spaces" },
-              uniqueness: true
-    validates :description, presence: true
+  validates :name,
+            presence: true,
+            format: { without: /\s/, message: "must contain no spaces" }
+  unique :name
+  validates :description, presence: true
 
-    validates :markdown, presence: true
+  validates :markdown, presence: true
 end
