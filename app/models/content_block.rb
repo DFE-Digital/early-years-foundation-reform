@@ -1,10 +1,9 @@
 class ContentBlock < ApplicationRecord
   audited
-
-  validates :name,
-            presence: true,
-            format: { without: /\s/, message: "must contain no spaces" }
-  unique :name
+  # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :name, uniqueness: true
+  # rubocop:enable Rails/UniqueValidationWithoutIndex
+  validates :name, presence: true, format: { without: /\s/, message: "must contain no spaces" }
   validates :description, presence: true
 
   validates :markdown, presence: true
