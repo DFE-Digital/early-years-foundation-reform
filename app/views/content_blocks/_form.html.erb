@@ -2,12 +2,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
       <p class="govuk-heading-m">Details</p>
-      <%= form_with(model: content_page, local: true) do |form| %>
-        <% if content_page.errors.any? %>
+      <%= form_with(model: content_block, local: true) do |form| %>
+        <% if content_block.errors.any? %>
           <div id="error_explanation" class="govuk-error-message" >
-            <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this page from being saved:</h2>
+            <h2><%= pluralize(content_block.errors.count, "error") %> prohibited this page from being saved:</h2>
             <ul>
-              <% content_page.errors.each do |error| %>
+              <% content_block.errors.each do |error| %>
                 <li><%= error.full_message %></li>
               <% end %>
             </ul>
@@ -15,12 +15,18 @@
         <% end %>
 
         <fieldset class="govuk-fieldset">
-
           <div class="govuk-form-group">
             <label class="govuk-label" for="Heading">
-              <%= form.label :title, "Heading" %>
+              <%= form.label :name, "Name - this should be provided by the developers, it refers to part of the fixed pages" %>
             </label>
-            <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id) %>
+            <%= form.text_field :name, :class => 'govuk-input govuk-!-width-three-quarters' %>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="Description">
+              <%= form.label :description, "Description - where will the block appear ?" %>
+            </label>
+            <%= form.text_field :description, :class => 'govuk-input govuk-!-width-three-quarters' %>
           </div>
 
           <div class="govuk-form-group gem-c-govspeak">
@@ -30,26 +36,15 @@
             <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
           </div>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="position">
-              Position (relative to sibling pages)
-            </label>
-            <%= form.text_field :position, :class => 'govuk-input govuk-!-width-three-quarters', id: "position" %>
-          </div>
-
-          <%= form.hidden_field :parent_id, id: "parent_id" %>
-
           <div>
             <%= form.submit :class => "govuk-button"%>
           </div>
-
         </fieldset>
-
       <% end %>
     </div>
 
     <div class="govuk-grid-column-one-half">
-        <p class="govuk-heading-m">Live Preview</p>
+        <p class="govuk-heading-m">Preview</p>
         <div id='markdown-render' class='gem-c-govspeak'>
           <%= sanitize(@md, tags: GovspeakToHTML::ALLOWED_TAGS) %>
         </div>

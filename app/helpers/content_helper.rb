@@ -19,4 +19,15 @@ module ContentHelper
   def is_mobile_menu_section_current?(page)
     params[:slug] == page.slug || params[:section] == page.slug
   end
+
+  def insert_block(block_name)
+    block = ContentBlock.find_by_name(block_name)
+    html_to_use = "Error - block not found"
+    if block
+      markdown = ContentBlock.find_by_name(block_name).markdown
+    end
+
+    # GovspeakToHTML.new.translate_markdown markdown
+    # markdown
+  end
 end

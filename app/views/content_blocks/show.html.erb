@@ -1,3 +1,20 @@
+<p>
+  <strong>Name:</strong>
+  <%= @content_block.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @content_block.description %>
+</p>
+
+<p>
+  <strong>Content (Govspeak):</strong>
+  <%= @content_block.markdown %>
+</p>
+
+<%= link_to 'Edit', edit_content_page_path(@content_block) %> |
+<%= link_to 'Back', content_blocks_path %>
 
 
 

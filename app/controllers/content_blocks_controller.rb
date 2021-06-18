@@ -4,7 +4,6 @@ class ContentBlocksController < ApplicationController
     before_action :authenticate_user!
     before_action :set_content_block, only: %i[show edit update destroy]
 
-
     # GET /content_blocks
     def index
       @content_blocks = ContentBlock.all
@@ -36,7 +35,7 @@ class ContentBlocksController < ApplicationController
               render :new
             end
           rescue Pundit::NotAuthorizedError
-            @content_block.errors.add(:base, "You don't have permission to create new content")
+            @content_block.errors.add(:base, "You don't have permission to create a new block")
             render :new
           end
         end
@@ -50,7 +49,7 @@ class ContentBlocksController < ApplicationController
           render :edit
         end
       rescue Pundit::NotAuthorizedError
-        @content_block.errors.add(:base, "You don't have permission to edit content")
+        @content_block.errors.add(:base, "You don't have permission to edit blocks")
         render :edit
       end
 
@@ -58,13 +57,13 @@ class ContentBlocksController < ApplicationController
     def destroy
         authorize @content_block, :destroy?
         @content_block.destroy!
-        redirect_to content_blocks_path, notice: "Content page was successfully destroyed."
+        redirect_to content_blocks_path, notice: "Content block was successfully destroyed."
       end
 
     # POST of preview, returns html
     def preview
         html = GovspeakToHTML.new.translate_markdown(params["markdown"])
-    
+
         render json: { html: html }
     end
 
@@ -74,7 +73,7 @@ private
     def set_content_block
         @content_block = ContentBlock.find(params[:id])
     end
-  
+
     # Only allow a list of trusted parameters through.
     def content_block_params
       params.require(:content_block).permit(:name, :description, :markdown)
