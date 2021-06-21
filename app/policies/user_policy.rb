@@ -12,7 +12,12 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin?
+    # A user with role 'admin' is not allowed to edit their own role
+    if user == record
+      !(user.role == User::ADMIN)
+    else
+      user.admin?
+    end
   end
 
   def destroy?

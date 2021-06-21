@@ -40,8 +40,7 @@ RSpec.feature "User administration", type: :feature do
       login_as(user_who_logs_in)
       visit edit_admin_user_path(user_who_logs_in)
 
-      expect(page).to have_text('Your role is admin and you cannot change it')
+      expect(page).to have_text("Your role is admin and you cannot change it")
     end
-
   end
 end
