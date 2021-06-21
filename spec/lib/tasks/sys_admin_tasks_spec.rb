@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "sys_admin_tasks" do
-  let(:email) { Faker::Internet.email }
+  let(:email) { "sysadmin@education.gov.uk" }
   let(:run_destroy_user) do
     Rake::Task["sys_admin_tasks:destroy_user"].invoke(email)
   end
@@ -16,7 +16,7 @@ describe "sys_admin_tasks" do
 
   describe "#destroy_user" do
     it "reduces user count" do
-      FactoryBot.create(:user, email: email)
+      FactoryBot.create(:editor, email: email)
 
       expect { run_destroy_user }.to change { User.count }
         .from(User.count)

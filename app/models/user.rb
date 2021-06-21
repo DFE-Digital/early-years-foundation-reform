@@ -2,8 +2,11 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   ADMIN = "admin".freeze
+  EDITOR = "editor".freeze
+  APPROVED_DOMAINS = %w[@education.gov.uk @digital.education.gov.uk].freeze
 
-  enum role: { reader: "reader", editor: "editor", admin: ADMIN }
+  ROLES = %w[reader editor admin].freeze
+  enum role: ROLES.zip(ROLES).to_h
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,7 +16,10 @@ class User < ApplicationRecord
          :session_limitable,
          :secure_validatable
 
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Email must be valid format" }
+  validates :email, presence: true, if: :domain_check
+  validates :email, uniqueness: true
+
   validates :role, presence: true
   validates :role, with: :presence_of_role
   validates :role, with: :ensure_at_least_one_user_has_admin_role
@@ -34,7 +40,9 @@ class User < ApplicationRecord
   end
 
   def self.valid_roles
-    valid = roles.slice("editor", ADMIN) # rubocop:todo Lint/UselessAssignment
+    roles.slice("editor", "admin").transform_values do |value|
+      I18n.translate(value, scope: :roles, default: "Unknown role")
+    end
   end
 
   def ensure_at_least_one_user_has_admin_role
@@ -43,9 +51,9 @@ class User < ApplicationRecord
     end
   end
 
-  def presence_of_role
-    unless role
-      errors.add(:role, "Role is required")
+  def domain_check
+    unless APPROVED_DOMAINS.any? { |word| email.end_with?(word) }
+      errors.add(:email, "Email address must be from an approved domain: #{APPROVED_DOMAINS.to_sentence}")
     end
   end
 end

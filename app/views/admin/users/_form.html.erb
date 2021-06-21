@@ -2,7 +2,7 @@
   <%= form.govuk_error_summary %>
   <%= form.govuk_text_field :first_name, label: {text: "First name"} %>
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
-  <%= form.govuk_email_field :email, label: {text: "Email" } %>
+  <%= form.govuk_email_field :email, disabled: !user.new_record?, label: {text: "Email" } %>
   <%= form.govuk_password_field :password, hint: {text: t(:password_hint) } %>
   <%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
   <% if policy(user).update? %>
