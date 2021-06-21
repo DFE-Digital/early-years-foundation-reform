@@ -14,7 +14,7 @@ class UserPolicy < ApplicationPolicy
   def update?
     # A user with role 'admin' is not allowed to edit their own role
     if user == record
-      !(user.role == User::ADMIN)
+      user.role != User::ADMIN
     else
       permissions?
     end
