@@ -16,7 +16,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def destroy?
-    permissions?
+    user != record && permissions?
   end
 
 private
