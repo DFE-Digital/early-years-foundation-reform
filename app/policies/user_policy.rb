@@ -1,21 +1,27 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    true
+    permissions?
   end
 
   def show?
-    true
+    permissions?
   end
 
   def create?
-    user.admin?
+    permissions?
   end
 
   def update?
-    user.admin?
+    permissions?
   end
 
   def destroy?
+    user != record && permissions?
+  end
+
+private
+
+  def permissions?
     user.admin?
   end
 end

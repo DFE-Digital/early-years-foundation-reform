@@ -40,8 +40,6 @@ en:
   roles:
     admin: Administrator
     editor: Editor
-  errors:
-    format: "%{attribute} %{message}"
   static_pages:
     accessibility_statement: Accessibility statement for the Help for early years providers service
   activerecord:
@@ -51,6 +49,24 @@ en:
           attributes:
             asset_file:
               invalid_extension:  "invalid extension. Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG"
+        user:
+          attributes:
+            email:
+              blank: Email must not be blank
+              address_validation: Valid email address must use @digital.education.gov.uk or @education.gov.uk
+              taken: Email is a duplicate of an existing email
+            password:
+              too_short: Password must be a minimum of 8 characters long
+              blank: Password must not be blank
+              password_complexity:
+                digit: Password must contain at least 2 digits
+                lower: Password must contain at least 2 lowercase characters
+                upper: Password much contain at least 2 uppercase characters
+                symbol: Password much contain at least 2 special characters or non-alphanumeric characters
+            role:
+              blank: Select an editor or administrator role type
+            password_confirmation:
+              confirmation: Password confirmation does not match password
   settings:
     cookie-policy: Cookies
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
