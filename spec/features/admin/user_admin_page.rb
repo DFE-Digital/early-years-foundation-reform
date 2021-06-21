@@ -34,5 +34,14 @@ RSpec.feature "User administration", type: :feature do
       expect(page).to have_css("td", text: "Perry White")
       expect(page).to have_css("td", text: "J Jonah Jameson")
     end
+
+    scenario "a user with admin role should not be able to assign herself to another role" do
+      user_who_logs_in = FactoryBot.create(:admin)
+      login_as(user_who_logs_in)
+      visit edit_admin_user_path(user_who_logs_in)
+
+      expect(page).to have_text('Your role is admin and you cannot change it')
+    end
+
   end
 end

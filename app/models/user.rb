@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
   validates :role, presence: true
   validates :role, with: :presence_of_role
+  validates :role, with: :ensure_at_least_one_user_has_admin_role
 
   def name
     [first_name, last_name].join(" ")

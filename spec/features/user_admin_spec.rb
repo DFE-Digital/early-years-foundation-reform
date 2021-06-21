@@ -106,4 +106,5 @@ RSpec.feature "View pages", type: :feature do
 
     expect(page.body).to include("You don't have permission to create pages")
   end
+
 end
