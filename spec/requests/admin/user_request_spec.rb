@@ -25,7 +25,7 @@ RSpec.describe "/admin/users", type: :request do
         expect(response).to_not be_successful
       end
     end
-    
+
     describe "GET /index not signed in" do
       it "renders a unsuccessful response" do
         create_list(:editor, 10)
