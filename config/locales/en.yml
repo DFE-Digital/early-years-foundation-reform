@@ -40,8 +40,6 @@ en:
   roles:
     admin: Administrator
     editor: Editor
-  errors:
-    format: "%{attribute} %{message}"
   static_pages:
     accessibility_statement: Accessibility statement for the Help for early years providers service
   activerecord:

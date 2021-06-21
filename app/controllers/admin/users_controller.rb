@@ -3,7 +3,11 @@ module Admin
     before_action :set_user, only: %i[edit update destroy]
 
     def index
+      authorize User
       @users = User.all
+    rescue Pundit::NotAuthorizedError
+      flash[:alert] = "You do not have permission to view users"
+      redirect_to request.referer || root_path
     end
 
     def new

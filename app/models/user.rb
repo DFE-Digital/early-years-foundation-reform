@@ -2,8 +2,10 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   ADMIN = "admin".freeze
+  EDITOR = "editor".freeze
 
-  enum role: { reader: "reader", editor: "editor", admin: ADMIN }
+  ROLES = %w[reader editor admin].freeze
+  enum role: ROLES.zip(ROLES).to_h
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -14,7 +16,6 @@ class User < ApplicationRecord
          :secure_validatable
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "only allows valid emails" }
-  validates :role, presence: true
   validates :role, with: :presence_of_role
 
   def name
@@ -33,7 +34,13 @@ class User < ApplicationRecord
   end
 
   def self.valid_roles
-    valid = roles.slice("editor", ADMIN) # rubocop:todo Lint/UselessAssignment
+    roles.slice("editor", "admin").transform_values do |value|
+      I18n.translate(value, scope: :roles, default: "Unknown role")
+    end
+  end
+
+  def self.list_of_valid_roles
+    valid_roles.values.to_sentence(last_word_connector: "or")
   end
 
   def ensure_at_least_one_user_has_admin_role
@@ -44,7 +51,7 @@ class User < ApplicationRecord
 
   def presence_of_role
     unless role
-      errors.add(:role, "Role is required")
+      errors.add(:role, "Role is required. Select one of #{User.list_of_valid_roles}")
     end
   end
 end
