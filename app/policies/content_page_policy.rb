@@ -8,14 +8,20 @@ class ContentPagePolicy < ApplicationPolicy
   end
 
   def create?
-    !user.reader?
+    permissions?
   end
 
   def update?
-    !user.reader?
+    permissions?
   end
 
   def destroy?
-    !user.reader?
+    permissions?
+  end
+
+private
+
+  def permissions?
+    user.editor? || user.admin?
   end
 end

@@ -2,7 +2,7 @@ require "faker"
 
 FactoryBot.define do
   factory :user do
-    email { Faker::Internet.email }
+    email { [Faker::Internet.user_name, %w[@digital.education.gov.uk @education.gov.uk].sample].join("") }
     password { "TestPassword!@12345" }
     role { "reader" }
 

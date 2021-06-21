@@ -3,7 +3,11 @@ module Admin
     before_action :set_user, only: %i[edit update destroy]
 
     def index
+      authorize User
       @users = User.all
+    rescue Pundit::NotAuthorizedError
+      flash[:alert] = "You do not have permission to view users"
+      redirect_to request.referer || root_path
     end
 
     def new
@@ -52,14 +56,11 @@ module Admin
 
     def destroy
       authorize @user, :destroy?
-
-      if @current_user == @user
-        @user.errors.add(:base, "You cannot delete yourself")
-        render :edit
-      else
-        @user.destroy!
-        redirect_to admin_users_path, notice: "User was successfully destroyed."
-      end
+      @user.destroy!
+      redirect_to admin_users_path, notice: "User was successfully destroyed."
+    rescue Pundit::NotAuthorizedError
+      @user.errors.add(:base, "You don't have permission to delete this user")
+      render :edit
     end
 
   private
