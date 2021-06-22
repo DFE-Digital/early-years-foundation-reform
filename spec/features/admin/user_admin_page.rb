@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.feature "User administration", type: :feature do
   before do
-    create :admin, first_name: "Barbara", last_name: "Gordon", email: "birdsofprey@oracle.com"
-    create :editor, first_name: "Perry", last_name: "White", email: "pwhite@dailyplanet.com"
-    create :editor, first_name: "J Jonah", last_name: "Jameson", email: "jjj@dailybugle.com"
+    create :admin, first_name: "Barbara", last_name: "Gordon", email: "birdsofprey@education.gov.uk"
+    create :editor, first_name: "Perry", last_name: "White", email: "pwhite@education.gov.uk"
+    create :editor, first_name: "J Jonah", last_name: "Jameson", email: "jjj@education.gov.uk"
   end
 
   context "without session" do
@@ -41,6 +41,15 @@ RSpec.feature "User administration", type: :feature do
       visit edit_admin_user_path(user_who_logs_in)
 
       expect(page).to have_text("Your role is admin and you cannot change it")
+    end
+
+    scenario "the list of users should be ordered by email address, ascending" do
+      user_who_logs_in = FactoryBot.create(:admin)
+      login_as(user_who_logs_in)
+
+      visit admin_users_path
+      oneline = page.body.gsub('\n', '')
+      expect(oneline).to have_text /.*birdsofprey.*\n.*jjj.*\n.*pwhite.*/
     end
   end
 end
