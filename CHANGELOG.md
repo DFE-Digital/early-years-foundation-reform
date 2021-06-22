@@ -7,7 +7,7 @@ we do not currently follow Semantic Versioning or track version numbers.
 
 ## [Unreleased]
 
-
+### Added
 [PR-307]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/307 )
 [HFEYP-465](https://dfedigital.atlassian.net/browse/HFEYP-465)
 Fix user without (or with invalid) role permissions
@@ -21,6 +21,11 @@ Proper error messages
 Email address validation
 [HFEYP-472](https://dfedigital.atlassian.net/browse/HFEYP-472)
 Correct roles
+
+### Fixed
+  [HFEYP-469]( https://dfedigital.atlassian.net/browse/HFEYP-469 )
+
+  Admin cannot change own role
 
 ## [Release 3]
 
