@@ -47,6 +47,9 @@ we do not currently follow Semantic Versioning or track version numbers.
 ### Deprecated
 ### Removed
 ### Fixed
+  [HFEYP-469]( https://dfedigital.atlassian.net/browse/HFEYP-469 )
+  
+  Admin cannot change own role
 ### Security
 
 ## [S8 Return of the Content]
