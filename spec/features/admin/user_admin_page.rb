@@ -48,8 +48,7 @@ RSpec.feature "User administration", type: :feature do
       login_as(user_who_logs_in)
 
       visit admin_users_path
-      oneline = page.body.gsub('\n', '')
-      expect(oneline).to have_text /.*birdsofprey.*\n.*jjj.*\n.*pwhite.*/
+      expect(page.body).to have_text(/.*birdsofprey.*jjj.*pwhite.*/)
     end
   end
 end
