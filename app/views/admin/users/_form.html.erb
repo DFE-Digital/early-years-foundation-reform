@@ -5,7 +5,7 @@
   <%= form.govuk_email_field :email, disabled: !user.new_record?, label: {text: "Email" } %>
   <%= form.govuk_password_field :password, hint: {text: t(:password_hint) } %>
   <%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
-  <% if policy(user).update? %>
+  <% if current_user != user %>
     <%= form.govuk_collection_radio_buttons(:role, User.valid_roles, :first, :last, inline: true )%>
   <% else %>
     <p class="govuk-heading-m">Your role is admin and you cannot change it</p>
