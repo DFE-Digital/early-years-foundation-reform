@@ -5,6 +5,7 @@ class User < ApplicationRecord
   EDITOR = "editor".freeze
   APPROVED_DOMAINS = %w[@education.gov.uk @digital.education.gov.uk].freeze
   ROLES = %w[reader editor admin].freeze
+  EMAIL_ERROR_MESSAGE = "You must provide a valid DfE email address (#{APPROVED_DOMAINS.to_sentence})".freeze
   enum role: ROLES.zip(ROLES).to_h
 
   # Include default devise modules. Others available are:
@@ -15,9 +16,7 @@ class User < ApplicationRecord
          :session_limitable,
          :secure_validatable
 
-  validates :email, presence: true, if: :domain_check
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Email must be valid format" }
-  validates :email, uniqueness: true
+  validates :email, presence: true, uniqueness: true, if: :domain_check, format: { with: URI::MailTo::EMAIL_REGEXP, message: EMAIL_ERROR_MESSAGE }
 
   validates :role, presence: true
   validates :role, with: :ensure_at_least_one_user_has_admin_role
@@ -51,7 +50,7 @@ class User < ApplicationRecord
 
   def domain_check
     unless APPROVED_DOMAINS.any? { |word| email.end_with?(word) }
-      errors.add(:email, "Email address must be from an approved domain: #{APPROVED_DOMAINS.to_sentence}")
+      errors.add(:email, EMAIL_ERROR_MESSAGE)
     end
   end
 end
