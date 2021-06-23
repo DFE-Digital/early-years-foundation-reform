@@ -15,4 +15,4 @@
         Role (CMS)
       %th.govuk-table__header{ scope: 'col' }
   %tbody.govuk-table__body
-    =render @users
+    =render @users.order(email: :asc)
