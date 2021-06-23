@@ -30,13 +30,6 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  password_hint: |
-    A minimum of 8 characters long.
-    Not contain a dictionary word of more than 4 characters.
-    Contains at least two uppercase letters.
-    Contains at least two lowercase letters.
-    Contains at least two numbers.
-    Contains at least two special characters or non-alphanumeric characters, such as: ! \" £ $ % & * @.
   roles:
     admin: Administrator
     editor: Editor

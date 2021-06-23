@@ -4,7 +4,6 @@ class User < ApplicationRecord
   ADMIN = "admin".freeze
   EDITOR = "editor".freeze
   APPROVED_DOMAINS = %w[@education.gov.uk @digital.education.gov.uk].freeze
-
   ROLES = %w[reader editor admin].freeze
   enum role: ROLES.zip(ROLES).to_h
 
@@ -16,8 +15,8 @@ class User < ApplicationRecord
          :session_limitable,
          :secure_validatable
 
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Email must be valid format" }
   validates :email, presence: true, if: :domain_check
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Email must be valid format" }
   validates :email, uniqueness: true
 
   validates :role, presence: true

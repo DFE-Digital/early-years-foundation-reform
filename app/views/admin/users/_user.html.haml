@@ -6,4 +6,5 @@
   %td.govuk-table__cell
     = t(user.role, scope: :roles, default: 'Unknown role')
   %td.govuk-table__cell
-    = link_to('Edit', edit_admin_user_path(user))
+    %b
+      = link_to('Edit', edit_admin_user_path(user))

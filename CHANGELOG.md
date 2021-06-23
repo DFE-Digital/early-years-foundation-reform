@@ -5,8 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 we do not currently follow Semantic Versioning or track version numbers.
 
-
 ## [Unreleased]
+
+### Added
+[PR-307]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/307 )
+[HFEYP-465](https://dfedigital.atlassian.net/browse/HFEYP-465)
+Fix user without (or with invalid) role permissions
+[HFEYP-467](https://dfedigital.atlassian.net/browse/HFEYP-467)
+Use GDS styling (sentence case)
+[HFEYP-451](https://dfedigital.atlassian.net/browse/HFEYP-451)
+Javascript disabled message
+[HFEYP-466](https://dfedigital.atlassian.net/browse/HFEYP-466)
+Proper error messages
+[HFEYP-468](https://dfedigital.atlassian.net/browse/HFEYP-468)
+Email address validation
+[HFEYP-472](https://dfedigital.atlassian.net/browse/HFEYP-472)
+Correct roles
+
+### Fixed
+  [HFEYP-469]( https://dfedigital.atlassian.net/browse/HFEYP-469 )
+
+  Admin cannot change own role
+
+## [Release 3]
 
 ### Added
   [PR-267]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/267 )
@@ -46,10 +67,6 @@ we do not currently follow Semantic Versioning or track version numbers.
 
 ### Deprecated
 ### Removed
-### Fixed
-  [HFEYP-469]( https://dfedigital.atlassian.net/browse/HFEYP-469 )
-  
-  Admin cannot change own role
 ### Security
 
 ## [S8 Return of the Content]
