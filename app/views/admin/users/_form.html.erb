@@ -3,8 +3,21 @@
   <%= form.govuk_text_field :first_name, label: {text: "First name"} %>
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
   <%= form.govuk_email_field :email, disabled: !user.new_record?, label: {text: "Email" } %>
-  <%= form.govuk_password_field :password, hint: {text: t(:password_hint) } %>
-  <%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
+  <span class="govuk-form-group tooltip">
+    <%= form.govuk_password_field :password, label: {text: "Password", id: "user-password-label"} do %>
+        <span class="tooltiptext">
+          <ul class="govuk-list" id="password-tooltip">
+            <li>a) A minimum of 8 characters long.</li>
+            <li>b) Not contain a dictionary word of more than 4 characters.</li>
+            <li>c) Contains at least two uppercase letters.</li>
+            <li>d) Contains at least two lowercase letters.</li>
+            <li>e) Contains at least two numbers.</li>
+            <li>f) Contains at least two special characters or non-alphanumeric characters, such as: ! \" £ $ % & * @.</li>
+          </ul>
+        </span>
+    <% end %>
+    <%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
+  </span>
   <% if current_user != user %>
     <%= form.govuk_collection_radio_buttons(:role, User.valid_roles, :first, :last, inline: true )%>
   <% else %>
