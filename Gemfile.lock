@@ -214,7 +214,7 @@ GEM
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.5.0)
       unicorn (>= 5.4, < 5.9)
-    govuk_design_system_formbuilder (2.6.0)
+    govuk_design_system_formbuilder (2.7.0)
       actionview (>= 6.0)
       activemodel (>= 6.0)
       activesupport (>= 6.0)
@@ -506,7 +506,7 @@ DEPENDENCIES
   faker (~> 2.18)
   foreman (~> 0.87)
   govspeak
-  govuk_design_system_formbuilder (~> 2.6)
+  govuk_design_system_formbuilder (~> 2.7)
   haml (~> 5.2)
   htmlentities (= 4.3.4)
   launchy
