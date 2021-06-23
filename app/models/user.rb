@@ -8,6 +8,8 @@ class User < ApplicationRecord
   EMAIL_ERROR_MESSAGE = "You must provide a valid DfE email address (#{APPROVED_DOMAINS.to_sentence})".freeze
   enum role: ROLES.zip(ROLES).to_h
 
+  validates :email, presence: true, uniqueness: true, if: :domain_check, format: { with: URI::MailTo::EMAIL_REGEXP, message: EMAIL_ERROR_MESSAGE }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
@@ -15,8 +17,6 @@ class User < ApplicationRecord
          :lockable,
          :session_limitable,
          :secure_validatable
-
-  validates :email, presence: true, uniqueness: true, if: :domain_check, format: { with: URI::MailTo::EMAIL_REGEXP, message: EMAIL_ERROR_MESSAGE }
 
   validates :role, presence: true
   validates :role, with: :ensure_at_least_one_user_has_admin_role
