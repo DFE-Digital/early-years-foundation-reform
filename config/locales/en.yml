@@ -46,7 +46,6 @@ en:
           attributes:
             email:
               blank: Email must not be blank
-              address_validation: Valid email address must use @digital.education.gov.uk or @education.gov.uk
               taken: Email is a duplicate of an existing email
             password:
               too_short: Password must be a minimum of 8 characters long

@@ -2,8 +2,8 @@
   <%= form.govuk_error_summary %>
   <%= form.govuk_text_field :first_name, label: {text: "First name"} %>
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
-  <%= form.govuk_email_field :email, disabled: !user.new_record?, label: {text: "Email" } %>
-  <span class="govuk-form-group tooltip">
+  <%= form.govuk_email_field :email, disabled: !user.new_record?, label: {text: "Email address" } %>
+  <span class="govuk-fieldset tooltip">
     <%= form.govuk_password_field :password, label: {text: "Password", id: "user-password-label"} do %>
         <span class="tooltiptext">
           <ul class="govuk-list" id="password-tooltip">
