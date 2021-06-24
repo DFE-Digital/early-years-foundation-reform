@@ -19,6 +19,10 @@ class UserPolicy < ApplicationPolicy
     user != record && permissions?
   end
 
+  def change_role?
+    user != record && permissions?
+  end
+
 private
 
   def permissions?
