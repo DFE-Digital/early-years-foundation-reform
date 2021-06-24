@@ -33,7 +33,7 @@ en:
   password_hint:
     html: |
       <span class="tooltiptext">
-        <p>Password fields should:<p>
+        <p class="govuk-body">Password fields should:<p>
         <ul class="govuk-list" id="password-tooltip">
           <li>a) Be a minimum of 8 characters long</li>
           <li>b) Not contain a dictionary word of more than 4 characters</li>
