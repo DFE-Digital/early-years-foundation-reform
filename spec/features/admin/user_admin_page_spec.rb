@@ -15,7 +15,7 @@ RSpec.feature "User administration", type: :feature do
   end
 
   context "with session" do
-    let(:barbara) { User.find_by(email: "birdsofprey@education.gov.uk")}
+    let(:barbara) { User.find_by(email: "birdsofprey@education.gov.uk") }
     scenario "visits admin root" do
       login_as(barbara)
       visit "/admin"

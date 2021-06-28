@@ -42,7 +42,7 @@ module Admin
         end
       else
         @user.reset_password_token = Devise.friendly_token
-        if @user.update_without_password(user_params) && @user.reset_password(user_params[:password], user_params[:password_confirmation])
+        if @user.update_without_password(user_params) && @user.reset_password(user_params[:password], user_params[:password_confirmation]).save
           redirect_to admin_users_path, notice: "User #{@user.name} updated.  Password changed!"
         else
           render :edit
