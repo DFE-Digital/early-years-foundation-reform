@@ -30,7 +30,7 @@ class User < ApplicationRecord
     if new_password.present?
       self.password = new_password
       self.password_confirmation = new_password_confirmation
-      save!
+      save
     else
       errors.add(:password, :blank)
       false
