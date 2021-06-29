@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
+         :recoverable,
          :timeoutable,
          :lockable,
          :session_limitable,
@@ -29,7 +30,11 @@ class User < ApplicationRecord
     if new_password.present?
       self.password = new_password
       self.password_confirmation = new_password_confirmation
-      save!
+      if save
+        true
+      else
+        false
+      end
     else
       errors.add(:password, :blank)
       false
