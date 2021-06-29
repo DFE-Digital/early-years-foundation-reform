@@ -27,7 +27,7 @@ RSpec.feature "Edit administrator", type: :feature do
       fill_in "user-password-confirmation-field", with: "ValidPassword12!@"
       click_button "Save"
 
-      expect(page).to have_text("User Barbara Gordon updated. Password changed!")
+      expect(page).to have_text("User Barbara Gordon updated and password changed")
     end
   end
 end
