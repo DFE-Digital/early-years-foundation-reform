@@ -30,6 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  password_hint:
+    html: |
+      <span class="tooltiptext">
+        <ul class="govuk-list" id="password-tooltip">
+          <li>Password fields should:<li>
+          <li>a) Be a minimum of 8 characters long</li>
+          <li>b) Not contain a dictionary word of more than 4 characters</li>
+          <li>c) Contain at least two uppercase letters</li>
+          <li>d) Contain at least two lowercase letters</li>
+          <li>e) Contain at least two numbers</li>
+          <li>f) Contain at least two special characters or non-alphanumeric characters, such as: ! \" £ $ % & * @</li>
+        </ul>
+      </span>
+  helpers:
+    label:
+      user:
+        email: Email address
   roles:
     admin: Administrator
     editor: Editor
