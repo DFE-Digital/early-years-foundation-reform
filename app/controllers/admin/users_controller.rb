@@ -55,6 +55,7 @@ module Admin
 
     def destroy
       authorize @user, :destroy?
+      @user.update!(unique_session_id: nil) # kill any current session
       @user.destroy!
       redirect_to admin_users_path, notice: "User #{@user.name} deleted"
     rescue Pundit::NotAuthorizedError
