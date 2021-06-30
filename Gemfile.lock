@@ -88,7 +88,7 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.3)
       aws-eventstream (~> 1, >= 1.0.2)
-    axe-core-api (4.2.0)
+    axe-core-api (4.2.1)
       capybara
       dumb_delegator
       selenium-webdriver
@@ -101,7 +101,7 @@ GEM
       axe-core-api
       dumb_delegator
       virtus
-    axe-core-selenium (4.2.0)
+    axe-core-selenium (4.2.1)
       axe-core-api
       dumb_delegator
     axe-matchers (2.6.1)
