@@ -67,11 +67,12 @@ en:
             password:
               too_short: Password must be a minimum of 8 characters long
               blank: Password must not be blank
+              equal_to_current_password: 'Password must be different than the current password'
               password_complexity:
                 digit: Password must contain at least 2 digits
                 lower: Password must contain at least 2 lowercase characters
-                upper: Password much contain at least 2 uppercase characters
-                symbol: Password much contain at least 2 special characters or non-alphanumeric characters
+                upper: Password must contain at least 2 uppercase characters
+                symbol: Password must contain at least 2 special characters or non-alphanumeric characters
             role:
               blank: Select an editor or administrator role type
             password_confirmation:
