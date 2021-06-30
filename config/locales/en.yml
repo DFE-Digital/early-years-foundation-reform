@@ -67,6 +67,7 @@ en:
             password:
               too_short: Password must be a minimum of 8 characters long
               blank: Password must not be blank
+              equal_to_current_password: 'Password must be different than the current password'
               password_complexity:
                 digit: Password must contain at least 2 digits
                 lower: Password must contain at least 2 lowercase characters
