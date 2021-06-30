@@ -71,8 +71,8 @@ en:
               password_complexity:
                 digit: Password must contain at least 2 digits
                 lower: Password must contain at least 2 lowercase characters
-                upper: Password much contain at least 2 uppercase characters
-                symbol: Password much contain at least 2 special characters or non-alphanumeric characters
+                upper: Password must contain at least 2 uppercase characters
+                symbol: Password must contain at least 2 special characters or non-alphanumeric characters
             role:
               blank: Select an editor or administrator role type
             password_confirmation:
