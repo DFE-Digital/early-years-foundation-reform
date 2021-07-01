@@ -4,10 +4,10 @@
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
   <%= form.govuk_email_field :email, disabled: user.persisted? %>
   <span class="govuk-fieldset tooltip">
-    <%= form.govuk_password_field :password, label: {text: "Password", id: "user-password-label"} do %>
+    <%= form.govuk_password_field :password, placeholder: user.persisted? ? "********" : "", label: {text: "Password", id: "user-password-label"} do %>
       <%= t('password_hint.html') %>
     <% end %>
-    <%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
+    <%= form.govuk_password_field :password_confirmation, placeholder: user.persisted? ? "********" : "", label: {text: "Confirm password"} %>
   </span>
   <% if policy(@user).change_role? %>
     <%= form.govuk_collection_radio_buttons(:role, User.valid_roles, :first, :last, inline: true )%>
