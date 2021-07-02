@@ -12,6 +12,10 @@ initAll();
 
 $(document).ready(function() {
 
+  if (typeof NodeList.prototype.forEach !== 'function') {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  };
+
   $('#markdown-editor').keyup(function() {
     createPreview('#markdown-editor','#markdown-render');
   });
