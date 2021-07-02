@@ -103,3 +103,15 @@ if (stickyMenu) {
     mobileStickySubNav.classList.toggle('app-mobile-nav--active');
   }
 }
+
+$('#content_asset_asset_file').on('change', function() {
+  const size = (this.files[0].size / 1024 /1024).toFixed(2);
+  var $submit = $('input[type="submit"]');
+  $submit.prop('disabled', true);
+  if (size > 2) {
+    $("#content_asset_file_size").html('<b>' + 'This file size is too large: ' + size + " MB" + '</b>');
+  } else {
+    $submit.prop('disabled', false);
+    $("#content_asset_file_size").html('<b>' + 'This file size is: ' + size + " MB" + '</b>');
+  } 
+});
