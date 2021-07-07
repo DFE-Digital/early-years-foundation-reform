@@ -2,14 +2,18 @@
   <%= form.govuk_error_summary %>
   <%= form.govuk_text_field :first_name, label: {text: "First name"} %>
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
-  <%= form.govuk_email_field :email, disabled: !user.new_record?, label: {text: "Email" } %>
-  <%= form.govuk_password_field :password, hint: {text: t(:password_hint) } %>
-  <%= form.govuk_password_field :password_confirmation, label: {text: "Confirm password"} %>
-  <% if current_user != user %>
+  <%= form.govuk_email_field :email, disabled: user.persisted? %>
+  <span class="govuk-fieldset tooltip">
+    <%= form.govuk_password_field :password, placeholder: user.persisted? ? "********" : "", label: {text: "Password", id: "user-password-label"} do %>
+      <%= t('password_hint.html') %>
+    <% end %>
+    <%= form.govuk_password_field :password_confirmation, placeholder: user.persisted? ? "********" : "", label: {text: "Confirm password"} %>
+  </span>
+  <% if policy(@user).change_role? %>
     <%= form.govuk_collection_radio_buttons(:role, User.valid_roles, :first, :last, inline: true )%>
   <% else %>
     <p class="govuk-heading-m">Your role is admin and you cannot change it</p>
   <% end %>
   <%= form.govuk_submit "Save" %>
 <% end %>
-<p><%= link_to "Cancel", admin_users_path %></p>
+<p class="govuk-body"><%= link_to "Cancel", admin_users_path %></p>

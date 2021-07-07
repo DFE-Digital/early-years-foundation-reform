@@ -17,11 +17,12 @@
     <%= form.label :alt_text, :class => 'govuk-label' %>
     <%= form.text_field :alt_text, :class => 'govuk-input govuk-!-width-three-quarters' %>
     <%= form.file_field :asset_file %>
+    <p class="govuk-body" id="content_asset_file_size"></p>
   </div>
 
 <div class="govuk-grid-row">
 <div class="govuk-grid-column-one-half">
-  <%= form.submit('Submit', :class => "govuk-button") %>
+  <%= form.submit('Submit', :class => "govuk-button", disabled: true) %>
 </div>
 </div>
 

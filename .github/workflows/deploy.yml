@@ -74,7 +74,7 @@ jobs:
         run: |
           export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
           cd terraform/app
-          terraform init -input=false -backend-config="bucket=${{secrets.AWS_BUCKET}}"
+          terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET}}"
           terraform plan -var-file ../workspace-variables/dev.tfvars
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/dev.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
 
@@ -90,7 +90,7 @@ jobs:
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_TEST}}"
           terraform plan -var-file ../workspace-variables/test.tfvars
-          terraform apply -input=false -auto-approve -var-file ../workspace-variables/test.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_TEST}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_TEST}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_TEST}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_TEST}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
+          terraform apply -refresh=true -input=false -auto-approve -var-file ../workspace-variables/test.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_TEST}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_TEST}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_TEST}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_TEST}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
 
       - name: Deploy to pre-prod
         if: ${{ github.event.inputs.environment == 'pre-prod' }}

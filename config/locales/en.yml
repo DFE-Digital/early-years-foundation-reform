@@ -30,13 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  password_hint: |
-    A minimum of 8 characters long.
-    Not contain a dictionary word of more than 4 characters.
-    Contains at least two uppercase letters.
-    Contains at least two lowercase letters.
-    Contains at least two numbers.
-    Contains at least two special characters or non-alphanumeric characters, such as: ! \" £ $ % & * @.
+  password_hint:
+    html: |
+      <span class="tooltiptext">
+        <ul class="govuk-list" id="password-tooltip">
+          <li>Password fields should:<li>
+          <li>a) Be a minimum of 8 characters long</li>
+          <li>b) Not contain a dictionary word of more than 4 characters</li>
+          <li>c) Contain at least two uppercase letters</li>
+          <li>d) Contain at least two lowercase letters</li>
+          <li>e) Contain at least two numbers</li>
+          <li>f) Contain at least two special characters or non-alphanumeric characters, such as: ! \" £ $ % & * @</li>
+        </ul>
+      </span>
+  helpers:
+    label:
+      user:
+        email: Email address
   roles:
     admin: Administrator
     editor: Editor
@@ -53,16 +63,16 @@ en:
           attributes:
             email:
               blank: Email must not be blank
-              address_validation: Valid email address must use @digital.education.gov.uk or @education.gov.uk
               taken: Email is a duplicate of an existing email
             password:
               too_short: Password must be a minimum of 8 characters long
               blank: Password must not be blank
+              equal_to_current_password: 'Password must be different than the current password'
               password_complexity:
                 digit: Password must contain at least 2 digits
                 lower: Password must contain at least 2 lowercase characters
-                upper: Password much contain at least 2 uppercase characters
-                symbol: Password much contain at least 2 special characters or non-alphanumeric characters
+                upper: Password must contain at least 2 uppercase characters
+                symbol: Password must contain at least 2 special characters or non-alphanumeric characters
             role:
               blank: Select an editor or administrator role type
             password_confirmation:

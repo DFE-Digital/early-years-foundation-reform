@@ -21,7 +21,7 @@ module Admin
       begin
         authorize @user
         if @user.save
-          redirect_to admin_users_path, notice: "User #{@user.name} successfully created"
+          redirect_to admin_users_path, notice: "User #{@user.name} created"
         else
           render :new
         end
@@ -41,10 +41,9 @@ module Admin
           render :edit
         end
       else
-        @user.reset_password_token = "admin_reset"
-        @user.update_without_password(user_params)
-        if @user.reset_password(user_params[:password], user_params[:password_confirmation])
-          redirect_to admin_users_path, notice: "User #{@user.name} updated.  Password changed!"
+        @user.reset_password_token = Devise.friendly_token
+        if @user.update_without_password(user_params) && @user.reset_password(user_params[:password], user_params[:password_confirmation])
+          redirect_to admin_users_path, notice: "User #{@user.name} updated and password changed"
         else
           render :edit
         end
@@ -56,8 +55,9 @@ module Admin
 
     def destroy
       authorize @user, :destroy?
+      @user.update!(unique_session_id: nil) # kill any current session
       @user.destroy!
-      redirect_to admin_users_path, notice: "User was successfully destroyed."
+      redirect_to admin_users_path, notice: "User #{@user.name} deleted"
     rescue Pundit::NotAuthorizedError
       @user.errors.add(:base, "You don't have permission to delete this user")
       render :edit
