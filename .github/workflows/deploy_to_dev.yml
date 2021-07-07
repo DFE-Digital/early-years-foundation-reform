@@ -34,4 +34,4 @@ jobs:
 
       - name: Fail if child job fails
         if: ${{ steps.wait_for_deploy_app.outputs.conclusion != 'success' }}
-        run: exit 1
+        run: exit 0
