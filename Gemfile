@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(".ruby-version").chomp
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.3"
+gem "rails", "~> 6.1.4"
 
 # User accounts; required in config/application.rb
 gem "devise", ">= 4.7.3"
@@ -100,4 +100,4 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "devise-security", "~> 0.16.0"
 
-gem "govuk_design_system_formbuilder", "~> 2.6"
+gem "govuk_design_system_formbuilder", "~> 2.7"
