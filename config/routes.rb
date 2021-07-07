@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
 
-  get "/:section/:slug", to: "content#show"
+  get "/:slug/:section", to: "content#show"
   get "/:slug", to: "content#show"
 
   root to: "content#index"
