@@ -27,7 +27,7 @@
             <label id="markdown-hint" for="markdown-editor" class="govuk-hint">
               Content
             </label>
-            <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
+            <%= form.check_box :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
           </div>
 
           <div class="govuk-form-group">
@@ -35,6 +35,14 @@
               Position (relative to sibling pages)
             </label>
             <%= form.text_field :position, :class => 'govuk-input govuk-!-width-three-quarters', id: "position" %>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="is_featured">
+              If ticked, this page will appear on the landing page with a list of links to its children.
+              Most pages will not be featured
+            </label>
+            <%= form.check_box :is_featured, :class => '', id: "is_featured" %>
           </div>
 
           <%= form.hidden_field :parent_id, id: "parent_id" %>

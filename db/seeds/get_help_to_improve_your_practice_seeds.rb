@@ -23,6 +23,7 @@ attrs = {
   title: "Get help to improve your practice",
   markdown: markdown,
   position: 8,
+  is_featured: true
 }
 parent_page = ContentPage.new attrs
 parent_page.save!
@@ -82,25 +83,6 @@ attrs = {
   title: "Identifying and supporting children with special educational needs and disability",
   markdown: markdown,
   position: 3,
-  parent_id: parent_page.id,
-}
-page = ContentPage.new attrs
-page.save!
-
-#####################################################################################
-
-markdown = <<-MARKDOWN
-The content on this page will cover what the changes are and why they’ve changed, along with the importance of oral health.
-
-Many settings are already covering oral health alongside other work to promote health so it may not need to be a significant extra requirement. Different approaches will work best for different settings.
-
-This page will also contain links to useful resources in the area of oral health.
-MARKDOWN
-
-attrs = {
-  title: "Promoting oral health as part of the safeguarding and welfare requirements",
-  markdown: markdown,
-  position: 4,
   parent_id: parent_page.id,
 }
 page = ContentPage.new attrs

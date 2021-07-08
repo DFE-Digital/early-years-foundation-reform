@@ -4,6 +4,7 @@ class ContentPage < ApplicationRecord
 
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
+  scope :featured_pages, -> { where("is_featured IS TRUE") }
 
   CHARS_TO_OMIT_FROM_SLUG = ",:()".freeze
   ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES = /\A[a-zA-Z0-9,:\-() ]+\Z/.freeze

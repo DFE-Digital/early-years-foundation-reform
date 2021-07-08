@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_11_142356) do
+ActiveRecord::Schema.define(version: 2021_07_08_144645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_142356) do
     t.integer "position"
     t.integer "next_id"
     t.integer "previous_id"
+    t.boolean "is_featured"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
