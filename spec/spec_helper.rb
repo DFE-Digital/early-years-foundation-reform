@@ -15,7 +15,6 @@ Capybara.register_driver :chrome_headless do |app|
   options.add_argument("--window-size=1400,1400")
   options.add_argument("--disable-cache")
 
-  Capybara.server_port = 9999
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
