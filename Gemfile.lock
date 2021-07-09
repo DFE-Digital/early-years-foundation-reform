@@ -286,6 +286,8 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.7-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-darwin)
+      racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     orm_adapter (0.5.0)
@@ -501,6 +503,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  x86_64-darwin-20
 
 DEPENDENCIES
   active_storage_validations (~> 0.9)
