@@ -13,7 +13,7 @@
   </div>
 
   <!--Cards section-->
-  <div class="landing-page__section--grey">
+  <div class="">
     <div class="govuk-width-container">
       <h2 class="govuk-heading-l">Areas of learning</h2>
       <div class="govuk-grid-row">
@@ -22,12 +22,12 @@
             ideas for activities you can do with early years children.</p>
         </div>
       </div>
-      <ul class="govuk-grid-row eyfs-card-group">
+      <ul class="govuk-grid-row eyfs-card-group" id="cards">
         <% @content_pages.each do |content_page| %>
           <li class="govuk-grid-column-one-half eyfs-card-group__item">
-            <div class="eyfs-card eyfs-card--clickable eyfs-card--icon">
-              <div class="eyfs-card__content">
-                <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="<%= '/' + content_page.slug %>"><%= content_page.title %></a>
+            <div class="eyfs-card eyfs-card--clickable">
+              <div class="eyfs-card__content eyfs-card--icon">
+                <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold" href="<%= '/' + content_page.slug %>"><%= content_page.title %></a>
               </div>
             </div>
           </li>

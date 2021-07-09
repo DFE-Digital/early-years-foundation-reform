@@ -1,14 +1,14 @@
 //styles for the NHScard component
 
 $card-border-width: 1px;
-$card-border-bottom-width: 3px;
+$card-border-bottom-width: 0px;
 $card-border-color: #1d70b8;
 $card-border-hover-color: #003078;
 
 .eyfs-card {
   @include govuk-responsive-margin(5, 'bottom');
 
-  background: govuk-colour("white");
+  background: $card-border-color;
   border-bottom: $card-border-width solid $card-border-color;
   position: relative;
   width: 100%;
@@ -17,8 +17,12 @@ $card-border-hover-color: #003078;
 .eyfs-card__content {
   // @include top-and-bottom();
   @include govuk-responsive-padding(5);
-
+  background-image: url(../images/white-chevron.svg);
   position: relative;
+}
+
+ul li div div.eyfs-card__content a.govuk-link:visited{
+  color: white;
 }
 
 .eyfs-card__heading,
@@ -113,7 +117,8 @@ $card-border-hover-color: #003078;
   ========================================================================== */
 
   .eyfs-card--icon {
-    background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
+    background-image: url(../images/white-chevron.svg);
+    // sass-lint:disable-line quotes
     background-position: right 8px top 50%;
     background-repeat: no-repeat;
 
@@ -123,11 +128,12 @@ $card-border-hover-color: #003078;
 
     &:hover,
     &:active {
-      background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
+      background-image: url(../images/white-chevron.svg); // sass-lint:disable-line quotes
     }
 
     a {
       text-decoration: none;
+      color: red;
     }
 
     .eyfs-card__content {
