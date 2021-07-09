@@ -100,5 +100,3 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise-security", "~> 0.16.0"
 
 gem "govuk_design_system_formbuilder", "~> 2.7"
-
-gem "mechanize"
