@@ -42,7 +42,4 @@ FactoryBot.define do
     title { "#{Faker::Lorem.word}-#{Faker::Lorem.word} #{Faker::Lorem.word}-#{Faker::Lorem.word}" }
   end
 
-  trait :with_broken_links do
-    markdown { "[Broken link](https://bbc.co.uk/made_up_page)" }
-  end
 end
