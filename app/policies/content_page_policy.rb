@@ -1,36 +1,27 @@
-class ContentPagePolicy
-  attr_reader :user, :content_page
-
-  def initialize(user, content_page)
-    @user = user
-    @content_page = content_page
-  end
-
+class ContentPagePolicy < ApplicationPolicy
   def index?
-    true
+    user.present?
   end
 
   def show?
-    true
+    user.present?
   end
 
   def create?
-    user.role == "editor"
-  end
-
-  def new?
-    user.role == "editor"
+    permissions?
   end
 
   def update?
-    user.role == "editor"
-  end
-
-  def edit?
-    user.role == "editor"
+    permissions?
   end
 
   def destroy?
-    user.role == "editor"
+    permissions?
+  end
+
+private
+
+  def permissions?
+    user.editor? || user.admin?
   end
 end

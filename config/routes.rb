@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
+  namespace :admin do
+    root to: "users#index"
+    resources :users
+  end
+
   constraints CmsRouteConstraint.new do
     devise_for :users
     devise_scope :user do
