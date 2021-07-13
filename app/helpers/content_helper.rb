@@ -27,7 +27,6 @@ module ContentHelper
       html_to_use = ContentBlock.find_by_name(block_name).markdown
     end
 
-    # GovspeakToHTML.new.translate_markdown markdown
-    html_to_use
+    GovspeakToHTML.new.translate_markdown html_to_use
   end
 end
