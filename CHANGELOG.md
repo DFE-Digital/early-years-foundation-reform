@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 we do not currently follow Semantic Versioning or track version numbers.
 
+
+## [Unreleased]
+
+### Fixed
+  [PR-338]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/338 )
+  [HFEYP-452](https://dfedigital.atlassian.net/browse/HFEYP-452)
+  Banner displayed after cookies set because of cache control - only use cache once cookie is set
+
 ## [Release 4]
 
 ### Dependencies updated
