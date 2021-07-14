@@ -3,7 +3,7 @@ class ContentController < ApplicationController
   after_action :set_cache_headers
 
   def set_cache_headers
-    response.headers["Cache-Control"] = "max-age=3600, public"
+    response.headers["Cache-Control"] = "max-age=3600, public" if cookies[:track_analytics].present?
   end
 
   # This is a page whose title and children's titles are rendered
