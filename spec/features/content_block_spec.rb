@@ -61,6 +61,7 @@ RSpec.feature "View content blocks", type: :feature do
     scenario "The Accessibility page can be produced using a Content Block called 'accessibility'" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
 
+      ContentBlock.destroy_all
       ContentBlock.create!(name: "accessibility",
                            description: "For the accessibility page",
                            markdown: valid_attributes[:markdown])
