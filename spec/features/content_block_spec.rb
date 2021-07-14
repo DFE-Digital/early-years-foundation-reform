@@ -16,8 +16,6 @@ RSpec.feature "View content blocks", type: :feature do
     end
 
     scenario "The content block index page should not have any accessibility errors" do
-      block1 = FactoryBot.create(:content_block)
-
       sign_in FactoryBot.create(:user, role: User::ADMIN)
       visit "/cms/blocks"
 
@@ -57,21 +55,20 @@ RSpec.feature "View content blocks", type: :feature do
 
       changed_block = ContentBlock.find_by_name valid_attributes[:name]
 
-      expect(changed_block.markdown).to include( valid_attributes[:markdown] )
+      expect(changed_block.markdown).to include(valid_attributes[:markdown])
     end
 
     scenario "The Accessibility page can be produced using a Content Block called 'accessibility'" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
 
-      block = ContentBlock.create!( name: "accessibility",
-                                    description: "For the accessibility page",
-                                    markdown: valid_attributes[:markdown])
+      ContentBlock.create!(name: "accessibility",
+                                   description: "For the accessibility page",
+                                   markdown: valid_attributes[:markdown])
 
       visit("accessibility-statement")
 
       expect(page.body).to include(valid_attributes[:markdown])
     end
-
   end
 
   describe "editors cannot access Content Block functionality" do

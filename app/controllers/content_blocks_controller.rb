@@ -11,7 +11,7 @@ class ContentBlocksController < ApplicationController
   end
 
   # GET /content_blocks/1
-  def show;
+  def show
     authorize @content_block, :get?
   end
 
