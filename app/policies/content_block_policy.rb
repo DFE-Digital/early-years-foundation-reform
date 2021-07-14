@@ -7,11 +7,11 @@ class ContentBlockPolicy
   end
 
   def index?
-    true
+    permissions?
   end
 
   def show?
-    true
+    permissions?
   end
 
   def create?
@@ -30,6 +30,10 @@ class ContentBlockPolicy
     permissions?
   end
 
+  def get?
+    permissions?
+  end
+
   def destroy?
     permissions?
   end
@@ -37,6 +41,6 @@ class ContentBlockPolicy
 private
 
   def permissions?
-    user.editor? || user.admin?
+    user.admin?
   end
 end

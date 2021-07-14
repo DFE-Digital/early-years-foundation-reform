@@ -6,11 +6,14 @@ class ContentBlocksController < ApplicationController
 
   # GET /content_blocks
   def index
+    authorize User
     @content_blocks = ContentBlock.all
   end
 
   # GET /content_blocks/1
-  def show; end
+  def show;
+    authorize @content_block, :get?
+  end
 
   # GET /content_blocks/new
   def new
