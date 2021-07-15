@@ -57,8 +57,13 @@ en:
       models:
         content_asset:
           attributes:
+            title:
+              blank: must not be blank
+            alt_text:
+              blank: must not be blank
             asset_file:
-              invalid_extension:  "invalid extension. Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG"
+              blank: must not be blank
+              invalid_extension:  has an invalid extension.
         user:
           attributes:
             email:
