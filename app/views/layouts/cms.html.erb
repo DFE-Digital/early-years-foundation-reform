@@ -46,6 +46,7 @@
           <nav>
             <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
               <%= nav_link_to(title: "Admin", path: admin_users_path) if current_user.admin? %>
+              <%= nav_link_to(title: "Blocks", path: content_blocks_path) if current_user.admin? %>
               <%= nav_link_to(title: "Pages", path: content_pages_path) %>
               <%= nav_link_to(title: "Assets", path: content_assets_path) %>
               <li class="govuk-header__navigation-item">
