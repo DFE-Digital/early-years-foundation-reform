@@ -1,0 +1,11 @@
+class ContentBlock < ApplicationRecord
+  audited
+
+  # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :name, uniqueness: true # There is also a unique index in SQL, rubocop disagrees
+  # rubocop:enable Rails/UniqueValidationWithoutIndex
+  validates :name, presence: true, format: { without: /\s/, message: "must contain no spaces" }
+  validates :description, presence: true
+
+  validates :markdown, presence: true
+end
