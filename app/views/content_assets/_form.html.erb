@@ -1,4 +1,4 @@
-<%= form_with(model: content_asset, local: true) do |form| %>
+<%= form_with(model: content_asset, local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
   <% if content_asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(content_asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
@@ -12,17 +12,14 @@
   <% end %>
 
   <div class="govuk-form-group">
-    <%= form.label :title, :class => 'govuk-label' %>
-    <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters' %>
-    <%= form.label :alt_text, :class => 'govuk-label' %>
-    <%= form.text_field :alt_text, :class => 'govuk-input govuk-!-width-three-quarters' %>
-    <%= form.file_field :asset_file %>
+    <%= form.govuk_text_field :title, width: 'three-quarters' %>
+    <%= form.govuk_text_field :alt_text, label: { text: "Alternate text" }, width: 'three-quarters' %>
+    <%= form.govuk_file_field :asset_file, label: { text: "Asset file" }, width: 'one-half', hint: { text: "Upload an asset file less than 2MB.</br>Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG".html_safe} %>
     <p class="govuk-body" id="content_asset_file_size"></p>
   </div>
-
 <div class="govuk-grid-row">
 <div class="govuk-grid-column-one-half">
-  <%= form.submit('Submit', :class => "govuk-button", disabled: true) %>
+  <%= form.govuk_submit "Submit" %>
 </div>
 </div>
 
