@@ -19,7 +19,7 @@
             <label class="govuk-label" for="Heading">
               <%= form.label :name, "Name - this should be provided by the developers, it refers to part of the fixed pages" %>
             </label>
-            <%= form.text_field :name, :class => 'govuk-input govuk-!-width-three-quarters' %>
+            <%= form.text_field :name, :class => 'govuk-input govuk-!-width-three-quarters', disabled: content_block&.id %>
           </div>
 
           <div class="govuk-form-group">

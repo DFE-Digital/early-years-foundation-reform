@@ -6,7 +6,7 @@ RSpec.feature "View content blocks", type: :feature do
   end
 
   describe "A user with role of Admin can " do
-    scenario "Navigate to Content Blocks" do
+    scenario "Navigate to the Content Blocks admin page" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
       block = FactoryBot.create(:content_block)
       visit "/cms/blocks"
@@ -22,28 +22,23 @@ RSpec.feature "View content blocks", type: :feature do
       expect(page).to be_axe_clean
     end
 
-    scenario "The Blocks menu is visible to admin users" do
-      sign_in FactoryBot.create(:user, role: User::ADMIN)
-
-      visit "cms/pages"
-
-      expect(page.body).to include("Blocks")
-    end
-
-    scenario "Admin users can create a new content block" do
+    scenario "An admin user can change the markdown and description of an existing content block" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
       block1 = FactoryBot.create(:content_block)
 
       visit edit_content_block_path(block1)
       page.find_field("content_block[markdown]").set("Brand new markdown")
+      page.find_field("content_block[description]").set("A new description")
+
       page.click_button("Update Content block")
 
       changed_block = ContentBlock.find block1.id
 
       expect(changed_block.markdown).to include("Brand new markdown")
+      expect(changed_block.description).to include("A new description")
     end
 
-    scenario "Admin users can edit a content blocks" do
+    scenario "An admin user can create a content block" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
 
       visit new_content_block_path
@@ -56,6 +51,15 @@ RSpec.feature "View content blocks", type: :feature do
       changed_block = ContentBlock.find_by_name valid_attributes[:name]
 
       expect(changed_block.markdown).to include(valid_attributes[:markdown])
+    end
+
+    scenario "An admin user cannot change the name of an existing content block" do
+      sign_in FactoryBot.create(:user, role: User::ADMIN)
+      block1 = FactoryBot.create(:content_block)
+
+      visit edit_content_block_path(block1)
+
+      expect(page.find_field("content_block[name]", disabled: true).value).to eq(block1.name)
     end
 
     scenario "The Accessibility page can be produced using a Content Block called 'accessibility'" do

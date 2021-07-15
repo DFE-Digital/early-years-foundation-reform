@@ -22,10 +22,7 @@ module ContentHelper
 
   def insert_block(block_name)
     block = ContentBlock.find_by_name(block_name)
-    html_to_use = "Error - block not found"
-    if block
-      html_to_use = ContentBlock.find_by_name(block_name).markdown
-    end
+    html_to_use = block ? block.markdown : "Error - block not found"
 
     GovspeakToHTML.new.translate_markdown html_to_use
   end
