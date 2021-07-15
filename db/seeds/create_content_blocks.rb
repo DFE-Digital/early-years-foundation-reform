@@ -4,9 +4,10 @@ markdown_for_other_useful_resources = <<-MARKDOWN_FOR_OTHER_USERFUL_RESOURCES
 ## Other useful resources
 [Changes to the early years foundation stage framework](https://www.gov.uk/government/publications/changes-to-the-early-years-foundation-stage-eyfs-framework/changes-to-the-early-years-foundation-stage-eyfs-framework)
 
-[https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2](Statutory framework for the early years foundation stage)
+[Statutory framework for the early years foundation stage](https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2)
 
-[https://www.gov.uk/government/publications/development-matters--2](Development Matters, non-statutory curriculum guidance for the early years foundation stage)
+[Development Matters, non-statutory curriculum guidance for the early years foundation stage ](https://www.gov.uk/government/publications/development-matters--2)
+
 
 MARKDOWN_FOR_OTHER_USERFUL_RESOURCES
 
@@ -129,6 +130,128 @@ unless ContentBlock.exists?(name: "accessibility")
     u.name = "accessibility"
     u.description = "Used on the Accessibility page"
     u.markdown = html_for_accessibility
+  end
+end
+
+markdown_for_cookies = <<-MARKDOWN_FOR_COOKIES_PAGE
+# Cookies
+
+Cookies are small files saved on your phone, tablet or computer when you visit a website.
+
+We use cookies to make this site work and collect information about how you use our service.
+
+## Essential cookies
+
+Essential cookies keep your information secure while you use Help for early years providers. We do not need to ask permission to use them.
+
+| Name      | Purpose | 	Expires
+| ----------- | ----------- | ----------- |
+| track_analytics      | Saves your cookie consent settings       |6 months|
+| _help_for_early_years_provider_session	|Stores session data	|Session|
+
+## Analytics cookies (optional)
+
+With your permission, we use Google Analytics and Hotjar software to collect anonymised data about how you use Help for early years providers. This information helps us to improve our service.
+
+Google is not allowed to use or share our analytics data with anyone.
+
+Google Analytics stores anonymised information about:
+
+* how you got to Help for early years providers
+* the pages you visit on Help for early years providers and how long you spend on them
+* any errors you see while using Help for early years providers
+
+Google Analytics sets the following cookies:
+
+| Name      | Purpose | 	Expires
+| ----------- | ----------- | ----------- |
+| _ga	| Checks if you’ve used Help for early years providers before. This helps us count how many people visit our site | 2 years
+| _gid	| Checks if you’ve visited Help for early years providers before. This helps us count how many people visit our site	| 24 hours
+| _gat_UA-147538067-8	|Checks if you’ve used Help for early years providers before. This helps us count how many people visit our site.	| 1 minute|
+
+Hotjar Analytic cookies store data about:
+
+* whether you have participated in a Hotjar survey
+* the way in which you interact with a page
+* what you click on while you are visiting the site
+
+Hotjar sets the following cookies:
+
+| Name      | Purpose | 	Expires
+| ----------- | ----------- | ----------- |
+| _hjClosedSurveyInvites	| Tell us whether a Hotjar survey invite has been closed to stop it displaying again	| 1 year
+| _hjDonePolls	| Tell us whether a Hotjar feedback poll has been completed to stop the same poll reappearing	| 1 year
+| _hjMinimizedPolls	| Keep Hotjar feedback poll widgets minimised (once minimised by the user) when the user navigates through the website	| 1 year
+| _hjDoneTestersWidgets	| Set when a user submits information in the Hotjar recruit user testers widget. They stop the form reappearing once it has been completed	| 1 year
+| _hjIncludedInSample	| Lets Hotjar know whether a user is included in the sample for tracking user journeys to important pages on the website	| 1 year
+| _hjShownFeedbackMessage	| Set when a user minimises or completes a Hotjar feedback survey. The survey will stay minimised if the user navigates to a page where it is set to show	| 1 year
+| _hjid	| Help us track users who visit the website multiple times. A unique Hotjar user ID is used to link their visits together	| 1 year
+| _hjRecordingLastActivity	| Updated when a user recording starts and when a user performs an action on a page that Hotjar records. Found in sessionStorage rather than cookies	| Per session
+| _hjTLDTest	| Stored temporarily and used to determine the root (or top-level) domain so that tracking works on all pages	| Per session
+| _hjUserAttributesHash	| Store user attributes during a user’s browser session so Hotjar knows when an attribute has changed and needs to be updated	| Per session
+| _hjCachedUserAttributes	| Store user attributes that are sent through the Hotjar identify API whenever the user is not in the sample. Attributes are only saved if the user interacts with a feedback tool	| Per session
+| _hjLocalStorageTest	| Used to check if the Hotjar tracking script can use local browser storage	| Per session
+
+MARKDOWN_FOR_COOKIES_PAGE
+
+unless ContentBlock.exists?(name: "cookies")
+  ContentBlock.create! do |u|
+    u.name = "cookies"
+    u.description = "Markdown for the cookies page"
+    u.markdown = markdown_for_cookies
+  end
+end
+
+markdown_for_disclaimer_page = <<-MARKDOWN_FOR_DISCLAIMER_PAGE
+# Disclaimer
+
+## Linking from help for early years providers
+
+Help for early years providers links to websites that are managed by other government departments and agencies, service providers or other organisations. This includes links in the ‘other activities’ sections of our pages. We do not have any control over the content on these websites.
+
+We’re not responsible for:
+
+* the protection of any information you give to these websites
+* any loss or damage that may come from your use of these websites, or any other websites they link to
+
+Linking to a website does not constitute an endorsement of that website by the Department for Education or any other government department or agency.
+
+You do not have to use the external resources we link to. The lists of external resources are not exhaustive.
+
+You agree to release us from any claims or disputes that may come from using these websites.
+
+You should read all terms and conditions, privacy policies and end user licences that relate to these websites before you use them.
+
+Should you have a concern about the content of a site we link to please email
+
+[help_for_early_years_providers@digital.education.gov.uk](mailto:help_for_early_years_providers@digital.education.gov.uk)
+
+MARKDOWN_FOR_DISCLAIMER_PAGE
+
+unless ContentBlock.exists?(name: "disclaimer")
+  ContentBlock.create! do |u|
+    u.name = "disclaimer"
+    u.description = "For the disclaimer page"
+    u.markdown = markdown_for_disclaimer_page
+  end
+end
+
+markdown_for_contact_us = <<-MARKDOWN_FOR_CONTACT_US
+# Contact us
+
+For more information about Help for early years providers, email us:
+
+[help_for_early_years_providers@digital.education.gov.uk](mailto:help_for_early_years_providers@digital.education.gov.uk)
+
+We aim to respond within 2 working days.
+
+MARKDOWN_FOR_CONTACT_US
+
+unless ContentBlock.exists?(name: "contact_us")
+  ContentBlock.create! do |u|
+    u.name = "contact_us"
+    u.description = "Markdown for the Contact Us page"
+    u.markdown = markdown_for_contact_us
   end
 end
 
