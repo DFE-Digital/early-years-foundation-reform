@@ -45,7 +45,7 @@ RSpec.describe ContentAsset, type: :model do
     it "needs a valid extension" do
       content_asset.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.xxx", content_type: "image/jpeg")
       content_asset.validate
-      expect(content_asset.errors[:asset_file]).to include("invalid extension. Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG")
+      expect(content_asset.errors[:asset_file]).to include("has an invalid extension.")
     end
   end
 
@@ -55,13 +55,13 @@ RSpec.describe ContentAsset, type: :model do
       content_asset.validate
     end
     it "requires a title" do
-      expect(content_asset.errors[:title]).to include("can't be blank")
+      expect(content_asset.errors[:title]).to include("must not be blank")
     end
     it "requires an asset to be uploaded" do
-      expect(content_asset.errors[:asset_file]).to include("can't be blank")
+      expect(content_asset.errors[:asset_file]).to include("must not be blank")
     end
     it "requires an alt text for the asset" do
-      expect(content_asset.errors[:alt_text]).to include("can't be blank")
+      expect(content_asset.errors[:alt_text]).to include("must not be blank")
     end
   end
 end
