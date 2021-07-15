@@ -6,14 +6,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 we do not currently follow Semantic Versioning or track version numbers.
 
 
-## [Unreleased]
+## [Release 1.5.0]
 
 ### Fixed
-  [PR-338]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/338 )
+  [PR-338]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/338)
   [HFEYP-452](https://dfedigital.atlassian.net/browse/HFEYP-452)
   Banner displayed after cookies set because of cache control - only use cache once cookie is set
 
-## [Release 4]
+  [PR-339]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/339)
+  [HFEYP-498](https://dfedigital.atlassian.net/browse/HFEYP-498)
+  Add order list to error summary, to ensure they display in the proper order
+
+  [PR-338]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/338)
+  [HFEYP-452](https://dfedigital.atlassian.net/browse/HFEYP-452)
+  Cache pages only if the cookie has been set
+
+
+  [PR-337]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/337)
+  [HFEYP-496](https://dfedigital.atlassian.net/browse/HFEYP-496)
+  Remove duplicate main landmarks
+
+  [PR-330]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/330)
+  [PR-336]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/336)
+  [PR-335]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/335)
+  [HFEYP-242](https://dfedigital.atlassian.net/browse/HFEYP-242)
+  Add link checker, remove mechanize and then remove/revert link checker
+
+  [PR-334]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/334)
+  [HFEYP-197](https://dfedigital.atlassian.net/browse/HFEYP-197)
+  Add polyfill for unsupported forEach function (in IE11)
+
+  [PR-333]( https://github.com/DFE-Digital/early-years-foundation-reform/pull/333)
+  [HFEYP-397](https://dfedigital.atlassian.net/browse/HFEYP-397)
+  Add correct classes and styling to mobile menu items
+
+## [Release 1.4.0]
 
 ### Dependencies updated
 active_storage_validations 0.9.4 -> 0.9.5
