@@ -38,15 +38,12 @@
   <!--End of cards section-->
 
   <!--Get help to improve your practice-->
-  <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
+  <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7 gem-c-govspeak">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         <%= render partial: 'layouts/show_links_to_children_of_page_with_title' %>
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-        <h2 class="govuk-heading-l">Other useful resources</h2>
-        <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/changes-to-the-early-years-foundation-stage-eyfs-framework/changes-to-the-early-years-foundation-stage-eyfs-framework">Changes to the early years foundation stage framework</a></p>
-        <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2">Statutory framework for the early years foundation stage</a></p>
-        <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/development-matters--2">Development Matters, non-statutory curriculum guidance for the early years foundation stage</a></p>
+        <%== insert_block('other_useful_resources') %>
       </div>
     </div>
   </div>

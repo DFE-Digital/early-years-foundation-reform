@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
     scope :cms do
       resources :content_pages, path: "pages"
+      resources :content_blocks, path: "blocks"
       resources :content_assets, path: "assets"
       #  This is not a resource route
       post "preview_markdown", to: "content_pages#preview"
