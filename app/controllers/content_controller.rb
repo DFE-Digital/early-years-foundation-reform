@@ -14,16 +14,10 @@ class ContentController < ApplicationController
   def show
     begin
       @page = ContentPage.find_by_slug!(params["slug"])
+      @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
     rescue ActiveRecord::RecordNotFound
-      not_found
-    end
-
-    if @page.parent && (params["section"] != @page.parent.slug)
       return not_found
     end
-
-    @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
-    @page
   end
 
   # GET /
