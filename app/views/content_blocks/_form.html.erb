@@ -3,9 +3,9 @@
     <div class="govuk-grid-column-one-half">
       <p class="govuk-heading-m">Details</p>
       <%= form_with(model: [content_block], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
-        <%= form.govuk_error_summary order: %i[name description markdown] %>
+        <%= form.govuk_error_summary order: %i[name description markdown]  %>
 
-        <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"} %>
+        <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id%>
         <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"} %>
 
         <!-- This text_area is not rendered with gov_text_field because it needs to
