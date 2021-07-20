@@ -30,7 +30,7 @@ RSpec.feature "View content blocks", type: :feature do
       page.find_field("content_block[markdown]").set("Brand new markdown")
       page.find_field("content_block[description]").set("A new description")
 
-      page.click_button("Update Content block")
+      page.click_button("Save")
 
       changed_block = ContentBlock.find block1.id
 
@@ -43,10 +43,10 @@ RSpec.feature "View content blocks", type: :feature do
 
       visit new_content_block_path
       page.find_field("content_block[name]").set(valid_attributes[:name])
-      page.find_field("content_block[markdown]").set(valid_attributes[:markdown])
       page.find_field("content_block[description]").set(valid_attributes[:description])
+      page.find_field("content_block[markdown]").set(valid_attributes[:markdown])
 
-      page.click_button("Create Content block")
+      page.click_button("Save")
 
       changed_block = ContentBlock.find_by_name valid_attributes[:name]
 

@@ -33,7 +33,7 @@ class ContentBlocksController < ApplicationController
     begin
       authorize @content_block, :create?
       if @content_block.save
-        redirect_to @content_block, notice: "Content block was successfully created."
+        redirect_to content_blocks_path, notice: "Content block was successfully created."
       else
         render :new
       end
