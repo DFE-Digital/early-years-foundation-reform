@@ -15,11 +15,9 @@ class ContentController < ApplicationController
     @page = ContentPage.find_by_slug!(params["slug"])
     @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
 
-    # If page has parent, it must be a child of existing page
-    if @page.parent && params["section"].present?
-      not_found unless @page.parent.slug == params["section"] 
-    end
-  rescue
+    # If in a section page and page has parent, it must be a child of existing page
+    not_found if content_section? && params["section"] != parent_slug
+  rescue ActiveRecord::RecordNotFound
     not_found
   end
 
@@ -32,5 +30,15 @@ class ContentController < ApplicationController
     respond_to do |format|
       format.html { render layout: "landing_page_layout" }
     end
+  end
+
+private
+
+  def parent_slug
+    @page.parent && @page.parent.slug
+  end
+
+  def content_section?
+    params["section"].present?
   end
 end
