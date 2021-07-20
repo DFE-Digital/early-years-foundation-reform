@@ -82,6 +82,7 @@
 
         <div class="govuk-grid-column-two-thirds">
           <div id="main-content" class="app-content gem-c-govspeak">
+            <%= render 'layouts/notice' %>
             <%= yield %>
             <% if @page.navigation %>
               <nav class="gem-c-pagination" role="navigation" aria-label="Pagination">
