@@ -14,7 +14,12 @@ class ContentController < ApplicationController
   def show
     @page = ContentPage.find_by_slug!(params["slug"])
     @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
-  rescue ActiveRecord::RecordNotFound
+
+    # If page has parent, it must be a child of existing page
+    if @page.parent && params["section"].present?
+      not_found unless @page.parent.slug == params["section"] 
+    end
+  rescue
     not_found
   end
 
@@ -27,11 +32,5 @@ class ContentController < ApplicationController
     respond_to do |format|
       format.html { render layout: "landing_page_layout" }
     end
-  end
-
-private
-
-  def content_params
-    params.require(:content_page).permit(:section, :slug)
   end
 end
