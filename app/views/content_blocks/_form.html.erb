@@ -2,45 +2,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
       <p class="govuk-heading-m">Details</p>
-      <%= form_with(model: content_block, local: true) do |form| %>
-        <% if content_block.errors.any? %>
-          <div id="error_explanation" class="govuk-error-message" >
-            <h2><%= pluralize(content_block.errors.count, "error") %> prohibited this page from being saved:</h2>
-            <ul>
-              <% content_block.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+      <%= form_with(model: [content_block], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+        <%= form.govuk_error_summary order: %i[name description markdown]  %>
 
-        <fieldset class="govuk-fieldset">
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="Heading">
-              <%= form.label :name, "Name - this should be provided by the developers, it refers to part of the fixed pages" %>
-            </label>
-            <%= form.text_field :name, :class => 'govuk-input govuk-!-width-three-quarters', disabled: content_block&.id %>
-          </div>
+        <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id%>
+        <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"} %>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="Description">
-              <%= form.label :description, "Description - where will the block appear ?" %>
-            </label>
-            <%= form.text_field :description, :class => 'govuk-input govuk-!-width-three-quarters' %>
-          </div>
+        <!-- This text_area is not rendered with gov_text_field because it needs to
+             set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
 
-          <div class="govuk-form-group gem-c-govspeak">
-            <label id="markdown-hint" for="markdown-editor" class="govuk-hint">
-              Content
-            </label>
-            <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
-          </div>
+        <% markdown_class = 'govuk-form-group--error' if @content_block.errors[:markdown].count > 0 %>
+        <div class="govuk-form-group gem-c-govspeak govuk-form-group <%= markdown_class %>">
+          <label id="markdown-hint" for="markdown-editor" class="govuk-hint">
+            Content - Markdown for the block
+          </label>
+          <% if @content_block&.errors[:markdown] %>
+            <span class="govuk-error-message"><%= @content_block.errors[:markdown][0] %></span>
+          <% end %>
+          <% text_area_class = 'govuk-textarea govuk-input govuk-input--error' if @content_block.errors[:markdown].count > 0 %>
 
-          <div>
-            <%= form.submit :class => "govuk-button"%>
-          </div>
-        </fieldset>
+          <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: "govuk-textarea" %>
+        </div>
+        <%= form.govuk_submit "Save" %>
       <% end %>
+
+      <p class="govuk-body"><%= link_to "Cancel", content_blocks_path %></p>
     </div>
 
     <div class="govuk-grid-column-one-half">
