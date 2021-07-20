@@ -1,21 +1,14 @@
-<p id="notice"><%= notice %></p>
+<h1 class="govuk-heading-xl"><%= @content_asset.title %></h1>
+<% if @content_asset.asset_file.attached? %>
+  <%= image_tag(url_for(@content_asset.asset_file), :alt_text => @content_asset.alt_text) %>
+  <div id='asset-details'>
+  <h3>Asset Details</h3>
+  <%= render partial: 'clipboard', locals: { clipboard_content: polymorphic_url(@content_asset.asset_file) } %>
+  </div>
+<% end %>
 
-<main class="govuk-main-wrapper " id="main-content" role="main">
-  <h1 class="govuk-heading-xl"><%= @content_asset.title %></h1>
-
-
-  <% if @content_asset.asset_file.attached? %>
-    <%= image_tag(url_for(@content_asset.asset_file), :alt_text => @content_asset.alt_text) %>
-    <div id='asset-details'>
-    <h3>Asset Details</h3>
-    <%= render partial: 'clipboard', locals: { clipboard_content: polymorphic_url(@content_asset.asset_file) } %>
-    </div>
-  <% end %>
-  
-  <%= link_to 'Edit', edit_content_asset_path(@content_asset), { :class => "govuk-link" } %> |
-  <%= link_to 'Back', content_assets_path, { :class => "govuk-link" } %>
-
-</main>
+<%= link_to 'Edit', edit_content_asset_path(@content_asset), { :class => "govuk-link" } %> |
+<%= link_to 'Back', content_assets_path, { :class => "govuk-link" } %>
 
 
 
