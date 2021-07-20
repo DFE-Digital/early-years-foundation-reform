@@ -21,7 +21,7 @@
           <% end %>
           <% text_area_class = 'govuk-textarea govuk-input govuk-input--error' if @content_block.errors[:markdown].count > 0 %>
 
-          <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: 'govuk-textarea' %>
+          <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: "govuk-textarea" %>
         </div>
         <%= form.govuk_submit "Save" %>
       <% end %>
