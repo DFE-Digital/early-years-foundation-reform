@@ -1,0 +1,5 @@
+- if notice
+  .govuk-success-summary.banner-with-tick{aria: {labelledby: "success-message"}, data: {qa: "success-message"}, tabindex: "-1", role: "alert"}
+    .govuk-success-summary__title
+      %h2.govuk-heading-m#success-message
+        = notice.html_safe
