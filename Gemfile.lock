@@ -239,7 +239,7 @@ GEM
       rexml
     launchy (2.5.0)
       addressable (~> 2.7)
-    listen (3.5.1)
+    listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     logstasher (2.1.5)
@@ -268,6 +268,8 @@ GEM
     nokogiri (1.11.7-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.7-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -479,6 +481,7 @@ GEM
 PLATFORMS
   arm64-darwin-20
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   active_storage_validations (~> 0.9)
@@ -507,7 +510,7 @@ DEPENDENCIES
   haml (~> 5.2)
   htmlentities (= 4.3.4)
   launchy
-  listen (>= 3.0.5, < 3.6)
+  listen (>= 3.0.5, < 3.7)
   pg (>= 0.18, < 2.0)
   pry-byebug (~> 3.9)
   puma (~> 5.3)
