@@ -17,8 +17,10 @@ $card-border-hover-color: #003078;
 .eyfs-card__content {
   // @include top-and-bottom();
   @include govuk-responsive-padding(5);
-
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .eyfs-card__heading,
@@ -113,7 +115,6 @@ $card-border-hover-color: #003078;
   ========================================================================== */
 
   .eyfs-card--icon {
-    background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
     background-position: right 8px top 50%;
     background-repeat: no-repeat;
 
@@ -121,17 +122,8 @@ $card-border-hover-color: #003078;
       background-position: right 4px top 50%;
     }
 
-    &:hover,
-    &:active {
-      background-image: url(../images/chevron.svg); // sass-lint:disable-line quotes
-    }
-
     a {
       text-decoration: none;
-    }
-
-    .eyfs-card__content {
-      @include govuk-responsive-padding(8, 'right');
     }
 
     &.eyfs-card--clickable {
