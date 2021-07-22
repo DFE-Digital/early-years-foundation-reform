@@ -35,7 +35,7 @@ class ContentBlockPolicy
   end
 
   def destroy?
-    permissions?
+    false
   end
 
 private

@@ -2,7 +2,7 @@ class ContentBlocksController < ApplicationController
   layout "cms"
 
   before_action :authenticate_user!
-  before_action :set_content_block, only: %i[edit update destroy]
+  before_action :set_content_block, only: %i[edit update]
 
   # GET /content_blocks
   def index
@@ -49,13 +49,6 @@ class ContentBlocksController < ApplicationController
   rescue Pundit::NotAuthorizedError
     @content_block.errors.add(:base, "You don't have permission to edit blocks")
     render :edit
-  end
-
-  # DELETE /content_blocks/1
-  def destroy
-    authorize @content_block, :destroy?
-    @content_block.destroy!
-    redirect_to content_blocks_path, notice: "Content block was successfully destroyed."
   end
 
   # POST of preview, returns html
