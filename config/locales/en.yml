@@ -59,7 +59,6 @@ en:
           attributes:
             name:
               blank: Name must not be blank
-              format: Name must not contain spaces
             description:
               blank: Description must not be blank
             markdown:
