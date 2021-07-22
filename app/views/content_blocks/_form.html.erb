@@ -19,7 +19,7 @@
           <% if @content_block&.errors[:markdown].count > 0 %>
             <span class="govuk-error-message"><%= @content_block.errors[:markdown][0] %></span>
           <% end %>
-          <% text_area_class = 'govuk-textarea govuk-input govuk-input--error' if @content_block.errors[:markdown].count > 0 %>
+          <% text_area_class = (@content_block.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
 
           <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: text_area_class %>
         </div>
