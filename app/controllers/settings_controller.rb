@@ -20,6 +20,8 @@ private
 
   def set_cookie_pref
     cookies[:track_analytics] = { value: track_analytics, expires: 6.months.from_now }
-    flash[:notice] = t(:preferences_saved_html, return_url: helpers.root_path, scope: :settings)
+    if params.fetch(:notify_if_successful, false)
+      flash[:notice] = t(:preferences_saved_html, return_url: helpers.root_path, scope: :settings)
+    end
   end
 end
