@@ -2,17 +2,12 @@ class ContentBlocksController < ApplicationController
   layout "cms"
 
   before_action :authenticate_user!
-  before_action :set_content_block, only: %i[show edit update destroy]
+  before_action :set_content_block, only: %i[edit update destroy]
 
   # GET /content_blocks
   def index
     authorize User
     @content_blocks = ContentBlock.all
-  end
-
-  # GET /content_blocks/1
-  def show
-    authorize @content_block, :get?
   end
 
   # GET /content_blocks/new
