@@ -11,7 +11,7 @@ class ContentBlockPolicy
   end
 
   def show?
-    permissions?
+    false
   end
 
   def create?
@@ -35,7 +35,7 @@ class ContentBlockPolicy
   end
 
   def destroy?
-    permissions?
+    false
   end
 
 private
