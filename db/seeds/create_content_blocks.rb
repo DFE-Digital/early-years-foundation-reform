@@ -34,7 +34,7 @@ This website is run by the Department for Education (DfE). We want as many peopl
 
 We’ve also made the website text as simple as possible to understand.
 
-# How accessible this website is
+## How accessible this website is
 
 We know some parts of this website aren’t fully accessible:
 
