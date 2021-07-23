@@ -72,6 +72,7 @@ The Equality and Human Rights Commission (EHRC) is responsible for enforcing the
 ## Contacting us by phone or visiting us in person
 
 We provide a text relay service for people who are D/deaf, hearing impaired or have a speech impediment.
+
 Our offices have audio induction loops, or if you contact us before your visit we can arrange a British Sign Language (BSL) interpreter.
 
 Contact us:
@@ -237,7 +238,7 @@ unless ContentBlock.exists?(name: "disclaimer")
 end
 
 markdown_for_contact_us = <<-MARKDOWN_FOR_CONTACT_US
-# Contact us
+<h1 class="govuk-heading-xl">Contact us</h1>
 
 For more information about Help for early years providers, email us:
 
