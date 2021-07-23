@@ -20,7 +20,7 @@ unless ContentBlock.exists?(name: "other_useful_resources")
 end
 
 html_for_accessibility = <<-HTML_FOR_ACCESSIBILITY
-# Accessibility statement for the Help for early years providers service
+<h1 class="govuk-heading-xl">Accessibility statement for the Help for early years providers service</h1>
 
 This accessibility statement applies to the Help for early years providers service.
 
@@ -134,7 +134,7 @@ unless ContentBlock.exists?(name: "accessibility")
 end
 
 markdown_for_cookies = <<-MARKDOWN_FOR_COOKIES_PAGE
-# Cookies
+<h1 class="govuk-heading-xl">Cookies</h1>
 
 Cookies are small files saved on your phone, tablet or computer when you visit a website.
 
@@ -203,7 +203,7 @@ unless ContentBlock.exists?(name: "cookies")
 end
 
 markdown_for_disclaimer_page = <<-MARKDOWN_FOR_DISCLAIMER_PAGE
-# Disclaimer
+<h1 class="govuk-heading-xl">Disclaimer</h1>
 
 ## Linking from help for early years providers
 
