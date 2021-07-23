@@ -111,17 +111,25 @@ $card-border-hover-color: #003078;
   }
 }
 
-/* With icon
-  ========================================================================== */
+.eyfs-card--icon {
 
-  .eyfs-card--icon {
-    background-position: right 8px top 50%;
-    background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  background-position: right 8px top 50%;
+  // background-size: 100% 100%;
+  background-repeat: no-repeat;
+  min-width: 30px;
+  max-width: 30px;
 
     @include mq($until: desktop) {
       background-position: right 4px top 50%;
     }
+}
 
+/* With icon
+  ========================================================================== */
+
+  .eyfs-card--link {
     a {
       text-decoration: none;
     }
