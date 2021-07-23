@@ -112,11 +112,9 @@ $card-border-hover-color: #003078;
 }
 
 .eyfs-card--icon {
-
   position: relative;
   display: inline-block;
   background-position: right 8px top 50%;
-  // background-size: 100% 100%;
   background-repeat: no-repeat;
   min-width: 30px;
   max-width: 30px;
@@ -129,26 +127,26 @@ $card-border-hover-color: #003078;
 /* With icon
   ========================================================================== */
 
-  .eyfs-card--link {
-    a {
-      text-decoration: none;
-    }
+.eyfs-card--link {
+  a {
+    text-decoration: none;
+  }
 
-    &.eyfs-card--clickable {
-      &:hover,
-      &:active {
-        a {
+  &.eyfs-card--clickable {
+    &:hover,
+    &:active {
+      a {
+        text-decoration: underline;
+
+        &:hover {
           text-decoration: underline;
+        }
 
-          &:hover {
-            text-decoration: underline;
-          }
-
-          &:focus {
-            text-decoration: none;
-          }
+        &:focus {
+          text-decoration: none;
         }
       }
     }
   }
+}
 
