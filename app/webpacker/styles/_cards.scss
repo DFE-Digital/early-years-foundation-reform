@@ -111,36 +111,40 @@ $card-border-hover-color: #003078;
   }
 }
 
-/* With icon
-  ========================================================================== */
-
-  .eyfs-card--icon {
-    background-position: right 8px top 50%;
-    background-repeat: no-repeat;
+.eyfs-card--icon {
+  background-position: right 8px top 50%;
+  background-repeat: no-repeat;
+  min-width: 30px;
+  max-width: 30px;
 
     @include mq($until: desktop) {
       background-position: right 4px top 50%;
     }
+}
 
-    a {
-      text-decoration: none;
-    }
+/* With icon
+  ========================================================================== */
 
-    &.eyfs-card--clickable {
-      &:hover,
-      &:active {
-        a {
+.eyfs-card--link {
+  a {
+    text-decoration: none;
+  }
+
+  &.eyfs-card--clickable {
+    &:hover,
+    &:active {
+      a {
+        text-decoration: underline;
+
+        &:hover {
           text-decoration: underline;
+        }
 
-          &:hover {
-            text-decoration: underline;
-          }
-
-          &:focus {
-            text-decoration: none;
-          }
+        &:focus {
+          text-decoration: none;
         }
       }
     }
   }
+}
 
