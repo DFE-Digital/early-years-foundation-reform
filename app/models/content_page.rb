@@ -31,7 +31,7 @@ class ContentPage < ApplicationRecord
     if parent
       "/#{parent.slug}/#{slug}"
     else
-      slug.to_s
+      "/#{slug}"
     end
   end
 
