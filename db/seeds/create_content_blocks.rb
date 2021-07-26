@@ -224,7 +224,10 @@ You should read all terms and conditions, privacy policies and end user licences
 
 Should you have a concern about the content of a site we link to please email
 
-[help_for_early_years_providers@digital.education.gov.uk](mailto:help_for_early_years_providers@digital.education.gov.uk)
+<a class="govuk-link email" href="mailto://help_for_early_years_providers@digital.eduction.gov.uk">
+  help_for_early_years_providers@digital.education.gov.uk
+</a>
+
 
 MARKDOWN_FOR_DISCLAIMER_PAGE
 
@@ -241,7 +244,9 @@ markdown_for_contact_us = <<-MARKDOWN_FOR_CONTACT_US
 
 For more information about Help for early years providers, email us:
 
-[help_for_early_years_providers@digital.education.gov.uk](mailto:help_for_early_years_providers@digital.education.gov.uk)
+<a class="govuk-link email" href="mailto://help_for_early_years_providers@digital.eduction.gov.uk">
+  help_for_early_years_providers@digital.education.gov.uk
+</a>
 
 We aim to respond within 2 working days.
 
