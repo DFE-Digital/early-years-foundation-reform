@@ -1,0 +1,39 @@
+<div class="govuk-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <p class="govuk-heading-m">Details</p>
+      <%= form_with(model: [content_block], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+        <%= form.govuk_error_summary order: %i[name description markdown]  %>
+
+        <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id%>
+        <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"} %>
+
+        <!-- This text_area is not rendered with gov_text_field because it needs to
+             set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
+
+        <% markdown_class = 'govuk-form-group--error' if @content_block.errors[:markdown].count > 0 %>
+        <div class="govuk-form-group gem-c-govspeak govuk-form-group <%= markdown_class %>">
+          <label id="markdown-hint" for="markdown-editor" class="govuk-hint">
+            Content - Markdown for the block
+          </label>
+          <% if @content_block&.errors[:markdown].count > 0 %>
+            <span class="govuk-error-message"><%= @content_block.errors[:markdown][0] %></span>
+          <% end %>
+          <% text_area_class = (@content_block.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
+
+          <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: text_area_class %>
+        </div>
+        <%= form.govuk_submit "Save" %>
+      <% end %>
+
+      <p class="govuk-body"><%= link_to "Cancel", content_blocks_path %></p>
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+        <p class="govuk-heading-m">Preview</p>
+        <div id='markdown-render' class='gem-c-govspeak'>
+          <%= sanitize(@md, tags: GovspeakToHTML::ALLOWED_TAGS) %>
+        </div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,7 @@ unless ContentBlock.exists?(name: "other_useful_resources")
 end
 
 html_for_accessibility = <<-HTML_FOR_ACCESSIBILITY
+
 <h1 class="govuk-heading-xl">Accessibility statement for the Help for early years providers service</h1>
 
 This accessibility statement applies to the Help for early years providers service.
@@ -76,7 +77,7 @@ We provide a text relay service for people who are D/deaf, hearing impaired or h
 Our offices have audio induction loops, or if you contact us before your visit we can arrange a British Sign Language (BSL) interpreter.
 
 Contact us:
-<a href='mailto:help_for_early_years_providers@digital.education.gov.uk'>
+<a class="govuk-link email" href='mailto:help_for_early_years_providers@digital.education.gov.uk'>
 help_for_early_years_providers@digital.education.gov.uk.
 </a>
 
@@ -225,7 +226,9 @@ You should read all terms and conditions, privacy policies and end user licences
 
 Should you have a concern about the content of a site we link to please email
 
-[help_for_early_years_providers@digital.education.gov.uk](mailto:help_for_early_years_providers@digital.education.gov.uk)
+<a class="govuk-link email" href="mailto:help_for_early_years_providers@digital.eduction.gov.uk">
+  help_for_early_years_providers@digital.education.gov.uk
+</a>
 
 MARKDOWN_FOR_DISCLAIMER_PAGE
 
@@ -242,7 +245,9 @@ markdown_for_contact_us = <<-MARKDOWN_FOR_CONTACT_US
 
 For more information about Help for early years providers, email us:
 
-[help_for_early_years_providers@digital.education.gov.uk](mailto:help_for_early_years_providers@digital.education.gov.uk)
+<a class="govuk-link email" href="mailto:help_for_early_years_providers@digital.eduction.gov.uk">
+  help_for_early_years_providers@digital.education.gov.uk
+</a>
 
 We aim to respond within 2 working days.
 

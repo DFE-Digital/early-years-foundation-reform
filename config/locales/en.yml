@@ -55,6 +55,14 @@ en:
   activerecord:
     errors:
       models:
+        content_block:
+          attributes:
+            name:
+              blank: Name must not be blank
+            description:
+              blank: Description must not be blank
+            markdown:
+              blank: Content must not be blank
         content_asset:
           attributes:
             title:
@@ -85,5 +93,5 @@ en:
   settings:
     cookie-policy: Cookies
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
-      
-    
+
+
