@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
 
   include Pundit
 
+  def flipper_session_id
+    session[FlipperSession.session_key] ||= FlipperSession.generate_id
+  end
+  helper_method :flipper_session_id
+
+  def flipper_session
+    @flipper_session ||= FlipperSession.new(flipper_session_id)
+  end
+  helper_method :flipper_session
+
   def check
     render json: { status: "OK", version: ENV["SHA"], environment: Rails.env }, status: :ok
   end
