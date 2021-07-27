@@ -4,7 +4,7 @@ class ContentController < ApplicationController
   before_action :init_ab_test
 
   def init_ab_test
-    ruby_optimize %i[v1 v2 v3]
+    ruby_optimize %i( v1 v2 v3 ), session_cookie: true
   end
 
   def set_cache_headers
