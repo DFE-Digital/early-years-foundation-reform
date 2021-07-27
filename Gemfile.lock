@@ -399,6 +399,9 @@ GEM
       rubocop (~> 1.0)
       rubocop-ast (>= 1.1.0)
     ruby-progressbar (1.11.0)
+    ruby_optimize (2.5)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     rubyzip (2.3.2)
     sanitize (5.2.3)
       crass (~> 1.0.2)
@@ -525,6 +528,7 @@ DEPENDENCIES
   rspec-expectations (~> 3.10)
   rspec-rails (~> 5.0)
   rubocop-govuk (~> 4.0)
+  ruby_optimize (~> 2.5)
   scss_lint-govuk
   selenium-webdriver
   simplecov (~> 0.21)

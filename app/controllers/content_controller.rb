@@ -1,6 +1,11 @@
 class ContentController < ApplicationController
   before_action :authenticate_user!, if: proc { !ENV["AUTH_ON_EVERYTHING"].nil? }
   after_action :set_cache_headers
+  before_action :init_ab_test
+
+  def init_ab_test
+    ruby_optimize %i[v1 v2 v3]
+  end
 
   def set_cache_headers
     response.headers["Cache-Control"] = "max-age=3600, public" if cookies[:track_analytics].present?
