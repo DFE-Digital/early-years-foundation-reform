@@ -9,4 +9,3 @@ end
 Flipper.register(:readers) do |actor|
   actor.try(:readers)
 end
-
