@@ -24,24 +24,30 @@ GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
                               ssl.google-analytics.com
                               stats.g.doubleclick.net
                               www.googletagmanager.com
-                              www.googleoptimize.com
                               *.hotjar.com].freeze
 
-GOOGLE_STATIC_DOMAINS = %w[www.gstatic.com *.hotjar.com].freeze
+OPTIMIZE_DOMAINS = %w[www.googleoptimize.com
+                      optimize.google.com
+                      fonts.googleapis.com].freeze
+
+GOOGLE_STATIC_DOMAINS = %w[fonts.gstatic.com www.gstatic.com *.hotjar.com].freeze
 
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self, :https, *GOVUK_DOMAINS
-  policy.font_src    :self, :https, *GOVUK_DOMAINS, :data
+  policy.font_src    :self, :https, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :data
+  policy.frame_src   :self, *OPTIMIZE_DOMAINS
   policy.img_src     :self,
                      *GOVUK_DOMAINS,
                      *S3_DOMAINS,
                      *GOOGLE_ANALYTICS_DOMAINS, # Tracking pixels
+                     *OPTIMIZE_DOMAINS,
                      :data # Base64 encoded images
   policy.object_src  :none
   policy.script_src  :self,
                      *GOVUK_DOMAINS,
                      *GOOGLE_ANALYTICS_DOMAINS,
                      *GOOGLE_STATIC_DOMAINS,
+                     *OPTIMIZE_DOMAINS,
                      # Allow YouTube Embeds (Govspeak turns YouTube links into embeds)
                      "*.ytimg.com",
                      "www.youtube.com",
@@ -50,7 +56,7 @@ Rails.application.config.content_security_policy do |policy|
                      # document all the inline scripts we use,
                      # and there's a better way to filter out junk reports
                      :unsafe_inline
-  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :unsafe_inline
+  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, *OPTIMIZE_DOMAINS, :unsafe_inline
   if Rails.env.development?
     policy.connect_src :self,
                        :https,
