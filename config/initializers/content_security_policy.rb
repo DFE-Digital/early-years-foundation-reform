@@ -24,6 +24,7 @@ GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
                               ssl.google-analytics.com
                               stats.g.doubleclick.net
                               www.googletagmanager.com
+                              www.googleoptimize.com
                               *.hotjar.com].freeze
 
 GOOGLE_STATIC_DOMAINS = %w[www.gstatic.com *.hotjar.com].freeze
