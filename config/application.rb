@@ -41,5 +41,6 @@ module GovukRailsBoilerplate
 
     config.middleware.use Rack::RejectTrace
     config.middleware.use Rack::Deflater
+    config.space = ENV.fetch( 'DOMAIN', "eyfs-dev" ).split(".").first
   end
 end
