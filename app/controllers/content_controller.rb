@@ -8,7 +8,7 @@ class ContentController < ApplicationController
 
   # This is a page whose title and children's titles are rendered
   # a block in the landing_page_layout template
-  FEATURED_PAGE_TITLE = "Get help to improve your practice".freeze
+  FEATURED_PAGE_TITLE = ["Get help to improve your practice".freeze, "Safeguarding".freeze]
 
   # GET /page_title
   def show
@@ -23,9 +23,9 @@ class ContentController < ApplicationController
 
   # GET /
   def index
-    @featured_page = ContentPage.find_by_title FEATURED_PAGE_TITLE
+    @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLE)
     # Don't show featured pages in the cards
-    @content_pages = ContentPage.top_level.order_by_position - [@featured_page]
+    @content_pages = ContentPage.top_level.order_by_position - @featured_pages
 
     respond_to do |format|
       format.html { render layout: "landing_page_layout" }
