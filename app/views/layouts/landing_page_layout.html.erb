@@ -7,6 +7,7 @@
   <%= csp_meta_tag %>
   <%= canonical_tag %>
   <%= render 'layouts/analytics_header' if cookies[:track_analytics] == 'Yes' %>
+  <%= render 'layouts/hotjar' if cookies[:track_analytics] == 'Yes' %>
   <meta Cache-Control="max-age=3500, public">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0b0c0c">
