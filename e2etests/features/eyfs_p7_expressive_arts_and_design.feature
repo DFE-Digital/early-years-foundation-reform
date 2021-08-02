@@ -2,7 +2,7 @@ Feature: EYFS - Expressive Arts and Design - Links
 
   Background:
 
-    Given the site is visited
+    Given "EYFS service" user
     When user proceeds to "Expressive arts and design" page
 
 

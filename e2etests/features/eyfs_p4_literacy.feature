@@ -2,7 +2,7 @@ Feature: EYFS - Literacy - Links
 
   Background:
 
-    Given the site is visited
+    Given "EYFS service" user
     When user proceeds to "Literacy" page
 
 
@@ -11,24 +11,24 @@ Feature: EYFS - Literacy - Links
     Then page has heading "Literacy"
     Then "Left menu pane" item "4" is "Literacy"
     And the following "links" are available:
-      | Comprehension[3 times] |
-      | Pre-reading[2 times]   |
-      | Pre-writing[2 times]   |
+      | Reading comprehension[3 times] |
+      | Exploring words[2 times]       |
+      | Writing[2 times]               |
 
 
-  Scenario:  Literacy page - Link - Comprehension
+  Scenario:  Literacy page - Link - Reading comprehension
 
-    When clicks on "Comprehension"
-    Then page has heading "Comprehension"
-
-
-  Scenario:  Literacy page - Link - Pre-reading (Word reading)
-
-    When clicks on "Pre-reading"
-    Then page has heading "Pre-reading"
+    When clicks on "Reading comprehension"
+    Then page has heading "Reading comprehension"
 
 
-  Scenario:  Literacy page - Link - Pre-writing (Writing)
+  Scenario:  Literacy page - Link - Exploring words
 
-    When clicks on "Pre-writing"
-    Then page has heading "Pre-writing"
+    When clicks on "Exploring words"
+    Then page has heading "Exploring words"
+
+
+  Scenario:  Literacy page - Link - Writing (Writing)
+
+    When clicks on "Writing"
+    Then page has heading "Writing"
