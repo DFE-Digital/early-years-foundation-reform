@@ -2,7 +2,7 @@ Feature: EYFS - Left-menu - Links
 
   Background:
 
-    Given the site is visited
+    Given "EYFS service" user
 
 
   Scenario:  Left-menu - Sub-areas - Links
@@ -17,9 +17,9 @@ Feature: EYFS - Left-menu - Links
     Then "Left menu sub-area" item "7" is "Emotions"
     Then "Left menu sub-area" item "8" is "Sense of self"
     Then "Left menu sub-area" item "9" is "Relationships"
-    Then "Left menu sub-area" item "10" is "Comprehension"
-    Then "Left menu sub-area" item "11" is "Pre-reading"
-    Then "Left menu sub-area" item "12" is "Pre-writing"
+    Then "Left menu sub-area" item "10" is "Reading comprehension"
+    Then "Left menu sub-area" item "11" is "Exploring words"
+    Then "Left menu sub-area" item "12" is "Writing"
     Then "Left menu sub-area" item "13" is "Numbers"
     Then "Left menu sub-area" item "14" is "Patterns and connections"
     Then "Left menu sub-area" item "15" is "Spatial reasoning"
@@ -61,11 +61,11 @@ Feature: EYFS - Left-menu - Links
     When on "Home" followed by "15" tabs and click
     Then page has heading "Literacy"
     When on "Home" followed by "15" tabs and click
-    Then page has heading "Comprehension"
+    Then page has heading "Reading comprehension"
     When on "Home" followed by "17" tabs and click
-    Then page has heading "Pre-reading"
+    Then page has heading "Exploring words"
     When on "Home" followed by "18" tabs and click
-    Then page has heading "Pre-writing"
+    Then page has heading "Writing"
     When on "Home" followed by "19" tabs and click
     Then page has heading "Mathematics"
     When on "Home" followed by "19" tabs and click

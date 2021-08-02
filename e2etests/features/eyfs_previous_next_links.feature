@@ -2,14 +2,14 @@ Feature: EYFS - Previous and Next - Links
 
   Background:
 
-    Given the site is visited
+    Given "EYFS service" user
     When user proceeds to "Communication and language" page
 
 
   Scenario:  Previous and Next Links - Communication and Language
 
     When clicks on "Communication and language"
-    Then "Previous page" has value "Working in partnership with parents and carers"
+    Then "Previous page" has value "Food safety"
     And "Next page" has value "Interactions"
     When clicks on "Interactions"
     Then "Previous page" has value "Communication and language"
@@ -58,22 +58,22 @@ Feature: EYFS - Previous and Next - Links
 
     When clicks on "Literacy"
     Then "Previous page" has value "Relationships"
-    And "Next page" has value "Comprehension"
-    When clicks on "Comprehension"
+    And "Next page" has value "Reading comprehension"
+    When clicks on "Reading comprehension"
     Then "Previous page" has value "Literacy"
-    And "Next page" has value "Pre-reading"
-    When clicks on "Pre-reading"
-    Then "Previous page" has value "Comprehension"
-    And "Next page" has value "Pre-writing"
-    When clicks on "Pre-writing"
-    Then "Previous page" has value "Pre-reading"
+    And "Next page" has value "Exploring words"
+    When clicks on "Exploring words"
+    Then "Previous page" has value "Reading comprehension"
+    And "Next page" has value "Writing"
+    When clicks on "Writing"
+    Then "Previous page" has value "Exploring words"
     And "Next page" has value "Mathematics"
 
 
   Scenario:  Previous and Next Links - Mathematics
 
     When clicks on "Mathematics"
-    Then "Previous page" has value "Pre-writing"
+    Then "Previous page" has value "Writing"
     And "Next page" has value "Numbers"
     When clicks on "Numbers"
     Then "Previous page" has value "Mathematics"
@@ -137,4 +137,4 @@ Feature: EYFS - Previous and Next - Links
     And "Next page" has value "Working in partnership with parents and carers"
     When clicks on "Working in partnership with parents and carers"
     Then "Previous page" has value "Oral health"
-    And "Next page" has value "Communication and language"
+#    And "Next page" has value "Communication and language"

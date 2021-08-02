@@ -2,7 +2,7 @@ Feature: EYFS - Communication and Language - Links
 
   Background:
 
-    Given the site is visited
+    Given "EYFS service" user
     When user proceeds to "Communication and language" page
 
 
