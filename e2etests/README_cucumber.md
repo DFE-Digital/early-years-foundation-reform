@@ -1,8 +1,20 @@
 # Test Automation (Functional)
 
-These cucumber tests mostly test content, so it that changes, these tests will need to be updated (!)
+Two parts:
+- Service (7 areas of landing ordering, left menu pane ordering, previous / next buttons, header and footer links, page headings, number times a link appears,  mobile menu)
+- CMS 
+(Administrator)
 
-The support/env.rb file defines which URL will be tests (TARGET_URL)
+The support/env.rb file can define Environment / URL for tests (ENV_URL)
+
+External Environment variables for CMS Administration:
+- ENV['USER_ADMIN'] 'email' in users table (user set as Administrator)
+- ENV['USER_ADMINP'] 'encrypted_password' in users table
+
+External Environment variables for Service:
+- ENV['SERVICE_URL']
+External Environment variables for CMS:
+- ENV['CMS_URL']
 
 ### To run in the terminal
 
