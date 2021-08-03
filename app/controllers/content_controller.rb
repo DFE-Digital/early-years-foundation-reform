@@ -12,18 +12,13 @@ class ContentController < ApplicationController
 
   # GET /page_title
   def show
-    begin
-      @page = ContentPage.find_by_slug!(params["slug"])
-    rescue ActiveRecord::RecordNotFound
-      not_found
-    end
-
-    if @page.parent && (params["section"] != @page.parent.slug)
-      return not_found
-    end
-
+    @page = ContentPage.find_by_slug!(params["slug"])
     @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
-    @page
+
+    # If in a section page and page has parent, it must be a child of existing page
+    not_found if (@page.parent || content_section?) && params["section"] != parent_slug
+  rescue ActiveRecord::RecordNotFound
+    not_found
   end
 
   # GET /
@@ -33,13 +28,21 @@ class ContentController < ApplicationController
     @content_pages = ContentPage.top_level.order_by_position - [@featured_page]
 
     respond_to do |format|
-      format.html { render layout: "landing_page_layout" }
+      format.html { render "index#{variant}", layout: "landing_page_layout" }
     end
   end
 
 private
 
-  def content_params
-    params.require(:content_page).permit(:section, :slug)
+  def parent_slug
+    @page.parent && @page.parent.slug
+  end
+
+  def variant
+    params.fetch("variant", "")
+  end
+
+  def content_section?
+    params["section"].present?
   end
 end

@@ -71,26 +71,18 @@
 
 .gem-c-print-link__button {
   border: 1px solid #b1b4b6;
-  color: #1d70b8 !important;
-  cursor: pointer;
-  margin: 0
-}
-
-.gem-c-print-link__button:focus {
-  outline: 3px solid transparent;
-  color: #0b0c0c;
-  background-color: #fd0;
-  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
-  text-decoration: none;
-  background-color: #fd0;
-  border-color: transparent
-}
-
-.gem-c-print-link__button {
-  border: 1px solid #b1b4b6;
   color: #1d70b8;
   cursor: pointer;
-  margin: 0
+  margin: 0;
+  font-family: "GDS Transport", arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  font-size: 14px;
+  font-size: .875rem;
+  line-height: 1.1428571429;
+  margin-top: 0;
+  margin-bottom: 15px
 }
 
 .gem-c-print-link__button:focus {
@@ -103,7 +95,17 @@
   border-color: transparent
 }
 
-.gem-c-print-link__button,
+
+.gem-c-print-link__button:focus {
+  outline: 3px solid transparent;
+  color: #0b0c0c;
+  background-color: #fd0;
+  box-shadow: 0 -2px #fd0, 0 4px #0b0c0c;
+  text-decoration: none;
+  background-color: #fd0;
+  border-color: transparent
+}
+
 .gem-c-govspeak .mc-toggle-button,
 .govuk-body-s {
   color: #0b0c0c;
@@ -117,6 +119,7 @@
   margin-top: 0;
   margin-bottom: 15px
 }
+
 
 @media print {
   .gem-c-print-link__button,

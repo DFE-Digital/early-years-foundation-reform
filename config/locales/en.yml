@@ -55,10 +55,23 @@ en:
   activerecord:
     errors:
       models:
+        content_block:
+          attributes:
+            name:
+              blank: Name must not be blank
+            description:
+              blank: Description must not be blank
+            markdown:
+              blank: Content must not be blank
         content_asset:
           attributes:
+            title:
+              blank: must not be blank
+            alt_text:
+              blank: must not be blank
             asset_file:
-              invalid_extension:  "invalid extension. Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG"
+              blank: must not be blank
+              invalid_extension:  has an invalid extension.
         user:
           attributes:
             email:
@@ -80,5 +93,5 @@ en:
   settings:
     cookie-policy: Cookies
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
-      
-    
+
+
