@@ -5,7 +5,7 @@ require "selenium-webdriver"
 require "axe/cucumber/step_definitions"
 require "webdrivers/chromedriver"
 
-# ENV_URL = "http://help-for-early-years-providers.education.gov.uk/"
+ENV_URL = "http://help-for-early-years-providers.education.gov.uk/"
 
 if ENV["headless"]
   Capybara.default_driver = :poltergeist
