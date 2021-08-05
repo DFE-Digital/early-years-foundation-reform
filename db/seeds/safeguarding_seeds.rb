@@ -87,7 +87,7 @@ markdown = <<-MARKDOWN
 The [EYFS framework](https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2) requires providers to take all necessary steps to keep children safe and well – and you must be confident that those responsible for preparing and handling food in your setting are competent to do so.
 
 Tragically, a child dies in the UK every month from choking and hundreds more require hospital treatment.  It can happen quickly and it can happen to anyone.
- 
+
 Babies and young children’s immune systems are not as strong and developed as adult’s which means they are more vulnerable to infections which can lead to food poisoning.  It is important to take extra care with hygiene and preparing food safely.
 
 ##What it says in the EYFS framework
@@ -207,9 +207,9 @@ Good hygiene is very important when making up a formula feed.  Babies’ immune 
 ##Allergies
 
 Early years settings and your food provider should work closely with families to support children with allergies or intolerances. As part of the [EYFS framework](https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2), you are required to obtain information about children’s special dietary requirements – including food allergies and intolerances – before they attend, and record and act on the information provided about children’s dietary needs.
- 
+
 There should be a protocol in place which is accessible to all staff, to ensure everyone is aware of individual children’s allergies and symptoms.
- 
+
 Understanding which allergens are present in every meal and snack you provide is an important step in providing food which is safe for children with food allergies and intolerances. Since 2014, all food businesses, including early years settings, have been required by law to give details about the allergens in the food they provide.
 
 ##Useful resources
