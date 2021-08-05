@@ -2,7 +2,7 @@ Feature: EYFS - Physical Development - Links
 
   Background:
 
-    Given the site is visited
+    Given "EYFS service" user
     When user proceeds to "Physical development" page
 
 

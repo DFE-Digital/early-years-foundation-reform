@@ -2,7 +2,7 @@ Feature: EYFS - Navigation to Cookie page
 
   Background:
 
-    Given the site is visited
+    Given "EYFS Service" user
 
   Scenario:  Landing page - Cookie link navigation
 
@@ -97,24 +97,24 @@ Feature: EYFS - Navigation to Cookie page
     And clicks on "Cookies"
     Then page has heading "Cookies"
 
-  Scenario:  Literacy - Comprehension - Cookie link navigation
+  Scenario:  Literacy - Reading comprehension - Cookie link navigation
 
     When user proceeds to "Literacy" page
-    And clicks on "Comprehension"
+    And clicks on "Reading comprehension"
     And clicks on "Cookies"
     Then page has heading "Cookies"
 
-  Scenario:  Literacy - Pre-reading - Cookie link navigation
+  Scenario:  Literacy - Exploring words - Cookie link navigation
 
     When user proceeds to "Literacy" page
-    And clicks on "Pre-reading"
+    And clicks on "Exploring words"
     And clicks on "Cookies"
     Then page has heading "Cookies"
 
-  Scenario:  Literacy - Pre-writing - Cookie link navigation
+  Scenario:  Literacy - Writing - Cookie link navigation
 
     When user proceeds to "Literacy" page
-    And clicks on "Pre-writing"
+    And clicks on "Writing"
     And clicks on "Cookies"
     Then page has heading "Cookies"
 
