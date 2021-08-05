@@ -21,12 +21,11 @@ markdown = <<-MARKDOWN
 
 Find out about promoting oral health as part of the early years foundation stage (EYFS).
 
-
 ##Why oral health is included in the EYFS framework
 
 This has been included because good oral health habits need to be formed from the earliest age. Tooth decay is largely preventable, but it’s still a serious problem among young children.
 
-Nearly a quarter of 5 year olds in England have tooth decay, with 3 or 4 teeth affected on average. Tooth extraction is one of the most common procedures for children under 6 in hospital. Extraction is also the most common reason for hospital admission for children aged 6 to 10. Children from more deprived backgrounds are more likely to have tooth decay. 
+Nearly a quarter of 5 year olds in England have tooth decay, with 3 or 4 teeth affected on average. Tooth extraction is one of the most common procedures for children under 6 in hospital. Extraction is also the most common reason for hospital admission for children aged 6 to 10. Children from more deprived backgrounds are more likely to have tooth decay.
 
 Children who have toothache, or need treatment, may have pain or infections. This can have a wider effect and lead to problems eating, sleeping, socialising and learning.
 
@@ -42,7 +41,7 @@ You can also support children’s awareness of oral health by:
 
 - visiting dentists or having them visit you
 - providing or showing toothbrushing kits
-- showing toothbrushing routines 
+- showing toothbrushing routines
 
 ##Supervised toothbrushing
 
@@ -85,7 +84,7 @@ markdown = <<-MARKDOWN
 
 ##Why is food safety so important for young children?
 
-The [EYFS framework](https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2) requires providers to take all necessary steps to keep children safe and well – and you must be confident that those responsible for preparing and handling food in your setting are competent to do so.  
+The [EYFS framework](https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2) requires providers to take all necessary steps to keep children safe and well – and you must be confident that those responsible for preparing and handling food in your setting are competent to do so.
 
 Tragically, a child dies in the UK every month from choking and hundreds more require hospital treatment.  It can happen quickly and it can happen to anyone.
  
@@ -140,12 +139,12 @@ Provide only fresh tap water and plain milk for children to drink.  Fruit juice,
 
 When offering dairy alternatives to cow’s milk:
 
-- Unsweetened calcium-fortified, plant-based drinks (such as soya, oat and almond drinks) should be avoided before 12 months, however small amounts can be used in cooking. These drinks can be given from 12 months as part of a healthy balanced diet. 
+- Unsweetened calcium-fortified, plant-based drinks (such as soya, oat and almond drinks) should be avoided before 12 months, however small amounts can be used in cooking. These drinks can be given from 12 months as part of a healthy balanced diet.
 - Do not give children under 5 rice drinks, because of the level of arsenic they contain.
 
 ###Foods to avoid before around 6 months of age
 
-Ideally, babies should be introduced to solid foods from around 6 months of age.  If parents or carers have decided to introduce solid foods to their child before 6 months of age, you will need to work closely with them to ensure a consistent and safe approach.  
+Ideally, babies should be introduced to solid foods from around 6 months of age.  If parents or carers have decided to introduce solid foods to their child before 6 months of age, you will need to work closely with them to ensure a consistent and safe approach.
 
 It is important to remember that there are some foods which should not be given before 6 months of age:
 
@@ -192,7 +191,7 @@ It is important to remember that there are some foods which should not be given 
 
 Progression from the introduction of first foods (at about 6 months), to a range of blended or mashed foods, and then to a wider range of chopped or minced foods should be a gradual process, based on each infants’ developmental readiness, rather than a staged process based on age alone.
 
-[Start4Life](https://www.nhs.uk/start4life/weaning/) have lots of helpful information for parents regarding safe weaning, which you will also find it helpful to refer to.  
+[Start4Life](https://www.nhs.uk/start4life/weaning/) have lots of helpful information for parents regarding safe weaning, which you will also find it helpful to refer to.
 
 ##How to prepare infant formula bottles
 
@@ -237,7 +236,7 @@ Further information on food hygiene:
 
 - [Children's food: safety and hygiene - NHS (www.nhs.uk)](https://www.nhs.uk/conditions/baby/weaning-and-feeding/childrens-food-safety-and-hygiene/)
 - [Safer food, better business (SFBB) Food Standards Agency](https://www.food.gov.uk/business-guidance/safer-food-better-business-sfbb)
-- [Safer food, better business for childminders Food Standards Agency](https://www.food.gov.uk/business-guidance/safer-food-better-business-for-childminders) 
+- [Safer food, better business for childminders Food Standards Agency](https://www.food.gov.uk/business-guidance/safer-food-better-business-for-childminders)
 
 MARKDOWN
 
