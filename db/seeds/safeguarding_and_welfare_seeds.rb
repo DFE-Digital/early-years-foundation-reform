@@ -3,11 +3,11 @@
 # two leading space.  Rubocop can get lost
 
 markdown = <<-MARKDOWN
-Content for Safeguarding to be completed
+Content for Safeguarding and welfare to be completed
 MARKDOWN
 
 attrs = {
-  title: "Safeguarding",
+  title: "Safeguarding and welfare",
   markdown: markdown,
   position: 9,
 }
