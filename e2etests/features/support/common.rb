@@ -200,7 +200,7 @@ end
 
 def add_user_details
   date_time
-  @user = "A0User#{@time}--"
+  @user = "A0User#{@time}"
   @user_p = "0-Ab0-Ba"
   enter_fields({ "user-first-name-field": "Admin",
                  "user-last-name-field": @user,
