@@ -1,3 +1,12 @@
+def user_access(user)
+  env = if user.downcase.index("cms")
+          ENV["CMS_URL"]
+        else
+          ENV["SERVICE_URL"]
+        end
+  open_app(env)
+end
+
 def proceed_to(page, func)
   link = page
   page_name = if func == ""
@@ -14,6 +23,10 @@ def proceed_to(page, func)
   when "left-menu sub-areas"
     click_on link
     list_items("sub-areas")
+  when "mobile menu learning areas", "mobile menu"
+    mobile_menu(link, page_name)
+  when "add user", "add user details and cancel", "add user, edit and delete", "add user with invalid passwords", "edit user with invalid passwords"
+    add_cms_user(page_name)
   else
     raise("Case statement required: #{page_name}")
   end
@@ -21,6 +34,11 @@ end
 
 def open_app(env)
   visit(env)
+  if page.text.match("Log in")
+    enter("user_email", ENV["USER_ADMIN"])
+    enter("user_password", ENV["USER_ADMNP"])
+    click_on "commit"
+  end
 end
 
 def enter(fld, val)
@@ -51,6 +69,12 @@ def list_items(page_name)
     search(LEFT_PANE_MENU, LP_LEARNING_AREAS)
   when "sub-areas"
     search(LEFT_PANE_MENU, LI_VALUES)
+  when "mobile menu learning areas"
+    search(MOBILE_MENU, LP_LEARNING_AREAS)
+  when "mobile menu"
+    search(MOBILE_MENU, UL_VALUES)
+  else
+    @ul = ""
   end
   if @ul != ""
     @menu = @ul.collect(&:text)
@@ -159,4 +183,106 @@ def exception_call(called_by)
   if @excep != ""
     raise("#{called_by} not as Expected. See 'FAIL(s)'")
   end
+end
+
+def click_value_proc(obj, value)
+  find(Object.const_get(obj.upcase.gsub!(" ", "_"))).click
+  check_page_heading("h1", value)
+end
+
+def resize_display(width, height)
+  page.driver.browser.manage.window.resize_to(width, height)
+end
+
+def click_btn(btn)
+  click_on btn
+end
+
+def add_user_details
+  date_time
+  @user = "A0User#{@time}"
+  @user_p = "0-Ab0-Ba"
+  enter_fields({ "user-first-name-field": "Admin",
+                 "user-last-name-field": @user,
+                 "user-email-field": "#{@user}@education.gov.uk",
+                 "user-password-field": @user_p,
+                 "user-password-confirmation-field": @user_p })
+  radio_btn("user-role-admin-field", "false")
+end
+
+def date_time
+  @time = Time.now.zone.to_i
+end
+
+def enter_fields(obj)
+  obj.each do |f, d|
+    fill_in(f, with: d)
+  end
+end
+
+def mobile_menu(link, page_name)
+  click_on link
+  resize_display(500, 700)
+  click_on MENU
+  list_items(page_name)
+end
+
+def add_cms_user(page_name)
+  click_on "Admin"
+  click_on "Add user"
+  return unless page_name != "add user"
+
+  case page_name
+  when "add user details and cancel"
+    add_user_details
+    click_on "Cancel"
+  when "add user, edit and delete"
+    add_user_details
+    click_on "Save"
+    edit_user
+    delete_user
+  when "add user with invalid passwords"
+    add_user_details
+  when "edit user with invalid passwords"
+    edit_user_invalid_password
+  else
+    raise("Case statement required: #{page_name}")
+  end
+end
+
+def radio_btn(obj, opt)
+  choose(obj, visible: opt)
+end
+
+def expect_not_displayed(text)
+  expect(page).to have_no_text(text)
+end
+
+def check_fields(obj)
+  obj.each do |f, d|
+    expect(find_field(f).value).to eq(d)
+  end
+end
+
+def edit_user
+  find(:id, "add-user").send_keys(:tab, :enter)
+  check_page_heading("h1", "Edit user")
+  check_fields({ "First name": "Admin",
+                 "Last name": @user })
+end
+
+def delete_user
+  click_on "Delete"
+  # TODO: refactor sleep
+  sleep 2
+  alert = page.driver.browser.switch_to.alert
+  alert.accept
+  display_check("User Admin #{@user} deleted")
+end
+
+def edit_user_invalid_password
+  click_on "Cancel"
+  find(:id, "add-user").send_keys(:tab, :enter)
+  enter("user-password-field", ENV["USER_ADMNP"])
+  click_on "Save"
 end

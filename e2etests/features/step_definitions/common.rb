@@ -1,5 +1,5 @@
-Given(/the site is visited/) do
-  visit(TARGET_URL)
+Given(/^"([^"]*)" user$/) do |user|
+  user_access(user)
 end
 
 When(/^user proceeds to "([^"]*)" page$/) do |page|
@@ -36,10 +36,35 @@ And(/^"([^"]*)" has value "([^"]*)"$/) do |obj, value|
   check_value_proc(obj, value)
 end
 
+And(/^"([^"]*)" of "([^"]*)" exists$/) do |obj, value|
+  click_value_proc(obj, value)
+end
+
 Then(/^clicks on "([^"]*)"$/) do |obj|
   clk(obj)
 end
 
 When(/^on "([^"]*)" followed by "([^"]*)" tabs and click$/) do |obj, tab_cnt|
   tab_click(obj, tab_cnt)
+end
+
+When(/^user clicks "([^"]*)" button$/) do |btn|
+  click_btn(btn)
+end
+
+Then(/^user is not created$/) do
+  expect_not_displayed(@user)
+end
+
+And(/^user is created$/) do
+  display_check(@user)
+end
+
+When(/^"([^"]*)" entered in "([^"]*)" and "([^"]*)" clicked$/) do |val, fld, evt|
+  enter(fld, val)
+  click_on evt
+end
+
+Given(/the site is visited/) do
+  visit(ENV_URL)
 end
