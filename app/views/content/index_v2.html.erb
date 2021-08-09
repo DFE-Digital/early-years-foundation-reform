@@ -3,7 +3,7 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full landing-page_header-text-container govuk-!-margin-bottom-0 govuk-!-padding-bottom-0">
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
-          Help for early years providers Variant 2
+          Help for early years providers
         </h1>
         <p class="govuk-body-l">Get ready for the Early Years Foundation Stage (EYFS) changes in September 2021 with this guidance and practical support.
         </p>
@@ -22,7 +22,7 @@
             ideas for activities you can do with early years children.</p>
         </div>
       </div>
-      <ul class="govuk-grid-row eyfs-card-group">
+      <ul class="govuk-grid-row eyfs-card-group govuk-!-padding-bottom-5">
         <% @content_pages.each do |content_page| %>
           <li class="govuk-grid-column-one-half eyfs-card-group__item">
             <div class="eyfs-card eyfs-card--clickable eyfs-card--link">
@@ -36,16 +36,15 @@
           </li>
         <% end %>
       </ul>
+      <%= render partial: 'layouts/show_links_to_children_of_page_with_title' %>
     </div>
   </div>
   <!--End of cards section-->
 
-  <!--Get help to improve your practice-->
+  <!--Other useful resources-->
   <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        <%= render partial: 'layouts/show_links_to_children_of_page_with_title' %>
-        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <h2 class="govuk-heading-l">Other useful resources</h2>
         <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/changes-to-the-early-years-foundation-stage-eyfs-framework/changes-to-the-early-years-foundation-stage-eyfs-framework">Changes to the early years foundation stage framework</a></p>
         <p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2">Statutory framework for the early years foundation stage</a></p>
@@ -53,6 +52,5 @@
       </div>
     </div>
   </div>
-
   <!--End of-->
 </div>
