@@ -6,6 +6,7 @@ RSpec.describe "content/index", type: :view do
       FactoryBot.create(:content_page),
       FactoryBot.create(:content_page),
     ]
+    @featured_pages = []
   end
 
   it "renders a list of content" do
