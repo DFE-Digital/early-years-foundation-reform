@@ -42,5 +42,7 @@ module GovukRailsBoilerplate
     config.middleware.use Rack::RejectTrace
     config.middleware.use Rack::Deflater
     config.space = ENV.fetch( 'DOMAIN', "eyfs-dev" ).split(".").first
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
   end
 end

@@ -35,7 +35,8 @@ RUN apk --no-cache add --update \
   npm \
   yarn \
   postgresql-dev \
-  shared-mime-info
+  shared-mime-info \
+  python2
 
 # The application runs from /app
 WORKDIR /app
