@@ -1,20 +1,4 @@
 # rubocop:disable Layout/HeredocIndentation
-
-markdown_for_other_useful_resources = <<-MARKDOWN_FOR_OTHER_USERFUL_RESOURCES
-<h2 class="govuk-heading-l">Other useful resources</h2>
-<p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/changes-to-the-early-years-foundation-stage-eyfs-framework/changes-to-the-early-years-foundation-stage-eyfs-framework">Changes to the early years foundation stage framework</a></p>
-<p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2">Statutory framework for the early years foundation stage</a></p>
-<p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/development-matters--2">Development Matters, non-statutory curriculum guidance for the early years foundation stage</a></p>
-MARKDOWN_FOR_OTHER_USERFUL_RESOURCES
-
-unless ContentBlock.exists?(name: "other_useful_resources")
-  ContentBlock.create! do |u|
-    u.name = "other_useful_resources"
-    u.description = "Used on the landing page to describe Other Useful Resources"
-    u.markdown = markdown_for_other_useful_resources
-  end
-end
-
 html_for_accessibility = <<-HTML_FOR_ACCESSIBILITY
 <h1 class="govuk-heading-xl">Accessibility statement for the Help for early years providers service</h1>
 
