@@ -1,14 +1,10 @@
 # rubocop:disable Layout/HeredocIndentation
 
 markdown_for_other_useful_resources = <<-MARKDOWN_FOR_OTHER_USERFUL_RESOURCES
-## Other useful resources
-[Changes to the early years foundation stage framework](https://www.gov.uk/government/publications/changes-to-the-early-years-foundation-stage-eyfs-framework/changes-to-the-early-years-foundation-stage-eyfs-framework)
-
-[Statutory framework for the early years foundation stage](https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2)
-
-[Development Matters, non-statutory curriculum guidance for the early years foundation stage ](https://www.gov.uk/government/publications/development-matters--2)
-
-
+<h2 class="govuk-heading-l">Other useful resources</h2>
+<p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/changes-to-the-early-years-foundation-stage-eyfs-framework/changes-to-the-early-years-foundation-stage-eyfs-framework">Changes to the early years foundation stage framework</a></p>
+<p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2">Statutory framework for the early years foundation stage</a></p>
+<p class="govuk-body"><a class="govuk-link" href="https://www.gov.uk/government/publications/development-matters--2">Development Matters, non-statutory curriculum guidance for the early years foundation stage</a></p>
 MARKDOWN_FOR_OTHER_USERFUL_RESOURCES
 
 unless ContentBlock.exists?(name: "other_useful_resources")
