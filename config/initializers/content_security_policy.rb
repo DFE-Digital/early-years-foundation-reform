@@ -35,7 +35,7 @@ GOOGLE_STATIC_DOMAINS = %w[fonts.gstatic.com www.gstatic.com *.hotjar.com].freez
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self, :https, *GOVUK_DOMAINS
   policy.font_src    :self, :https, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :data
-  policy.frame_src   :self, *OPTIMIZE_DOMAINS
+  policy.frame_src   :self, *GOOGLE_ANALYTICS_DOMAINS, *OPTIMIZE_DOMAINS
   policy.img_src     :self,
                      *GOVUK_DOMAINS,
                      *S3_DOMAINS,
