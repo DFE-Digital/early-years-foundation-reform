@@ -3,7 +3,7 @@ name: Build and Deploy to Sandbox
 on:
   push:
     branches:
-      - 500-refactor-deployment
+      - develop
       paths-ignore:
         - 'documentation/**'
 
