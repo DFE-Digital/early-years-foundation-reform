@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - develop
-      paths-ignore:
-        - 'documentation/**'
+    paths-ignore:
+      - 'documentation/**'
 
 jobs:
   deploy:
