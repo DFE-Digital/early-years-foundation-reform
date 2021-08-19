@@ -44,13 +44,13 @@ jobs:
             BUILDKIT_INLINE_CACHE=1
             SHA=${{ github.sha }}
           cache-from: |
-            dfedigital/help-for-early-years-providers-sandbox:latest
+            dfedigital/help-for-early-years-providers-prod:latest
           push: true
           tags: |
-            dfedigital/help-for-early-years-providers-sandbox:${{ github.sha }}
-            dfedigital/help-for-early-years-providers-sandbox:latest
+            dfedigital/help-for-early-years-providers-prod:${{ github.sha }}
+            dfedigital/help-for-early-years-providers-prod:latest
           target:
-            sandbox
+            production
 
       - name: Deploy to sandbox
         env:
@@ -59,7 +59,7 @@ jobs:
           TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
           TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
         run: |
-          export TF_VAR_paas_app_docker_image=dfedigital/help-for-early-years-providers-sandbox:${{ github.sha }}
+          export TF_VAR_paas_app_docker_image=dfedigital/help-for-early-years-providers-prod:${{ github.sha }}
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=paas-s3-broker-prod-lon-e2222cc7-39c6-44ad-9f24-ca5496b21cae"
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/sandbox.tfvars -var="secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}"}' -var 'docker_username=${{ secrets.DOCKERHUB_USERNAME }}' -var 'docker_password=${{ secrets.DOCKERHUB_PASSWORD }}'

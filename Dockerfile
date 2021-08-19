@@ -1,5 +1,9 @@
+
+# To use or update to a ruby version, change {BASE_RUBY_IMAGE}
+ARG BASE_RUBY_IMAGE=ruby:2.7.2-alpine
+
 # Build compilation image
-FROM ruby:2.7.2-alpine3.13
+FROM ${BASE_RUBY_IMAGE} AS production
 
 # Set bundler version
 ENV BUNDLER_VERSION=2.2.16
