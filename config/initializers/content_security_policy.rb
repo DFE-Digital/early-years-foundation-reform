@@ -24,6 +24,9 @@ GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
                               ssl.google-analytics.com
                               stats.g.doubleclick.net
                               www.googletagmanager.com
+                              *.ytimg.com
+                              www.youtube.com
+                              www.youtube-nocookie.com
                               *.hotjar.com].freeze
 
 OPTIMIZE_DOMAINS = %w[www.googleoptimize.com
