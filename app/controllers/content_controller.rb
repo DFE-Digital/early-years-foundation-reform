@@ -1,5 +1,6 @@
 class ContentController < ApplicationController
   before_action :authenticate_user!, if: proc { !ENV["AUTH_ON_EVERYTHING"].nil? }
+  before_action :set_variant, only: :index
   after_action :set_cache_headers
 
   def set_cache_headers
@@ -23,7 +24,7 @@ class ContentController < ApplicationController
 
   # GET /
   def index
-    @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLES)
+    @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLES).order_by_position
     # Don't show featured pages in the cards
     @content_pages = ContentPage.top_level.order_by_position - @featured_pages
 
@@ -32,14 +33,18 @@ class ContentController < ApplicationController
     end
   end
 
+  def variant
+    @variant ||= session[:variant]
+  end
+
 private
 
   def parent_slug
     @page.parent && @page.parent.slug
   end
 
-  def variant
-    params.fetch("variant", "")
+  def set_variant
+    session[:variant] ||= params.fetch("variant", nil)
   end
 
   def content_section?
