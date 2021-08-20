@@ -24,7 +24,7 @@ class ContentController < ApplicationController
 
   # GET /
   def index
-    @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLES)
+    @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLES).order_by_position
     # Don't show featured pages in the cards
     @content_pages = ContentPage.top_level.order_by_position - @featured_pages
 
