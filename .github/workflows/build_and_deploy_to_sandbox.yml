@@ -45,13 +45,14 @@ jobs:
             BUILDKIT_INLINE_CACHE=1
             SHA=${{ github.sha }}
           cache-from: |
-            dfedigital/help-for-early-years-providers-prod:latest
+            ghcr.io/dfedigital/help-for-early-years-providers-prod:latest
           push: true
           tags: |
-            dfedigital/help-for-early-years-providers-prod:${{ github.sha }}
-            dfedigital/help-for-early-years-providers-prod:latest
-          target:
-            production
+            ghcr.io/dfedigital/help-for-early-years-providers-prod:${{ github.sha }}
+            ghcr.io/dfedigital/help-for-early-years-providers-prod:latest
+          target: production
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to sandbox
         env:
