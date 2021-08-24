@@ -9,6 +9,8 @@ class User < ApplicationRecord
   enum role: ROLES.zip(ROLES).to_h
 
   validates :email, presence: true, uniqueness: true, if: :domain_check, format: { with: URI::MailTo::EMAIL_REGEXP, message: EMAIL_ERROR_MESSAGE }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
