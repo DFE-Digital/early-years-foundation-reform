@@ -50,3 +50,5 @@ tokens
 .envrc
 
 /config/credentials/development.key
+
+/config/credentials/production.key
