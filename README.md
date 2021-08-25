@@ -247,3 +247,20 @@ PROXY_URL
 The `clamav-rest` server is set up at the following:
 
 https://eyfs-clamav-rest.london.cloudapps.digital
+
+### GOVUK Notify
+
+Register on [GOV.UK Notify](https://www.notifications.service.gov.uk).
+Ask someone on the team to add you to our service.
+Generate an API key for yourself and set it in the development credentials file
+
+How to edit credentials for for the development environment (a master key will be created first time)
+```
+  bundle exec rails credentials:edit --enviroment development
+```
+
+Add the following:
+```
+  notify:
+    api_key: <key-created-in-notifications-service>
+```

@@ -48,3 +48,5 @@ terraform.tfstate.d/
 tokens
 /db/seeds/do_not_run_automatically/*
 .envrc
+
+/config/credentials/development.key
