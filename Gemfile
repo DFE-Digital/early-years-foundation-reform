@@ -88,10 +88,13 @@ group :test do
 
   gem "capybara", "~> 3.34"
   gem "launchy"
-  gem "rspec-rails", "~> 5.0"
   gem "selenium-webdriver"
   gem "simplecov",  "~> 0.21", require: false
   gem "webdrivers", "~> 4.6"
+end
+
+group :test, :development do
+  gem "rspec-rails", "~> 5.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -100,3 +103,5 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise-security", "~> 0.16.0"
 
 gem "govuk_design_system_formbuilder", "~> 2.7"
+
+gem "mail-notify", "~> 1.0"
