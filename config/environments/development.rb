@@ -31,24 +31,26 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Set up api key at https://www.notifications.service.gov.uk 
+  # Set up api key at https://www.notifications.service.gov.uk
   # and update credentials using `rails credentials:edit --environment development`
   config.action_mailer.delivery_method = :notify
   config.action_mailer.notify_settings = {
-    api_key: Rails.application.credentials.config.dig(:notify, :api_key)
+    api_key: Rails.application.credentials.config.dig(:notify, :api_key),
   }
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
-  config.action_mailer.logger = Logger.new("log/mail.log", formatter: proc {|_, _, _, msg| 
-    if msg =~ /quoted-printable/
-      message = Mail::Message.new(msg)
-      "\nTo: #{message.to}\n#{message.decoded}\n\n"
-    else
-      "\n#{msg}"
-    end
-    })
+  config.action_mailer.logger = Logger.new(
+    "log/mail.log", formatter: proc { |_, _, _, msg|
+      if msg =~ /quoted-printable/
+        message = Mail::Message.new(msg)
+        "\nTo: #{message.to}\n#{message.decoded}\n\n"
+      else
+        "\n#{msg}"
+      end
+    }
+  )
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

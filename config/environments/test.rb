@@ -41,7 +41,7 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_options = {
-    from: "mail@example.org"
+    from: "mail@example.org",
   }
 
   # Print deprecation notices to the stderr.
