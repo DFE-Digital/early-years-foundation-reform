@@ -58,18 +58,18 @@ jobs:
             type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
             type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ env.BRANCH_TAG }}
 
-       - name: Deploy to dev (sandbox)
-         env:
-           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY_SANDBOX }}
-           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
-           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
-           TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
-           TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
-         run: |
-           echo "ENV:"
-           echo ${{env}}
-           export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
-           cd terraform/app
-           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET}}"
-           terraform plan -var-file ../workspace-variables/sandbox.tfvars
-           terraform apply -input=false -auto-approve -var-file ../workspace-variables/sandbox.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_SANDBOX}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
+      - name: Deploy to sandbox
+        env:
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY_SANDBOX }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
+        run: |
+          echo "ENV:"
+          echo ${{env}}
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
+          cd terraform/app
+          terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET}}"
+          terraform plan -var-file ../workspace-variables/sandbox.tfvars
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/sandbox.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_SANDBOX}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
