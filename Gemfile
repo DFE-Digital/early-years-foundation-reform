@@ -63,7 +63,7 @@ group :development, :test do
 
   gem "factory_bot_rails", "~> 6.2"
 
-  gem "faker", "~> 2.18"
+  gem "faker", "~> 2.19"
 
   gem "axe-matchers", "~> 2.6"
   gem "cucumber", "~> 6.1"
