@@ -226,7 +226,7 @@ GEM
       rails (>= 5.0.0.1)
       rouge
       sprockets (< 4)
-    haml (5.2.1)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     htmlentities (4.3.4)
