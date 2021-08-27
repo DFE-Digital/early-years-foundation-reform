@@ -19,6 +19,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/credentials/*.key
 /public/packs
 /public/packs-test
 /node_modules
@@ -49,6 +50,3 @@ tokens
 /db/seeds/do_not_run_automatically/*
 .envrc
 
-/config/credentials/eyfs-prod.key
-
-/config/credentials/sandbox.key
