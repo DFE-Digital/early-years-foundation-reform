@@ -30,7 +30,7 @@ class ContentPagesController < ApplicationController
   # POST /content_pages
   def create
     @content_page = ContentPage.new(content_page_params.except("version_id"))
-    @content_page.is_published = false;
+    @content_page.is_published = false
 
     begin
       authorize @content_page, :create?
@@ -53,7 +53,6 @@ class ContentPagesController < ApplicationController
     if params[:draft_id]
       @content_page.valid?
     end
-
 
     if @content_page.update(content_page_params)
       redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
@@ -80,9 +79,7 @@ class ContentPagesController < ApplicationController
   end
 
   # GET versions of this page
-  def versions
-    puts "versions"
-  end
+  def versions; end
 
 private
 

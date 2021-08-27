@@ -42,8 +42,10 @@
           <% if action_name === "edit" %>
             <div class="fixed-footer">
               <%= form.submit class: "govuk-button", value: "Publish" %>
-              <button  class="govuk-button" name="foo" value="Save as draft">Preview</button>
-              <button  class="govuk-button" name="foo" value="Preview">Save as draft</button>
+              <button  class="govuk-button govuk-button--secondary" name="foo" value="Save as draft">Preview</button>
+              <button  class="govuk-button govuk-button--secondary" name="foo" value="Preview">Save as draft</button>
+              <%= link_to 'Cancel', edit_content_page_path(@content_page), { :class => "govuk-link" } %> |
+              <%= link_to 'Back', content_pages_path %>
             </div>
           <% end %>
 

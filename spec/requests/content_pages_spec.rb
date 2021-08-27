@@ -197,6 +197,5 @@ RSpec.describe "/content_pages", type: :request do
 
     describe "Deleting a draft" do
     end
-
   end
 end
