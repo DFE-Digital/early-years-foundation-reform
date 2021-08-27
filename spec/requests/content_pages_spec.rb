@@ -179,4 +179,24 @@ RSpec.describe "/content_pages", type: :request do
       end
     end
   end
+
+  context "Handling draft content pages" do
+    describe "ContentPages are created first as drafts" do
+      it "Saves new content pages as draft, not as new ContentPage model records" do
+      end
+    end
+
+    describe "Listing drafts of a page" do
+    end
+
+    describe "Changes to a draft are saved to the same draft" do
+    end
+
+    describe "Creating a new draft from an existing draft" do
+    end
+
+    describe "Deleting a draft" do
+    end
+
+  end
 end

@@ -97,3 +97,10 @@ $govuk-image-url-function: frontend-image-url;
 #add-user {
   float: right;
 }
+
+.fixed-footer {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

@@ -39,9 +39,13 @@
 
           <%= form.hidden_field :parent_id, id: "parent_id" %>
 
-          <div>
-            <%= form.submit :class => "govuk-button"%>
-          </div>
+          <% if action_name === "edit" %>
+            <div class="fixed-footer">
+              <%= form.submit class: "govuk-button", value: "Publish" %>
+              <button  class="govuk-button" name="foo" value="Save as draft">Preview</button>
+              <button  class="govuk-button" name="foo" value="Preview">Save as draft</button>
+            </div>
+          <% end %>
 
         </fieldset>
 

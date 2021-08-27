@@ -2,7 +2,7 @@ class ContentPagesController < ApplicationController
   layout "cms"
 
   before_action :authenticate_user!
-  before_action :set_content_page, only: %i[show edit update destroy]
+  before_action :set_content_page, only: %i[show edit update destroy versions]
 
   # GET /content_pages
   def index
@@ -23,15 +23,18 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/1/edit
   def edit
     @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
-
+    # content_for(:stuff) || "Your storage is empty"
     @content_page
   end
 
   # POST /content_pages
   def create
-    @content_page = ContentPage.new(content_page_params)
+    @content_page = ContentPage.new(content_page_params.except("version_id"))
+    @content_page.is_published = false;
+
     begin
       authorize @content_page, :create?
+
       if @content_page.save
         redirect_to @content_page, notice: "Content page was successfully created."
       else
@@ -46,6 +49,12 @@ class ContentPagesController < ApplicationController
   # PATCH/PUT /content_pages/1
   def update
     authorize @content_page, :update?
+
+    if params[:draft_id]
+      @content_page.valid?
+    end
+
+
     if @content_page.update(content_page_params)
       redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
     else
@@ -70,6 +79,11 @@ class ContentPagesController < ApplicationController
     render json: { html: html }
   end
 
+  # GET versions of this page
+  def versions
+    puts "versions"
+  end
+
 private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -79,6 +93,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
+    params.require(:content_page).permit(:title, :markdown, :parent_id, :position, :draft_id)
   end
 end

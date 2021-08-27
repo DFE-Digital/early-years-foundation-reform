@@ -1,0 +1,23 @@
+<h1 class="govuk-heading-l">Page versions</h1>
+
+<h2 class="govuk-heading-s"><%= @content_page.title %></h2>
+
+<h2 class="govuk-heading-s">Live</h2>
+<% if @content_page.is_published %>
+  <p  class="govuk-body-s">
+    <%= @content_page.title %> - <%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %>
+    <%= link_to 'Edit', edit_content_page_path(@content_page), { :class => "govuk-link" } %>
+    <a href="#">Preview</a>
+  </p>
+<% else %>
+  <p  class="govuk-body-s">No versions published yet</p>
+<% end %>
+<h2 class="govuk-heading-s">Draft</h2>
+<% if !@content_page.is_published %>
+  <p  class="govuk-body-s">
+    <%= @content_page.title %> - <%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %>
+    <%= link_to 'Edittt', edit_content_page_path(@content_page), { :class => "govuk-link" } %>
+    <a href="#">Preview</a>
+    <a href="#">Delete</a>
+  </p>
+<% end %>
