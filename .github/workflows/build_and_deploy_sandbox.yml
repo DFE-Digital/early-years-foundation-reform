@@ -25,7 +25,19 @@ jobs:
 
       - name: Checkout Code
         uses: actions/checkout@v2
-      
+
+      - name: Pin Terraform version
+        uses: hashicorp/setup-terraform@v1.2.1
+        with:
+          terraform_version: 0.14.0
+
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Set docker image tag (push)
         run: |
           GIT_BRANCH=${GITHUB_REF##*/}
@@ -35,14 +47,8 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Login to Github Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build Docker Image
+        id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -58,6 +64,9 @@ jobs:
             type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
             type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ env.BRANCH_TAG }}
 
+      - name: Docker image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
       - name: Deploy to sandbox
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY_SANDBOX }}
@@ -68,7 +77,7 @@ jobs:
         run: |
           echo "ENV:"
           echo ${{env}}
-          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_SANDBOX}}"
           terraform plan -var-file ../workspace-variables/sandbox.tfvars
