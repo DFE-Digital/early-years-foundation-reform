@@ -99,8 +99,15 @@ $govuk-image-url-function: frontend-image-url;
 }
 
 .fixed-footer {
-  background: white;
+  background: #FFFFFF;
   position: fixed;
   bottom: 0;
   width: 100%;
+  padding: 0.5em;
+  //margin-left: -6em; // bodged
+}
+
+.published_status {
+  text-align: right;
+  background-color: blue;
 }

@@ -50,6 +50,15 @@ class ContentPagesController < ApplicationController
   def update
     authorize @content_page, :update?
 
+    if params[:commit] == "Publish"
+
+    end
+
+    # Preview should not come here
+    if params[:commit] == "Preview"
+
+    end
+
     if params[:draft_id]
       @content_page.valid?
     end
