@@ -90,6 +90,10 @@ en:
               blank: Select an editor or administrator role type
             password_confirmation:
               confirmation: Password confirmation does not match password
+            first_name:
+              blank: First name must not be blank
+            last_name:
+              blank: Last name must not be blank
   settings:
     cookie-policy: Cookies
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
