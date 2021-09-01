@@ -50,3 +50,5 @@ tokens
 /db/seeds/do_not_run_automatically/*
 .envrc
 
+
+/config/credentials/sandbox.key

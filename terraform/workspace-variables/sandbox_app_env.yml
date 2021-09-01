@@ -7,4 +7,5 @@
   RAILS_SERVE_STATIC_FILES: true
   SERVICE_TYPE: web
   DATABASE_URL: postgres://postgres@localhost:5432
+  DATABASE_NAME: eyfs-sandbox-database
   SEND_EMAILS_TO: brett.mchargue@education.gov.uk
