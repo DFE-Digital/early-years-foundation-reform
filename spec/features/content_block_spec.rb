@@ -84,4 +84,11 @@ RSpec.feature "View content blocks", type: :feature do
       # expect { visit "cms/blocks" }.to raise_error( Pundit::NotAuthorizedError )
     end
   end
+
+  describe "Falling back to an initial version of ContentBlock text" do
+    scenario "If the ContentBlock is undefined in the database, its initial value should still be set by the locale (en.yml)" do
+      visit("/")
+      expect(page.body).to include("Find guidance and practical support to help you with the changes")
+    end
+  end
 end

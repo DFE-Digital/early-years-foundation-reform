@@ -20,9 +20,22 @@ module ContentHelper
     params[:slug] == page.slug || params[:section] == page.slug
   end
 
+  # First try to find the ContentBlock in the database. Fallback to a
+  # value from the locale file, or failing that to a fixed text warning
   def insert_block(block_name)
     block = ContentBlock.find_by_name(block_name)
-    html_to_use = block ? block.markdown : "Error - block not found"
+
+    html_to_use = nil
+
+    if block
+      html_to_use = block.markdown
+    else
+      begin
+        html_to_use = t("content-block-content.#{block_name}", raise: true)
+      rescue I18n::MissingTranslationData
+        html_to_use = "Error - content block not found"
+      end
+    end
 
     GovspeakToHTML.new.translate_markdown html_to_use
   end
