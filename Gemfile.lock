@@ -260,16 +260,14 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.1)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.12.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
+    nokogiri (1.12.4)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -479,6 +477,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  aarch64-linux-musl
   arm64-darwin-20
   x86_64-darwin-20
   x86_64-linux
@@ -536,4 +535,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.16
+   2.2.26
