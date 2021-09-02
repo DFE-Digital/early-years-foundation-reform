@@ -1,3 +1,38 @@
-version: "3.9"
-services:
+version: '3.8'
+volumes:
+  db_data:
 
+services:
+  app:
+    image: ghcr.io/dfe-digital/help-for-early-years-providers:develop
+    command: entrypoints/docker-entrypoint.sh
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ..
+        target: /app
+    working_dir: /app
+    env_file: ../.env
+
+  database:
+    image: postgres:11
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ../init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    env_file: ../.env
+
+  webpack:
+    image: ghcr.io/dfe-digital/help-for-early-years-providers:develop
+    command: sh -c "npm rebuild node-sass && ./bin/webpack-dev-server"
+    depends_on:
+      - app
+    volumes:
+      - ..:/app
+    ports:
+      - '3035:3035'
+    env_file: ../.env
