@@ -23,7 +23,7 @@ Rails.application.configure do
   config.force_ssl = true
   config.session_store :cookie_store, key: "_help_for_early_years_providers_session", secure: true, expire_after: 2.weeks
   config.action_mailer.raise_delivery_errors = true
-  config.domain = ENV['domain']
+  config.domain = ENV["domain"]
 
   config.action_mailer.perform_caching = false
 
