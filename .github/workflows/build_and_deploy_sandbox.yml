@@ -74,6 +74,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
           TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
           TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
+          TF_VAR_statuscake_username: ${{ secrets.STATUSCAKE_USERNAME }}
+          TF_VAR_statuscake_apikey: ${{ secrets.STATUSCAKE_APIKEY }}
         run: |
           echo "ENV:"
           echo ${{env}}
