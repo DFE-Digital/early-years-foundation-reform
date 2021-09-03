@@ -20,7 +20,10 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
 
+  config.force_ssl = true
+  config.session_store :cookie_store, key: "_help_for_early_years_providers_session", secure: true, expire_after: 2.weeks
   config.action_mailer.raise_delivery_errors = true
+  config.domain = ENV['domain']
 
   config.action_mailer.perform_caching = false
 
@@ -38,7 +41,7 @@ Rails.application.configure do
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "eyfs-sandbox.london.cloudapps.digital"
 end
