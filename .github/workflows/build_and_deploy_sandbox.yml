@@ -69,11 +69,13 @@ jobs:
       - name: Docker image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      - name: Deploy to sandbox
+      - name: Deploy to sandbox 
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY_SANDBOX }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_SANDBOX }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_SANDBOX }}
+          AWS_REGION: ${{ secrets.AWS_REGION_SANDBOX }}
+          AWS_BUCKET: $${{ secrets.AWS_BUCKET_SANDBOX }}
           TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
           TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
           TF_VAR_statuscake_username: ${{ secrets.STATUSCAKE_USERNAME }}
