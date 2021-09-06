@@ -23,13 +23,13 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/1/edit
   def edit
     @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
-    # content_for(:stuff) || "Your storage is empty"
     @content_page
   end
 
   # POST /content_pages
   def create
     @content_page = ContentPage.new(content_page_params.except("version_id"))
+    @content_page.author = current_user.name
     @content_page.is_published = false
 
     begin
@@ -50,23 +50,26 @@ class ContentPagesController < ApplicationController
   def update
     authorize @content_page, :update?
 
-    if params[:commit] == "Publish"
+    # Is it a ContentPage or ContentPageVersion being updated ?
 
-    end
 
-    # Preview should not come here
-    if params[:commit] == "Preview"
-
-    end
-
-    if params[:draft_id]
-      @content_page.valid?
-    end
-
-    if @content_page.update(content_page_params)
-      redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
-    else
-      render :edit
+    if @content_page.is_published
+      if @content_page.valid?
+        version = ContentPageVersion.create!(title: @content_page.title,
+                                             markdown: content_page_params[:markdown],
+                                             content_page_id: @content_page.id,
+                                             author: current_user.name)
+        redirect_to content_page_path(@content_page) + "/versions", notice: "A new version was successfully created"
+      else
+        render :edit
+      end
+    elsif params[:commit] == "Publish"
+      @content_page.is_published = true
+      if @content_page.update(content_page_params)
+        redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated and published."
+      else
+        render :edit
+      end
     end
   rescue Pundit::NotAuthorizedError
     @content_page.errors.add(:base, "You don't have permission to change pages")
