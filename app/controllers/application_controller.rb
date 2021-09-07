@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   def check
+    logger.info "Inside check"
     render json: { status: "OK", version: ENV["SHA"], environment: Rails.env }, status: :ok
   end
 

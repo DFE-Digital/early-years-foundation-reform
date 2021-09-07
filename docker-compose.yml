@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    image: eyfs-reform-spike-web:latest
+    image: ghrc.io/dfe-digital/help-for-early-years-providers:develop
     command: ./entrypoints/docker-entrypoint.sh
     depends_on:
       - database
