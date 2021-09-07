@@ -80,8 +80,6 @@ jobs:
           TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
           TF_VAR_statuscake_username: ${{ secrets.STATUSCAKE_USERNAME }}
           TF_VAR_statuscake_apikey: ${{ secrets.STATUSCAKE_APIKEY }}
-          GOOGLE_ANALYTICS_CONTAINER_ID: ${{ secrets.GA_CONTAINER_ID_SANDBOX }}
-          GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GA_TRACKING_ID_SANDBOX }}
         run: |
           echo "ENV:"
           echo ${{env}}
