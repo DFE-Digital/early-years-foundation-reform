@@ -21,6 +21,14 @@ class ContentPage < ApplicationRecord
 
   after_create do
     ContentPage.reorder
+    create_first_version
+  end
+
+  def create_first_version
+    ContentPageVersion.create!(title: title,
+                               markdown: markdown,
+                               content_page_id: id,
+                               author: author)
   end
 
   after_save do
@@ -65,6 +73,7 @@ class ContentPage < ApplicationRecord
   end
 
   # Called when a page is created or a position attribute changes
+  # TO DO Need to filter by is_published
   class << self
     def reorder
       page_order = []

@@ -41,8 +41,7 @@
 
           <% if action_name === "edit" || action_name === "new" %>
             <div class="fixed-footer">
-              <%= form.submit class: "govuk-button", value: "Publish" %>
-              <button  class="govuk-button govuk-button--secondary" name="submit" value="Save as draft">Save as draft</button>
+              <%= form.submit class: "govuk-button", value: "Save as draft" %>
               <button  class="govuk-button govuk-button--secondary" name="submit" value="Preview">Preview</button>
               <%= link_to 'Cancel', content_pages_path, :data => {:confirm => "Are you sure you want to undo your changes ?", :class => "govuk-link"} %> |
               <%= link_to 'Back', content_pages_path %>

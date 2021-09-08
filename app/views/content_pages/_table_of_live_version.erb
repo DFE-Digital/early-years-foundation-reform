@@ -1,0 +1,21 @@
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+  <tr class="govuk-table__row">
+    <th scope="col" class="govuk-table__header">Live</th>
+    <th scope="col" class="govuk-table__header"></th>
+    <th scope="col" class="govuk-table__header"></th>
+    <th scope="col" class="govuk-table__header">Author</th>
+  </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell"><%= @content_page.title %></td>
+    <td class="govuk-table__cell"><%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %></td>
+    <td class="govuk-table__cell govuk-!-width-one-third">
+      <%= link_to 'Edit', edit_content_page_path(@content_page), { :class => "govuk-link" } %>
+      <a href="#">Preview</a>
+    </td>
+    <td class="govuk-table__cell"><%= @content_page.author %></td>
+  </tr>
+  </tbody>
+</table>

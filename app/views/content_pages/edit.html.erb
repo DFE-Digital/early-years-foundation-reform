@@ -3,7 +3,9 @@
     <h1 class="govuk-heading-l">Edit page -  <%= @content_page&.title %></h1>
   </div>
   <div class="govuk-grid-column-one-half draft">
-    <span class="published-status govuk-button">Draft</span>
+    <strong class="published-status govuk-tag">
+      <%= @content_page.is_published ? "Published" : "Draft" %>
+    </strong>
   </div>
 </div>
 

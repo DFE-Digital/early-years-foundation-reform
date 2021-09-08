@@ -2,32 +2,11 @@
 
 <h2 class="govuk-heading-s"><%= @content_page.title %></h2>
 
-<h2 class="govuk-heading-s">Live</h2>
 <% if @content_page.is_published %>
-  <p  class="govuk-body-s">
-    <%= @content_page.title %> - <%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %>
-    <%= link_to 'Edit', edit_content_page_path(@content_page), { :class => "govuk-link" } %>
-    <a href="#">Preview</a>
-    <%= @content_page.author %>
-  </p>
+  <%= render partial: 'table_of_live_version' %>
 <% else %>
   <p  class="govuk-body-s">No versions published yet</p>
 <% end %>
-<h2 class="govuk-heading-s">Draft</h2>
-<% if !@content_page.is_published %>
-  <p  class="govuk-body-s">
-    <%= @content_page.title %> - <%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %>
-    <%= link_to 'Edit', edit_content_page_path(@content_page), { :class => "govuk-link" } %>
-    <a href="#">Preview</a>
-    <%= @content_page.author %>
-  </p>
-<% end %>
-<% @content_page.content_page_versions.order_by_created_at.each do |version| %>
-  <p  class="govuk-body-s">
-    <%= version.title %> - <%= version.created_at.strftime("%d/%m/%Y %I:%M") %>
-    <a href="#">Edit</a>
-    <a href="#">Preview</a>
-    <%= version.author %>
-    <%= link_to "Delete", content_page_content_page_version_path(@content_page, version), method: :delete, data: { confirm: 'Are you certain you want to delete this version?' } %>
-  </p>
-<% end %>
+
+<%= render partial: 'table_of_draft_versions' %>
+
