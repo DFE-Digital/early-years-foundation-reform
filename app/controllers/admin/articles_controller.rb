@@ -3,17 +3,17 @@ module Admin
     before_action :set_article, only: %i[show edit update destroy]
 
     def index
-      @articles = ContentPage.where(category: "article")
+      @articles = Article.where(category: 'article')
     end
 
     def show; end
 
     def new
-      @article = ContentPage.new(category: "article")
+      @article = Article.new
     end
 
     def create
-      @article = ContentPage.new(article_params)
+      @article = Article.new(article_params)
       if @article.save
         redirect_to admin_article_path(@article), notice: "Article was successfully created"
       else
@@ -39,13 +39,12 @@ module Admin
   private
 
     def set_article
-      @article = ContentPage.find(params[:id])
+      @article = Article.find(params[:id])
     end
 
     def article_params
       # category set to article in form
-      # position set to 9999 in form
-      params.require(:content_page).permit(:title, :markdown, :category, :position)
+      params.require(:article).permit(:title, :markdown, :category)
     end
   end
 end

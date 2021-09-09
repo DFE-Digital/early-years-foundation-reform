@@ -1,9 +1,4 @@
-= form_with(
-      model: [:admin, article],
-      url: article.new_record? ? admin_articles_path : admin_article_path(article),
-      local: true,
-      builder: GOVUKDesignSystemFormBuilder::FormBuilder
-    ) do |form|
+= form_with(model: [:admin, article], url: article.new_record? ? admin_articles_path : admin_article_path(article), local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form|
   = form.govuk_error_summary order: %i[title markdown]
   = form.govuk_text_field :title 
   = form.govuk_text_area :markdown

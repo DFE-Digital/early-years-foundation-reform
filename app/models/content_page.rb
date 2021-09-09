@@ -1,33 +1,20 @@
-class ContentPage < ApplicationRecord
+class ContentPage < Article 
   acts_as_tree
   audited
 
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
 
-  CHARS_TO_OMIT_FROM_SLUG = ",:()".freeze
-  ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES = /\A[a-zA-Z0-9,:\-() ]+\Z/.freeze
-  TITLE_FORMAT_ERROR_MESSAGE = "should only contain alphabetic, numeric and -#{CHARS_TO_OMIT_FROM_SLUG}".freeze
-  validates :title, format: { with: ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: TITLE_FORMAT_ERROR_MESSAGE }
-  validates :title, presence: true, uniqueness: true
-  validates :markdown, presence: true
+  validates :position, presence: true, numericality: { only_integer: true }
+  validates :position, uniqueness: { scope: :parent_id }
 
-  validates :position, presence: true, numericality: { only_integer: true }, unless: -> { article? }
-  validates :position, uniqueness: { scope: :parent_id }, unless: -> { article? }
-
-  before_save :set_slug_from_title
-
-  unless -> { article? }
-    after_create do
-      ContentPage.reorder
-    end
+  after_create do
+    ContentPage.reorder
   end
 
-  unless -> { article? }
-    after_save do
-      if saved_change_to_position?
-        ContentPage.reorder
-      end
+  after_save do
+    if saved_change_to_position?
+      ContentPage.reorder
     end
   end
 
@@ -36,13 +23,6 @@ class ContentPage < ApplicationRecord
       "/#{parent.slug}/#{slug}"
     else
       "/#{slug}"
-    end
-  end
-
-  def set_slug_from_title
-    self.slug = title.downcase.gsub(/ /, "-")
-    CHARS_TO_OMIT_FROM_SLUG.each_char do |character|
-      self.slug = slug.gsub(character, "")
     end
   end
 
@@ -64,10 +44,6 @@ class ContentPage < ApplicationRecord
 
   def helpful_tools
     true
-  end
-
-  def article?
-    category == "article"
   end
 
   # Called when a page is created or a position attribute changes
