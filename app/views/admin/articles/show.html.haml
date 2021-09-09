@@ -1,0 +1,4 @@
+%h1.govuk-heading-l
+  = @article.title
+
+= sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS )

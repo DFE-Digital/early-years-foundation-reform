@@ -55,6 +55,16 @@ en:
   activerecord:
     errors:
       models:
+        content_page:
+          attributes:
+            position:
+              blank: Position must not be blank
+            title:
+              invalid: Title should only contain alphabetic, numeric and -,:()
+              taken: Title has already been taken
+            markdown:
+              blank: Markdown must not be blank
+
         content_block:
           attributes:
             name:

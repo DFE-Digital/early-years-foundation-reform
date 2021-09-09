@@ -12,18 +12,22 @@ class ContentPage < ApplicationRecord
   validates :title, presence: true, uniqueness: true
   validates :markdown, presence: true
 
-  validates :position, presence: true, numericality: { only_integer: true }
-  validates :position, uniqueness: { scope: :parent_id }
+  validates :position, presence: true, numericality: { only_integer: true }, unless: -> { article? }
+  validates :position, uniqueness: { scope: :parent_id }, unless: -> { article? }
 
   before_save :set_slug_from_title
 
-  after_create do
-    ContentPage.reorder
+  unless -> { article? }
+    after_create do
+      ContentPage.reorder
+    end
   end
 
-  after_save do
-    if saved_change_to_position?
-      ContentPage.reorder
+  unless -> { article? }
+    after_save do
+      if saved_change_to_position?
+        ContentPage.reorder
+      end
     end
   end
 
@@ -60,6 +64,10 @@ class ContentPage < ApplicationRecord
 
   def helpful_tools
     true
+  end
+
+  def article?
+    category == "article"
   end
 
   # Called when a page is created or a position attribute changes
