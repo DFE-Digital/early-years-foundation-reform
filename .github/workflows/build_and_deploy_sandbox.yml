@@ -99,7 +99,7 @@ jobs:
             ${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
             ${{ env.DOCKER_IMAGE }}:${{ env.BRANCH_TAG }}
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-        target: production
+          target: production
 
       - name: Docker image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
