@@ -6,6 +6,7 @@ class ContentPage < ApplicationRecord
 
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
+  scope :published, -> { where("is_published = true") }
 
   CHARS_TO_OMIT_FROM_SLUG = ",:()".freeze
   ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES = /\A[a-zA-Z0-9,:\-() ]+\Z/.freeze
@@ -32,7 +33,7 @@ class ContentPage < ApplicationRecord
   end
 
   after_save do
-    if saved_change_to_position?
+    if saved_change_to_position? || saved_change_to_is_published?
       ContentPage.reorder
     end
   end

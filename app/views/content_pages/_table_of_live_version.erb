@@ -12,10 +12,10 @@
     <td class="govuk-table__cell"><%= @content_page.title %></td>
     <td class="govuk-table__cell"><%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %></td>
     <td class="govuk-table__cell govuk-!-width-one-third">
-      <%= link_to 'Edit', edit_content_page_path(@content_page), { :class => "govuk-link" } %>
-      <a href="#">Preview</a>
+      <%= link_to "Edit", edit_content_page_path(@content_page), { :class => "govuk-link" } %>
+      <%= link_to "Preview", @content_page.full_path, { :class => "govuk-link", :target => "_blank" } %>
     </td>
-    <td class="govuk-table__cell"><%= @content_page.author %></td>
+    <td class="govuk-table__cell  govuk-!-width-one-fifth"><%= @content_page.author %></td>
   </tr>
   </tbody>
 </table>

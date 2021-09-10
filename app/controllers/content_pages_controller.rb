@@ -2,7 +2,7 @@ class ContentPagesController < ApplicationController
   layout "cms"
 
   before_action :authenticate_user!
-  before_action :set_content_page, only: %i[show edit update destroy]
+  before_action :set_content_page, only: %i[show edit update destroy versions ]
 
   # GET /content_pages
   def index
@@ -78,6 +78,8 @@ class ContentPagesController < ApplicationController
 
     render json: { html: html }
   end
+
+  def versions; end
 
 private
 
