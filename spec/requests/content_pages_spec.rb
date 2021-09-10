@@ -76,7 +76,7 @@ RSpec.describe "/content_pages", type: :request do
       end
       it "redirects to the created content_page" do
         post content_pages_url, params: { content_page: valid_attributes }
-        expect(response).to redirect_to(content_page_url(::ContentPage.last))
+        expect(response).to redirect_to(versions_content_page_url(::ContentPage.last))
       end
 
       it "prevents pages from having duplicate titles (and therefore slugs)" do

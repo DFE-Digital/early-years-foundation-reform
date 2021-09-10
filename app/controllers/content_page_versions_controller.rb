@@ -64,7 +64,7 @@ class ContentPageVersionsController < ApplicationController
     else
       @page.update!(markdown: @content_page_version.markdown, is_published: true)
     end
-    redirect_to versions_content_page_path(@page) , notice: "Published !"
+    redirect_to versions_content_page_path(@page), notice: "Published !"
   end
 
 private

@@ -15,9 +15,7 @@ class ContentPageVersion < ApplicationRecord
     true
   end
 
-  def parent
-    content_page.parent
-  end
+  delegate :parent, to: :content_page
 
   def parent_id
     content_page&.parent&.id
