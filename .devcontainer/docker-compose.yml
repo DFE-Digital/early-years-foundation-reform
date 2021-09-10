@@ -4,7 +4,7 @@ volumes:
 
 services:
   app:
-    image: ghcr.io/dfe-digital/help-for-early-years-providers:develop
+    image: ghcr.io/dfe-digital/help-for-early-years-providers
     command: entrypoints/docker-entrypoint.sh
     depends_on:
       - database
@@ -16,7 +16,6 @@ services:
         target: /app
     working_dir: /app
     env_file: ../.env
-
   database:
     image: postgres:11
     volumes:
@@ -24,15 +23,4 @@ services:
       - ../init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
-    env_file: ../.env
-
-  webpack:
-    image: ghcr.io/dfe-digital/help-for-early-years-providers:develop
-    command: sh -c "npm rebuild node-sass && ./bin/webpack-dev-server"
-    depends_on:
-      - app
-    volumes:
-      - ..:/app
-    ports:
-      - '3035:3035'
     env_file: ../.env

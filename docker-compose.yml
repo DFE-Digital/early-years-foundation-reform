@@ -2,7 +2,6 @@ version: "3.8"
 
 volumes:
   db_data:
-  clamd_data:
 
 services:
   app:
@@ -20,21 +19,10 @@ services:
     env_file: .env
 
   database:
-    image: postgres:13.1
+    image: postgres:11
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
-    env_file: .env
-
-  webpack:
-    image: eyfs-reform-spike-web:latest
-    command: sh -c "npm rebuild node-sass && ./bin/webpack-dev-server"
-    depends_on:
-      - app
-    volumes:
-      - .:/app
-    ports:
-      - '3035:3035'
     env_file: .env
