@@ -2,6 +2,8 @@
 
 # Early Years Reform Framework
 
+Just a test, will not merge
+
 This is a minimalistic content management system, written in Ruby on Rails
 for use by content editors in the Early Years Reform Framework project.
 
