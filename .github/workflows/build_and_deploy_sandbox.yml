@@ -60,7 +60,7 @@ jobs:
           cache-from: |
             ${{ env.DOCKER_IMAGE }}:gems-node-modules
           push: true 
-          tags: ${{ env.DOCKEER_IMAGE }}:gems-node-modules
+          tags: ${{ env.DOCKER_IMAGE }}:gems-node-modules
           target: help-for-early-years-providers-gems-node-modules
 
       - name: Build and push docker image from assets-precompile target
@@ -71,7 +71,7 @@ jobs:
           cache-from: |
             ${{ env.DOCKER_IMAGE }}:assets-precompile
           push: true 
-          tags: ${{ env.DOCKEER_IMAGE }}:assets-precompile
+          tags: ${{ env.DOCKER_IMAGE }}:assets-precompile
           target: assets-precompile
 
       - name: Set docker image tag (push)

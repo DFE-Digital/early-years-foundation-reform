@@ -4,7 +4,7 @@ ARG BASE_RUBY_IMAGE=ruby:2.7.2-alpine
 
 # BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES will defalt to help-for-early-years-gems-node-modules
 # building all layers above it if a value is not specified during the build
-ARG BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES=help-for-early-years-gems-node-modules
+ARG BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES=help-for-early-years-providers-gems-node-modules
 
 # Stage 1: Download gems and node modules
 FROM ${BASE_RUBY_IMAGE} AS builder
