@@ -80,6 +80,7 @@ RSpec.describe "/content_pages", type: :request do
       end
 
       it "prevents pages from having duplicate titles (and therefore slugs)" do
+        pending "Does not work like this now.  ContentPages are created as unpublished, and can have the same title until they are published"
         post content_pages_url, params: { content_page: valid_attributes }
 
         other_valid_attributes[:title] = valid_attributes[:title]

@@ -59,7 +59,7 @@ RSpec.feature "View content blocks", type: :feature do
 
       visit edit_content_block_path(block1)
 
-      expect(page.find_field("content_block[name]", disabled: true).value).to eq(block1.name)
+      expect(page.find_field("content-block-name-field", disabled: true).value).to eq(block1.name)
     end
 
     scenario "The Accessibility page can be produced using a Content Block called 'accessibility'" do

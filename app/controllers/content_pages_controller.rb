@@ -28,7 +28,7 @@ class ContentPagesController < ApplicationController
 
   # POST /content_pages
   def create
-    @content_page = ContentPage.new(content_page_params.except("version_id"))
+    @content_page = ContentPage.new(content_page_params)
     @content_page.author = current_user.name
     @content_page.is_published = false
 
