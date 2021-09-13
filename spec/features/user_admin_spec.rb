@@ -8,7 +8,7 @@ RSpec.feature "View pages", type: :feature do
     sign_in FactoryBot.create(:user)
     visit "/cms/pages"
 
-    expect(page).to have_text("Edit pages")
+    expect(page).to have_text("Pages")
   end
 
   scenario "The CMS index page should not have any accessibility errors" do
