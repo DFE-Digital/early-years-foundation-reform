@@ -94,6 +94,12 @@ variable "statuscake_alerts" {
   description = "Define Statuscake alerts with the attributes below"
   default     = {}
 }
+
+variable statuscake_username {
+}
+
+variable statuscake_password {
+}
 locals {
   paas_app_env_yml_values = yamldecode(file("${path.module}/../workspace-variables/${var.app_environment}_app_env.yml"))
   paas_app_env_values = merge(
