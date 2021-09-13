@@ -45,7 +45,7 @@ RUN apk -U upgrade && \
 FROM ${BASE_RUBY_IMAGE} as help-for-early-years-providers-gems-node-modules
 
 RUN apk -U upgrade && \
-    apk add --update --no-cache nodejs yarn tzdata libpq libxml2 libxslt graphviz && \
+    apk add --update --no-cache nodejs yarn tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
     echo "Europe/London" > /etc/timezone && \
     cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
@@ -92,7 +92,7 @@ ENV AUTHORIZED_HOSTS=127.0.0.1 \
     SHA=${SHA}
 
 RUN apk -U upgrade && \
-    apk add --update --no-cache tzdata libpq libxml2 libxslt graphviz && \
+    apk add --update --no-cache tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
     echo "Europe/London" > /etc/timezone && \
     cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
