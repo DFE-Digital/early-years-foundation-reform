@@ -16,6 +16,11 @@ provider cloudfoundry {
 
 }
 
+provider "statuscake" {
+  username = var.statuscake_username
+  apikey   = var.statuscake_apikey
+}
+
 /*
 Store infrastructure state in a remote store (instead of local machine):
 https://www.terraform.io/docs/state/purpose.html
@@ -46,4 +51,12 @@ module paas {
   web_app_memory                    = var.paas_web_app_memory
   web_app_start_command             = var.paas_web_app_start_command
   cms_app_start_command             = var.paas_cms_app_start_command
+}
+
+module "statuscake" {
+  source = "./modules/statuscake"
+
+  environment       = var.environment
+  service_name      = local.service_name
+  statuscake_alerts = var.statuscake_alerts
 }
