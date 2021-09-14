@@ -65,7 +65,6 @@ jobs:
           cache-from: |
             ${{ env.DOCKER_IMAGE }}:gems-node-modules
           push: true
-          tags: dfedigital/early-careers-framework-dev:gems-node-modules
           tags: ${{ env.DOCKER_IMAGE }}:gems-node-modules
           target: help-for-early-years-providers-gems-node-modules
 
