@@ -119,5 +119,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Created review app at https://hfeyp-review-pr-${{ github.event.number }}-cms.london.cloudapps.digital"
+          msg: "Created review app at https://eyfs-review-pr-${{ github.event.number }}-cms.london.cloudapps.digital"
           check_for_duplicate_msg: true
