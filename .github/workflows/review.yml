@@ -24,7 +24,7 @@ jobs:
 
       - name: setup-inputs
         run: |
-          echo "ENVIRONMENT=review-pr-${{ github.event.number }}-cms" >> $GITHUB_ENV
+          echo "ENVIRONMENT=review-pr-${{ github.event.number }}" >> $GITHUB_ENV
 
       - uses: actions/checkout@v2
         name: Checkout Code
@@ -118,5 +118,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Created review app at https://eyfs-review-pr-${{ github.event.number }}-cms.london.cloudapps.digital"
+          msg: "Created review app at https://eyfs-cms-review-pr-${{ github.event.number }}.london.cloudapps.digital"
           check_for_duplicate_msg: true
