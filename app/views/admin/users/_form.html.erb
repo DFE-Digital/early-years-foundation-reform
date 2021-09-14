@@ -1,5 +1,5 @@
 <%= form_with(model: [:admin, user], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
-  <%= form.govuk_error_summary order: %i[email password password_confirmation role, first_name, last_name] %>
+  <%= form.govuk_error_summary order: %i[first_name last_name email password password_confirmation role] %>
   <%= form.govuk_text_field :first_name, label: {text: "First name"} %>
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>
   <%= form.govuk_email_field :email, disabled: user.persisted?, label: {text: "Email"} %>
