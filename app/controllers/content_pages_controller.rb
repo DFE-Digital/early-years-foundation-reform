@@ -2,7 +2,7 @@ class ContentPagesController < ApplicationController
   layout "cms"
 
   before_action :authenticate_user!
-  before_action :set_content_page, only: %i[show edit update destroy]
+  before_action :set_content_page, only: %i[show edit update destroy versions]
 
   # GET /content_pages
   def index
@@ -23,17 +23,20 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/1/edit
   def edit
     @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
-
     @content_page
   end
 
   # POST /content_pages
   def create
     @content_page = ContentPage.new(content_page_params)
+    @content_page.author = current_user.name
+    @content_page.is_published = false
+
     begin
       authorize @content_page, :create?
+
       if @content_page.save
-        redirect_to @content_page, notice: "Content page was successfully created."
+        redirect_to "#{content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
       else
         render :new
       end
@@ -46,8 +49,14 @@ class ContentPagesController < ApplicationController
   # PATCH/PUT /content_pages/1
   def update
     authorize @content_page, :update?
-    if @content_page.update(content_page_params)
-      redirect_to content_pages_path(@content_page), notice: "Content page was successfully updated."
+
+    # Is it a ContentPage or ContentPageVersion being updated ?
+    if @content_page.valid?
+      ContentPageVersion.create!(title: @content_page.title,
+                                 markdown: content_page_params[:markdown],
+                                 content_page_id: @content_page.id,
+                                 author: current_user.name)
+      redirect_to "#{content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
     else
       render :edit
     end
@@ -70,6 +79,8 @@ class ContentPagesController < ApplicationController
     render json: { html: html }
   end
 
+  def versions; end
+
 private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -79,6 +90,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
+    params.require(:content_page).permit(:title, :markdown, :parent_id, :position, :draft_id)
   end
 end

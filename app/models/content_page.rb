@@ -2,8 +2,11 @@ class ContentPage < ApplicationRecord
   acts_as_tree
   audited
 
+  has_many :content_page_versions
+
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
+  scope :published, -> { where("is_published = true") }
 
   CHARS_TO_OMIT_FROM_SLUG = ",:()".freeze
   ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES = /\A[a-zA-Z0-9,:\-() ]+\Z/.freeze
@@ -19,10 +22,18 @@ class ContentPage < ApplicationRecord
 
   after_create do
     ContentPage.reorder
+    create_first_version
+  end
+
+  def create_first_version
+    ContentPageVersion.create!(title: title,
+                               markdown: markdown,
+                               content_page_id: id,
+                               author: author)
   end
 
   after_save do
-    if saved_change_to_position?
+    if saved_change_to_position? || saved_change_to_is_published?
       ContentPage.reorder
     end
   end
@@ -63,6 +74,7 @@ class ContentPage < ApplicationRecord
   end
 
   # Called when a page is created or a position attribute changes
+  # TO DO Need to filter by is_published
   class << self
     def reorder
       page_order = []
