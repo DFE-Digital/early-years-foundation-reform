@@ -65,7 +65,6 @@ jobs:
           cache-from: |
             ${{ env.DOCKER_IMAGE }}:gems-node-modules
           push: true
-          tags: dfedigital/early-careers-framework-dev:gems-node-modules
           tags: ${{ env.DOCKER_IMAGE }}:gems-node-modules
           target: help-for-early-years-providers-gems-node-modules
 
@@ -112,12 +111,12 @@ jobs:
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{ secrets.AWS_BUCKET }}" -backend-config="key=${{ env.ENVIRONMENT }}/terraform.tfstate"
           terraform plan -var-file ../workspace-variables/review.tfvars
-          terraform apply -input=false -auto-approve -var-file ../workspace-variables/review.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_SANDBOX}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_SANDBOX}}", "AWS_REGION": "${{secrets.AWS_REGION_SANDBOX}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_SANDBOX}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}", "GOOGLE_ANALYTICS_CONTAINER_ID": "${{ secrets.GA_CONTAINER_ID_DEV }}", "GOOGLE_ANALYTICS_TRACKING_ID": "${{ secrets.GA_TRACKING_ID_DEV }}"}', -var='environment=${{env.ENVIRONMENT}}'
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/review.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_SANDBOX}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_SANDBOX}}", "AWS_REGION": "${{secrets.AWS_REGION_SANDBOX}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_SANDBOX}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}", "GOOGLE_ANALYTICS_CONTAINER_ID": "${{ secrets.GA_CONTAINER_ID_DEV }}", "GOOGLE_ANALYTICS_TRACKING_ID": "${{ secrets.GA_TRACKING_ID_DEV }}"}' -var='environment=${{env.ENVIRONMENT}}'
 
       - name: comment on PR
         uses: unsplash/comment-on-pr@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          msg: "Created review app at https://hfeyp-review-pr-${{ github.event.number }}.london.cloudapps.digital"
+          msg: "Created review app at https://eyfs-review-pr-${{ github.event.number }}.london.cloudapps.digital"
           check_for_duplicate_msg: true
