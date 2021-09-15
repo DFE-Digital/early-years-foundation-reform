@@ -57,7 +57,7 @@ jobs:
           tags: ${{ env.DOCKER_IMAGE }}:builder
           target: builder
 
-      - name: Build and push docker image from early-careers-framework-gems-node-modules target
+      - name: Build and push docker image from help-for-early-years-providers-gems-node-modules target
         uses: docker/build-push-action@v2
         with:
           context: .
