@@ -30,7 +30,7 @@ development:
 
 deployed_development:
   <<: *default
-  database: govuk_rails_boilerplate_development
+  database: <%= ENV['DATABASE_NAME'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
