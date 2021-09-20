@@ -35,8 +35,8 @@ module Admin
       @article.destroy!
       redirect_to admin_articles_path, notice: "Article was successfully destroyed"
     end
-  
-    private
+
+  private
 
     def set_article
       @article = Article.friendly.find(params[:id])
