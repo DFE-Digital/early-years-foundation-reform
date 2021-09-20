@@ -11,10 +11,10 @@
       <% @content_page.content_page_versions.order_by_created_at.each do |version| %>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><%= version.title %></td>
-          <td class="govuk-table__cell"><%= version.created_at.strftime("%d/%m/%Y %I:%M") %></td>
+          <td class="govuk-table__cell"><%= version.updated_at.strftime("%d/%m/%Y %I:%M") %></td>
           <td class="govuk-table__cell govuk-!-width-one-third">
             <%= link_to 'Edit', edit_content_page_content_page_version_path(@content_page, version), { :class => "govuk-link" } %>
-            <%= link_to 'Preview', preview_of_draft_content_page_content_page_version_path(@content_page, version), { :class => "govuk-link" } %>
+            <%= link_to 'Preview and Publish', preview_of_draft_content_page_content_page_version_path(@content_page, version), { :class => "govuk-link" } %>
             <%= link_to "Delete", content_page_content_page_version_path(@content_page, version), method: :delete, data: { confirm: "Are you certain you want to delete this version ? " + version.created_at.strftime('%d/%m/%Y %I:%M') } %>
           </td>
           <td class="govuk-table__cell govuk-!-width-one-fifth"><%= version.author %></td>

@@ -10,7 +10,7 @@
   <tbody class="govuk-table__body">
   <tr class="govuk-table__row">
     <td class="govuk-table__cell"><%= @content_page.title %></td>
-    <td class="govuk-table__cell"><%= @content_page.created_at.strftime("%d/%m/%Y %I:%M") %></td>
+    <td class="govuk-table__cell"><%= @content_page.updated_at.strftime("%d/%m/%Y %I:%M") %></td>
     <td class="govuk-table__cell govuk-!-width-one-third">
       <%= link_to "Edit", edit_content_page_path(@content_page), { :class => "govuk-link" } %>
       <%= link_to "Preview", @content_page.full_path, { :class => "govuk-link", :target => "_blank" } %>
