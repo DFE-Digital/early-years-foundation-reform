@@ -1,0 +1,8 @@
+%tr.govuk-table__row
+  %td.govuk-table__cell
+    = link_to(article.title, admin_article_path(article), id: dom_id(article))
+  %td.govuk-table__cell
+    = article.description
+  %td.govuk-table__cell
+    %b
+      = link_to('Edit', edit_admin_article_path(article), id: dom_id(article))
