@@ -4,4 +4,11 @@
 .govuk-width-container
   .govuk-grid-row 
     .govuk-grid-column-one-half 
+      %p.govuk-heading-m
+        Details
       = render "form", article: @article
+    .govuk-grid-column-one-half 
+      %p.govuk-heading-m 
+        Live preview 
+      #markdown-render.gem-c-govspeak 
+        = sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS)
