@@ -52,7 +52,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "govuk_rails_boilerplate_production"
 
-  config.domain = ENV['DOMAIN']
+  config.domain = ENV["DOMAIN"]
 
   config.action_mailer.perform_caching = false
 
