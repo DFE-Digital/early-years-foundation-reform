@@ -101,5 +101,5 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-  config.hosts << "eyfs-cms-review-pr-410.london.cloudapps.digital"
+  # config.hosts << "eyfs-cms-review-pr-410.london.cloudapps.digital"
 end
