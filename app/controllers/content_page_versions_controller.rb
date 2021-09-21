@@ -13,7 +13,7 @@ class ContentPageVersionsController < ApplicationController
 
     # Odd requirement. This is a round about way to delete a page, by un-publishing it
     # and deleting all its versions. Normally pages can not be deleted, just un-published
-    if @parent_page.content_page_versions.count.zero?
+    if !@parent_page.is_published && @parent_page.content_page_versions.count.zero?
       @parent_page.destroy!
     end
 

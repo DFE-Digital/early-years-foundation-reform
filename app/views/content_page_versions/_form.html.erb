@@ -22,7 +22,7 @@
             <div class="fixed-footer">
               <%= form.submit class: "govuk-button", value: "Save as draft" %>
               <%= link_to 'Cancel', edit_content_page_content_page_version_path(@content_page_version.content_page, @content_page_version), :data => {:confirm => "Are you sure you want to undo your changes ?", :class => "govuk-link"}%> |
-              <%= link_to 'Back', content_pages_path %>
+              <%= link_to 'Back', content_pages_path, :data => {:confirm => "Any changes will be lost, are you sure ?", :class => "govuk-link"}%>
             </div>
           <% end %>
         </fieldset>
