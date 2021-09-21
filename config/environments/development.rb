@@ -55,4 +55,6 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.hosts << "eyfs-dev.london.cloudapps.digital"
+  config.hosts << "2c58017308d2.ngrok.io"
+  config.hosts << "eyfs-cms-review-pr-410.london.cloudapps.digital"
 end
