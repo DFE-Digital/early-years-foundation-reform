@@ -113,6 +113,22 @@ jobs:
           terraform plan -var-file ../workspace-variables/review.tfvars
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/review.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_SANDBOX}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_SANDBOX}}", "AWS_REGION": "${{secrets.AWS_REGION_SANDBOX}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_SANDBOX}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}", "GOOGLE_ANALYTICS_CONTAINER_ID": "${{ secrets.GA_CONTAINER_ID_DEV }}", "GOOGLE_ANALYTICS_TRACKING_ID": "${{ secrets.GA_TRACKING_ID_DEV }}"}' -var='environment=${{env.ENVIRONMENT}}'
 
+      - name: Install CF CLI
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD }}
+          CF_SPACE_NAME: eyfs-dev # required
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: false # default: false
+
+      - name: Add network policy for clamav
+        run: |
+          cf add-network-policy eyfs-cms-review-pr-${{ github.event.number }} eyfs-clamav-rest-private -s eyfs-prod --protocol tcp --port 9000
+
       - name: comment on PR
         uses: unsplash/comment-on-pr@master
         env:
