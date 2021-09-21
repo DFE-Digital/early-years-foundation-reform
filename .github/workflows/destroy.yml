@@ -26,7 +26,7 @@ jobs:
           TF_VAR_statuscake_apikey: ${{ secrets.STATUSCAKE_APIKEY }}
         run: |
           cd terraform/app
-          terraform init -reconfigure -input=false -backend-config="bucket=${{ secrets.AWS_BUCKET }}" -backend-config="key=${{ env.ENVIRONMENT }}/terraform.tfstate"
+          terraform init -reconfigure -input=false -backend-config="bucket=${{ secrets.AWS_BUCKET }}" -backend-config="key=review-pr-${{ github.event.number }}/terraform.tfstate"
           terraform destroy -input=false -auto-approve -var-file ../workspace-variables/review.tfvars -var='environment=${{github.event.inputs.environment}}'
 
       - name: Configure AWS credentials
