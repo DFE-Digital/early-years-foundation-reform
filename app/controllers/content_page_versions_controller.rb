@@ -11,8 +11,8 @@ class ContentPageVersionsController < ApplicationController
 
     @content_page_version.destroy!
 
-    # Odd requirement. This is a round about way to delete a page, by un-publishing it
-    # and deleting all its versions. Normally pages can not be deleted, just un-published
+    # There is a requirement to delete the ContentPage if it is unpublished and if
+    # the last of its ContentPageVersions have been removed
     if !@parent_page.is_published && @parent_page.content_page_versions.count.zero?
       @parent_page.destroy!
     end
@@ -54,19 +54,11 @@ class ContentPageVersionsController < ApplicationController
 
   def publish
     @page = @content_page_version.content_page
-    if @page.is_published
-      ContentPageVersion.create!(title: @page.title,
-                                 markdown: @page.markdown,
-                                 content_page_id: @page.id,
-                                 author: current_user.name)
-      # Copy the markdown and title into the ContentPage
-      @page.update!(markdown: @content_page_version.markdown,
-                    author: current_user.name)
-    else
-      @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name)
-      # Delete the version that this page was published from
-      @content_page_version.destroy!
-    end
+    @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name)
+
+    # Delete the version that this page was published from
+    @content_page_version.destroy!
+
     redirect_to versions_content_page_path(@page), notice: "Published"
   end
 

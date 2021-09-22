@@ -14,7 +14,6 @@ all in UK.GOV style;
 ![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
 ![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
 
-
 ## Prerequisites
 
 Ruby version `2.7.2`

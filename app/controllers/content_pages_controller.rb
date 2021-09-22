@@ -50,7 +50,6 @@ class ContentPagesController < ApplicationController
   def update
     authorize @content_page, :update?
 
-    # Is it a ContentPage or ContentPageVersion being updated ?
     if @content_page.valid?
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: content_page_params[:markdown],
@@ -90,6 +89,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :parent_id, :position, :draft_id)
+    params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
   end
 end

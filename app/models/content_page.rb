@@ -74,7 +74,6 @@ class ContentPage < ApplicationRecord
   end
 
   # Called when a page is created or a position attribute changes
-  # TO DO Need to filter by is_published
   class << self
     def reorder
       page_order = []
