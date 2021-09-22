@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get "/support-articles", to: "support_articles#index"
 
   %w[support-for-staff internet-safety guide-to-childrens-mental-health].each do |articles|
-    get "/support_articles/#{articles}", to: "support_articles##{articles.underscore}"
+    get "/support-articles/#{articles}", to: "support_articles##{articles.underscore}"
   end
 
 
