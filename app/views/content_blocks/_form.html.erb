@@ -13,7 +13,7 @@
 
         <% markdown_class = 'govuk-form-group--error' if @content_block.errors[:markdown].count > 0 %>
         <div class="govuk-form-group gem-c-govspeak govuk-form-group <%= markdown_class %>" id="content-block-markdown-field-error">
-          <label id="markdown-hint" for="markdown-editor" class="govuk-hint">
+          <label id="markdown-hint" for="markdown-editor" class="govuk-label">
             Content - Markdown for the block
           </label>
           <% if @content_block&.errors[:markdown].count > 0 %>
