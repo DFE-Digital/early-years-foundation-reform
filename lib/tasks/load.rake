@@ -29,11 +29,4 @@ namespace :load do
       end
     end
   end
-
-  desc "Load test users"
-  task users: :environment do |_, _args|
-    %w[brett].each do |user|
-      User.create!(first_name: user, last_name: Faker::Name.last_name, email: "#{user}@education.gov.uk", role: "admin", password: "TopSecret12!@")
-    end
-  end
 end
