@@ -63,6 +63,14 @@ en:
   activerecord:
     errors:
       models:
+        article:
+          attributes:
+            title:
+              blank: Title must not be blank
+            description:
+              blank: Description must not be blank
+            markdown:
+              blank: Markdown must not be blank
         content_block:
           attributes:
             name:
