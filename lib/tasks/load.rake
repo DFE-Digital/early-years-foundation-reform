@@ -22,18 +22,11 @@ namespace :load do
 
   desc "Load content blocks"
   task blocks: :environment do |_, _args|
-    %w[other_useful_resources].each do |content_block_name|
+    %w[landing_page_introduction other_useful_resources].each do |content_block_name|
       unless ContentBlock.exists?(name: content_block_name)
         attrs = I18n.t("content.#{content_block_name}")
         ContentBlock.create!(name: content_block_name, **attrs)
       end
-    end
-  end
-
-  desc "Load test users"
-  task users: :environment do |_, _args|
-    %w[brett].each do |user|
-      User.create!(first_name: user, last_name: Faker::Name.last_name, email: "#{user}@education.gov.uk", role: "admin", password: "TopSecret12!@")
     end
   end
 end
