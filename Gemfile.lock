@@ -196,6 +196,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.15.3)
     foreman (0.87.2)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
     govspeak (6.7.1)
@@ -504,6 +506,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   faker (~> 2.18)
   foreman (~> 0.87)
+  friendly_id (~> 5.4)
   govspeak
   govuk_design_system_formbuilder (~> 2.7)
   haml (~> 5.2)

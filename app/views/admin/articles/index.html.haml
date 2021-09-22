@@ -1,0 +1,14 @@
+%h1.govuk-heading-xl
+  Articles
+
+= link_to "Add article", new_admin_article_path, id: 'add-article', class: 'govuk-button'
+%table.govuk-table
+  %thead.govuk-table__head
+    %tr.govuk-table__row
+      %th.govuk-table__header{scope: 'col'}
+        Title
+      %th.govuk-table__header{scope: 'col'}
+        Description 
+      %th.govuk-table__header{scope: 'col'}
+  %tbody.govuk-table__body
+    =render partial: 'article', collection: @articles
