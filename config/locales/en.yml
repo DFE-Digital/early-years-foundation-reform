@@ -30,6 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  admin:
+    articles:
+      create:
+        notice: Article successfuly created
+      destroy:
+        notice: Article successfully deleted
+      update:
+        notice: Article successfully updated
   password_hint:
     html: |
       <span class="tooltiptext">
