@@ -3,7 +3,7 @@ module Admin
     before_action :set_article, only: %i[show edit update destroy]
 
     def index
-      @articles = Article.where(category: 'article')
+      @articles = Article.all
     end
 
     def show; end
@@ -39,12 +39,11 @@ module Admin
   private
 
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.friendly.find(params[:id])
     end
 
     def article_params
-      # category set to article in form
-      params.require(:article).permit(:title, :markdown, :category)
+      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image)
     end
   end
 end

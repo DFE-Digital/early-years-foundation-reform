@@ -20,6 +20,10 @@ $(document).ready(function() {
     createPreview('#markdown-editor','#markdown-render');
   });
 
+  $('#article-markdown-field').keyup(function() {
+    createPreview('#article-markdown-field', '#markdown-render');
+  });
+
   //----- mobile nav -----//
 
   //clipboard

@@ -1,30 +1,35 @@
-name: Deploy to Dev
-
+name: Create Review App
 on:
-  push:
-    branches:
-      - develop
+  pull_request:
+    branches: [ develop ]
+    types: [ opened, synchronize, reopened ]
     paths-ignore:
       - 'documentation/**'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-20.04
     env:
-      DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers
+      DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-provider-review
     outputs:
       IMAGE_TAG: ${{ env.IMAGE_TAG }}
     steps:
-      - name: Check workflow concurrency
-        uses: softprops/turnstyle@v1
+      - uses: softprops/turnstyle@v1
+        name: Check workflow concurrency
         with:
           poll-interval-seconds: 20
           same-branch-only: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout Code
-        uses: actions/checkout@v2
+      - name: setup-inputs
+        run: |
+          echo "ENVIRONMENT=review-pr-${{ github.event.number }}" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v2
+        name: Checkout Code
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Pin Terraform version
         uses: hashicorp/setup-terraform@v1.2.1
@@ -48,7 +53,7 @@ jobs:
           build-args: BUILDKIT_INLINE_CACHE=1
           cache-from: |
             ${{ env.DOCKER_IMAGE }}:builder
-          push: true 
+          push: true
           tags: ${{ env.DOCKER_IMAGE }}:builder
           target: builder
 
@@ -59,7 +64,7 @@ jobs:
           build-args: BUILDKIT_INLINE_CACHE=1
           cache-from: |
             ${{ env.DOCKER_IMAGE }}:gems-node-modules
-          push: true 
+          push: true
           tags: ${{ env.DOCKER_IMAGE }}:gems-node-modules
           target: help-for-early-years-providers-gems-node-modules
 
@@ -74,37 +79,24 @@ jobs:
           tags: ${{ env.DOCKER_IMAGE }}:assets-precompile
           target: assets-precompile
 
-      - name: Set docker image tag (push)
-        run: |
-          GIT_BRANCH=${GITHUB_REF##*/}
-          echo "BRANCH_TAG=$GIT_BRANCH" >> $GITHUB_ENV
-          echo "IMAGE_TAG=${{ github.sha }}" >> $GITHUB_ENV
-
       - name: Build and push docker image from production target
-        id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: .
           build-args: |
             BUILDKIT_INLINE_CACHE=1
-            VERSION=${{ env.IMAGE_TAG }}
-            SHA=${{ github.sha }}
+            SHA=${{ github.event.pull_request.head.sha }}
           cache-from: |
-            type=registry,ref=${{ env.DOCKER_IMAGE }}:latest
-            type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
-            type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ env.BRANCH_TAG }}
+            ${{ env.DOCKER_IMAGE }}:${{ env.ENVIRONMENT }}
+            ${{ env.DOCKER_IMAGE }}:latest
           push: true
           tags: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.event.pull_request.head.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ env.ENVIRONMENT }}
             ${{ env.DOCKER_IMAGE }}:latest
-            ${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
-            ${{ env.DOCKER_IMAGE }}:${{ env.BRANCH_TAG }}
-            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
           target: production
 
-      - name: Docker image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-
-      - name: Deploy to dev
+      - name: Deploy review app to dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -115,8 +107,16 @@ jobs:
         run: |
           echo "ENV:"
           echo ${{env}}
-          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}:${{ env.IMAGE_TAG }}
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}:${{ github.event.pull_request.head.sha }}
           cd terraform/app
-          terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET}}"
-          terraform plan -var-file ../workspace-variables/dev.tfvars
-          terraform apply -input=false -auto-approve -var-file ../workspace-variables/dev.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}", "GOOGLE_ANALYTICS_CONTAINER_ID": "${{ secrets.GA_CONTAINER_ID_DEV }}", "GOOGLE_ANALYTICS_TRACKING_ID": "${{ secrets.GA_TRACKING_ID_DEV }}"}'
+          terraform init -reconfigure -input=false -backend-config="bucket=${{ secrets.AWS_BUCKET }}" -backend-config="key=${{ env.ENVIRONMENT }}/terraform.tfstate"
+          terraform plan -var-file ../workspace-variables/review.tfvars
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/review.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_DEV}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_SANDBOX}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_SANDBOX}}", "AWS_REGION": "${{secrets.AWS_REGION_SANDBOX}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_SANDBOX}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}", "GOOGLE_ANALYTICS_CONTAINER_ID": "${{ secrets.GA_CONTAINER_ID_DEV }}", "GOOGLE_ANALYTICS_TRACKING_ID": "${{ secrets.GA_TRACKING_ID_DEV }}"}' -var='environment=${{env.ENVIRONMENT}}'
+
+      - name: comment on PR
+        uses: unsplash/comment-on-pr@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          msg: "Created review app at https://eyfs-review-pr-${{ github.event.number }}.london.cloudapps.digital"
+          check_for_duplicate_msg: true

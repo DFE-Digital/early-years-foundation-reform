@@ -1,7 +1,19 @@
 = form_with(model: [:admin, article], url: article.new_record? ? admin_articles_path : admin_article_path(article), local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form|
-  = form.govuk_error_summary order: %i[title markdown]
+  = form.govuk_error_summary order: %i[title description markdown featured_image thumbnail_image]
   = form.govuk_text_field :title 
+  = form.govuk_text_field :description
   = form.govuk_text_area :markdown
-  = form.hidden_field :category, value: 'article'
-  = form.hidden_field :position, value: 9999
+  = form.govuk_fieldset legend: { text: "Images" } do
+    - if article && article.featured_image.attached?
+      %h2 Featured
+      .image-wrapper
+        = image_tag(url_for(article.featured_image), width: "200px")
+    - else
+      = form.govuk_file_field :featured_image, label: { text: "Featured" }, width: "one-half", hint: { text: "Upload a featured image file less than 2MB.</br>Valid extensions are JPG, JPEG, PNG".html_safe}
+    - if article && article.thumbnail_image.attached?
+      %h2 Thumbnail
+      .image-wrapper
+        = image_tag(url_for(article.thumbnail_image), width: "200px")
+    - else
+      = form.govuk_file_field :thumbnail_image, label: { text: "Thumbnail" }, width: "one-half", hint: { text: "Upload a featured image file less than 2MB.</br>Valid extensions are JPG, JPEG, PNG".html_safe}
   = form.submit "Save", :class => "govuk-button"
