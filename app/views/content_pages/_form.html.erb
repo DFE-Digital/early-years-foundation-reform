@@ -2,54 +2,35 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
       <p class="govuk-heading-m">Details</p>
-      <%= form_with(model: content_page, local: true) do |form| %>
-        <% if content_page.errors.any? %>
-          <div id="error_explanation" class="govuk-error-message" >
-            <h2><%= pluralize(content_page.errors.count, "error") %> prohibited this page from being saved:</h2>
-            <ul>
-              <% content_page.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+      <%= form_with(model: [content_page], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+        <%= form.govuk_error_summary order: %i[title markdown position]  %>
 
-        <fieldset class="govuk-fieldset">
+        <%= form.govuk_text_field :title, label: {text: "Heading"}, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id)%>
 
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="Heading">
-              <%= form.label :title, "Heading" %>
-            </label>
-            <%= form.text_field :title, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id) %>
-          </div>
+        <!-- This text_area is not rendered with gov_text_field because it needs to
+             set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
+        <% markdown_class = 'govuk-form-group--error' if content_page.errors[:markdown].count > 0 %>
+        <div class="govuk-form-group gem-c-govspeak govuk-form-group <%= markdown_class %>" id="content-block-markdown-field-error">
+          <label id="markdown-hint" for="markdown-editor" class="govuk-hint">
+            Content - Markdown for the page
+          </label>
+          <% if content_page&.errors[:markdown].count > 0 %>
+            <span class="govuk-error-message"><%= content_page.errors[:markdown][0] %></span>
+          <% end %>
+          <% text_area_class = (content_page.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
 
-          <div class="govuk-form-group gem-c-govspeak">
-            <label id="markdown-hint" for="markdown-editor" class="govuk-label">
-              Content
-            </label>
-            <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => "govuk-textarea" %>
-          </div>
-
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="position">
-              Position (relative to sibling pages)
-            </label>
-            <%= form.text_field :position, :class => 'govuk-input govuk-!-width-three-quarters', id: "position" %>
-          </div>
-
+          <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: text_area_class %>
           <%= form.hidden_field :parent_id, id: "parent_id" %>
 
-          <div>
-            <%= form.submit :class => "govuk-button"%>
-          </div>
+          <%= form.govuk_text_field :position, label: {text: "Position"}%>
 
-        </fieldset>
-
+        </div>
+        <%= form.govuk_submit "Save" %>
       <% end %>
     </div>
 
     <div class="govuk-grid-column-one-half">
-        <p class="govuk-heading-m">Live Preview</p>
+        <p class="govuk-heading-m">Preview</p>
         <div id='markdown-render' class='gem-c-govspeak'>
           <%= sanitize(@md, tags: GovspeakToHTML::ALLOWED_TAGS) %>
         </div>

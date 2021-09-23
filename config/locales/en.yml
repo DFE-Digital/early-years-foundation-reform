@@ -79,6 +79,15 @@ en:
               blank: Description must not be blank
             markdown:
               blank: Content must not be blank
+        content_page:
+          attributes:
+            title:
+              blank: Heading must not be blank
+              format: WRONG
+            markdown:
+              blank: Content must not be blank
+            position:
+              blank: Position must not be blank
         content_asset:
           attributes:
             title:
