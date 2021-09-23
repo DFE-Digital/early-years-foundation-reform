@@ -11,8 +11,6 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-provider-review
-    outputs:
-      IMAGE_TAG: ${{ env.IMAGE_TAG }}
     steps:
       - uses: softprops/turnstyle@v1
         name: Check workflow concurrency
@@ -26,8 +24,8 @@ jobs:
         run: |
           echo "ENVIRONMENT=review-pr-${{ github.event.number }}" >> $GITHUB_ENV
 
-      - uses: actions/checkout@v2
-        name: Checkout Code
+      - name: Checkout Code
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
@@ -57,7 +55,7 @@ jobs:
           tags: ${{ env.DOCKER_IMAGE }}:builder
           target: builder
 
-      - name: Build and push docker image from early-careers-framework-gems-node-modules target
+      - name: Build and push docker image from help-for-early-years-providers-gems-node-modules target
         uses: docker/build-push-action@v2
         with:
           context: .

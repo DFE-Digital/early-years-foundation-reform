@@ -1,0 +1,15 @@
+
+%h1.govuk-heading-l
+  = @article.title
+%h2.govuk-heading
+  = @article.description
+
+= sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS )
+
+.image-wrapper
+  %h2 Featured image
+  = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
+
+.image-wrapper
+  %h2 Thumbnail image
+  = image_tag(url_for(@article.thumbnail_image), width: "200px") if @article.thumbnail_image.attached?
