@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.feature "Drafting and publishing pages", type: :feature do
-
   describe "The life cycle of a page" do
     it "should create a new page as an unpublished draft" do
       sign_in FactoryBot.create(:user, :editor)
@@ -51,7 +50,6 @@ RSpec.feature "Drafting and publishing pages", type: :feature do
 
   describe "editing an existing draft" do
     it "should apply changes to the existing draft and not create another one" do
-
     end
   end
 end
