@@ -24,6 +24,10 @@ $(document).ready(function() {
     createPreview('#article-markdown-field', '#markdown-render');
   });
 
+  $('#article-markdown-field-error').keyup(function() {
+    createPreview('#article-markdown-field-error', '#markdown-render');
+  });
+
   //----- mobile nav -----//
 
   //clipboard

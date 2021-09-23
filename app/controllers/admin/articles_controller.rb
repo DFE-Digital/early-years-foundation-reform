@@ -15,7 +15,7 @@ module Admin
     def create
       @article = Article.new(article_params)
       if @article.save
-        redirect_to admin_article_path(@article), notice: "Article was successfully created"
+        redirect_to admin_article_path(@article), notice: t(".notice")
       else
         render :new
       end
@@ -25,7 +25,7 @@ module Admin
 
     def update
       if @article.update(article_params)
-        redirect_to admin_article_path(@article), notice: "Article was successfully updated"
+        redirect_to admin_article_path(@article), notice: t(".notice")
       else
         render :edit
       end
@@ -33,7 +33,7 @@ module Admin
 
     def destroy
       @article.destroy!
-      redirect_to admin_articles_path, notice: "Article was successfully destroyed"
+      redirect_to admin_articles_path, notice: t(".notice")
     end
 
   private

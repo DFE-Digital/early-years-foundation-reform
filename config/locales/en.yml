@@ -30,6 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  admin:
+    articles:
+      create:
+        notice: Article successfuly created
+      destroy:
+        notice: Article successfully deleted
+      update:
+        notice: Article successfully updated
   password_hint:
     html: |
       <span class="tooltiptext">
@@ -55,16 +63,14 @@ en:
   activerecord:
     errors:
       models:
-        content_page:
+        article:
           attributes:
-            position:
-              blank: Position must not be blank
             title:
-              invalid: Title should only contain alphabetic, numeric and -,:()
-              taken: Title has already been taken
+              blank: Title must not be blank
+            description:
+              blank: Description must not be blank
             markdown:
               blank: Markdown must not be blank
-
         content_block:
           attributes:
             name:
