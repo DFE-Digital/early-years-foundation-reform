@@ -2,6 +2,10 @@
   padding-top: govuk-spacing(6);
 }
 
+.image-wrapper {
+  padding-top: govuk-spacing(6);
+}
+
 .align-right {
   text-align:right;
 }
@@ -18,7 +22,7 @@
   margin-left: 4em;
 }
 
-#markdown-editor {
+#markdown-editor, #article-markdown-field {
   height: 350px;
 }
 
