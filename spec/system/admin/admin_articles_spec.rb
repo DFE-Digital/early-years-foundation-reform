@@ -1,7 +1,8 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.feature "Article administration", type: :feature do
+RSpec.describe "Admin::Articles", type: :system do
   before do
+    driven_by(:rack_test)
     create :editor, first_name: "Perry", last_name: "White", email: "pwhite@education.gov.uk"
     create :article, title: "A typical support article", description: "And it's description", markdown: "For score and seven years ago..."
   end
