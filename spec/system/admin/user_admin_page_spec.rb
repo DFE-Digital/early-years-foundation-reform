@@ -1,7 +1,8 @@
 require "rails_helper"
 
-RSpec.feature "User administration", type: :feature do
+RSpec.feature "User administration", type: :system do
   before do
+    driven_by(:rack_test)
     create :admin, first_name: "Barbara", last_name: "Gordon", email: "birdsofprey@education.gov.uk"
     create :editor, first_name: "Perry", last_name: "White", email: "pwhite@education.gov.uk"
     create :editor, first_name: "J Jonah", last_name: "Jameson", email: "jjj@education.gov.uk"
