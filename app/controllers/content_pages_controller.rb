@@ -50,6 +50,12 @@ class ContentPagesController < ApplicationController
   def update
     authorize @content_page, :update?
 
+    # If the position has changed, honour it. Versions do not have positions
+    if content_page_params[:position] != @content_page.position
+      @content_page.position = content_page_params[:position]
+      @content_page.save!
+    end
+
     if @content_page.valid?
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: content_page_params[:markdown],
