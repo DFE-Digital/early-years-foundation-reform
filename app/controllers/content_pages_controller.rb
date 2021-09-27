@@ -10,7 +10,11 @@ class ContentPagesController < ApplicationController
   end
 
   # GET /content_pages/1
-  def show; end
+  def show
+    unless @content_page.is_published
+      redirect_to 404
+    end
+  end
 
   # GET /content_pages/new
   def new

@@ -46,7 +46,7 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      content_page = ContentPage.create! valid_attributes
+      content_page = FactoryBot.create(:content_page, :published)
       get content_page_url(content_page)
       expect(response).to be_successful
     end
