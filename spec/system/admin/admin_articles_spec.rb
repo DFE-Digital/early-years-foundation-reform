@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Admin::Articles", type: :system do
+RSpec.describe "Listing articles", type: :system do
   before do
     driven_by(:rack_test)
     create :editor, first_name: "Perry", last_name: "White", email: "pwhite@education.gov.uk"
