@@ -45,7 +45,8 @@ class ContentPageVersionsController < ApplicationController
                             markdown: @content_page_version.markdown,
                             position: 22,
                             previous_id: @content_page_version.content_page.id,
-                            next_id: @content_page_version.content_page.id)
+                            next_id: @content_page_version.content_page.id,
+                            parent_id: @content_page_version.content_page.id)
 
     @markdown = GovspeakToHTML.new.translate_markdown(@content_page_version.markdown)
 
@@ -54,7 +55,7 @@ class ContentPageVersionsController < ApplicationController
 
   def publish
     @page = @content_page_version.content_page
-    @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name)
+    @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name, title: @content_page_version.title)
 
     # Delete the version that this page was published from
     @content_page_version.destroy!

@@ -51,14 +51,27 @@ class ContentPagesController < ApplicationController
   end
 
   # PATCH/PUT /content_pages/1
+  # ContentPage markdown is never directly updated.  Changes happen to markdown
+  # as ContentPageVersions are created, edited and published
+  # Changes to position are applied directly to the published page, position has
+  # no meaning for drafts
+  # This update method does not do things the normal Rails way
   def update
     authorize @content_page, :update?
 
     # If the position has changed, honour it. Versions do not have positions
     if content_page_params[:position] != @content_page.position
       @content_page.position = content_page_params[:position]
-      @content_page.save!
+      if @content_page.valid?
+        @content_page.save!
+      end
     end
+
+    # This will not be saved, just doing it to take advantage of
+    # ContentPage validation, before the same values are used to
+    # create the ContentPageVersion
+    @content_page.markdown = content_page_params[:markdown]
+    @content_page.title = content_page_params[:title]
 
     if @content_page.valid?
       ContentPageVersion.create!(title: @content_page.title,
