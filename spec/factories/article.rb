@@ -11,5 +11,7 @@ FactoryBot.define do
     markdown { "# Fake title - #{Faker::Lorem.word}" }
     featured_image { Rack::Test::UploadedFile.new("spec/fixtures/sample.jpeg", "image/jpeg") }
     thumbnail_image { Rack::Test::UploadedFile.new("spec/fixtures/sample.jpeg", "image/jpeg") }
+    featured_alt_text { sentence_without_puncutation }
+    thumbnail_alt_text { sentence_without_puncutation }
   end
 end

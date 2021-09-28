@@ -43,7 +43,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image)
+      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text)
     end
   end
 end

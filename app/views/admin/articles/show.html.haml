@@ -6,14 +6,12 @@
   = @article.description
 
 %p.govuk-body
-  = sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS )
+  = translate_and_sanitize(@article.markdown)
 
 .image-wrapper
-  %h2.govuk-heading-l Featured image
   = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
 
 .image-wrapper
-  %h2.govuk-heading-l Thumbnail image
   = image_tag(url_for(@article.thumbnail_image), width: "200px") if @article.thumbnail_image.attached?
 
 = link_to "Back", admin_articles_path, class: 'govuk-link'
