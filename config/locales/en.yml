@@ -71,6 +71,12 @@ en:
               blank: Description must not be blank
             markdown:
               blank: Markdown must not be blank
+            featured_image:
+              blank: Featured image must be present
+              invalid_extension: Featured image has an invalid extension.
+            thumbnail_image:
+              blank: Thumbnail image must be present
+              invalid_extension: Thumbnail image has an invalid extension.
         content_block:
           attributes:
             name:

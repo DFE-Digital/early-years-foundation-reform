@@ -15,10 +15,10 @@ class Article < ApplicationRecord
 
   validates :title, :description, :markdown, :featured_image, :thumbnail_image, presence: true
 
-  validates :featured_image, :thumbnail_image, antivirus: true
   validate :image_file_ext_validation
   validates :featured_image, content_type: VALID_CONTENT_TYPE
   validates :thumbnail_image, content_type: VALID_CONTENT_TYPE
+  validates :featured_image, :thumbnail_image, antivirus: true
 
   def image_file_ext_validation
     if featured_image.attached?
