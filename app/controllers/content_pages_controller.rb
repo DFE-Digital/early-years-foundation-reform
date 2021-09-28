@@ -71,13 +71,15 @@ class ContentPagesController < ApplicationController
     # ContentPage validation, before the same values are used to
     # create the ContentPageVersion
     @content_page.markdown = content_page_params[:markdown]
-    @content_page.title = content_page_params[:title]
+    if content_page_params[:title]
+      @content_page.title = content_page_params[:title]
+    end
 
     if @content_page.valid?
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: content_page_params[:markdown],
-                                 content_page_id: @content_page.id,
-                                 author: current_user.name)
+                                 author: current_user.name,
+                                 content_page: @content_page)
       redirect_to "#{content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
     else
       render :edit

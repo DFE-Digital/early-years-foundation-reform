@@ -44,9 +44,9 @@ class ContentPageVersionsController < ApplicationController
     @page = ContentPage.new(title: @content_page_version.title,
                             markdown: @content_page_version.markdown,
                             position: 22,
+                            parent_id: @content_page_version.content_page.parent.id,
                             previous_id: @content_page_version.content_page.id,
-                            next_id: @content_page_version.content_page.id,
-                            parent_id: @content_page_version.content_page.id)
+                            next_id: @content_page_version.content_page.id)
 
     @markdown = GovspeakToHTML.new.translate_markdown(@content_page_version.markdown)
 
