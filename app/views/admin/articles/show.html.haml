@@ -1,15 +1,19 @@
+= link_to "Back", admin_articles_path, class: 'govuk-link'
 
-%h1.govuk-heading-l
+%h1.govuk-heading-xl
   = @article.title
-%h2.govuk-heading
+%h2.govuk-heading-l
   = @article.description
 
-= sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS )
+%p.govuk-body
+  = sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS )
 
 .image-wrapper
-  %h2 Featured image
+  %h2.govuk-heading-l Featured image
   = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
 
 .image-wrapper
-  %h2 Thumbnail image
+  %h2.govuk-heading-l Thumbnail image
   = image_tag(url_for(@article.thumbnail_image), width: "200px") if @article.thumbnail_image.attached?
+
+= link_to "Back", admin_articles_path, class: 'govuk-link'
