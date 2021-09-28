@@ -14,6 +14,6 @@
       .image-wrapper
         = image_tag(url_for(article.thumbnail_image), width: "200px")
     = form.govuk_file_field :thumbnail_image, label: { text: "Thumbnail" }, width: "one-half", hint: { text: "Upload a thumbnail image file less than 2MB.</br>Valid extensions are JPG, JPEG, PNG".html_safe}
-  = form.submit "Save", :class => "govuk-button"
-  %p.govuk-button
-    = link_to "Cancel", admin_articles_path
+  .govuk-button-group
+    = link_to "Cancel", admin_articles_path, class: "govuk-button govuk-button--secondary"
+    = form.submit "Save", :class => "govuk-button"
