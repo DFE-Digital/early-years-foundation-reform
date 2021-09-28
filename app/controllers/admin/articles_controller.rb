@@ -3,7 +3,7 @@ module Admin
     before_action :set_article, only: %i[show edit update destroy]
 
     def index
-      @articles = Article.all
+      @articles = Article.all.order(:title)
     end
 
     def show; end
