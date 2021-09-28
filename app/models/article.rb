@@ -21,11 +21,11 @@ class Article < ApplicationRecord
   validates :featured_image, :thumbnail_image, antivirus: true
 
   def image_file_ext_validation
-    if featured_image.attached?
-      errors.add(:featured_image, :invalid_extension) if VALID_FILE_EXTENSIONS.none? { |extension| featured_image.blob.filename.to_s.downcase.end_with?(extension) }
+    if featured_image.attached? && VALID_FILE_EXTENSIONS.none? { |extension| featured_image.blob.filename.to_s.downcase.end_with?(extension) }
+      errors.add(:featured_image, :invalid_extension)
     end
-    if thumbnail_image.attached?
-      errors.add(:thumbnail_image, :invalid_extension) if VALID_FILE_EXTENSIONS.none? { |extension| thumbnail_image.blob.filename.to_s.downcase.end_with?(extension) }
+    if thumbnail_image.attached? && VALID_FILE_EXTENSIONS.none? { |extension| thumbnail_image.blob.filename.to_s.downcase.end_with?(extension) }
+      errors.add(:thumbnail_image, :invalid_extension)
     end
   end
 end
