@@ -1,3 +1,5 @@
+<% = link_to "Back", admin_users_path, class: "govuk-back-link" %>
+
 <h1 class="govuk-heading-l">Edit user</h1>
 <% if policy(@user).destroy? %>
   <%= button_to "Delete", [:admin, @user], method: :delete, class: "govuk-button govuk-button--warning", data: { confirm: "Are you sure you want to delete #{@user.email}?" } %>
