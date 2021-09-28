@@ -5,13 +5,11 @@
   = form.govuk_text_area :markdown
   = form.govuk_fieldset legend: { text: "Images" } do
     - if article && article.featured_image.attached?
-      %h2 Featured
       .image-wrapper
         = image_tag(url_for(article.featured_image), width: "200px")
     = form.govuk_file_field :featured_image, label: { text: "Featured" }, width: "one-half", hint: { text: "Upload a featured image file less than 2MB.</br>Valid extensions are JPG, JPEG, PNG".html_safe}
     = form.govuk_text_field :featured_alt_text, label: { text: "Featured image alternate text"}
     - if article && article.thumbnail_image.attached?
-      %h2 Thumbnail
       .image-wrapper
         = image_tag(url_for(article.thumbnail_image), width: "200px")
     = form.govuk_file_field :thumbnail_image, label: { text: "Thumbnail" }, width: "one-half", hint: { text: "Upload a thumbnail image file less than 2MB.</br>Valid extensions are JPG, JPEG, PNG".html_safe}
