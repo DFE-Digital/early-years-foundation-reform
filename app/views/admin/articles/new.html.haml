@@ -10,4 +10,4 @@
       %p.govuk-heading-m 
         Live preview 
       #markdown-render.gem-c-govspeak 
-        = sanitize(@article.markdown, tags: GovspeakToHTML::ALLOWED_TAGS)
+        = translate_and_sanitize(@article.markdown)

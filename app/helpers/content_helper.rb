@@ -20,6 +20,10 @@ module ContentHelper
     params[:slug] == page.slug || params[:section] == page.slug
   end
 
+  def translate_and_sanitize(markdown)
+    sanitize(GovspeakToHTML.new.translate_markdown(markdown), tags: GovspeakToHTML::ALLOWED_TAGS)
+  end
+
   def insert_block(block_name)
     block = ContentBlock.find_by_name(block_name.underscore)
     html_to_use = block ? block.markdown : "Error - block not found for #{block_name.humanize}"

@@ -1,12 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Listing articles", type: :system do
-  before do
-    driven_by(:rack_test)
-    create :editor, first_name: "Perry", last_name: "White", email: "pwhite@education.gov.uk"
-    create :article, title: "A typical support article", description: "And it's description", markdown: "For score and seven years ago..."
-  end
-
   context "without session" do
     scenario "go to user administration page" do
       visit "/admin/articles"
@@ -15,9 +9,10 @@ RSpec.describe "Listing articles", type: :system do
   end
 
   context "with session" do
-    let(:editor) { User.find_by(email: "pwhite@education.gov.uk") }
     scenario "visits article admin" do
-      login_as(editor)
+      create :article, title: "A typical support article", description: "And it's description", markdown: "For score and seven years ago..."
+      create :article, title: "Another support article", description: "And still another description", markdown: "How now brown cow?"
+      login_as(create(:editor))
       visit "/admin/articles"
       expect(current_path).to eq(admin_articles_path)
       active_nav = page.find_by_id("navigation").first("li.govuk-header__navigation-item--active")
@@ -31,6 +26,16 @@ RSpec.describe "Listing articles", type: :system do
       expect(page).to have_css("th", text: "Description")
 
       expect(page).to have_css("td", text: "A typical support article")
+    end
+
+    scenario "delete listed article" do
+      create :article, title: "Delete me"
+      login_as(create(:editor))
+      visit "/admin/articles"
+      expect(page).to have_text("Delete me")
+      click_on "Delete"
+      accept_confirm "Are you sure you want to delete?"
+      expect(page).to_not have_text("Delete me")
     end
   end
 end
