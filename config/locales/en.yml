@@ -88,6 +88,13 @@ en:
             position:
               blank: Position must not be blank
               taken: Position is already taken
+        content_page_version:
+          attributes:
+            title:
+              blank: Heading must not be blank
+              format: "Heading should only contain alphabetic, numeric and -#{ContentPage::CHARS_TO_OMIT_FROM_SLUG}"
+            markdown:
+              blank: Content must not be blank
         content_asset:
           attributes:
             title:

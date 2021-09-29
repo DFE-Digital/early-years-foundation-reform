@@ -6,6 +6,9 @@ class ContentPageVersion < ApplicationRecord
   belongs_to :content_page
 
   validates :markdown, presence: true
+  validates :title, presence: true
+
+  validates :title, format: { with: ContentPage::ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: ContentPage::TITLE_FORMAT_ERROR_MESSAGE }
 
   def navigation
     true
