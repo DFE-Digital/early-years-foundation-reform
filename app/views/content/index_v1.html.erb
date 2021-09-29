@@ -52,7 +52,7 @@
             </div>
           </li>
       <% end %>
-        <% (featured_page&.children.order_by_position || []).each do |child| %>
+        <% (featured_page&.children.published.order_by_position || []).each do |child| %>
           <li class="govuk-grid-column-one-half eyfs-card-group__item">
             <div class="eyfs-card eyfs-card--clickable eyfs-card--link">
               <div class="eyfs-card__content">

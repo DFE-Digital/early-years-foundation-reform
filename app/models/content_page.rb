@@ -78,9 +78,9 @@ class ContentPage < ApplicationRecord
     def reorder
       page_order = []
 
-      ContentPage.top_level.order_by_position.each do |p|
+      ContentPage.published.top_level.order_by_position.each do |p|
         page_order << p
-        p.children.order_by_position.each do |child|
+        p.children.published.order_by_position.each do |child|
           page_order << child
         end
       end

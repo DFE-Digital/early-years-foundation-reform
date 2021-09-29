@@ -3,8 +3,8 @@ require "axe-rspec"
 
 RSpec.describe "Contents", type: :request do
   let(:a_page) do
-    parent = FactoryBot.create(:content_page)
-    FactoryBot.create(:content_page, parent_id: parent.id)
+    parent = FactoryBot.create(:content_page, :published)
+    FactoryBot.create(:content_page, :published, parent_id: parent.id)
   end
 
   before :all do
