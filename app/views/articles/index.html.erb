@@ -1,0 +1,45 @@
+<div class="govuk-main-wrapper govuk-!-padding-top-0" id="main-content">
+  <div class="govuk-width-container govuk-!-margin-bottom-1">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full landing-page_header-text-container govuk-!-margin-bottom-0 govuk-!-padding-bottom-0">
+        <h1 class="govuk-heading-l">Get support and guidance</h1>
+          <p class="govuk-body-s">Childminders and nursery practitioners can find help with day-to-day tasks with these expert led articles</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grey Beckground divider -->
+  <div class="articles-landing-page__section--grey govuk-!-padding-top-5"></div>
+
+  <!-- Articles Cards section  -->
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+        <ul class="article-card-group">
+          <% @articles.each do |article| %>
+          <li class="article-card-group__item govuk-!-margin-right-2">
+            <div class="article-card article-card--clickable article-card--link">
+              <img class="card-img-top" src="https://via.placeholder.com/220x180" alt="Card picture caption">
+                <div style="padding: 2px 16px;">
+                <%= link_to article.title, article_path(article), class: "govuk-link govuk-!-font-size-19 govuk-link--no-visited-state" %>
+                </div>
+            </div>
+          </li>
+          <% end %>
+        </ul>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="articles-landing-page__section--grey govuk-!-padding-top-5"></div>
+
+   <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <%== insert_block('other_useful_resources') %>
+      </div>
+    </div>
+  </div>
+

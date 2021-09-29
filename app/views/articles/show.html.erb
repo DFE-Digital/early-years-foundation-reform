@@ -1,0 +1,6 @@
+<span class="govuk-caption-l"><%= @article.title %></span>
+<h1 class="govuk-heading-l">
+  <%= @article.title %>
+</h1>
+<p>
+<%= sanitize(@markdown, tags: GovspeakToHTML::ALLOWED_TAGS ) %>
