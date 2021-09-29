@@ -45,6 +45,16 @@ $(document).ready(function() {
     }
   });
 
+  document.querySelectorAll('.article-card--clickable').forEach((panel) => {
+    // Check if panel has a link within it
+    if (panel.querySelector('a') !== null) {
+      // Clicks the link within the heading to navigate to desired page
+      panel.addEventListener('click', () => {
+        panel.querySelector('a').click();
+      });
+    }
+  });
+
 });
 
 const menuButton = document.querySelector('.js-app-mobile-nav-toggler');

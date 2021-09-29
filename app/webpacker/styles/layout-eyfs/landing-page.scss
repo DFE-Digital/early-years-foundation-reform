@@ -19,6 +19,14 @@
 
 }
 
+.articles-landing-page__section--grey {
+
+  background-color: govuk-colour("light-grey");
+  // @include govuk-responsive-padding(8, "top");
+  // @include govuk-responsive-padding(8, "bottom");
+
+}
+
 //styles for the card component
 
 .govuk-card__flex-container {
