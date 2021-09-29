@@ -6,6 +6,7 @@ class ContentPageVersion < ApplicationRecord
   belongs_to :content_page
 
   validates :markdown, presence: true
+  validates :title, presence: true
 
   def navigation
     true
