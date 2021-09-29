@@ -35,13 +35,7 @@ Rails.application.routes.draw do
     get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
 
-  get "/support-articles", to: "support_articles#index"
-
-  %w[support-for-staff internet-safety guide-to-childrens-mental-health].each do |articles|
-    get "/support-articles/#{articles}", to: "support_articles##{articles.underscore}"
-  end
-
-
+  resources :articles, only: %i[index show]
 
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"
