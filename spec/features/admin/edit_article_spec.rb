@@ -11,8 +11,6 @@ RSpec.describe "Edit article" do
     click_link "Edit"
     fill_in "article-title-field", with: "New correct title"
     fill_in "article-markdown-field", with: "## An H2 Headline"
-    preview = page.find("#markdown-render")
-    expect(preview).to have_text "An H2 Headline"
     click_button "Save"
     expect(page).to have_text "New correct title"
     expect(page).to have_text "An H2 Headline"
