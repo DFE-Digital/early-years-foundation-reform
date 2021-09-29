@@ -26,7 +26,7 @@ class ContentController < ApplicationController
   def index
     @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLES).order_by_position
     # Don't show featured pages in the cards
-    @content_pages = ContentPage.top_level.order_by_position - @featured_pages
+    @content_pages = ContentPage.top_level.published.order_by_position - @featured_pages
 
     respond_to do |format|
       format.html { render "index#{variant}", layout: "landing_page_layout" }
