@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Listing articles", type: :system do
+RSpec.describe "Listing articles", type: :feature do
   context "without session" do
     scenario "go to user administration page" do
       visit "/admin/articles"
