@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Edit article" do
+RSpec.describe "Edit article", type: :feature do
   before do
     login_as(create(:admin))
     create :article, title: "Old wrong title"
