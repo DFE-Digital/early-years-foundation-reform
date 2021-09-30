@@ -33,11 +33,7 @@ en:
   admin:
     articles:
       create:
-<<<<<<< HEAD
         notice: Article successfully created
-=======
-        notice: Article successfuly created
->>>>>>> 86c6421e (Basic article functionality (#396))
       destroy:
         notice: Article successfully deleted
       update:
