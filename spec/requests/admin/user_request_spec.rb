@@ -19,8 +19,6 @@ RSpec.describe "/admin/users", type: :request do
       it "renders a unsuccessful response" do
         sign_in create(:editor)
 
-        create_list(:editor, 10)
-
         get admin_users_path
         expect(response).to_not be_successful
       end
