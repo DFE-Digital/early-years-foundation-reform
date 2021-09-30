@@ -1,0 +1,17 @@
+= link_to "Back", admin_articles_path, class: 'govuk-back-link'
+
+%h1.govuk-heading-xl
+  = @article.title
+%h2.govuk-heading-l
+  = @article.description
+
+%p.govuk-body
+  = translate_and_sanitize(@article.markdown)
+
+.image-wrapper
+  = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
+
+.image-wrapper
+  = image_tag(url_for(@article.thumbnail_image), width: "200px") if @article.thumbnail_image.attached?
+
+= link_to "Back", admin_articles_path, class: 'govuk-link'

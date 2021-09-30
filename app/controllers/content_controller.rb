@@ -17,7 +17,7 @@ class ContentController < ApplicationController
     @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
 
     # If in a section page and page has parent, it must be a child of existing page
-    not_found if (@page.parent || content_section?) && params["section"] != parent_slug
+    not_found if (!@page.is_published || @page.parent || content_section?) && params["section"] != parent_slug
   rescue ActiveRecord::RecordNotFound
     not_found
   end
@@ -26,7 +26,7 @@ class ContentController < ApplicationController
   def index
     @featured_pages = ContentPage.where(title: FEATURED_PAGE_TITLES).order_by_position
     # Don't show featured pages in the cards
-    @content_pages = ContentPage.top_level.order_by_position - @featured_pages
+    @content_pages = ContentPage.top_level.published.order_by_position - @featured_pages
 
     respond_to do |format|
       format.html { render "index#{variant}", layout: "landing_page_layout" }

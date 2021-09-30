@@ -196,6 +196,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.15.3)
     foreman (0.87.2)
+    friendly_id (5.4.2)
+      activerecord (>= 4.0.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
     govspeak (6.7.1)
@@ -260,16 +262,14 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.1)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.12.3-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.3-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.3-x86_64-linux)
+    nokogiri (1.12.4)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -479,6 +479,7 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
+  aarch64-linux-musl
   arm64-darwin-20
   x86_64-darwin-20
   x86_64-linux
@@ -505,6 +506,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.2)
   faker (~> 2.18)
   foreman (~> 0.87)
+  friendly_id (~> 5.4)
   govspeak
   govuk_design_system_formbuilder (~> 2.7)
   haml (~> 5.2)
@@ -536,4 +538,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.16
+   2.2.26

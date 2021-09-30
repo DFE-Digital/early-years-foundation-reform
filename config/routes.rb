@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "users#index"
     resources :users
+    resources :articles
   end
 
   constraints CmsRouteConstraint.new do
@@ -22,7 +23,13 @@ Rails.application.routes.draw do
     end
 
     scope :cms do
-      resources :content_pages, path: "pages"
+      resources :content_pages, path: "pages" do
+        get "versions", on: :member
+        resources :content_page_versions do
+          get "preview_of_draft", on: :member
+          post "publish", on: :member
+        end
+      end
       resources :content_blocks, path: "blocks", only: %i[index new edit create update]
       resources :content_assets, path: "assets"
       #  This is not a resource route

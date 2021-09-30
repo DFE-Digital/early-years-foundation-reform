@@ -37,7 +37,7 @@
 
     <!-- Featured Pages Section -->
     <div class="govuk-width-container">
-    <% @featured_pages.each do |featured_page| %>
+    <% @featured_pages.published.each do |featured_page| %>
       <h2 class="govuk-heading-l govuk-!-padding-top-5"><%= featured_page.title %></h2>
       <ul class="govuk-grid-row eyfs-card-group">
       <% if featured_page.title != "Safeguarding and welfare" %>
@@ -52,7 +52,7 @@
             </div>
           </li>
       <% end %>
-        <% (featured_page&.children.order_by_position || []).each do |child| %>
+        <% (featured_page&.children.published.order_by_position || []).each do |child| %>
           <li class="govuk-grid-column-one-half eyfs-card-group__item">
             <div class="eyfs-card eyfs-card--clickable eyfs-card--link">
               <div class="eyfs-card__content">

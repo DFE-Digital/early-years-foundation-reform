@@ -3,10 +3,17 @@
   <div class="summary">
     <p class="govuk-heading-m">
       <%= page_to_render.title %>
+      <% if !page_to_render.is_published %>
+      (Draft)
+      <% end %>
       <span class="links">
-        <%= link_to 'Edit', edit_content_page_path(page_to_render), { :class => "govuk-link" } %>
-        |<%= link_to 'Add a child page', new_content_page_path(:parent_id => page_to_render.id) %>
-        |<%= link_to 'Preview', path_for_this_page(page_to_render), target: "_blank" %>
+        <%= link_to 'Versions', versions_content_page_path(page_to_render), { :class => "govuk-link" } %>
+        <% if !page_to_render.parent_id %>
+          |<%= link_to 'Add a child page', new_content_page_path(:parent_id => page_to_render.id) %>
+        <% end %>
+        <% if (page_to_render.is_published) %>
+          | <%= link_to 'Preview', path_for_this_page(page_to_render), target: "_blank" %>
+        <% end %>
       </span>
     </p>
   </div>

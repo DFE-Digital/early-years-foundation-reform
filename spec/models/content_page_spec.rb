@@ -68,14 +68,14 @@ RSpec.describe ContentPage, type: :model do
     before(:each) do
       ContentPage.destroy_all # Otherwise the pages created above spoil this test
 
-      @top_level1 = FactoryBot.create(:content_page, title: "TL1", position: 1)
-      @top_level2 = FactoryBot.create(:content_page, title: "TL2", position: 10)
+      @top_level1 = FactoryBot.create(:content_page, :published, title: "TL1", position: 1)
+      @top_level2 = FactoryBot.create(:content_page, :published, title: "TL2", position: 10)
 
-      @child1_of_top_level1 = FactoryBot.create(:content_page, title: "C1TL1", position: 1, parent_id: @top_level1.id)
-      @child2_of_top_level1 = FactoryBot.create(:content_page, title: "C2TL1", position: 2, parent_id: @top_level1.id)
+      @child1_of_top_level1 = FactoryBot.create(:content_page, :published, title: "C1TL1", position: 1, parent_id: @top_level1.id)
+      @child2_of_top_level1 = FactoryBot.create(:content_page, :published, title: "C2TL1", position: 2, parent_id: @top_level1.id)
 
-      @child1_of_top_level2 = FactoryBot.create(:content_page, title: "C1TL2", position: 1, parent_id: @top_level2.id)
-      @child2_of_top_level2 = FactoryBot.create(:content_page, title: "C2TL2", position: 2, parent_id: @top_level2.id)
+      @child1_of_top_level2 = FactoryBot.create(:content_page, :published, title: "C1TL2", position: 1, parent_id: @top_level2.id)
+      @child2_of_top_level2 = FactoryBot.create(:content_page, :published, title: "C2TL2", position: 2, parent_id: @top_level2.id)
 
       # The reordering happens after_create, so need to refetch these
       # to get their updated next/previous state
@@ -121,7 +121,7 @@ RSpec.describe ContentPage, type: :model do
       end
 
       it "Should reorder the pages when a page is changed" do
-        @page_in_the_middle = FactoryBot.create(:content_page, title: "Top Level Middle", position: 5)
+        @page_in_the_middle = FactoryBot.create(:content_page, :published, title: "Top Level Middle", position: 5)
         # The reordering happens after_create, so need to refetch these
         @page_in_the_middle = ContentPage.find @page_in_the_middle.id
         @child2_of_top_level1 = ContentPage.find @child2_of_top_level1.id

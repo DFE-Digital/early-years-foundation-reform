@@ -18,6 +18,10 @@ FactoryBot.define do
     title { "#{Faker::Lorem.sentence(word_count: 4)}$" }
   end
 
+  trait :published do
+    is_published { true }
+  end
+
   trait :top_level do
     parent_id { nil }
   end

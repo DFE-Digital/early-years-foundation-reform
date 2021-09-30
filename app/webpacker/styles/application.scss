@@ -97,3 +97,23 @@ $govuk-image-url-function: frontend-image-url;
 #add-user {
   float: right;
 }
+
+.fixed-footer {
+  background: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-left: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+}
+
+.published-status {
+  text-align: right;
+  background-color: #1d70b8 !important;
+}
+
+.draft {
+  text-align: right;
+}
