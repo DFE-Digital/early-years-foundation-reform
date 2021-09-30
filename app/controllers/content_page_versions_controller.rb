@@ -44,6 +44,7 @@ class ContentPageVersionsController < ApplicationController
     @page = ContentPage.new(title: @content_page_version.title,
                             markdown: @content_page_version.markdown,
                             position: 22,
+                            parent_id: @content_page_version.content_page.parent.id,
                             previous_id: @content_page_version.content_page.id,
                             next_id: @content_page_version.content_page.id)
 
@@ -54,7 +55,7 @@ class ContentPageVersionsController < ApplicationController
 
   def publish
     @page = @content_page_version.content_page
-    @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name)
+    @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name, title: @content_page_version.title)
 
     # Delete the version that this page was published from
     @content_page_version.destroy!

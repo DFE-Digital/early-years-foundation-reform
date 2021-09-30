@@ -1,9 +1,11 @@
-%tr.govuk-table__row
+%tr.govuk-table__row[article]
   %td.govuk-table__cell
-    = link_to(article.title, admin_article_path(article), id: dom_id(article))
+    = link_to(article.title, admin_article_path(article), id: dom_id(article, :show))
   %td.govuk-table__cell
     = article.description
   %td.govuk-table__cell
+    = article.created_at.to_s(:short)
+  %td.govuk-table__cell
     %b
-      = link_to('Edit', edit_admin_article_path(article), id: dom_id(article))
-      = link_to('Delete', admin_article_path(article), method: :delete, data: { confirm: "Are you sure you want to delete?" }, id: dom_id(article))
+      = link_to('Edit', edit_admin_article_path(article), id: dom_id(article, :edit))
+      = link_to('Delete', admin_article_path(article), method: :delete, data: { confirm: "Are you sure you want to delete?" }, id: dom_id(article, :delete))

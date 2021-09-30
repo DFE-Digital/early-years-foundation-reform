@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.feature "View pages", type: :feature do
-  given(:parent_page) { FactoryBot.create(:content_page, :top_level) }
-  given(:child_page) { FactoryBot.create(:content_page, parent_id: parent_page.id) }
+  given(:parent_page) { FactoryBot.create(:content_page, :published, :top_level) }
+  given(:child_page) { FactoryBot.create(:content_page, :published, parent_id: parent_page.id) }
 
   scenario "Navigate to Content Pages" do
     sign_in FactoryBot.create(:user)
