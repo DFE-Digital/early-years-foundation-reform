@@ -33,7 +33,7 @@ en:
   admin:
     articles:
       create:
-        notice: Article successfuly created
+        notice: Article successfully created
       destroy:
         notice: Article successfully deleted
       update:
@@ -71,6 +71,22 @@ en:
               blank: Description must not be blank
             markdown:
               blank: Markdown must not be blank
+            featured_image:
+              blank: Featured image must be present
+              invalid_extension: Featured image has an invalid extension
+              antivirus_client_error: Featured image could not be processed for virus scan, temporarily unavailable
+              antivirus_virus_detected: A virus was detected for featured image
+              antivirus_file_not_found: The scanner did not find the file for the featured image
+            thumbnail_image:
+              blank: Thumbnail image must be present
+              invalid_extension: Thumbnail image has an invalid extension
+              antivirus_client_error: Thumbnail image could not be processed for virus scan, temporarily unavailable
+              antivirus_virus_detected: A virus was detected for thumbnail image
+              antivirus_file_not_found: The scanner did not find the file for the thumbnail image
+            featured_alt_text:
+              blank: Featured image alternate text must not be blank
+            thumbnail_alt_text:
+              blank: Thumbnail image alternate text must not be blank
         content_block:
           attributes:
             name:
