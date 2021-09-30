@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "featured_alt_text"
     t.string "thumbnail_alt_text"
+    t.string "author"
+    t.datetime "published_at"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
