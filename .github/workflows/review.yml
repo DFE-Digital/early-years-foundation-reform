@@ -116,9 +116,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-<<<<<<< HEAD
           msg: "Created review web app at https://eyfs-review-pr-${{ github.event.number }}.london.cloudapps.digital and cms app https://eyfs-cms-review-pr-${{ github.event.number}}.london.cloudapps.digital"
-=======
-          msg: "Created review app at https://eyfs-review-pr-${{ github.event.number }}.london.cloudapps.digital"
->>>>>>> 503-credentials
           check_for_duplicate_msg: true
