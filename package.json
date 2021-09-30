@@ -3,7 +3,7 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@rails/webpacker": "^5.2.1",
+    "@rails/webpacker": "^5.4.3",
     "govuk-frontend": "^3.10.2",
     "jquery": "^3.5.1",
     "rails-ujs": "^5.2.4",
