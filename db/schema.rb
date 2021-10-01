@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "alt_text", default: "", null: false
+    t.integer "site_id"
+    t.index ["site_id"], name: "index_content_assets_on_site_id"
   end
 
   create_table "content_blocks", force: :cascade do |t|
@@ -120,9 +122,11 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.integer "position"
     t.integer "next_id"
     t.integer "previous_id"
+    t.integer "site_id"
     t.boolean "is_published", default: false
     t.string "author"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
+    t.index ["site_id"], name: "index_content_pages_on_site_id"
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
 
@@ -135,6 +139,13 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "subdomain"
   end
 
   create_table "users", force: :cascade do |t|
@@ -150,12 +161,14 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.string "role", default: "", null: false
+    t.integer "site_id"
     t.string "unique_session_id"
     t.string "first_name"
     t.string "last_name"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["site_id"], name: "index_users_on_site_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
