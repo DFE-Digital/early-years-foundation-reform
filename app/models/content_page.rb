@@ -18,6 +18,8 @@ class ContentPage < ApplicationRecord
   validates :position, presence: true, numericality: { only_integer: true }
   validates :position, uniqueness: { scope: :parent_id }
 
+  before_save :set_slug_from_title
+
   after_create do
     ContentPage.reorder
     create_first_version
@@ -41,6 +43,13 @@ class ContentPage < ApplicationRecord
       "/#{parent.slug}/#{slug}"
     else
       "/#{slug}"
+    end
+  end
+
+  def set_slug_from_title
+    self.slug = title.downcase.gsub(/ /, "-")
+    CHARS_TO_OMIT_FROM_SLUG.each_char do |character|
+      self.slug = slug.gsub(character, "")
     end
   end
 
