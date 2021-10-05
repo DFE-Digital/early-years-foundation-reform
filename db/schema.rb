@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_20_125431) do
+ActiveRecord::Schema.define(version: 2021_09_28_141119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,10 @@ ActiveRecord::Schema.define(version: 2021_09_20_125431) do
     t.string "markdown"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "featured_alt_text"
+    t.string "thumbnail_alt_text"
+    t.string "author"
+    t.datetime "published_at"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
   end
 
@@ -116,10 +120,9 @@ ActiveRecord::Schema.define(version: 2021_09_20_125431) do
     t.integer "position"
     t.integer "next_id"
     t.integer "previous_id"
-    t.boolean "navigation", default: true
-    t.string "category"
     t.boolean "is_published", default: false
     t.string "author"
+    t.string "category"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end
