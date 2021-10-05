@@ -1,0 +1,12 @@
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <h1 class="govuk-heading-l">Edit page -  <%= @content_page_version&.title %></h1>
+  </div>
+  <div class="govuk-grid-column-one-half draft">
+    <strong class="published-status govuk-tag">
+      Draft
+    </strong>
+  </div>
+</div>
+
+<%= render 'form', content_page_version: @content_page_version %>

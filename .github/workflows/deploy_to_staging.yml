@@ -15,8 +15,6 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers-prod
-    outputs:
-      IMAGE_TAG: ${{ env.IMAGE_TAG }}
     steps:
       - name: Check workflow concurrency
         uses: softprops/turnstyle@v1
@@ -31,7 +29,7 @@ jobs:
           echo ${{ github.event.inputs.version }} | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$'
 
       - name: Pin Terraform version
-        uses: hashicorp/setup-terraform@v1.2.1
+        uses: hashicorp/setup-terraform@v1.3.2
         with:
           terraform_version: 0.14.0
 
@@ -63,8 +61,8 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_STAGING }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_STAGING }}
-          TF_VAR_paas_user: ${{ secrets.GOVPAAS_STAG_USERNAME }}
-          TF_VAR_paas_password: ${{ secrets.GOVPAAS_STAG_PASSWORD }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME_PREPROD }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD_PREPROD }}
           TF_VAR_statuscake_username: ${{ secrets.STATUSCAKE_USERNAME }}
           TF_VAR_statuscake_apikey: ${{ secrets.STATUSCAKE_APIKEY }}
         run: |
@@ -73,5 +71,4 @@ jobs:
           export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.version }}
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_STAGING}}"
-          terraform plan -var-file ../workspace-variables/test.tfvars
-          terraform apply -input=false -auto-approve -var-file ../workspace-variables/test.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_STAGING}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_STAGING}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_STAGING}}", "AWS_REGION": "${{secrets.AWS_REGION_STAGING}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_STAGING}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}", "GOOGLE_ANALYTICS_CONTAINER_ID": "${{ secrets.GA_CONTAINER_ID_STAGING }}", "GOOGLE_ANALYTICS_TRACKING_ID": "${{ secrets.GA_TRACKING_ID_STAGING }}"}'
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/preprod.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_STAGING}}", "RELEASE_VERSION":"${{github.event.inputs.version}}"}'

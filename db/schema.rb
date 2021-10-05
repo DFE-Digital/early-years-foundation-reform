@@ -122,7 +122,6 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.integer "previous_id"
     t.boolean "is_published", default: false
     t.string "author"
-    t.string "category"
     t.index ["position", "parent_id"], name: "index_content_pages_on_position_and_parent_id", unique: true
     t.index ["title"], name: "index_content_pages_on_title", unique: true
   end

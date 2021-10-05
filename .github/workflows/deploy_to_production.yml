@@ -12,8 +12,6 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers-prod
-    outputs:
-      IMAGE_TAG: ${{ env.IMAGE_TAG }}
     steps:
       - name: Check workflow concurrency
         uses: softprops/turnstyle@v1
@@ -29,7 +27,7 @@ jobs:
           ref: ${{ github.event.inputs.version }}
 
       - name: Pin Terraform version
-        uses: hashicorp/setup-terraform@v1.2.1
+        uses: hashicorp/setup-terraform@v1.3.2
         with:
           terraform_version: 0.14.0
 
@@ -45,7 +43,6 @@ jobs:
           export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.version }}
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_PROD}}"
-          terraform plan -var-file ../workspace-variables/prod.tfvars
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/prod.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_PROD}}", "RELEASE_VERSION":"${{github.event.inputs.version}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_PROD}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_PROD}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_PROD}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
 
       - name: Branch protection OFF
@@ -92,7 +89,6 @@ jobs:
             contexts:
               - Run rspec
               - deploy
-              - lint
           required_pull_request_reviews: |
             dismiss_stale_reviews: true
             require_code_owner_reviews: true

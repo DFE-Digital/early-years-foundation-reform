@@ -29,4 +29,11 @@ namespace :load do
       end
     end
   end
+
+  desc "Load test users"
+  task users: :environment do |_, _args|
+    %i[brett].each do |first_name|
+      User.create(email: "#{first_name}@education.gov.uk", first_name: first_name, last_name: "Smith", password: Rails.application.credentials.test_password, role: "admin")
+    end
+  end
 end

@@ -2,18 +2,36 @@ class ContentPage < ApplicationRecord
   acts_as_tree
   audited
 
+  has_many :content_page_versions
+
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }
+  scope :published, -> { where("is_published = true") }
+
+  CHARS_TO_OMIT_FROM_SLUG = ",:()".freeze
+  ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES = /\A[a-zA-Z0-9,:\-() ]+\Z/.freeze
+  TITLE_FORMAT_ERROR_MESSAGE = "Heading should only contain alphabetic, numeric and -#{CHARS_TO_OMIT_FROM_SLUG}".freeze
+  validates :title, format: { with: ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: TITLE_FORMAT_ERROR_MESSAGE }
+  validates :title, presence: true, uniqueness: true
+  validates :markdown, presence: true
 
   validates :position, presence: true, numericality: { only_integer: true }
   validates :position, uniqueness: { scope: :parent_id }
 
   after_create do
     ContentPage.reorder
+    create_first_version
+  end
+
+  def create_first_version
+    ContentPageVersion.create!(title: title,
+                               markdown: markdown,
+                               content_page_id: id,
+                               author: author)
   end
 
   after_save do
-    if saved_change_to_position?
+    if saved_change_to_position? || saved_change_to_is_published?
       ContentPage.reorder
     end
   end
@@ -51,9 +69,9 @@ class ContentPage < ApplicationRecord
     def reorder
       page_order = []
 
-      ContentPage.top_level.order_by_position.each do |p|
+      ContentPage.published.top_level.order_by_position.each do |p|
         page_order << p
-        p.children.order_by_position.each do |child|
+        p.children.published.order_by_position.each do |child|
           page_order << child
         end
       end
