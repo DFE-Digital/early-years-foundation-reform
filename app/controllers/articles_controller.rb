@@ -9,6 +9,9 @@ class ArticlesController < ApplicationController
     def show
       @article = Article.friendly.find(params[:id])
       @markdown = GovspeakToHTML.new.translate_markdown(@article.markdown)
+      respond_to do |format|
+        format.html { render "show", layout: "article_pages" }
+      end
     end
 end
   
