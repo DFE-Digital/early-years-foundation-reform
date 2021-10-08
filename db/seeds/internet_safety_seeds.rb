@@ -2,7 +2,7 @@
 # Markdown depends on this indentation, rubocop wants to enforce
 # two leading space.  Rubocop can get lost
 
-markdown_for_advice_for_effective_supervision_of_staff = <<-MARKDOWN_FOR_ADVICE_FOR_EFFECTIVE_SUPERVISION_OF_STAFF
+markdown_for_internet_safety = <<-MARKDOWN_FOR_INTERNET_SAFETY
 
 Access resources, activity ideas and advice for teaching communication and language to early years children.
 
@@ -23,18 +23,18 @@ The number and quality of the conversations they have with adults and peers thro
 By commenting on what children are interested in or doing, and echoing back what they say with new vocabulary added, practitioners will build children's language effectively.
 Reading frequently to children, and engaging them actively in stories, non-fiction, rhymes and poems, and then providing them with extensive opportunities to use and embed new words in a range of contexts, will give children the opportunity to thrive.
 Through conversation, story-telling and role play, where children share their ideas with support and modelling from their teacher, and sensitive questioning that invites them to elaborate, children become comfortable using a rich range of vocabulary and language structures
-MARKDOWN_FOR_ADVICE_FOR_EFFECTIVE_SUPERVISION_OF_STAFF
+MARKDOWN_FOR_INTERNET_SAFETY
 
-advice_for_effective_supervision_of_staff = {
-  title: "Advice for effective supervision of staff",
-  markdown: markdown_for_advice_for_effective_supervision_of_staff,
-  description: "Advice for effective supervision of staff",
+internet_safety = {
+  title: "Internet safety at home and in nursery",
+  markdown: markdown_for_internet_safety,
+  description: "Internet safety at home and in nursery",
   featured_alt_text: "Featured alt text",
   thumbnail_alt_text: "Thumbnail alt text",
 }
-advice_for_effective_supervision_of_staff_page = Article.new advice_for_effective_supervision_of_staff
-advice_for_effective_supervision_of_staff_page.featured_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
-advice_for_effective_supervision_of_staff_page.thumbnail_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
-advice_for_effective_supervision_of_staff_page.save!
+internet_safety_page = Article.new internet_safety
+internet_safety_page.featured_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+internet_safety_page.thumbnail_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+internet_safety_page.save!
 
 # rubocop:enable Layout/HeredocIndentation
