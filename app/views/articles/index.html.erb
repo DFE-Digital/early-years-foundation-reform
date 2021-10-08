@@ -20,9 +20,11 @@
           <% @articles.each do |article| %>
           <li class="article-card-group__item govuk-!-margin-right-2">
             <div class="article-card article-card--clickable article-card--link">
-              <img class="card-img-top" src="https://via.placeholder.com/220x180" alt="Card picture caption">
+                <div>
+                  <%= image_tag(url_for(article.thumbnail_image), width: "208px") if article.thumbnail_image.attached? %>
+                </div>
                 <div style="padding: 2px 16px;">
-                <%= link_to article.title, article_path(article), class: "govuk-link govuk-!-font-size-19 govuk-link--no-visited-state" %>
+                  <%= link_to article.title, article_path(article), class: "govuk-link govuk-!-font-size-19 govuk-link--no-visited-state" %>
                 </div>
             </div>
           </li>
@@ -35,7 +37,7 @@
 
   <div class="articles-landing-page__section--grey govuk-!-padding-top-5"></div>
 
-   <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
+  <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         <%== insert_block('other_useful_resources') %>
