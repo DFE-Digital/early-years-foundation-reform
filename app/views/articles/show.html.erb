@@ -1,6 +1,25 @@
-<span class="govuk-caption-l"><%= @article.title %></span>
-<h1 class="govuk-heading-l">
+<h1 class="govuk-heading-xl">
   <%= @article.title %>
 </h1>
-<p>
-<%= sanitize(@markdown, tags: GovspeakToHTML::ALLOWED_TAGS ) %>
+<!-- TODO: Author & Date -->
+<!-- TODO: Organisation -->
+<!-- TODO: Social Media Links -->
+<div>
+  <%= image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached? %>
+</div>
+<!-- 
+<h2 class="govuk-heading-l">
+  <%= @article.description %>
+</h2>
+-->
+<p class="govuk-body">
+  <%= translate_and_sanitize(@article.markdown) %>
+</p>
+<div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <%== insert_block('other_useful_resources') %>
+    </div>
+  </div>
+</div>
+
