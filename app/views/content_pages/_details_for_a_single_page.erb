@@ -3,9 +3,6 @@
   <div class="summary">
     <p class="govuk-heading-m">
       <%= page_to_render.title %>
-      <% if !page_to_render.is_published %>
-      (Draft)
-      <% end %>
       <span class="links">
         <%= link_to 'Versions', versions_content_page_path(page_to_render), { :class => "govuk-link" } %>
         <% if !page_to_render.parent_id %>
@@ -14,6 +11,7 @@
         <% if (page_to_render.is_published) %>
           | <%= link_to 'Preview', path_for_this_page(page_to_render), target: "_blank" %>
         <% end %>
+        <span><%= page_to_render.is_published ? "Published - " : "Unpublished - " %><%= page_to_render.content_page_versions.count %> draft<%= page_to_render.content_page_versions.count > 1 ? "s": ""%></span>
       </span>
     </p>
   </div>
