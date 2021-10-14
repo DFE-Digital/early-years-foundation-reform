@@ -22,9 +22,7 @@
 .articles-landing-page__section--grey {
 
   background-color: govuk-colour("light-grey");
-  // @include govuk-responsive-padding(8, "top");
-  // @include govuk-responsive-padding(8, "bottom");
-
+  box-shadow: 0 -1px 0px 0 rgba(0,0,0,0.2);
 }
 
 //styles for the card component
