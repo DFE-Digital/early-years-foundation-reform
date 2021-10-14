@@ -1,0 +1,11 @@
+<nav class="eyfs-top-nav--with-background-and-border">
+  <div class="govuk-width-container eyfs-top-nav-inner-div">
+    <ul class="eyfs-top-nav-group">
+      <li><a class="eyfs-top-nav__link govuk-link govuk-link--no-visited-state" href="#">Home</a><li>
+      <li><a class="eyfs-top-nav__link govuk-link govuk-link--no-visited-state" href="#areas-of-learning" >Areas of learning</a><li>
+       <% @featured_pages.each do |featured_page| %>
+         <li><a class="eyfs-top-nav__link govuk-link govuk-link--no-visited-state" href="#<%=featured_page.slug%>" ><%= ContentController::FEATURED_PAGE_HASH[featured_page.title] %></a><li>
+       <% end %>
+    </ul>
+  </div>
+</nav>

@@ -200,6 +200,55 @@
 
 }
 
+//styles for top navigation menu
+.eyfs-top-nav--with-background-and-border {
+
+  // padding: 15px;
+  background-color: #f3f2f1;
+  border-top: 1px solid #b1b4b6;
+  border-bottom: 1px solid #b1b4b6;
+
+}
+
+.eyfs-top-nav-inner-div {
+
+  display: flex;
+  margin-right: auto;
+  flex-wrap: wrap;
+  align-items: center;
+
+}
+
+.eyfs-top-nav-group {
+  display:flex; 
+  flex-direction:row; 
+  list-style-type: none; 
+  padding-left:0px;
+  align-items: center;
+}
+
+.eyfs-top-nav__link {
+
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.3157894737;
+  text-decoration: none;
+  @include govuk-responsive-margin(4, "right");
+
+  &:focus {
+    background-color:  transparent !important;
+    box-shadow: none !important;
+  }
+
+  &:active {
+    background-color: transparent !important;
+  }
+}
+
+.eyfs-top-nav__link:focus {
+  background-color: none;
+}
+
 //styles for social links
 
 .gem-c-share-links--columns .gem-c-share-links__list {
