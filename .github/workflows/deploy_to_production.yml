@@ -44,6 +44,22 @@ jobs:
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_PROD}}"
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/prod.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_PROD}}", "RELEASE_VERSION":"${{github.event.inputs.version}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_PROD}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_PROD}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_PROD}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
+      
+      - name: Install CF CLI on Prod
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PROD }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
+          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: false # default: false
+
+      - name: Remap DNS route on Prod
+        run: |
+          cf map-route eyfs-prod education.gov.uk --hostname help-for-early-years-providers
 
       - name: Branch protection OFF
         uses: octokit/request-action@v2.x
@@ -104,19 +120,3 @@ jobs:
             null
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-      
-      - name: Install CF CLI on Prod
-        uses: DFE-Digital/github-actions/setup-cf-cli@master
-        with:
-          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PROD }}
-          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
-          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
-          # Optional inputs
-          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
-          CF_ORG_NAME: dfe # default
-          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
-          INSTALL_CONDUIT: false # default: false
-
-      - name: Remap DNS route on Prod
-        run: |
-          cf map-route eyfs-prod education.gov.uk --hostname help-for-early-years-providers
