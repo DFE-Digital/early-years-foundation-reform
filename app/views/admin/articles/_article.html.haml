@@ -1,11 +1,13 @@
 %tr.govuk-table__row[article]
   %td.govuk-table__cell
-    = link_to(article.title, admin_article_path(article), id: dom_id(article, :show))
-  %td.govuk-table__cell
     = article.description
   %td.govuk-table__cell
-    = article.created_at.to_s(:short)
+    = link_to('Edit', edit_admin_article_path(article), id: dom_id(article, :edit)) if policy(article).edit?
   %td.govuk-table__cell
-    %b
-      = link_to('Edit', edit_admin_article_path(article), id: dom_id(article, :edit))
-      = link_to('Delete', admin_article_path(article), method: :delete, data: { confirm: "Are you sure you want to delete?" }, id: dom_id(article, :delete))
+    = link_to('Unpublish', admin_article_path(article), id: dom_id(article, :unpublish)) if policy(article).unpublish?
+  %td.govuk-table__cell
+    = link_to('Publish', admin_article_path(article), id: dom_id(article, :publish)) if policy(article).publish?
+  %td.govuk-table__cell
+    = link_to('Delete', admin_article_path(article), method: :delete, data: { confirm: "Are you sure you want to delete?" }, id: dom_id(article, :delete)) if policy(article).destroy?
+  %td.govuk-table__cell
+    = link_to('Preview', admin_article_path(article), target: "_blank", id: dom_id(article, :preview)) if policy(article).preview?

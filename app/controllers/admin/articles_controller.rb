@@ -1,6 +1,6 @@
 module Admin
   class ArticlesController < AdminController
-    before_action :set_article, only: %i[show edit update destroy]
+    before_action :set_article, only: %i[show edit update destroy publish unpublish]
 
     def index
       @articles = Article.all.order(:title)
@@ -34,6 +34,16 @@ module Admin
     def destroy
       @article.destroy!
       redirect_to admin_articles_path, notice: t(".notice")
+    end
+
+    def publish
+      @article.published!
+      redirect_to admin_articles_path("#published"), notice: t(".notice")
+    end
+
+    def unpublish
+      @article.unpublished!
+      redirect_to admin_articles_path("#unpublished"), notice: t(".notice")
     end
 
   private

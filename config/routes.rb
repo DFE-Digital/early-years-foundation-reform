@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "users#index"
     resources :users
-    resources :articles
+    resources :articles do
+      post "publish", on: :member
+      post "unpublish", on: :member
+    end
   end
 
   constraints CmsRouteConstraint.new do
