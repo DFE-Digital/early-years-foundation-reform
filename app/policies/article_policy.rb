@@ -5,6 +5,7 @@ class ArticlePolicy < ContentPagePolicy
 
   def publish?
     return if record.new_record?
+
     record.draft?
   end
 
