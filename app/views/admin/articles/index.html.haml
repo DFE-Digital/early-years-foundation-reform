@@ -7,12 +7,8 @@
     %table.govuk-table
       %thead.govuk-table__head
         %tr.govuk-table__row
-          %th.govuk-table__header{scope: 'col'}
+          %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-two-thirds'}
             Description 
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col'}
       %tbody.govuk-table__body
         = render partial: 'article', collection: @articles.published
@@ -20,12 +16,8 @@
     %table.govuk-table
       %thead.govuk-table__head
         %tr.govuk-table__row
-          %th.govuk-table__header{scope: 'col'}
+          %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-two-thirds'}
             Description 
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col'}
       %tbody.govuk-table__body
         = render partial: 'article', collection: @articles.draft
@@ -33,12 +25,8 @@
     %table.govuk-table
       %thead.govuk-table__head
         %tr.govuk-table__row
-          %th.govuk-table__header{scope: 'col'}
+          %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-two-thirds'}
             Description 
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
-          %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col'}
       %tbody.govuk-table__body
         = render partial: 'article', collection: @articles.unpublished

@@ -18,6 +18,7 @@ class Article < ApplicationRecord
   validate :image_file_ext_validation
   validates :featured_image, :thumbnail_image, content_type: VALID_CONTENT_TYPE, antivirus: true
 
+  STATUSES = %w[draft published unpublished]
   enum status: {
     draft: "draft",
     published: "published",
