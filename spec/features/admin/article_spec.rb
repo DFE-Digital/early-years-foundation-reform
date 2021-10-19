@@ -19,7 +19,7 @@ RSpec.describe "Edit article", type: :feature do
     end
 
     scenario "publish" do
-      click_link "Publish" 
+      click_link "Publish"
       click_link "Publish"
       expect(page).to have_text "Article successfully published"
     end
