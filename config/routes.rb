@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     scope :cms do
       resources :content_pages, path: "pages" do
         get "versions", on: :member
+        post "unpublish", on: :member
         resources :content_page_versions do
           get "preview_of_draft", on: :member
           post "publish", on: :member

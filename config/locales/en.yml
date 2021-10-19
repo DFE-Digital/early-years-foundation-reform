@@ -108,6 +108,9 @@ en:
             position:
               blank: Position must not be blank
               taken: Position is already taken
+        content_pages:
+          unpublish:
+            notice: Content page was successfully unpublished
         content_page_version:
           attributes:
             title:

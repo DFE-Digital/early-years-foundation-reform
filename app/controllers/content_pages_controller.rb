@@ -2,7 +2,7 @@ class ContentPagesController < ApplicationController
   layout "cms"
 
   before_action :authenticate_user!
-  before_action :set_content_page, only: %i[show edit update destroy versions]
+  before_action :set_content_page, only: %i[show edit update destroy versions unpublish]
 
   # GET /content_pages
   def index
@@ -104,6 +104,18 @@ class ContentPagesController < ApplicationController
   end
 
   def versions; end
+
+  def unpublish
+    authorize @content_page, :unpublish?
+
+    @content_page.update!(is_published: false)
+    ContentPageVersion.create!(title: @content_page.title,
+                                markdown: @content_page.markdown,
+                                author: current_user.name,
+                                content_page: @content_page)
+
+    redirect_to versions_content_page_path(@content_page), notice: t('.notice')
+  end
 
 private
 
