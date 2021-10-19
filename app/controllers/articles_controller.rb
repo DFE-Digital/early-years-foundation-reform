@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.all.limit(8)
     respond_to do |format|
-    format.html { render "index", layout: "articles_landing_page_layout" }
+      format.html { render "index", layout: "articles_landing_page_layout" }
     end
   end
 
