@@ -1,4 +1,4 @@
-class ContentPage < ApplicationRecord 
+class ContentPage < ApplicationRecord
   acts_as_tree
   audited
 
