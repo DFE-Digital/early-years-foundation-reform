@@ -1,18 +1,12 @@
 ## Ticket and context
 
-Ticket:
-
+Ticket: [HFEYP-###](https://dfedigital.atlassian.net/browse/HFEYP-###)
 ## Tech review
 
 ### Is there anything that the code reviewer should know?
 
 ### Code quality checks
 - [ ] All commit messages are meaningful and true
-- [ ] Added enough automated tests
-
-### HTML Checks
-- [ ] All new pages have automated accessibility checks
-- [ ] All new pages have visual tests
 
 ## Product review
 
