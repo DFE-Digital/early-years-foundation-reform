@@ -9,11 +9,9 @@ class ContentController < ApplicationController
 
   # This is a page whose title and children's titles are rendered
   # a block in the landing_page_layout template
-  FEATURED_PAGE_TITLES = ["Get support and guidance",
-    "Get help to improve your practice", 
+  FEATURED_PAGE_TITLES = ["Get help to improve your practice", 
     "Safeguarding and welfare"].freeze
-  FEATURED_PAGE_HASH = { "Get support and guidance" => "Get support", \
-    "Get help to improve your practice" => "Get help", \
+  FEATURED_PAGE_HASH = { "Get help to improve your practice" => "Get help", \
     "Safeguarding and welfare" => "Safeguarding" }.freeze
 
   # GET /page_title
