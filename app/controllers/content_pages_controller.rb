@@ -110,11 +110,11 @@ class ContentPagesController < ApplicationController
 
     @content_page.update!(is_published: false)
     ContentPageVersion.create!(title: @content_page.title,
-                                markdown: @content_page.markdown,
-                                author: current_user.name,
-                                content_page: @content_page)
+                               markdown: @content_page.markdown,
+                               author: current_user.name,
+                               content_page: @content_page)
 
-    redirect_to versions_content_page_path(@content_page), notice: t('.notice')
+    redirect_to versions_content_page_path(@content_page), notice: t(".notice")
   end
 
 private
