@@ -16,7 +16,7 @@ class Article < ApplicationRecord
   validates :title, :description, :markdown, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text, presence: true
 
   validate :image_file_ext_validation
-  # validates :featured_image, :thumbnail_image, content_type: VALID_CONTENT_TYPE, antivirus: true
+  validates :featured_image, :thumbnail_image, content_type: VALID_CONTENT_TYPE, antivirus: true
 
   def image_file_ext_validation
     if featured_image.attached? && VALID_FILE_EXTENSIONS.none? { |extension| featured_image.blob.filename.to_s.downcase.end_with?(extension) }
