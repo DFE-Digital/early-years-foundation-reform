@@ -22,7 +22,7 @@ gem "webpacker", "~> 5.4"
 gem "haml", "~> 5.2"
 
 gem "active_storage_validations", "~> 0.9"
-gem "aws-sdk-s3", "~> 1.96"
+gem "aws-sdk-s3", "~> 1.104"
 gem "ratonvirus", "~> 0.2.0"
 gem "ratonvirus-resty"
 
