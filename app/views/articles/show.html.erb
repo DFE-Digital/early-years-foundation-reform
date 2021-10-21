@@ -1,17 +1,9 @@
-<h1 class="govuk-heading-xl govuk-!-margin-bottom-4">
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
   <%= @article.title %>
 </h1>
-<!-- TODO: Author & Date -->
+<!-- TODO: Date -->
 <div class="govuk-body govuk-!-margin-bottom-2">
-  by John Smith, 12 September 2021
-</div>
-<!-- TODO: Organisation -->
-<div class="govuk-body govuk-!-margin-bottom-2">
-  NSPCC
-</div>
-<!-- TODO: Social Media Links -->
-<div class="govuk-body govuk-!-margin-bottom-2">
-  (Social Media Links)
+  12 September 2021
 </div>
 <div>
   <%= image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached? %>
