@@ -16,11 +16,6 @@
 <div>
   <%= image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached? %>
 </div>
-<!-- 
-<h2 class="govuk-heading-l">
-  <%= @article.description %>
-</h2>
--->
 <p class="govuk-body">
   <%= translate_and_sanitize(@article.markdown) %>
 </p>
