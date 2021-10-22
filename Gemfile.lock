@@ -70,8 +70,8 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
-    audited (5.0.1)
-      activerecord (>= 5.0, < 6.2)
+    audited (5.0.2)
+      activerecord (>= 5.0, < 7.1)
     aws-eventstream (1.2.0)
     aws-partitions (1.516.0)
     aws-sdk-core (3.121.2)
@@ -88,16 +88,13 @@ GEM
       aws-sigv4 (~> 1.4)
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
-    axe-core-api (4.2.1)
-      capybara
+    axe-core-api (4.3.2)
       dumb_delegator
-      selenium-webdriver
       virtus
-      watir
     axe-core-capybara (4.2.1)
       axe-core-api
       dumb_delegator
-    axe-core-rspec (4.2.1)
+    axe-core-rspec (4.3.2)
       axe-core-api
       dumb_delegator
       virtus
@@ -265,7 +262,7 @@ GEM
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
-    mini_mime (1.1.1)
+    mini_mime (1.1.2)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
@@ -305,7 +302,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-proxy (0.7.0)
       rack
@@ -467,9 +464,6 @@ GEM
       equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.9)
       rack (>= 2.0.9)
-    watir (6.19.1)
-      regexp_parser (>= 1.2, < 3)
-      selenium-webdriver (>= 3.142.7)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -489,7 +483,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   aarch64-linux-musl
