@@ -19,7 +19,7 @@ RSpec.describe "Edit article", type: :feature do
     end
 
     scenario "publish" do
-      click_link "Publish"
+      click_link "Preview and publish"
       click_link "Publish"
       expect(page).to have_text "Article successfully published"
     end
@@ -44,7 +44,7 @@ RSpec.describe "Edit article", type: :feature do
     end
 
     scenario "unpublish, edit and delete article" do
-      click_link "Unpublish"
+      click_link "Preview and unpublish"
       click_link "Unpublish"
       expect(page).to have_text "Article successfully unpublished"
     end
