@@ -38,6 +38,10 @@ en:
         notice: Article successfully deleted
       update:
         notice: Article successfully updated
+      publish:
+        notice: Article successfully published
+      unpublish:
+        notice: Article successfully unpublished
   password_hint:
     html: |
       <span class="tooltiptext">

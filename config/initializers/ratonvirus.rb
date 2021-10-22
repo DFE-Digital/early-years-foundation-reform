@@ -1,5 +1,5 @@
 Ratonvirus.configure do |config|
-  if Rails.env.test?
+  if Rails.env.test? || Rails.env.development?
     config.scanner = :eicar
     config.storage = :filepath
   else

@@ -1,6 +1,6 @@
 module Admin
   class ArticlesController < AdminController
-    before_action :set_article, only: %i[show edit update destroy]
+    before_action :set_article, only: %i[show edit update destroy publish unpublish]
 
     def index
       @articles = Article.all.order(:title)
@@ -15,7 +15,7 @@ module Admin
     def create
       @article = Article.new(article_params)
       if @article.save
-        redirect_to admin_article_path(@article), notice: t(".notice")
+        redirect_to admin_articles_path(anchor: "draft"), notice: t(".notice")
       else
         render :new
       end
@@ -36,6 +36,17 @@ module Admin
       redirect_to admin_articles_path, notice: t(".notice")
     end
 
+    def publish
+      @article.published!
+      @article.touch(:published_at)
+      redirect_to admin_articles_path(anchor: "published"), notice: t(".notice")
+    end
+
+    def unpublish
+      @article.unpublished!
+      redirect_to admin_articles_path(anchor: "unpublished"), notice: t(".notice")
+    end
+
   private
 
     def set_article
@@ -43,7 +54,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text)
+      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text).merge(author: current_user.name)
     end
   end
 end
