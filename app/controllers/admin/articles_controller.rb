@@ -38,6 +38,7 @@ module Admin
 
     def publish
       @article.published!
+      @article.touch(:published_at)
       redirect_to admin_articles_path("#published"), notice: t(".notice")
     end
 
@@ -53,7 +54,7 @@ module Admin
     end
 
     def article_params
-      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text)
+      params.require(:article).permit(:title, :markdown, :description, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text).merge(author: current_user.name)
     end
   end
 end
