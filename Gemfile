@@ -102,3 +102,5 @@ gem "devise-security", "~> 0.16.0"
 gem "govuk_design_system_formbuilder", "~> 2.7"
 
 gem "friendly_id", "~> 5.4"
+
+gem "govuk-components", "~> 2.1"

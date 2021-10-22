@@ -38,6 +38,13 @@ en:
         notice: Article successfully deleted
       update:
         notice: Article successfully updated
+      publish:
+        notice: Article successfully published
+      unpublish:
+        notice: Article successfully unpublished
+  content_pages:
+    unpublish:
+      notice: Content page was successfully unpublished
   password_hint:
     html: |
       <span class="tooltiptext">
@@ -145,5 +152,3 @@ en:
   settings:
     cookie-policy: Cookies
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
-
-

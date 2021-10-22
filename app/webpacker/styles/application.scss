@@ -94,7 +94,7 @@ $govuk-image-url-function: frontend-image-url;
   background-position: 15px 15px;
 }
 
-#add-user {
+#add-user, #add-article, .govuk-tag {
   float: right;
 }
 
@@ -104,8 +104,8 @@ $govuk-image-url-function: frontend-image-url;
   bottom: 0;
   left: 0;
   width: 100%;
-  margin-left: 1em;
   padding-top: 1em;
+  padding-left: 1em;
   border-top: 1px solid #eee;
 }
 

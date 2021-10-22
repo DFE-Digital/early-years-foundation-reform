@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_141119) do
+ActiveRecord::Schema.define(version: 2021_10_18_113347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,9 @@ ActiveRecord::Schema.define(version: 2021_09_28_141119) do
     t.string "thumbnail_alt_text"
     t.string "author"
     t.datetime "published_at"
+    t.string "status", default: "draft"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["status"], name: "index_articles_on_status"
   end
 
   create_table "audits", force: :cascade do |t|

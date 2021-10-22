@@ -19,6 +19,10 @@ class ContentPagePolicy < ApplicationPolicy
     permissions?
   end
 
+  def unpublish?
+    permissions? && record.is_published
+  end
+
 private
 
   def permissions?

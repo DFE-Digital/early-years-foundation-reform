@@ -18,6 +18,13 @@ class Article < ApplicationRecord
   validate :image_file_ext_validation
   validates :featured_image, :thumbnail_image, content_type: VALID_CONTENT_TYPE, antivirus: true
 
+  STATUSES = %w[draft published unpublished].freeze
+  enum status: {
+    draft: "draft",
+    published: "published",
+    unpublished: "unpublished",
+  }, _default: "draft"
+
   def image_file_ext_validation
     if featured_image.attached? && VALID_FILE_EXTENSIONS.none? { |extension| featured_image.blob.filename.to_s.downcase.end_with?(extension) }
       errors.add(:featured_image, :invalid_extension)

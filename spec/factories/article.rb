@@ -13,5 +13,6 @@ FactoryBot.define do
     thumbnail_image { Rack::Test::UploadedFile.new("spec/fixtures/sample.jpeg", "image/jpeg") }
     featured_alt_text { sentence_without_puncutation }
     thumbnail_alt_text { sentence_without_puncutation }
+    traits_for_enum :status, Article::STATUSES
   end
 end
