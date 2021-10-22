@@ -1,5 +1,4 @@
-![Deploy](https://github.com/DFE-Digital/govuk-rails-boilerplate/workflows/Deploy/badge.svg)
-
+[![Deploy to Dev](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/deploy_to_dev/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
 # Early Years Reform Framework
 
 This is a minimalistic content management system, written in Ruby on Rails
