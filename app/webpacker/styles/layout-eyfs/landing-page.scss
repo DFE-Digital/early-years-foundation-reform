@@ -19,6 +19,12 @@
 
 }
 
+.articles-landing-page__section--grey {
+
+  background-color: govuk-colour("light-grey");
+  box-shadow: 0 -1px 0px 0 rgba(0,0,0,0.2);
+}
+
 //styles for the card component
 
 .govuk-card__flex-container {
@@ -192,6 +198,76 @@
   font-size: 19px;
   line-height: 1.3157894737;
 
+}
+
+//styles for top navigation menu
+.eyfs-top-nav--with-background-and-border {
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index:1;
+  background-color: #f3f2f1;
+  border-top: 1px solid #b1b4b6;
+  border-bottom: 1px solid #b1b4b6;
+  max-height: 43px;
+
+}
+
+.eyfs-top-nav-inner-div {
+
+  display: flex;
+  margin-right: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  max-height: 43px;
+
+}
+
+.eyfs-top-nav-group {
+  display:flex; 
+  flex-direction:row; 
+  list-style-type: none; 
+  padding-left:0px;
+  align-items: center;
+  margin: 10px 0px 10px 0px;
+  max-height: 23px;
+
+}
+
+.eyfs-top-nav__link {
+
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.3157894737;
+  text-decoration: none;
+  @include govuk-responsive-margin(4, "right");
+  padding: 9px 0px 9px 0px;
+
+  &:focus {
+    background-color:  transparent !important;
+    box-shadow: none !important;
+  }
+
+  &:active {
+    background-color: transparent !important;
+  }
+}
+
+.active, .eyfs-top-nav__link:hover {
+  color: black !important;
+  border-bottom: 3px solid #000;
+}
+
+.eyfs-top-nav__link:focus {
+  background-color: none;
+}
+
+.eyfs-top-nav-anchors:target::before {
+  content: "";
+  display: block;
+  height: 50px; /* fixed header height*/
+  margin: -50px 0 0; /* negative fixed header height */
 }
 
 //styles for social links

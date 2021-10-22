@@ -45,6 +45,16 @@ $(document).ready(function() {
     }
   });
 
+  document.querySelectorAll('.article-card--clickable').forEach((panel) => {
+    // Check if panel has a link within it
+    if (panel.querySelector('a') !== null) {
+      // Clicks the link within the heading to navigate to desired page
+      panel.addEventListener('click', () => {
+        panel.querySelector('a').click();
+      });
+    }
+  });
+
 });
 
 const menuButton = document.querySelector('.js-app-mobile-nav-toggler');
@@ -121,3 +131,17 @@ $('.govuk-file-upload').on('change', function() {
     $("#content_asset_file_size").html('<b>' + 'This file size is: ' + size + " MB" + '</b>');
   } 
 });
+
+// Top navigation menu
+// Add active class when link is selected
+const navbar = document.querySelector('.eyfs-top-nav--with-background-and-border');
+const links = document.querySelectorAll('.eyfs-top-nav__link');
+if(navbar){
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+    });
+  }
+}
