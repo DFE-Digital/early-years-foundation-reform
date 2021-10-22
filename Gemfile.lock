@@ -98,7 +98,7 @@ GEM
       axe-core-api
       dumb_delegator
       virtus
-    axe-core-selenium (4.2.1)
+    axe-core-selenium (4.3.2)
       axe-core-api
       dumb_delegator
     axe-matchers (2.6.1)
