@@ -6,7 +6,7 @@
   12 September 2021
 </div>
 <div>
-  <%= image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached? %>
+  <%= image_tag(url_for(@article.featured_image), class: "articles-responsive-img") if @article.featured_image.attached? %>
 </div>
 <div class="govuk-body">
   <%= translate_and_sanitize(@article.markdown) %>
