@@ -18,7 +18,7 @@
         <div class="govuk-grid-column-full">
         <ul class="article-card-group">
           <% @articles.each do |article| %>
-          <li class="article-card-group__item govuk-!-margin-right-2">
+          <li class="article-card-group__item govuk-!-margin-right-1 govuk-!-margin-left-1">
             <div class="article-card article-card--clickable article-card--link">
                 <div class="article-card-img-container">
                   <%= image_tag(url_for(article.thumbnail_image), class: "article-card-img") if article.thumbnail_image.attached? %>
