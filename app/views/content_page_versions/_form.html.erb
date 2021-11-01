@@ -1,0 +1,44 @@
+<div class="govuk-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <p class="govuk-heading-m">Details</p>
+      <%= form_with(model: [:content_page, @content_page_version], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+        <fieldset class="govuk-fieldset">
+          <%= form.govuk_error_summary order: %i[title markdown]  %>
+
+          <%= form.govuk_text_field :title, label: {text: "Heading"}, :class => 'govuk-input govuk-!-width-three-quarters'%>
+
+          <!-- This text_area is not rendered with gov_text_field because it needs to
+               set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
+          <div class="govuk-form-group gem-c-govspeak">
+            <label id="markdown-hint" for="markdown-editor" class="govuk-label">
+              Content
+            </label>
+            <% if @content_page_version&.errors[:markdown].count > 0 %>
+              <span class="govuk-error-message"><%= @content_page_version.errors[:markdown][0] %></span>
+            <% end %>
+            <% text_area_class = (@content_page_version.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
+
+            <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => text_area_class %>
+          </div>
+
+          <% if action_name === "edit" || action_name === "new" || action_name === "update" %>
+            <div class="fixed-footer">
+              <%= form.govuk_submit "Save as draft" %>
+              <%= link_to 'Cancel', edit_content_page_content_page_version_path(@content_page_version.content_page, @content_page_version), :data => {:confirm => "Are you sure you want to undo your changes ?", :class => "govuk-link"}%> |
+              <%= link_to 'Back', versions_content_page_path(@content_page_version.content_page), :data => {:confirm => "Any changes will be lost, are you sure ?", :class => "govuk-link"}%>
+            </div>
+          <% end %>
+        </fieldset>
+
+      <% end %>
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+        <p class="govuk-heading-m">Preview</p>
+        <div id='markdown-render' class='gem-c-govspeak'>
+          <%= sanitize(@md, tags: GovspeakToHTML::ALLOWED_TAGS) %>
+        </div>
+    </div>
+  </div>
+</div>

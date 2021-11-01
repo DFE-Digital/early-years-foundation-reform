@@ -7,10 +7,16 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   def check
-    render json: { status: "OK", version: ENV["SHA"], environment: Rails.env }, status: :ok
+    render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
   end
 
   def not_found
     raise ActionController::RoutingError, "Not Found"
+  end
+
+protected
+
+  def release_version
+    ENV["RELEASE_VERSION"] || "-"
   end
 end

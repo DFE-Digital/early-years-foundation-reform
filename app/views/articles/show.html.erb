@@ -1,0 +1,18 @@
+<h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
+  <%= @article.title %>
+</h1>
+<!-- TODO: Date -->
+<div class="govuk-body govuk-!-margin-bottom-2">
+  12 September 2021
+</div>
+<div>
+  <%= image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached? %>
+</div>
+<div class="govuk-body">
+  <%= translate_and_sanitize(@article.markdown) %>
+</div>
+<div class="govuk-grid-row govuk-!-padding-top-6 govuk-!-margin-bottom-8">
+  <div class="govuk-grid-column-full">
+    <%== insert_block('other_useful_resources') %>
+  </div>
+</div>

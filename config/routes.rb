@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "users#index"
     resources :users
+    resources :articles do
+      post "publish", on: :member
+      post "unpublish", on: :member
+    end
   end
 
   constraints CmsRouteConstraint.new do
@@ -22,7 +26,14 @@ Rails.application.routes.draw do
     end
 
     scope :cms do
-      resources :content_pages, path: "pages"
+      resources :content_pages, path: "pages" do
+        get "versions", on: :member
+        post "unpublish", on: :member
+        resources :content_page_versions do
+          get "preview_of_draft", on: :member
+          post "publish", on: :member
+        end
+      end
       resources :content_blocks, path: "blocks", only: %i[index new edit create update]
       resources :content_assets, path: "assets"
       #  This is not a resource route
@@ -33,6 +44,8 @@ Rails.application.routes.draw do
   %w[accessibility-statement contact-us disclaimer].each do |static_page|
     get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
+
+  resources :articles, only: %i[index show]
 
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"

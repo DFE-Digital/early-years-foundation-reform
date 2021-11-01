@@ -1,0 +1,15 @@
+= link_to "Back", admin_articles_path, class: 'govuk-back-link'
+
+%h1.govuk-heading-l
+  Add article
+.govuk-width-container
+  .govuk-grid-row 
+    .govuk-grid-column-one-half 
+      %p.govuk-heading-m
+        Details
+      = render "form", article: @article
+    .govuk-grid-column-one-half 
+      %p.govuk-heading-m 
+        Live preview 
+      #markdown-render.gem-c-govspeak 
+        = translate_and_sanitize(@article.markdown)

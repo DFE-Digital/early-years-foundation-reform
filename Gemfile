@@ -14,7 +14,7 @@ gem "pundit", "~> 2.1"
 gem "pg", ">= 0.18", "< 2.0"
 
 # Use Puma as the app server
-gem "puma", "~> 5.3"
+gem "puma", "~> 5.5"
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker", "~> 5.4"
@@ -22,7 +22,7 @@ gem "webpacker", "~> 5.4"
 gem "haml", "~> 5.2"
 
 gem "active_storage_validations", "~> 0.9"
-gem "aws-sdk-s3", "~> 1.96"
+gem "aws-sdk-s3", "~> 1.104"
 gem "ratonvirus", "~> 0.2.0"
 gem "ratonvirus-resty"
 
@@ -100,3 +100,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise-security", "~> 0.16.0"
 
 gem "govuk_design_system_formbuilder", "~> 2.7"
+
+gem "friendly_id", "~> 5.4"
+
+gem "govuk-components", "~> 2.1"

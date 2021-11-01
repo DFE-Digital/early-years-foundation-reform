@@ -1,0 +1,122 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to deploy
+        required: true
+
+jobs:
+  deploy-to-production:
+    runs-on: ubuntu-20.04
+    env:
+      DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers-prod
+    steps:
+      - name: Check workflow concurrency
+        uses: softprops/turnstyle@v1
+        with:
+          poll-interval-seconds: 20
+          same-branch-only: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.version }}
+
+      - name: Pin Terraform version
+        uses: hashicorp/setup-terraform@v1.3.2
+        with:
+          terraform_version: 0.14.0
+
+      - name: Deploy to production
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
+          TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME_PROD }}
+          TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
+          TF_VAR_statuscake_username: ${{ secrets.STATUSCAKE_USERNAME }}
+          TF_VAR_statuscake_apikey: ${{ secrets.STATUSCAKE_APIKEY }}
+        run: |
+          export TF_VAR_paas_app_docker_image=${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.version }}
+          cd terraform/app
+          terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_PROD}}"
+          terraform apply -input=false -auto-approve -var-file ../workspace-variables/prod.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_PROD}}", "RELEASE_VERSION":"${{github.event.inputs.version}}", "AWS_ACCESS_KEY_ID": "${{secrets.AWS_ACCESS_KEY_ID_PROD}}", "AWS_SECRET_ACCESS_KEY": "${{secrets.AWS_SECRET_ACCESS_KEY_PROD}}", "AWS_REGION": "${{secrets.AWS_REGION}}", "AWS_BUCKET": "${{secrets.AWS_BUCKET_PROD}}", "BASIC_AUTH_USER": "${{secrets.BASIC_AUTH_USER}}", "BASIC_AUTH_PASSWORD": "${{secrets.BASIC_AUTH_PASSWORD}}"}'
+      
+      - name: Install CF CLI on Prod
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PROD }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
+          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: false # default: false
+
+      - name: Remap DNS route on Prod
+        run: |
+          cf map-route eyfs-prod education.gov.uk --hostname help-for-early-years-providers
+
+      - name: Branch protection OFF
+        uses: octokit/request-action@v2.x
+        with:
+          route: PUT /repos/DFE-Digital/early-years-foundation-reform/branches/main/protection
+          repository: ${{ github.repository }}
+          owner: DFE-Digital
+          required_status_checks: |
+            null
+          required_pull_request_reviews: |
+            null
+          enforce_admins: |
+            null
+          allow_force_pushes: |
+            true
+          required_linear_history: |
+            false
+          allow_deletions: |
+            null
+          restrictions: |
+            null
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+
+      - name: Update main
+        run: |
+          git fetch
+          git branch tmp-branch
+          git switch main
+          git reset --hard tmp-branch --
+          git branch --delete --force tmp-branch
+          git push --force origin main
+
+      - name: Branch protection ON
+        uses: octokit/request-action@v2.x
+        if: always() # Force this step to run so we don't leave master unprotected
+        with:
+          route: PUT /repos/DFE-Digital/early-years-foundation-reform/branches/main/protection
+          repository: ${{ github.repository }}
+          owner: DFE-Digital
+          required_status_checks: |
+            strict: true
+            contexts:
+              - Run rspec
+              - deploy
+          required_pull_request_reviews: |
+            dismiss_stale_reviews: true
+            require_code_owner_reviews: true
+          enforce_admins: |
+            true
+          allow_force_pushes: |
+            null
+          required_linear_history: |
+            false
+          allow_deletions: |
+            null
+          restrictions: |
+            null
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}

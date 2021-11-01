@@ -46,7 +46,7 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      content_page = ContentPage.create! valid_attributes
+      content_page = FactoryBot.create(:content_page, :published)
       get content_page_url(content_page)
       expect(response).to be_successful
     end
@@ -76,10 +76,11 @@ RSpec.describe "/content_pages", type: :request do
       end
       it "redirects to the created content_page" do
         post content_pages_url, params: { content_page: valid_attributes }
-        expect(response).to redirect_to(content_page_url(::ContentPage.last))
+        expect(response).to redirect_to(versions_content_page_url(::ContentPage.last))
       end
 
       it "prevents pages from having duplicate titles (and therefore slugs)" do
+        pending "Does not work like this now.  ContentPages are created as unpublished, and can have the same title until they are published"
         post content_pages_url, params: { content_page: valid_attributes }
 
         other_valid_attributes[:title] = valid_attributes[:title]
@@ -177,6 +178,25 @@ RSpec.describe "/content_pages", type: :request do
         post "/cms/preview_markdown", params: valid_params
         expect(JSON.parse(response.body)["html"]).to include('<h2 id="govspeak-is-magic">Govspeak is magic!</h2>')
       end
+    end
+  end
+
+  context "Handling draft content pages" do
+    describe "ContentPages are created first as drafts" do
+      it "Saves new content pages as draft, not as new ContentPage model records" do
+      end
+    end
+
+    describe "Listing drafts of a page" do
+    end
+
+    describe "Changes to a draft are saved to the same draft" do
+    end
+
+    describe "Creating a new draft from an existing draft" do
+    end
+
+    describe "Deleting a draft" do
     end
   end
 end

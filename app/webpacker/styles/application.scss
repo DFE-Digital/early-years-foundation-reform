@@ -94,6 +94,26 @@ $govuk-image-url-function: frontend-image-url;
   background-position: 15px 15px;
 }
 
-#add-user {
+#add-user, #add-article, .govuk-tag {
   float: right;
+}
+
+.fixed-footer {
+  background: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 1em;
+  padding-left: 1em;
+  border-top: 1px solid #eee;
+}
+
+.published-status {
+  text-align: right;
+  background-color: #1d70b8 !important;
+}
+
+.draft {
+  text-align: right;
 }

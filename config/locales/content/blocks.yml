@@ -1,5 +1,11 @@
 en:
   content:
+    landing_page_introduction:
+      description: Landing page introduction
+      markdown: |
+        <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Help for early years providers</h1>
+        <p class="govuk-body-l">The Early Years Foundation Stage (EYFS) has changed. Find guidance and practical support to help you with the changes.</p>
+        <p class="govuk-body-l">These resources are for childminders, nursery leaders and pre-school practitioners.</p>
     other_useful_resources:
       description: Used on the landing page to describe Other Useful Resources
       markdown: |
