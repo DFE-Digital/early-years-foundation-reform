@@ -15,6 +15,7 @@ module Admin
     def create
       @article = Article.new(article_params)
       if @article.save
+        @article.touch(:created_at)
         redirect_to admin_articles_path(anchor: "draft"), notice: t(".notice")
       else
         render :new
@@ -44,6 +45,7 @@ module Admin
 
     def unpublish
       @article.unpublished!
+      @article.touch(:unpublished_at)
       redirect_to admin_articles_path(anchor: "unpublished"), notice: t(".notice")
     end
 
