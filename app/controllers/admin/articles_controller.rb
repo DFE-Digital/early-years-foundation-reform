@@ -13,9 +13,8 @@ module Admin
     end
 
     def create
-      @article = Article.new(article_params)
+      @article = Article.new(article_params.merge(created_at: Time.now.utc))
       if @article.save
-        @article.touch(:created_at)
         redirect_to admin_articles_path(anchor: "draft"), notice: t(".notice")
       else
         render :new
