@@ -3,11 +3,11 @@
     = article.description
   %td.govuk-table__cell
     - if article.published?
-      = article.published_at&.strftime("%d-%m-%Y")
+      = article.published_at&.to_s(:day_month_year)
     - elsif article.unpublished?
-      = article.unpublished_at&.strftime("%d-%m-%Y")
+      = article.unpublished_at&.to_s(:day_month_year)
     - else
-      = article.created_at&.strftime("%d-%m-%Y")
+      = article.created_at&.to_s(:day_month_year)
   %td.govuk-table__cell
     = link_to('Edit', edit_admin_article_path(article), class: "govuk-!-font-size-14", id: dom_id(article, :edit)) if policy(article).edit?
     = link_to('Preview and unpublish', admin_article_path(article), class: "govuk-!-font-size-14", id: dom_id(article, :unpublish)) if policy(article).unpublish?
