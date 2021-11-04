@@ -13,7 +13,7 @@ module Admin
     end
 
     def create
-      @article = Article.new(article_params.merge(created_at: Time.now.utc))
+      @article = Article.new(article_params.merge(created_at: Time.zone.now.utc))
       if @article.save
         redirect_to admin_articles_path(anchor: "draft"), notice: t(".notice")
       else
