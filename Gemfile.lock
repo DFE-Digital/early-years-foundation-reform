@@ -208,7 +208,7 @@ GEM
       nokogiri (~> 1.12)
       rinku (~> 2.0)
       sanitize (~> 6)
-    govuk-components (2.1.3)
+    govuk-components (2.1.4)
       activemodel (>= 6.0)
       railties (>= 6.0)
       view_component (~> 2.39.0)
