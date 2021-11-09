@@ -8,9 +8,9 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Description 
+            = link_to "Description", :sort => "title" 
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Published
+            = link_to "Published", :sort => "published_at"
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
             Author 
