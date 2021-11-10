@@ -4,7 +4,7 @@
 <h1 class="govuk-heading-l">
   <%= @content_page_version.title %>
 </h1>
-<%= sanitize(@markdown, tags: GovspeakToHTML::ALLOWED_TAGS ) %>
+<%= translate_markdown(@content_page_version.markdown) %>
 
 <div class="fixed-footer">
   <%= button_to "Publish", publish_content_page_content_page_version_path(@content_page_version.content_page, @content_page_version), class: "govuk-button", data: { confirm: "Are you sure you want to publish this draft ?" } %>

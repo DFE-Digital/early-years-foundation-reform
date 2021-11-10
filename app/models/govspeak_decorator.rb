@@ -1,4 +1,11 @@
 class GovspeakDecorator < DelegateClass(Govspeak::Document)
+  ALLOWED_TAGS = %w[details summary p h1 h2 h3 h4 ul li img div ol a span strong iframe].freeze
+j
+  def self.translate_markdown(markdown)
+    newdoc = self.new(Govspeak::Document.new(markdown, sanitize: true, allowed_elements: ALLOWED_TAGS))
+    newdoc.to_html
+  end
+
   Govspeak::Document.extension("YoutubeVideo", /\$YoutubeVideo(?:\[(.*?)\])?\((.*?)\)\$EndYoutubeVideo/m) do |title, youtube_link|
     youtube_id = youtube_link.scan(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/)[0][1]
     embed_url = %(https://www.youtube.com/embed/#{youtube_id}?enablejsapi=1&amp;origin=https://help-for-early-years-providers.education.gov.uk)

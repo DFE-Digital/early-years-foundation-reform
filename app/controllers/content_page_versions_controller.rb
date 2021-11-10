@@ -22,8 +22,6 @@ class ContentPageVersionsController < ApplicationController
 
   # GET /content_page_version/1/edit
   def edit
-    @md = GovspeakToHTML.new.translate_markdown(@content_page_version.markdown)
-    @content_page_version
   end
 
   def update
@@ -46,8 +44,6 @@ class ContentPageVersionsController < ApplicationController
                             position: 22,
                             previous_id: @content_page_version.content_page.id,
                             next_id: @content_page_version.content_page.id)
-
-    @markdown = GovspeakToHTML.new.translate_markdown(@content_page_version.markdown)
 
     render layout: "application"
   end
