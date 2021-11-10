@@ -1,8 +1,8 @@
 class GovspeakDecorator < DelegateClass(Govspeak::Document)
   ALLOWED_TAGS = %w[details summary p h1 h2 h3 h4 ul li img div ol a span strong iframe].freeze
-j
+  j
   def self.translate_markdown(markdown)
-    newdoc = self.new(Govspeak::Document.new(markdown, sanitize: true, allowed_elements: ALLOWED_TAGS))
+    newdoc = new(Govspeak::Document.new(markdown, sanitize: true, allowed_elements: ALLOWED_TAGS))
     newdoc.to_html
   end
 

@@ -25,8 +25,7 @@ class ContentPagesController < ApplicationController
   end
 
   # GET /content_pages/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /content_pages
   def create

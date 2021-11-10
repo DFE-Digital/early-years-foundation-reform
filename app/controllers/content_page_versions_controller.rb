@@ -21,8 +21,7 @@ class ContentPageVersionsController < ApplicationController
   end
 
   # GET /content_page_version/1/edit
-  def edit
-  end
+  def edit; end
 
   def update
     authorize @content_page_version, :update?
