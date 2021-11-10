@@ -86,7 +86,7 @@ group :test do
   gem "axe-core-rspec"
   gem "axe-core-selenium"
 
-  gem "capybara", "~> 3.34"
+  gem "capybara", "~> 3.36"
   gem "launchy"
   gem "rspec-rails", "~> 5.0"
   gem "selenium-webdriver"
