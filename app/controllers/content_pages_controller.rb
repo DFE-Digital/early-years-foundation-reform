@@ -24,9 +24,6 @@ class ContentPagesController < ApplicationController
     @content_page = ContentPage.new(parent_id: params[:parent_id], position: next_position)
   end
 
-  # GET /content_pages/1/edit
-  def edit; end
-
   # POST /content_pages
   def create
     @content_page = ContentPage.new(content_page_params)
@@ -46,6 +43,9 @@ class ContentPagesController < ApplicationController
       render :new
     end
   end
+
+  # GET /content_pages/1/edit
+  def edit; end
 
   # PATCH/PUT /content_pages/1
   # ContentPage markdown is never directly updated.  Changes happen to markdown

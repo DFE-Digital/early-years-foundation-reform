@@ -40,17 +40,15 @@ RSpec.feature "View pages", type: :feature do
   end
 
   scenario "A user with the role of editor should be able to edit pages in the CMS" do
-    # pending "This has changed, so that a content_page_version is created, need to check that"
+    sign_in FactoryBot.create(:user, :editor)
 
-    # sign_in FactoryBot.create(:user, :editor)
+    visit "/cms/pages/#{child_page.id}/edit"
 
-    # visit "/cms/pages/#{child_page.id}/edit"
+    page.find_field("content_page[markdown]").set("some text")
 
-    # page.find_field("content_page[markdown]").set("some text")
-    # Pending does not seem to work
-    # page.click_button("Save")
-    # saved_page = ContentPage.find child_page.id
-    # expect(saved_page.content_page_versions.last.markdown).to eq("some text")
+    page.click_button("Save")
+    saved_page = ContentPage.find child_page.id
+    expect(saved_page.content_page_versions.last.markdown).to eq("some text")
   end
 
   scenario "A user with the role of reader should be not be able to edit pages in the CMS" do
@@ -69,11 +67,11 @@ RSpec.feature "View pages", type: :feature do
   end
 
   describe "A user with the role of editor should be able to create pages in the CMS" do
-    xit "should be able to create pages in the CMS" do
+    it "should be able to create pages in the CMS" do
       sign_in FactoryBot.create(:user, :editor)
       attributes = FactoryBot.attributes_for :content_page
 
-      visit "/cms/pages/new?parent_id=#{p.id}"
+      visit "/cms/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
@@ -83,7 +81,7 @@ RSpec.feature "View pages", type: :feature do
 
       saved_page = ContentPage.find_by_title attributes[:title]
 
-      expect(saved_page.title).to eq(attributes[:title])
+      expect(saved_page.markdown).to eq(attributes[:markdown])
     end
   end
 
