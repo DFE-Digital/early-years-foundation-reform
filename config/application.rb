@@ -44,5 +44,6 @@ module GovukRailsBoilerplate
     config.space = ENV.fetch( 'DOMAIN', "eyfs-dev" ).split(".").first
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
+    config.x.enabled_feature = ENV['feature'].presence
   end
 end
