@@ -38,7 +38,7 @@
     <div class="govuk-grid-column-one-half">
         <p class="govuk-heading-m">Preview</p>
         <div id='markdown-render' class='gem-c-govspeak'>
-          <%= sanitize(@md, tags: GovspeakToHTML::ALLOWED_TAGS) %>
+          <%= translate_markdown(content_page.markdown) %>
         </div>
     </div>
   </div>

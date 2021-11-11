@@ -25,10 +25,7 @@ class ContentPagesController < ApplicationController
   end
 
   # GET /content_pages/1/edit
-  def edit
-    @md = GovspeakToHTML.new.translate_markdown(@content_page.markdown)
-    @content_page
-  end
+  def edit; end
 
   # POST /content_pages
   def create
@@ -98,7 +95,7 @@ class ContentPagesController < ApplicationController
 
   # POST of preview, returns html
   def preview
-    html = GovspeakToHTML.new.translate_markdown(params["markdown"])
+    html = GovspeakDecorator.translate_markdown(params["markdown"])
 
     render json: { html: html }
   end

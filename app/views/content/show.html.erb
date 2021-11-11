@@ -4,4 +4,4 @@
 <h1 class="govuk-heading-l">
   <%= @page.title %>
 </h1>
-<%= sanitize(@markdown, tags: GovspeakToHTML::ALLOWED_TAGS ) %>
+<%= translate_markdown(@page.markdown) %>

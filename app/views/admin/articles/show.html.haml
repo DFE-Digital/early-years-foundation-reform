@@ -9,7 +9,7 @@
   = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
 
 .govuk-body
-  = translate_and_sanitize(@article.markdown)
+  = translate_markdown(@article.markdown)
 
 .fixed-footer
   .govuk-button-group

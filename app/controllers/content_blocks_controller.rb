@@ -16,11 +16,7 @@ class ContentBlocksController < ApplicationController
   end
 
   # GET /content_blocks/1/edit
-  def edit
-    @md = GovspeakToHTML.new.translate_markdown(@content_block.markdown)
-
-    @content_block
-  end
+  def edit; end
 
   # POST /content_blocks
   def create

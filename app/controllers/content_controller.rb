@@ -15,7 +15,6 @@ class ContentController < ApplicationController
   # GET /page_title
   def show
     @page = ContentPage.find_by_slug!(params["slug"])
-    @markdown = GovspeakToHTML.new.translate_markdown(@page.markdown)
 
     # If in a section page and page has parent, it must be a child of existing page
     not_found if (!@page.is_published || @page.parent || content_section?) && params["section"] != parent_slug
