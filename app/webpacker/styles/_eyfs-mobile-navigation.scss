@@ -1,8 +1,6 @@
   div.govuk-header__content button.govuk-header__menu-button {
-    border: 3px solid #fff;
-    background: #0a0c0c;
-    padding: 5px;
-    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
   }
 
   .eyfs-menu-button--border{
@@ -16,7 +14,7 @@
   .app-mobile-nav--active {
     display:block;
    }
-   @media (min-width: 40.0625em) {
+   @media (min-width: 50.0625em) {
     .app-subnav--mobile {
      display:none;
     }
@@ -42,7 +40,6 @@
       display:none;
       .app-mobile-nav__subnav-item {
         //padding: 12px 0px;
-
       }
     }
    .app-mobile-nav-subnav-toggler {

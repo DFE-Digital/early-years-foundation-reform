@@ -16,7 +16,6 @@
     <%= favicon_link_tag asset_pack_path('media/images/govuk-apple-touch-icon-180x180.png'), rel: 'apple-touch-icon', type: 'image/png', size: '180x180' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload', media: 'all' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-
   </head>
 
   <body class="govuk-template__body ">
@@ -42,9 +41,9 @@
         </div>
         <div class="govuk-header__content">
           <%= link_to "Edit content for: Help for early years providers", "/", class: "govuk-header__link govuk-header__link--service-name" %>
-          <button type="button" role="button" data-module="govuk-button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+          <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide navigation menu">Menu</button>
           <nav>
-            <ul id="navigation" class="govuk-header__navigation " aria-label="Top Level Navigation">
+            <ul id="navigation" class="govuk-header__navigation" aria-label="Top Level Navigation">
               <%= nav_link_to(title: "Admin", path: admin_users_path) if current_user.admin? %>
               <%= nav_link_to(title: "Blocks", path: content_blocks_path) if current_user.admin? %>
               <%= nav_link_to(title: "Pages", path: content_pages_path) %>
@@ -60,7 +59,7 @@
           </nav>
         </div>
       </div>
-    </header>
+    </header>  
 
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper" role="main" id="main-content" >

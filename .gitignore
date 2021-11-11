@@ -30,6 +30,7 @@ yarn-debug.log*
 .env
 .env.docker
 .env.localhost
+.env.development
 *.log
 /.idea
 .DS_Store
