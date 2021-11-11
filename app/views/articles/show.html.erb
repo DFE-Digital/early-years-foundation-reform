@@ -1,9 +1,8 @@
 <h1 class="govuk-heading-xl govuk-!-margin-bottom-3">
   <%= @article.title %>
 </h1>
-<!-- TODO: Date -->
 <div class="govuk-body govuk-!-margin-bottom-2">
-  12 September 2021
+  <%= @article.published_at&.strftime("%d %B %Y") %>
 </div>
 <div>
   <%= image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached? %>
