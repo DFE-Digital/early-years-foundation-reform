@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   def check
-    render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
+    render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env, features: Rails.configuration.x.features }, status: :ok
   end
 
   def not_found
