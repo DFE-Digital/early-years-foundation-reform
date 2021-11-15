@@ -45,4 +45,8 @@ FactoryBot.define do
   trait :two_hyphens_and_a_space_in_title do
     title { "#{Faker::Lorem.word}-#{Faker::Lorem.word} #{Faker::Lorem.word}-#{Faker::Lorem.word}" }
   end
+
+  trait :invalid_title do
+    title { "Invalid!" }
+  end
 end

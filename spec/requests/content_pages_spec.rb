@@ -16,17 +16,9 @@ RSpec.describe "/content_pages", type: :request do
   # ContentPage. As you add validations to ContentPage, be sure to
   # adjust the attributes here as well.
 
-  let(:valid_attributes) do
-    FactoryBot.attributes_for(:content_page)
-  end
-
-  let(:other_valid_attributes) do
-    FactoryBot.attributes_for(:content_page)
-  end
-
-  let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
-  end
+  let(:valid_attributes) { FactoryBot.attributes_for(:content_page) }
+  let(:other_valid_attributes) { FactoryBot.attributes_for(:content_page) }
+  let(:invalid_attributes) { FactoryBot.attributes_for(:content_page, :invalid_title) }
 
   before(:each) do
     sign_in FactoryBot.create(:editor)
@@ -78,16 +70,6 @@ RSpec.describe "/content_pages", type: :request do
         post content_pages_url, params: { content_page: valid_attributes }
         expect(response).to redirect_to(versions_content_page_url(::ContentPage.last))
       end
-
-      it "prevents pages from having duplicate titles (and therefore slugs)" do
-        pending "Does not work like this now.  ContentPages are created as unpublished, and can have the same title until they are published"
-        post content_pages_url, params: { content_page: valid_attributes }
-
-        other_valid_attributes[:title] = valid_attributes[:title]
-        post content_pages_url, params: { content_page: other_valid_attributes }
-
-        expect(response.body).to match(/Title has already been taken/)
-      end
     end
 
     context "with invalid parameters" do
@@ -106,22 +88,19 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
-      end
+      let(:new_title) { Faker::Lorem.word }
+      let(:content_page) { ContentPage.create! valid_attributes.merge(title: new_title) }
 
       it "updates the requested content_page" do
-        content_page = ContentPage.create! valid_attributes
-        patch content_page_url(content_page), params: { content_page: new_attributes }
+        patch content_page_url(content_page), params: { content_page: valid_attributes }
         content_page.reload
-        skip("Add assertions for updated state")
+        expect(content_page.title).to eq(new_title)
       end
 
-      it "redirects to the content_page" do
-        content_page = ContentPage.create! valid_attributes
-        patch content_page_url(content_page), params: { content_page: new_attributes }
+      it "redirects to the content_page versions" do
+        patch content_page_url(content_page), params: { content_page: valid_attributes }
         content_page.reload
-        expect(response).to redirect_to(content_page_url(content_page))
+        expect(response).to redirect_to(versions_content_page_url(content_page))
       end
     end
 
