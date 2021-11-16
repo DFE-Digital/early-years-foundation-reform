@@ -1,0 +1,6 @@
+---
+brett@education.gov.uk:
+  first_name: Brett
+  last_name: McHargue
+  role: admin
+  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
