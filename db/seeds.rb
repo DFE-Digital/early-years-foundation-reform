@@ -1,19 +1,23 @@
-{
-  "communication-and-language" => %w[exploring-language interactions listening-and-understanding],
-}.each do |parent_slug, child_slugs|
-  page_attrs = I18n.t("content.#{parent_slug.underscore}")
-  parent_page = if ContentPage.exists?(slug: parent_slug)
-                  ContentPage.find_by_slug(parent_slug)
-                else
-                  ContentPage.new(is_published: true, **page_attrs)
-                end
+Seeder = Dibber::Seeder
 
-  parent_page.save!
-  child_slugs.each do |child_slug|
-    next if ContentPage.exists?(slug: child_slug)
+# Note that for content pages the slug is overwritten by a construct built from the title,
+# so in the YAML files the slug key needs to match title.
+Seeder.monitor ContentPage
 
-    attrs = I18n.t("content.#{child_slug.underscore}")
-    child_page = ContentPage.new(parent_id: parent_page.id, is_published: true, **attrs)
-    child_page.save!
+def seed_content_pages_from(path)
+  Seeder.objects_from(path).each do |slug, attributes|
+    content_page = ContentPage.find_or_initialize_by(slug: slug)
+    attributes.merge!(parent: ContentPage.find_by(slug: attributes.delete("parent"))) if attributes["parent"].present?
+    content_page.update!(attributes)
   end
 end
+
+seed_content_pages_from "content_pages/communication_and_language.yml"
+seed_content_pages_from "content_pages/safeguarding_and_welfare.yml"
+
+Seeder.seed(:content_block)
+Seeder.seed(:user, name_method: :email) if Rails.application.credentials.test_password.present?
+
+puts Seeder.report # rubocop:disable Rails/Output
+Rails.logger.info "Seeding completed"
+Seeder.report.each { |line| Rails.logger.info line }
