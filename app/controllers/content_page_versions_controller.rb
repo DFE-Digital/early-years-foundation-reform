@@ -33,7 +33,7 @@ class ContentPageVersionsController < ApplicationController
       render :edit
     end
   rescue Pundit::NotAuthorizedError
-    @content_page.errors.add(:base, "You don't have permission to change versions of pages")
+    @content_page_version.errors.add(:base, "You don't have permission to change versions of pages")
     render :edit
   end
 
