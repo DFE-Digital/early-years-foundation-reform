@@ -8,9 +8,9 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to "Description", :sort => "title" 
+            = link_to("Description", anchor: "published", :sort => "description")
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to "Published", :sort => "published_at"
+            = link_to("Published", anchor: "published", :sort => "published_at")
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
             Author 
@@ -21,12 +21,12 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Description 
+            = link_to("Description", anchor: "draft", :sort => "description")
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Created
+            = link_to("Created", anchor: "draft", :sort => "created_at")
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Author 
+            Author
       %tbody.govuk-table__body
         = render partial: 'article', collection: @articles.draft
   = component.tab(label: "Unpublished") do
@@ -34,9 +34,9 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Description 
+            = link_to("Description", anchor: "unpublished", :sort => "description")
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            Unpublished
+            = link_to("Unpublished", anchor: "unpublished", :sort => "unpublished_at")
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
             Author 
