@@ -3,7 +3,7 @@ require "faker"
 
 FactoryBot.define do
   factory :content_block do
-    name { Faker::Lorem.word.to_s }
+    name { Faker::Lorem.word }
     description { Faker::Lorem.sentence(word_count: 10).to_s }
     markdown { "Fake title - #{Faker::Lorem.word}" }
   end
