@@ -223,7 +223,7 @@ GEM
       sentry-ruby (~> 4.5.0)
       statsd-ruby (~> 1.5.0)
       unicorn (>= 5.4, < 5.9)
-    govuk_design_system_formbuilder (2.7.5)
+    govuk_design_system_formbuilder (2.7.6)
       actionview (>= 6.0)
       activemodel (>= 6.0)
       activesupport (>= 6.0)
