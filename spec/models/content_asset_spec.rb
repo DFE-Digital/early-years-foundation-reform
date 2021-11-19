@@ -7,7 +7,7 @@ RSpec.describe ContentAsset, type: :model do
     before(:each) do
       content_asset.title = "Title"
       content_asset.alt_text = "Sample Alt Text"
-      content_asset.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+      content_asset.asset_file.attach(io: File.open(file_fixture("sample.jpeg")), filename: "sample.jpeg", content_type: "image/jpeg")
       content_asset.save!
     end
 
@@ -17,7 +17,7 @@ RSpec.describe ContentAsset, type: :model do
 
     %w[pdf doc docx xls xlsx png jpg jpeg PDF DOC DOCX XLS XLSX PNG JPG JPEG].each do |extension|
       it "has valid extension" do
-        content_asset.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.#{extension}", content_type: "image/jpeg")
+        content_asset.asset_file.attach(io: File.open(file_fixture("sample.jpeg")), filename: "sample.#{extension}", content_type: "image/jpeg")
         content_asset.validate
         expect(content_asset).to be_valid
       end
@@ -33,7 +33,7 @@ RSpec.describe ContentAsset, type: :model do
       application/vnd.openxmlformats-officedocument.wordprocessingml.document
     ].each do |content_type|
       it "has valid content type" do
-        content_asset.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: content_type)
+        content_asset.asset_file.attach(io: File.open(file_fixture("sample.jpeg")), filename: "sample.jpeg", content_type: content_type)
         content_asset.validate
         expect(content_asset).to be_valid
       end
@@ -43,7 +43,7 @@ RSpec.describe ContentAsset, type: :model do
   describe "invalid attributes" do
     let(:content_asset) { ContentAsset.new(title: "Title", alt_text: "Alternative Title") }
     it "needs a valid extension" do
-      content_asset.asset_file.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.xxx", content_type: "image/jpeg")
+      content_asset.asset_file.attach(io: File.open(file_fixture("sample.jpeg")), filename: "sample.xxx", content_type: "image/jpeg")
       content_asset.validate
       expect(content_asset.errors[:asset_file]).to include("has an invalid extension.")
     end

@@ -9,10 +9,10 @@ FactoryBot.define do
     title { sentence_without_puncutation }
     description { sentence_without_puncutation }
     markdown { "# Fake title - #{Faker::Lorem.word}" }
-    featured_image { Rack::Test::UploadedFile.new("spec/fixtures/sample.jpeg", "image/jpeg") }
-    thumbnail_image { Rack::Test::UploadedFile.new("spec/fixtures/sample.jpeg", "image/jpeg") }
+    featured_image { Rack::Test::UploadedFile.new("spec/fixtures/files/sample.jpeg", "image/jpeg") }
+    thumbnail_image { Rack::Test::UploadedFile.new("spec/fixtures/files/sample.jpeg", "image/jpeg") }
     featured_alt_text { sentence_without_puncutation }
     thumbnail_alt_text { sentence_without_puncutation }
-    traits_for_enum :status, Article::STATUSES
+    traits_for_enum :status, Article.statuses.keys
   end
 end

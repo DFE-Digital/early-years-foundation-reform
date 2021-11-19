@@ -98,7 +98,7 @@ RSpec.describe Admin::ArticlesController, type: :request do
     end
   end
 
-  describe "PATCH /admin/articles/:id" do 
+  describe "PATCH /admin/articles/:id" do
     let(:title) { Faker::Commerce.product_name }
     let(:params) do
       { article: { title: title } }

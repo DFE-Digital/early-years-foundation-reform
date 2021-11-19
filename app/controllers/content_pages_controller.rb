@@ -12,7 +12,7 @@ class ContentPagesController < ApplicationController
   # GET /content_pages/1
   def show
     unless @content_page.is_published
-      redirect_to 404
+      redirect_to controller: :errors, action: :not_found
     end
   end
 
