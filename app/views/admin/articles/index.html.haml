@@ -8,9 +8,9 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to("Description", anchor: "published", :sort => "description")
+            = link_to("Description", anchor: "published", sort: "description")
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to("Published", anchor: "published", :sort => "published_at")
+            = link_to("Published", anchor: "published", sort: "published_at")
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
             Author 
@@ -21,9 +21,9 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to("Description", anchor: "draft", :sort => "description")
+            = link_to("Description", anchor: "draft", sort: "description")
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to("Created", anchor: "draft", :sort => "created_at")
+            = link_to("Created", anchor: "draft", sort: "created_at")
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
             Author
@@ -34,9 +34,9 @@
       %thead.govuk-table__head
         %tr.govuk-table__row
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to("Description", anchor: "unpublished", :sort => "description")
+            = link_to("Description", anchor: "unpublished", sort: "description")
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
-            = link_to("Unpublished", anchor: "unpublished", :sort => "unpublished_at")
+            = link_to("Unpublished", anchor: "unpublished", sort: "unpublished_at")
           %th.govuk-table__header{scope: 'col'}
           %th.govuk-table__header{scope: 'col', class: 'govuk-!-width-one-quarter'}
             Author 
