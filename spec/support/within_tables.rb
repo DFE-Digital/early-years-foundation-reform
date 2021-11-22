@@ -29,44 +29,14 @@ module WithinTables
     end
   end
 
-  # Use to test a single cell in a table
-  #
-  #   %table
-  #     %tr
-  #       %td One
-  #       %td Two
-  #       %td Three
-  #     %tr
-  #       %td 1
-  #       %td 2
-  #       %td 3
-  #
-  #   within_cell(2, 3) { expect(page).to have_content(2) }
-  #
-  def within_cell(row, column, table = nil, &block)
-    within_row(row, table) do
-      within_column(column, &block)
-    end
-  end
-
   # Used like capybara <tt>within()</tt> selector
-  #
-  #   within_row(1, '#table-id') do
-  #     expect(page).to have_content('Yolo')
-  #   end
   #
   #   within_row(3) do
   #     expect(page).to have_content('Hey')
   #   end
   #
-  def within_row(row, table = nil, &block)
-    if table
-      within(table) do
-        within(:xpath, ".//tbody/tr[#{row}]", &block)
-      end
-    else
-      within(:xpath, ".//table/tbody/tr[#{row}]", &block)
-    end
+  def within_row(row, &block)
+    within(:xpath, ".//table/tbody/tr[#{row}]", &block)
   end
 
   # Used like capybara <tt>within()</tt> selector but should be used inside another
@@ -80,16 +50,6 @@ module WithinTables
   #   end
   def within_column(column, &block)
     within(:xpath, ".//td[#{column}]", &block)
-  end
-
-  # Find within a table in the column with th header.
-  def within_column_name(header, &block)
-    within(:xpath, "//table/tbody/tr/td[count(//table/thead/tr/th[normalize-space()=\"#{header}\"]/preceding-sibling::th)+1]", &block)
-  end
-
-  # Find within row that has cell with content.
-  def within_row_with_cell(content, &block)
-    within(:xpath, "//tr[td=\"#{content}\"]", &block)
   end
 end
 

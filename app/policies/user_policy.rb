@@ -3,10 +3,6 @@ class UserPolicy < ApplicationPolicy
     permissions?
   end
 
-  def show?
-    permissions?
-  end
-
   def create?
     permissions?
   end

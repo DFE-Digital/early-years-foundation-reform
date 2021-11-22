@@ -1,8 +1,8 @@
 class GovspeakDecorator < DelegateClass(Govspeak::Document)
   ALLOWED_TAGS = %w[details summary p h1 h2 h3 h4 ul li img div ol a span strong iframe].freeze
-  j
-  def self.translate_markdown(markdown)
-    newdoc = new(Govspeak::Document.new(markdown, sanitize: true, allowed_elements: ALLOWED_TAGS))
+
+  def self.translate_markdown(markdown, sanitize: true)
+    newdoc = new(Govspeak::Document.new(markdown, sanitize: sanitize, allowed_elements: ALLOWED_TAGS))
     newdoc.to_html
   end
 
@@ -13,6 +13,8 @@ class GovspeakDecorator < DelegateClass(Govspeak::Document)
     %(<div class="govspeak-embed-container"><iframe class="govspeak-embed-video" src="#{embed_url}" #{optional_title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>)
   end
 
+  # TODO: Determine why commenting this method out has no affect on the specs
+  # Find out what content is meant to be blocked/fixed by GovspeakDecorator::HtmlSanitizerDecorator
   def to_html
     @to_html ||= begin
       html = if sanitize? # @options[:sanitize]
@@ -75,7 +77,6 @@ class GovspeakDecorator < DelegateClass(Govspeak::Document)
       if @allowed_image_hosts && @allowed_image_hosts.any?
         transformers << ImageSourceWhitelister.new(@allowed_image_hosts)
       end
-
       Sanitize.clean(@dirty_html, Sanitize::Config.merge(sanitize_config(allowed_elements: allowed_elements), transformers: transformers))
     end
   end

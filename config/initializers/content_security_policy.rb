@@ -61,6 +61,7 @@ Rails.application.config.content_security_policy do |policy|
                      :unsafe_inline
   policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, *OPTIMIZE_DOMAINS, :unsafe_inline
   if Rails.env.development?
+    # :nocov: by definition will not run in test
     policy.connect_src :self,
                        :https,
                        :wss,
@@ -68,6 +69,7 @@ Rails.application.config.content_security_policy do |policy|
                        *GOOGLE_ANALYTICS_DOMAINS,
                        "http://localhost:3035",
                        "ws://localhost:3035"
+    # :nocov:
   else
     policy.connect_src :self,
                        :https,

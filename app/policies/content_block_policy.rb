@@ -6,36 +6,12 @@ class ContentBlockPolicy
     @content_block = content_block
   end
 
-  def index?
-    permissions?
-  end
-
-  def show?
-    false
-  end
-
   def create?
-    permissions?
-  end
-
-  def new?
     permissions?
   end
 
   def update?
     permissions?
-  end
-
-  def edit?
-    permissions?
-  end
-
-  def get?
-    permissions?
-  end
-
-  def destroy?
-    false
   end
 
 private
