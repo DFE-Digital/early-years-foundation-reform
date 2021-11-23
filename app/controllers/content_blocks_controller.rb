@@ -38,20 +38,13 @@ class ContentBlocksController < ApplicationController
   def update
     authorize @content_block, :update?
     if @content_block.update(content_block_params)
-      redirect_to content_blocks_path(@content_block), notice: "Content block was successfully updated."
+      redirect_to content_blocks_path, notice: "Content block was successfully updated."
     else
       render :edit
     end
   rescue Pundit::NotAuthorizedError
     @content_block.errors.add(:base, "You don't have permission to edit blocks")
     render :edit
-  end
-
-  # POST of preview, returns html
-  def preview
-    html = GovspeakToHTML.new.translate_markdown(params["markdown"])
-
-    render json: { html: html }
   end
 
 private

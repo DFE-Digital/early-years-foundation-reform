@@ -18,6 +18,6 @@ RSpec.describe "content/index", type: :view do
 
   it "should not contain the feedback section" do
     render
-    rendered.should_not include("Is this page useful?")
+    expect(rendered).not_to include("Is this page useful?")
   end
 end
