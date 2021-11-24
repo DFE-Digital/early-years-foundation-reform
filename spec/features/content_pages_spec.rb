@@ -51,7 +51,7 @@ RSpec.feature "View pages", type: :feature do
     expect(saved_page.content_page_versions.last.markdown).to eq("some text")
   end
 
-  scenario "A user with the role of reader should be not be able to edit pages in the CMS" do
+  scenario "A user with the role of reader should not be able to edit pages in the CMS" do
     sign_in FactoryBot.create(:user, :reader)
     attributes = FactoryBot.attributes_for :content_page
 
@@ -76,12 +76,14 @@ RSpec.feature "View pages", type: :feature do
       page.find_field("content_page[title]").set(attributes[:title])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
       page.find_field("content_page[position]").set(rand(10_000))
+      page.find_field("content_page[description]").set(attributes[:description])
 
       page.click_button("Save")
 
       saved_page = ContentPage.find_by_title attributes[:title]
 
       expect(saved_page.markdown).to eq(attributes[:markdown])
+      expect(saved_page.description).to eq(attributes[:description])
     end
   end
 

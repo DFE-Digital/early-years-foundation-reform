@@ -41,6 +41,7 @@ class ContentPageVersionsController < ApplicationController
     @page = ContentPage.new(title: @content_page_version.title,
                             markdown: @content_page_version.markdown,
                             position: 22,
+                            description: @content_page_version.description,
                             previous_id: @content_page_version.content_page.id,
                             next_id: @content_page_version.content_page.id)
 
@@ -49,7 +50,13 @@ class ContentPageVersionsController < ApplicationController
 
   def publish
     @page = @content_page_version.content_page
-    @page.update!(markdown: @content_page_version.markdown, is_published: true, author: current_user.name, title: @content_page_version.title)
+    @page.update!(
+      markdown: @content_page_version.markdown,
+      is_published: true,
+      author: current_user.name,
+      title: @content_page_version.title,
+      description: @content_page_version.description,
+    )
 
     # Delete the version that this page was published from
     @content_page_version.destroy!
@@ -66,6 +73,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_version_params
-    params.require(:content_page_version).permit(:title, :markdown, :author)
+    params.require(:content_page_version).permit(:title, :markdown, :author, :description)
   end
 end

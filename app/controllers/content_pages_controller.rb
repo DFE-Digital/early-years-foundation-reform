@@ -76,7 +76,8 @@ class ContentPagesController < ApplicationController
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: content_page_params[:markdown],
                                  author: current_user.name,
-                                 content_page: @content_page)
+                                 content_page: @content_page,
+                                 description: @content_page.description)
       redirect_to "#{content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
     else
       render :edit
@@ -109,7 +110,8 @@ class ContentPagesController < ApplicationController
     ContentPageVersion.create!(title: @content_page.title,
                                markdown: @content_page.markdown,
                                author: current_user.name,
-                               content_page: @content_page)
+                               content_page: @content_page,
+                               description: @content_page.description)
 
     redirect_to versions_content_page_path(@content_page), notice: t(".notice")
   end
@@ -123,6 +125,6 @@ private
 
   # Only allow a list of trusted parameters through.
   def content_page_params
-    params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
+    params.require(:content_page).permit(:title, :markdown, :parent_id, :position, :description)
   end
 end

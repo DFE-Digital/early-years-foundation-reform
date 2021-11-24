@@ -17,6 +17,18 @@ RSpec.describe "Contents", type: :request do
       expect(response).to be_successful
     end
 
+    it "includes the content page description in a meta tag" do
+      get a_page.full_path
+      expect(html_document.at("meta[name='description']")).to be_present
+      expect(html_document.at("meta[name='description']")["content"]).to eq(a_page.description)
+    end
+
+    it "does not contain a meta description is content page description blank" do
+      a_page.update!(description: "")
+      get a_page.full_path
+      expect(html_document.at("meta[name='description']")).to be_nil
+    end
+
     it "renders a 404 when the page is not found" do
       without_detailed_exceptions do
         get "#{a_page.full_path}rubbish"

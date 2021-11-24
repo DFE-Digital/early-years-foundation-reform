@@ -20,6 +20,7 @@
             <% text_area_class = (@content_page_version.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
 
             <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => text_area_class %>
+            <%= form.govuk_text_area :description, label: {text: "Meta Description"} %>
           </div>
 
           <% if action_name === "edit" || action_name === "new" || action_name === "update" %>

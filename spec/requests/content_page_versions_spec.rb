@@ -25,6 +25,7 @@ RSpec.describe ContentPageVersionsController, type: :request do
       original_title = content_page.title
       expect { subject }.to(change { content_page.reload.title }.from(original_title).to(content_page_version.title))
       expect(content_page.reload.markdown).to eq(content_page_version.markdown)
+      expect(content_page.reload.description).to eq(content_page_version.description)
     end
 
     it "set the content page as published" do
