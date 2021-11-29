@@ -15,7 +15,6 @@ RSpec.describe "Edit article", type: :feature do
       click_button "Save"
       expect(page).to have_text "New correct title"
       expect(page).to have_text "An H2 Headline"
-      expect(page).to have_text "Article successfully updated"
     end
 
     scenario "publish" do
