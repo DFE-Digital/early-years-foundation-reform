@@ -77,7 +77,7 @@ class ContentPagesController < ApplicationController
                                  markdown: content_page_params[:markdown],
                                  author: current_user.name,
                                  content_page: @content_page,
-                                 description: @content_page.description)
+                                 description: content_page_params[:description])
       redirect_to "#{content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
     else
       render :edit
