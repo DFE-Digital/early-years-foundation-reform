@@ -26,6 +26,7 @@ RSpec.describe "Contents", type: :request do
   end
 
   describe "GET /" do
+    let(:article_section_link) { html_document.xpath('//a[contains(text(),"Support articles")][@href="/articles"]') }
     it "renders the landing page / hub page" do
       get "/"
       expect(response).to be_successful
@@ -36,10 +37,18 @@ RSpec.describe "Contents", type: :request do
       expect(response.headers["Cache-Control"]).to eq("max-age=3600, public")
     end
 
-    xit "renders the desktop menu of content pages, two levels, in correct order" do
+    it "does not display an articles section" do
+      get root_path
+      expect(article_section_link).not_to be_present
     end
 
-    xit "renders the mobile menu of content pages, two levels, in correct order" do
+    context "with an article present" do
+      before { create :article, :published }
+
+      it "does display an articles section" do
+        get root_path
+        expect(article_section_link).to be_present
+      end
     end
   end
 
