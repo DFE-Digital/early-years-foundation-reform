@@ -1,4 +1,4 @@
-<%= form_with(model: content_asset, local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+<%= form_with(model: [:admin, content_asset], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
   <% if content_asset.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(content_asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
