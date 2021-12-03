@@ -72,9 +72,9 @@ module Admin
 
       if @content_page.valid?
         ContentPageVersion.create!(title: @content_page.title,
-                                  markdown: content_page_params[:markdown],
-                                  author: current_user.name,
-                                  content_page: @content_page)
+                                   markdown: content_page_params[:markdown],
+                                   author: current_user.name,
+                                   content_page: @content_page)
         redirect_to "#{admin_content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
       else
         render :edit
@@ -106,9 +106,9 @@ module Admin
 
       @content_page.update!(is_published: false)
       ContentPageVersion.create!(title: @content_page.title,
-                                markdown: @content_page.markdown,
-                                author: current_user.name,
-                                content_page: @content_page)
+                                 markdown: @content_page.markdown,
+                                 author: current_user.name,
+                                 content_page: @content_page)
 
       redirect_to versions_admin_content_page_path(@content_page), notice: t(".notice")
     end
