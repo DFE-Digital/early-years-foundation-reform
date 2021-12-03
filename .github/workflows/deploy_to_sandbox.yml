@@ -23,6 +23,8 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.inputs.version }}
 
       - name: Pin Terraform version
         uses: hashicorp/setup-terraform@v1.3.2
@@ -40,3 +42,15 @@ jobs:
           cd terraform/app
           terraform init -reconfigure -input=false -backend-config="bucket=${{secrets.AWS_BUCKET_SANDBOX}}"
           terraform apply -input=false -auto-approve -var-file ../workspace-variables/sandbox.tfvars -var='secret_paas_app_env_values={"RAILS_MASTER_KEY":"${{secrets.RAILS_MASTER_KEY_SANDBOX}}", "RELEASE_VERSION":"${{github.event.inputs.version}}"}'
+
+      - name: Install CF CLI on Prod
+        uses: DFE-Digital/github-actions/setup-cf-cli@master
+        with:
+          CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME }}
+          CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD }}
+          CF_SPACE_NAME: eyfs-sandbox
+          # Optional inputs
+          CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
+          CF_ORG_NAME: dfe # default
+          CF_API_URL:  https://api.london.cloud.service.gov.uk # default
+          INSTALL_CONDUIT: false # default: false
