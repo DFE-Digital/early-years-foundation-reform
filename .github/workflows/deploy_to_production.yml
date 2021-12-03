@@ -50,7 +50,7 @@ jobs:
         with:
           CF_USERNAME: ${{ secrets.GOVPAAS_USERNAME_PROD }}
           CF_PASSWORD: ${{ secrets.GOVPAAS_PASSWORD_PROD }}
-          CF_SPACE_NAME: eyfs-${{ github.event.inputs.environment }} # required
+          CF_SPACE_NAME: eyfs-prod
           # Optional inputs
           CF_CLI_VERSION: v7 # default v7, allowed values: v6 or v7
           CF_ORG_NAME: dfe # default
