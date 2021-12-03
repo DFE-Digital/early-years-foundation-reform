@@ -2,7 +2,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
       <p class="govuk-heading-m">Details</p>
-      <%= form_with(model: [content_block], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+      <%= form_with(model: [:admin, content_block], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
         <%= form.govuk_error_summary order: %i[name description markdown]  %>
 
         <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id%>
@@ -26,7 +26,7 @@
         <%= form.govuk_submit "Save" %>
       <% end %>
 
-      <p class="govuk-body"><%= link_to "Cancel", content_blocks_path %></p>
+      <p class="govuk-body"><%= link_to "Cancel", admin_content_blocks_path %></p>
     </div>
 
     <div class="govuk-grid-column-one-half">
