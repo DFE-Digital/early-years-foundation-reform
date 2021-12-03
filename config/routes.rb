@@ -38,29 +38,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # constraints CmsRouteConstraint.new do
-  #   devise_for :users
-  #   devise_scope :user do
-  #     get "sign_in", to: "devise/sessions#new"
-  #     delete "sign_out", to: "devise/sessions#destroy"
-  #   end
-
-  #   scope :cms do
-  #     resources :content_pages, path: "pages" do
-  #       get "versions", on: :member
-  #       post "unpublish", on: :member
-  #       resources :content_page_versions do
-  #         get "preview_of_draft", on: :member
-  #         post "publish", on: :member
-  #       end
-  #     end
-  #     resources :content_blocks, path: "blocks", only: %i[index new edit create update]
-  #     resources :content_assets, path: "assets"
-  #     #  This is not a resource route
-  #     post "preview_markdown", to: "content_pages#preview"
-  #   end
-  # end
-
   %w[accessibility-statement contact-us disclaimer].each do |static_page|
     get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
