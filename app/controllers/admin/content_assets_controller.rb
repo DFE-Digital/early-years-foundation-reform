@@ -19,14 +19,15 @@ module Admin
   def create
     @content_asset = ContentAsset.new(content_asset_params)
 
-    authorize @content_asset, :create?
-    # Not sure about what to do here
-    if upload_rate_limit_exceeded?
-      redirect_to content_assets_url, notice: "Only one upload is allowed in each 30 seconds, please wait"
-    elsif @content_asset.save
-      redirect_to @content_asset, notice: "Content asset was successfully created."
-    else
-      render :new
+      authorize @content_asset, :create?
+      # Not sure about what to do here
+      if upload_rate_limit_exceeded?
+        redirect_to admin_content_assets_path, notice: "Only one upload is allowed in each 30 seconds, please wait..."
+      elsif @content_asset.save
+        redirect_to admin_content_asset_path(@content_asset), notice: "Content asset was successfully created."
+      else
+        render :new
+      end
     end
   end
 
@@ -34,7 +35,7 @@ module Admin
     authorize @content_asset, :update?
 
       if @content_asset.update(content_asset_params)
-        redirect_to @content_asset, notice: "Content asset was successfully updated."
+        redirect_to admin_content_asset_path(@content_asset), notice: "Content asset was successfully updated."
       else
         render :edit
       end
@@ -44,7 +45,7 @@ module Admin
     authorize @content_asset, :destroy?
 
       @content_asset.destroy!
-      redirect_to content_assets_url, notice: "Content asset was successfully destroyed."
+      redirect_to admin_content_assets_url, notice: "Content asset was successfully destroyed."
     end
 
   private
