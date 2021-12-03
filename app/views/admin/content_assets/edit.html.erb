@@ -5,7 +5,8 @@
 <div id='content-asset-wrapper'>
     <%= image_tag(url_for(@content_asset.asset_file), :class=>'govuk-!-width-full') %>
     <div id='asset-details'>
-    <h3>Asset Details</h3>
+    <br/>
+    <h3 class="govuk-heading-s">Asset Details</h3>
     <%= render partial: 'clipboard', locals: { clipboard_content: polymorphic_url(@content_asset.asset_file) } %>
     </div>
 </div>
@@ -14,12 +15,11 @@
 
 <%= render 'form', content_asset: @content_asset %>
 
-
 <div class="govuk-grid-row ">
     <div class="govuk-grid-column-one-half">
         <%= link_to 'Back', admin_content_assets_path, :class => "govuk-link" %>
     </div>
     <div class="govuk-grid-column-one-half align-right">
-    <%= button_to "delete", {:controller => :content_assets, :action => 'destroy', :id => @content_asset.id }, method: "delete", class: "govuk-button", onclick: "return confirm('Do you really want to delete this asset?');" %>
+    <%= button_to "Delete", {:controller => :content_assets, :action => 'destroy', :id => @content_asset.id }, method: "delete", class: "govuk-button", onclick: "return confirm('Do you really want to delete this asset?');" %>
     </div> 
 </div>
