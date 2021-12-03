@@ -16,12 +16,13 @@
     <%= form.govuk_file_field :asset_file, label: { text: "Asset file" }, width: 'one-half', hint: { text: "Upload an asset file less than 2MB.</br>Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG".html_safe} %>
     <p class="govuk-body" id="content_asset_file_size"></p>
   </div>
-<div class="govuk-grid-row">
-<div class="govuk-grid-column-one-half">
-  <%= form.govuk_submit "Submit" %>
-</div>
-</div>
+  
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <%= form.govuk_submit "Submit" %>
+    </div>
+  </div>
 
 <% end %>
 
-<%= link_to 'GOV.UK image upload guidelines', 'https://design-system.service.gov.uk/styles/images/', target: "_blank" %> |
+<%= link_to 'GOV.UK image upload guidelines', 'https://design-system.service.gov.uk/styles/images/', target: "_blank" %>
