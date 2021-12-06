@@ -28,7 +28,7 @@ RSpec.describe "/content_assets", type: :request do
       sign_in FactoryBot.create(:editor)
 
       ContentAsset.create! valid_attributes
-      get content_assets_url
+      get admin_content_assets_path
       expect(response).to be_successful
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe "/content_assets", type: :request do
       sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
-      get content_asset_url(content_asset)
+      get admin_content_asset_path(content_asset)
       expect(response).to be_successful
     end
   end
@@ -47,7 +47,7 @@ RSpec.describe "/content_assets", type: :request do
     it "renders a successful response" do
       sign_in FactoryBot.create(:editor)
 
-      get new_content_asset_url
+      get new_admin_content_asset_path
       expect(response).to be_successful
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe "/content_assets", type: :request do
       sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
-      get edit_content_asset_url(content_asset)
+      get edit_admin_content_asset_path(content_asset)
       expect(response).to be_successful
     end
   end
@@ -68,15 +68,15 @@ RSpec.describe "/content_assets", type: :request do
         sign_in FactoryBot.create(:editor)
 
         expect {
-          post content_assets_url, params: { content_asset: valid_attributes }
+          post admin_content_assets_path, params: { content_asset: valid_attributes }
         }.to change(ContentAsset, :count).by(1)
       end
 
       it "redirects to the created content_asset" do
         sign_in FactoryBot.create(:editor)
 
-        post content_assets_url, params: { content_asset: valid_attributes }
-        expect(response).to redirect_to(content_asset_url(ContentAsset.last))
+        post admin_content_assets_path, params: { content_asset: valid_attributes }
+        expect(response).to redirect_to(admin_content_asset_path(ContentAsset.last))
       end
     end
 
@@ -85,13 +85,13 @@ RSpec.describe "/content_assets", type: :request do
         sign_in FactoryBot.create(:editor)
 
         expect {
-          post content_assets_url, params: { content_asset: invalid_attributes }
+          post admin_content_assets_path, params: { content_asset: invalid_attributes }
         }.to change(ContentAsset, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         sign_in FactoryBot.create(:editor)
-        post content_assets_url, params: { content_asset: invalid_attributes }
+        post admin_content_assets_path, params: { content_asset: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -101,10 +101,10 @@ RSpec.describe "/content_assets", type: :request do
         sign_in FactoryBot.create(:editor)
 
         expect {
-          post content_assets_url, params: { content_asset: valid_attributes }
+          post admin_content_assets_path, params: { content_asset: valid_attributes }
 
           other_valid_attributes = FactoryBot.attributes_for(:content_asset)
-          post content_assets_url, params: { content_asset: other_valid_attributes }
+          post admin_content_assets_path, params: { content_asset: other_valid_attributes }
         }.to change(ContentAsset, :count).by(1)
         # ie change by only 1, not 2, I could not get to_not working with change
       end
@@ -112,8 +112,8 @@ RSpec.describe "/content_assets", type: :request do
       it "redirects to the created content_asset" do
         sign_in FactoryBot.create(:editor)
 
-        post content_assets_url, params: { content_asset: valid_attributes }
-        expect(response).to redirect_to(content_asset_url(ContentAsset.last))
+        post admin_content_assets_path, params: { content_asset: valid_attributes }
+        expect(response).to redirect_to(admin_content_asset_path(ContentAsset.last))
       end
     end
   end
@@ -127,7 +127,7 @@ RSpec.describe "/content_assets", type: :request do
       it "updates the requested content_asset" do
         sign_in FactoryBot.create(:editor)
         content_asset = ContentAsset.create! valid_attributes
-        patch content_asset_url(content_asset), params: { content_asset: new_attributes }
+        patch admin_content_asset_path(content_asset), params: { content_asset: new_attributes }
         content_asset.reload
         skip("Add assertions for updated state")
       end
@@ -135,9 +135,9 @@ RSpec.describe "/content_assets", type: :request do
       it "redirects to the content_asset" do
         sign_in FactoryBot.create(:editor)
         content_asset = ContentAsset.create! valid_attributes
-        patch content_asset_url(content_asset), params: { content_asset: new_attributes }
+        patch admin_content_asset_path(content_asset), params: { content_asset: new_attributes }
         content_asset.reload
-        expect(response).to redirect_to(content_asset_url(content_asset))
+        expect(response).to redirect_to(admin_content_asset_path(content_asset))
       end
     end
 
@@ -145,7 +145,7 @@ RSpec.describe "/content_assets", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         sign_in FactoryBot.create(:editor)
         content_asset = ContentAsset.create! valid_attributes
-        patch content_asset_url(content_asset), params: { content_asset: invalid_attributes }
+        patch admin_content_asset_path(content_asset), params: { content_asset: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -157,7 +157,7 @@ RSpec.describe "/content_assets", type: :request do
 
       content_asset = ContentAsset.create! valid_attributes
       expect {
-        delete content_asset_url(content_asset)
+        delete admin_content_asset_path(content_asset)
       }.to change(ContentAsset, :count).by(-1)
     end
 
@@ -165,8 +165,8 @@ RSpec.describe "/content_assets", type: :request do
       sign_in FactoryBot.create(:editor)
 
       content_asset = ContentAsset.create! valid_attributes
-      delete content_asset_url(content_asset)
-      expect(response).to redirect_to(content_assets_url)
+      delete admin_content_asset_path(content_asset)
+      expect(response).to redirect_to(admin_content_assets_path)
     end
   end
 end

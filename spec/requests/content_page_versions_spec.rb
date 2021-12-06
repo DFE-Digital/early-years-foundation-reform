@@ -8,13 +8,13 @@ RSpec.describe ContentPageVersionsController, type: :request do
 
   describe "GET /cms/pages/:content_page_id/content_page_versions/:id/preview_of_draft" do
     it "renders successfully" do
-      get preview_of_draft_content_page_content_page_version_path(content_page, content_page_version)
+      get preview_of_draft_admin_content_page_content_page_version_path(content_page, content_page_version)
       expect(response).to be_successful
     end
   end
 
   describe "POST /cms/pages/:content_page_id/content_page_versions/:id/publish" do
-    subject { post publish_content_page_content_page_version_path(content_page, content_page_version) }
+    subject { post publish_admin_content_page_content_page_version_path(content_page, content_page_version) }
 
     it "deletes content page version" do
       expect { subject }.to change(ContentPageVersion, :count).by(-1)
@@ -34,13 +34,13 @@ RSpec.describe ContentPageVersionsController, type: :request do
     end
 
     it "redirects to version content page" do
-      expect(subject).to redirect_to(versions_content_page_path(content_page))
+      expect(subject).to redirect_to(versions_admin_content_page_path(content_page))
     end
   end
 
   describe "GET /cms/pages/:content_page_id/content_page_versions/:id/edit" do
     it "renders successfully" do
-      get edit_content_page_content_page_version_path(content_page, content_page_version)
+      get edit_admin_content_page_content_page_version_path(content_page, content_page_version)
       expect(response).to be_successful
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe ContentPageVersionsController, type: :request do
         content_page_version: attributes_for(:content_page_version),
       }
     end
-    subject { patch content_page_content_page_version_path(content_page, content_page_version), params: params }
+    subject { patch admin_content_page_content_page_version_path(content_page, content_page_version), params: params }
 
     it "updates the content page version" do
       subject
@@ -59,7 +59,7 @@ RSpec.describe ContentPageVersionsController, type: :request do
     end
 
     it "redirects to version content page" do
-      expect(subject).to redirect_to(versions_content_page_path(content_page))
+      expect(subject).to redirect_to(versions_admin_content_page_path(content_page))
     end
 
     context "with invalid input" do
@@ -99,7 +99,7 @@ RSpec.describe ContentPageVersionsController, type: :request do
       content_page.content_page_versions.first.destroy! if content_page.content_page_versions.count == 2
     end
 
-    subject { delete content_page_content_page_version_path(content_page, content_page_version) }
+    subject { delete admin_content_page_content_page_version_path(content_page, content_page_version) }
 
     it "deletes the content page version" do
       expect { subject }.to change(ContentPageVersion, :count).by(-1)

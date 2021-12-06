@@ -18,7 +18,7 @@ RSpec.describe "/content_pages", type: :request do
       parent_page = create(:content_page)
       child_page = create(:content_page)
 
-      get content_pages_url
+      get admin_content_pages_path
       expect(response).to be_successful
       expect(response.body).to include(parent_page.title)
       expect(response.body).to include(child_page.title)
@@ -28,14 +28,14 @@ RSpec.describe "/content_pages", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       content_page = create(:content_page, :published)
-      get content_page_url(content_page)
+      get admin_content_page_path(content_page)
       expect(response).to be_successful
     end
 
     context "with an unpublished content page" do
       it "redirects to 404" do
         content_page = create(:content_page)
-        get content_page_url(content_page)
+        get admin_content_page_path(content_page)
         expect(response).to redirect_to("/404")
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_content_page_url
+      get new_admin_content_page_path
       expect(response).to be_successful
     end
   end
@@ -51,7 +51,7 @@ RSpec.describe "/content_pages", type: :request do
   describe "GET /edit" do
     it "render a successful response" do
       content_page = ContentPage.create! valid_attributes
-      get edit_content_page_url(content_page)
+      get edit_admin_content_page_path(content_page)
       expect(response).to be_successful
     end
   end
@@ -60,19 +60,9 @@ RSpec.describe "/content_pages", type: :request do
     context "with valid parameters" do
       subject { post content_pages_url, params: { content_page: valid_attributes } }
       it "creates a new ContentPage" do
-        expect { subject }.to change(ContentPage, :count).by(1)
-      end
-
-      it "populates content page from input" do
-        subject
-        content_page = ContentPage.last
-        expect(content_page.title).to eq(valid_attributes[:title])
-        expect(content_page.markdown).to eq(valid_attributes[:markdown])
-        expect(content_page.description).to eq(valid_attributes[:description])
-      end
-
-      it "creates a new content page version" do
-        expect { subject }.to change(ContentPageVersion, :count).by(1)
+        expect {
+          post admin_content_pages_path, params: { content_page: valid_attributes }
+        }.to change(ContentPage, :count).by(1)
       end
 
       it "populates content page version from input" do
@@ -84,27 +74,27 @@ RSpec.describe "/content_pages", type: :request do
       end
 
       it "redirects to the created content_page" do
-        subject
-        expect(response).to redirect_to(versions_content_page_url(::ContentPage.last))
+        post admin_content_pages_path, params: { content_page: valid_attributes }
+        expect(response).to redirect_to(versions_admin_content_page_path(::ContentPage.last))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new ContentPage" do
         expect {
-          post content_pages_url, params: { content_page: invalid_attributes }
+          post admin_content_pages_path, params: { content_page: invalid_attributes }
         }.not_to change(ContentPage, :count)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post content_pages_url, params: { content_page: invalid_attributes }
+        post admin_content_pages_path, params: { content_page: invalid_attributes }
         expect(response).to be_successful
       end
     end
 
     context "with invalid user" do
       before { sign_in create(:user) }
-      subject { post content_pages_url, params: { content_page: valid_attributes } }
+      subject { post admin_content_pages_path, params: { content_page: valid_attributes } }
 
       it "renders form" do
         subject
@@ -128,25 +118,23 @@ RSpec.describe "/content_pages", type: :request do
         expect { patch content_page_url(content_page), params: params }.to change(ContentPageVersion, :count).by(1)
       end
 
-      it "populates content page version from input" do
-        patch content_page_url(content_page), params: params
-        content_page_version = content_page.content_page_versions.last
-        expect(content_page_version.title).to eq(valid_attributes[:title])
-        expect(content_page_version.description).to eq(valid_attributes[:description])
-        expect(content_page_version.markdown).to eq(valid_attributes[:markdown])
-        expect(content_page_version.author).to eq(editor.name)
+      it "updates the requested content_page" do
+        patch admin_content_page_path(content_page), params: { content_page: valid_attributes }
+        content_page.reload
+        expect(content_page.title).to eq(new_title)
       end
 
       it "redirects to the content_page versions" do
-        patch content_page_url(content_page), params: params
-        expect(response).to redirect_to(versions_content_page_url(content_page))
+        patch admin_content_page_path(content_page), params: { content_page: valid_attributes }
+        content_page.reload
+        expect(response).to redirect_to(versions_admin_content_page_path(content_page))
       end
     end
 
     context "with invalid parameters" do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         content_page = ContentPage.create! valid_attributes
-        patch content_page_url(content_page), params: { content_page: invalid_attributes }
+        patch admin_content_page_path(content_page), params: { content_page: invalid_attributes }
         expect(response).to be_successful
       end
     end
@@ -154,7 +142,7 @@ RSpec.describe "/content_pages", type: :request do
     context "with invalid user" do
       before { sign_in create(:user) }
 
-      subject { patch content_page_url(content_page), params: { content_page: valid_attributes } }
+      subject { patch admin_content_page_path(content_page), params: { content_page: valid_attributes } }
 
       it "renders form" do
         subject
@@ -171,14 +159,14 @@ RSpec.describe "/content_pages", type: :request do
     it "destroys the requested content_page" do
       content_page = ContentPage.create! valid_attributes
       expect {
-        delete content_page_url(content_page)
+        delete admin_content_page_path(content_page)
       }.to change(ContentPage, :count).by(-1)
     end
 
     it "redirects to the content_pages list" do
       content_page = ContentPage.create! valid_attributes
-      delete content_page_url(content_page)
-      expect(response).to redirect_to(content_pages_url)
+      delete admin_content_page_path(content_page)
+      expect(response).to redirect_to(admin_content_pages_path)
     end
   end
 
@@ -216,7 +204,7 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "POST /cms/pages/:id/unpublish" do
     let!(:content_page) { create :content_page, :published }
-    subject { post unpublish_content_page_path(content_page) }
+    subject { post unpublish_admin_content_page_path(content_page) }
 
     it "changes is published to false" do
       expect { subject }.to(change { content_page.reload.is_published }.to(false))

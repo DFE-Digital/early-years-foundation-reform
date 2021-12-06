@@ -5,14 +5,14 @@ RSpec.describe ContentBlocksController, type: :request do
 
   describe "GET /cms/blocks" do
     it "renders page" do
-      get content_blocks_path
+      get admin_content_blocks_path
       expect(response).to be_successful
     end
   end
 
   describe "GET /cms/blocks/new" do
     it "renders page" do
-      get new_content_block_path
+      get new_admin_content_block_path
       expect(response).to be_successful
     end
   end
@@ -20,7 +20,7 @@ RSpec.describe ContentBlocksController, type: :request do
   describe "GET /cms/blocks/:id/edit" do
     let(:content_block) { create :content_block }
     it "renders page" do
-      get edit_content_block_path(content_block)
+      get edit_admin_content_block_path(content_block)
       expect(response).to be_successful
     end
   end
@@ -29,7 +29,7 @@ RSpec.describe ContentBlocksController, type: :request do
     let(:params) do
       { content_block: attributes_for(:content_block) }
     end
-    subject { post content_blocks_path, params: params }
+    subject { post admin_content_blocks_path, params: params }
 
     it "creates a new content block" do
       expect { subject }.to change(ContentBlock, :count).by(1)
@@ -37,7 +37,7 @@ RSpec.describe ContentBlocksController, type: :request do
 
     it "redirects to index" do
       subject
-      expect(response).to redirect_to(content_blocks_path)
+      expect(response).to redirect_to(admin_content_blocks_path)
     end
 
     context "with invalid input" do
@@ -89,7 +89,7 @@ RSpec.describe ContentBlocksController, type: :request do
 
     it "redirects to index" do
       subject
-      expect(response).to redirect_to(content_blocks_path)
+      expect(response).to redirect_to(admin_content_blocks_path)
     end
 
     context "with invalid input" do
