@@ -12,7 +12,7 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/content_assets", type: :request do
+RSpec.describe Admin::ContentAssetsController, type: :request do
   # ContentAsset. As you add validations to ContentAsset, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do

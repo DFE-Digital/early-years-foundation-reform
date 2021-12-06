@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/content_pages", type: :request do
+RSpec.describe Admin::ContentPagesController, type: :request do
   # ContentPage. As you add validations to ContentPage, be sure to
   # adjust the attributes here as well.
 

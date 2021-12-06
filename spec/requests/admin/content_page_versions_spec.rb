@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ContentPageVersionsController, type: :request do
+RSpec.describe Admin::ContentPageVersionsController, type: :request do
   let!(:content_page_version) { create :content_page_version }
   let(:content_page) { content_page_version.content_page }
 

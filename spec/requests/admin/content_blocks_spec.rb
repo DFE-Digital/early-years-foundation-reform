@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ContentBlocksController, type: :request do
+RSpec.describe Admin::ContentBlocksController, type: :request do
   before { sign_in create(:admin) }
 
   describe "GET /cms/blocks" do
