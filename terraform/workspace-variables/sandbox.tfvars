@@ -12,4 +12,4 @@ paas_postgres_create_timeout = "30m"
 paas_web_app_deployment_strategy = "blue-green-v2"
 paas_web_app_instances = 1
 paas_web_app_memory = 512
-paas_cms_app_start_command = "bundle exec rake db:prepare && bundle exec rails s  -b 0.0.0.0"
+paas_cms_app_start_command = "bundle exec rake db:prepare"
