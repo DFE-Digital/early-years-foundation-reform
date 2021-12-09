@@ -65,7 +65,7 @@ variable paas_web_app_memory {
 }
 
 variable paas_web_app_start_command {
-  default = "bundle exec bundle exec rails s  -b 0.0.0.0"
+  default = "bundle exec rails s  -b 0.0.0.0"
 }
 
 variable paas_cms_app_start_command {
