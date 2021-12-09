@@ -76,7 +76,7 @@ RSpec.describe ContentBlocksController, type: :request do
 
   describe "PATCH /cms/blocks/:id" do
     let(:content_block) { create :content_block }
-    let(:name) { "#{Faker::Lorem.word}X" } # adding X as Faker::Lorem.word occasionally repeat of original
+    let(:name) { Faker::Superhero.name.delete(" ") }
     let(:params) do
       { content_block: { name: name } }
     end

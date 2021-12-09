@@ -23,7 +23,7 @@
           <%= form.hidden_field :parent_id, id: "parent_id" %>
 
           <%= form.govuk_text_field :position, label: {text: "Position"}%>
-
+          <%= form.govuk_text_area :description, label: {text: "Meta Description"} %>
         </div>
         <div class="fixed-footer">
           <%= form.govuk_submit "Save" %>

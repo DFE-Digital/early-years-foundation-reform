@@ -37,7 +37,6 @@ RSpec.describe "Edit article", type: :feature do
       fill_in "article-title-field", with: "New correct title"
       fill_in "article-markdown-field", with: "## An H2 Headline"
       click_button "Save"
-      expect(page).to have_text "Article successfully updated"
       expect(page).to have_text "New correct title"
       expect(page).to have_text "An H2 Headline"
     end

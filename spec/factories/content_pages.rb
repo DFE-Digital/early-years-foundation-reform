@@ -12,6 +12,7 @@ FactoryBot.define do
     markdown { "# Fake title - #{Faker::Lorem.word}" }
     parent_id { nil }
     position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }
+    description { Faker::Lorem.paragraph }
   end
 
   trait :with_special_chars_in_title do

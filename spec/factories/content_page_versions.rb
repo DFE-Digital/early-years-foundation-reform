@@ -4,5 +4,6 @@ FactoryBot.define do
     title { Faker::Commerce.product_name }
     markdown { Faker::Lorem.paragraph }
     author { Faker::Name.name }
+    description { Faker::Lorem.paragraph }
   end
 end

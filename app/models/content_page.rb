@@ -14,9 +14,9 @@ class ContentPage < ApplicationRecord
   validates :title, format: { with: ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: TITLE_FORMAT_ERROR_MESSAGE }
   validates :title, presence: true, uniqueness: true
   validates :markdown, presence: true
+  validates :description, length: { maximum: 254 }
 
-  validates :position, presence: true, numericality: { only_integer: true }
-  validates :position, uniqueness: { scope: :parent_id }
+  validates :position, presence: true, numericality: { only_integer: true }, uniqueness: { scope: :parent_id }
 
   before_save :set_slug_from_title
 
@@ -29,7 +29,8 @@ class ContentPage < ApplicationRecord
     ContentPageVersion.create!(title: title,
                                markdown: markdown,
                                content_page_id: id,
-                               author: author)
+                               author: author,
+                               description: description)
   end
 
   after_save do

@@ -111,6 +111,8 @@ en:
             position:
               blank: Position must not be blank
               taken: Position is already taken
+            description:
+              too_long: Description must be less than %{count} characters
         content_page_version:
           attributes:
             title:

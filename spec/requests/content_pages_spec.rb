@@ -7,9 +7,10 @@ RSpec.describe "/content_pages", type: :request do
   let(:valid_attributes) { attributes_for(:content_page) }
   let(:other_valid_attributes) { attributes_for(:content_page) }
   let(:invalid_attributes) { attributes_for(:content_page, :invalid_title) }
+  let(:editor) { create(:editor) }
 
   before(:each) do
-    sign_in create(:editor)
+    sign_in editor
   end
 
   describe "GET /index" do
@@ -57,13 +58,33 @@ RSpec.describe "/content_pages", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
+      subject { post content_pages_url, params: { content_page: valid_attributes } }
       it "creates a new ContentPage" do
-        expect {
-          post content_pages_url, params: { content_page: valid_attributes }
-        }.to change(ContentPage, :count).by(1)
+        expect { subject }.to change(ContentPage, :count).by(1)
       end
+
+      it "populates content page from input" do
+        subject
+        content_page = ContentPage.last
+        expect(content_page.title).to eq(valid_attributes[:title])
+        expect(content_page.markdown).to eq(valid_attributes[:markdown])
+        expect(content_page.description).to eq(valid_attributes[:description])
+      end
+
+      it "creates a new content page version" do
+        expect { subject }.to change(ContentPageVersion, :count).by(1)
+      end
+
+      it "populates content page version from input" do
+        subject
+        content_page_version = ContentPageVersion.last
+        expect(content_page_version.title).to eq(valid_attributes[:title])
+        expect(content_page_version.markdown).to eq(valid_attributes[:markdown])
+        expect(content_page_version.description).to eq(valid_attributes[:description])
+      end
+
       it "redirects to the created content_page" do
-        post content_pages_url, params: { content_page: valid_attributes }
+        subject
         expect(response).to redirect_to(versions_content_page_url(::ContentPage.last))
       end
     end
@@ -97,19 +118,27 @@ RSpec.describe "/content_pages", type: :request do
   end
 
   describe "PATCH /update" do
+    let!(:content_page) { create :content_page }
     context "with valid parameters" do
-      let(:new_title) { Faker::Lorem.word }
-      let(:content_page) { ContentPage.create! valid_attributes.merge(title: new_title) }
+      let(:params) do
+        { content_page: valid_attributes }
+      end
 
-      it "updates the requested content_page" do
-        patch content_page_url(content_page), params: { content_page: valid_attributes }
-        content_page.reload
-        expect(content_page.title).to eq(new_title)
+      it "creates a new content_page_version" do
+        expect { patch content_page_url(content_page), params: params }.to change(ContentPageVersion, :count).by(1)
+      end
+
+      it "populates content page version from input" do
+        patch content_page_url(content_page), params: params
+        content_page_version = content_page.content_page_versions.last
+        expect(content_page_version.title).to eq(valid_attributes[:title])
+        expect(content_page_version.description).to eq(valid_attributes[:description])
+        expect(content_page_version.markdown).to eq(valid_attributes[:markdown])
+        expect(content_page_version.author).to eq(editor.name)
       end
 
       it "redirects to the content_page versions" do
-        patch content_page_url(content_page), params: { content_page: valid_attributes }
-        content_page.reload
+        patch content_page_url(content_page), params: params
         expect(response).to redirect_to(versions_content_page_url(content_page))
       end
     end
@@ -123,7 +152,6 @@ RSpec.describe "/content_pages", type: :request do
     end
 
     context "with invalid user" do
-      let(:content_page) { create :content_page }
       before { sign_in create(:user) }
 
       subject { patch content_page_url(content_page), params: { content_page: valid_attributes } }

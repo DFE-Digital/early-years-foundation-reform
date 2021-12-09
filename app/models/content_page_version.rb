@@ -5,10 +5,10 @@ class ContentPageVersion < ApplicationRecord
 
   belongs_to :content_page
 
-  validates :markdown, presence: true
-  validates :title, presence: true
-
   validates :title, format: { with: ContentPage::ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: ContentPage::TITLE_FORMAT_ERROR_MESSAGE }
+  validates :title, presence: true
+  validates :markdown, presence: true
+  validates :description, length: { maximum: 254 }
 
   delegate :parent, :parent_id, to: :content_page, allow_nil: true
 
