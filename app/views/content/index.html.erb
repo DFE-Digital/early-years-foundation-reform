@@ -8,9 +8,10 @@
   </div>
 
   <!--Cards section-->
+  <!--7 Areas of Learning Section -->
   <div class="landing-page__section--grey">
     <div class="govuk-width-container">
-      <h2 id="areas-of-learning" class="govuk-heading-l eyfs-top-nav-anchors">Areas of learning</h2>
+      <h2 class="govuk-heading-l">Areas of learning</h2>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           <p class="govuk-body govuk-!-margin-bottom-7">Find information about each area of learning in the EYFS and get
@@ -31,8 +32,11 @@
           </li>
         <% end %>
       </ul>
+    </div>
+    <!--End of 7 Areas of Learning Section -->
 
-      <% if Article.published.present? %>
+    <% if Article.published.present? %>
+      <div class="govuk-width-container">
         <h2 id="get-support-and-guidance" class="govuk-heading-l eyfs-top-nav-anchors">Get support and guidance</h2>
         <ul class="govuk-grid-row eyfs-card-group">
             <li class="govuk-grid-column-one-half eyfs-card-group__item">
@@ -46,21 +50,52 @@
               </div>
             </li>
         </ul>
+      </div>
+    <% end %>
+
+    <!-- Featured Pages Section -->
+    <div class="govuk-width-container">
+      <% @featured_pages.each do |featured_page| %>
+        <h2 class="govuk-heading-l govuk-!-padding-top-5"><%= featured_page.title %></h2>
+        <ul class="govuk-grid-row eyfs-card-group">
+        <% if featured_page.title != "Safeguarding and welfare" %>
+          <li class="govuk-grid-column-one-half eyfs-card-group__item">
+              <div class="eyfs-card eyfs-card--clickable eyfs-card--link">
+                <div class="eyfs-card__content">
+                  <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="<%= path_for_this_page(featured_page) %>">Overview</a>
+                  <svg class="eyfs-card--icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 4.49992L20.0217 15.5213L9 26.5427" stroke="#1D70B8" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            </li>
+        <% end %>
+          <% (featured_page&.children.published.order_by_position || []).each do |child| %>
+            <li class="govuk-grid-column-one-half eyfs-card-group__item">
+              <div class="eyfs-card eyfs-card--clickable eyfs-card--link">
+                <div class="eyfs-card__content">
+                  <a class="govuk-link govuk-!-font-size-19 govuk-!-font-weight-bold govuk-link--no-visited-state" href="<%= path_for_this_page(child) %>"><%= child.title %></a>
+                  <svg class="eyfs-card--icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 4.49992L20.0217 15.5213L9 26.5427" stroke="#1D70B8" stroke-width="2"/>
+                  </svg>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
   </div>
+  <!-- End of Featured Pages Section -->
   <!--End of cards section-->
 
-  <!--Get help to improve your practice-->
+  <!--Other useful resources-->
   <div class="govuk-width-container govuk-!-padding-top-8 govuk-!-margin-bottom-7">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        <%= render partial: 'layouts/show_links_to_children_of_page_with_title' %>
-        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <%== insert_block('other_useful_resources') %>
       </div>
     </div>
   </div>
-
-  <!--End of-->
+  <!--End of Other useful resources-->
 </div>
