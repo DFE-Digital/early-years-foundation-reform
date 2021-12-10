@@ -34,7 +34,7 @@ RSpec.describe "Listing articles", type: :feature do
       expect(page).to have_text("Description of delete me")
       click_on "Delete"
       accept_confirm "Are you sure you want to delete?"
-      expect(page).to_not have_text("Descriptin of delete me")
+      expect(page).to_not have_text("Description of delete me")
     end
   end
 end
