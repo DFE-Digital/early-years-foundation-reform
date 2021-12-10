@@ -9,7 +9,7 @@ RSpec.feature "View content blocks", type: :feature do
     scenario "Navigate to the Content Blocks admin page" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
       block = FactoryBot.create(:content_block)
-      visit "/cms/blocks"
+      visit admin_content_blocks_path
 
       expect(page).to have_text("Blocks")
       expect(page).to have_text(block.description)
@@ -17,7 +17,7 @@ RSpec.feature "View content blocks", type: :feature do
 
     scenario "The content block index page should not have any accessibility errors" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
-      visit "/cms/blocks"
+      visit admin_content_blocks_path
 
       expect(page).to be_axe_clean
     end
@@ -26,7 +26,7 @@ RSpec.feature "View content blocks", type: :feature do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
       block1 = FactoryBot.create(:content_block)
 
-      visit edit_content_block_path(block1)
+      visit edit_admin_content_block_path(block1)
       page.find_field("content_block[markdown]").set("Brand new markdown")
       page.find_field("content_block[description]").set("A new description")
 
@@ -41,7 +41,7 @@ RSpec.feature "View content blocks", type: :feature do
     scenario "An admin user can create a content block" do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
 
-      visit new_content_block_path
+      visit new_admin_content_block_path
       page.find_field("content_block[name]").set(valid_attributes[:name])
       page.find_field("content_block[description]").set(valid_attributes[:description])
       page.find_field("content_block[markdown]").set(valid_attributes[:markdown])
@@ -59,7 +59,7 @@ RSpec.feature "View content blocks", type: :feature do
       sign_in FactoryBot.create(:user, role: User::ADMIN)
       block1 = FactoryBot.create(:content_block)
 
-      visit edit_content_block_path(block1)
+      visit edit_admin_content_block_path(block1)
 
       expect(page.find_field("content-block-name-field", visible: :all).value).to eq(block1.name)
     end

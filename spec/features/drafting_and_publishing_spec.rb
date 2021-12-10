@@ -7,7 +7,7 @@ RSpec.feature "Drafting and publishing pages", type: :feature do
       attributes = FactoryBot.attributes_for :content_page
       parent_page = FactoryBot.create(:content_page, :top_level)
 
-      visit "/cms/pages/new?parent_id=#{parent_page.id}"
+      visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
@@ -27,7 +27,7 @@ RSpec.feature "Drafting and publishing pages", type: :feature do
       attributes = FactoryBot.attributes_for :content_page
       parent_page = FactoryBot.create(:content_page, :top_level)
 
-      visit "/cms/pages/new?parent_id=#{parent_page.id}"
+      visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
@@ -36,13 +36,13 @@ RSpec.feature "Drafting and publishing pages", type: :feature do
       page.click_button("Save")
       saved_page = ContentPage.find_by_title attributes[:title]
 
-      visit versions_content_page_path(saved_page)
+      visit versions_admin_content_page_path(saved_page)
       page.click_link("Delete")
       # The modal dialog is controlled by a different driver
       # and the destroy action happens async
       page.driver.browser.switch_to.alert.accept
 
-      visit "/cms/pages"
+      visit "/admin/pages"
       old_page = ContentPage.find_by_title attributes[:title]
       expect(old_page).to be(nil)
     end
