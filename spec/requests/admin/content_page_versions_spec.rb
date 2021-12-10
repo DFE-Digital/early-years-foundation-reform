@@ -6,14 +6,14 @@ RSpec.describe Admin::ContentPageVersionsController, type: :request do
 
   before { sign_in create(:admin) }
 
-  describe "GET /cms/pages/:content_page_id/content_page_versions/:id/preview_of_draft" do
+  describe "GET /admin/pages/:content_page_id/content_page_versions/:id/preview_of_draft" do
     it "renders successfully" do
       get preview_of_draft_admin_content_page_content_page_version_path(content_page, content_page_version)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /cms/pages/:content_page_id/content_page_versions/:id/publish" do
+  describe "POST /admin/pages/:content_page_id/content_page_versions/:id/publish" do
     subject { post publish_admin_content_page_content_page_version_path(content_page, content_page_version) }
 
     it "deletes content page version" do
@@ -38,14 +38,14 @@ RSpec.describe Admin::ContentPageVersionsController, type: :request do
     end
   end
 
-  describe "GET /cms/pages/:content_page_id/content_page_versions/:id/edit" do
+  describe "GET /admin/pages/:content_page_id/content_page_versions/:id/edit" do
     it "renders successfully" do
       get edit_admin_content_page_content_page_version_path(content_page, content_page_version)
       expect(response).to be_successful
     end
   end
 
-  describe "PATCH /cms/pages/:content_page_id/content_page_versions/:id" do
+  describe "PATCH /admin/pages/:content_page_id/content_page_versions/:id" do
     let(:params) do
       {
         content_page_version: attributes_for(:content_page_version),
@@ -93,7 +93,7 @@ RSpec.describe Admin::ContentPageVersionsController, type: :request do
     end
   end
 
-  describe "DELETE /cms/pages/:content_page_id/content_page_versions/:id" do
+  describe "DELETE /admin/pages/:content_page_id/content_page_versions/:id" do
     before do
       # Ensure only one content_page_version associated with content page
       content_page.content_page_versions.first.destroy! if content_page.content_page_versions.count == 2

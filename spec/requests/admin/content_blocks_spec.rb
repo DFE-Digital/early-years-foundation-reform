@@ -3,21 +3,21 @@ require "rails_helper"
 RSpec.describe Admin::ContentBlocksController, type: :request do
   before { sign_in create(:admin) }
 
-  describe "GET /cms/blocks" do
+  describe "GET /admin/blocks" do
     it "renders page" do
       get admin_content_blocks_path
       expect(response).to be_successful
     end
   end
 
-  describe "GET /cms/blocks/new" do
+  describe "GET /admin/blocks/new" do
     it "renders page" do
       get new_admin_content_block_path
       expect(response).to be_successful
     end
   end
 
-  describe "GET /cms/blocks/:id/edit" do
+  describe "GET /admin/blocks/:id/edit" do
     let(:content_block) { create :content_block }
     it "renders page" do
       get edit_admin_content_block_path(content_block)
@@ -25,7 +25,7 @@ RSpec.describe Admin::ContentBlocksController, type: :request do
     end
   end
 
-  describe "POST /cms/blocks" do
+  describe "POST /admin/blocks" do
     let(:params) do
       { content_block: attributes_for(:content_block) }
     end
@@ -74,13 +74,13 @@ RSpec.describe Admin::ContentBlocksController, type: :request do
     end
   end
 
-  describe "PATCH /cms/blocks/:id" do
+  describe "PATCH /admin/blocks/:id" do
     let(:content_block) { create :content_block }
     let(:name) { Faker::Superhero.name.delete(" ") }
     let(:params) do
       { content_block: { name: name } }
     end
-    subject { patch content_block_path(content_block), params: params }
+    subject { patch admin_content_block_path(content_block), params: params }
 
     it "updates the content block" do
       original_name = content_block.name
