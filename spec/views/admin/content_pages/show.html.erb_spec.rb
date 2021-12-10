@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "content_pages/show", type: :view do
+RSpec.describe "admin/content_pages/show", type: :view do
   before(:each) do
     @content_page = FactoryBot.create(:content_page)
   end

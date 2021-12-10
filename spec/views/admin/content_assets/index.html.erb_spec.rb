@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "content_assets/index", type: :view do
+RSpec.describe "admin/content_assets/index", type: :view do
   before(:each) do
     @content_assets = [
       FactoryBot.create(:content_asset, title: "title 1", alt_text: "hello"),
