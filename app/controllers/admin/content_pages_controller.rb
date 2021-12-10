@@ -10,7 +10,7 @@ module Admin
     # GET /content_pages/1
     def show
       unless @content_page.is_published
-        redirect_to controller: :errors, action: :not_found
+        redirect_to("/404")
       end
     end
 
