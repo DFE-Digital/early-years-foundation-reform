@@ -14,6 +14,7 @@ end
 
 seed_content_pages_from "content_pages/communication_and_language.yml"
 seed_content_pages_from "content_pages/safeguarding_and_welfare.yml"
+seed_content_pages_from "content_pages/get_help_to_improve_your_practice.yml"
 
 Seeder.seed(:content_block)
 Seeder.seed(:user, name_method: :email) if Rails.application.credentials.test_password.present?
