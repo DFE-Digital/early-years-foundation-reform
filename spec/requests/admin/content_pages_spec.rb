@@ -58,7 +58,7 @@ RSpec.describe Admin::ContentPagesController, type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
-      subject { post content_pages_url, params: { content_page: valid_attributes } }
+      subject { post admin_content_pages_path, params: { content_page: valid_attributes } }
       it "creates a new ContentPage" do
         expect {
           post admin_content_pages_path, params: { content_page: valid_attributes }
@@ -115,7 +115,7 @@ RSpec.describe Admin::ContentPagesController, type: :request do
       end
 
       it "creates a new content_page_version" do
-        expect { patch content_page_url(content_page), params: params }.to change(ContentPageVersion, :count).by(1)
+        expect { patch admin_content_page_path(content_page), params: params }.to change(ContentPageVersion, :count).by(1)
       end
 
       it "updates the requested content_page" do
