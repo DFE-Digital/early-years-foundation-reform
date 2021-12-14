@@ -551,6 +551,8 @@ DEPENDENCIES
   rubocop-govuk (~> 4.2)
   scss_lint-govuk
   selenium-webdriver
+  sentry-rails
+  sentry-ruby
   simplecov (~> 0.21)
   spring (>= 2.1.1)
   spring-watcher-listen (~> 2.0.0)
