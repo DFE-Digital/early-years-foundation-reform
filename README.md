@@ -189,6 +189,17 @@ Note: Docker can't be used to connect to AWS
 
 Check the file `manifest.yml` for customisation of name (you may need to change it as there could be a conflict on that name), buildpacks and eventual services (PostgreSQL needs to be [set up](https://docs.cloud.service.gov.uk/deploying_services/postgresql/)).
 
+#### Deploy service unavailable app
+
+1. Run `cf login -a api.london.cloud.service.gov.uk -u USERNAME`, `USERNAME` is your personal GOV.UK PaaS account email address
+2. Run `cd service_unavailable` to change to that directory
+3. Run `cf push` to push that app to Cloud Foundary.
+
+That will deploy any changes of the static site in `/service_unavailable` (see `/service_unavailable/manifest.yml` for target app name)
+
+Use the Github action "Deploy Service Unavailable" to re-route production traffic to the service_unavailable app.
+And use the action "Revoke Service Unavailable" to return the traffic to the main app.
+
 ## Cucumber Tests
 
 ### To run
