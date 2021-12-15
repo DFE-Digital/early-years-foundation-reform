@@ -1,4 +1,22 @@
 ---
+eyfr-test@digital.education.gov.uk:
+  first_name: Test
+  last_name: Admin
+  role: admin
+  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
+
+editor@education.gov.uk:
+  first_name: Fred
+  last_name: Bloggs
+  role: editor
+  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
+
+someone@education.gov.uk:
+  first_name: Jane
+  last_name: Doe
+  role: reader
+  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
+
 brett@education.gov.uk:
   first_name: Brett
   last_name: McHargue
@@ -33,16 +51,4 @@ peter.bromley@education.gov.uk:
   first_name: Peter
   last_name: Bromley
   role: admin
-  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
-
-editor@education.gov.uk:
-  first_name: Fred
-  last_name: Bloggs
-  role: editor
-  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
-
-someone@education.gov.uk:
-  first_name: Jane
-  last_name: Doe
-  role: reader
   password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
