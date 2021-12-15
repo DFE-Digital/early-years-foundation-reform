@@ -60,9 +60,19 @@ RSpec.describe Admin::ContentPagesController, type: :request do
     context "with valid parameters" do
       subject { post admin_content_pages_path, params: { content_page: valid_attributes } }
       it "creates a new ContentPage" do
-        expect {
-          post admin_content_pages_path, params: { content_page: valid_attributes }
-        }.to change(ContentPage, :count).by(1)
+        expect { subject }.to change(ContentPage, :count).by(1)
+      end
+
+      it "populates content page from input" do
+        subject
+        content_page = ContentPage.last
+        expect(content_page.title).to eq(valid_attributes[:title])
+        expect(content_page.markdown).to eq(valid_attributes[:markdown])
+        expect(content_page.description).to eq(valid_attributes[:description])
+      end
+
+      it "creates a new content page version" do
+        expect { subject }.to change(ContentPageVersion, :count).by(1)
       end
 
       it "populates content page version from input" do
