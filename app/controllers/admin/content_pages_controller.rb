@@ -2,19 +2,16 @@ module Admin
   class ContentPagesController < AdminController
     before_action :set_content_page, only: %i[show edit update destroy versions unpublish]
 
-    # GET /content_pages
     def index
       @content_pages = ContentPage.top_level.order_by_position
     end
 
-    # GET /content_pages/1
     def show
       unless @content_page.is_published
         redirect_to("/404")
       end
     end
 
-    # GET /content_pages/new
     def new
       # If the new page is a child, pass through its parent id
       # Pages with a nil parent_id are top_level
@@ -22,7 +19,6 @@ module Admin
       @content_page = ContentPage.new(parent_id: params[:parent_id], position: next_position)
     end
 
-    # POST /content_pages
     def create
       @content_page = ContentPage.new(content_page_params)
       @content_page.author = current_user.name
@@ -42,10 +38,8 @@ module Admin
       end
     end
 
-    # GET /content_pages/1/edit
     def edit; end
 
-    # PATCH/PUT /content_pages/1
     # ContentPage markdown is never directly updated.  Changes happen to markdown
     # as ContentPageVersions are created, edited and published
     # Changes to position are applied directly to the published page, position has
@@ -85,11 +79,9 @@ module Admin
       render :edit
     end
 
-    # DELETE /content_pages/1
     def destroy
       authorize @content_page, :destroy?
       @content_page.destroy!
-      # This was content_pages_url before change if needed
       redirect_to admin_content_pages_path, notice: "Content page was successfully destroyed."
     end
 

@@ -2,25 +2,25 @@ module Admin
   class ContentAssetsController < AdminController
     before_action :set_content_asset, only: %i[show edit update destroy]
 
-  def index
-    @content_assets = ContentAsset.all
-  end
+    def index
+      @content_assets = ContentAsset.all
+    end
 
-  def show; end
+    def show; end
 
-  def new
-    @content_asset = ContentAsset.new
-  end
+    def new
+      @content_asset = ContentAsset.new
+    end
 
-  def edit
-    authorize @content_asset, :edit?
-  end
+    def edit
+      authorize @content_asset, :edit?
+    end
 
-  def create
-    @content_asset = ContentAsset.new(content_asset_params)
+    def create
+      @content_asset = ContentAsset.new(content_asset_params)
 
       authorize @content_asset, :create?
-      # Not sure about what to do here
+
       if upload_rate_limit_exceeded?
         redirect_to admin_content_assets_path, notice: "Only one upload is allowed in each 30 seconds, please wait..."
       elsif @content_asset.save
@@ -31,8 +31,8 @@ module Admin
     end
   end
 
-  def update
-    authorize @content_asset, :update?
+    def update
+      authorize @content_asset, :update?
 
       if @content_asset.update(content_asset_params)
         redirect_to admin_content_asset_path(@content_asset), notice: "Content asset was successfully updated."
@@ -41,8 +41,8 @@ module Admin
       end
     end
 
-  def destroy
-    authorize @content_asset, :destroy?
+    def destroy
+      authorize @content_asset, :destroy?
 
       @content_asset.destroy!
       redirect_to admin_content_assets_url, notice: "Content asset was successfully destroyed."
