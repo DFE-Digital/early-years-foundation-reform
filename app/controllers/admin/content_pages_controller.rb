@@ -75,6 +75,7 @@ module Admin
                                    markdown: content_page_params[:markdown],
                                    author: current_user.name,
                                    content_page: @content_page)
+                                   description: content_page_params[:description])
         redirect_to "#{admin_content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
       else
         render :edit
@@ -108,7 +109,8 @@ module Admin
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: @content_page.markdown,
                                  author: current_user.name,
-                                 content_page: @content_page)
+                                 content_page: @content_page,
+                                 description: @content_page.description))
 
       redirect_to versions_admin_content_page_path(@content_page), notice: t(".notice")
     end
@@ -122,7 +124,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def content_page_params
-      params.require(:content_page).permit(:title, :markdown, :parent_id, :position)
+      params.require(:content_page).permit(:title, :markdown, :parent_id, :position, :description)
     end
   end
 end
