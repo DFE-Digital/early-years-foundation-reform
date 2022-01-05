@@ -30,4 +30,22 @@ module ApplicationHelper
     text = policy(article).publish? ? "Preview and publish" : "Preview"
     link_to text, admin_article_path(article), link_to_args
   end
+
+  def link_to_feedback(args = {})
+    link_to(
+      "Give Feedback",
+      Rails.configuration.x.feedback.remote_url,
+      {
+        class: "govuk-button",
+        data: {
+          track_category: "Onsite Feedback",
+          track_action: "GOV-UK Open Form"
+        },
+        aria: {
+          controls: "something-is-wrong",
+          expanded: "false"
+        }
+      }.merge(args)
+    )
+  end
 end
