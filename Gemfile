@@ -38,7 +38,7 @@ gem "canonical-rails", "~> 0.2"
 
 gem "acts_as_tree", "~> 2.9"
 
-gem "acts_as_paranoid", "~> 0.7"
+gem "acts_as_paranoid", "~> 0.8"
 
 gem "audited", "~> 5.0"
 

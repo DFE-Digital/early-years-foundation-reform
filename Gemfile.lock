@@ -65,9 +65,9 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    acts_as_paranoid (0.7.3)
-      activerecord (>= 5.2, < 7.0)
-      activesupport (>= 5.2, < 7.0)
+    acts_as_paranoid (0.8.0)
+      activerecord (>= 5.2, < 7.1)
+      activesupport (>= 5.2, < 7.1)
     acts_as_tree (2.9.1)
       activerecord (>= 3.0.0)
     addressable (2.8.0)
@@ -275,7 +275,7 @@ GEM
       rake
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
-    minitest (5.14.4)
+    minitest (5.15.0)
     msgpack (1.4.2)
     multi_test (0.1.2)
     multipart-post (2.1.1)
@@ -498,7 +498,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   aarch64-linux-musl
@@ -509,7 +509,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (~> 0.9)
-  acts_as_paranoid (~> 0.7)
+  acts_as_paranoid (~> 0.8)
   acts_as_tree (~> 2.9)
   audited (~> 5.0)
   aws-sdk-s3 (~> 1.109)
