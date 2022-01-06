@@ -1,8 +1,18 @@
 <!--Feedback Section-->
-<div class="govuk-width-container govuk-!-padding-top-4">
+<div id="feedback" class="govuk-width-container govuk-!-padding-top-4" role="dialog" aria-label="feedback">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full govuk-!-padding-left-9 govuk-!-padding-right-9">
-      <%= render "layouts/feedback_default" %>
+      <%
+        partial = case cookies[:feedback_page_useful]
+        when "yes"
+          "positive"
+        when "no"
+          "negative"
+        else
+          "default"
+        end
+      %>
+      <%= render "layouts/feedback_#{partial}" %>
     </div>
   </div>
 </div>

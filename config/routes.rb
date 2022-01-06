@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   end
 
   resources :articles, only: %i[index show]
+  resources :feedbacks, only: %i[create] do
+    post "reset", on: :collection
+  end
 
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"
