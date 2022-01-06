@@ -2,24 +2,39 @@
   <div class="gem-c-feedback__prompt gem-c-feedback__js-show js-prompt" tabindex="-1">
     <div class="gem-c-feedback__prompt-questions js-prompt-questions">
       <h2 class="govuk-heading-s gem-c-feedback__prompt-question">Is this page useful?</h2>
-      <!-- Maybe button exists only to try and capture clicks by bots -->
 
       <ul class="gem-c-feedback__option-list">
         <li class="gem-c-feedback__option-list-item">
-          <button class="govuk-button gem-c-feedback__prompt-link js-page-is-useful" data-track-category="yesNoFeedbackForm" data-track-action="ffYesClick">
+          <%= button_to(
+                feedbacks_path,
+                params: { 'feedback[page_useful]' => 'yes' },
+                class: "govuk-button gem-c-feedback__prompt-link",
+                data: {
+                  track_category: "yesNoFeedbackForm",
+                  track_action: "ffYesClick"
+                }
+              ) do  %>
             Yes <span class="govuk-visually-hidden">this page is useful</span>
-          </button>
+          <% end %>
         </li>
         <li class="gem-c-feedback__option-list-item">
-          <button class="govuk-button gem-c-feedback__prompt-link js-toggle-form js-page-is-not-useful" data-track-category="yesNoFeedbackForm" data-track-action="ffNoClick" aria-controls="page-is-not-useful" aria-expanded="false">
+          <%= button_to(
+                feedbacks_path,
+                params: { 'feedback[page_useful]' => 'no' },
+                class: "govuk-button gem-c-feedback__prompt-link",
+                data: {
+                  track_category: "yesNoFeedbackForm",
+                  track_action: "ffNoClick"
+                }
+              ) do  %>
             No <span class="govuk-visually-hidden">this page is not useful</span>
-          </button>
+          <% end %>
         </li>
       </ul>
     </div>
 
     <div class="gem-c-feedback__prompt-questions gem-c-feedback__prompt-questions--something-is-wrong js-prompt-questions">
-      <%= link_to_feedback class: "govuk-button gem-c-feedback__prompt-link js-toggle-form js-something-is-wrong" %>
+      <%= link_to_feedback class: "govuk-button gem-c-feedback__prompt-link" %>
     </div>
   </div>
 </div>

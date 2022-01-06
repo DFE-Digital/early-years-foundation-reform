@@ -407,3 +407,9 @@
   border: 1px #fff solid;
   min-width: 100px;
 }
+
+@media only screen and (max-width: 350px) {
+  .gem-c-feedback__prompt-link {
+    min-width: 10px;
+  }
+}

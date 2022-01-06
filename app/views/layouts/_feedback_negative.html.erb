@@ -13,7 +13,12 @@
   </div>
 
   <div class="govuk-grid-column-one-quarter">
-    <%= link_to "Close", root_path, class: "govuk-button govuk-button--secondary" %>
+    <%= button_to(
+          "Close",
+          feedbacks_path,
+          params: { 'feedback[page_useful]' => 'reset' },
+          class: "govuk-button govuk-button--secondary"
+        ) %>
   </div>
 </div>
 
