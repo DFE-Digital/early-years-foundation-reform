@@ -4,9 +4,9 @@
 <div class="govuk-body govuk-!-margin-bottom-2">
   <%= @article.published_at&.strftime("%d %B %Y") %>
 </div>
-<div class="articles-img-container">
-  <%= image_tag(url_for(@article.featured_image), class: "articles-responsive-img") if @article.featured_image.attached? %>
-</div>
+
+<%= feature_image(page: @article) %>
+
 <div class="govuk-body gem-c-govspeak">
   <%= translate_markdown(@article.markdown) %>
 </div>
