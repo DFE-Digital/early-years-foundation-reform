@@ -8,7 +8,7 @@
 %div 
   = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
 
-.govuk-body
+.govuk-body.gem-c-govspeak
   = translate_markdown(@article.markdown)
 
 .fixed-footer
