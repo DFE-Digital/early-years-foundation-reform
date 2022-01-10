@@ -28,7 +28,7 @@
         <div class="fixed-footer">
           <%= form.govuk_submit "Save" %>
           <% if action_name === "edit" || action_name === "update" %>
-            <%= link_to 'Cancel', versions_admin_content_page_path(content_page), :data => {:confirm => "Any changes will be lost, are you sure ?", :class => "govuk-link"}%>
+            <%= link_to 'Cancel', versions_admin_content_page_path(content_page), data: { confirm: "Any changes will be lost, are you sure ?" }, class: "govuk-link" %>
           <% end %>
         </div>
       <% end %>
