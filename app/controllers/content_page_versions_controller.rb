@@ -17,7 +17,7 @@ class ContentPageVersionsController < ApplicationController
       @parent_page.destroy!
     end
 
-    redirect_to content_pages_path, notice: "Content page version was successfully destroyed."
+    redirect_to content_pages_path, notice: "Draft successfully deleted"
   end
 
   # GET /content_page_version/1/edit
