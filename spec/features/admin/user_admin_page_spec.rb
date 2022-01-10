@@ -22,7 +22,7 @@ RSpec.describe "User administration", type: :feature do
       expect(current_path).to eq(admin_root_path)
       active_nav = page.find_by_id("navigation").first("li.govuk-header__navigation-item--active")
       title = page.find("h1")
-      expect(active_nav).to have_css("a[href='/admin/users']", visible: true, text: "Admin")
+      expect(active_nav).to have_css("a[href='/admin/users']", visible: true, text: "Users")
       expect(title).to have_text("User administration")
 
       expect(page).to have_link(href: "/admin/users/new", visible: true, text: "Add user")
