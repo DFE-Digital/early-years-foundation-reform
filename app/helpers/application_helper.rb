@@ -15,7 +15,7 @@ module ApplicationHelper
     return unless page.featured_image.attached?
 
     tag.div(class: "page-img-container") do
-      image_tag(url_for(page.featured_image), class: "page-responsive-img", alt: page.featured_alt_text, title: page.title, width: "500px")
+      image_tag(url_for(page.featured_image), class: "page-responsive-img", alt: page.featured_alt_text, title: page.featured_alt_text, width: "500px")
     end
   end
 end
