@@ -149,8 +149,8 @@ $card-border-hover-color: #003078;
   ========================================================================== */
 
   .article-card-group {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 218px);
     justify-content: space-around;
     margin-bottom: govuk-spacing(2);
     padding: 0;
