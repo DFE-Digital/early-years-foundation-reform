@@ -7,6 +7,6 @@
 <div class="articles-img-container">
   <%= image_tag(url_for(@article.featured_image), class: "articles-responsive-img") if @article.featured_image.attached? %>
 </div>
-<div class="govuk-body">
+<div class="govuk-body gem-c-govspeak">
   <%= translate_markdown(@article.markdown) %>
 </div>
