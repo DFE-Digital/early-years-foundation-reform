@@ -535,7 +535,7 @@ DEPENDENCIES
   haml (~> 5.2)
   htmlentities (= 4.3.4)
   launchy
-  listen (>= 3.0.5, < 3.6)
+  listen (>= 3.0.5, < 3.8)
   pg (>= 0.18, < 2.0)
   pry-byebug (~> 3.9)
   puma (~> 5.5)
