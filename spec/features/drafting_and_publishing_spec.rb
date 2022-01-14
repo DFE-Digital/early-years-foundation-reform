@@ -22,9 +22,4 @@ RSpec.feature "Drafting and publishing pages", type: :feature do
       expect(saved_page.content_page_versions.count).to eq(1)
     end
   end
-
-  describe "editing an existing draft" do
-    it "should apply changes to the existing draft and not create another one" do
-    end
-  end
 end
