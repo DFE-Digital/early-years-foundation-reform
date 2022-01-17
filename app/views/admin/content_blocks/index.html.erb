@@ -1,0 +1,26 @@
+<h1 class="govuk-heading-l">Blocks</h1>
+<p class="govuk-body-s">A block is part of one of the fixed pages that you can edit. Blocks will usually be created by
+  developers, only the content will be editable</p>
+<%= link_to 'Create a block', new_admin_content_block_path, :class => "govuk-button" %>
+
+<div>
+  <% if @content_blocks.count == 0 %>
+    <p class="govuk-error-message">No blocks have been created yet</p>
+  <% end %>
+
+  <div>
+    <% @content_blocks.each_with_index do |content_block, index| %>
+      <div>
+        <p class="govuk-heading-m">
+          <%= content_block.name %>
+        </p>
+        <p class="govuk-body-s">
+          <%= content_block.description %>
+          <span>
+            <%= link_to 'Edit', edit_admin_content_block_path(content_block), { :class => "govuk-link" } %>
+          </span>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

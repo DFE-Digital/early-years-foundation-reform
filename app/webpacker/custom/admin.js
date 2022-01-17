@@ -8,7 +8,7 @@ export function createPreview(el, target) {
     }
   });
 
-  $.post( "/cms/preview_markdown", { markdown: $(el).val() })
+  $.post( "/admin/preview_markdown", { markdown: $(el).val() })
     .done(function( response ) {
       $(target).html( response.html );
     });

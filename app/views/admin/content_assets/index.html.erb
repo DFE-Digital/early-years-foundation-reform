@@ -1,0 +1,25 @@
+<h1  class="govuk-heading-l">Assets</h1>
+
+<%= link_to 'Add asset', new_admin_content_asset_path, :class => "govuk-button" %>
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Title</th>
+      <th scope="col" class="govuk-table__header">Alt Text</th>
+      <th scope="col" class="govuk-table__header"></th>
+    </tr>
+  </thead>
+
+  <tbody class="govuk-table__body">
+    <% @content_assets.each do |content_asset| %>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell" ><%= content_asset.title %></td>
+        <td class="govuk-table__cell" ><%= content_asset.alt_text %></td>
+        <td class="govuk-table__cell"><%= link_to 'Edit', edit_admin_content_asset_path(content_asset), { :class => "govuk-link" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

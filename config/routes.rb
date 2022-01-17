@@ -9,15 +9,6 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
-  namespace :admin do
-    root to: "users#index"
-    resources :users
-    resources :articles do
-      post "publish", on: :member
-      post "unpublish", on: :member
-    end
-  end
-
   constraints CmsRouteConstraint.new do
     devise_for :users
     devise_scope :user do
@@ -25,7 +16,13 @@ Rails.application.routes.draw do
       delete "sign_out", to: "devise/sessions#destroy"
     end
 
-    scope :cms do
+    namespace :admin do
+      root to: "users#index"
+      resources :users
+      resources :articles do
+        post "publish", on: :member
+        post "unpublish", on: :member
+      end
       resources :content_pages, path: "pages" do
         get "versions", on: :member
         post "unpublish", on: :member
