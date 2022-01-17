@@ -5,8 +5,7 @@
 %h1.govuk-heading-xl
   = @article.title
 
-%div 
-  = image_tag(url_for(@article.featured_image), width: "500px") if @article.featured_image.attached?
+= feature_image(page: @article)
 
 .govuk-body.gem-c-govspeak
   = translate_markdown(@article.markdown)
