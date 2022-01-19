@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       end
       resources :content_pages, path: "pages" do
         get "versions", on: :member
+        get "preview_of_live", on: :member
         post "unpublish", on: :member
         resources :content_page_versions do
           get "preview_of_draft", on: :member
