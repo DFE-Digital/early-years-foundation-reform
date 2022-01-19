@@ -217,7 +217,7 @@ RSpec.describe Admin::ContentPagesController, type: :request do
   describe "GET /admin/pages/:content_page_id/preview_of_live" do
     it "renders successfully" do
       content_page = create(:content_page, :published)
-      get preview_of_live_admin_content_page_path(content_page, id: page_to_render.id)
+      get preview_of_live_admin_content_page_path(content_page, id: content_page.id)
       expect(response).to be_successful
     end
   end
