@@ -29,7 +29,6 @@ module Admin
         render :new
       end
     end
-  end
 
     def update
       authorize @content_asset, :update?
