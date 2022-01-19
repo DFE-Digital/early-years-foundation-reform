@@ -9,7 +9,7 @@
           |<%= link_to 'Add a child page', new_admin_content_page_path(parent_id: page_to_render.id), { class: "govuk-link" } %>
         <% end %>
         <% if (page_to_render.is_published) %>
-          | <%= link_to 'Preview', path_for_this_page(page_to_render), { class: "govuk-link", target: "_blank" } %>
+          | <%= link_to 'Preview', preview_of_live_admin_content_page_path(@content_page, id: page_to_render.id), { class: "govuk-link", target: "_blank" } %>
         <% end %>
         <span><%= page_to_render.is_published ? "Published - " : "Unpublished - " %><%= page_to_render.content_page_versions.count %> draft<%= page_to_render.content_page_versions.count > 1 ? "s": ""%></span>
       </span>
