@@ -13,7 +13,8 @@ class Article < ApplicationRecord
   has_one_attached :featured_image
   has_one_attached :thumbnail_image
 
-  validates :title, :description, :markdown, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text, presence: true
+  validates :title, :description, :markdown, presence: true
+  validates :title, :featured_image, :thumbnail_image, :featured_alt_text, :thumbnail_alt_text, presence: true, unless: :draft?
 
   validate :image_file_ext_validation
   validates :featured_image, :thumbnail_image, content_type: VALID_CONTENT_TYPE, antivirus: true
@@ -24,6 +25,10 @@ class Article < ApplicationRecord
     published: "published",
     unpublished: "unpublished",
   }, _default: "draft"
+
+  def complete?
+    featured_image.attached? && thumbnail_image.attached? && featured_alt_text.present? && thumbnail_alt_text.present?
+  end
 
 private
 

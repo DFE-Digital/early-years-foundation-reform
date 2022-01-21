@@ -6,6 +6,12 @@ class ArticlePolicy < ContentPagePolicy
   def publish?
     return if record.new_record?
 
+    !record.published? && record.complete?
+  end
+
+  def preview?
+    return if record.new_record?
+
     !record.published?
   end
 end

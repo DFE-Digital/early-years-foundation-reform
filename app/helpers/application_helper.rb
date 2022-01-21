@@ -12,10 +12,15 @@ module ApplicationHelper
   end
 
   def feature_image(page:)
-    return unless page.featured_image.attached?
-
-    tag.div(class: "page-img-container") do
-      image_tag(url_for(page.featured_image), class: "page-responsive-img", alt: page.featured_alt_text, title: page.featured_alt_text, width: "500px")
+    if page.featured_image.attached?
+      tag.div(class: "page-img-container") do
+        image_tag(url_for(page.featured_image), class: "page-responsive-img", alt: page.featured_alt_text, title: page.featured_alt_text, width: "500px")
+      end
+    else
+      tag.div(class: "page-img-container") do
+        image_text = page.featured_alt_text || "featured image alt text missing"
+        image_tag("apple.jpeg", class: "page-responsive-img", alt: image_text, title: image_text)
+      end
     end
   end
 end

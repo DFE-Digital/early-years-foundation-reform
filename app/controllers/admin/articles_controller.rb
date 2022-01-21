@@ -41,6 +41,8 @@ module Admin
     end
 
     def publish
+      authorize @article
+
       @article.published!
       @article.touch(:published_at)
       redirect_to admin_articles_path(anchor: "published"), notice: t(".notice")
