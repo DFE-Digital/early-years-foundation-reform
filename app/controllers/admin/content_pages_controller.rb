@@ -93,14 +93,7 @@ module Admin
     end
 
     def preview_of_live
-      @page = ContentPage.new(title: @content_page.title,
-                              markdown: @content_page.markdown,
-                              position: @content_page.position,
-                              description: @content_page.description,
-                              previous_id: @content_page.id,
-                              next_id: @content_page.id,
-                              parent_id: @content_page.parent_id)
-
+      @page = @content_page
       render layout: "application"
     end
 
