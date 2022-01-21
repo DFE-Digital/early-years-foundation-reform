@@ -50,7 +50,7 @@
               <%= nav_link_to(title: "Articles", path: admin_articles_path) if Feature.enabled?(:support_articles) %>
               <%= nav_link_to(title: "Assets", path: admin_content_assets_path) %>
               <li class="govuk-header__navigation-item">
-                <%= link_to "See the site", "/", class: "govuk-header__link" %>
+                <%= link_to "See the site", "/", class: "govuk-header__link", target: :_blank %>
               </li>
               <li class="govuk-header__navigation-item">
                 <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "govuk-header__link") %>
