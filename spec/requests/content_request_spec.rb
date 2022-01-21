@@ -55,7 +55,7 @@ RSpec.describe "Contents", type: :request do
     end
 
     context "with an article present" do
-      before { create :article, :published }
+      before { create :complete_article, :published }
 
       it "does display an articles section" do
         get root_path

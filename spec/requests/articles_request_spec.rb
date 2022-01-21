@@ -3,7 +3,7 @@ require "axe-rspec"
 
 RSpec.describe "Articles", type: :request do
   let(:a_page) do
-    FactoryBot.create(:article, :published)
+    FactoryBot.create(:complete_article, :published)
   end
 
   before :all do
