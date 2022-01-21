@@ -109,9 +109,10 @@ Check out [documentation](/documentation) folder
 
 1. Run `bundle install` to install the gem dependencies
 2. Run `yarn` to install node dependencies
-3. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
-4. Run `bundle exec rails server` to launch the app on http://localhost:3000
-5. Run `./bin/webpack-dev-server` in a separate shell for faster compilation of assets
+3. Copy the .env.development.example settings into the .env file
+4. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
+5. Run `bundle exec rails server` to launch the app on http://localhost:3000
+6. Run `./bin/webpack-dev-server` in a separate shell for faster compilation of assets
 
 ## Whats included in this boilerplate?
 
