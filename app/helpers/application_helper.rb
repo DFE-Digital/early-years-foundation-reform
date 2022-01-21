@@ -39,13 +39,13 @@ module ApplicationHelper
         class: "govuk-button",
         data: {
           track_category: "Onsite Feedback",
-          track_action: "GOV-UK Open Form"
+          track_action: "GOV-UK Open Form",
         },
         aria: {
           controls: "something-is-wrong",
-          expanded: "false"
-        }
-      }.merge(args)
+          expanded: "false",
+        },
+      }.merge(args),
     )
   end
 end

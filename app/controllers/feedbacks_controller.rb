@@ -1,14 +1,12 @@
 class FeedbacksController < ApplicationController
-  # rubocop:disable Rails/SaveBang
   # POST /feedbacks
   def create
-    feedback = Feedback.create(feedback_params)
+    feedback = Feedback.new(feedback_params)
     cookies[:feedback_page_useful] = cookie(feedback)
     uri = redirect_uri
     uri.fragment = "feedback"
     redirect_to uri.to_s
   end
-# rubocop:enable Rails/SaveBang
 
 private
 
@@ -21,6 +19,6 @@ private
   end
 
   def feedback_params
-    params.require(:feedback).permit(:page_useful).merge(page_url: request.referer)
+    params.require(:feedback).permit(:page_useful)
   end
 end
