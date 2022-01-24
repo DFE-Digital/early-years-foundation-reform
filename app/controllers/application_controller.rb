@@ -20,8 +20,9 @@ protected
     ENV["RELEASE_VERSION"] || "-"
   end
 
-  private
-  def after_sign_out_path_for(resource_or_scope)
-    request.referrer
+private
+
+  def after_sign_out_path_for(_resource_or_scope)
+    request.referer
   end
 end
