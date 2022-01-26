@@ -4,7 +4,7 @@ RSpec.describe "Edit article", type: :feature do
   context "draft articles" do
     before do
       login_as(create(:admin))
-      create :complete_article, title: "Old wrong title"
+      create :article, :complete, title: "Old wrong title"
       visit "admin/articles#draft"
     end
 
@@ -27,8 +27,8 @@ RSpec.describe "Edit article", type: :feature do
   context "published and unpublished articles" do
     before do
       login_as(create(:admin))
-      create :complete_article, :published, title: "Old wrong title", description: "this is the description"
-      create :complete_article, :unpublished, title: "Unpublished title", description: "the unpublished article description"
+      create :article, :complete, :published, title: "Old wrong title", description: "this is the description"
+      create :article, :complete, :unpublished, title: "Unpublished title", description: "the unpublished article description"
       visit "admin/articles#published"
     end
 

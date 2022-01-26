@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Admin::ArticlesController, type: :request do
-  let(:article) { create :complete_article }
+  let(:article) { create :article, :complete }
   let(:incomplete_article) { create :article }
 
   before { login_as create(:admin) }

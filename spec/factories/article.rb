@@ -7,7 +7,7 @@ FactoryBot.define do
     markdown { "# Fake title - #{Faker::Lorem.word}" }
     traits_for_enum :status, Article.statuses.keys
 
-    factory :complete_article do
+    trait :complete do
       featured_image { Rack::Test::UploadedFile.new("spec/fixtures/files/sample.jpeg", "image/jpeg") }
       thumbnail_image { Rack::Test::UploadedFile.new("spec/fixtures/files/sample.jpeg", "image/jpeg") }
       featured_alt_text { Faker::Lorem.sentence }

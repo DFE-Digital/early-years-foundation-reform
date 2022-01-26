@@ -23,4 +23,11 @@ module ApplicationHelper
       end
     end
   end
+
+  def link_to_preview(article, link_to_args={})
+    return unless policy(article).preview?
+
+    text = policy(article).publish? ? 'Preview and publish' : 'Preview'
+    link_to text, admin_article_path(article), link_to_args
+  end
 end
