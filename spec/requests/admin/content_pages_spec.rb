@@ -214,6 +214,14 @@ RSpec.describe Admin::ContentPagesController, type: :request do
     end
   end
 
+  describe "GET /admin/pages/:content_page_id/preview_of_live" do
+    it "renders successfully" do
+      content_page = create(:content_page, :published)
+      get preview_of_live_admin_content_page_path(content_page, id: content_page.id)
+      expect(response).to be_successful
+    end
+  end
+
   describe "POST /admin/pages/:id/unpublish" do
     let!(:content_page) { create :content_page, :published }
     subject { post unpublish_admin_content_page_path(content_page) }
