@@ -95,7 +95,7 @@ group :test do
 
   gem "capybara", "~> 3.36"
   gem "launchy"
-  gem "rspec-rails", "~> 5.0"
+  gem "rspec-rails", "~> 5.1"
   gem "selenium-webdriver"
   gem "simplecov",  "~> 0.21", require: false
   gem "webdrivers", "~> 4.6"
