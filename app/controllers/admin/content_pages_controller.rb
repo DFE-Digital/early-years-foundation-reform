@@ -1,6 +1,6 @@
 module Admin
   class ContentPagesController < AdminController
-    before_action :set_content_page, only: %i[show edit update destroy versions unpublish]
+    before_action :set_content_page, only: %i[show edit update destroy preview_of_live versions unpublish]
 
     def index
       @content_pages = ContentPage.top_level.order_by_position
@@ -90,6 +90,11 @@ module Admin
       html = GovspeakDecorator.translate_markdown(params["markdown"])
 
       render json: { html: html }
+    end
+
+    def preview_of_live
+      @page = @content_page
+      render layout: "application"
     end
 
     def versions; end
