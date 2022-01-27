@@ -1,0 +1,12 @@
+<strong aria-label="Preview label" class="govuk-tag">Preview</strong>
+<% if @content_page.parent %>
+  <span class="govuk-caption-l"><%= @content_page.parent.title %></span>
+<% end %>
+<h1 class="govuk-heading-l">
+  <%= @content_page.title %>
+</h1>
+<%= translate_markdown(@content_page.markdown) %>
+
+<div class="fixed-footer">
+  <%= link_to 'Back',  versions_admin_content_page_path(@content_page) %>
+</div>
