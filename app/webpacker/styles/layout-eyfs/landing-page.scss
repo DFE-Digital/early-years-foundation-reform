@@ -19,7 +19,7 @@
 
 }
 
-//article styles
+//page styles
 
 .articles-landing-page__section--grey {
 
@@ -27,13 +27,13 @@
   box-shadow: 0 -1px 0px 0 rgba(0,0,0,0.2);
 }
 
-.articles-img-container{
+.page-img-container{
   max-height: 360px;
   max-width: 960px;
   overflow: hidden;
 }
 
-.articles-responsive-img{
+.page-responsive-img{
   display: inline-block;
   height: auto;
   width: 960px;

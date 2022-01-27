@@ -80,7 +80,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem "listen", ">= 3.0.5", "< 3.6"
+  gem "listen", ">= 3.0.5", "< 3.8"
   gem "web-console", ">= 3.3.0"
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -104,7 +104,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "devise-security", "~> 0.16.0"
+gem "devise-security", "~> 0.17.0"
 
 gem "govuk_design_system_formbuilder", "~> 2.8"
 

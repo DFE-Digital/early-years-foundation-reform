@@ -4,14 +4,9 @@
 <div class="govuk-body govuk-!-margin-bottom-2">
   <%= @article.published_at&.strftime("%d %B %Y") %>
 </div>
-<div class="articles-img-container">
-  <%= image_tag(url_for(@article.featured_image), class: "articles-responsive-img") if @article.featured_image.attached? %>
-</div>
-<div class="govuk-body">
+
+<%= feature_image(page: @article) %>
+
+<div class="govuk-body gem-c-govspeak">
   <%= translate_markdown(@article.markdown) %>
-</div>
-<div class="govuk-grid-row govuk-!-padding-top-6 govuk-!-margin-bottom-8">
-  <div class="govuk-grid-column-full">
-    <%== insert_block('other_useful_resources') %>
-  </div>
 </div>

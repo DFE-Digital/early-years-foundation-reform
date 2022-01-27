@@ -6,35 +6,35 @@ RSpec.feature "View pages", type: :feature do
 
   scenario "Navigate to Content Pages" do
     sign_in FactoryBot.create(:user)
-    visit "/cms/pages"
+    visit "/admin/pages"
 
     expect(page).to have_text("Pages")
   end
 
   scenario "The CMS index page should not have any accessibility errors" do
     sign_in FactoryBot.create(:user)
-    visit "/cms/pages"
+    visit "/admin/pages"
 
     expect(page).to be_axe_clean
   end
 
   scenario "Navigate to a top level page and see the title can't be edited" do
     sign_in FactoryBot.create(:user)
-    visit "/cms/pages/#{parent_page.id}/edit"
+    visit "/admin/pages/#{parent_page.id}/edit"
 
     page.find_field("content_page[title]", disabled: true)
   end
 
   scenario "Navigate to a child page and see the title can be edited" do
     sign_in FactoryBot.create(:user)
-    visit "/cms/pages/#{child_page.id}/edit"
+    visit "/admin/pages/#{child_page.id}/edit"
 
     page.find_field("content_page[title]", disabled: false)
   end
 
   scenario "The CMS edit page should not have any accessibility errors" do
     sign_in FactoryBot.create(:user)
-    visit "/cms/pages/#{parent_page.id}/edit"
+    visit "/admin/pages/#{parent_page.id}/edit"
 
     expect(page).to be_axe_clean
   end
@@ -42,7 +42,7 @@ RSpec.feature "View pages", type: :feature do
   scenario "A user with the role of editor should be able to edit pages in the CMS" do
     sign_in FactoryBot.create(:user, :editor)
 
-    visit "/cms/pages/#{child_page.id}/edit"
+    visit "/admin/pages/#{child_page.id}/edit"
 
     page.find_field("content_page[markdown]").set("some text")
 
@@ -55,7 +55,7 @@ RSpec.feature "View pages", type: :feature do
     sign_in FactoryBot.create(:user, :reader)
     attributes = FactoryBot.attributes_for :content_page
 
-    visit "/cms/pages/#{child_page.id}/edit"
+    visit "/admin/pages/#{child_page.id}/edit"
 
     page.find_field("content_page[title]").set(attributes[:title])
     page.find_field("content_page[markdown]").set(attributes[:markdown])
@@ -71,7 +71,7 @@ RSpec.feature "View pages", type: :feature do
       sign_in FactoryBot.create(:user, :editor)
       attributes = FactoryBot.attributes_for :content_page
 
-      visit "/cms/pages/new?parent_id=#{parent_page.id}"
+      visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
@@ -90,7 +90,7 @@ RSpec.feature "View pages", type: :feature do
   scenario "The CMS create page page should not have any accessibility errors" do
     sign_in FactoryBot.create(:editor)
 
-    visit "/cms/pages/new?parent_id=#{child_page.id}"
+    visit "/admin/pages/new?parent_id=#{child_page.id}"
 
     expect(page).to be_axe_clean
   end
@@ -99,7 +99,7 @@ RSpec.feature "View pages", type: :feature do
     sign_in FactoryBot.create(:reader)
     attributes = FactoryBot.attributes_for :content_page
 
-    visit "/cms/pages/new?parent_id=#{child_page.id}"
+    visit "/admin/pages/new?parent_id=#{child_page.id}"
 
     page.find_field("content_page[title]").set(attributes[:title])
     page.find_field("content_page[markdown]").set(attributes[:markdown])
