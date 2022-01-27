@@ -3,7 +3,7 @@ name: deploy_to_dev
 on:
   push:
     branches:
-      - develop
+      - main
     paths-ignore:
       - 'documentation/**'
 
