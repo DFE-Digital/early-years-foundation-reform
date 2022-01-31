@@ -28,7 +28,11 @@
         <div class="fixed-footer">
           <%= form.govuk_submit "Save" %>
           <% if action_name === "edit" || action_name === "update" %>
+<<<<<<< HEAD:app/views/admin/content_pages/_form.html.erb
             <%= link_to 'Cancel', versions_admin_content_page_path(content_page), data: { confirm: "Any changes will be lost, are you sure ?" }, class: "govuk-link" %>
+=======
+            <%= link_to 'Cancel', versions_content_page_path(content_page), data: { confirm: "Any changes will be lost, are you sure ?" }, class: "govuk-link" %>
+>>>>>>> 36a4224 (Hfeyp 597 remove back button on edit page screen (#530)):app/views/content_pages/_form.html.erb
           <% end %>
         </div>
       <% end %>
