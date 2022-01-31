@@ -29,15 +29,13 @@
 
 .page-img-container{
   max-height: 360px;
-  max-width: 960px;
-  overflow: hidden;
 }
 
 .page-responsive-img{
-  display: inline-block;
-  height: auto;
   width: 960px;
   max-width: 100%;
+  max-height: 360px;
+  object-fit: cover;
 }
 
 //styles for the card component
