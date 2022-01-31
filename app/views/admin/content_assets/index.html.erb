@@ -3,7 +3,7 @@
 
 <% get_all_content_pages %>
 <%= govuk_accordion do |accordion|
-  @content_pages.each do |content_page|
+  get_all_content_pages.each do |content_page|
     accordion.section(heading_text: content_page.title) do %>
 
       <table class="govuk-table">
