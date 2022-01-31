@@ -335,8 +335,13 @@
 
 //styles for feedback
 
-.js-enabled .gem-c-feedback__js-show, .js-enabled .gem-c-feedback__prompt-success, .js-enabled .gem-c-feedback__prompt-questions, .js-enabled .gem-c-feedback__error-summary {
-  display: block;
+.js-enabled {
+  .gem-c-feedback__js-show,
+  .gem-c-feedback__prompt-success,
+  .gem-c-feedback__prompt-questions,
+  .gem-c-feedback__error-summary {
+    display: inline-block;
+  }
 }
 
 .gem-c-feedback {
@@ -359,7 +364,7 @@
 .gem-c-feedback__prompt-questions {
   text-align: center;
   border-bottom: 1px solid #fff;
-  padding: 25px 25px 25px 25px;
+  padding: 15px 25px 0;
   box-sizing: border-box;
 }
 
@@ -401,4 +406,10 @@
   box-shadow: 0 2px 0 #fff;
   border: 1px #fff solid;
   min-width: 100px;
+}
+
+@media only screen and (max-width: 350px) {
+  .gem-c-feedback__prompt-link {
+    min-width: 10px;
+  }
 }

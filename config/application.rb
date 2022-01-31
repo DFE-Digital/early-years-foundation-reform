@@ -46,5 +46,7 @@ module GovukRailsBoilerplate
     config.space = ENV.fetch( 'DOMAIN', "eyfs-dev" ).split(".").first
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
+
+    config.x.feedback.remote_url = "https://docs.google.com/forms/d/e/1FAIpQLSeLpjkKhcwKUjBKRx29fUgzgslSAkE9pPzkcmp3Oer5T6JHDw/viewform"
   end
 end
