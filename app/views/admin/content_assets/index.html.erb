@@ -1,6 +1,7 @@
 <h1  class="govuk-heading-l">Assets</h1>
 <%= govuk_button_link_to 'Add asset', new_admin_content_asset_path, class: "govuk-button" %>
 
+<% get_all_content_pages %>
 <%= govuk_accordion do |accordion|
   @content_pages.each do |content_page|
     accordion.section(heading_text: content_page.title) do %>
@@ -16,7 +17,7 @@
 
         <tbody class="govuk-table__body">
           <% @content_assets.each do |content_asset| %>
-            <% if content_asset.page_name == content_page.title %>
+            <% if content_asset.page_name.to_i == content_page.position %>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><%= image_tag(url_for(content_asset.asset_file), class: 'govuk-!-width-full') %></td>
                 <td class="govuk-table__cell" ><%= content_asset.title %></td>
