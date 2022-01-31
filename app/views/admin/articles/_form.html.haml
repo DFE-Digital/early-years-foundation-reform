@@ -16,5 +16,5 @@
     = form.govuk_text_field :thumbnail_alt_text, label: { text: "Thumbnail image alternate text"}
   .govuk-button-group
     = link_to "Cancel", admin_articles_path, class: "govuk-button govuk-button--secondary"
-    = link_to('Preview', admin_article_path(article), class: "govuk-button govuk-button--secondary", id: dom_id(article, :preview), target: "_blank") unless article.new_record?
+    = link_to('Preview', admin_article_path(article), class: "govuk-button govuk-button--secondary", id: dom_id(article, :preview), target: "_blank") if policy(article).preview?
     = form.submit "Save", :class => "govuk-button"
