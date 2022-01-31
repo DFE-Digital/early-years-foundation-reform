@@ -4,7 +4,6 @@ module Admin
 
     def index
       @content_assets = ContentAsset.all
-      @content_pages = ContentPage.top_level.order_by_position
     end
 
     def show; end
