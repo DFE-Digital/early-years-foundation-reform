@@ -45,10 +45,17 @@
           <nav>
             <ul id="navigation" class="govuk-header__navigation" aria-label="Top Level Navigation">
               <%= nav_link_to(title: "Admin", path: admin_users_path) if current_user.admin? %>
+<<<<<<< HEAD
               <%= nav_link_to(title: "Blocks", path: admin_content_blocks_path) if current_user.admin? %>
               <%= nav_link_to(title: "Pages", path: admin_content_pages_path) %>
               <%= nav_link_to(title: "Articles", path: admin_articles_path) %>
               <%= nav_link_to(title: "Assets", path: admin_content_assets_path) %>
+=======
+              <%= nav_link_to(title: "Blocks", path: content_blocks_path) if current_user.admin? %>
+              <%= nav_link_to(title: "Pages", path: content_pages_path) %>
+              <%= nav_link_to(title: "Articles", path: admin_articles_path) %>
+              <%= nav_link_to(title: "Assets", path: content_assets_path) %>
+>>>>>>> 796855d (remove conditional so Articles link always displays (#527))
               <li class="govuk-header__navigation-item">
                 <%= link_to "See the site", "/", class: "govuk-header__link", target: :_blank %>
               </li>
