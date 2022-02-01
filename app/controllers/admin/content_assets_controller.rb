@@ -60,7 +60,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def content_asset_params
-      params.require(:content_asset).permit(:title, :asset_file, :alt_text, :page_name)
+      params.require(:content_asset).permit(:title, :asset_file, :alt_text, :content_page_id)
     end
   end
 end

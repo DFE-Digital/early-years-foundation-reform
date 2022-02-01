@@ -16,7 +16,7 @@
 
         <tbody class="govuk-table__body">
           <% @content_assets.each do |content_asset| %>
-            <% if content_asset.page_name.to_i == content_page.position %>
+            <% if content_asset.content_page_id == content_page.position %>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><%= image_tag(url_for(content_asset.asset_file), class: 'govuk-!-width-full') %></td>
                 <td class="govuk-table__cell" ><%= content_asset.title %></td>
