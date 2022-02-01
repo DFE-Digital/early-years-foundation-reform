@@ -1,25 +1,35 @@
 <h1  class="govuk-heading-l">Assets</h1>
 
-<%= link_to 'Add asset', new_admin_content_asset_path, :class => "govuk-button" %>
+<%= govuk_accordion do |accordion|
+accordion.section(heading_text: "Communication and langauge", expanded: true) do %>
+  <%= govuk_button_link_to 'Add asset', new_admin_content_asset_path, :class => "govuk-button" %>
 
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Title</th>
-      <th scope="col" class="govuk-table__header">Alt Text</th>
-      <th scope="col" class="govuk-table__header"></th>
-    </tr>
-  </thead>
-
-  <tbody class="govuk-table__body">
-    <% @content_assets.each do |content_asset| %>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell" ><%= content_asset.title %></td>
-        <td class="govuk-table__cell" ><%= content_asset.alt_text %></td>
-        <td class="govuk-table__cell"><%= link_to 'Edit', edit_admin_content_asset_path(content_asset), { :class => "govuk-link" } %></td>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Image</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-two-thirds">Name</th>
+        <th scope="col" class="govuk-table__header">Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody class="govuk-table__body">
+      <% @content_assets.each do |content_asset| %>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><%= image_tag(url_for(content_asset.asset_file), :class=>'govuk-!-width-full') %></td>
+          <td class="govuk-table__cell" ><%= content_asset.title %></td>
+          <td class="govuk-table__cell">
+            <%= govuk_button_link_to 'Edit', edit_admin_content_asset_path(content_asset), secondary: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end
+
+accordion.section(heading_text: "Physical development") { tag.p("Two content") }
+
+accordion.section(heading_text: "Personal, social and emotional development") { tag.p("Three content") }
+end %>
 
 <br>
