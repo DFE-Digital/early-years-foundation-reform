@@ -13,7 +13,7 @@
   <div class="govuk-form-group">
     <%= form.govuk_text_field :title, width: 'three-quarters' %>
     <%= form.govuk_text_field :alt_text, label: { text: "Alternate text" }, width: 'three-quarters' %>
-    <%= form.govuk_collection_radio_buttons :page_name, get_all_content_pages, :position, :title, legend: { text: 'Page title' } %>
+    <%= form.govuk_collection_radio_buttons :page_name, ContentPage.top_level.order_by_position, :position, :title, legend: { text: 'Page title' } %>
     <%= form.govuk_file_field :asset_file, label: { text: "Asset file" }, width: 'one-half', hint: { text: "Upload an asset file less than 2MB.</br>Valid extensions are PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG".html_safe} %>
     <p class="govuk-body" id="content_asset_file_size"></p>
   </div>
