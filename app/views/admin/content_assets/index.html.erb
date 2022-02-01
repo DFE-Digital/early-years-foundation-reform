@@ -1,9 +1,8 @@
 <h1  class="govuk-heading-l">Assets</h1>
 <%= govuk_button_link_to 'Add asset', new_admin_content_asset_path, class: "govuk-button" %>
 
-<% get_all_content_pages %>
 <%= govuk_accordion do |accordion|
-  @content_pages.each do |content_page|
+  get_all_content_pages.each do |content_page|
     accordion.section(heading_text: content_page.title) do %>
 
       <table class="govuk-table">
