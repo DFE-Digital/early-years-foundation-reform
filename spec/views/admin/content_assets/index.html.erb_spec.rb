@@ -3,8 +3,8 @@ require "rails_helper"
 RSpec.describe "admin/content_assets/index", type: :view do
   before(:each) do
     @content_assets = [
-      FactoryBot.create(:content_asset, title: "title 1", alt_text: "hello", content_page_id: 1),
-      FactoryBot.create(:content_asset, title: "title 2", alt_text: "hello 2 u", content_page_id: 2),
+      FactoryBot.create(:content_asset, title: "title 1", alt_text: "hello"),
+      FactoryBot.create(:content_asset, title: "title 2", alt_text: "hello 2 u"),
     ]
   end
 

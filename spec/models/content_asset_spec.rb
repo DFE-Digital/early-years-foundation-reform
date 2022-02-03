@@ -7,7 +7,7 @@ RSpec.describe ContentAsset, type: :model do
     before(:each) do
       content_asset.title = "Title"
       content_asset.alt_text = "Sample Alt Text"
-      content_asset.content_page_id = 1
+      content_asset.content_page = create(:content_page)
       content_asset.asset_file.attach(io: File.open(file_fixture("sample.jpeg")), filename: "sample.jpeg", content_type: "image/jpeg")
       content_asset.save!
     end
