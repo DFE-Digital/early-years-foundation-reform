@@ -19,7 +19,7 @@ class ContentAsset < ApplicationRecord
   validate :asset_file_ext_validation
   validates :asset_file, content_type: VALID_CONTENT_TYPE
   validates :asset_file, antivirus: true
-  belongs_to :content_page
+  belongs_to :content_page, optional: true
 
   def asset_file_ext_validation
     return unless asset_file.attached?
