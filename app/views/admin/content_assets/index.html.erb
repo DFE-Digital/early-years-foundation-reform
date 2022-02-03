@@ -4,7 +4,6 @@
 <%= govuk_accordion do |accordion|
   ContentPage.top_level.order_by_position.each do |content_page|
     accordion.section(heading_text: content_page.title) do %>
-
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -37,6 +36,47 @@
       </table>
     <% end %>
   <% end %>
+  <%= accordion.section(heading_text: "Other") do %>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Image</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-half">Name</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Action</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+        <% @content_assets.each do |content_asset| if content_asset.content_page == nil %>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><%= image_tag(url_for(content_asset.asset_file), class: 'govuk-!-width-full') %></td>
+            <td class="govuk-table__cell" ><%= content_asset.title %></td>
+            <td class="govuk-table__cell">
+              <%= govuk_button_link_to 'Edit', edit_admin_content_asset_path(content_asset), secondary: true %>
+              <%= button_tag(
+                "Copy to clipboard", 
+                type: 'button', 
+                class: "govuk-button govuk-button--secondary", 
+                onclick: "navigator.clipboard.writeText('#{polymorphic_url(content_asset.asset_file)}')" 
+              ) %>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+
+
+
+
+
+
+
+
+
+
 <% end %>
 
 <br>
