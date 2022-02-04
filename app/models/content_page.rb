@@ -15,6 +15,7 @@ class ContentPage < ApplicationRecord
   validates :title, format: { with: ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: TITLE_FORMAT_ERROR_MESSAGE }
   validates :title, presence: true, uniqueness: true
   validates :markdown, presence: true
+  validates :content_list, presence: true
   validates :description, length: { maximum: 254 }
 
   validates :position, presence: true, numericality: { only_integer: true }, uniqueness: { scope: :parent_id }
@@ -29,6 +30,7 @@ class ContentPage < ApplicationRecord
   def create_first_version
     ContentPageVersion.create!(title: title,
                                markdown: markdown,
+                               content_list: content_list,
                                content_page_id: id,
                                author: author,
                                description: description)
@@ -88,8 +90,17 @@ class ContentPage < ApplicationRecord
       end
 
       page_order.each_with_index do |page, index|
-        page.next_id = page_order[index + 1].id unless page == page_order.last
-        page.previous_id = page_order[index - 1].id unless page == page_order.first
+        page.next_id = if page == page_order.last
+                         page_order.first.id
+                       else
+                         page_order[index + 1].id
+                       end
+
+        page.previous_id = if page == page_order.first
+                             page_order.last.id
+                           else
+                             page_order[index - 1].id
+                           end
         page.save!
       end
     end
