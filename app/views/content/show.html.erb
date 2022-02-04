@@ -4,4 +4,8 @@
 <h1 class="govuk-heading-l">
   <%= @page.title %>
 </h1>
+<%= translate_markdown(@page.content_list) %>
+<div class="gem-c-print-link govuk-!-margin-top-7" id="print-button">
+  <button class="govuk-link gem-c-print-link__button" onclick="window.print()" data-module="print-link" >Print this page</button>
+</div>
 <%= translate_markdown(@page.markdown) %>

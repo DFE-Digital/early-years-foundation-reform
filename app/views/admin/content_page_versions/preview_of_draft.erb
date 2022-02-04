@@ -5,6 +5,10 @@
 <h1 class="govuk-heading-l">
   <%= @content_page_version.title %>
 </h1>
+<%= translate_markdown(@content_page_version.content_list) %>
+<div class="gem-c-print-link govuk-!-margin-top-7 govuk-!-margin-bottom-2" id="print-button">
+  <button class="govuk-link gem-c-print-link__button" onclick="window.print()" data-module="print-link" >Print this page</button>
+</div>
 <%= translate_markdown(@content_page_version.markdown) %>
 
 <div class="fixed-footer">
