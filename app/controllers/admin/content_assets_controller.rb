@@ -1,6 +1,7 @@
 module Admin
   class ContentAssetsController < AdminController
     before_action :set_content_asset, only: %i[show edit update destroy]
+    before_action :set_folder_options, only: %i[index new edit]
 
     def index
       @content_assets = ContentAsset.all
@@ -61,6 +62,10 @@ module Admin
     # Only allow a list of trusted parameters through.
     def content_asset_params
       params.require(:content_asset).permit(:title, :asset_file, :alt_text, :content_page_id)
+    end
+
+    def set_folder_options
+      @folder_options = ContentPage.top_level.order_by_position.all + [OpenStruct.new(id: 0, title: "Other")]
     end
   end
 end
