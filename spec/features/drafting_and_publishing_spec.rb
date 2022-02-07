@@ -10,6 +10,7 @@ RSpec.feature "Drafting and publishing pages", type: :feature do
       visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
+      page.find_field("content_page[content_list]").set(attributes[:content_list])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
       page.find_field("content_page[position]").set(rand(10_000))
 

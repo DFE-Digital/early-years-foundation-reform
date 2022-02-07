@@ -74,6 +74,7 @@ RSpec.feature "View pages", type: :feature do
       visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
+      page.find_field("content_page[content_list]").set(attributes[:content_list])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
       page.find_field("content_page[position]").set(rand(10_000))
       page.find_field("content_page[description]").set(attributes[:description])
@@ -83,6 +84,7 @@ RSpec.feature "View pages", type: :feature do
       saved_page = ContentPage.find_by_title attributes[:title]
 
       expect(saved_page.markdown).to eq(attributes[:markdown])
+      expect(saved_page.content_list).to eq(attributes[:content_list])
       expect(saved_page.description).to eq(attributes[:description])
     end
   end
@@ -102,6 +104,7 @@ RSpec.feature "View pages", type: :feature do
     visit "/admin/pages/new?parent_id=#{child_page.id}"
 
     page.find_field("content_page[title]").set(attributes[:title])
+    page.find_field("content_page[content_list]").set(attributes[:content_list])
     page.find_field("content_page[markdown]").set(attributes[:markdown])
     page.find_field("content_page[position]").set(rand(10_000))
     page.click_button("Save")

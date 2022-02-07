@@ -67,6 +67,7 @@ RSpec.describe Admin::ContentPagesController, type: :request do
         subject
         content_page = ContentPage.last
         expect(content_page.title).to eq(valid_attributes[:title])
+        expect(content_page.content_list).to eq(valid_attributes[:content_list])
         expect(content_page.markdown).to eq(valid_attributes[:markdown])
         expect(content_page.description).to eq(valid_attributes[:description])
       end
@@ -79,6 +80,7 @@ RSpec.describe Admin::ContentPagesController, type: :request do
         subject
         content_page_version = ContentPageVersion.last
         expect(content_page_version.title).to eq(valid_attributes[:title])
+        expect(content_page_version.content_list).to eq(valid_attributes[:content_list])
         expect(content_page_version.markdown).to eq(valid_attributes[:markdown])
         expect(content_page_version.description).to eq(valid_attributes[:description])
       end
@@ -132,6 +134,7 @@ RSpec.describe Admin::ContentPagesController, type: :request do
         patch admin_content_page_path(content_page), params: params
         content_page_version = content_page.content_page_versions.last
         expect(content_page_version.title).to eq(valid_attributes[:title])
+        expect(content_page_version.content_list).to eq(valid_attributes[:content_list])
         expect(content_page_version.description).to eq(valid_attributes[:description])
         expect(content_page_version.markdown).to eq(valid_attributes[:markdown])
         expect(content_page_version.author).to eq(editor.name)
