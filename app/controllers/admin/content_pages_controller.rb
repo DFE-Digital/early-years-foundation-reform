@@ -27,10 +27,9 @@ module Admin
       begin
         authorize @content_page, :create?
 
-        if @content_page.save!
+        if @content_page.save
           redirect_to "#{admin_content_page_path(@content_page)}/versions", notice: "A new version was successfully created"
         else
-          puts "Rails consoleeeee"
           render :new
         end
       rescue Pundit::NotAuthorizedError
