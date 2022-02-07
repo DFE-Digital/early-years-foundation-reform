@@ -5,9 +5,9 @@ require "axe-rspec"
 require "webdrivers/chromedriver"
 
 # Pinned version of chromedriver as newer version was causing an error:
-# 'unknown error: Cannot construct KeyEvent from non-typeable key'
+# "unknown error: Cannot construct KeyEvent from non-typeable key"
 # To be removed when the error is fixed
-Webdrivers::Chromedriver.required_version = '97.0.4692.71'
+Webdrivers::Chromedriver.required_version = "97.0.4692.71"
 
 SimpleCov.start
 
