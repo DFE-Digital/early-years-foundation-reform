@@ -12,8 +12,6 @@
         <% markdown_class = 'govuk-form-group--error' if content_page.errors[:markdown].count > 0 || content_page.errors[:content_list].count > 0 %>
         <div class="govuk-form-group gem-c-govspeak govuk-form-group <%= markdown_class %>" id="content-block-markdown-field-error">
 
-
-
           <label id="content-list-hint" for="content-list-editor" class="govuk-label">
             Table of contents
           </label>
@@ -25,10 +23,6 @@
 
           <%= form.text_area :content_list, id: 'content-list-editor', rows: 20, cols: 35, class: text_area_class_2 %>
           
-
-
-
-
           <label id="markdown-hint" for="markdown-editor" class="govuk-label">
             Content - Markdown for the page
           </label>
@@ -40,11 +34,7 @@
 
           <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: text_area_class %>
 
-
-
-
           <%= form.hidden_field :parent_id, id: "parent_id" %>
-
           <%= form.govuk_text_field :position, label: {text: "Position"}%>
           <%= form.govuk_text_area :description, label: {text: "Meta Description"} %>
         </div>
