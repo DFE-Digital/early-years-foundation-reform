@@ -36,7 +36,7 @@ module Admin
 
       if user_params[:password].blank?
         if @user.update_without_password(user_params)
-          redirect_to admin_users_path, notice: "User #{@user.name} updated"
+          redirect_to admin_users_path, notice: "User #{@user.name} saved"
         else
           render :edit
         end
@@ -44,7 +44,7 @@ module Admin
         @user.reset_password_token = Devise.friendly_token
         @user.reset_password(user_params[:password], user_params[:password_confirmation])
         if @user.reload.update_without_password(user_params)
-          redirect_to admin_users_path, notice: "User #{@user.name} updated and password changed"
+          redirect_to admin_users_path, notice: "User #{@user.name} saved and password changed"
         else
           render :edit
         end
