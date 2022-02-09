@@ -1,6 +1,6 @@
 module ApplicationHelper
   def nav_link_to(title:, path:)
-    classes = ["govuk-header__navigation-item"]
+    classes = %w[govuk-header__navigation-item]
     classes << "govuk-header__navigation-item--active" if request.path == path || (request.path == "/admin" && path == "/admin/users")
     tag.li(class: classes) do
       link_to title, path, class: "govuk-header__link", aria: { current: "page" }
