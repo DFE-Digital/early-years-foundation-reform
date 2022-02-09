@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.describe "admin/content_assets/edit", type: :view do
   before(:each) do
     @content_asset = FactoryBot.create(:content_asset)
+    @folder_options = [
+      FactoryBot.create(:content_page),
+      FactoryBot.create(:content_page),
+    ]
   end
 
   it "renders the edit content_asset form" do

@@ -1,7 +1,7 @@
 module Admin
   class ContentAssetsController < AdminController
     before_action :set_content_asset, only: %i[show edit update destroy]
-    before_action :set_folder_options, only: %i[index new edit]
+    before_action :set_folder_options
 
     def index
       @content_assets = ContentAsset.all
