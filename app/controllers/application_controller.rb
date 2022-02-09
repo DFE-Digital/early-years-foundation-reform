@@ -10,10 +10,6 @@ class ApplicationController < ActionController::Base
     render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
   end
 
-  def not_found
-    raise ActionController::RoutingError, "Not Found"
-  end
-
 protected
 
   def release_version
@@ -21,6 +17,10 @@ protected
   end
 
 private
+
+  def not_found
+    raise ActionController::RoutingError, "Not Found"
+  end
 
   def after_sign_out_path_for(_resource_or_scope)
     request.referer

@@ -2,10 +2,6 @@ class ContentController < ApplicationController
   before_action :authenticate_user!, if: proc { !ENV["AUTH_ON_EVERYTHING"].nil? }
   after_action :set_cache_headers
 
-  def set_cache_headers
-    response.headers["Cache-Control"] = "max-age=3600, public" if cookies[:track_analytics].present?
-  end
-
   # This is a page whose title and children's titles are rendered
   # a block in the landing_page_layout template
   FEATURED_PAGE_TITLES = ["Get help to improve your practice", "Safeguarding and welfare"].freeze
@@ -32,6 +28,10 @@ class ContentController < ApplicationController
   end
 
 private
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "max-age=3600, public" if cookies[:track_analytics].present?
+  end
 
   def parent_slug
     @page.parent && @page.parent.slug
