@@ -108,8 +108,6 @@ en:
               blank: Heading must not be blank
             markdown:
               blank: Content must not be blank
-            content_list:
-              blank: Content list must not be blank
             position:
               blank: Position must not be blank
               taken: Position is already taken
@@ -122,8 +120,6 @@ en:
               format: "Heading should only contain alphabetic, numeric and -#{ContentPage::CHARS_TO_OMIT_FROM_SLUG}"
             markdown:
               blank: Content must not be blank
-            content_list:
-              blank: Content list must not be blank
         content_asset:
           attributes:
             title:
