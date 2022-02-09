@@ -6,13 +6,11 @@
   <%= @content_page.title %>
 </h1>
 <% if @content_page.content_list %>
-<p class="govuk-body govuk-!-margin-bottom-1"> Contents </p>
+  <p class="govuk-body govuk-!-margin-bottom-1"> Contents </p>
+  <%= translate_markdown(@content_page.content_list) %>
 <% end %>
-<%= translate_markdown(@content_page.content_list) %>
 <% if @content_page.content_list %>
-<div class="gem-c-print-link govuk-!-margin-top-7" id="print-button">
-  <button class="govuk-link gem-c-print-link__button" onclick="window.print()" data-module="print-link" >Print this page</button>
-</div>
+  <%= print_button("govuk-!-margin-top-7") %>
 <% end %>
 <div class="govuk-!-margin-top-4">
   <%= translate_markdown(@content_page.markdown) %>
