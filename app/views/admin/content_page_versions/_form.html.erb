@@ -4,7 +4,7 @@
       <p class="govuk-heading-m">Details</p>
       <%= form_with(model: [:admin, :content_page, @content_page_version], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
         <fieldset class="govuk-fieldset">
-          <%= form.govuk_error_summary order: %i[title markdown content_list]  %>
+          <%= form.govuk_error_summary order: %i[title markdown]  %>
 
           <%= form.govuk_text_field :title, label: {text: "Heading"}, :class => 'govuk-input govuk-!-width-three-quarters'%>
 
@@ -12,24 +12,15 @@
                set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
           <div class="govuk-form-group gem-c-govspeak">
 
-            <label id="content-list-hint" for="content-list-editor" class="govuk-label">
-              Table of contents
-            </label>
-
-            <% if @content_page_version&.errors[:content_list].count > 0 %>
-              <span class="govuk-error-message"><%= @content_page_version.errors[:content_list][0] %></span>
-            <% end %>
-            <% text_area_class_content_list = (@content_page_version.errors[:content_list].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
-
-            <%= form.text_area :content_list, id: 'content-list-editor', rows: 20, cols: 35, class: text_area_class_content_list %>
+            <%= form.govuk_text_area :content_list, id: 'content-list-editor', rows: 8, cols: 35, label: {text: "Table of contents"} %>
 
             <label id="markdown-hint" for="markdown-editor" class="govuk-label">
               Content
             </label>
-            <% if @content_page_version&.errors[:markdown].count > 0 %>
+            <% if @content_page_version&.errors[:markdown].present? %>
               <span class="govuk-error-message"><%= @content_page_version.errors[:markdown][0] %></span>
             <% end %>
-            <% text_area_class_markdown = (@content_page_version.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
+            <% text_area_class_markdown = (@content_page_version&.errors[:markdown].present?) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
 
             <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => text_area_class_markdown %>
             
