@@ -65,7 +65,7 @@ module Admin
     end
 
     def set_folder_options
-      @folder_options = ContentPage.top_level.order_by_position.all + [OpenStruct.new(id: 0, title: "Other")]
+      @folder_options = ContentPage.top_level.order_by_position.all + [OpenStruct.new(id: nil, title: "Other")]
     end
   end
 end
