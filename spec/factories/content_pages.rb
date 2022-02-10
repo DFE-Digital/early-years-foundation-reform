@@ -51,4 +51,8 @@ FactoryBot.define do
   trait :invalid_title do
     title { "Invalid!" }
   end
+
+  trait :content_list_nil do
+    content_list { nil }
+  end
 end

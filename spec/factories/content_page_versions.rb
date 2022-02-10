@@ -7,4 +7,8 @@ FactoryBot.define do
     author { Faker::Name.name }
     description { Faker::Lorem.paragraph }
   end
+
+  trait :content_list_empty do
+    content_list { nil }
+  end
 end
