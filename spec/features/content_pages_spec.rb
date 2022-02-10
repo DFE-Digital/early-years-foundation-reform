@@ -39,6 +39,15 @@ RSpec.feature "View pages", type: :feature do
     expect(page).to be_axe_clean
   end
 
+  # TODO
+  scenario "Navigate to a preview of live page and check that a print button is rendered after the content list" do
+    sign_in FactoryBot.create(:user)
+    visit "admin/pages/#{child_page.id}/preview_of_live"
+    page.find('ul', class: 'contents-list__list')
+
+    expect(page).to have_button('Print this page')
+  end
+
   scenario "A user with the role of editor should be able to edit pages in the CMS" do
     sign_in FactoryBot.create(:user, :editor)
 
