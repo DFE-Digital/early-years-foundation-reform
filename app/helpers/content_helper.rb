@@ -36,4 +36,11 @@ module ContentHelper
     classes = ["gem-c-print-link", "print-button"] + additional_classes
     content_tag :div, button, class: classes
   end
+
+  def govuk_input_classes(input_type, errors: nil)
+    classes = ["govuk-input"]
+    classes << "govuk-#{input_type}"
+    classes << "govuk-input--error" if errors.present?
+    classes
+  end
 end
