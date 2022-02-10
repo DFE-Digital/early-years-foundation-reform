@@ -12,9 +12,7 @@ class ArticlesController < ApplicationController
       format.html { render "show", layout: "article_pages" }
     end
     # If page does not exist, deleted or unpublished
-    # rubocop:disable Style/NegatedIf
-    not_found if !@article.published?
-    # rubocop:enable Style/NegatedIf
+    not_found unless @article.published?
   rescue ActiveRecord::RecordNotFound
     not_found
   end
