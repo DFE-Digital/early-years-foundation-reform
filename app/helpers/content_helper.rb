@@ -38,7 +38,7 @@ module ContentHelper
   end
 
   def govuk_input_classes(input_type, errors: nil)
-    classes = ["govuk-input"]
+    classes = %w[govuk-input]
     classes << "govuk-#{input_type}"
     classes << "govuk-input--error" if errors.present?
     classes
