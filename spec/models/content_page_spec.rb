@@ -98,16 +98,14 @@ RSpec.describe ContentPage, type: :model do
         expect(@child2_of_top_level1.next_page.full_path).to eq "/tl2"
       end
 
-      it "The next_page should return the first page when called with the last page (loop around)" do
-        expect(@child2_of_top_level2.next_page).to eq(@top_level1)
-        expect(@child2_of_top_level2.next_page.full_path).to eq "/tl1"
+      it "There should be no next_page when on the last page" do
+        expect(@child2_of_top_level2.next_page).to eq(nil)
       end
     end
 
     context "Navigating to the Previous page" do
-      it "The previous_page should return the last child of the second parent when called on a first parent" do
-        expect(@top_level1.previous_page).to eq(@child2_of_top_level2)
-        expect(@top_level1.previous_page.full_path).to eq "/tl2/c2tl2"
+      it "There should be no previous_page when on the first page" do
+        expect(@top_level1.previous_page).to eq(nil)
       end
 
       it "The previous_page should return the previous sibling of a child if a sibling exists" do
