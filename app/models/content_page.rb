@@ -55,11 +55,11 @@ class ContentPage < ApplicationRecord
   end
 
   def next_page
-    ContentPage.find next_id
+    if next_id then ContentPage.find next_id end
   end
 
   def previous_page
-    ContentPage.find previous_id
+    if previous_id then ContentPage.find previous_id end
   end
 
   def navigation
@@ -87,18 +87,8 @@ class ContentPage < ApplicationRecord
       end
 
       page_order.each_with_index do |page, index|
-        page.next_id = if page == page_order.last
-                         page_order.first.id
-                       else
-                         page_order[index + 1].id
-                       end
-
-        page.previous_id = if page == page_order.first
-                             page_order.last.id
-                           else
-                             page_order[index - 1].id
-                           end
-
+        page.next_id = page_order[index + 1].id unless page == page_order.last
+        page.previous_id = page_order[index - 1].id unless page == page_order.first
         page.save!
       end
     end
