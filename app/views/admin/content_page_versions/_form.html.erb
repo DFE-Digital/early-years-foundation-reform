@@ -12,17 +12,20 @@
                set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
           <div class="govuk-form-group gem-c-govspeak">
 
-            <%= form.text_area :content_list, id: 'content-list-editor', rows: 8, cols: 35, class: 'govuk-input govuk-textarea', label: {text: "Table of contents"} %>
+            <label id="content-list-hint" for="content-list-editor" class="govuk-label">
+              Table of contents
+            </label>
+            <%= form.text_area :content_list, id: 'content-list-editor', rows: 8, cols: 35, class: 'govuk-input govuk-textarea' %>
 
             <label id="markdown-hint" for="markdown-editor" class="govuk-label">
               Content
             </label>
+
             <% if @content_page_version&.errors[:markdown].present? %>
               <span class="govuk-error-message"><%= @content_page_version.errors[:markdown][0] %></span>
             <% end %>
-            <% text_area_class_markdown = (@content_page_version&.errors[:markdown].present?) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
 
-            <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => text_area_class_markdown %>
+            <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => govuk_input_classes(:textarea, errors: @content_page_version.errors[:markdown]) %>
             
             <%= form.govuk_text_area :description, label: {text: "Meta Description"} %>
           </div>
