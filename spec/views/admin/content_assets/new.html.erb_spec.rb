@@ -3,10 +3,7 @@ require "rails_helper"
 RSpec.describe "admin/content_assets/new", type: :view do
   before(:each) do
     assign(:content_asset, FactoryBot.build(:content_asset))
-    @folder_options = [
-      FactoryBot.create(:content_page),
-      FactoryBot.create(:content_page),
-    ]
+    @folder_options = create_list(:content_page, 2)
   end
 
   it "renders new content_asset form" do
