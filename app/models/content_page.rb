@@ -55,11 +55,11 @@ class ContentPage < ApplicationRecord
   end
 
   def next_page
-    if next_id then ContentPage.find next_id end
+    ContentPage.find(next_id) if next_id
   end
 
   def previous_page
-    if previous_id then ContentPage.find previous_id end
+    ContentPage.find(previous_id) if previous_id
   end
 
   def navigation
