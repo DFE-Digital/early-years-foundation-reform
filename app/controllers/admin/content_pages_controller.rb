@@ -60,6 +60,7 @@ module Admin
       # ContentPage validation, before the same values are used to
       # create the ContentPageVersion
       @content_page.markdown = content_page_params[:markdown]
+      @content_page.content_list = content_page_params[:content_list]
       if content_page_params[:title]
         @content_page.title = content_page_params[:title]
       end
@@ -67,6 +68,7 @@ module Admin
       if @content_page.valid?
         ContentPageVersion.create!(title: @content_page.title,
                                    markdown: content_page_params[:markdown],
+                                   content_list: content_page_params[:content_list],
                                    author: current_user.name,
                                    content_page: @content_page,
                                    description: content_page_params[:description])
@@ -105,6 +107,7 @@ module Admin
       @content_page.update!(is_published: false)
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: @content_page.markdown,
+                                 content_list: @content_page.content_list,
                                  author: current_user.name,
                                  content_page: @content_page,
                                  description: @content_page.description)
@@ -121,7 +124,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def content_page_params
-      params.require(:content_page).permit(:title, :markdown, :parent_id, :position, :description)
+      params.require(:content_page).permit(:title, :markdown, :content_list, :parent_id, :position, :description)
     end
   end
 end

@@ -24,6 +24,7 @@ RSpec.describe Admin::ContentPageVersionsController, type: :request do
     it "updates the content page with data from content page version" do
       original_title = content_page.title
       expect { subject }.to(change { content_page.reload.title }.from(original_title).to(content_page_version.title))
+      expect(content_page.reload.content_list).to eq(content_page_version.content_list)
       expect(content_page.reload.markdown).to eq(content_page_version.markdown)
       expect(content_page.reload.description).to eq(content_page_version.description)
     end

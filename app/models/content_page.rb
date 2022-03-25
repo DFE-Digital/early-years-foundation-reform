@@ -29,6 +29,7 @@ class ContentPage < ApplicationRecord
   def create_first_version
     ContentPageVersion.create!(title: title,
                                markdown: markdown,
+                               content_list: content_list,
                                content_page_id: id,
                                author: author,
                                description: description)

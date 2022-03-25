@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.feature "View pages", type: :feature do
   given(:parent_page) { FactoryBot.create(:content_page, :published, :top_level) }
   given(:child_page) { FactoryBot.create(:content_page, :published, parent_id: parent_page.id) }
+  given(:content_page_version) { FactoryBot.create(:content_page_version) }
 
   scenario "Navigate to Content Pages" do
     sign_in FactoryBot.create(:user)
@@ -74,6 +75,7 @@ RSpec.feature "View pages", type: :feature do
       visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
+      page.find_field("content_page[content_list]").set(attributes[:content_list])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
       page.find_field("content_page[position]").set(rand(10_000))
       page.find_field("content_page[description]").set(attributes[:description])
@@ -83,6 +85,7 @@ RSpec.feature "View pages", type: :feature do
       saved_page = ContentPage.find_by_title attributes[:title]
 
       expect(saved_page.markdown).to eq(attributes[:markdown])
+      expect(saved_page.content_list).to eq(attributes[:content_list])
       expect(saved_page.description).to eq(attributes[:description])
     end
   end
@@ -102,10 +105,27 @@ RSpec.feature "View pages", type: :feature do
     visit "/admin/pages/new?parent_id=#{child_page.id}"
 
     page.find_field("content_page[title]").set(attributes[:title])
+    page.find_field("content_page[content_list]").set(attributes[:content_list])
     page.find_field("content_page[markdown]").set(attributes[:markdown])
     page.find_field("content_page[position]").set(rand(10_000))
     page.click_button("Save")
 
     expect(page.body).to include("You don't have permission to create pages")
+  end
+
+  scenario "Navigate to a preview of live page and check that 2 print buttons are rendered on the page" do
+    sign_in FactoryBot.create(:user)
+    visit "/admin/pages/#{child_page.id}/preview_of_live"
+    page.find("p", text: "Contents", id: "contents-list-heading")
+
+    expect(page.body).to have_button("Print this page").twice
+  end
+
+  scenario "Navigate to a preview of live page and check that 1 print button is on the page" do
+    content_page = FactoryBot.create(:content_page, :published, :top_level, :content_list_nil)
+    sign_in FactoryBot.create(:user)
+    visit "/admin/pages/#{content_page.id}/preview_of_live"
+
+    expect(page.body).to have_button("Print this page").once
   end
 end

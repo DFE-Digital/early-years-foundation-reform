@@ -9,6 +9,7 @@ end
 FactoryBot.define do
   factory :content_page do
     title { sentence_without_puncutation }
+    content_list { Faker::Lorem.paragraph }
     markdown { "# Fake title - #{Faker::Lorem.word}" }
     parent_id { nil }
     position { ContentPage.maximum("position").nil? ? 1 : ContentPage.maximum("position") + 1 }
@@ -49,5 +50,9 @@ FactoryBot.define do
 
   trait :invalid_title do
     title { "Invalid!" }
+  end
+
+  trait :content_list_nil do
+    content_list { nil }
   end
 end
