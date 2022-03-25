@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get "/500", to: "errors#internal_server_error", via: :all
   get "/503", to: "errors#service_unavailable", via: :all
 
+  # explicit redirect for old link
+  get "/get-help-to-improve-your-practice/send-meeting-the-needs-of-all-children", to: redirect("/get-help-to-improve-your-practice/meeting-the-needs-of-all-children")
+
   resources :settings, only: %i[show create]
 
   constraints CmsRouteConstraint.new do
