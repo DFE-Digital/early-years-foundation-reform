@@ -3,6 +3,7 @@ class ContentPage < ApplicationRecord
   audited
 
   has_many :content_page_versions
+  has_many :content_assets
 
   scope :top_level, -> { where("parent_id IS NULL") }
   scope :order_by_position, -> { order("position ASC") }

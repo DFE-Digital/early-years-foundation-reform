@@ -1,25 +1,34 @@
 <h1  class="govuk-heading-l">Assets</h1>
+<%= govuk_button_link_to 'Add asset', new_admin_content_asset_path, class: "govuk-button" %>
 
-<%= link_to 'Add asset', new_admin_content_asset_path, :class => "govuk-button" %>
-
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Title</th>
-      <th scope="col" class="govuk-table__header">Alt Text</th>
-      <th scope="col" class="govuk-table__header"></th>
-    </tr>
-  </thead>
-
-  <tbody class="govuk-table__body">
-    <% @content_assets.each do |content_asset| %>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell" ><%= content_asset.title %></td>
-        <td class="govuk-table__cell" ><%= content_asset.alt_text %></td>
-        <td class="govuk-table__cell"><%= link_to 'Edit', edit_admin_content_asset_path(content_asset), { :class => "govuk-link" } %></td>
-      </tr>
+<%= govuk_accordion do |accordion|
+  @folder_options.each do |content_page|
+    accordion.section(heading_text: content_page.title) do %>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Image</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-half">Name</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <% content_assets = content_page.content_assets %>
+          <% if content_assets %>
+            <% content_assets.each do |content_asset|%>
+              <%= render 'table_body', content_asset: content_asset %>
+            <% end %>
+          <% else %>
+            <% @content_assets.each do |content_asset| %>
+              <% if content_asset.content_page.nil? %>
+                <%= render 'table_body', content_asset: content_asset %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
+<% end %>
 
 <br>

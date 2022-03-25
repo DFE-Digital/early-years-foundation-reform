@@ -6,6 +6,10 @@ RSpec.describe "admin/content_assets/index", type: :view do
       FactoryBot.create(:content_asset, title: "title 1", alt_text: "hello"),
       FactoryBot.create(:content_asset, title: "title 2", alt_text: "hello 2 u"),
     ]
+    @folder_options = [
+      FactoryBot.create(:content_page),
+      FactoryBot.create(:content_page),
+    ]
   end
 
   it "renders a list of content_assets" do
@@ -13,6 +17,7 @@ RSpec.describe "admin/content_assets/index", type: :view do
     @content_assets.each do |asset|
       rendered.include? asset.title
       rendered.include? asset.alt_text
+      rendered.include? asset.content_page_id.to_s
     end
   end
 end
