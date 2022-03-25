@@ -89,17 +89,8 @@ class ContentPage < ApplicationRecord
       end
 
       page_order.each_with_index do |page, index|
-        page.next_id = if page == page_order.last
-                         page_order.first.id
-                       else
-                         page_order[index + 1].id
-                       end
-
-        page.previous_id = if page == page_order.first
-                             page_order.last.id
-                           else
-                             page_order[index - 1].id
-                           end
+        page.next_id = page_order[index + 1].id unless page == page_order.last
+        page.previous_id = page_order[index - 1].id unless page == page_order.first
         page.save!
       end
     end
