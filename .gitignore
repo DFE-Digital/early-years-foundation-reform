@@ -23,7 +23,10 @@
 /public/packs
 /public/packs-test
 /node_modules
+
 /vendor/cache
+/vendor/bundle
+
 yarn-debug.log*
 .yarn-integrity
 
@@ -33,6 +36,7 @@ yarn-debug.log*
 .env.development
 *.log
 /.idea
+/.tool-versions
 .DS_Store
 /coverage
 
