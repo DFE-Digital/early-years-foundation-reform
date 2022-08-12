@@ -34,6 +34,8 @@ interactions:
   parent: communication-and-language
   position: 1
   is_published: true
+  intro: |
+    Learn more about **interactions** as part of the early years foundation stage (EYFS) including advice from experts and suggested activities.
   markdown: |
     ## Why interactions are important
 
