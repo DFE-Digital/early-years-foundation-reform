@@ -14,7 +14,7 @@ SimpleCov.start
 # This configuration seems to work well in CI environments:
 Capybara.register_driver :chrome_headless do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome
-  capabilities['goog:chromeOptions'] = {
+  capabilities["goog:chromeOptions"] = {
     args: %w[
       headless
       no-sandbox
