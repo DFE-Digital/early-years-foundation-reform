@@ -70,6 +70,18 @@ and environment variable called AUTH_ON_EVERYTHING.
 The ContentController will then use the devise accounts to check the basic auth, but it does
 not log users in.
 
+Creating an admin user:
+
+```
+User.create!(
+  first_name: 'First',
+  last_name: 'Last',
+  email: 'first.last@digital.education.gov.uk',
+  password: 'P4ssW0rd!!',
+  password_confirmation: 'P4ssW0rd!!',
+  role: 'admin',
+)
+```
 
 ### If there are issues with postgres password authentication failure:
 
