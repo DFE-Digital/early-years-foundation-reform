@@ -33,6 +33,13 @@ RSpec.feature "View pages", type: :feature do
     page.find_field("content_page[title]", disabled: false)
   end
 
+  scenario "Navigate to a child page and see the intro can be edited" do
+    sign_in FactoryBot.create(:user)
+    visit "/admin/pages/#{child_page.id}/edit"
+
+    page.find_field("content_page[intro]", disabled: false)
+  end
+
   scenario "The CMS edit page should not have any accessibility errors" do
     sign_in FactoryBot.create(:user)
     visit "/admin/pages/#{parent_page.id}/edit"
@@ -75,6 +82,7 @@ RSpec.feature "View pages", type: :feature do
       visit "/admin/pages/new?parent_id=#{parent_page.id}"
 
       page.find_field("content_page[title]").set(attributes[:title])
+      page.find_field("content_page[intro]").set(attributes[:intro])
       page.find_field("content_page[content_list]").set(attributes[:content_list])
       page.find_field("content_page[markdown]").set(attributes[:markdown])
       page.find_field("content_page[position]").set(rand(10_000))

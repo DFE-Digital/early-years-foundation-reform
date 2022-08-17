@@ -9,6 +9,7 @@ end
 FactoryBot.define do
   factory :content_page do
     title { sentence_without_puncutation }
+    intro { Faker::Lorem.paragraph }
     content_list { Faker::Lorem.paragraph }
     markdown { "# Fake title - #{Faker::Lorem.word}" }
     parent_id { nil }

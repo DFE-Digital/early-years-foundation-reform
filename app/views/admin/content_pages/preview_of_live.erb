@@ -5,6 +5,9 @@
 <h1 class="govuk-heading-l">
   <%= @content_page.title %>
 </h1>
+
+<%= translate_markdown(@content_page.intro) %>
+
 <% if @content_page.content_list %>
   <p id="contents-list-heading" class="govuk-body govuk-!-margin-bottom-1"> Contents </p>
   <%= translate_markdown(@content_page.content_list) %>

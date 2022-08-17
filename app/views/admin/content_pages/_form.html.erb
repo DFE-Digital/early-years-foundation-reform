@@ -7,6 +7,8 @@
 
         <%= form.govuk_text_field :title, label: {text: "Heading"}, :class => 'govuk-input govuk-!-width-three-quarters', :disabled => (@content_page.title && !@content_page.parent_id)%>
 
+        <%= form.govuk_text_area :intro, label: { text: "Introduction" } %>
+
         <!-- This text_area is not rendered with gov_text_field because it needs to
              set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
         <% markdown_class = 'govuk-form-group--error' if @content_page&.errors[:markdown].present? %> 
@@ -43,6 +45,9 @@
 
     <div class="govuk-grid-column-one-half">
         <p class="govuk-heading-m">Preview</p>
+        <div id='content-list-render' class='gem-c-govspeak'>
+          <%= translate_markdown(content_page.intro) %>
+        </div>
         <div id='content-list-render' class='gem-c-govspeak'>
           <%= translate_markdown(content_page.content_list) %>
         </div>

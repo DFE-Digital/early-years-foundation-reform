@@ -36,6 +36,7 @@ module Admin
 
     def preview_of_draft
       @page = ContentPage.new(title: @content_page_version.title,
+                              intro: @content_page_version.intro,
                               markdown: @content_page_version.markdown,
                               content_list: @content_page_version.content_list,
                               position: 22,
@@ -50,6 +51,7 @@ module Admin
       @page = @content_page_version.content_page
       @page.update!(
         markdown: @content_page_version.markdown,
+        intro: @content_page_version.intro,
         content_list: @content_page_version.content_list,
         is_published: true,
         author: current_user.name,
@@ -72,7 +74,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def content_page_version_params
-      params.require(:content_page_version).permit(:title, :markdown, :content_list, :author, :description)
+      params.require(:content_page_version).permit(:title, :intro, :markdown, :content_list, :author, :description)
     end
   end
 end
