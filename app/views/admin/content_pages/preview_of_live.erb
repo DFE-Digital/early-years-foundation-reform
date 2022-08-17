@@ -8,7 +8,7 @@
 
 <%= translate_markdown(@content_page.intro) %>
 
-<% if @content_page.content_list %>
+<% unless @content_page.content_list.blank? %>
   <p id="contents-list-heading" class="govuk-body govuk-!-margin-bottom-1"> Contents </p>
   <%= translate_markdown(@content_page.content_list) %>
 <% end %>
