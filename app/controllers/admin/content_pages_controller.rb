@@ -67,6 +67,7 @@ module Admin
 
       if @content_page.valid?
         ContentPageVersion.create!(title: @content_page.title,
+                                   intro: content_page_params[:intro],
                                    markdown: content_page_params[:markdown],
                                    content_list: content_page_params[:content_list],
                                    author: current_user.name,
@@ -107,6 +108,7 @@ module Admin
       @content_page.update!(is_published: false)
       ContentPageVersion.create!(title: @content_page.title,
                                  markdown: @content_page.markdown,
+                                 intro: @content_page.intro,
                                  content_list: @content_page.content_list,
                                  author: current_user.name,
                                  content_page: @content_page,
@@ -124,7 +126,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def content_page_params
-      params.require(:content_page).permit(:title, :markdown, :content_list, :parent_id, :position, :description)
+      params.require(:content_page).permit(:title, :intro, :markdown, :content_list, :parent_id, :position, :description)
     end
   end
 end

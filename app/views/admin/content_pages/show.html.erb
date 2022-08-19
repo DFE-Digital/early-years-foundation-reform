@@ -3,6 +3,8 @@
   <%= @content_page.title %>
 </p>
 
+<%= translate_markdown(@content_page.intro) %>
+
 <p>
   <strong>Content (Govspeak):</strong>
   <%= @content_page.markdown %>

@@ -4,23 +4,22 @@ require "capybara/rspec"
 require "axe-rspec"
 require "webdrivers/chromedriver"
 
-# Pinned version of chromedriver as newer version was causing an error:
-# "unknown error: Cannot construct KeyEvent from non-typeable key"
-# To be removed when the error is fixed
-Webdrivers::Chromedriver.required_version = "97.0.4692.71"
-
 SimpleCov.start
 
 # This configuration seems to work well in CI environments:
 Capybara.register_driver :chrome_headless do |app|
-  options = ::Selenium::WebDriver::Chrome::Options.new
-  options.add_argument("--headless")
-  options.add_argument("--no-sandbox")
-  options.add_argument("--disable-dev-shm-usage")
-  options.add_argument("--window-size=1400,1400")
-  options.add_argument("--disable-cache")
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome
+  capabilities["goog:chromeOptions"] = {
+    args: %w[
+      headless
+      no-sandbox
+      disable-dev-shm-usage
+      window-size=1400,1400
+      disable-cache
+    ],
+  }
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: capabilities)
 end
 
 Capybara.javascript_driver = :chrome_headless
