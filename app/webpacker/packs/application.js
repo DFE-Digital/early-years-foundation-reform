@@ -16,6 +16,10 @@ $(document).ready(function() {
     NodeList.prototype.forEach = Array.prototype.forEach;
   };
 
+  $('#intro-editor').keyup(function() {
+    createPreview('#intro-editor','#intro-render');
+  });
+
   $('#content-list-editor').keyup(function() {
     createPreview('#content-list-editor','#content-list-render');
   });
