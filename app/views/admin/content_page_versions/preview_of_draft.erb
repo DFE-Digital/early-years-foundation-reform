@@ -8,13 +8,12 @@
 
 <%= translate_markdown(@content_page_version.intro) %>
 
-<% if @content_page_version.content_list %>
+<% unless @content_page_version.content_list.blank? %>
   <p id="contents-list-heading" class="govuk-body govuk-!-margin-bottom-1"> Contents </p>
   <%= translate_markdown(@content_page_version.content_list) %>
-<% end %>
-<% if @content_page_version.content_list %>
   <%= print_button("govuk-!-margin-top-7", "govuk-!-margin-bottom-2") %> 
 <% end %>
+
 <div class="govuk-!-margin-top-4">
   <%= translate_markdown(@content_page_version.markdown) %>
 </div>
