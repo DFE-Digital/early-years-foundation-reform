@@ -4,4 +4,6 @@ class StaticPagesController < ApplicationController
   def disclaimer; end
 
   def contact_us; end
+
+  def child_development_training; end
 end

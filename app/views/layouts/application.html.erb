@@ -65,12 +65,10 @@
     <%= render 'layouts/mobile_menu' %>
 
     <%= render 'layouts/phase_banner' %>
-
-    <% if @page.breadcrumbs %>
-      <nav class="govuk-width-container" role="navigation" aria-label="Breadcrumbs">
-        <%= render 'layouts/breadcrumbs' %>
-      </nav>
-    <% end %>
+    
+    <nav class="govuk-width-container" role="navigation" aria-label="Breadcrumbs">
+      <%= render 'layouts/breadcrumbs' %>
+    </nav>
 
     <div class="govuk-width-container">
       <main class="govuk-main-wrapper" role="main">

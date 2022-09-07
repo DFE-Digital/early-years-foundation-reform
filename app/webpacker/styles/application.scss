@@ -117,3 +117,13 @@ $govuk-image-url-function: frontend-image-url;
 .draft {
   text-align: right;
 }
+
+.light-grey-box {
+  padding: govuk-spacing(5);
+  margin-bottom: govuk-spacing(5);
+  background: govuk-colour("light-grey");
+
+  .govuk-button {
+    margin: 0;
+  }
+}
