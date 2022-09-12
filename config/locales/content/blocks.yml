@@ -16,11 +16,14 @@ en:
     child_development_training:
       description: Child development training introduction
       markdown: |
-        <div class='light-grey-box'>
-          <h1 class='govuk-heading-l'>Early years child development training</h1>
-          <p class='govuk-body'>This free, online training provides and overview 
-          of child development and practical advice for supporting children in
-          your setting.</p>
+        <div class='govuk-grid-row light-grey-box'>
+          <div class='govuk-grid-column-two-thirds'>
+            <h1 class='govuk-heading-l'>Early years child development training</h1>
+            <p class='govuk-body'>This free, online training provides and overview of child development and practical advice for supporting children in your setting.</p>
+          </div>
+          <div class='govuk-grid-column-one-third'>
+            <img src=''>
+          </div>
         </div>
 
         # About the training
