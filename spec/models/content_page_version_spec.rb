@@ -8,10 +8,4 @@ RSpec.describe ContentPageVersion, type: :model do
       expect(content_page_version.navigation).to be(true)
     end
   end
-
-  describe "#breadcrumbs" do
-    it "returns true" do
-      expect(content_page_version.breadcrumbs).to be(true)
-    end
-  end
 end
