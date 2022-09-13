@@ -6,6 +6,17 @@ en:
         <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Help for early years providers</h1>
         <p class="govuk-body-l">The Early Years Foundation Stage (EYFS) has changed. Find guidance and practical support to help you with the changes.</p>
         <p class="govuk-body-l">These resources are for childminders, nursery leaders and pre-school practitioners.</p>
+
+        <div class='govuk-grid-row'>
+          <div class='govuk-grid-column-two-thirds'>
+            <div class='light-grey-box'>
+              <h1 class='govuk-heading-l'>New early years child development training</h1>
+              <p class='govuk-body'>This new, free, online training provides an overview of child development and 
+              practical advice for supporting children in your setting</p>
+              <p class='govuk-body'><a class="govuk-link" href="/child-development-training">Find out more about the training</a></p>  
+            </div>
+          </div>
+        </div>
     other_useful_resources:
       description: Used on the landing page to describe Other Useful Resources
       markdown: |
