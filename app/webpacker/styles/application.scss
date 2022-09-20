@@ -117,6 +117,17 @@ $govuk-image-url-function: frontend-image-url;
 .draft {
   text-align: right;
 }
+
+.light-grey-box {
+  padding: govuk-spacing(5);
+  margin-bottom: govuk-spacing(5);
+  background: govuk-colour("light-grey");
+
+  .govuk-button {
+    margin: 0;
+  }
+}
+
 .gem-c-emergency-banner {
   @include govuk-font(19);
   background-color: govuk-colour("black");
@@ -193,4 +204,3 @@ $govuk-image-url-function: frontend-image-url;
   // the contrast was too low with white text
   background-color: #00847d;
 }
-

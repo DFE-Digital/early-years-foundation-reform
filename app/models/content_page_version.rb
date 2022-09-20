@@ -16,8 +16,4 @@ class ContentPageVersion < ApplicationRecord
   def navigation
     true
   end
-
-  def breadcrumbs
-    true
-  end
 end

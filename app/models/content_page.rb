@@ -68,10 +68,6 @@ class ContentPage < ApplicationRecord
     true
   end
 
-  def breadcrumbs
-    true
-  end
-
   def helpful_tools
     true
   end
