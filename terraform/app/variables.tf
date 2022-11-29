@@ -53,7 +53,7 @@ variable paas_user {
 }
 
 variable paas_web_app_deployment_strategy {
-  default = "blue-green-v2"
+  default = "blue-green"
 }
 
 variable paas_web_app_instances {
@@ -73,7 +73,7 @@ variable paas_cms_app_start_command {
 }
 
 variable paas_worker_app_deployment_strategy {
-  default = "blue-green-v2"
+  default = "blue-green"
 }
 
 variable paas_worker_app_instances {
