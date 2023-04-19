@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  phase_banner_html: This is a new service, your %{feedback_link} will help us improve it.
   admin:
     articles:
       create:

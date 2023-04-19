@@ -47,6 +47,6 @@ module GovukRailsBoilerplate
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
 
-    config.x.feedback.remote_url = "https://docs.google.com/forms/d/e/1FAIpQLSeLpjkKhcwKUjBKRx29fUgzgslSAkE9pPzkcmp3Oer5T6JHDw/viewform"
+    config.feedback_url = ENV.fetch('FEEDBACK_URL', '#FEEDBACK_URL_env_var_missing')
   end
 end

@@ -8,3 +8,4 @@ RAILS_SERVE_STATIC_FILES: true
 SERVICE_TYPE: web
 DATABASE_URL: postgres://postgres@localhost:5432
 DATABASE_NAME: eyfs-test-database
+FEEDBACK_URL: https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-e5vHvNwH1tNvj-UhV9eyZZUM1pQNEtCN0YyVVdFVkpOUVNXNUlZNTdOUC4u
