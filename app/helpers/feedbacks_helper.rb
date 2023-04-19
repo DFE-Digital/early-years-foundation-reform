@@ -2,7 +2,7 @@ module FeedbacksHelper
   def link_to_feedback(args = {})
     link_to(
       "Give Feedback",
-      Rails.configuration.x.feedback.remote_url,
+      Rails.configuration.feedback_url,
       {
         class: "govuk-button",
         data: {
