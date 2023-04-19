@@ -48,5 +48,6 @@ module GovukRailsBoilerplate
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
 
     config.feedback_url = ENV.fetch('FEEDBACK_URL', '#FEEDBACK_URL_env_var_missing')
+    config.signup_url = ENV.fetch('SIGNUP_URL', '#SIGNUP_env_var_missing')
   end
 end
