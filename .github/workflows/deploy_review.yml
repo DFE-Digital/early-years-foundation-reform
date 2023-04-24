@@ -65,40 +65,62 @@
             username: ${{ github.repository_owner }}
             password: ${{ secrets.GITHUB_TOKEN }}
         -
-          name: Build and push Docker image for dependencies
+          name: Build and push docker image from builder target
           uses: docker/build-push-action@v4
           with:
             context: .
             build-args: BUILDKIT_INLINE_CACHE=1
             cache-from: |
-              ${{ env.REGISTRY }}:deps
+              ${{ env.REGISTRY }}:builder
             push: true
-            tags: ${{ env.REGISTRY }}:deps
-            target: deps
+            tags: ${{ env.REGISTRY }}:builder
+            target: builder
         -
-          name: Build and push Docker image
+          name: Build and push docker image from help-for-early-years-providers-gems-node-modules target
           uses: docker/build-push-action@v4
           with:
-            target: app
             context: .
+            build-args: BUILDKIT_INLINE_CACHE=1
+            cache-from: |
+              ${{ env.REGISTRY }}:gems-node-modules
             push: true
+            tags: ${{ env.REGISTRY }}:gems-node-modules
+            target: help-for-early-years-providers-gems-node-modules
+        -
+          name: Build and push docker image from assets-precompile target
+          uses: docker/build-push-action@v4
+          with:
+            context: .
+            build-args: BUILDKIT_INLINE_CACHE=1
+            cache-from: |
+              ${{ env.REGISTRY }}:assets-precompile
+            push: true 
+            tags: ${{ env.REGISTRY }}:assets-precompile
+            target: assets-precompile
+        -
+          name: Build and push docker image from production target
+          uses: docker/build-push-action@v4
+          with:
+            context: .
             build-args: |
               BUILDKIT_INLINE_CACHE=1
               SHA=${{ github.event.pull_request.head.sha }}
             cache-from: |
-              ${{ env.REGISTRY }}:${{ github.event.pull_request.head.sha }}
-              ${{ env.REGISTRY }}:${{ env.PR_NUMBER }}
+              ${{ env.REGISTRY }}:${{ env.GOVUK_WEBSITE_ROOT }}
               ${{ env.REGISTRY }}:latest
+            push: true
             tags: |
               ${{ env.REGISTRY }}:${{ github.event.pull_request.head.sha }}
-              ${{ env.REGISTRY }}:${{ env.PR_NUMBER }}
+              ${{ env.REGISTRY }}:${{ env.GOVUK_WEBSITE_ROOT }}
+              ${{ env.REGISTRY }}:latest
+            target: production
         -
           name: Deploy Review App
           env:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            TF_VAR_paas_cf_user: ${{ secrets.CLOUD_FOUNDRY_USERNAME }}
-            TF_VAR_paas_cf_password: ${{ secrets.CLOUD_FOUNDRY_PASSWORD }}
+            TF_VAR_paas_user: ${{ secrets.GOVPAAS_USERNAME }}
+            TF_VAR_paas_password: ${{ secrets.GOVPAAS_PASSWORD }}
             TF_VAR_paas_app_docker_image: ${{ env.REGISTRY }}:${{ env.PR_NUMBER }}
             TF_VAR_paas_app_hostname: ${{ env.PR_NUMBER }}
             TF_VAR_paas_app_env_secrets: ${{ toJson(secrets) }}
@@ -122,17 +144,3 @@
           with:
             message: https://ey-reform-${{ env.PR_NUMBER }}.london.cloudapps.digital
             repo-token: ${{ secrets.GITHUB_TOKEN }}
-        # -
-        #   name: Tag release in Sentry.io
-        #   env:
-        #     SENTRY_CLI_VERSION: '2.2.0'
-        #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_TOKEN }}
-        #     SENTRY_ORG: early-years-foundation-reform
-        #     SENTRY_PROJECT: eyf-recovery
-        #     SENTRY_LOG_LEVEL: debug # info
-        #   run: |
-        #     curl -sL https://sentry.io/get-cli/ | bash
-        #     sentry-cli releases new ${{ env.PR_NUMBER }}
-        #     sentry-cli releases set-commits ${{ env.PR_NUMBER }} --auto
-        #     sentry-cli releases finalize ${{ env.PR_NUMBER }}
-  
