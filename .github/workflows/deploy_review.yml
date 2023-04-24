@@ -36,7 +36,7 @@
       environment: review
       env:
         WORKSPACE: review 
-        REGISTRY: ghcr.io/dfe-digital/early-years-foundation-reform
+        REGISTRY: ghcr.io/dfe-digital/help-for-early-years-provider-review
         PR_NUMBER: pr-${{ github.event.number }}
         # @see terraform/workspace-variables/review_app_config.yml
         DOMAIN: ey-reform-pr-${{ github.event.number }}.london.cloudapps.digital
