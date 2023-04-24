@@ -1,0 +1,138 @@
+---
+  # ------------------------------------------------------------------------------
+  #   Deploy if 'review' label added
+  # Build image:
+  #   ghcr.io/dfe-digital/help-for-early-years-review
+  #
+  # Deploy to:
+  #   https://ey-reform-pr-123.london.cloudapps.digital
+  # ------------------------------------------------------------------------------
+  #
+  name: Deploy Review App
+  on:
+    pull_request:
+      # branches:
+      #   - main
+      types:
+        - labeled
+        - synchronize
+      paths-ignore:
+        - '**/*.md'
+        - .docker*
+        - .env.example
+        - .gitignore
+        - .pa11yci
+        - .tool-versions
+        - .yardopts
+        - bin/*
+        - docker-compose.*
+        - Dockerfile
+        - terraform
+  
+  jobs:
+    deploy:
+      if: contains(github.event.pull_request.labels.*.name, 'review')
+      runs-on: ubuntu-latest
+      environment: review
+      env:
+        WORKSPACE: review 
+        REGISTRY: ghcr.io/dfe-digital/early-years-foundation-reform
+        PR_NUMBER: pr-${{ github.event.number }}
+        # @see terraform/workspace-variables/review_app_config.yml
+        DOMAIN: ey-reform-pr-${{ github.event.number }}.london.cloudapps.digital
+        GOVUK_WEBSITE_ROOT: ey-reform-pr-${{ github.event.number }}
+      steps:
+        -
+          name: Checkout Code
+          uses: actions/checkout@v3
+          with:
+            ref: ${{ github.event.pull_request.head.sha }}
+        -
+          name: Pin Terraform version
+          uses: hashicorp/setup-terraform@v2.0.3
+          with:
+            terraform_version: 1.1.7
+        -
+          name: Set up Docker Buildx
+          uses: docker/setup-buildx-action@v2
+          with:
+            version: v0.9.1
+        -
+          name: Login to Github Container Registry
+          uses: docker/login-action@v2
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+        -
+          name: Build and push Docker image for dependencies
+          uses: docker/build-push-action@v4
+          with:
+            context: .
+            build-args: BUILDKIT_INLINE_CACHE=1
+            cache-from: |
+              ${{ env.REGISTRY }}:deps
+            push: true
+            tags: ${{ env.REGISTRY }}:deps
+            target: deps
+        -
+          name: Build and push Docker image
+          uses: docker/build-push-action@v4
+          with:
+            target: app
+            context: .
+            push: true
+            build-args: |
+              BUILDKIT_INLINE_CACHE=1
+              SHA=${{ github.event.pull_request.head.sha }}
+            cache-from: |
+              ${{ env.REGISTRY }}:${{ github.event.pull_request.head.sha }}
+              ${{ env.REGISTRY }}:${{ env.PR_NUMBER }}
+              ${{ env.REGISTRY }}:latest
+            tags: |
+              ${{ env.REGISTRY }}:${{ github.event.pull_request.head.sha }}
+              ${{ env.REGISTRY }}:${{ env.PR_NUMBER }}
+        -
+          name: Deploy Review App
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            TF_VAR_paas_cf_user: ${{ secrets.CLOUD_FOUNDRY_USERNAME }}
+            TF_VAR_paas_cf_password: ${{ secrets.CLOUD_FOUNDRY_PASSWORD }}
+            TF_VAR_paas_app_docker_image: ${{ env.REGISTRY }}:${{ env.PR_NUMBER }}
+            TF_VAR_paas_app_hostname: ${{ env.PR_NUMBER }}
+            TF_VAR_paas_app_env_secrets: ${{ toJson(secrets) }}
+            TF_VAR_paas_app_envs: ${{ toJson(env) }}
+          run: |
+            cd terraform/app
+            terraform init \
+              -reconfigure \
+              -input=false \
+              -backend-config="bucket=${{ secrets.AWS_BUCKET }}" \
+              -backend-config="key=${{ env.PR_NUMBER }}/terraform.tfstate"
+            terraform plan \
+              -var-file ../workspace-variables/${{ env.WORKSPACE }}.tfvars
+            terraform apply \
+              -input=false \
+              -auto-approve \
+              -var-file ../workspace-variables/${{ env.WORKSPACE }}.tfvars
+        -
+          name: Comment URL to PR
+          uses: mshick/add-pr-comment@v2
+          with:
+            message: https://ey-reform-${{ env.PR_NUMBER }}.london.cloudapps.digital
+            repo-token: ${{ secrets.GITHUB_TOKEN }}
+        # -
+        #   name: Tag release in Sentry.io
+        #   env:
+        #     SENTRY_CLI_VERSION: '2.2.0'
+        #     SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_TOKEN }}
+        #     SENTRY_ORG: early-years-foundation-reform
+        #     SENTRY_PROJECT: eyf-recovery
+        #     SENTRY_LOG_LEVEL: debug # info
+        #   run: |
+        #     curl -sL https://sentry.io/get-cli/ | bash
+        #     sentry-cli releases new ${{ env.PR_NUMBER }}
+        #     sentry-cli releases set-commits ${{ env.PR_NUMBER }} --auto
+        #     sentry-cli releases finalize ${{ env.PR_NUMBER }}
+  
