@@ -30,17 +30,19 @@ jobs:
           terraform_version: 0.14.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
+        with:
+          version: v0.9.1
 
       - name: Login to Github Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push docker image from builder target
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           build-args: BUILDKIT_INLINE_CACHE=1
@@ -51,7 +53,7 @@ jobs:
           target: builder
 
       - name: Build and push docker image from help-for-early-years-providers-gems-node-modules target
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           build-args: BUILDKIT_INLINE_CACHE=1
@@ -62,7 +64,7 @@ jobs:
           target: help-for-early-years-providers-gems-node-modules
 
       - name: Build and push docker image from assets-precompile target
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           build-args: BUILDKIT_INLINE_CACHE=1
@@ -73,7 +75,7 @@ jobs:
           target: assets-precompile
 
       - name: Build and push docker image from production target
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           context: .
           build-args: |
