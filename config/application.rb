@@ -43,7 +43,9 @@ module GovukRailsBoilerplate
 
     config.middleware.use Rack::RejectTrace
     config.middleware.use Rack::Deflater
-    config.space = ENV.fetch( 'DOMAIN', "eyfs-dev" ).split(".").first
+    subdomain = ENV.fetch('DOMAIN', "eyfs-dev").split(".").first
+    allowed_spaces = %w[eyfs-dev eyfs-pre-prod eyfs-prod eyfs-sandbox eyfs-test]
+    config.space = allowed_spaces.include?(subdomain) ? subdomain : "eyfs-dev"
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
 
