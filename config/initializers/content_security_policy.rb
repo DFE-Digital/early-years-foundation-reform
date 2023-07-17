@@ -20,10 +20,11 @@ S3_DOMAINS = [
   "*.s3.eu-west-2.amazonaws.com",
 ].uniq.freeze
 
-GOOGLE_ANALYTICS_DOMAINS = %w[www.google-analytics.com
+GOOGLE_ANALYTICS_DOMAINS = %w[*.google-analytics.com
+                              *.analytics.google.com
                               ssl.google-analytics.com
                               stats.g.doubleclick.net
-                              www.googletagmanager.com
+                              *.googletagmanager.com
                               *.ytimg.com
                               www.youtube.com
                               www.youtube-nocookie.com
