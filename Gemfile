@@ -97,7 +97,7 @@ group :test do
   gem "launchy"
   gem "rspec-rails", "~> 5.0"
   gem "selenium-webdriver"
-  gem "simplecov",  "~> 0.21", require: false
+  gem "simplecov", "~> 0.21", require: false
   gem "webdrivers"
 end
 
