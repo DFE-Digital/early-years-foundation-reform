@@ -11,7 +11,7 @@ variable "environment" {
 }
 
 variable "resource_name_prefix" {
-  default     = "s187d01-eyreform"
+  default     = "s195d01-eyreform"
   description = "Prefix for resource names"
   type        = string
 }
