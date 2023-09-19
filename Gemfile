@@ -97,8 +97,8 @@ group :test do
   gem "launchy"
   gem "rspec-rails", "~> 5.0"
   gem "selenium-webdriver"
-  gem "simplecov",  "~> 0.21", require: false
-  gem "webdrivers", "~> 4.6"
+  gem "simplecov", "~> 0.21", require: false
+  gem "webdrivers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
