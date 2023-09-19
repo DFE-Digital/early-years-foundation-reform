@@ -22,12 +22,6 @@ variable "admin_email_address" {
   sensitive   = true
 }
 
-variable "gcs_credentials" {
-  description = "Google Cloud Storage credentials"
-  type        = string
-  sensitive   = true
-}
-
 variable "tracking_id" {
   description = "Google Tag Manager tracking ID"
   type        = string
@@ -121,24 +115,8 @@ variable "asp_sku" {
   type        = string
 }
 
-variable "webapp_worker_count" {
-  default     = 1
-  description = "Number of Workers for the App Service Plan"
-  type        = string
-}
-
 variable "webapp_name" {
   description = "Name for the Web Application"
-  type        = string
-}
-
-variable "workerapp_name" {
-  description = "Name for the Background Worker Application"
-  type        = string
-}
-
-variable "reviewapp_name" {
-  description = "Name for the Review Application"
   type        = string
 }
 
@@ -174,33 +152,11 @@ variable "webapp_config_bot_token" {
   sensitive = true
 }
 
-variable "webapp_config_contentful_environment" {
-  default = null
-  type    = string
-}
-
-variable "webapp_config_contentful_preview" {
-  default = null
-  type    = string
-}
-
 variable "webapp_config_domain" {
   type = string
 }
 
-variable "webapp_config_editor" {
-  type = string
-}
-
 variable "webapp_config_feedback_url" {
-  type = string
-}
-
-variable "webapp_config_grover_no_sandbox" {
-  type = bool
-}
-
-variable "webapp_config_google_cloud_bucket" {
   type = string
 }
 
