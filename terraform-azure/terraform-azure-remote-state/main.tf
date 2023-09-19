@@ -20,10 +20,10 @@ locals {
     "Environment"      = var.default_environment
     "Parent Business"  = "Children’s Care"
     "Portfolio"        = "Newly Onboarded"
-    "Product"          = "EY Reform"
+    "Product"          = "Help for Early Years Providers"
     "Service"          = "Newly Onboarded"
     "Service Line"     = "Newly Onboarded"
-    "Service Offering" = "EY Reform"
+    "Service Offering" = "Help for Early Years Providers"
   }
 }
 
@@ -44,7 +44,7 @@ resource "random_string" "resource_code" {
 }
 
 resource "azurerm_storage_account" "tfstate" {
-  name                            = "eyreformtfstate${random_string.resource_code.result}st"
+  name                            = "hfeyptfstate${random_string.resource_code.result}st"
   resource_group_name             = azurerm_resource_group.tfstate.name
   location                        = var.default_azure_region
   account_tier                    = "Standard"

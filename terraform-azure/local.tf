@@ -4,10 +4,10 @@ locals {
     "Environment"      = var.environment
     "Parent Business"  = "Children’s Care"
     "Portfolio"        = "Newly Onboarded"
-    "Product"          = "EY Reform"
+    "Product"          = "Help for Early Years Providers"
     "Service"          = "Newly Onboarded"
     "Service Line"     = "Newly Onboarded"
-    "Service Offering" = "EY Reform"
+    "Service Offering" = "Help for Early Years Providers"
   }
 
   # Web Application Configuration

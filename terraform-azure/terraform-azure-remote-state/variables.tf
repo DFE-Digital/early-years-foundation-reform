@@ -3,9 +3,9 @@ variable "default_azure_region" {
 }
 
 variable "default_environment" {
-  default = "dev"
+  default = "development"
 }
 
 variable "resource_name_prefix" {
-  default = "s195d01-eyreform"
+  default = "s195d01-hfeyp"
 }
