@@ -3,7 +3,7 @@ name: 'Terraform Unit Tests'
 on:
   pull_request:
     branches:
-      - ER-773-azure-migration
+      - main
     paths:
       - 'terraform-azure/**'
       - '!terraform-azure/**.md'
