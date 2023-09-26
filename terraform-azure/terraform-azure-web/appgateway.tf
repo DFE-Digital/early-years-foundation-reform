@@ -69,11 +69,6 @@ resource "azurerm_application_gateway" "agw" {
     max_capacity = 10
   }
 
-  gateway_ip_configuration {
-    name      = "${var.resource_name_prefix}-agw-ipc"
-    subnet_id = var.agw_subnet_id
-  }
-
   identity {
     type         = "UserAssigned"
     identity_ids = [var.kv_mi_id]
