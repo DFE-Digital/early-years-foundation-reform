@@ -35,11 +35,6 @@ variable "webapp_admin_email_address" {
   sensitive   = true
 }
 
-variable "webapp_worker_count" {
-  description = "Number of Workers for the App Service Plan"
-  type        = string
-}
-
 variable "webapp_name" {
   description = "Name for the Web Application"
   type        = string
@@ -51,6 +46,11 @@ variable "webapp_subnet_id" {
 }
 
 variable "webapp_app_settings" {
+  description = "App Settings are exposed as environment variables"
+  type        = map(string)
+}
+
+variable "webapp_slot_app_settings" {
   description = "App Settings are exposed as environment variables"
   type        = map(string)
 }

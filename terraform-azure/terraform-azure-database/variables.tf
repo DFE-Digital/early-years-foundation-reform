@@ -13,6 +13,11 @@ variable "resource_name_prefix" {
   type        = string
 }
 
+variable "environment" {
+  description = "Environment to deploy resources"
+  type        = string
+}
+
 variable "psqlfs_subnet_id" {
   description = "ID of the delegated Subnet for the Database Server"
   type        = string

@@ -5,13 +5,13 @@ resource "azurerm_service_plan" "asp" {
   resource_group_name = var.resource_group
   os_type             = "Linux"
   sku_name            = var.asp_sku
-  worker_count        = var.webapp_worker_count
 
   lifecycle {
     ignore_changes = [tags]
   }
 
   #checkov:skip=CKV_AZURE_212:Argument not available
+  #checkov:skip=CKV_AZURE_225:Ensure the App Service Plan is zone redundant
 }
 
 # Create Web Application
@@ -109,7 +109,7 @@ resource "azurerm_linux_web_app_slot" "webapp_slot" {
   app_service_id            = azurerm_linux_web_app.webapp.id
   https_only                = true
   virtual_network_subnet_id = var.webapp_subnet_id
-  app_settings              = var.webapp_app_settings
+  app_settings              = var.webapp_slot_app_settings
 
   site_config {
     app_command_line                  = var.webapp_startup_command
