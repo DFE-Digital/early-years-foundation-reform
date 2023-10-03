@@ -11,7 +11,7 @@ variable "environment" {
 }
 
 variable "resource_name_prefix" {
-  default     = "s195d01-eyreform"
+  default     = "s195d01-hfeyp"
   description = "Prefix for resource names"
   type        = string
 }
@@ -146,12 +146,6 @@ variable "custom_domain_name" {
   description = "Custom domain hostname"
   type        = string
 }
-
-variable "webapp_config_bot_token" {
-  type      = string
-  sensitive = true
-}
-
 variable "webapp_config_domain" {
   type = string
 }
