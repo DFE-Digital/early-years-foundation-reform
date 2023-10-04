@@ -23,11 +23,6 @@ output "webapp_subnet_id" {
   value       = azurerm_subnet.webapp_snet.id
 }
 
-output "app_worker_subnet_id" {
-  description = "ID of the delegated Subnet for the Background Worker"
-  value       = azurerm_subnet.app_worker_snet.id
-}
-
 output "agw_subnet_id" {
   description = "ID of the Subnet for the App Gateway"
   value       = var.environment != "development" ? azurerm_subnet.agw_snet[0].id : null
