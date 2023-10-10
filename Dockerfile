@@ -24,30 +24,30 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock package.json yarn.lock .ruby-version ./
 
 RUN apk -U upgrade && \
-    apk add --update --no-cache --virtual .gem-installdeps $BUILD_DEPS && \
-    gem update --system && \
-    find / -wholename '*default/bundler-*.gemspec' -delete && \
-    rm -rf /usr/local/bundle/bin/bundle && \
-    gem install bundler -v ${BUNDLER_VERSION} --no-document && \
-    bundler -v && \
-    bundle config set no-cache 'true' && \
-    bundle config set no-binstubs 'true' && \
-    bundle --retry=5 --jobs=4 --without=development test && \
-    yarn install --check-files --production && \
-    apk del .gem-installdeps && \
-    rm -rf /usr/local/bundle/cache && \
-    find /usr/local/bundle/gems -name "*.c" -delete && \
-    find /usr/local/bundle/gems -name "*.h" -delete && \
-    find /usr/local/bundle/gems -name "*.o" -delete
+  apk add --update --no-cache --virtual .gem-installdeps $BUILD_DEPS && \
+  gem update --system && \
+  find / -wholename '*default/bundler-*.gemspec' -delete && \
+  rm -rf /usr/local/bundle/bin/bundle && \
+  gem install bundler -v ${BUNDLER_VERSION} --no-document && \
+  bundler -v && \
+  bundle config set no-cache 'true' && \
+  bundle config set no-binstubs 'true' && \
+  bundle --retry=5 --jobs=4 --without=development test && \
+  yarn install --check-files --production && \
+  apk del .gem-installdeps && \
+  rm -rf /usr/local/bundle/cache && \
+  find /usr/local/bundle/gems -name "*.c" -delete && \
+  find /usr/local/bundle/gems -name "*.h" -delete && \
+  find /usr/local/bundle/gems -name "*.o" -delete
 
 # Stage 2: reduce size of gems-node-modules and only keep required files
 # Add the timezone as it's not configured by default in Alpine
 FROM ${BASE_RUBY_IMAGE} as help-for-early-years-providers-gems-node-modules
 
 RUN apk -U upgrade && \
-    apk add --update --no-cache nodejs yarn tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
-    echo "Europe/London" > /etc/timezone && \
-    cp /usr/share/zoneinfo/Europe/London /etc/localtime
+  apk add --update --no-cache nodejs yarn tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
+  echo "Europe/London" > /etc/timezone && \
+  cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
 COPY --from=builder /app /app
 COPY --from=builder /usr/local/bundle /usr/local/bundle
@@ -57,12 +57,12 @@ FROM ${BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES} as assets-precompile
 
 ARG RAILS_ENV=production
 ENV GOVUK_APP_DOMAIN=www.gov.uk \
-    GOVUK_WEBSITE_ROOT=https://www.gov.uk \
-    RAILS_ENV=${RAILS_ENV} \
-    AUTHORIZED_HOSTS=127.0.0.1 \
-    SECRET_KEY_BASE=TestKey \
-    IGNORE_SECRETS_FOR_BUILD=1
- 
+  GOVUK_WEBSITE_ROOT=https://www.gov.uk \
+  RAILS_ENV=${RAILS_ENV} \
+  AUTHORIZED_HOSTS=127.0.0.1 \
+  SECRET_KEY_BASE=TestKey \
+  IGNORE_SECRETS_FOR_BUILD=1
+
 #    RACK_ENV=${RAILS_ENV} \
 #    LANG=C.UTF-8 \
 #    BUNDLE_JOBS=4 \
@@ -75,9 +75,9 @@ WORKDIR /app
 COPY . .
 
 RUN bundle exec rake assets:precompile && \
-    apk del nodejs yarn && \
-    rm -rf yarn.lock && \
-    rm -rf tmp/* log/* node_modules /usr/local/share/.cache /tmp/*
+  apk del nodejs yarn && \
+  rm -rf yarn.lock && \
+  rm -rf tmp/* log/* node_modules /usr/local/share/.cache /tmp/*
 
 # Stage 4: production, copy application code and compiled assets to base ruby image
 # Depends on assets-precompile stage which can be cached from a pre-build image
@@ -89,12 +89,12 @@ RUN bundle exec rake assets:precompile && \
 FROM ${BASE_RUBY_IMAGE} as production
 ARG SHA
 ENV AUTHORIZED_HOSTS=127.0.0.1 \
-    SHA=${SHA}
+  SHA=${SHA}
 
 RUN apk -U upgrade && \
-    apk add --update --no-cache tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
-    echo "Europe/London" > /etc/timezone && \
-    cp /usr/share/zoneinfo/Europe/London /etc/localtime
+  apk add --update --no-cache tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
+  echo "Europe/London" > /etc/timezone && \
+  cp /usr/share/zoneinfo/Europe/London /etc/localtime
 
 COPY --from=assets-precompile /app /app 
 COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
@@ -103,10 +103,10 @@ COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
 WORKDIR /app
 
 # Use the following for development testing
-# CMD bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0
+CMD bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0
 
 # Otherwise use the following
-CMD bundle exec rails db:migrate:ignore_concurrent_migration_exceptions && bundle exec rails server -b 0.0.0.0
+# CMD bundle exec rails db:migrate:ignore_concurrent_migration_exceptions && bundle exec rails server -b 0.0.0.0
 
 # We migrate and ignore concurrent_migration_exceptions because we deploy to
 # multiple instances at the same time.
