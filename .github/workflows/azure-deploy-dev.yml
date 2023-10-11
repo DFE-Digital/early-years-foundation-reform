@@ -105,8 +105,8 @@ jobs:
             type=registry,ref=${{ env.DOCKER_IMAGE }}-prod:latest
           push: true
           tags: |
-            ${{ env.DOCKER_IMAGE }}-prod:latest
-            ${{ env.DOCKER_IMAGE }}-prod:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE }}:latest
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
           target: production
 
       # Login to Azure using OIDC
