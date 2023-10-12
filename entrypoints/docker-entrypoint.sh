@@ -7,6 +7,8 @@ if [ -f tmp/pids/server.pid ]; then
   rm tmp/pids/server.pid
 fi
 
+/usr/sbin/sshd
+
 bundle exec rake db:prepare db:seed
 
 # Start the application

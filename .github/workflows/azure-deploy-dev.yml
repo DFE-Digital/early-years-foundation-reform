@@ -102,7 +102,7 @@ jobs:
             BUILDKIT_INLINE_CACHE=1
             SHA=${{ github.sha }}
           cache-from: |
-            type=registry,ref=${{ env.DOCKER_IMAGE }}-prod:latest
+            type=registry,ref=${{ env.DOCKER_IMAGE }}:latest
           push: true
           tags: |
             ${{ env.DOCKER_IMAGE }}:latest

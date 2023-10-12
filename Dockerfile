@@ -102,6 +102,20 @@ COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
 # The application runs from /app
 WORKDIR /app
 
+COPY sshd_config /etc/ssh/
+COPY ./entrypoints/docker-entrypoint.sh ./
+
+# Start and enable SSH
+RUN apk add openssh \
+  && echo "root:Docker!" | chpasswd \
+  && chmod +x ./docker-entrypoint.sh \
+  && cd /etc/ssh/ \
+  && ssh-keygen -A
+
+EXPOSE 3000 2222
+
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
+
 # Use the following for development testing
 CMD bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0
 
