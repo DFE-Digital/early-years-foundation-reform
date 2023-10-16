@@ -65,6 +65,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: Dockerfile.azure
           build-args: BUILDKIT_INLINE_CACHE=1
           cache-from: |
             ${{ env.DOCKER_IMAGE }}-dev:builder
@@ -76,6 +77,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: Dockerfile.azure
           build-args: BUILDKIT_INLINE_CACHE=1
           cache-from: |
             ${{ env.DOCKER_IMAGE }}-dev:gems-node-modules
@@ -87,6 +89,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: Dockerfile.azure
           build-args: BUILDKIT_INLINE_CACHE=1
           cache-from: |
             ${{ env.DOCKER_IMAGE }}-dev:assets-precompile
@@ -98,6 +101,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: Dockerfile.azure
           build-args: |
             BUILDKIT_INLINE_CACHE=1
             SHA=${{ github.sha }}
