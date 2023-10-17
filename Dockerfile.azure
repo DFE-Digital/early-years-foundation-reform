@@ -32,7 +32,6 @@ WORKDIR ${APP_HOME}
 
 COPY package.json ${APP_HOME}/package.json
 COPY yarn.lock ${APP_HOME}/yarn.lock
-COPY .yarn ${APP_HOME}/.yarn
 COPY .yarnrc.yml ${APP_HOME}/.yarnrc.yml
 
 RUN yarn install
