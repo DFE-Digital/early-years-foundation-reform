@@ -99,9 +99,6 @@ RUN apk -U upgrade && \
 COPY --from=assets-precompile /app /app 
 COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
 
-COPY --from=builder /app /app
-COPY --from=builder /usr/local/bundle /usr/local/bundle
-
 # The application runs from /app
 WORKDIR /app
 
