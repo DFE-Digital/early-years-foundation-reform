@@ -102,8 +102,6 @@ COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
 # The application runs from /app
 WORKDIR /app
 
-COPY sshd_config /etc/ssh/
-COPY ./entrypoints/docker-entrypoint.sh ./
 COPY .docker-profile /root/.profile
 
 # Use the following for development testing
