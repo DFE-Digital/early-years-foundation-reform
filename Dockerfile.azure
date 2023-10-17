@@ -10,7 +10,7 @@ ARG BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES=help-for-early-years-providers-ge
 FROM ${BASE_RUBY_IMAGE} AS builder
 
 # Set bundler version
-ENV BUNDLER_VERSION=2.2.16
+ENV BUNDLER_VERSION=2.2.26
 
 # Dependencies for the build
 # git: version manager
@@ -102,7 +102,20 @@ COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
 # The application runs from /app
 WORKDIR /app
 
+COPY sshd_config /etc/ssh/
+COPY ./entrypoints/docker-entrypoint.sh ./
 COPY .docker-profile /root/.profile
+
+# Start and enable SSH
+RUN apk add openssh \
+  && echo "root:Docker!" | chpasswd \
+  && chmod +x ./docker-entrypoint.sh \
+  && cd /etc/ssh/ \
+  && ssh-keygen -A
+
+EXPOSE 3000 2222
+
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
 
 # Use the following for development testing
 CMD bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0
