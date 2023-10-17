@@ -35,15 +35,7 @@ jobs:
     environment: development
 
     steps:
-      - name: Check workflow concurrency
-        uses: softprops/turnstyle@v1
-        with:
-          poll-interval-seconds: 20
-          same-branch-only: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Checkout the repository to the GitHub Actions runner
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -61,21 +53,21 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push docker image from production target
+      - name: Build and push docker image
         uses: docker/build-push-action@v5
         with:
+          target: app
           context: .
+          push: true
           file: Dockerfile.azure
           build-args: |
             BUILDKIT_INLINE_CACHE=1
             SHA=${{ github.sha }}
           cache-from: |
-            type=registry,ref=${{ env.DOCKER_IMAGE }}:latest
-          push: true
+            type=registry,ref=${{ env.DOCKER_IMAGE }}:${{ github.sha }}
           tags: |
-            ${{ env.DOCKER_IMAGE }}:latest
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-          target: production
+            ${{ env.DOCKER_IMAGE }}:latest
 
       # Login to Azure using OIDC
       - name: Login to Azure CLI

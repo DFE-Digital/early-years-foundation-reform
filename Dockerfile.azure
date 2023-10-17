@@ -46,7 +46,7 @@ RUN bundle install --no-binstubs --retry=10 --jobs=4
 # ------------------------------------------------------------------------------
 # Production Stage - nodejs v16.17.1, postgresql v14.5, chromium v102.0.5005.182
 # ------------------------------------------------------------------------------
-FROM base AS production
+FROM base AS app
 
 LABEL org.opencontainers.image.description "Early Years Recovery Rails Application"
 
