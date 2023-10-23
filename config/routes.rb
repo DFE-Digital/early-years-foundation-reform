@@ -12,34 +12,32 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[show create]
 
-  constraints CmsRouteConstraint.new do
-    devise_for :users
-    devise_scope :user do
-      get "sign_in", to: "devise/sessions#new"
-      delete "sign_out", to: "devise/sessions#destroy"
-    end
+  devise_for :users
+  devise_scope :user do
+    get "sign_in", to: "devise/sessions#new"
+    delete "sign_out", to: "devise/sessions#destroy"
+  end
 
-    namespace :admin do
-      root to: "users#index"
-      resources :users
-      resources :articles do
-        post "publish", on: :member
-        post "unpublish", on: :member
-      end
-      resources :content_pages, path: "pages" do
-        get "versions", on: :member
-        get "preview_of_live", on: :member
-        post "unpublish", on: :member
-        resources :content_page_versions do
-          get "preview_of_draft", on: :member
-          post "publish", on: :member
-        end
-      end
-      resources :content_blocks, path: "blocks", only: %i[index new edit create update]
-      resources :content_assets, path: "assets"
-      #  This is not a resource route
-      post "preview_markdown", to: "content_pages#preview"
+  namespace :admin do
+    root to: "users#index"
+    resources :users
+    resources :articles do
+      post "publish", on: :member
+      post "unpublish", on: :member
     end
+    resources :content_pages, path: "pages" do
+      get "versions", on: :member
+      get "preview_of_live", on: :member
+      post "unpublish", on: :member
+      resources :content_page_versions do
+        get "preview_of_draft", on: :member
+        post "publish", on: :member
+      end
+    end
+    resources :content_blocks, path: "blocks", only: %i[index new edit create update]
+    resources :content_assets, path: "assets"
+    #  This is not a resource route
+    post "preview_markdown", to: "content_pages#preview"
   end
 
   %w[accessibility-statement contact-us disclaimer child-development-training].each do |static_page|
