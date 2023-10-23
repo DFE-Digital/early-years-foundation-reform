@@ -41,6 +41,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.font_src    :self, :https, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :data
   policy.frame_src   :self, *GOOGLE_ANALYTICS_DOMAINS, *OPTIMIZE_DOMAINS
   policy.img_src     :self,
+                     "images.ctfassets.net",
                      *GOVUK_DOMAINS,
                      *S3_DOMAINS,
                      *GOOGLE_ANALYTICS_DOMAINS, # Tracking pixels
