@@ -9,7 +9,7 @@ fi
 
 /usr/sbin/sshd
 
-bundle exec rake db:prepare db:seed:replant
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rake db:prepare db:seed:replant
 
 # Start the application
 bundle exec rails s -b 0.0.0.0
