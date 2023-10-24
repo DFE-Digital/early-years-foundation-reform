@@ -27,7 +27,7 @@ resource "azurerm_postgresql_flexible_server" "psqlfs" {
   }
 
   lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = [tags, zone, high_availability]
   }
 
   #checkov:skip=CKV_AZURE_136:Geo-redundant backup is configurable depending on environment
@@ -43,6 +43,16 @@ resource "azurerm_postgresql_flexible_server_configuration" "psqlfs_config" {
 # Create Database
 resource "azurerm_postgresql_flexible_server_database" "psqldb" {
   name      = "${var.resource_name_prefix}-${random_pet.name.id}-psqldb"
+  server_id = azurerm_postgresql_flexible_server.psqlfs.id
+  collation = "en_US.utf8"
+  charset   = "utf8"
+}
+
+resource "azurerm_postgresql_flexible_server_database" "psqldb_slot" {
+  # Secondary database only deployed for Green Web App slot on Production subscription
+  count = var.environment == "production" ? 1 : 0
+
+  name      = "${var.resource_name_prefix}-${random_pet.name.id}-psqldb-slot"
   server_id = azurerm_postgresql_flexible_server.psqlfs.id
   collation = "en_US.utf8"
   charset   = "utf8"
