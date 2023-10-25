@@ -5,13 +5,13 @@ resource "azurerm_service_plan" "asp" {
   resource_group_name = var.resource_group
   os_type             = "Linux"
   sku_name            = var.asp_sku
+  worker_count        = var.webapp_worker_count
 
   lifecycle {
     ignore_changes = [tags]
   }
 
   #checkov:skip=CKV_AZURE_212:Argument not available
-  #checkov:skip=CKV_AZURE_225:Ensure the App Service Plan is zone redundant
 }
 
 # Create Web Application
@@ -51,17 +51,6 @@ resource "azurerm_linux_web_app" "webapp" {
       # Deploy App Gateway rules only to the Test and Production subscription
       for_each = var.environment != "development" ? [1] : []
       content {
-        name       = "Allow health check"
-        action     = "Allow"
-        priority   = 400
-        ip_address = "127.0.0.1/0"
-      }
-    }
-
-    dynamic "ip_restriction" {
-      # Deploy App Gateway rules only to the Test and Production subscription
-      for_each = var.environment != "development" ? [1] : []
-      content {
         name       = "Deny public"
         action     = "Deny"
         priority   = 500
@@ -91,7 +80,7 @@ resource "azurerm_linux_web_app" "webapp" {
   }
 
   lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = [tags, site_config.0.application_stack]
   }
 
   #checkov:skip=CKV_AZURE_13:App uses built-in authentication
@@ -141,7 +130,7 @@ resource "azurerm_linux_web_app_slot" "webapp_slot" {
   }
 
   lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = [tags, site_config.0.application_stack]
   }
 }
 
@@ -271,7 +260,7 @@ resource "azurerm_monitor_autoscale_setting" "asp_as" {
         metric_resource_id = azurerm_service_plan.asp.id
         statistic          = "Average"
         operator           = "GreaterThan"
-        threshold          = 70
+        threshold          = 80
         time_aggregation   = "Average"
         time_grain         = "PT1M"
         time_window        = "PT10M"
@@ -292,7 +281,7 @@ resource "azurerm_monitor_autoscale_setting" "asp_as" {
         metric_resource_id = azurerm_service_plan.asp.id
         statistic          = "Average"
         operator           = "LessThan"
-        threshold          = 50
+        threshold          = 65
         time_aggregation   = "Average"
         time_grain         = "PT1M"
         time_window        = "PT10M"

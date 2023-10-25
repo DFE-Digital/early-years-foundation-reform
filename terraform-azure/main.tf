@@ -75,6 +75,7 @@ module "webapp" {
   as_service_principal_object_id           = var.as_service_principal_object_id
   asp_sku                                  = var.asp_sku
   webapp_admin_email_address               = var.admin_email_address
+  webapp_worker_count                      = var.webapp_worker_count
   webapp_subnet_id                         = module.network.webapp_subnet_id
   webapp_name                              = var.webapp_name
   webapp_app_settings                      = local.webapp_app_settings
