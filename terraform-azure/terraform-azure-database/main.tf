@@ -12,7 +12,7 @@ resource "azurerm_postgresql_flexible_server" "psqlfs" {
   private_dns_zone_id          = var.psqlfs_dns_zone_id
   administrator_login          = var.psqlfs_username
   administrator_password       = var.psqlfs_password
-  zone                         = "1"
+  zone                         = "2"
   storage_mb                   = var.psqlfs_storage
   sku_name                     = var.psqlfs_sku
   backup_retention_days        = 7
@@ -22,7 +22,7 @@ resource "azurerm_postgresql_flexible_server" "psqlfs" {
     for_each = var.psqlfs_ha_enabled ? [1] : []
     content {
       mode                      = "SameZone"
-      standby_availability_zone = "1"
+      standby_availability_zone = "2"
     }
   }
 
