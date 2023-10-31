@@ -29,7 +29,7 @@ env:
   DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers
 
 jobs:
-  deploy-to-staging:
+  build-and-deploy:
     runs-on: ubuntu-latest
     environment: staging
     steps:
