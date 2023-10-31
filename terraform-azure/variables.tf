@@ -5,13 +5,13 @@ variable "azure_region" {
 }
 
 variable "environment" {
-  default     = "development"
+  default     = "staging"
   description = "Environment to deploy resources"
   type        = string
 }
 
 variable "resource_name_prefix" {
-  default     = "s195d01-hfeyp"
+  default     = "s195t01-hfeyp"
   description = "Prefix for resource names"
   type        = string
 }
