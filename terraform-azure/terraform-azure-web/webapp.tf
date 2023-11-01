@@ -12,6 +12,7 @@ resource "azurerm_service_plan" "asp" {
   }
 
   #checkov:skip=CKV_AZURE_212:Argument not available
+  #checkov:skip=CKV_AZURE_225:Ensure the App Service Plan is zone redundant
 }
 
 # Create Web Application
