@@ -2,21 +2,21 @@ name: 'HfEYP App Deploy [Azure - STAGE]'
 
 on:
   workflow_dispatch:
-    inputs:
-      candidate:
-        description: 'Create release candidate version ("rcx.x.x")'
-        type: string
-        required: true 
-      ref:
-        description: 'Git ref or branch to deploy'
-        type: string
-        required: true
-        default: main
-    push:
-      branches:
-        - ER-861-hfeyp-staging
-      tags:
-        - rc*
+    #inputs:
+    #  candidate:
+    #    description: 'Create release candidate version ("rcx.x.x")'
+    #    type: string
+    #    required: true
+    #  ref:
+    #    description: 'Git ref or branch to deploy'
+    #    type: string
+    #    required: true
+    #    default: main
+  push:
+    branches:
+      - ER-861-hfeyp-staging
+  # tags:
+  # - rc*
 
 # Permissions for OIDC authentication
 permissions:
