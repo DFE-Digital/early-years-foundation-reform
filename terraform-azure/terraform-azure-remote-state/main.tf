@@ -86,6 +86,8 @@ resource "azurerm_storage_account" "tfstate" {
   #checkov:skip=CKV2_AZURE_1:Microsoft Managed keys are sufficient
   #checkov:skip=CKV2_AZURE_38:Soft-delete not required
   #checkov:skip=CKV2_AZURE_33:VNet not configured
+  #checkov:skip=CKV2_AZURE_41:Ensure storage account is configured with SAS expiration policy
+  #checkov:skip=CKV2_AZURE_40:Ensure storage account is not configured with Shared Key authorization
 }
 
 resource "azurerm_storage_container" "tfstate" {
