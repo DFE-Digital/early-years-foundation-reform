@@ -2,16 +2,16 @@ name: 'HfEYP App Deploy [Azure - STAGE]'
 
 on:
   workflow_dispatch:
-    #inputs:
-    #  candidate:
-    #    description: 'Create release candidate version ("rcx.x.x")'
-    #    type: string
-    #    required: true
-    #  ref:
-    #    description: 'Git ref or branch to deploy'
-    #    type: string
-    #    required: true
-    #    default: main
+    inputs:
+      candidate:
+        description: 'Create release candidate version ("rcx.x.x")'
+        type: string
+        required: true
+      ref:
+        description: 'Git ref or branch to deploy'
+        type: string
+        required: true
+        default: main
   push:
     branches:
       - ER-861-hfeyp-staging
@@ -29,6 +29,7 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers
+  RELEASE_VERSION: ${{ inputs.candidate || github.sha }}
 
 jobs:
   build-and-deploy:
