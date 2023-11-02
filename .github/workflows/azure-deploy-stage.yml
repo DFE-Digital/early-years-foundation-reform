@@ -12,11 +12,6 @@ on:
         type: string
         required: true
         default: main
-  push:
-    branches:
-      - ER-861-hfeyp-staging
-  # tags:
-  # - rc*
 
 # Permissions for OIDC authentication
 permissions:
