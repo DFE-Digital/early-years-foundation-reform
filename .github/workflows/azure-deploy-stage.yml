@@ -37,6 +37,10 @@ jobs:
         with:
           ref: ${{ inputs.ref || github.ref_name }}
 
+      - name: Check tag format
+        run: |
+          echo ${{ inputs.candidate }} | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$'
+
       # Tag the branch with the release candidate version
       - name: Tag candidate
         if: ${{ inputs.candidate }}
@@ -59,22 +63,11 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build and push image
-      - name: Build and push Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          target: production
-          context: .
-          file: Dockerfile.azure
-          build-args: |
-            BUILDKIT_INLINE_CACHE=1
-            SHA=${{ github.sha }}
-          cache-from: |
-            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-            ${{ env.DOCKER_IMAGE }}:${{ inputs.ref || github.ref_name }}
-          tags: |
-            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-            ${{ env.DOCKER_IMAGE }}:${{ inputs.candidate || github.ref_name }}
+      - name: retag docker image
+        run: |
+          docker pull ${{ env.DOCKER_IMAGE }}:${{ env.HEAD }}
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ env.HEAD }} ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.candidate }}
+          docker push ${{ env.DOCKER_IMAGE }}:${{ inputs.candidate }}
 
       # Login to Azure using OIDC
       - name: Login to Azure CLI
