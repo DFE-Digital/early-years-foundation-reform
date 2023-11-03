@@ -39,7 +39,7 @@ jobs:
 
       - name: Check tag format
         run: |
-          echo ${{ inputs.candidate }} | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$'
+          echo ${{ inputs.candidate }} | grep -E '^rc[0-9]+\.[0-9]+\.[0-9]+$'
 
       # Tag the branch with the release candidate version
       - name: Tag candidate
