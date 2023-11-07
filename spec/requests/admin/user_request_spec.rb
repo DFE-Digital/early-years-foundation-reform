@@ -16,7 +16,7 @@ RSpec.describe Admin::UsersController, type: :request do
       it "redirects to root" do
         sign_in create(:editor)
         get admin_users_path
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(admin_content_pages_path)
       end
     end
 

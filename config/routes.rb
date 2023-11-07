@@ -36,8 +36,6 @@ Rails.application.routes.draw do
       end
     end
     resources :content_blocks, path: "blocks", only: %i[index new edit create update]
-    resources :content_assets, path: "assets"
-    #  This is not a resource route
     post "preview_markdown", to: "content_pages#preview"
   end
 
