@@ -1,17 +1,19 @@
-name: 'HfEYP App Deploy [Azure - STAGE]'
+name: 'HfEYP App Deploy [Azure - PROD]'
 
 on:
   workflow_dispatch:
     inputs:
-      candidate:
-        description: 'Create release candidate version ("rcx.x.x")'
+      version:
+        description: 'Create release version ("vx.x.x")'
         type: string
         required: true
       ref:
-        description: 'Git ref or branch to deploy'
+        description: 'Release candidate to deploy ("rcx.x.x")'
         type: string
         required: true
-        default: main
+  push:
+    tags:
+      - v*
 
 # Permissions for OIDC authentication
 permissions:
@@ -24,32 +26,19 @@ env:
   ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
   DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers
-  RELEASE_VERSION: ${{ inputs.candidate || github.sha }}
+  RELEASE_VERSION: ${{ inputs.version || github.sha }}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: staging
-    steps:
-      # Checkout the repository to the GitHub Actions runner
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.ref || github.ref_name }}
+    environment: production
 
+    steps:
       - name: Check tag format
         run: |
-          echo ${{ inputs.candidate }} | grep -E '^rc[0-9]+\.[0-9]+\.[0-9]+$'
+          echo ${{ inputs.ref }} | grep -E '^rc[0-9]+\.[0-9]+\.[0-9]+$'
 
-      # Tag the branch with the release candidate version
-      - name: Tag candidate
-        if: ${{ inputs.candidate }}
-        run: |
-          git tag --force ${{ inputs.candidate }}
-          git push --force origin refs/tags/${{ inputs.candidate }}
-          echo "HEAD=$(git rev-parse ${{ inputs.candidate }})" >> $GITHUB_ENV
-
-      # Login to Github Container Registry 
+      # Login to the container registry
       - name: Login to Github Container Registry
         uses: docker/login-action@v3
         with:
@@ -59,9 +48,9 @@ jobs:
 
       - name: retag docker image
         run: |
-          docker pull ${{ env.DOCKER_IMAGE }}:${{ env.HEAD }}
-          docker tag ${{ env.DOCKER_IMAGE }}:${{ env.HEAD }} ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.candidate }}
-          docker push ${{ env.DOCKER_IMAGE }}:${{ inputs.candidate }}
+          docker pull ${{ env.DOCKER_IMAGE }}:${{ inputs.ref }}
+          docker tag ${{ env.DOCKER_IMAGE }}:${{ inputs.ref }} ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.version }}
+          docker push ${{ env.DOCKER_IMAGE }}:${{ inputs.version }}
 
       # Login to Azure using OIDC
       - name: Login to Azure CLI
@@ -76,4 +65,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ vars.WEBAPP_NAME }}
-          images: ${{ env.DOCKER_IMAGE }}:${{ inputs.candidate || github.ref_name }}
+          images: ${{ env.DOCKER_IMAGE }}:${{ inputs.version }}
+          slot-name: ${{ vars.WEBAPP_DEPLOY_SLOT }}
