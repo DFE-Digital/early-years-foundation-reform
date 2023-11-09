@@ -7,7 +7,7 @@ module Admin
       @users = User.all
     rescue Pundit::NotAuthorizedError
       flash[:alert] = "You do not have permission to view users"
-      redirect_to request.referer || root_path
+      redirect_to request.referer || admin_content_pages_path
     end
 
     def new
