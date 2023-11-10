@@ -21,6 +21,7 @@ defaults:
 permissions:
   id-token: write
   contents: write
+  issues: write
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -40,11 +41,11 @@ jobs:
     steps:
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install the latest version of the Terraform CLI
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.5.6
           terraform_wrapper: false
@@ -131,13 +132,23 @@ jobs:
     needs: [terraform-plan]
 
     steps:
+      # Request review of Terraform Plan for deployment approval
+      - name: Terraform Plan Approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: ebrett,jack-coggin,peterdavidhamilton,sunny-sidhu-and
+          minimum-approvals: 1
+          issue-title: "Terraform deployment to ${{ inputs.environment }}"
+          issue-body: "Please review the Terraform Plan on the task summary and approve or deny the deployment"
+
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.5.6
 
