@@ -1,9 +1,9 @@
 name: 'Terraform Unit Tests'
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - ER-816-update-terraform-deploy
     paths:
       - 'terraform-azure/**'
       - '!terraform-azure/**.md'
