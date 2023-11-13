@@ -1,0 +1,40 @@
+name: 'HfEYP App Deploy [Azure - DEV TEARDOWN]'
+
+on:
+  workflow_dispatch:
+
+# Permissions for OIDC authentication
+permissions:
+  id-token: write
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers
+
+jobs:
+  teardown:
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      # Login to Azure using OIDC
+      - name: Login to Azure CLI
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Destroy Web Application
+      - name: Destroy Azure Web Application
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.50.0
+          inlineScript: |
+            az webapp deployment slot delete --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --name hfeyp-dev  \
+            az postgres flexible-server db delete --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --server-name ${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs \
+              --yes
