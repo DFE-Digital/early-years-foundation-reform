@@ -39,6 +39,10 @@ jobs:
       tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
 
     steps:
+      - name: Display input environment
+        run: |
+          echo ${{ inputs.environment }}
+
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout
         uses: actions/checkout@v4
