@@ -51,5 +51,6 @@ module GovukRailsBoilerplate
 
     config.feedback_url = ENV.fetch('FEEDBACK_URL', '#FEEDBACK_URL_env_var_missing')
     config.signup_url = ENV.fetch('SIGNUP_URL', '#SIGNUP_env_var_missing')
+    config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, ActiveSupport::TimeWithZone, ActiveSupport::TimeZone]
   end
 end

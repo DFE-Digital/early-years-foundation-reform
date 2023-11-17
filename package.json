@@ -1,18 +1,18 @@
 {
   "engines": {
-    "node": "14.x"
+    "node": "18.x"
   },
   "dependencies": {
-    "@rails/webpacker": "^5.4.3",
-    "govuk-frontend": "^4.0.0",
-    "jquery": "^3.5.1",
-    "rails-ujs": "^5.2.6",
-    "serialize-javascript": "^6.0.0",
+    "@rails/webpacker": "^5.4.4",
+    "govuk-frontend": "^4.7.0",
+    "jquery": "^3.7.1",
+    "rails-ujs": "^5.2.8",
+    "serialize-javascript": "^6.0.1",
     "set-value": "^4.1.0",
-    "showdown": "^1.9.1",
+    "showdown": "^2.1.0",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.15.1"
   }
 }

@@ -3,7 +3,7 @@
   Articles
 
 = render GovukComponent::TabComponent.new(title: 'Articles') do |component|
-  = component.tab(label: "Published") do
+  = component.with_tab(label: "Published") do
     %table.govuk-table
       %thead.govuk-table__head
         %tr.govuk-table__row
@@ -16,7 +16,7 @@
             Author 
       %tbody.govuk-table__body
         = render partial: 'article', collection: @articles.published
-  = component.tab(label: "Draft") do
+  = component.with_tab(label: "Draft") do
     %table.govuk-table
       %thead.govuk-table__head
         %tr.govuk-table__row
@@ -29,7 +29,7 @@
             Author
       %tbody.govuk-table__body
         = render partial: 'article', collection: @articles.draft
-  = component.tab(label: "Unpublished") do
+  = component.with_tab(label: "Unpublished") do
     %table.govuk-table
       %thead.govuk-table__head
         %tr.govuk-table__row

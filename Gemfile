@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read(".ruby-version").chomp
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.4"
+gem "rails", "~> 6.1.7"
 
 # User accounts; required in config/application.rb
 gem "devise", ">= 4.7.3"
@@ -110,4 +110,4 @@ gem "govuk_design_system_formbuilder", "~> 2.8"
 
 gem "friendly_id", "~> 5.4"
 
-gem "govuk-components", "~> 2.1"
+gem "govuk-components"
