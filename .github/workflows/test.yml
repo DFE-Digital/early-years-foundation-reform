@@ -13,30 +13,30 @@ jobs:
 
     services:
       postgres:
-        image: postgres:11.6-alpine
+        image: postgres:13.11-alpine
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: ''
+          POSTGRES_PASSWORD: password 
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.2
+          ruby-version: 3.2.2
 
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version: '18.x'
 
       - name: Set up ruby gem cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -51,25 +51,13 @@ jobs:
       - name: Install yarn
         run: npm install yarn -g
 
-      - name: Yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Set up yarn cache
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
       - name: Install node.js dependencies
         run: yarn install
 
       - name: Set up test database
         run: bin/rails db:prepare
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          DATABASE_URL: postgres://postgres:password@localhost:5432/test
 
       - name: Run rubocop
         run: bundle exec rubocop
@@ -77,4 +65,4 @@ jobs:
       - name: Run tests
         run: bundle exec rake
         env:
-          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          DATABASE_URL: postgres://postgres:password@localhost:5432/test
