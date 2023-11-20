@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# -----------------------------------------------------------------------------
+set -e
+
+docker-compose \
+  -f docker-compose.yml \
+  -f docker-compose.dev.yml \
+  --project-name hfeyp \
+  up --detach app
+
+docker attach hfeyp_dev

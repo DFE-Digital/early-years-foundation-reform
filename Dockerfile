@@ -1,124 +1,115 @@
+# -------------------------------------------------------------------------------
+# Base - AMD64 & ARM64 compatible
+# -------------------------------------------------------------------------------
+FROM ruby:3.2.2-alpine as base
 
-# To use or update to a ruby version, change {BASE_RUBY_IMAGE}
-ARG BASE_RUBY_IMAGE=ruby:3.2.2-alpine
+RUN apk add --no-cache --no-progress --no-check-certificate build-base less curl tzdata gcompat
 
-# BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES will defalt to help-for-early-years-gems-node-modules
-# building all layers above it if a value is not specified during the build
-ARG BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES=help-for-early-years-providers-gems-node-modules
+ENV TZ Europe/London
 
-# Stage 1: Download gems and node modules
-FROM ${BASE_RUBY_IMAGE} AS builder
+# -------------------------------------------------------------------------------
+# Dependencies
+# -------------------------------------------------------------------------------
+FROM base as deps
 
-# Set bundler version
-ENV BUNDLER_VERSION=2.4.13
+LABEL org.opencontainers.image.description "Application Dependencies"
 
-# Dependencies for the build
-# git: version manager
-# nodejs: JavaScript runtime built on Chrome's V8 JavaScript engine
-# yarn: node package manager
-# postgresql-dev: postgres driver and libraries
-ARG BUILD_DEPS="git gcc libc-dev make nodejs yarn npm shared-mime-info python2 postgresql-dev build-base libxml2-dev libxslt-dev ttf-ubuntu-font-family"
+RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn
 
-WORKDIR /app
+ENV APP_HOME /build
 
-COPY Gemfile Gemfile.lock package.json yarn.lock .ruby-version ./
+WORKDIR $(APP_HOME}
 
-RUN apk -U upgrade && \
-  apk add --update --no-cache --virtual .gem-installdeps $BUILD_DEPS && \
-  gem update --system && \
-  find / -wholename '*default/bundler-*.gemspec' -delete && \
-  rm -rf /usr/local/bundle/bin/bundle && \
-  gem install bundler -v ${BUNDLER_VERSION} --no-document && \
-  bundler -v && \
-  bundle config set no-cache 'true' && \
-  bundle config set no-binstubs 'true' && \
-  bundle --retry=5 --jobs=4 --without=development test && \
-  yarn install --check-files --production && \
-  apk del .gem-installdeps && \
-  rm -rf /usr/local/bundle/cache && \
-  find /usr/local/bundle/gems -name "*.c" -delete && \
-  find /usr/local/bundle/gems -name "*.h" -delete && \
-  find /usr/local/bundle/gems -name "*.o" -delete
+COPY package.json ${APP_HOME}/package.json
+COPY yarn.lock ${APP_HOME}/yarn.lock
+#COPY .yarn ${APP_HOME}/.yarn
+COPY .yarnrc.yml ${APP_HOME}/.yarnrc.yml
 
-# Stage 2: reduce size of gems-node-modules and only keep required files
-# Add the timezone as it's not configured by default in Alpine
-FROM ${BASE_RUBY_IMAGE} as help-for-early-years-providers-gems-node-modules
+RUN yarn install
 
-RUN apk -U upgrade && \
-  apk add --update --no-cache nodejs yarn tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
-  echo "Europe/London" > /etc/timezone && \
-  cp /usr/share/zoneinfo/Europe/London /etc/localtime
+COPY Gemfile* ./
 
-COPY --from=builder /app /app
-COPY --from=builder /usr/local/bundle /usr/local/bundle
+RUN bundle config set no-cache true
+RUN bundle config set without development test
+RUN bundle install --no-binstubs --retry=10 --jobs=4
 
-# Stage 3: assets-precompile, precompile assets and remove compile dependencies
-FROM ${BASE_RUBY_IMAGE_WITH_GEMS_AND_NODE_MODULES} as assets-precompile
+# -------------------------------------------------------------------------------
+# Production Stage
+# -------------------------------------------------------------------------------
+FROM base AS app
 
-ARG RAILS_ENV=production
-ENV GOVUK_APP_DOMAIN=www.gov.uk \
+LABEL org.opencontainers.image.source=https://github.com/DFE-Digital/early-years-foundation-reform
+LABEL org.opencontainers.image.description "Help for Early Years Providers"
+
+RUN echo "Welcome to the Help for Early Years Providers Application" > /etc/motd
+Run apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn openssh
+RUN echo "root:Docker!" | chpasswd && cd /etc/ssh/ && ssh-keygen -A
+
+ENV APP_HOME /srv
+ENV RAILS_ENV ${RAILS_ENV:-production} \
+  GOVUK_APP_DOMAIN=www.gov.uk \
   GOVUK_WEBSITE_ROOT=https://www.gov.uk \
-  RAILS_ENV=${RAILS_ENV} \
-  AUTHORIZED_HOSTS=127.0.0.1 \
-  SECRET_KEY_BASE=TestKey \
-  IGNORE_SECRETS_FOR_BUILD=1
+  AUTHORIZED_HOSTS=127.0.0.1
 
-#    RACK_ENV=${RAILS_ENV} \
-#    LANG=C.UTF-8 \
-#    BUNDLE_JOBS=4 \
-#    BUNDLE_RETRY=3 \
-#    BUNDLE_PATH=/usr/local/bundle \
-#    RAILS_SERVE_STATIC_FILES=true \
-#    RAILS_LOG_TO_STDOUT=true \
+RUN mkdir -p ${APP_HOME}/tmp/pids ${APP_HOME}/log
 
-WORKDIR /app 
-COPY . .
+WORKDIR ${APP_HOME}
 
-RUN bundle exec rake assets:precompile && \
-  apk del nodejs yarn && \
-  rm -rf yarn.lock && \
-  rm -rf tmp/* log/* node_modules /usr/local/share/.cache /tmp/*
+COPY Gemfile* ./
+COPY --from=deps /usr/local/bundle /usr/local/bundle
 
-# Stage 4: production, copy application code and compiled assets to base ruby image
-# Depends on assets-precompile stage which can be cached from a pre-build image
-# by specifiying a fully qualified image name or will default to packages-prod
-# thereby rebuilding all 3 stages above.
-# If an existing base image name is specified Stage 1 & 2 will not be build and
-# gems and dev packages will be used from the supplied image.
+COPY config.ru ${APP_HOME}/config.ru
+COPY Rakefile ${APP_HOME}/Rakefile
+COPY public ${APP_HOME}/public
+COPY bin ${APP_HOME}/bin
+COPY lib ${APP_HOME}/lib
+#COPY data ${APP_HOME}/data
+COPY config ${APP_HOME}/config
+COPY db ${APP_HOME}/db
+COPY app ${APP_HOME}/app
 
-FROM ${BASE_RUBY_IMAGE} as production
-ARG SHA
-ENV AUTHORIZED_HOSTS=127.0.0.1 \
-  SHA=${SHA}
+COPY package.json ${APP_HOME}/package.json
+COPY yarn.lock ${APP_HOME}/yarn.lock
+#COPY .yarnrc.yml ${APP_HOME}/.yarnrc.yml
+#COPY --from=deps /build/.yarn ${APP_HOME}/.yarn
+#COPY --from=deps /build/node_modules ${APP_HOME}/node_modules
 
-RUN apk -U upgrade && \
-  apk add --update --no-cache tzdata libpq libxml2 libxslt graphviz shared-mime-info && \
-  echo "Europe/London" > /etc/timezone && \
-  cp /usr/share/zoneinfo/Europe/London /etc/localtime
+RUN SECRET_KEY_BASE=x bundle exec rails assets:precompile
 
-COPY --from=assets-precompile /app /app 
-COPY --from=assets-precompile /usr/local/bundle/ usr/local/bundle/
+COPY sshd_config /etc/ssh/
+COPY ./docker-entrypoint.sh /
 
-# The application runs from /app
-WORKDIR /app
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
-COPY .docker-profile /root/.profile
+EXPOSE 3000
 
-# Use the following for development testing
-CMD bundle exec rails db:migrate && bundle exec rails server -b 0.0.0.0
+CMD ["bundle", "exec", "rails", "server"]
 
-# Otherwise use the following
-# CMD bundle exec rails db:migrate:ignore_concurrent_migration_exceptions && bundle exec rails server -b 0.0.0.0
+# -------------------------------------------------------------------------------
+# Development Stage - ./bin/docker-dev
+# -------------------------------------------------------------------------------
 
-# We migrate and ignore concurrent_migration_exceptions because we deploy to
-# multiple instances at the same time.
-#
-# Under these conditions each instance will try to run migrations. Rails uses a
-# database lock to prevent them stepping on each another. If they happen to,
-# a ConcurrentMigrationError exception is thrown, the command exits 1, and
-# the server will not start thanks to the shell &&.
-#
-# We swallow the exception and run the server anyway, because we prefer running
-# new code on an old schema (which will be updated a moment later) to running
-# old code on the new schema (which will require another deploy or other manual
-# intervention to correct).
+FROM app as dev
+
+RUN apk add --no-cache --no-progress --no-check-certificate postgresql-client
+RUN bundle config unset without
+RUN bundle config set without test
+RUN bundle install --no-binstubs --retry=10 --jobs=4
+
+# -------------------------------------------------------------------------------
+# Test Stage - ./bin/docker-rspec
+# -------------------------------------------------------------------------------
+FROM app as test
+
+RUN apk add --no-cache --no-progress --no-check-certificate postgresql-client
+
+RUN bundle config unset without
+RUN bundle config set without development
+RUN bundle install --no-binstubs --retry=10 --jobs=4
+
+COPY spec ${APP_HOME}/spec
+COPY .rspec ${APP_HOME}/.rspec
+COPY .rubocop.yml ${APP_HOME}/.rubocop.yml
+COPY .rubocop_todo.yml ${APP_HOME}/.rubocop_todo.yml
+
+CMD ["bundle", "exec", "rspec"]

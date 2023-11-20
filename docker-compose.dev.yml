@@ -1,0 +1,27 @@
+---
+services:
+  app:
+    container_name: hfeyp_dev
+    build:
+      target: dev
+    image: hfeyp:dev
+    command: foreman start -f Procfile
+    healthcheck:
+      test: curl --fail http://localhost:3000/health || exit 1
+    restart: on-failure
+    environment:
+      - ENVIRONMENT=
+      # psql client
+      - PGUSER=postgres
+      - PGPASSWORD=password
+      - PGHOST=db
+      - PGDATABASE=hfeyp_development
+      # app config\
+      - DATABASE_URL=postgres://postgres:password@db:5432/hfeyp_development
+      - RAILS_ENV=development
+      - DOMAIN=app:3000
+      - RAILS_SERVE_STATIC_FILES=true
+    volumes:
+      - .:/srv
+    tty: true
+    stdin_open: true
