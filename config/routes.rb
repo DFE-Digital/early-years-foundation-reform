@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "users#index"
     resources :users
-    resources :articles do
-      post "publish", on: :member
-      post "unpublish", on: :member
-    end
+    # resources :articles do
+    #  post "publish", on: :member
+    #  post "unpublish", on: :member
+    # end
     resources :content_pages, path: "pages" do
       get "versions", on: :member
       get "preview_of_live", on: :member
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     get "/#{static_page}", to: "static_pages##{static_page.underscore}"
   end
 
-  resources :articles, only: %i[index show]
+  # resources :articles, only: %i[index show]
   resources :feedbacks, only: %i[create]
 
   get "/:section/:slug", to: "content#show"
