@@ -11,7 +11,7 @@ fi
 
 eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/g' | sed '/=/s//="/' | sed 's/$/"/' >> /etc/profile)
 
-bundle exec rake db:prepare db:seed
+bundle exec rake db:prepare
 
 # Start the application
 bundle exec rails s -b 0.0.0.0
