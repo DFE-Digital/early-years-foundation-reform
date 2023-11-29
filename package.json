@@ -3,9 +3,9 @@
     "node": "14.x"
   },
   "dependencies": {
-    "@rails/webpacker": "^5.4.3",
+    "@rails/webpacker": "^5.4.4",
     "govuk-frontend": "^4.0.0",
-    "jquery": "^3.5.1",
+    "jquery": "^3.7.1",
     "rails-ujs": "^5.2.6",
     "serialize-javascript": "^6.0.0",
     "set-value": "^4.1.0",

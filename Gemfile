@@ -4,10 +4,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(".ruby-version").chomp
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1.4"
+gem "rails", "~> 6.1.7"
 
 # User accounts; required in config/application.rb
-gem "devise", ">= 4.7.3"
+gem "devise", ">= 4.9.3"
 gem "pundit", "~> 2.1"
 
 # Use postgresql as the database for Active Record
@@ -104,10 +104,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "devise-security", "~> 0.17.0"
+gem "devise-security", "~> 0.18.0"
 
-gem "govuk_design_system_formbuilder", "~> 2.8"
+gem "govuk_design_system_formbuilder", "~> 4.1"
 
-gem "friendly_id", "~> 5.4"
+gem "friendly_id", "~> 5.5"
 
-gem "govuk-components", "~> 2.1"
+gem "govuk-components", "~> 4.1"
