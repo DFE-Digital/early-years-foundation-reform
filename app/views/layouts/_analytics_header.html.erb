@@ -1,9 +1,9 @@
 <!-- Google tag (gtag.js) -->
-<script async src=<%= "https://www.googletagmanager.com/gtag/js?id=#{GoogleAnalytics::TRACKING_ID}" %>></script>
+<script async src=<%= Rails.configuration.js_url %>></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   
-  gtag('config', '<%= GoogleAnalytics::TRACKING_ID %>');
+  gtag('config', '<%= Rails.configuration.tracking_id %>');
 </script>
