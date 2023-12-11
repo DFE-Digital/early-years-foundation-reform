@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - er-signup-url
     paths-ignore:
       - '**/*.md'
       - .docker*
