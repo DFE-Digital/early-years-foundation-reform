@@ -52,8 +52,8 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "dibber"
 
 # Monitor errors
-gem "sentry-rails"
-gem "sentry-ruby"
+# gem "sentry-rails"
+# gem "sentry-ruby"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
