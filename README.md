@@ -15,7 +15,7 @@ all in UK.GOV style;
 
 ## Prerequisites
 
-Ruby version `2.7.2`
+Ruby version `3.1.3`
 
 Node version `14.x.x`
 ## Getting started on Docker
@@ -234,7 +234,7 @@ cucumber --color -r e2etestname.feature
 - Ruby E2E Tests
 -   e2e-test:
 -     group: ?
--     image: ruby:2.7.2
+-     image: ruby:3.1.3
 -     commands:
 -       - cd e2etests
 -       - gem install bundler
