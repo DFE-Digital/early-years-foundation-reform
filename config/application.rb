@@ -43,13 +43,12 @@ module GovukRailsBoilerplate
 
     config.middleware.use Rack::RejectTrace
     config.middleware.use Rack::Deflater
-    subdomain = ENV.fetch('DOMAIN', "eyfs-dev").split(".").first
-    allowed_spaces = %w[eyfs-dev eyfs-pre-prod eyfs-prod eyfs-sandbox eyfs-test]
-    config.space = allowed_spaces.include?(subdomain) ? subdomain : "eyfs-dev"
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', 'content', '*.{rb,yml}').to_s]
 
-    config.feedback_url = ENV.fetch('FEEDBACK_URL', '#FEEDBACK_URL_env_var_missing')
-    config.signup_url = ENV.fetch('SIGNUP_URL', '#SIGNUP_env_var_missing')
+    config.feedback_url = ENV.fetch('FEEDBACK_URL', config_for(:configuration)['feedback_url'] || '#FEEDBACK_env_var_missing')
+    config.signup_url = ENV.fetch('SIGNUP_URL', config_for(:configuration)['signup_url'] || '#SIGNUP_env_var_missing')
+    config.tracking_id = ENV.fetch('TRACKING_ID', config_for(:configuration)['tracking_id'] || '#TRACKING_ID_env_var_missing')
+    config.js_url = "https://www.googletagmanager.com/ns.html?id=#{config.tracking_id}"
   end
 end
