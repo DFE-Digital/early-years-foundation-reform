@@ -17,7 +17,7 @@ ENV BUNDLER_VERSION=2.2.26
 # nodejs: JavaScript runtime built on Chrome's V8 JavaScript engine
 # yarn: node package manager
 # postgresql-dev: postgres driver and libraries
-ARG BUILD_DEPS="git gcc libc-dev make nodejs yarn npm shared-mime-info python2 postgresql-dev build-base libxml2-dev libxslt-dev ttf-ubuntu-font-family"
+ARG BUILD_DEPS="git gcc libc-dev make nodejs yarn npm shared-mime-info python3 postgresql-dev build-base libxml2-dev libxslt-dev ttf-freefont"
 
 WORKDIR /app
 
