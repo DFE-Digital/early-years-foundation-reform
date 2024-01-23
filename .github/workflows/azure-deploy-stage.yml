@@ -49,7 +49,13 @@ jobs:
           git push --force origin refs/tags/${{ inputs.candidate }}
           echo "HEAD=$(git rev-parse ${{ inputs.candidate }})" >> $GITHUB_ENV
 
-      # Login to Github Container Registry 
+      # Create and boot Docker image builder
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          version: v0.9.1
+
+      # Login to the container registry
       - name: Login to Github Container Registry
         uses: docker/login-action@v3
         with:
@@ -57,11 +63,22 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: retag docker image
-        run: |
-          docker pull ${{ env.DOCKER_IMAGE }}:${{ env.HEAD }}
-          docker tag ${{ env.DOCKER_IMAGE }}:${{ env.HEAD }} ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.candidate }}
-          docker push ${{ env.DOCKER_IMAGE }}:${{ inputs.candidate }}
+      # Build and push image
+      - name: Build and push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          target: app
+          context: .
+          push: true
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+            SHA=${{ github.sha }}
+          cache-from: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ inputs.ref || github.ref_name }}
+          tags: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ inputs.candidate || github.ref_name }}
 
       # Login to Azure using OIDC
       - name: Login to Azure CLI

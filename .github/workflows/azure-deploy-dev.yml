@@ -36,15 +36,6 @@ jobs:
     environment: development
 
     steps:
-      - name: Check workflow concurrency
-        uses: softprops/turnstyle@v1
-        with:
-          poll-interval-seconds: 20
-          same-branch-only: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # Checkout the repository to the GitHub Actions runner
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
