@@ -11,7 +11,8 @@
                 class: "govuk-button gem-c-feedback__prompt-link",
                 data: {
                   track_category: "yesNoFeedbackForm",
-                  track_action: "ffYesClick"
+                  track_action: "ffYesClick",
+                  turbo: false
                 }
               ) do  %>
             Yes <span class="govuk-visually-hidden">this page is useful</span>
@@ -24,7 +25,8 @@
                 class: "govuk-button gem-c-feedback__prompt-link",
                 data: {
                   track_category: "yesNoFeedbackForm",
-                  track_action: "ffNoClick"
+                  track_action: "ffNoClick",
+                  turbo: false
                 }
               ) do  %>
             No <span class="govuk-visually-hidden">this page is not useful</span>

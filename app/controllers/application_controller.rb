@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  layout ENV.fetch('DFE_DESIGN', nil).present? ? 'application' : 'beta/application'
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
   before_action { cookies.delete :track_google_analytics }
   before_action do |_controller|
