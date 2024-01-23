@@ -23,7 +23,7 @@ class ContentController < ApplicationController
     @content_pages = ContentPage.top_level.published.order_by_position - @featured_pages
 
     respond_to do |format|
-      format.html { render :index, layout: "landing_page_layout" }
+      format.html { render :index, layout: "beta/landing_page_layout" }
     end
   end
 

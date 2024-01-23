@@ -39,5 +39,6 @@ Rails.application.routes.draw do
   get "/:section/:slug", to: "content#show"
   get "/:slug", to: "content#show"
 
-  root to: "content#index"
+  root to: "content#index", constraints: -> { ENV.fetch('DFE_DESIGN', nil).blank? }, as: :beta_root
+  root to: "pages#home"
 end

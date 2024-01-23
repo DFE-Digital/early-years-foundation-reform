@@ -5,7 +5,7 @@ class FeedbacksController < ApplicationController
     cookies[:feedback_page_useful] = cookie(feedback)
     uri = redirect_uri
     uri.fragment = "feedback"
-    redirect_to uri.to_s
+    redirect_to uri.to_s, format: :html
   end
 
 private
