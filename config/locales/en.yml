@@ -82,15 +82,9 @@ en:
             featured_image:
               blank: Featured image must be present
               invalid_extension: Featured image has an invalid extension
-              antivirus_client_error: Featured image could not be processed for virus scan, temporarily unavailable
-              antivirus_virus_detected: A virus was detected for featured image
-              antivirus_file_not_found: The scanner did not find the file for the featured image
             thumbnail_image:
               blank: Thumbnail image must be present
               invalid_extension: Thumbnail image has an invalid extension
-              antivirus_client_error: Thumbnail image could not be processed for virus scan, temporarily unavailable
-              antivirus_virus_detected: A virus was detected for thumbnail image
-              antivirus_file_not_found: The scanner did not find the file for the thumbnail image
             featured_alt_text:
               blank: Featured image alternate text must not be blank
             thumbnail_alt_text:
@@ -129,7 +123,7 @@ en:
               blank: must not be blank
             asset_file:
               blank: must not be blank
-              invalid_extension:  has an invalid extension.
+              invalid_extension: has an invalid extension.
         user:
           attributes:
             email:
@@ -138,7 +132,7 @@ en:
             password:
               too_short: Password must be a minimum of 8 characters long
               blank: Password must not be blank
-              equal_to_current_password: 'Password must be different than the current password'
+              equal_to_current_password: "Password must be different than the current password"
               password_complexity:
                 digit: Password must contain at least 2 digits
                 lower: Password must contain at least 2 lowercase characters

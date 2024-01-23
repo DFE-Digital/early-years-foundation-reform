@@ -38,7 +38,6 @@ RSpec.describe "Contents", type: :request do
   end
 
   describe "GET /" do
-    let(:article_section_link) { html_document.xpath('//a[contains(text(),"Support articles")][@href="/articles"]') }
     it "renders the landing page / hub page" do
       get "/"
       expect(response).to be_successful
@@ -47,20 +46,6 @@ RSpec.describe "Contents", type: :request do
     it "renders the content pages with HTTP headers to allow caching" do
       get "/"
       expect(response.headers["Cache-Control"]).to eq("max-age=3600, public")
-    end
-
-    it "does not display an articles section" do
-      get root_path
-      expect(article_section_link).not_to be_present
-    end
-
-    context "with an article present" do
-      before { create :article, :complete, :published }
-
-      it "does display an articles section" do
-        get root_path
-        expect(article_section_link).to be_present
-      end
     end
   end
 

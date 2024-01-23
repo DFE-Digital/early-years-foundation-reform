@@ -28,12 +28,12 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7.2
+          ruby-version: 3.2.2
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version: '20.x'
 
       - name: Install gems
         run: |
@@ -51,10 +51,18 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:password@localhost:5432/test
 
+      - name: Report schema version
+        run: bin/rails db:version
+        env:
+          DATABASE_URL: postgres://postgres:password@localhost:5432/test
+
+      - name: Compile assets
+        run: bin/rails assets:precompile
+
       - name: Run rubocop
         run: bundle exec rubocop
 
       - name: Run tests
-        run: bundle exec rake
+        run: bundle exec rspec
         env:
           DATABASE_URL: postgres://postgres:password@localhost:5432/test

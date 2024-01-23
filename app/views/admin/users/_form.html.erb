@@ -1,4 +1,4 @@
-<%= form_with(model: [:admin, user], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+<%= form_with(model: [:admin, user], data: { turbo: false }, local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
   <%= form.govuk_error_summary order: %i[first_name last_name email password password_confirmation role] %>
   <%= form.govuk_text_field :first_name, label: {text: "First name"} %>
   <%= form.govuk_text_field :last_name, label: {text: "Last name"} %>

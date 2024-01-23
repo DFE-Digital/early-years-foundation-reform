@@ -1,4 +1,4 @@
-<%= form_with url: "/settings", method: :post, local: true do |form| %>
+<%= form_with url: "/settings", data: { turbo: false }, method: :post, local: true do |form| %>
 
   <%= form.hidden_field :return_url, value: request.path %>
 

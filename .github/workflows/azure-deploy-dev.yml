@@ -65,54 +65,19 @@ jobs:
       - name: Build and push docker image from builder target
         uses: docker/build-push-action@v5
         with:
+          target: app
           context: .
-          file: Dockerfile.azure
-          build-args: BUILDKIT_INLINE_CACHE=1
-          cache-from: |
-            ${{ env.DOCKER_IMAGE }}-dev:builder
           push: true
-          tags: ${{ env.DOCKER_IMAGE }}-dev:builder
-          target: builder
-
-      - name: Build and push docker image from help-for-early-years-providers-gems-node-modules target
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile.azure
-          build-args: BUILDKIT_INLINE_CACHE=1
-          cache-from: |
-            ${{ env.DOCKER_IMAGE }}-dev:gems-node-modules
-          push: true
-          tags: ${{ env.DOCKER_IMAGE }}-dev:gems-node-modules
-          target: help-for-early-years-providers-gems-node-modules
-
-      - name: Build and push docker image from assets-precompile target
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile.azure
-          build-args: BUILDKIT_INLINE_CACHE=1
-          cache-from: |
-            ${{ env.DOCKER_IMAGE }}-dev:assets-precompile
-          push: true
-          tags: ${{ env.DOCKER_IMAGE }}-dev:assets-precompile
-          target: assets-precompile
-
-      - name: Build and push docker image from production target
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile.azure
+          platforms: linux/amd64,linux/arm64
+          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=Help for Early Years Providers Application
           build-args: |
             BUILDKIT_INLINE_CACHE=1
             SHA=${{ github.sha }}
           cache-from: |
-            type=registry,ref=${{ env.DOCKER_IMAGE }}:latest
-          push: true
-          tags: |
-            ${{ env.DOCKER_IMAGE }}:latest
             ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
-          target: production
+          tags: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE }}:latest
 
       # Login to Azure using OIDC
       - name: Login to Azure CLI
