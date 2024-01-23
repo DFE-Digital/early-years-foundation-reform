@@ -38,6 +38,26 @@ jobs:
         run: |
           echo ${{ inputs.ref }} | grep -E '^rc[0-9]+\.[0-9]+\.[0-9]+$'
 
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref_name }}
+
+      # Tag the branch with the release version
+      - name: Tag Version
+        if: ${{ inputs.version }}
+        run: |
+          git tag --force ${{ inputs.version }}
+          git push --force origin refs/tags/${{ inputs.version }}
+          echo "HEAD=$(git rev-parse ${{ inputs.version }})" >> $GITHUB_ENV
+
+      # Create and boot Docker image builder
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          version: v0.9.1
+
       # Login to the container registry
       - name: Login to Github Container Registry
         uses: docker/login-action@v3
@@ -46,11 +66,22 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: retag docker image
-        run: |
-          docker pull ${{ env.DOCKER_IMAGE }}:${{ inputs.ref }}
-          docker tag ${{ env.DOCKER_IMAGE }}:${{ inputs.ref }} ${{ env.DOCKER_IMAGE }}:${{ github.event.inputs.version }}
-          docker push ${{ env.DOCKER_IMAGE }}:${{ inputs.version }}
+      # Build and push image
+      - name: Build and push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          target: app
+          context: .
+          push: true
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+            SHA=${{ github.sha }}
+          cache-from: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ inputs.ref || github.ref_name }}
+          tags: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ inputs.version || github.ref_name }}
 
       # Login to Azure using OIDC
       - name: Login to Azure CLI
@@ -65,5 +96,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ vars.WEBAPP_NAME }}
-          images: ${{ env.DOCKER_IMAGE }}:${{ inputs.version }}
+          images: ${{ env.DOCKER_IMAGE }}:${{ inputs.version || github.ref_name }}
           slot-name: ${{ vars.WEBAPP_DEPLOY_SLOT }}
