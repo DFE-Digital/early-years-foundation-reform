@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
   before_action { cookies.delete :track_google_analytics }
   before_action do |_controller|
     @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
