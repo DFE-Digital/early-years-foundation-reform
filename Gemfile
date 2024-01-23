@@ -26,6 +26,7 @@ gem 'pundit', '~> 2.1'
 gem 'rails', '~> 7.0.8'
 gem 'sentry-rails'
 gem 'sentry-ruby'
+gem 'slim-rails', '~> 3.6'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
@@ -46,6 +47,7 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.8'
+  gem 'rladr'
   gem 'web-console', '>= 3.3.0'
 end
 
