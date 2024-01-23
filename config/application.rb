@@ -5,19 +5,17 @@ require "rails"
 require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
-require "active_storage/engine"
+# require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 # require "action_mailbox/engine"
-require "action_text/engine"
+# require "action_text/engine"
 require "action_view/railtie"
-# require "action_cable/engine"
-# require "sprockets/railtie"
-require "rails/test_unit/railtie"
+require "action_cable/engine"
+# require "rails/test_unit/railtie"
 require "govuk/components"
 
 require_relative "../lib/rack/reject_trace"
-
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,13 +24,13 @@ Bundler.require(*Rails.groups)
 module GovukRailsBoilerplate
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    #config.assets.paths << Rails.root.join('node_modules/govuk-frontend/govuk/assets').to_s
     config.exceptions_app = routes
 
     # disable client-side XSS Auditors, as they have been removed from most
@@ -49,5 +47,6 @@ module GovukRailsBoilerplate
     config.signup_url = ENV.fetch('SIGNUP_URL', config_for(:configuration)['signup_url'] || '#SIGNUP_env_var_missing')
     config.tracking_id = ENV.fetch('TRACKING_ID', config_for(:configuration)['tracking_id'] || '#TRACKING_ID_env_var_missing')
     config.js_url = "https://www.googletagmanager.com/ns.html?id=#{config.tracking_id}"
+
   end
 end

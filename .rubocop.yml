@@ -1,9 +1,20 @@
+---
+inherit_from: .rubocop_todo.yml
+
 inherit_gem:
   rubocop-govuk:
     - config/default.yml
     - config/rails.yml
+    - config/rspec.yml
+
+inherit_mode:
+  merge:
+    - Exclude
+
+require: rubocop-performance
 
 AllCops:
+  TargetRubyVersion: 3.2.2
   Exclude:
     - "**/*.erb"
     - 'bin/*'
@@ -12,3 +23,10 @@ AllCops:
     - 'config/application.rb'
     - 'config/puma.rb'
     - 'vendor/**/*'
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/HashSyntax:
+  EnforcedStyle: ruby19
+  EnforcedShorthandSyntax: either

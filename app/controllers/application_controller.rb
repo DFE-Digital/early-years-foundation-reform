@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
   end
 
-  include Pundit
+  include Pundit::Authorization
 
   def check
     render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok

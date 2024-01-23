@@ -1,6 +1,0 @@
----
-applications:
-- name: eyfs-service-unavailable
-  memory: 64M
-  buildpacks:
-  - staticfile_buildpack

@@ -158,32 +158,6 @@ bundle exec scss-lint app/webpacker/styles
 
 Vscode - Rubocop has a vscode extension, linting may need to be turned on
 
-## Using Amazon S3 Bucket for asset storage (e.g. in production)
-
-Ensure you have added 4 parameters to the .env file, these are (ACCESS_KEY_ID, SECRET_ACCESS_KEY, REGION, BUCKET) e.g:
-
-```
-ACCESS_KEY_ID=7867867687
-SECRET_ACCESS_KEY=876876876
-REGION=eu-west-2
-BUCKET=eyfsreformspike
-
-```
-
-These 4 parameters will be picked up by the Amazon config setting in config/storage.yml
-You can obtain the access key ID and secret access key as a download from the AWS account
-Region should be eu-west-2 (London)
-You must create the parent bucket in AWS first and then add this bucket name to the final parameter(line)
-Do not encapsulate the strings
-
-Ensure that the appropriate environment file (e.g. environments/production.rb) has been set to use Amazon as storage service:
-
-```
-config.active_storage.service = :amazon
-```
-
-Note: Docker can't be used to connect to AWS
-
 ## Deploying on GOV.UK PaaS
 
 ### Prerequisites
@@ -246,28 +220,3 @@ cucumber --color -r e2etestname.feature
 -           - tbc/*
 -         event:
 -           - push
-
-
-## Antivirus
-
-We use (clamav)[https://clamav.net] to scan files for viruses 
-via a clamav-rest docker image. To create locally follow the
-instructions on here:
-
-https://github.com/niilo/clamav-rest
-
-`docker run -p 9000:9000 --rm -it niilo/clamav-rest`
-
-This will run a clamav-rest server at http://localhost:9000
-
-Set RESTY_SERVICE_URL to "http://localhost:9000/scan"
-
-The gem provides options also for using the following environment variables to be used for security at a later date. These are currently set to `nil`
-
-RESTY_USERNAME
-RESTY_PASSWORD
-PROXY_URL
-
-The `clamav-rest` server is set up at the following:
-
-https://eyfs-clamav-rest.london.cloudapps.digital

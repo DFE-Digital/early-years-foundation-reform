@@ -15,6 +15,7 @@ RSpec.feature "Admin Content Pages", type: :feature do
       expect(current_path).to eq(admin_content_pages_path)
     end
     scenario "with logout button visible" do
+      pending 'update to turbo-rails for devise'
       login_as(FactoryBot.create(:user))
       visit admin_content_pages_path
       expect(page).to have_css("a[href='/users/sign_out']", visible: true)

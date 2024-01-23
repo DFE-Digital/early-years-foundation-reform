@@ -2,7 +2,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-half">
       <p class="govuk-heading-m">Details</p>
-      <%= form_with(model: [:admin, :content_page, @content_page_version], local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
+      <%= form_with(model: [:admin, :content_page, @content_page_version], data: { turbo: false }, local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
         <fieldset class="govuk-fieldset">
           <%= form.govuk_error_summary order: %i[title markdown]  %>
 
