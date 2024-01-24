@@ -1,0 +1,39 @@
+@media print {
+  @page {
+    size: A4 landscape;
+    margin-top: 0;
+  }
+
+  .noprint {
+    display: none !important;
+  }
+}
+
+.print-link-button {
+  background: url(icon-print@1x.png) no-repeat govuk-spacing(2) 50%;
+  background-size: 16px 18px;
+  padding: govuk-spacing(2) govuk-spacing(2) govuk-spacing(2) 36px;
+
+  border: 1px solid govuk-colour('mid-grey');
+  color: govuk-colour('blue');
+  cursor: pointer;
+  margin: 0;
+  margin-bottom: govuk-spacing(3);
+  font-weight: 400;
+  font-size: 14px;
+  font-size: .875rem;
+  line-height: 1.1428571429;
+
+  &:hover {
+    background-color: govuk-colour('light-grey');
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+    color: govuk-colour('black');
+    background-color: govuk-colour('yellow');
+    box-shadow: 0 -2px govuk-colour('yellow'), 0 4px govuk-colour('black');
+    text-decoration: none;
+    border-color: transparent;
+  }
+}

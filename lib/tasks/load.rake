@@ -29,21 +29,4 @@ namespace :load do
       end
     end
   end
-
-  desc "Load test users"
-  task users: :environment do |_, _args|
-    %w[brett.mchargue.admin].each do |name|
-      first_name, last_name, role = name.split(".")
-      user_attributes = {
-        email: "#{first_name}@education.gov.uk",
-        first_name: first_name,
-        last_name: last_name,
-        role: role,
-      }
-      user = User.first_or_initialize(user_attributes).tap do |admin|
-        admin.password = Rails.application.credentials.test_password
-      end
-      user.save!
-    end
-  end
 end

@@ -1,35 +1,29 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
+  ctas:
+    signup:
+      title: Get email alerts for new EYFS resources
+      body: Receive email notifications when new early years foundation stage resources are added to this website.
+      link_text: Sign up for email alerts (opens in new tab)
+    feedback:
+      title: Help to improve this website
+      body: Provide us with your feedback to help us improve this website for people who work in the early years.
+      link_text: Complete the simple feedback form
+  home:
+    hero: Guidance for people who work in early years, from the Department for Education. This site provides resources, activities and support articles for childminders and practitioners working with children in the early years.
+    heading: Get help for your setting
+    body: Find helpful articles and resources to support you in your setting.
+  cookie_banner:
+    heading: Cookies on %{service}
+    accept: Accept analytics cookies
+    reject: Reject analytics cookies
+    policy: Read the cookie policy
+    body:
+      html: |
+        <p>We use some essential cookies to make this service work.</p>
+        <p>We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+  service:
+    name: Help for early years providers
+    email: help-for-early-years-providers@digital.education.gov.uk
   phase_banner_html: This is a new service, your %{feedback_link} will help us improve it.
   admin:
     articles:

@@ -24,6 +24,8 @@
 /public/packs-test
 /node_modules
 
+/spec/examples.txt
+
 /vendor/cache
 /vendor/bundle
 
