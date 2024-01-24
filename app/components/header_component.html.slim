@@ -1,0 +1,31 @@
+= tag.header(role: 'banner', data: { module: 'dfe-header', controller: 'reveal', 'reveal-hidden-class': 'js-show' }, **html_attributes) do
+  = tag.div(**container_html_attributes) do
+    = tag.div(class: 'dfe-header__logo')
+      = link_to(root_path, class: 'dfe-header__link dfe-header__link--service', aria: { label: 'DfE homepage' }) do
+        = image_tag 'dfe-logo.png', class: 'dfe-logo', alt: 'DfE homepage'
+        = image_tag 'dfe-logo-alt.png', class: 'dfe-logo-hover', alt: 'DfE homepage'
+    #service-name
+      = link_to service_name, service_url, class: 'dfe-header__link dfe-header__link--service'
+    - if action_links.any?
+      #content-header.dfe-header__content.dfe-header-f-dtonly.dfe-header-f-toplinks
+        .dfe-header-f-top-links
+          ul.dfe-header__action-links
+            - action_links.each do |item|
+              = item 
+        .dfe-header__menu
+          button#toggle-menu.dfe-header__menu-toggle aria-controls='header-navigation' aria-expanded='false' data-action='click->reveal#toggle'
+            | Menu
+  - if navigation_items.any?
+    = tag.nav(**navigation_html_attributes) do
+      .dfe-width-container
+        p.dfe-header__navigation-title
+          span#label-navigation
+            | Menu
+          button#close-menu.dfe-header__navigation-close data-action='click->reveal#toggle'
+            svg.dfe-icon.dfe-icon__close xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24' aria-hidden='true' focusable='false' width='27' height='27'
+              path d='M13.41 12l5.3-5.29a1 1 0 1 0-1.42-1.42L12 10.59l-5.29-5.3a1 1 0 0 0-1.42 1.42l5.3 5.29-5.3 5.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l5.29-5.3 5.29 5.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z'
+            span.govuk-visually-hidden
+              | Close menu
+        ul#navigation.dfe-header__navigation-list
+          - navigation_items.each do |item|
+            = item

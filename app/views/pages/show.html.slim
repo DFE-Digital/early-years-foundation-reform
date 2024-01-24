@@ -1,0 +1,15 @@
+- content_for(:page_title) do 
+  = @page.title
+
+- content_for(:hero) do 
+  = render partial: 'hero', locals: { hero: @page.hero }
+
+.govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
+  .govuk-grid-column-full
+    h2 =@page.title
+    p.govuk-body =@page.body
+
+.govuk-grid-row
+  = render partial: 'card', collection: @page.cards
+
+= render 'ctas'

@@ -3,10 +3,10 @@ admin@education.gov.uk:
   first_name: Test
   last_name: Admin
   role: admin
-  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
+  password: <%= Rails.application.credentials.user_password %>
 
 editor@education.gov.uk:
   first_name: Test
   last_name: Editor
   role: editor
-  password: <%= Rails.application.credentials.test_password || "#{SecureRandom.hex(8)}AA12!!" %>
+  password: <%= Rails.application.credentials.user_password %>

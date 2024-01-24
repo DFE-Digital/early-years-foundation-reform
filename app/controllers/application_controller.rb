@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  layout ENV.fetch('DFE_DESIGN', nil).present? ? 'application' : 'beta/application'
+  layout ENV.fetch('NEW_DESIGN', nil).present? ? 'application' : 'beta/application'
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
   before_action { cookies.delete :track_google_analytics }
   before_action do |_controller|
@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   include Pundit::Authorization
+
+  helper_method :group
 
   def check
     render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
@@ -19,6 +21,14 @@ protected
   end
 
 private
+
+  def content
+    @content ||= Rails.configuration.content
+  end
+
+  def group
+    :home
+  end
 
   def not_found
     raise ActionController::RoutingError, "Not Found"

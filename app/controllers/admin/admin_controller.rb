@@ -1,6 +1,6 @@
 module Admin
   class AdminController < ApplicationController
-    layout "cms"
+    layout "beta/cms"
     before_action :authenticate_user!
   end
 end

@@ -97,7 +97,7 @@ module Admin
 
     def preview_of_live
       @page = @content_page
-      render layout: "application"
+      render layout: "beta/application"
     end
 
     def versions; end

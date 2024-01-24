@@ -1,0 +1,147 @@
+shared:
+  home:
+    slug: home
+    menu_title: Home
+    parent_path: /
+    title: Get help for your setting
+    body: Find helpful articles and resources to support you in your setting.
+    hero_attributes:
+      title: Help for early years providers
+      body: Guidance for people who work in early years, from the Department for Education. This site provides resources, activities and support articles for childminders and practitioners working with children in the early years.
+    card_attributes:
+      - slug: support-for-practitioners
+        image_id: 7pDEReYTPh1hn1yr5X0kyF
+        title: Support for practitioners
+        body: Guidance to help you in your practice, from curriculum planning to reducing paperwork.
+      - slug: areas-of-learning
+        image_id: 1p3FsvZsuf8p64myHs5EDv
+        title: Areas of learning
+        body: Ideas for activities to do with children across the 7 areas of learning and development in the early years foundation stage.
+      - slug: wellbeing-and-enrichment
+        image_id: 3meOindn61qXzIabCc0Kre
+        title: Wellbeing and enrichment
+        body: Resources to help you support children’s health, safety and learning in your setting.
+  support-for-practitioners:
+    slug: support-for-practitioners
+    menu_title: Support for practitioners
+    parent_path: /
+    hero_attributes:
+      title: Support for practitioners
+      body: Discover helpful resources and articles to help support you within your career and your setting.
+    card_attributes:
+      - slug: curriculum-planning
+        parent_path: /support-for-practitioners
+        title: Curriculum planning
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: reducing-paperwork
+        parent_path: /support-for-practitioners
+        title: Reducing paperwork
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: working-in-partnership-with-parents-and-carers
+        parent_path: /support-for-practitioners
+        title: Working in partnership with parents and carers
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: english-as-an-additional-language-eal
+        parent_path: /support-for-practitioners
+        title: English as an additional language (EAL)
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: meeting-the-needs-of-all-children
+        parent_path: /support-for-practitioners
+        title: Meeting the needs of all children
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: sensory-food-education
+        parent_path: /support-for-practitioners
+        title: Sensory food education
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: integrated-reviews
+        parent_path: /support-for-practitioners
+        title: Integrated reviews
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: early-years-practitioner-wellbeing-support
+        parent_path: /support-for-practitioners
+        title: Early years practitioner wellbeing support
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  areas-of-learning:
+    slug: areas-of-learning
+    menu_title: Areas of learning
+    parent_path: /
+    hero_attributes:
+      title: Areas of learning
+      body: Find out more about each area of learning, including activities you can do and guidance on meeting the needs of all children in your setting.
+    card_attributes:
+      - slug: communication-and-language
+        parent_path: /areas-of-learning
+        title: Communication and language
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - interactions
+          - exploring-language
+          - listening-and-understanding
+      - slug: expressive-arts-and-design
+        parent_path: /areas-of-learning
+        title: Expressive arts and design
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - imagination-and-creativity
+          - self-expression
+          - communicating-through-arts
+      - slug: literacy
+        parent_path: /areas-of-learning
+        title: Literacy
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - reading-comprehension
+          - exploring-words
+          - writing
+      - slug: mathematics
+        parent_path: /areas-of-learning
+        title: Mathematics
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - patterns-and-connections
+          - numbers
+          - spatial-reasoning
+      - slug: personal-social-and-emotional-development
+        parent_path: /areas-of-learning
+        title: Personal, social and emotional development
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - emotions
+          - relationships
+          - sense-of-self
+      - slug: physical-development
+        parent_path: /areas-of-learning
+        title: Physical development
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - core-strength-and-co-ordination
+          - fine-motor-skills
+          - gross-motor-skills
+      - slug: understanding-the-world
+        parent_path: /areas-of-learning
+        title: Understanding the world
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        subpages:
+          - personal-experiences
+          - diverse-world
+          - widening-vocabulary
+  wellbeing-and-enrichment:
+    slug: wellbeing-and-enrichment
+    menu_title: "Wellbeing and enrichment"
+    parent_path: /
+    hero_attributes:
+      title: Wellbeing and enrichment
+      body: Discover resources to help you support children’s wellbeing and enrichment in your setting.
+    card_attributes:
+      - slug: oral-health
+        parent_path: /wellbeing-and-enrichment
+        title: Oral health
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: food-safety
+        parent_path: /wellbeing-and-enrichment
+        title: Foot safety
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      - slug: internet-safety
+        parent_path: /wellbeing-and-enrichment
+        title: Internet safety
+        body: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

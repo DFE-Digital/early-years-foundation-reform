@@ -44,7 +44,7 @@ module Admin
                               previous_id: @content_page_version.content_page.id,
                               next_id: @content_page_version.content_page.id)
 
-      render layout: "application"
+      render layout: "beta/application"
     end
 
     def publish

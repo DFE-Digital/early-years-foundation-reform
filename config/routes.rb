@@ -36,9 +36,12 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: %i[create]
 
-  get "/:section/:slug", to: "content#show"
-  get "/:slug", to: "content#show"
+  constraints(-> { ENV.fetch('NEW_DESIGN', nil).blank? }) do
+    get "/:section/:slug", to: "content#show"
+    get "/:slug", to: "content#show"
+    root to: "content#index", as: :beta_root
+  end
 
-  root to: "content#index", constraints: -> { ENV.fetch('DFE_DESIGN', nil).blank? }, as: :beta_root
-  root to: "pages#home"
+  get "(*cms_path)" => "pages#show"
+  root to: "pages#show"
 end
