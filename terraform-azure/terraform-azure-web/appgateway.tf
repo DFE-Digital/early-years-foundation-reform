@@ -19,6 +19,78 @@ resource "azurerm_web_application_firewall_policy" "agw_wafp" {
           enabled = false
         }
       }
+
+      rule_group_override {
+        rule_group_name = "REQUEST-932-APPLICATION-ATTACK-RCE"
+        rule {
+          id      = "932100"
+          enabled = false
+        }
+        rule {
+          id      = "932115"
+          enabled = false
+        }
+      }
+
+      rule_group_override {
+        rule_group_name = "REQUEST-941-APPLICATION-ATTACK-XSS"
+        rule {
+          id      = "941150"
+          enabled = false
+        }
+        rule {
+          id      = "941320"
+          enabled = false
+        }
+        rule {
+          id      = "941340"
+          enabled = false
+        }
+      }
+
+      rule_group_override {
+        rule_group_name = "REQUEST-942-APPLICATION-ATTACK-SQLI"
+        rule {
+          id      = "942200"
+          enabled = false
+        }
+        rule {
+          id      = "942210"
+          enabled = false
+        }
+        rule {
+          id      = "942130"
+          enabled = false
+        }
+        rule {
+          id      = "942260"
+          enabled = false
+        }
+        rule {
+          id      = "942370"
+          enabled = false
+        }
+        rule {
+          id      = "942380"
+          enabled = false
+        }
+        rule {
+          id      = "942430"
+          enabled = false
+        }
+        rule {
+          id      = "942440"
+          enabled = false
+        }
+      }
+
+      rule_group_override {
+        rule_group_name = "REQUEST-933-APPLICATION-ATTACK-PHP"
+        rule {
+          id      = "933210"
+          enabled = false
+        }
+      }
     }
 
     managed_rule_set {
