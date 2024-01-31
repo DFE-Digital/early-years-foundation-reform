@@ -22,7 +22,6 @@ RSpec.feature "View pages", type: :feature do
   scenario "Navigate to a top level page and see the title can't be edited" do
     sign_in FactoryBot.create(:user)
     visit "/admin/pages/#{parent_page.id}/edit"
-
     page.find_field("content_page[title]", disabled: true)
   end
 

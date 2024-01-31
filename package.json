@@ -13,6 +13,8 @@
     "dfe-frontend-alpha": "^1.0.1",
     "esbuild": "^0.19.11",
     "govuk-frontend": "^4.7.0",
-    "sass": "^1.70.0"
+    "jquery": "^3.7.1",
+    "sass": "^1.70.0",
+    "stimulus-character-counter": "^4.2.0"
   }
 }

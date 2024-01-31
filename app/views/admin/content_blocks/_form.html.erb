@@ -5,8 +5,13 @@
       <%= form_with(model: [:admin, content_block], data: { turbo: false }, local: true, builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |form| %>
         <%= form.govuk_error_summary order: %i[name description markdown]  %>
 
-        <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id%>
-        <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"} %>
+        <div data-controller='character-counter' data-character-counter-countdown-value='true'>
+          <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id, 'data-character-counter-target': 'input', maxlength: '254', hint: {text: "<p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the name.</p>".html_safe} %>
+        </div>
+
+        <div data-controller='character-counter' data-character-counter-countdown-value='true'>
+          <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"}, 'data-character-counter-target': 'input', maxlength: '254', hint: {text: "<p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the description.</p>".html_safe} %>
+        </div>
 
         <!-- This text_area is not rendered with gov_text_field because it needs to
              set its own id, and the GOVUKDesignSystemFormBuilder hijacks it -->
@@ -21,7 +26,10 @@
           <% end %>
           <% text_area_class = (@content_block.errors[:markdown].count > 0) ? 'govuk-input govuk-input--error govuk-textarea' : 'govuk-input govuk-textarea' %>
 
-          <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: text_area_class %>
+          <div data-controller='character-counter' data-character-counter-countdown-value='true'>
+            <%= form.text_area :markdown, id: 'markdown-editor', rows: 20, cols: 35, class: text_area_class, 'data-character-counter-target': 'input', maxlength: '30000' %>
+          <p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the markdown.</p>
+          </div>
         </div>
         <%= form.govuk_submit "Save" %>
       <% end %>

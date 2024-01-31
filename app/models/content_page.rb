@@ -14,7 +14,8 @@ class ContentPage < ApplicationRecord
   validates :title, format: { with: ONLY_ALPHA_NUMERIC_COMMA_HYPHEN_SPACE_AND_ROUND_BRACES, message: TITLE_FORMAT_ERROR_MESSAGE }
   validates :title, presence: true, uniqueness: true
   validates :markdown, presence: true
-  validates :description, length: { maximum: 254 }
+  validates :markdown, length: { maximum: 30_000 }
+  validates :title, :intro, :description, :content_list, length: { maximum: 254 }
 
   validates :position, presence: true, numericality: { only_integer: true }, uniqueness: { scope: :parent_id }
 
