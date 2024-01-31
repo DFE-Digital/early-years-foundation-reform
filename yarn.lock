@@ -5253,7 +5253,9 @@ __metadata:
     dfe-frontend-alpha: "npm:^1.0.1"
     esbuild: "npm:^0.19.11"
     govuk-frontend: "npm:^4.7.0"
+    jquery: "npm:^3.7.1"
     sass: "npm:^1.70.0"
+    stimulus-character-counter: "npm:^4.2.0"
   languageName: unknown
   linkType: soft
 
@@ -7366,6 +7368,13 @@ __metadata:
     "@sideway/formula": "npm:^3.0.1"
     "@sideway/pinpoint": "npm:^2.0.0"
   checksum: 2378f4ec8de2bc12674ce3e6faac509f52ff4f734c67bf68c288816b20336d4e59433ea1c1e187f1009075c81ec5fa8b5061094feb37a855d6e3ee0cfcd79dd8
+  languageName: node
+  linkType: hard
+
+"jquery@npm:^3.7.1":
+  version: 3.7.1
+  resolution: "jquery@npm:3.7.1"
+  checksum: 808cfbfb758438560224bf26e17fcd5afc7419170230c810dd11f5c1792e2263e2970cca8d659eb84fcd9acc301edb6d310096e450277d54be4f57071b0c82d9
   languageName: node
   linkType: hard
 
@@ -10480,6 +10489,15 @@ __metadata:
   version: 1.4.0
   resolution: "statuses@npm:1.4.0"
   checksum: 2877ece71af9f8dcefe6cdf0cc0d96d3cab20cef33594991396346e683923d36add1b08312450e9f8dfb9f1e6718d9e57482157bb190f8ea4fc5c7bc441f3f25
+  languageName: node
+  linkType: hard
+
+"stimulus-character-counter@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "stimulus-character-counter@npm:4.2.0"
+  peerDependencies:
+    "@hotwired/stimulus": ^3.2.1
+  checksum: c1e07ab5e1249289c45246d969b505c108472d10cc43f20e16c784fc94bce6e14adbd507622004b0447f5b1f64e01dcad045df5ec81a87e428d376ce2f9d9f64
   languageName: node
   linkType: hard
 
