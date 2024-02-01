@@ -39,8 +39,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.18'
   gem 'pry-byebug', '~> 3.9'
-  gem 'rspec', '~> 3.10'
-  gem 'rspec-expectations', '~> 3.10'
+  gem 'rspec', '~> 3.12'
+  gem 'rspec-expectations', '~> 3.12'
   gem 'rubocop-govuk', require: false
   gem 'rubocop-performance', require: false
   gem 'scss_lint-govuk'
