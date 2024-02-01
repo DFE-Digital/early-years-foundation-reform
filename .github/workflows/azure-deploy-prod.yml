@@ -93,7 +93,7 @@ jobs:
 
       # Deploy Web Application
       - name: Deploy to Azure App Services
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ vars.WEBAPP_NAME }}
           images: ${{ env.DOCKER_IMAGE }}:${{ inputs.version || github.ref_name }}
