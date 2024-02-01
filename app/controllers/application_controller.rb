@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   include Pundit::Authorization
 
-  helper_method :group
+  helper_method :menu_item
 
   def check
     render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
@@ -26,7 +26,7 @@ private
     @content ||= Rails.configuration.content
   end
 
-  def group
+  def menu_item
     :home
   end
 

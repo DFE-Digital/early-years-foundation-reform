@@ -7,6 +7,10 @@ class PagesController < ApplicationController
 
 private
 
+  def menu_item
+    cms_path_array.first
+  end
+
   def page_params
     params.permit(:cms_path)
   end
@@ -39,13 +43,11 @@ private
   end
 
   def load_page(lookup_page: page_name)
-    if lookup_page.present?
-      page_attributes = content.send(lookup_page)
-      @page = if page_attributes
-                Page.new(page_attributes)
-              else
-                PageDelegator.new(ContentPage.find_by_slug(page_name))
-              end
-    end
+    page_attributes = content.send(lookup_page || :home)
+    @page = if page_attributes
+              Page.new(page_attributes)
+            else
+              PageDelegator.new(ContentPage.find_by_slug(page_name))
+            end
   end
 end

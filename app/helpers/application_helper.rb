@@ -29,7 +29,7 @@ module ApplicationHelper
         header.with_navigation_item(
           text: item[:menu_title],
           href: ["/", item[:parent_path], item[:slug]].join("/").squeeze("/"),
-          active: key == group&.to_sym,
+          active: key == menu_item&.to_sym,
           classes: %w[dfe-header__navigation-item],
         )
       end
