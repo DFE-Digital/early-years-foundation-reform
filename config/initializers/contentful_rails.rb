@@ -30,7 +30,7 @@ ContentfulRails.configure do |config|
 
     entry_mapping: {
       'page' => Web::Page,
-      'resource' => Web::Resource
+      'resource' => Web::Resource,
     },
   }
 end

@@ -3,7 +3,7 @@ module ContentHelper
   # @param key [String]
   # @return [String]
   def m(key, headings_start_with: 'l', **args)
-    markdown = I18n.exists?(key, scope: args[:scope]) ? t(key, **args) : key.to_s 
+    markdown = I18n.exists?(key, scope: args[:scope]) ? t(key, **args) : key.to_s
 
     CustomMarkdown.render(markdown, headings_start_with:, filter_html: false).html_safe
   rescue Contentful::Error

@@ -68,5 +68,3 @@ group :test do
   gem 'simplecov', '~> 0.21', require: false
   gem 'webdrivers'
 end
-
-

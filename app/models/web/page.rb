@@ -36,10 +36,9 @@ module Web
 
     def client
       @client ||= Contentful::Client.new(
-                    space: ContentfulRails.configuration.space,
-                    access_token: ContentfulRails.configuration.access_token
-                  )
-
+        space: ContentfulRails.configuration.space,
+        access_token: ContentfulRails.configuration.access_token,
+      )
     end
   end
 end
