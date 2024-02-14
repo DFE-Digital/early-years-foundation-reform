@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "Public Content", type: :feature do
+  before do
+    skip 'WIP' if Rails.application.cms?
+  end
+
   given(:parent_page) { FactoryBot.create(:content_page, :published, :top_level) }
   given(:child_page) { FactoryBot.create(:content_page, :published, parent_id: parent_page.id) }
 

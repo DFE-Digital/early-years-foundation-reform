@@ -42,6 +42,6 @@ Rails.application.routes.draw do
     root to: "content#index", as: :beta_root
   end
 
-  get "(*cms_path)" => "pages#show"
-  root to: "pages#show"
+  get "/(*cms_path)/:slug" => "web/pages#show"
+  root to: "home#index"
 end

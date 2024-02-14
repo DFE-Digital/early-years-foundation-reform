@@ -1,4 +1,15 @@
 module ContentHelper
+  # @see [CustomMarkdown config/initializers/markdown.rb]
+  # @param key [String]
+  # @return [String]
+  def m(key, headings_start_with: 'l', **args)
+    markdown = I18n.exists?(key, scope: args[:scope]) ? t(key, **args) : key.to_s 
+
+    CustomMarkdown.render(markdown, headings_start_with:, filter_html: false).html_safe
+  rescue Contentful::Error
+    CustomMarkdown.render(key).html_safe
+  end
+
   def path_for_this_page(page)
     # Add parent links
     if page.parent_id

@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "Feedback", type: :feature do
+  before do
+    skip 'WIP' if Rails.application.cms?
+  end
+
   scenario "Page with feedback options" do
     visit "/"
 

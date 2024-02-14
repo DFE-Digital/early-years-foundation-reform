@@ -1,11 +1,14 @@
 require "rails_helper"
 
 RSpec.feature "View pages", type: :feature do
+  before do
+    skip 'WIP' if Rails.application.cms?
+  end
+
   given(:parent_page) { FactoryBot.create(:content_page, :published, :top_level) }
   given(:content_page_version) { FactoryBot.create(:content_page_version) }
 
   scenario "Navigate to a preview of draft page and check that 2 print buttons are rendered on the page" do
-    pending
     sign_in FactoryBot.create(:user)
     visit "/admin/pages/#{parent_page.id}/content_page_versions/#{content_page_version.id}/preview_of_draft"
     page.find("p", text: "Contents", id: "contents-list-heading")

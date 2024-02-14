@@ -3,11 +3,11 @@ $govuk-new-link-styles: true;
 $govuk-assets-path: "/";
 
 @function frontend-font-url($filename){
-@return url("/fonts/" + $filename);
+@return url($filename);
 }
 
 @function frontend-image-url($filename){
-@return url("/images/" + $filename);
+@return url($filename);
 }
 
 $govuk-font-url-function: frontend-font-url;
