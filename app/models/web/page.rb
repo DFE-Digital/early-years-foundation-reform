@@ -33,12 +33,5 @@ module Web
         ContentfulModel::Asset.find(fields[:image].id)
       end
     end
-
-    def client
-      @client ||= Contentful::Client.new(
-        space: ContentfulRails.configuration.space,
-        access_token: ContentfulRails.configuration.access_token,
-      )
-    end
   end
 end

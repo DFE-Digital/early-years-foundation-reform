@@ -78,24 +78,9 @@ $govuk-image-url-function: frontend-image-url;
   opacity: 1;
 }
 
-#user-password-label {
-  background-image: url("/images/icon-info.svg");
-  background-repeat: no-repeat;
-  background-position: 87px;
-  background-size: 23px;
-}
-
 #password-tooltip {
   color: white;
   margin: 5px;
-}
-
-.banner-with-tick {
-  padding: 15px 45px;
-  background-image: url("/images/tick.png");
-  background-repeat: no-repeat;
-  background-size: 19px;
-  background-position: 15px 15px;
 }
 
 #add-user,

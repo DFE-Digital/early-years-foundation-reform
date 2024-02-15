@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe "renders a static page" do
   it "accessibility-statement" do
-    pending 'TODO fix'
+    skip 'WIP' if Rails.application.cms?
+
     get "/accessibility-statement"
     expect(response).to be_successful
     expect(response.body).to include("Accessibility statement for the Help for early years providers service")

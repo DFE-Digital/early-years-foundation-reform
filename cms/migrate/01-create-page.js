@@ -23,13 +23,30 @@ module.exports = function (migration) {
   page.createField('title', {
     name: 'title',
     type: 'Text',
-    required: true
+    required: false
   })
 
   page.createField('body', {
     name: 'Body',
     type: 'Text',
-    required: true
+    required: false
+  })
+
+  page.createField('contentList', {
+    name: 'Content list',
+    type: 'Text',
+    required: false
+  })
+
+  page.createField('page_abstract', {
+    name: 'Hero',
+    type: 'Link',
+    linkType: 'Asset',
+    required: false,
+    validations: [
+      { 'linkContentType': ['resource'] }
+    ],
+    linkType: 'Entry'
   })
 
   page.createField('pages', {
@@ -37,6 +54,9 @@ module.exports = function (migration) {
     type: 'Array',
     items: {
       type: 'Link',
+      validations: [
+        { 'linkContentType': ['page'] }
+      ],
       linkType: 'Entry'
     }
   })

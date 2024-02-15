@@ -48,7 +48,7 @@ RSpec.describe "Contents", type: :request do
     end
 
     it "renders the content pages with HTTP headers to allow caching" do
-      pending 'still valid with contentful?'
+      skip 'WIP' if Rails.application.cms?
       get "/"
       expect(response.headers["Cache-Control"]).to eq("max-age=3600, public")
     end

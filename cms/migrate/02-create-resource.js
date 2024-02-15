@@ -19,6 +19,12 @@ module.exports = function (migration) {
     ]
   })
 
+  page.createField('title', {
+    name: 'title',
+    type: 'Text',
+    required: false
+  })
+
   resource.createField('body', {
     name: 'Body',
     type: 'Text',
@@ -29,6 +35,10 @@ module.exports = function (migration) {
 
   resource.changeFieldControl('name', 'builtin', 'singleLine', {
     helpText: 'Unique I18n locale key in the format: "this_foo.that_bar.baz"'
+  })
+
+  page.changeFieldControl('title', 'builtin', 'multipleLine', {
+    helpText: 'Page heading, h1.',
   })
 
   /* markdown */
