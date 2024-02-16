@@ -39,6 +39,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Install git
+        run: |
+          sudo add-apt-repository ppa:git-core/ppa
+          sudo apt-get update && sudo apt-get -y install git
+
       # Create and boot Docker image builder
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
