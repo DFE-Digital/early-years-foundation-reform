@@ -4,20 +4,21 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: @page.hero }
 
-.govuk-grid-row
-  .govuk-grid-column-three-quarters 
-    .contents-on-page
-      p#contents-list-heading class='govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold'
-        | Contents on this page 
-      ul.contents-list__list
-        = translate_markdown(@page.content_list)
+- if @page.intro.present?
+  = m(@page.intro)
+
+- if @page.content_list.present?
+  .govuk-grid-row
+    .govuk-grid-column-three-quarters 
+      .contents-on-page
+        p#contents-list-heading class='govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold'
+          | Contents on this page 
+        ul.contents-list__list
+          = translate_markdown(@page.content_list)
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   .govuk-grid-column-full
     h2 =@page.title
     p.govuk-body = m(@page.body)
-
-.govuk-grid-row
-  = render partial: 'shared/card', collection: @page.pages
 
 = render 'shared/ctas'

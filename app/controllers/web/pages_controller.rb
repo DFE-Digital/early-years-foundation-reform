@@ -4,7 +4,17 @@ module Web
 
     helper_method :breadcrumbs
 
-    def show; end
+    def show
+      if @page.children?
+        if @page.cards?
+          render 'show_cards'
+        else
+          render 'show_navigation'
+        end
+      elsif @page.navigation?
+        render 'show_navigation'
+      end
+    end
 
   private
 

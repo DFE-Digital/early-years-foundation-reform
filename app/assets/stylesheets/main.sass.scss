@@ -29,34 +29,7 @@ $light-blue: tint($department-for-education-websafe, 90%);
 @import 'dfe/print';
 @import 'dfe/about';
 @import 'dfe/card';
-/*
-@import 'dfe/prompt';
-@import 'video';
-@import 'question';
-@import 'interruption';
-@import 'quote';
-@import 'icons';
-@import 'modal';
-@import 'autocomplete';
-@import 'assets-page';
-*/
-
-// training/modules#show
-/*
-@import 'progress-bar';
-@import 'module-overview';
-*/
-
-// training/pages#show (section intro)
-/*
-@import 'section-intro';
-@import 'section-bar';
-*/
-
-// training/pages#show (certificate)
-// @import 'certificate';
-
-
+@import 'dfe/side-nav';
 
 * {
   font-family:
@@ -220,4 +193,12 @@ ul>li>ul>li {
 
 .text-secondary {
   color: $govuk-secondary-text-colour;
+}
+
+@media (min-width: 40.0625em) {
+  .sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 1.5rem;
+  }
 }

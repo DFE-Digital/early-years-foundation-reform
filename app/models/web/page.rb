@@ -16,6 +16,14 @@ module Web
       find_by(slug: slug.to_s).first
     end
 
+    def cards?
+      page_style == 'cards'
+    end
+
+    def navigation?
+      page_style == 'navigation'
+    end
+
     # @return [Web::Resource]
     def hero
       return nil if fields[:page_abstract].blank?
