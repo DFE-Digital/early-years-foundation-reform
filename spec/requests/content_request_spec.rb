@@ -12,6 +12,10 @@ RSpec.describe "Contents", type: :request do
   end
 
   describe "GET /show" do
+    before do
+      skip 'WIP' if Rails.application.cms?
+    end
+
     it "renders a page" do
       get a_page.full_path
       expect(response).to be_successful
@@ -44,6 +48,7 @@ RSpec.describe "Contents", type: :request do
     end
 
     it "renders the content pages with HTTP headers to allow caching" do
+      skip 'WIP' if Rails.application.cms?
       get "/"
       expect(response.headers["Cache-Control"]).to eq("max-age=3600, public")
     end

@@ -8,9 +8,9 @@ env:
 jobs:
   tests:
     name: Run rspec and rubocop
-
     runs-on: ubuntu-latest
-
+    env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     services:
       postgres:
         image: postgres:15.4-alpine

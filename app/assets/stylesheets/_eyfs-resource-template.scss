@@ -43,7 +43,7 @@
 
 .gem-c-print-link__link,
 .gem-c-print-link__button {
-  background: url("/images/icon-print@1x.png") no-repeat 10px 50%;
+  background: url('icon-print@1x.png') no-repeat 10px 50%;
   background-size: 16px 18px;
   padding: 10px 10px 10px 36px
 }
@@ -54,7 +54,7 @@ only screen and (min-resolution: 2dppx) {
 
   .gem-c-print-link__link,
   .gem-c-print-link__button {
-    background-image: url("/images/icon-print@1x.png")
+    background-image: url('icon-print@1x.png')
   }
 }
 

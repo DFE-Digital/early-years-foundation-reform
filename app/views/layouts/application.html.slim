@@ -11,7 +11,8 @@ html.govuk-template lang='en'
 
     = tag.meta content: 'width=device-width,initial-scale=1', name: 'viewport'
     = tag.meta name: 'robots', content: 'noindex,nofollow' unless Rails.application.live?
-    = tag.meta property: 'og:image', content: asset_path('images/govuk-opengraph-image.png')
+    = tag.meta property: 'og:image', content: image_path('images/govuk-opengraph-image.png')
+    = tag.meta name: 'description', content: @page.description if @page.description.present?
     = csrf_meta_tags
     = tag.meta name: 'theme-color', content: '#0b0c0c'
 
