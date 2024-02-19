@@ -86,13 +86,13 @@ GEM
     audited (5.4.3)
       activerecord (>= 5.0, < 7.2)
       request_store (~> 1.2)
-    axe-core-api (4.7.0)
+    axe-core-api (4.8.2)
       dumb_delegator
       virtus
     axe-core-capybara (4.3.2)
       axe-core-api
       dumb_delegator
-    axe-core-rspec (4.3.2)
+    axe-core-rspec (4.8.2)
       axe-core-api
       dumb_delegator
       virtus
