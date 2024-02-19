@@ -49,4 +49,4 @@ html.govuk-template lang='en'
 
     = yield :other_resources
 
-= render 'layouts/footer'
+= render FooterComponent.new(items: [{text: "Text", href: 'test'}])

@@ -1,0 +1,9 @@
+= render GovukComponent::NewFooterComponent.new do |footer|
+  - if items
+    - footer.with_navigation do
+      .govuk-footer__section.govuk-grid-column-two-thirds
+        ul.govuk-footer__list.govuk-footer__list--columns-3
+          - items.each do |item|
+            li.govuk-footer__list-item
+              a.govuk-link.govuk-footer__link[href="#{item[:href]}"]
+                | #{item[:text]}
