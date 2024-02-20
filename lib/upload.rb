@@ -71,6 +71,16 @@ class Upload
       )
       log_entry(entry)
     end
+
+    ContentBlock.all.find_each do |block|
+      log "#{block.name} create"
+      block = create_page(
+        slug: block.name,
+        title: block.title,
+        body: block.description,
+      )
+      log_entry(block)
+    end
   end
 
 private

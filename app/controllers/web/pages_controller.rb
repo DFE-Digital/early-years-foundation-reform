@@ -7,7 +7,7 @@ module Web
     def index; end
 
     def show
-      render page.page_style
+      render page.page_style.underscore
     end
 
   private
@@ -33,7 +33,7 @@ module Web
     end
 
     def page
-      @page ||= Web::Page.by_slug(lookup_slug)
+      Web::Page.by_slug(lookup_slug)
     end
   end
 end
