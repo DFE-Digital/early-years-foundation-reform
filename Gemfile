@@ -8,7 +8,7 @@ gem 'audited', '~> 5.4'
 gem 'bcrypt', '~> 3.1.16'
 gem 'bootsnap', '>= 1.17.1', require: false
 gem 'canonical-rails', '~> 0.2'
-gem "contentful_rails", "~> 0.5.0", git: 'https://github.com/listingsproject/contentful_rails.git'
+gem "contentful_rails", "~> 0.5.0"
 gem 'cssbundling-rails'
 gem 'devise', '>= 4.9.3'
 gem 'devise-security', '~> 0.18.0'

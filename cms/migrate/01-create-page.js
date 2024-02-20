@@ -1,7 +1,7 @@
 module.exports = function (migration) {
 
-  const page = migration.createContentType('page', {
-    name: 'Page',
+  const page = migration.createContentType('helpPage', {
+    name: 'Help page',
     displayField: 'slug',
     description: 'Textual Content'
   })
@@ -18,6 +18,18 @@ module.exports = function (migration) {
         prohibitRegexp: { pattern: '\\.|\\s|[A-Z]' }
       }
     ]
+  })
+
+  page.createField('heroTitle', {
+    name: 'Hero title',
+    type: 'Symbol',
+    required: false
+  })
+
+  page.createField('heroDescription', {
+    name: 'Hero description',
+    type: 'Symbol',
+    required: false
   })
 
   page.createField('title', {
@@ -38,15 +50,16 @@ module.exports = function (migration) {
     required: false
   })
 
-  page.createField('page_abstract', {
-    name: 'Hero',
-    type: 'Link',
-    linkType: 'Asset',
-    required: false,
-    validations: [
-      { 'linkContentType': ['resource'] }
-    ],
-    linkType: 'Entry'
+  page.createField('introduction', {
+    name: 'Introduction',
+    type: 'Text',
+    required: false
+  })
+
+  page.createField('metaDescription', {
+    name: 'Meta Description',
+    type: 'Text',
+    required: false
   })
 
   page.createField('pages', {
@@ -55,17 +68,31 @@ module.exports = function (migration) {
     items: {
       type: 'Link',
       validations: [
-        { 'linkContentType': ['page'] }
+        { 'linkContentType': ['helpPage'] }
       ],
       linkType: 'Entry'
     }
+  })
+
+  page.createField('pageStyle', {
+    name: 'Page style',
+    type: 'Symbol',
+    required: false,
+    validations: [{ 'in': ['default', 'cards', 'side-nav'] }]
+  })
+
+  page.createField('placement', {
+    name: 'Placement',
+    type: 'Symbol',
+    required: false,
+    validations: [{ 'in': ['default', 'home', 'footer'] }]
   })
 
   page.createField('image', {
     name: 'Image',
     type: 'Link',
     linkType: 'Asset',
-    required: true
+    required: false
   })
 
   /* Interface -------------------------------------------------------------- */
@@ -82,7 +109,7 @@ module.exports = function (migration) {
   /* text */
 
   page.changeFieldControl('title', 'builtin', 'multipleLine', {
-    helpText: 'Page heading, h1.',
+    helpText: 'Page heading',
   })
 
   /* markdown */

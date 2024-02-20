@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   include Pundit::Authorization
 
-  helper_method :menu_item
+  helper_method :menu_item, :section
 
   def check
     render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
@@ -28,6 +28,10 @@ private
 
   def menu_item
     :home
+  end
+
+  def section
+    ''
   end
 
   def not_found

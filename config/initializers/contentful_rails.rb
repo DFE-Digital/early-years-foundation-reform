@@ -18,6 +18,7 @@ ContentfulRails.configure do |config|
 
   # Preview
   config.enable_preview_domain = Rails.application.preview?
+  config.eager_load_entry_mapping = false
 
   config.contentful_options = {
     logger: Rails.logger,

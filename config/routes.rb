@@ -42,6 +42,12 @@ Rails.application.routes.draw do
     root to: "content#index", as: :beta_root
   end
 
-  get "/(*cms_path)/:slug" => "web/pages#show"
+  constraints(-> { ENV.fetch('CONTENTFUL', nil).blank? }) do
+    get "/(*cms_path)/:slug" => "pages#show"
+  end
+
+  get "/:section" => "web/pages#index"
+  get "/:section/:slug" => "web/pages#show"
+  get "/:section/:overview/:slug" => "web/pages#show"
   root to: "home#index"
 end

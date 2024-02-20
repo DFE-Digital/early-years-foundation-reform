@@ -1,7 +1,7 @@
 module.exports = function (migration) {
 
-  const resource = migration.createContentType('resource', {
-    name: 'Resource',
+  const resource = migration.createContentType('helpResource', {
+    name: 'Help resource',
     displayField: 'name',
     description: 'Microcopy snippet'
   })
@@ -19,8 +19,8 @@ module.exports = function (migration) {
     ]
   })
 
-  page.createField('title', {
-    name: 'title',
+  resource.createField('title', {
+    name: 'Title',
     type: 'Text',
     required: false
   })
@@ -28,7 +28,7 @@ module.exports = function (migration) {
   resource.createField('body', {
     name: 'Body',
     type: 'Text',
-    required: true,
+    required: false,
   })
 
   /* Interface -------------------------------------------------------------- */
@@ -37,8 +37,8 @@ module.exports = function (migration) {
     helpText: 'Unique I18n locale key in the format: "this_foo.that_bar.baz"'
   })
 
-  page.changeFieldControl('title', 'builtin', 'multipleLine', {
-    helpText: 'Page heading, h1.',
+  resource.changeFieldControl('title', 'builtin', 'multipleLine', {
+    helpText: 'Page heading',
   })
 
   /* markdown */

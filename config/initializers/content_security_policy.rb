@@ -42,6 +42,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.frame_src   :self, *GOOGLE_ANALYTICS_DOMAINS, *OPTIMIZE_DOMAINS
   policy.img_src     :self,
                      "images.ctfassets.net",
+                     "placehold.co",
                      *GOVUK_DOMAINS,
                      *S3_DOMAINS,
                      *GOOGLE_ANALYTICS_DOMAINS, # Tracking pixels

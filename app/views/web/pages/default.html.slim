@@ -4,8 +4,8 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: @page.hero }
 
-- if @page.intro.present?
-  = m(@page.intro)
+- if @page.introduction.present?
+  = m(@page.introduction)
 
 - if @page.content_list.present?
   .govuk-grid-row

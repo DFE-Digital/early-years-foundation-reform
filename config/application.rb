@@ -69,7 +69,7 @@ module GovukRailsBoilerplate
     end
 
     def cms?
-      ENV['CONTENTFUL'].present?
+      ENV['CONTENTFUL'].present? || ENV['NEW_DESIGN'].present?
     end
   end
 end

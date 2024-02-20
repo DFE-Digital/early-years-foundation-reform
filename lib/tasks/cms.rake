@@ -1,7 +1,14 @@
 # rake --tasks eyfs:cms
 #
+require 'upload'
+
 namespace :hfeyp do
   namespace :cms do
+    desc 'Upload existing pages'
+    task upload: :environment do
+      Upload.new.call
+    end
+
     desc 'Define Contentful entry models'
     task migrate: :environment do
       migrations = Dir[Rails.root.join('cms/migrate/*')]

@@ -72,6 +72,10 @@ class ContentPage < ApplicationRecord
     true
   end
 
+  def meta_description
+    description
+  end
+
   # Called when a page is created or a position attribute changes
   class << self
     def reorder

@@ -23,9 +23,9 @@ module ApplicationHelper
     link_to text, admin_article_path(article), link_to_args
   end
 
-  def navigation
+  def yml_navigation
     render(HeaderComponent.new(service_name: t('service.name'), classes: 'dfe-header noprint', container_classes: %w[dfe-header-f-header-flex], navigation_label: 'Primary navigation')) do |header|
-      menu.each do |key, item|
+      yml_menu.each do |key, item|
         header.with_navigation_item(
           text: item[:menu_title],
           href: ["/", item[:parent_path], item[:slug]].join("/").squeeze("/"),
@@ -36,7 +36,27 @@ module ApplicationHelper
     end
   end
 
+  def yml_menu
+    @yml_menu ||= Rails.configuration.content
+  end
+
+  def navigation
+    render(HeaderComponent.new(service_name: t('service.name'), classes: 'dfe-header noprint', container_classes: %w[dfe-header-f-header-flex], navigation_label: 'Primary navigation')) do |header|
+      header.with_navigation_item(
+        text: 'Home', href: '/', active: request.path == root_path, classes: %w[dfe-header__navigation-item],
+      )
+      menu.each do |item|
+        header.with_navigation_item(
+          text: item.title,
+          href: ["/", item.parent&.slug, item.slug].join("/").squeeze("/"),
+          active: item.slug == section,
+          classes: %w[dfe-header__navigation-item],
+        )
+      end
+    end
+  end
+
   def menu
-    @menu ||= Rails.configuration.content
+    @menu ||= Web::Page.search(placement: 'home').load
   end
 end
