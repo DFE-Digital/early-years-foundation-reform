@@ -71,6 +71,7 @@ class Upload
       )
       log_entry(entry)
     end
+<<<<<<< HEAD
 
     ContentBlock.all.find_each do |block|
       log "#{block.name} create"
@@ -81,6 +82,8 @@ class Upload
       )
       log_entry(block)
     end
+=======
+>>>>>>> 6927ba1 (Upload script and additional changes)
   end
 
 private
