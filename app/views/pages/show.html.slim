@@ -10,6 +10,6 @@
     p.govuk-body =@page.body
 
 .govuk-grid-row
-  = render partial: 'card', collection: @page.cards
+  = render partial: 'shared/card', collection: @page.cards
 
-= render 'ctas'
+= render 'shared/ctas'

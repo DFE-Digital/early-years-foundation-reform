@@ -10,15 +10,12 @@ shared:
       body: Guidance for people who work in early years, from the Department for Education. This site provides resources, activities and support articles for childminders and practitioners working with children in the early years.
     card_attributes:
       - slug: support-for-practitioners
-        image_id: 7pDEReYTPh1hn1yr5X0kyF
         title: Support for practitioners
         body: Guidance to help you in your practice, from curriculum planning to reducing paperwork.
       - slug: areas-of-learning
-        image_id: 1p3FsvZsuf8p64myHs5EDv
         title: Areas of learning
         body: Ideas for activities to do with children across the 7 areas of learning and development in the early years foundation stage.
       - slug: wellbeing-and-enrichment
-        image_id: 3meOindn61qXzIabCc0Kre
         title: Wellbeing and enrichment
         body: Resources to help you support children’s health, safety and learning in your setting.
   support-for-practitioners:

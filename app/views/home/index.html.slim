@@ -14,7 +14,7 @@
     h2 = t('home.title')
     p.govuk-body = t('home.body')
 
-.govuk-grid-row
-  = render partial: 'shared/card', collection: @page.pages
+.govuk-grid-row class='govuk-!-margin-bottom-6'
+  = render partial: 'shared/card', collection: @pages
 
 = render 'shared/ctas'

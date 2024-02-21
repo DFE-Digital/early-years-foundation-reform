@@ -2,7 +2,8 @@ module Web
   class Resource < ContentfulModel::Base
     extend ::Caching
 
-    self.content_type_id = 'resource'
+    self.content_type_id = 'helpResource'
+
     belongs_to_many :web_page
 
     # @param name [String]

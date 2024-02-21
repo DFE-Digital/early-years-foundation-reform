@@ -7,6 +7,10 @@ class Page
     ["/", parent_path, slug].join("/").squeeze("/")
   end
 
+  def meta_description
+    'placeholder'
+  end
+
   def cards
     if card_attributes.present?
       card_attributes.map { |attrs| Card.new(attrs) }
@@ -28,22 +32,22 @@ class Page
   class Card
     include ActiveModel::Model
 
-    attr_accessor :slug, :image_id, :title, :body, :thumbnail, :parent_path, :subpages
+    attr_accessor :slug, :image_id, :title, :body, :parent_path, :subpages
 
     def path
       [parent_path, slug].join("/")
     end
 
-    def asset
-      @asset = if image_id.blank?
-                 default_asset
-               else
-                 Asset.new(id: image_id)
-               end
+    def meta_description
+      'card description'
     end
 
-    def default_asset
-      @default_asset ||= Asset.new(id: '706uv3PhtBRxqRffZKa2b3')
+    def thumbnail
+      OpenStruct.new(
+        url: 'https://placehold.co/380x254/347ca9/FFFFFF/png',
+        description: 'A placeholder picture',
+        title: 'Title for a placeholder picture',
+      )
     end
   end
 end

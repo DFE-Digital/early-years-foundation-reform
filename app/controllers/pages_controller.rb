@@ -12,7 +12,7 @@ private
   end
 
   def page_params
-    params.permit(:cms_path)
+    params.permit(:cms_path, :slug)
   end
 
   def page(page_name)

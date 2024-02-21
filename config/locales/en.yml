@@ -10,8 +10,8 @@ en:
       link_text: Complete the simple feedback form
   home:
     title: Get help for your setting
-    hero: Guidance for people who work in early years, from the Department for Education. This site provides resources, activities and support articles for childminders and practitioners working with children in the early years.
-    heading: Get help for your setting
+    hero:
+      body: Guidance for people who work in early years, from the Department for Education. This site provides resources, activities and support articles for childminders and practitioners working with children in the early years.
     body: Find helpful articles and resources to support you in your setting.
   cookie_banner:
     heading: Cookies on %{service}
