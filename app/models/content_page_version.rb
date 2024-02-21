@@ -9,7 +9,7 @@ class ContentPageVersion < ApplicationRecord
   validates :title, presence: true
   validates :markdown, presence: true
   validates :markdown, length: { maximum: 30_000 }
-  validates :title, :intro, :description, :content_list, length: { maximum: 254 }
+  validates :title, :intro, :description, :content_list, length: { maximum: 10_000 }
 
   delegate :parent, :parent_id, to: :content_page, allow_nil: true
 

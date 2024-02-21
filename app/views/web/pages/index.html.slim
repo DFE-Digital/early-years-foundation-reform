@@ -4,7 +4,6 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: page.hero }
 
-= page.fields.inspect 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   = render partial: 'shared/card', collection: page.pages
 

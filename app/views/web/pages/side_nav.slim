@@ -18,10 +18,10 @@
         = page.title
       ul.dfe-vertical-nav__section
         li.dfe-vertical-nav__section-item.dfe-vertical-nav__section-item--current
-          = link_to('Overview', page.slug, class: 'dfe-vertical-nav__link')
+          = link_to('Overview', page.path, class: 'dfe-vertical-nav__link')
           - page.children.each do |child|
             li.dfe-vertical-nav__section-item
-              = link_to(child.title, child.slug, class: 'dfe-vertical-nav__link')
+              = link_to(child.title, child.path, class: 'dfe-vertical-nav__link')
 
   .govuk-grid-column-three-quarters
     h2 =page.title

@@ -15,7 +15,7 @@ class ContentPage < ApplicationRecord
   validates :title, presence: true, uniqueness: true
   validates :markdown, presence: true
   validates :markdown, length: { maximum: 30_000 }
-  validates :title, :intro, :description, :content_list, length: { maximum: 254 }
+  validates :title, :intro, :description, :content_list, length: { maximum: 10_000 }
 
   validates :position, presence: true, numericality: { only_integer: true }, uniqueness: { scope: :parent_id }
 
