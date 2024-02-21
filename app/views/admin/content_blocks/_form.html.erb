@@ -6,11 +6,11 @@
         <%= form.govuk_error_summary order: %i[name description markdown]  %>
 
         <div data-controller='character-counter' data-character-counter-countdown-value='true'>
-          <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id, 'data-character-counter-target': 'input', maxlength: '254', hint: {text: "<p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the name.</p>".html_safe} %>
+          <%= form.govuk_text_field :name, label: {text: "Name - this should be provided by the developers, it refers to part of the fixed pages"}, disabled: content_block&.id, 'data-character-counter-target': 'input', maxlength: '10000', hint: {text: "<p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the name.</p>".html_safe} %>
         </div>
 
         <div data-controller='character-counter' data-character-counter-countdown-value='true'>
-          <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"}, 'data-character-counter-target': 'input', maxlength: '254', hint: {text: "<p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the description.</p>".html_safe} %>
+          <%= form.govuk_text_field :description, label: {text: "Description - where does this appear in the site ?"}, 'data-character-counter-target': 'input', maxlength: '10000', hint: {text: "<p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the description.</p>".html_safe} %>
         </div>
 
         <!-- This text_area is not rendered with gov_text_field because it needs to

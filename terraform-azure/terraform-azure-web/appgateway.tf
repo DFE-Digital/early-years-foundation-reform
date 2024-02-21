@@ -90,6 +90,10 @@ resource "azurerm_web_application_firewall_policy" "agw_wafp" {
           id      = "933210"
           enabled = false
         }
+        rule {
+          id      = "933180"
+          enabled = false
+        }
       }
     }
 

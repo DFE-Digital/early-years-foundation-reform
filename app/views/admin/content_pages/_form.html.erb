@@ -6,7 +6,7 @@
         <%= form.govuk_error_summary order: %i[title markdown position]  %>
 
           <div data-controller='character-counter' data-character-counter-countdown-value='true'>
-            <%= form.govuk_text_field :title, label: {text: "Heading"}, :class => 'govuk-input govuk-!-width-three-quarters', disabled: (@content_page.title && !content_page.parent_id), 'data-character-counter-target': 'input', maxlength: '254' %>
+            <%= form.govuk_text_field :title, label: {text: "Heading"}, :class => 'govuk-input govuk-!-width-three-quarters', disabled: (@content_page.title && !content_page.parent_id), 'data-character-counter-target': 'input', maxlength: '10000' %>
             <p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the title.</p>
           </div>
 
@@ -18,7 +18,7 @@
               Introduction
             </label>
             <div data-controller='character-counter' data-character-counter-countdown-value='true'>
-              <%= form.text_area :intro, id: 'intro-editor', rows: 8, cols: 35, class: 'govuk-input govuk-textarea', 'data-character-counter-target': 'input', maxlength: '254' %>
+              <%= form.text_area :intro, id: 'intro-editor', rows: 8, cols: 35, class: 'govuk-input govuk-textarea', 'data-character-counter-target': 'input', maxlength: '10000' %>
               <p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the introduction.</p>
             </div>
 
@@ -26,7 +26,7 @@
               Table of contents
             </label>
             <div data-controller='character-counter' data-character-counter-countdown-value='true'>
-              <%= form.text_area :content_list, id: 'content-list-editor', rows: 8, cols: 35, class: 'govuk-input govuk-textarea', 'data-character-counter-target': 'input', maxlength: '254' %>
+              <%= form.text_area :content_list, id: 'content-list-editor', rows: 8, cols: 35, class: 'govuk-input govuk-textarea', 'data-character-counter-target': 'input', maxlength: '10000' %>
               <p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the content list.</p>
             </div>
 
@@ -41,13 +41,13 @@
             <div data-controller='character-counter' data-character-counter-countdown-value='true'>
               <%= form.text_area :markdown, :id => 'markdown-editor', :rows => 20, :cols => 35,  :class => govuk_input_classes(:textarea, errors: @content_page.errors[:markdown]), 'data-character-counter-target': 'input', maxlength: '30000' %>
               <p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the markdown.</p>
-            </div> 
-            
+            </div>
+
             <%= form.hidden_field :parent_id, id: "parent_id" %>
             <%= form.govuk_text_field :position, label: {text: "Position"}%>
-           
+
             <div data-controller='character-counter' data-character-counter-countdown-value='true'>
-              <%= form.govuk_text_area :description, label: {text: "Meta Description"}, 'data-character-counter-target': 'input', maxlength: '254' %>
+              <%= form.govuk_text_area :description, label: {text: "Meta Description"}, 'data-character-counter-target': 'input', maxlength: '10000' %>
               <p>There are <strong data-character-counter-target='counter' ></strong> remaining characters in the description.</p>
             </div>
           </div>
