@@ -5,5 +5,4 @@
         ul.govuk-footer__list.govuk-footer__list--columns-3
           - items.each do |item|
             li.govuk-footer__list-item
-              a.govuk-link.govuk-footer__link[href="#{item[:href]}"]
-                | #{item[:text]}
+              = govuk_link_to item.heading, static_path(item.name), class: 'govuk-footer__link'

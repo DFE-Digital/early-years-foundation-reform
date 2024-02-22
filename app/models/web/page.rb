@@ -51,6 +51,20 @@ module Web
       page_style == 'side-nav'
     end
 
+    def home?
+      placement.match(/home/)
+    end
+
+    def footer?
+      placement.match(/footer/)
+    end
+
+    def self.footer
+      fetch_or_store to_key(__method__) do
+        load_children(0).find_by(footer: true).order(:heading).load
+      end
+    end
+
     # @return [ContentfulModel::Asset]
     def thumbnail
       return OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png') if fields[:image].blank?
