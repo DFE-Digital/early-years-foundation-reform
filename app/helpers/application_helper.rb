@@ -48,7 +48,7 @@ module ApplicationHelper
       menu.each do |item|
         header.with_navigation_item(
           text: item.title,
-          href: ["/", item.parent&.slug, item.slug].join("/").squeeze("/"),
+          href: item.path,
           active: item.slug == section,
           classes: %w[dfe-header__navigation-item],
         )
@@ -57,6 +57,6 @@ module ApplicationHelper
   end
 
   def menu
-    @menu ||= Web::Page.search(placement: 'home').load
+    @menu ||= Web::Page.home.pages
   end
 end

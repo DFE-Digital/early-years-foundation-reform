@@ -1,13 +1,4 @@
 en:
-  ctas:
-    signup:
-      title: Get email alerts for new EYFS resources
-      body: Receive email notifications when new early years foundation stage resources are added to this website.
-      link_text: Sign up for email alerts (opens in new tab)
-    feedback:
-      title: Help to improve this website
-      body: Provide us with your feedback to help us improve this website for people who work in the early years.
-      link_text: Complete the simple feedback form
   home:
     title: Get help for your setting
     hero:

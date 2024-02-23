@@ -7,6 +7,7 @@ require 'contentful/management'
 class Upload
   extend Dry::Initializer
 
+  FEATURED_PAGE_TITLES = ["Get help to improve your practice", "Safeguarding and welfare"].freeze
   option :config, default: proc { ContentfulRails.configuration }
   option :client, default: proc { Contentful::Management::Client.new(config.management_token) }
 
@@ -15,72 +16,102 @@ class Upload
     log "space: #{config.space}"
     log "env: #{config.environment}"
 
-    create_resource(
-      name: 'home.hero.body',
-      title: 'Help for early years providers',
-    )
+    support_page, wellbeing_page = ContentPage.published.where(title: FEATURED_PAGE_TITLES).order_by_position
+    content_pages = ContentPage.top_level.published.order_by_position - [support_page, wellbeing_page]
 
-    create_resource(
-      name: 'test.resource',
-      title: 'Test resource',
-    )
+    area_of_learning_pages = content_pages.map do |page|
+      if page.children.any?
+        sub_entries = page.children.map do |sub_page|
+          log "#{sub_page.title} create"
+          create_page(sub_page, [], 'side-nav')
+        end
+      end
+      log "#{page.title} create"
+      create_page(page, sub_entries, 'side-nav')
+    end
 
-    create_page(
+    support_pages = support_page.children.map do |page|
+      log "#{page.title} create"
+      create_page(page)
+    end
+
+    wellbeing_pages = wellbeing_page.children.map do |page|
+      log "#{page.title} create"
+      create_page(page)
+    end
+
+    ContentBlock.all.find_each do |block|
+      log "#{block.name} create"
+      block = create_new_page(
+        slug: block.name,
+        title: block.description,
+        body: block.markdown,
+      )
+      log_entry(block)
+    end
+
+    p1 = create_new_page(
       slug: 'support-for-practitioners',
       'heroTitle': 'Support for practitioners',
       'heroDescription': 'Discover helpful resources and articles to help support you within your career and your setting.',
       title: 'Support for practitioners',
       'metaDescription': 'Guidance to help you in your practice, from curriculum planning to reducing paperwork.',
-      placement: 'home 1',
       'pageStyle': 'cards',
+      pages: support_pages,
     )
 
-    create_page(
+    p2 = create_new_page(
       slug: 'areas-of-learning',
       'heroTitle': 'Areas of learning',
       'heroDescription': 'Find out more about each area of learning, including activities you can do and guidance on meeting the needs of all children in your setting.',
       title: 'Areas of learning',
       'metaDescription': 'Ideas for activities to do with children across the 7 areas of learning and development in the early years foundation stage.',
-      placement: 'home 2',
       'pageStyle': 'cards',
+      pages: area_of_learning_pages,
     )
 
-    create_page(
+    p3 = create_new_page(
       slug: 'wellbeing-and-enrichment',
       'heroTitle': 'Wellbeing and enrichment',
       'heroDescription': 'Discover resources to help you support children’s wellbeing and enrichment in your setting.',
       title: 'Wellbeing and enrichment',
       'metaDescription': "Resources to help you support children's health, safety and learning in your setting.",
-      placement: 'home 3',
       'pageStyle': 'cards',
+      pages: wellbeing_pages,
     )
 
-    ContentPage.all.find_each do |page|
-      log "#{page.title} create"
-      entry = create_page(
-        slug: page.slug,
-        'heroTitle': page.title,
-        'heroDescription': page.description,
-        title: page.title,
-        introduction: page.intro,
-        'contentList': page.content_list,
-        body: page.markdown,
-        'metaDescription': page.description,
-        placement: 'default',
-        'pageStyle': 'default',
-      )
-      log_entry(entry)
-    end
+    create_new_page(
+      slug: 'home',
+      'heroTitle': 'Help for early years providers',
+      'heroDescription': 'Guidance for people who work in early years, from the Department for Education. This site provides resources, activities and support articles for childminders and practitioners working with children in the early years.',
+      title: 'Get help for your setting',
+      body: 'Find helpful articles and resources to support you in your setting.',
+      pages: [p1, p2, p3],
+    )
 
-    ContentBlock.all.find_each do |block|
-      log "#{block.name} create"
-      block = create_page(
-        slug: block.name,
-        title: block.title,
-        body: block.description,
-      )
-      log_entry(block)
-    end
+    create_resource(
+      name: 'ctas.signup',
+      title: 'Get email alerts for new EYFS resources',
+      body: 'Receive email notifications when new early years foundation stage resources are added to this website.',
+      link_to_text: 'Sign up for email alerts (opens in new tab)',
+      link_to: 'https://forms.office.com.mcas.ms/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-a1INvUBHVZElO6Xg1Rw2V9UQlg3SlFPTVZIRlFaVDY5MzJQQUxQTk0yQyQlQCN0PWcu',
+    )
+
+    create_resource(
+      name: 'ctas.feedback',
+      title: 'Help to improve this website',
+      body: 'Provide us with your feedback to help us improve this website for people who work in the early years.',
+      link_to_text: 'Complete the simple feedback form',
+      link_to: 'https://forms.office.com/Pages/ResponsePage.aspx?id=yXfS-grGoU2187O4s0qC-a1INvUBHVZElO6Xg1Rw2V9UM1pQNEtCN0YyVVdFVkpOUVNXNUlZNTdOUCQlQCN0PWcu',
+    )
+
+    create_resource(
+      name: 'ctas.child_development_training',
+      title: '',
+      body: 'Other early years resources from the Department for Education/n## Early years child development training/nFree online training providing an overview of child development and practical advice for supporting children in your setting',
+      link_to_text: 'Learn more and enrol',
+      link_to: 'https://child-development-training.education.gov.uk',
+    )
   end
 
 private
@@ -105,9 +136,25 @@ private
   end
 
   # CONTENTFUL -----------------------------------------------------------------
+  # @return [Contentful::Management::DynamicEntry[page]]
+  def create_page(page, sub_entries = [], style = 'default')
+    params = {
+      slug: page.slug,
+      'heroTitle': page.children.any? ? 'Overview' : page.title,
+      'heroDescription': page.description,
+      title: page.title,
+      introduction: page.intro,
+      'contentList': page.content_list,
+      body: page.markdown,
+      'metaDescription': page.description,
+      'pageStyle': style,
+      pages: sub_entries,
+    }
+    create_new_page(params)
+  end
 
   # @return [Contentful::Management::DynamicEntry[page]]
-  def create_page(params)
+  def create_new_page(params)
     factory.find('helpPage').entries.create(params)
   end
 

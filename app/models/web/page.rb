@@ -7,17 +7,26 @@ module Web
     has_many_nested :pages, root: -> { Web::Page.home }
 
     def self.home
-      find_by(slug: Rails.configuration.root_slug).first
+      by_slug(Rails.configuration.root_slug) || null_object
+    end
+
+    def self.null_object
+      OpenStruct.new(
+        pages: [],
+        hero: OpenStruct.new(title: 'no title', body: 'no body'),
+      )
     end
 
     # @param name [String]
     # @return [Web::Page]
     def self.by_slug(slug)
-      find_by(slug: slug.to_s).first
+      fetch_or_store to_key(slug) do
+        find_by(slug: slug.to_s)&.first
+      end
     end
 
     def path
-      ["/", parent&.parent&.slug, parent&.slug, slug].join("/").squeeze("/")
+      ["/", parent&.parent&.slug, parent&.slug, slug].join("/").gsub(/home/, "").squeeze("/")
     end
 
     def hero
@@ -30,14 +39,6 @@ module Web
 
     def navigation?
       page_style == 'side-nav'
-    end
-
-    def home?
-      placement.match(/home/)
-    end
-
-    def footer?
-      placement.match(/footer/)
     end
 
     # @return [ContentfulModel::Asset]

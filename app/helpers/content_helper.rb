@@ -56,4 +56,66 @@ module ContentHelper
     classes << "govuk-input--error" if errors.present?
     classes
   end
+
+  #    ul.dfe-vertical-nav__section
+  #      li.dfe-vertical-nav__section-item class="dfe-vertical-nav__section-item--current"
+  #        = link_to('Overview', page.path, class: 'dfe-vertical-nav__link')
+  #        - page.children.each do |child|
+  #          li.dfe-vertical-nav__section-item
+  #            = link_to(child.title, child.path, class: 'dfe-vertical-nav__link')
+
+  def nav_list(page)
+    if page.children.any?
+      [page] + page.children
+    else
+      [page.parent] + page.parent.children
+    end
+  end
+
+  def section_title(page)
+    if page.children?
+      page.title
+    else
+      page.parent.title
+    end
+  end
+
+  def nav_title(page)
+    if page.children?
+      'Overview'
+    else
+      page.title
+    end
+  end
+
+  def side_navigation(page)
+    capture do
+      content_tag(:ul, class: 'dfe-vertical-nav__section') do
+        nav_list(page).map do |item|
+          classes = if current_page?(item.path)
+                      'dfe-vertical-nav__section-item dfe-vertical-nav__section-item--current'
+                    else
+                      'dfe-vertical-nav__section-item'
+                    end
+          concat(
+            content_tag(:li, class: classes) do
+              link_to nav_title(item), item.path, class: 'dfe-vertical-nav__link'
+            end,
+          )
+        end
+      end
+    end
+  end
+
+  def signup
+    @signup ||= Web::Resource.by_name('ctas.signup')
+  end
+
+  def feedback
+    @feedback ||= Web::Resource.by_name('ctas.signup')
+  end
+
+  def child_development_training
+    @child_development_training ||= Web::Resource.by_name('ctas.child_development_training')
+  end
 end
