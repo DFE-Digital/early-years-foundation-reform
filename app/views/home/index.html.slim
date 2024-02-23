@@ -1,20 +1,20 @@
 - content_for(:page_title) do 
-  = t('home.title')
+  = page.title
 
 - content_for :hero do
   .govuk-grid-row class='govuk-!-margin-top-9'
     .govuk-grid-column-three-quarters
       h1.govuk-heading-xl class='govuk-!-margin-bottom-4'
-        = t('service.name')
+        = page.hero.title
       p.govuk-body-l 
-        = t('home.hero.body') 
+        = page.hero.body
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   .govuk-grid-column-full
-    h2 = t('home.title')
-    p.govuk-body = t('home.body')
+    h2 = page.title
+    p.govuk-body = page.body
 
 .govuk-grid-row class='govuk-!-margin-bottom-6'
-  = render partial: 'shared/card', collection: @pages
+  = render partial: 'shared/card', collection: page.pages
 
 = render 'shared/ctas'

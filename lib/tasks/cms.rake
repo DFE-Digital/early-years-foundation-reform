@@ -11,7 +11,7 @@ namespace :hfeyp do
 
     desc 'Define Contentful entry models'
     task migrate: :environment do
-      migrations = Dir[Rails.root.join('cms/migrate/*')]
+      migrations = Dir[Rails.root.join('lib/cms/migrate/*')]
       token = ContentfulRails.configuration.management_token
       space = ContentfulRails.configuration.space
       env = ContentfulRails.configuration.environment

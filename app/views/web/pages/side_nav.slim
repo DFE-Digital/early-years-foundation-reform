@@ -15,13 +15,8 @@
         | Close
     nav.dfe-vertical-nav
       h2.dfe-vertical-nav--section-header
-        = page.title
-      ul.dfe-vertical-nav__section
-        li.dfe-vertical-nav__section-item.dfe-vertical-nav__section-item--current
-          = link_to('Overview', page.path, class: 'dfe-vertical-nav__link')
-          - page.children.each do |child|
-            li.dfe-vertical-nav__section-item
-              = link_to(child.title, child.path, class: 'dfe-vertical-nav__link')
+        = section_title(page)
+      = side_navigation(page)
 
   .govuk-grid-column-three-quarters
     h2 =page.title
