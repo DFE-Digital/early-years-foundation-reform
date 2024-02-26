@@ -29,6 +29,14 @@ module Web
       ["/", parent&.parent&.slug, parent&.slug, slug].join("/").gsub(/home/, "").squeeze("/")
     end
 
+    def breadcrumbs
+      list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
+      list.shift
+      list.each_with_object({ "Home" => "/" }) do |obj, memo|
+        memo[obj.title] = obj.path
+      end
+    end
+
     def hero
       OpenStruct.new(title: hero_title, body: hero_description)
     end
