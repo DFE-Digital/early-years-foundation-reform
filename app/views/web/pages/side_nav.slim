@@ -19,7 +19,16 @@
       = side_navigation(page)
 
   .govuk-grid-column-three-quarters
-    h2 =page.title
+    - if page.introduction.present?
+      = m(page.introduction)
+
+    - if page.content_list.present?
+        .contents-on-page
+          p#contents-list-heading class='govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold'
+            | Contents on this page 
+          ul.contents-list__list
+            = translate_markdown(page.content_list)
+
     p.govuk-body = m(page.body)
 
 = render 'shared/ctas'

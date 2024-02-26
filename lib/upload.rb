@@ -121,7 +121,7 @@ class Upload
       name: 'child_development_training',
       body: 'Free online training providing an overview of child development and practical advice for supporting children in your setting.',
       link_to_text: 'Early years child development training',
-      link_to: 'https://child-development-training.education.gov.uk'
+      link_to: 'https://child-development-training.education.gov.uk',
     )
 
     r2 = create_resource(
@@ -156,7 +156,7 @@ class Upload
       name: 'other_useful_resources',
       title: 'Other early years resources from the Department for Education',
       body: 'The Department for Education also provides the following free websites and resources to support people working in the early years.',
-      resources: [r1, r2, r3, r4, r5]
+      resources: [r1, r2, r3, r4, r5],
     )
   end
 
