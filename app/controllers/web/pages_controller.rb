@@ -13,7 +13,7 @@ module Web
   private
 
     def breadcrumbs
-      []
+      page.breadcrumbs
     end
 
     def page_params
