@@ -108,9 +108,55 @@ class Upload
     create_resource(
       name: 'ctas.child_development_training',
       title: '',
-      body: 'Other early years resources from the Department for Education/n## Early years child development training/nFree online training providing an overview of child development and practical advice for supporting children in your setting',
+      body: 'Other early years resources from the Department for Education
+
+      ## Early years child development training
+
+      Free online training providing an overview of child development and practical advice for supporting children in your setting',
       link_to_text: 'Learn more and enrol',
       link_to: 'https://child-development-training.education.gov.uk',
+    )
+
+    r1 = create_resource(
+      name: 'child_development_training',
+      body: 'Free online training providing an overview of child development and practical advice for supporting children in your setting.',
+      link_to_text: 'Early years child development training',
+      link_to: 'https://child-development-training.education.gov.uk'
+    )
+
+    r2 = create_resource(
+      name: 'eyfs_statuatory_framework',
+      link_to_text: 'Early years foundation stage (EYFS) statutory framework',
+      link_to: '#',
+      body: 'The standards that school and childcare providers must meet for the learning, development and care of children from birth to 5.',
+    )
+
+    r3 = create_resource(
+      name: 'changes_to_eyfs',
+      link_to_text: 'Changes to the early years foundation stage framework',
+      link_to: '#',
+      body: 'Important information about the most recent changes to the EYFS framework.',
+    )
+
+    r4 = create_resource(
+      name: 'development_matters',
+      link_to_text: 'Development matters',
+      link_to: '#',
+      body: 'Non-statutory curriculum guidance for the early years foundation stage.',
+    )
+
+    r5 = create_resource(
+      name: 'changes_to_eyfs',
+      link_to_text: 'Guidance on completing the EYFS progress check at age 2',
+      link_to: '#',
+      body: 'Guidance to provide support for early years practitioners when completing the early years foundation stage (EYFS) progress check at age 2.',
+    )
+
+    create_resource(
+      name: 'other_useful_resources',
+      title: 'Other early years resources from the Department for Education',
+      body: 'The Department for Education also provides the following free websites and resources to support people working in the early years.',
+      resources: [r1, r2, r3, r4, r5]
     )
   end
 
