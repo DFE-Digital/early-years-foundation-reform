@@ -1,0 +1,6 @@
+li.chevron-card
+  .chevron-card__wrapper
+    p.govuk-body-m class='govuk-!-margin-bottom-1.govuk-!-font-weight-bold'
+      = link_to(resource.link_to_text, resource.link_to, class: 'chevron-card__link')
+    p.govuk-body-s.hf-second-color.chevron-card__description
+      = resource.body

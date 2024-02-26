@@ -118,4 +118,8 @@ module ContentHelper
   def child_development_training
     @child_development_training ||= Web::Resource.by_name('ctas.child_development_training')
   end
+
+  def other_useful_resources
+    @other_useful_resources ||= Web::Resource.by_name('other_useful_resources')
+  end
 end
