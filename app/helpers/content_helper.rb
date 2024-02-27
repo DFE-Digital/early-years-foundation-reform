@@ -101,18 +101,28 @@ module ContentHelper
   end
 
   def signup
-    @signup ||= Web::Resource.by_name('ctas.signup')
+    Web::Resource.by_name('ctas.signup') || null_resource('ctas.signup')
   end
 
   def feedback
-    @feedback ||= Web::Resource.by_name('ctas.signup')
+    Web::Resource.by_name('ctas.feedback') || null_resource('ctas.feedback')
   end
 
   def child_development_training
-    @child_development_training ||= Web::Resource.by_name('ctas.child_development_training')
+    Web::Resource.by_name('ctas.child_development_training') || null_resource('ctas.child_development_training')
   end
 
   def other_useful_resources
-    @other_useful_resources ||= Web::Resource.by_name('other_useful_resources')
+    Web::Resource.by_name('other_useful_resources') || null_resource('other_useful_resources')
+  end
+
+  def null_resource(name)
+    OpenStruct.new(
+      name: name,
+      title: "Title for #{name}",
+      body: "Body for #{name}",
+      link_to_text: "Link for #{name}",
+      link_to: '#',
+    )
   end
 end
