@@ -57,13 +57,6 @@ module ContentHelper
     classes
   end
 
-  #    ul.dfe-vertical-nav__section
-  #      li.dfe-vertical-nav__section-item class="dfe-vertical-nav__section-item--current"
-  #        = link_to('Overview', page.path, class: 'dfe-vertical-nav__link')
-  #        - page.children.each do |child|
-  #          li.dfe-vertical-nav__section-item
-  #            = link_to(child.title, child.path, class: 'dfe-vertical-nav__link')
-
   def nav_list(page)
     if page.children.any?
       [page] + page.children
