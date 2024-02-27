@@ -146,7 +146,7 @@ class Upload
     )
 
     r5 = create_resource(
-      name: 'changes_to_eyfs',
+      name: 'guidance_on_completing_progress_check',
       link_to_text: 'Guidance on completing the EYFS progress check at age 2',
       link_to: '#',
       body: 'Guidance to provide support for early years practitioners when completing the early years foundation stage (EYFS) progress check at age 2.',

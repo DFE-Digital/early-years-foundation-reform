@@ -47,16 +47,4 @@ html.govuk-template lang='en'
       main#main-content.govuk-main-wrapper role='main'
         = yield
 
-    section.hf-other.dfe-content-page--header
-      .govuk-width-container
-        .govuk-grid-row
-          .govuk-grid-column-three-quarters
-            ul.chevron-card-list
-              li.chevron-card
-                h2.govuk-heading-l
-                  = other_useful_resources.title
-                p.govuk-body-l
-                  = other_useful_resources.body
-                = render partial: 'shared/resource', collection: other_useful_resources.resources, as: :resource
-
 = render 'layouts/footer'
