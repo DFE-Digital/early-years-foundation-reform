@@ -1,3 +1,3 @@
 class FooterComponent < ApplicationComponent
-  option :items, optional: true
+  option :pages, optional: true
 end

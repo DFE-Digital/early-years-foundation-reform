@@ -31,6 +31,10 @@ module Web
       ["/", parent&.parent&.slug, parent&.slug, slug].join("/").gsub(/home/, "").squeeze("/")
     end
 
+    def footer_path
+      ["/", parent&.parent&.slug, parent&.slug, slug].join("/").gsub(/footer/, "").squeeze("/")
+    end
+
     def breadcrumbs
       list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
       list.shift
@@ -60,9 +64,7 @@ module Web
     end
 
     def self.footer
-      fetch_or_store to_key(__method__) do
-        load_children(0).find_by(footer: true).order(:heading).load
-      end
+      by_slug('footer') || null_object
     end
 
     # @return [ContentfulModel::Asset]
