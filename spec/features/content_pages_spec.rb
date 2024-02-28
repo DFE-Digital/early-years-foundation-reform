@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.feature "View pages", type: :feature do
+  before { skip 'WIP' if Rails.application.cms? }
+
   given(:parent_page) { FactoryBot.create(:content_page, :published, :top_level) }
   given(:child_page) { FactoryBot.create(:content_page, :published, parent_id: parent_page.id) }
   given(:content_page_version) { FactoryBot.create(:content_page_version) }

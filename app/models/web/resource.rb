@@ -9,15 +9,10 @@ module Web
     # @param name [String]
     # @return [Web::Resource]
     def self.by_name(name)
+      return find_by(name: name.to_s).first if Rails.env.production?
+
       fetch_or_store to_key(name) do
         find_by(name: name.to_s).first
-      end
-    end
-
-    # @return [Array<Page::Resource]
-    def self.ordered
-      fetch_or_store to_key("#{name}.__method__") do
-        limit(1_000).order(:name).load.to_a
       end
     end
   end
