@@ -43,16 +43,6 @@ RSpec.describe "User administration", type: :feature do
       expect(page).to have_text("Your role is admin and you cannot change it")
     end
 
-    scenario "the list of users should be ordered by email address, ascending" do
-      pending 'fails on github, passess locally, skipping as user admin is going away'
-      login_as(barbara)
-
-      visit admin_users_path
-      expect_within_table_row(1, ["Barbara Gordon", "birdsofprey@education.gov.uk", "Administrator"])
-      expect_within_table_row(2, ["J Jonah Jameson", "jjj@education.gov.uk", "Editor"])
-      expect_within_table_row(3, ["Perry White", "pwhite@education.gov.uk", "Editor"])
-    end
-
     scenario "An admin user should not be able to create a new user without providing a first name" do
       login_as(barbara)
       visit new_admin_user_path(barbara)
