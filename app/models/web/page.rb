@@ -31,6 +31,10 @@ module Web
       ["/", parent&.parent&.slug, parent&.slug, slug].join("/").gsub(/home/, "").squeeze("/")
     end
 
+    def footer_path
+      ["/", parent&.parent&.slug, parent&.slug, slug].join("/").gsub(/footer/, "").squeeze("/")
+    end
+
     def breadcrumbs
       list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
       list.shift
@@ -49,6 +53,10 @@ module Web
 
     def navigation?
       page_style == 'side-nav'
+    end
+
+    def self.footer
+      by_slug('footer') || null_object
     end
 
     # @return [ContentfulModel::Asset]

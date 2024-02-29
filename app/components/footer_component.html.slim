@@ -1,0 +1,8 @@
+= render GovukComponent::NewFooterComponent.new do |footer|
+  - if pages
+    - footer.with_navigation do
+      .govuk-footer__section.govuk-grid-column-two-thirds
+        ul.govuk-footer__list.govuk-footer__list--columns-3
+          - pages.each do |page|
+            li.govuk-footer__list-item
+              = govuk_link_to page.title, page.footer_path, class: 'govuk-footer__link'

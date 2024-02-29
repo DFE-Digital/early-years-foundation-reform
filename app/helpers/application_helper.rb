@@ -59,4 +59,8 @@ module ApplicationHelper
   def menu
     @menu ||= Web::Page.home.pages
   end
+
+  def footer_menu
+    @footer_menu ||= Web::Page.footer.pages
+  end
 end

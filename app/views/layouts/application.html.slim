@@ -49,4 +49,4 @@ html.govuk-template lang='en'
 
     = yield :other_resources
 
-= render 'layouts/footer'
+= render FooterComponent.new(pages: Web::Page.footer.pages)

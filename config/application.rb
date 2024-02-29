@@ -49,7 +49,7 @@ module GovukRailsBoilerplate
     config.js_url = "https://www.googletagmanager.com/ns.html?id=#{config.tracking_id}"
     config.content = config_for(:content)
     config.root_slug = ENV.fetch('ROOT_SLUG', config_for(:content)['root_slug']) || 'home'
-    
+
     # Contentful
     config.contentful_space                   = ENV.fetch('CONTENTFUL_SPACE', credentials.dig(:contentful, :space))
     config.contentful_delivery_access_token   = ENV.fetch('CONTENTFUL_DELIVERY_TOKEN', credentials.dig(:contentful, :delivery_access_token))
@@ -58,7 +58,8 @@ module GovukRailsBoilerplate
     config.contentful_environment             = ENV.fetch('CONTENTFUL_ENVIRONMENT', credentials.dig(:contentful, :environment))
 
     config.active_record.legacy_connection_handling = false
-   
+    config.generators.test_framework = :rspec
+
     # @return [Boolean]
     def live?
       ENV['ENVIRONMENT'].eql?('production')
