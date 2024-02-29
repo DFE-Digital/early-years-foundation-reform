@@ -55,14 +55,6 @@ module Web
       page_style == 'side-nav'
     end
 
-    def home?
-      placement.match(/home/)
-    end
-
-    def footer?
-      placement.match(/footer/)
-    end
-
     def self.footer
       by_slug('footer') || null_object
     end
