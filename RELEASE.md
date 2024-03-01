@@ -20,9 +20,7 @@ We use 10 swim lanes on the [Jira][jira] board.
 
 **4. Developer Peer Review**
 
-- `content` deployment
-- `ER-456` branch
-- <https://eyrecovery-review-pr-123.azurewebsites.net>
+- `ER-###` branch
 - [feature deployments][deployments]
 - meets [definition of done](#definition-of-done)
 - mark PR as `ready` and [request review](#review-process)
@@ -32,7 +30,7 @@ We use 10 swim lanes on the [Jira][jira] board.
 
 **6. In Test QA (Quality Assurance)**
 
-- `content` deployment
+We do not have review applications in HfEYP, so QA can either take place after merged in development or in staging.  If you'd like to see the PR on the development instance before merging, you can deploy from that branch.
 - seek business analyst sign-off
 - confirm the acceptance criteria
 - label PR as `pass` or `fail`
@@ -42,14 +40,14 @@ We use 10 swim lanes on the [Jira][jira] board.
 
 - `development` deployment
 - `main` branch
-- <https://eyrecovery-dev.azurewebsites.net>
+- <https://hfeyp-dev.azurewebsites.net>
 - update accessibility and quality checks as required
 
 **8. Approval PO (Product owner)**
 
 - `staging` deployment
 - `rcx.x.x` release candidate tag
-- <https://staging.child-development-training.education.gov.uk>
+- <https://staging.help-for-early-years-providers.education.gov.uk>
 - [open milestones (release candidates)][release-candidates]
 - seek product owner sign-off
 
@@ -57,7 +55,7 @@ We use 10 swim lanes on the [Jira][jira] board.
 
 - `production` deployment
 - `vx.x.x` version tag
-- <https://child-development-training.education.gov.uk>
+- <https://help-for-early-years-providers.education.gov.uk>
 - [close milestone][released-versions] and rename from `rc` to `v`
 - periodically publish a [release][releases] CHANGELOG
 
@@ -87,7 +85,6 @@ Github PRs use descriptive [labels][labels], most of which are applied automatic
 
 
 1. **adr**, Architectural Design Record.
-1. **content**, Course and page content changes.
 1. **dependencies**, Pull requests that update a dependency file.
 1. **documentation**, Improvements or additions to documentation.
 1. **frontend**, Changes to assets detected.
@@ -108,10 +105,8 @@ Manual labels:
 ## Application state
 
 - `Rails.application.live?` returns `true` if deployed as a final release to our public facing workspace.
-- `Rails.application.debug?` returns `true` if running locally in development mode or as a feature peer review application.
-
-These two predicates can toggle "production", or "development" only features such as revealing debugging information.
-
+- `Rails.application.staging?` returns `true` if running in staging
+- `Rails.application.development?` returns `true` if running in development
 
 ## Dependencies
 
