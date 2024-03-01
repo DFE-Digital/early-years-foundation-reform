@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::Base
-  layout ENV.fetch('NEW_DESIGN', nil).present? ? 'application' : 'beta/application'
+  layout Rails.application.new_design? ? 'application' : 'beta/application'
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
   before_action { cookies.delete :track_google_analytics }
   before_action do |_controller|
     @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
   end
+  before_action :prepare_cms
 
   include Pundit::Authorization
 
@@ -15,6 +16,17 @@ class ApplicationController < ActionController::Base
   end
 
 protected
+
+  # @return [Symbol]
+  def prepare_cms
+    # ensure correct API for each request
+    ContentfulModel.use_preview_api = Rails.application.preview?
+
+    Web::Resource.reset_cache_key!
+    Web::Page.reset_cache_key!
+
+    :done
+  end
 
   def release_version
     ENV["RELEASE_VERSION"] || "-"

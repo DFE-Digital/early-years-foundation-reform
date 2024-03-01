@@ -23,23 +23,6 @@ module ApplicationHelper
     link_to text, admin_article_path(article), link_to_args
   end
 
-  def yml_navigation
-    render(HeaderComponent.new(service_name: t('service.name'), classes: 'dfe-header noprint', container_classes: %w[dfe-header-f-header-flex], navigation_label: 'Primary navigation')) do |header|
-      yml_menu.each do |key, item|
-        header.with_navigation_item(
-          text: item[:menu_title],
-          href: ["/", item[:parent_path], item[:slug]].join("/").squeeze("/"),
-          active: key == menu_item&.to_sym,
-          classes: %w[dfe-header__navigation-item],
-        )
-      end
-    end
-  end
-
-  def yml_menu
-    @yml_menu ||= Rails.configuration.content
-  end
-
   def navigation
     render(HeaderComponent.new(service_name: t('service.name'), classes: 'dfe-header noprint', container_classes: %w[dfe-header-f-header-flex], navigation_label: 'Primary navigation')) do |header|
       header.with_navigation_item(

@@ -3,7 +3,7 @@ require 'caching'
 require 'web/page'
 require 'web/resource'
 
-ContentfulModel.use_preview_api = true
+ContentfulModel.use_preview_api = Rails.application.preview?
 
 ContentfulRails.configure do |config|
   config.space            = Rails.application.config.contentful_space
