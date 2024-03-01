@@ -5,7 +5,7 @@
   = render partial: 'hero', locals: { hero: page.hero }
 
 - if page.introduction.present?
-  = m(page.introduction)
+  = translate_markdown(page.introduction)
 
 - if page.content_list.present?
   .govuk-grid-row
@@ -18,6 +18,6 @@
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   .govuk-grid-column-full
-    p.govuk-body = m(page.body)
+    p.govuk-body = translate_markdown(page.body)
 
 = render 'shared/ctas'

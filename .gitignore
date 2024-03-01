@@ -39,7 +39,6 @@ yarn-debug.log*
 .env.development
 *.log
 /.idea
-/.tool-versions
 .DS_Store
 /coverage
 

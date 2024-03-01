@@ -20,7 +20,7 @@
 
   .govuk-grid-column-three-quarters
     - if page.introduction.present?
-      = m(page.introduction)
+      = translate_markdown(page.introduction)
 
     - if page.content_list.present?
         .contents-on-page
@@ -29,6 +29,6 @@
           ul.contents-list__list
             = translate_markdown(page.content_list)
 
-    p.govuk-body = m(page.body)
+    p.govuk-body = translate_markdown(page.body)
 
 = render 'shared/ctas'
