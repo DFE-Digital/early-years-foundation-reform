@@ -12,7 +12,6 @@ Running these tasks requires a developer to have a `Contentful Management Access
 
 [Management Tokens](https://app.contentful.com/spaces/dvmeh832nmjc/api/cma_tokens) offer [per-developer](https://app.contentful.com/account/profile/cma_tokens) write access.
 
-
 1. Define Contentful entry models
   `rake hfeyp:cms:migrate`
 2. Upload content from local database
