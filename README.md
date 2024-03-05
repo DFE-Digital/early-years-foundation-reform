@@ -2,18 +2,20 @@
 [![Deploy to Staging](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-stage/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
 [![Deploy to Production](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-prod/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
 
-# Help for early years providers
+# Help For Early Years Providers
 
-This is an application, written in Ruby on Rails (Version 7) based on the [DFE-Digital](rails-template) template.  It uses a[Contenful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help for early years providers service.
+This is an application, written in Ruby on Rails (Version 7), based on the [DFE-Digital](rails-template) template. It uses a [Contenful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help For Early Years Providers service.
 
 Optionally create `.env` to override or set default variables.
 
-## Prerequisites
+## Dependencies
 
-Ruby version `3.2.2`
-Node version `20.x.x`
-Yarn version `4.0.2`
-PostgreSQL version `13.x.x`
+Ruby version `3.2.x`
+Node version `20.11.x`
+PostgreSQL version `13.1`
+Yarn version `4.0.x`
+
+Suggest using [asdf](asdf) for local development.
 
 ## Getting started
 
@@ -26,15 +28,18 @@ PostgreSQL version `13.x.x`
 8. Run `bin/dev` to launch the app on http://localhost:3000
 
 ## Running specs, linter(without auto correct) and annotate models and serializers
-```
+
+```sh
 bundle exec 
 ```
 
 ## Running specs
-```
+
+```sh
 bundle exec rspec
 ```
-## Rails credentials
+
+## Credentials & Environment Variables
 
 We use rails credentials to manage secrets; obtain the master key from the Dev team.
 
@@ -70,10 +75,6 @@ CONTENTFUL_MANAGEMENT_TOKEN=
 
 The management token is not used in the application and each developer should have their own.  It is used to run the contentful migration and upload tasks.
 
-## Contentful
-
----
-
 ## Deployment Pipelines
 
 Visit the [Github Container Registry][ghcr].
@@ -88,7 +89,7 @@ Individual branches may also be used as the source for the deployment, so you ca
 
 ## Azure
 
-Console access
+Console access:
 
 - https://hfeyp-dev.scm.azurewebsites.net/webssh/host
 - https://hfeyp-stage.scm.azurewebsites.net/webssh/host
@@ -115,12 +116,14 @@ This project uses Hotjar for user insight. Hotjar records user journeys and
 automatically redacts certain user information on recordings. All personally
 identifiable information should be redacted. In order to override the default
 settings the following classes can be added:
+
 - `data-hj-suppress` to redact additional user information
 - `data-hj-allow` to allow data that is automatically redacted
 
 ---
 
 [app-repo]: https://github.com/DFE-Digital/early-years-foundation-reform
+[asdf]: https://asdf-vm.com
 [prototype-repo]: https://github.com/DFE-Digital/ey-hfeyp-prototype 
 [rails-template]: https://github.com/DFE-Digital/rails-template
 [ghcr]: https://ghcr.io/dfe-digital/help-for-early-years-providers 
