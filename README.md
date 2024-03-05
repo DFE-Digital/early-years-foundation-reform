@@ -1,271 +1,144 @@
-[![Deploy to Dev](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/deploy_to_dev/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
-# Early Years Reform Framework
+[![Deploy to Development](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-dev/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
+[![Deploy to Staging](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-stage/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
+[![Deploy to Production](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-prod/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
 
-This is a minimalistic content management system, written in Ruby on Rails
-for use by content editors in the Early Years Reform Framework project.
+# Help For Early Years Providers
 
-It allows editors to create a set of nested pages, and to edit the headings,
-overview and content as [Markdown](https://en.wikipedia.org/wiki/Markdown).
+This is an application, written in Ruby on Rails (Version 7), based on the [DFE-Digital](rails-template) template. It uses a [Contenful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help For Early Years Providers service.
 
-These are some examples of the cut down CMS and two resulting pages
-all in UK.GOV style;
+Optionally create `.env` to override or set default variables.
 
-![The CMS view](docs/cms-view.png?raw=true "The CMS view"seed)
-![Example page](docs/public-view-of-a-page.png?raw=true "Example page")
+## Dependencies
 
-## Prerequisites
+Ruby version `3.2.x`
+Node version `20.11.x`
+PostgreSQL version `13.1`
+Yarn version `4.0.x`
 
-Ruby version `2.7.2`
+Suggest using [asdf](asdf) for local development.
 
-Node version `14.x.x`
-## Getting started on Docker
+## Getting started
 
-On Mac OS, [Docker Desktop / Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
-will need to be installed first and running
-
-Setup a `.env` file to hold environment variables and fill in the missing values
-(do not commit this file)
-
-`cp .env.example .env`
-
-add development database to .env: govuk_rails_boilerplate_development
-
-### To run the application locally with docker:
-
-NOTE: Ensure no instances of PostgreSQL are running in the background as this can cause conflicts when attempting to run the docker instance of PostgreSQL
-If PostgreSQL was installed using homebrew, in the terminal use:
-1. `brew services` - to check for any running instances,
-2. `brew services stop postgres`
-
-To run the application locally with docker:
-
-`docker-compose build && docker-compose up`
-
-If docker has been setup correctly, running `sudo docker ps`, you should see 2 containers running like this:
-
-```
-CONTAINER ID   IMAGE                   COMMAND                  CREATED       STATUS         PORTS                    NAMES
-005b86d0b4dc   eyfs-reform-spike_app   "./entrypoints/docke…"   5 hours ago   Up 5 minutes   0.0.0.0:3000->3000/tcp   eyfs-reform-spike_app_1
-460c5fe17d37   postgres:13.1           "docker-entrypoint.s…"   5 hours ago   Up 5 minutes   0.0.0.0:5432->5432/tcp   eyfs-reform-spike_database_1
-```
-
-### To setup the database running in a docker container (runs terminal command inside of your docker container):
-
-`docker-compose exec app bundle exec rake db:setup`
-`docker-compose exec app bundle exec rake db:migrate`
-`docker-compose exec app bundle exec rake db:seed`
-
-### To restart the server
-
-cancel the running docker process and then run `docker-compose down` (for a full reset on your environment)
-
-### To connect to the docker container and run commands
-
-`docker exec -it eyfs-reform-spike_app_1 sh`
-
-### Authentication
-Devise is used for the CMS routes.  Basic Auth can be turned on for the whole site by setting 
-and environment variable called AUTH_ON_EVERYTHING.
-
-The ContentController will then use the devise accounts to check the basic auth, but it does
-not log users in.
-
-Creating an admin user:
-
-```
-User.create!(
-  first_name: 'First',
-  last_name: 'Last',
-  email: 'first.last@digital.education.gov.uk',
-  password: 'P4ssW0rd!!',
-  password_confirmation: 'P4ssW0rd!!',
-  role: 'admin',
-)
-```
-
-### If there are issues with postgres password authentication failure:
-
-`> FATAL:  password authentication failed for user "boilerplate_user"`
-
-You can manually set a password for the user `boilerplate_user` by following these steps:
-
-1. `docker-compose exec database psql -d postgres -U boilerplate_user`
-2. in the postgres cli run `\password`
-3. set the `DATABASE_PASSWORD` from `.env`
-
-## Styling pages
-
-See [this guide](https://design-system.service.gov.uk/get-started/) for
-advice about how to layout html
-
-## CI/CD
-
-When a branch is merged into `main`
-
-- a docker image is built and pushed to [DockerHub](https://hub.docker.com/repository/docker/dfedigital/eyfsreform)
-
-### Documentation
-
-Check out [documentation](/documentation) folder
-
-# The following is from the template repository GOV.UK Rails Boilerplate
-
-## Prerequisites
-
-- Ruby 2.7.1
-- PostgreSQL
-- NodeJS 12.13.x
-- Yarn 1.12.x
-
-## Setting up the app in development
-
-1. Run `bundle install` to install the gem dependencies
-2. Run `yarn` to install node dependencies
-3. Copy the .env.development.example settings into the .env file
-4. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
-5. Run `bundle exec rails server` to launch the app on http://localhost:3000
-6. Run `./bin/webpack-dev-server` in a separate shell for faster compilation of assets
-
-## Whats included in this boilerplate?
-
-- Rails 6.0 with Webpacker
-- [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend)
-- RSpec
-- Dotenv (managing environment variables)
-- Travis with Heroku deployment
+1. Clone the [repository](app-repo)
+2. Obtain master key
+3. Run `bundle install` to install the gem dependencies
+4. Run `yarn` to install node dependencies
+5. Copy the .env.development.example settings into the .env file
+7. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
+8. Run `bin/dev` to launch the app on http://localhost:3000
 
 ## Running specs, linter(without auto correct) and annotate models and serializers
-```
-bundle exec rake
+
+```sh
+bundle exec 
 ```
 
 ## Running specs
-```
+
+```sh
 bundle exec rspec
 ```
 
-## Linting
+## Credentials & Environment Variables
 
-It's best to lint just your app directories and not those belonging to the framework, e.g.
+We use rails credentials to manage secrets; obtain the master key from the Dev team.
 
-```bash
-bundle exec rubocop app config db lib spec Gemfile --format clang -a
-
-or
-
-bundle exec scss-lint app/webpacker/styles
-```
-
-Vscode - Rubocop has a vscode extension, linting may need to be turned on
-
-## Deploying on GOV.UK PaaS
-
-### Prerequisites
-
-- Your department, agency or team has a GOV.UK PaaS account
-- You have a personal account granted by your organisation manager
-- You have downloaded and installed the [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads) for your platform
-
-### Deploy
-
-1. Run `cf login -a api.london.cloud.service.gov.uk -u USERNAME`, `USERNAME` is your personal GOV.UK PaaS account email address
-2. Run `bundle package --all` to vendor ruby dependencies
-3. Run `yarn` to vendor node dependencies
-4. Run `bundle exec rails webpacker:compile` to compile assets
-5. Run `cf push` to push the app to Cloud Foundry Application Runtime
-
-Check the file `manifest.yml` for customisation of name (you may need to change it as there could be a conflict on that name), buildpacks and eventual services (PostgreSQL needs to be [set up](https://docs.cloud.service.gov.uk/deploying_services/postgresql/)).
-
-#### Deploy service unavailable app
-
-1. Run `cf login -a api.london.cloud.service.gov.uk -u USERNAME`, `USERNAME` is your personal GOV.UK PaaS account email address
-2. Select eyfs-prod target
-3. Run `cd service_unavailable` to change to that directory
-4. Run `cf push` to push that app to Cloud Foundary.
-
-That will deploy any changes of the static site in `/service_unavailable` (see `/service_unavailable/manifest.yml` for target app name)
-
-Use the Github action "Deploy Service Unavailable" to re-route production traffic to the service_unavailable app.
-And use the action "Revoke Service Unavailable" to return the traffic to the main app.
-
-## Cucumber Tests
-
-### To run
-- They can be run manually in IDE
-- Command line
-- Intention for these integration / e2e tests to run in AWS CI pipeline
-
-#### IDE
-Right click on 'Feature' and run 
-Or 
-Run - Edit Configurations (depending on IDE)
-
-#### Command Line  
-cucumber --color -r e2etestname.feature
- 
-#### AWS CI pipeline (Drone.yml configuration)
-``` 
-- Ruby E2E Tests
--   e2e-test:
--     group: ?
--     image: ruby:2.7.2
--     commands:
--       - cd e2etests
--       - gem install bundler
--       - bundle install
--       - cucumber --color -r features -p [insert env]
--     when:
--       trigger:
--         branch:
--           - tbc/*
--         event:
--           - push
-## Setup
-
-### Prerequisites
-
-This project depends on:
-
-  - [Ruby](https://www.ruby-lang.org/)
-  - [Ruby on Rails](https://rubyonrails.org/)
-  - [NodeJS](https://nodejs.org/)
-  - [Yarn](https://yarnpkg.com/)
-  - [Postgres](https://www.postgresql.org/)
-
-### asdf
-
-This project uses `asdf`. Use the following to install the required tools:
+To edit:
 
 ```sh
-# The first time
-brew install asdf # Mac-specific
-asdf plugin add ruby
-asdf plugin add nodejs
-asdf plugin add yarn
-asdf plugin add postgres
-
-# To install (or update, following a change to .tool-versions)
-asdf install
+$ EDITOR=vi bin/rails credentials:edit
 ```
 
-When installing the `pg` gem, bundle changes directory outside of this
-project directory, causing it lose track of which version of postgres has
-been selected in the project's `.tool-versions` file. To ensure the `pg` gem
-installs correctly, you'll want to set the version of postgres that `asdf`
-will use:
+Currently encrypts the following secrets:
 
-```sh
-# Temporarily set the version of postgres to use to build the pg gem
-ASDF_POSTGRES_VERSION=13.5 bundle install
+```yml
+secret_key_base:
+
+contentful:
+  environment: 
+  space:
+  delivery_access_token:
+  preview_access_token:
+
+user_password:
 ```
 
-## How the application works
+The contentful credentials can be overridden with environment variables:
 
-We keep track of architecture decisions in [Architecture Decision Records
-(ADRs)](/adr/).
-
-We use `rladr` to generate the boilerplate for new records:
-
-```bash
-bin/bundle exec rladr new title
 ```
+CONTENTFUL_SPACE=
+CONTENTFUL_ENVIRONMENT=
+CONTENTFUL_DELIVERY_TOKEN=
+CONTENTFUL_PREVIEW_TOKEN=
+CONTENTFUL_MANAGEMENT_TOKEN=
+```
+
+The management token is not used in the application and each developer should have their own.  It is used to run the contentful migration and upload tasks.
+
+## Deployment Pipelines
+
+Visit the [Github Container Registry][ghcr].
+
+[Development][development] is deployed automatically with the latest commit from `main`.
+
+Individual branches may also be used as the source for the deployment, so you can set up the application to review a specific feature not yet merged with `main` branch.
+
+[Staging][staging] is deployed from this [workflow][azure-deploy-stage].
+[Production][production] is deployed from this [workflow][azure-deploy-prod].
+
+
+## Azure
+
+Console access:
+
+- https://hfeyp-dev.scm.azurewebsites.net/webssh/host
+- https://hfeyp-stage.scm.azurewebsites.net/webssh/host
+- https://hfeyp-prod.scm.azurewebsites.net/webssh/host
+
+## Monitoring
+
+[Sentry][sentry] is used to monitor production environments
+
+`$ brew install getsentry/tools/sentry-cli`
+
+`$ sentry-cli projects list --org early-years-foundation-reform`
+
+    +---------+--------------+-------------------------------+--------------+
+    | ID      | Slug         | Team                          | Name         |
+    +---------+--------------+-------------------------------+--------------+
+    | 6274627 | eyf-reform   | early-years-foundation-reform | Rails        |
+    | 6274651 | eyf-recovery | early-years-foundation-reform | eyf-recovery |
+    +---------+--------------+-------------------------------+--------------+
+
+## Hotjar
+
+This project uses Hotjar for user insight. Hotjar records user journeys and
+automatically redacts certain user information on recordings. All personally
+identifiable information should be redacted. In order to override the default
+settings the following classes can be added:
+
+- `data-hj-suppress` to redact additional user information
+- `data-hj-allow` to allow data that is automatically redacted
+
+---
+
+[app-repo]: https://github.com/DFE-Digital/early-years-foundation-reform
+[asdf]: https://asdf-vm.com
+[prototype-repo]: https://github.com/DFE-Digital/ey-hfeyp-prototype 
+[rails-template]: https://github.com/DFE-Digital/rails-template
+[ghcr]: https://ghcr.io/dfe-digital/help-for-early-years-providers 
+[confluence]: https://dfedigital.atlassian.net/wiki/spaces/ER/overview
+[sentry]: https://sentry.io/organizations/early-years-foundation-reform
+
+<!-- Deployments -->
+
+[prototype-app]: https://ey-hfeyp-prototype-3ac4ece6c97b.herokuapp.com/ 
+[production]: https://help-for-early-years-providers.education.gov.uk
+[staging]: https://staging.help-for-early-years-providers.education.gov.uk
+[development]: https://hfeyp-dev.azurewebsites.net
+
+<!-- GH workflows -->
+
+[ci-workflow]: https://github.com/DFE-Digital/early-years-foundation-recovery/actions/workflows/ci.yml
+[production-workflow]: https://github.com/DFE-Digital/early-years-foundation-reform/actions/workflows/azure-deploy-prod.yml
+[staging-workflow]: https://github.com/DFE-Digital/early-years-foundation-reform/actions/workflows/azure-deploy-stage.yml

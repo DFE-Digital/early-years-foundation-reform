@@ -25,6 +25,6 @@ module Caching
   # @return [String] old key
   def reset_cache_key!
     cache.clear if cache.size > 2_000
-    cache.get_and_set('cache_key', cache_key) # Release.cache_key || cache_key)
+    cache.get_and_set('cache_key', cache_key)
   end
 end

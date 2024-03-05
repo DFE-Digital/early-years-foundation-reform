@@ -60,17 +60,38 @@ module GovukRailsBoilerplate
     config.active_record.legacy_connection_handling = false
     config.generators.test_framework = :rspec
 
+    #
+    # Azure Environments
+    #
+
     # @return [Boolean]
     def live?
       ENV['ENVIRONMENT'].eql?('production')
     end
 
-    def preview?
-      ENV['PREVIEW'].present?
+    # @return [Boolean]
+    def staging?
+      ENV['ENVIRONMENT'].eql?('staging')
     end
 
-    def cms?
-      ENV['CONTENTFUL'].present? || ENV['NEW_DESIGN'].present?
+    # @return [Boolean]
+    def dev?
+      ENV['ENVIRONMENT'].eql?('development')
     end
+
+    # @return [Boolean]
+    def preview?
+      Dry::Types['params.bool'][ENV.fetch('CONTENTFUL_PREVIEW', false)]
+    end
+
+    # 
+    # Feature flags
+    #
+
+    # @return [Boolean]
+    def new_design?
+      ENV['NEW_DESIGN'].present?
+    end
+    alias_method :cms?, :new_design?
   end
 end
