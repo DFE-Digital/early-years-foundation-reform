@@ -3,7 +3,7 @@
 
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: page.hero }
-.govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
+.govuk-grid-row
   .govuk-grid-column-one-quarter.sticky.mob-section 
     input#menu-icon-chk.menu-btn[type="checkbox" name="menu-icon" checked]
     label.menu-icon.govuk-body-l[for="menu-icon-chk"]
