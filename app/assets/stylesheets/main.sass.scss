@@ -28,6 +28,27 @@ $govuk-page-width: 1200px;
   }
 }
 
+a:link {
+  color: $govuk-link-colour;
+}
+
+a:visited {
+  color: $govuk-link-visited-colour;
+}
+
+a:hover {
+  color: $govuk-link-hover-colour;
+  text-decoration-thickness: $govuk-link-hover-underline-thickness;
+}
+
+a:active {
+  color: $govuk-link-active-colour;
+}
+
+a:focus {
+  color: $govuk-focus-text-colour;
+}
+
 $light-blue: tint($department-for-education-websafe, 90%);
 
 @import 'dfe-header';
