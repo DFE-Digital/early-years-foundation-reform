@@ -1581,20 +1581,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "@hotwired/turbo-rails@npm:7.3.0"
+"@hotwired/turbo-rails@npm:^8.0.4":
+  version: 8.0.4
+  resolution: "@hotwired/turbo-rails@npm:8.0.4"
   dependencies:
-    "@hotwired/turbo": "npm:^7.3.0"
+    "@hotwired/turbo": "npm:^8.0.4"
     "@rails/actioncable": "npm:^7.0"
-  checksum: 1b2a5bc8767f0366c91a80a6bac178b8b02ca607add5b14b637f128d9ff08629bf3761931cc892acd46175782649ebdffa76dd45fc7e23f44bff8c06ca452d0b
+  checksum: c35fdcc79876f3ceaed7100f2e6965bcf9aa647309dce7a6ed685e880ffc1ac475299e00538ecc926addfa4023704c9bd1ea37e70fbef3a77697f7f01d4e344f
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^7.3.0":
-  version: 7.3.0
-  resolution: "@hotwired/turbo@npm:7.3.0"
-  checksum: be7d273808d64e06682f413ea007b555ecc0077cfd846754fe3b1bca06ca1b9473184d95528f7de0f3002bbc7895d58a067845ba363c549229c3bc5870c981e2
+"@hotwired/turbo@npm:^8.0.4":
+  version: 8.0.4
+  resolution: "@hotwired/turbo@npm:8.0.4"
+  checksum: 3e7174d550adf3b9a0a4c45ff5d1b71d47c20de6ae01f646fbbaf8ed447677bd1a5fb6dbd46e95b14645a663fe58a6187c1c6d2a688b0981b5cf437379c5e00a
   languageName: node
   linkType: hard
 
@@ -5369,7 +5369,7 @@ __metadata:
   resolution: "eyfs-reform@workspace:."
   dependencies:
     "@hotwired/stimulus": "npm:^3.2.2"
-    "@hotwired/turbo-rails": "npm:^7.3.0"
+    "@hotwired/turbo-rails": "npm:^8.0.4"
     dfe-frontend-alpha: "npm:^1.0.1"
     esbuild: "npm:^0.19.11"
     govuk-frontend: "npm:^4.7.0"
