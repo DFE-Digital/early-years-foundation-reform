@@ -22,39 +22,6 @@ $govuk-page-width: 1200px;
 @import 'govuk-frontend/govuk/all';
 @import 'dfe-frontend-alpha/packages/dfefrontend';
 
-@media (min-width: 40.0625em) {
-  ol, ul, .dfe-list {
-    font-size: 16px;
-  }
-}
-
-a:link {
-  color: $govuk-link-colour;
-}
-
-a:visited {
-  color: $govuk-link-visited-colour;
-}
-
-a:hover {
-  color: $govuk-link-hover-colour;
-  text-decoration-thickness: $govuk-link-hover-underline-thickness;
-}
-
-a:active {
-  color: $govuk-link-active-colour;
-}
-
-a:focus {
-  outline: 3px solid transparent;
-  color: #0b0c0c;
-  background-color: #ffdd00;
-  box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
-  text-decoration: none;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
 $light-blue: tint($department-for-education-websafe, 90%);
 
 @import 'dfe-header';
