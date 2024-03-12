@@ -37,6 +37,9 @@ OPTIMIZE_DOMAINS = %w[www.googleoptimize.com
 GOOGLE_STATIC_DOMAINS = %w[fonts.gstatic.com www.gstatic.com *.hotjar.com].freeze
 
 Rails.application.config.content_security_policy do |policy|
+  # @see https://www.contentful.com/developers/docs/tutorials/general/live-preview/#set-up-live-preview
+  policy.frame_ancestors :self, 'https://app.contentful.com'
+
   policy.default_src :self, :https, *GOVUK_DOMAINS
   policy.font_src    :self, :https, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :data
   policy.frame_src   :self, *GOOGLE_ANALYTICS_DOMAINS, *OPTIMIZE_DOMAINS
