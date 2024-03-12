@@ -1,9 +1,0 @@
-<h1 class="govuk-heading-l">Pages</h1>
-<br/>
-
-<div>
-  <% @content_pages.each_with_index do |content_page, index| %>
-    <%= render partial: 'details_for_a_single_page', locals: {page_to_render: content_page, level: 1} %>
-  <% end %>
-</div>
-

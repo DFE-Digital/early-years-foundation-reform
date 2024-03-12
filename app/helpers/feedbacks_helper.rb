@@ -1,17 +1,17 @@
 module FeedbacksHelper
   def link_to_feedback(args = {})
     link_to(
-      "Give Feedback",
+      'Give Feedback',
       Rails.configuration.feedback_url,
       {
-        class: "govuk-button",
+        class: 'govuk-button',
         data: {
-          track_category: "Onsite Feedback",
-          track_action: "GOV-UK Open Form",
+          track_category: 'Onsite Feedback',
+          track_action: 'GOV-UK Open Form',
         },
         aria: {
-          controls: "something-is-wrong",
-          expanded: "false",
+          controls: 'something-is-wrong',
+          expanded: 'false',
         },
       }.merge(args),
     )

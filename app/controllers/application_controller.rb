@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  layout Rails.application.new_design? ? 'application' : 'beta/application'
+  layout 'application'
+
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
   before_action { cookies.delete :track_google_analytics }
   before_action do |_controller|
@@ -7,12 +8,10 @@ class ApplicationController < ActionController::Base
   end
   before_action :prepare_cms
 
-  include Pundit::Authorization
-
   helper_method :menu_item, :section
 
   def check
-    render json: { status: "OK", version: release_version, sha: ENV["SHA"], environment: Rails.env }, status: :ok
+    render json: { status: 'OK', version: release_version, sha: ENV['SHA'], environment: Rails.env }, status: :ok
   end
 
 protected
@@ -29,7 +28,7 @@ protected
   end
 
   def release_version
-    ENV["RELEASE_VERSION"] || "-"
+    ENV['RELEASE_VERSION'] || '-'
   end
 
 private
@@ -47,7 +46,7 @@ private
   end
 
   def not_found
-    raise ActionController::RoutingError, "Not Found"
+    raise ActionController::RoutingError, 'Not Found'
   end
 
   def after_sign_out_path_for(_resource_or_scope)

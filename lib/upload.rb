@@ -7,7 +7,7 @@ require 'contentful/management'
 class Upload
   extend Dry::Initializer
 
-  FEATURED_PAGE_TITLES = ["Get help to improve your practice", "Safeguarding and welfare"].freeze
+  FEATURED_PAGE_TITLES = ['Get help to improve your practice', 'Safeguarding and welfare'].freeze
   option :config, default: proc { ContentfulRails.configuration }
   option :client, default: proc { Contentful::Management::Client.new(config.management_token) }
 

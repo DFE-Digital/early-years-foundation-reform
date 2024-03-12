@@ -1,6 +1,0 @@
-cf target -s eyfs-dev
-cf add-network-policy eyfs-cms-dev eyfs-clamav-rest-private -s eyfs-prod --protocol tcp --port 9000
-#cf add-network-policy eyfs-cms-review-pr-478 eyfs-clamav-rest-private -s eyfs-prod --protocol tcp --port 9000
-cf target -s eyfs-pre-prod
-cf add-network-policy eyfs-cms-preprod eyfs-clamav-rest-private -s eyfs-prod --protocol tcp --port 9000
-

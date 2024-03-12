@@ -6,8 +6,8 @@
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   .govuk-grid-column-full
-    h2 =@page.title
-    p.govuk-body =@page.body
+    h2= @page.title
+    p.govuk-body= @page.body
 
 .govuk-grid-row
   = render partial: 'shared/card', collection: @page.cards

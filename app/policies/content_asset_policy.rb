@@ -1,2 +1,0 @@
-class ContentAssetPolicy < ContentPagePolicy
-end

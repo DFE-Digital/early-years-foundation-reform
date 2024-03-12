@@ -9,8 +9,6 @@
 module I18n::Backend::Content
   # @return [String, nil]
   def lookup(locale, key, scope = [], options = {})
-    return super if ENV['NEW_DESIGN'].blank?
-
     original = super
     resource_name = scope ? Array(scope).push(key).join('.') : key
     find_resource(resource_name)&.body || original

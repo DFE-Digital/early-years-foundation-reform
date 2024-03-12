@@ -3,9 +3,7 @@
   "packageManager": "yarn@4.0.2",
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "npm-run-all --parallel \"build:css:* {@}\" --",
-    "build:css:beta": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
-    "build:css:dfe": "sass ./app/assets/stylesheets/main.sass.scss:./app/assets/builds/main.css --no-source-map --load-path=node_modules",
+    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules --quiet-deps",
     "preinstall": "mkdir -p app/assets/builds",
     "postinstall": "cp -R node_modules/govuk-frontend/govuk/assets/fonts/. app/assets/builds/fonts && cp -R node_modules/govuk-frontend/govuk/assets/images/. app/assets/builds/images"
   },

@@ -12,12 +12,12 @@
 # - https://cspvalidator.org
 
 GOVUK_DOMAINS = [
-  "*.education.gov.uk",
+  '*.education.gov.uk',
 ].uniq.freeze
 
 S3_DOMAINS = [
-  "*.s3.eu-west-1.amazonaws.com",
-  "*.s3.eu-west-2.amazonaws.com",
+  '*.s3.eu-west-1.amazonaws.com',
+  '*.s3.eu-west-2.amazonaws.com',
 ].uniq.freeze
 
 GOOGLE_ANALYTICS_DOMAINS = %w[*.google-analytics.com
@@ -41,8 +41,8 @@ Rails.application.config.content_security_policy do |policy|
   policy.font_src    :self, :https, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :data
   policy.frame_src   :self, *GOOGLE_ANALYTICS_DOMAINS, *OPTIMIZE_DOMAINS
   policy.img_src     :self,
-                     "images.ctfassets.net",
-                     "placehold.co",
+                     'images.ctfassets.net',
+                     'placehold.co',
                      *GOVUK_DOMAINS,
                      *S3_DOMAINS,
                      *GOOGLE_ANALYTICS_DOMAINS, # Tracking pixels
@@ -55,9 +55,9 @@ Rails.application.config.content_security_policy do |policy|
                      *GOOGLE_STATIC_DOMAINS,
                      *OPTIMIZE_DOMAINS,
                      # Allow YouTube Embeds (Govspeak turns YouTube links into embeds)
-                     "*.ytimg.com",
-                     "www.youtube.com",
-                     "www.youtube-nocookie.com",
+                     '*.ytimg.com',
+                     'www.youtube.com',
+                     'www.youtube-nocookie.com',
                      # Allow all inline scripts until we can conclusively
                      # document all the inline scripts we use,
                      # and there's a better way to filter out junk reports
@@ -70,8 +70,8 @@ Rails.application.config.content_security_policy do |policy|
                        :wss,
                        *GOVUK_DOMAINS,
                        *GOOGLE_ANALYTICS_DOMAINS,
-                       "http://localhost:3035",
-                       "ws://localhost:3035"
+                       'http://localhost:3035',
+                       'ws://localhost:3035'
     # :nocov:
   else
     policy.connect_src :self,

@@ -109,10 +109,10 @@ This website was last tested on 7th June 2021. The test was carried out by the H
 Our approach was to test all pages.
 
 HTML_FOR_ACCESSIBILITY
-unless ContentBlock.exists?(name: "accessibility")
+unless ContentBlock.exists?(name: 'accessibility')
   ContentBlock.create! do |u|
-    u.name = "accessibility"
-    u.description = "Used on the Accessibility page"
+    u.name = 'accessibility'
+    u.description = 'Used on the Accessibility page'
     u.markdown = html_for_accessibility
   end
 end
@@ -178,10 +178,10 @@ Hotjar sets the following cookies:
 
 MARKDOWN_FOR_COOKIES_PAGE
 
-unless ContentBlock.exists?(name: "cookies")
+unless ContentBlock.exists?(name: 'cookies')
   ContentBlock.create! do |u|
-    u.name = "cookies"
-    u.description = "Markdown for the cookies page"
+    u.name = 'cookies'
+    u.description = 'Markdown for the cookies page'
     u.markdown = markdown_for_cookies
   end
 end
@@ -215,10 +215,10 @@ Should you have a concern about the content of a site we link to please email
 
 MARKDOWN_FOR_DISCLAIMER_PAGE
 
-unless ContentBlock.exists?(name: "disclaimer")
+unless ContentBlock.exists?(name: 'disclaimer')
   ContentBlock.create! do |u|
-    u.name = "disclaimer"
-    u.description = "For the disclaimer page"
+    u.name = 'disclaimer'
+    u.description = 'For the disclaimer page'
     u.markdown = markdown_for_disclaimer_page
   end
 end
@@ -236,10 +236,10 @@ We aim to respond within 2 working days.
 
 MARKDOWN_FOR_CONTACT_US
 
-unless ContentBlock.exists?(name: "contact_us")
+unless ContentBlock.exists?(name: 'contact_us')
   ContentBlock.create! do |u|
-    u.name = "contact_us"
-    u.description = "Markdown for the Contact Us page"
+    u.name = 'contact_us'
+    u.description = 'Markdown for the Contact Us page'
     u.markdown = markdown_for_contact_us
   end
 end

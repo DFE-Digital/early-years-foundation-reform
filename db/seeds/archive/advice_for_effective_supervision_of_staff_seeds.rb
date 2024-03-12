@@ -26,15 +26,15 @@ Through conversation, story-telling and role play, where children share their id
 MARKDOWN_FOR_ADVICE_FOR_EFFECTIVE_SUPERVISION_OF_STAFF
 
 advice_for_effective_supervision_of_staff = {
-  title: "Advice for effective supervision of staff",
+  title: 'Advice for effective supervision of staff',
   markdown: markdown_for_advice_for_effective_supervision_of_staff,
-  description: "Advice for effective supervision of staff",
-  featured_alt_text: "Featured alt text",
-  thumbnail_alt_text: "Thumbnail alt text",
+  description: 'Advice for effective supervision of staff',
+  featured_alt_text: 'Featured alt text',
+  thumbnail_alt_text: 'Thumbnail alt text',
 }
 advice_for_effective_supervision_of_staff_page = Article.new advice_for_effective_supervision_of_staff
-advice_for_effective_supervision_of_staff_page.featured_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
-advice_for_effective_supervision_of_staff_page.thumbnail_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+advice_for_effective_supervision_of_staff_page.featured_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
+advice_for_effective_supervision_of_staff_page.thumbnail_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
 advice_for_effective_supervision_of_staff_page.save!
 
 # rubocop:enable Layout/HeredocIndentation

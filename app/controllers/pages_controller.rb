@@ -20,10 +20,10 @@ private
   end
 
   def breadcrumbs
-    if cms_path == "/"
+    if cms_path == '/'
       {}
     else
-      cms_path_array.each_with_object({ "Home" => "/" }) do |obj, memo|
+      cms_path_array.each_with_object({ 'Home' => '/' }) do |obj, memo|
         page = load_page(lookup_page: obj.to_sym)
         memo[page.menu_title] = page.full_path
       end
@@ -31,11 +31,11 @@ private
   end
 
   def cms_path
-    page_params[:cms_path] || "/"
+    page_params[:cms_path] || '/'
   end
 
   def cms_path_array
-    cms_path&.split("/")
+    cms_path&.split('/')
   end
 
   def page_name

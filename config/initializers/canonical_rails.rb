@@ -3,11 +3,11 @@
 CanonicalRails.setup do |config|
   # Force the protocol. If you do not specify, the protocol will be based on the incoming request's protocol.
 
-  config.protocol = "https://"
+  config.protocol = 'https://'
 
   # This is the main host, not just the TLD, omit slashes and protocol. If you have more than one, pick the one you want to rank in search results.
 
-  config.host = "help-for-early-years-providers.education.gov.uk"
+  config.host = 'help-for-early-years-providers.education.gov.uk'
 
   # http://en.wikipedia.org/wiki/URL_normalization
   # Trailing slash represents semantics of a directory, ie a collection view - implying an :index get route;

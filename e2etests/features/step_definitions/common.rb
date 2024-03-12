@@ -3,11 +3,11 @@ Given(/^"([^"]*)" user$/) do |user|
 end
 
 When(/^user proceeds to "([^"]*)" page$/) do |page|
-  proceed_to(page, "")
+  proceed_to(page, '')
 end
 
 Then(/^page has heading "([^"]*)"$/) do |page|
-  check_page_heading("h1", page)
+  check_page_heading('h1', page)
 end
 
 And(/^page has "([^"]*)" heading "([^"]*)"$/) do |type, page|

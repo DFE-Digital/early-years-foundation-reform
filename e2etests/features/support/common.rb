@@ -1,31 +1,31 @@
 def user_access(user)
-  env = if user.downcase.index("cms")
-          ENV["CMS_URL"]
+  env = if user.downcase.index('cms')
+          ENV['CMS_URL']
         else
-          ENV["SERVICE_URL"]
+          ENV['SERVICE_URL']
         end
   open_app(env)
 end
 
 def proceed_to(page, func)
   link = page
-  page_name = if func == ""
+  page_name = if func == ''
                 page.downcase
               else
                 func.downcase
               end
   case page_name
-  when "landing", "help for early years providers", "7 areas of learning blocks"
+  when 'landing', 'help for early years providers', '7 areas of learning blocks'
     list_items(page_name)
-  when "communication and language", "physical development", "personal, social and emotional development", "literacy", "mathematics", "understanding the world", "expressive arts and design"
+  when 'communication and language', 'physical development', 'personal, social and emotional development', 'literacy', 'mathematics', 'understanding the world', 'expressive arts and design'
     click_on link
-    list_items("learning areas")
-  when "left-menu sub-areas"
+    list_items('learning areas')
+  when 'left-menu sub-areas'
     click_on link
-    list_items("sub-areas")
-  when "mobile menu learning areas", "mobile menu"
+    list_items('sub-areas')
+  when 'mobile menu learning areas', 'mobile menu'
     mobile_menu(link, page_name)
-  when "add user", "add user details and cancel", "add user, edit and delete", "add user with invalid passwords", "edit user with invalid passwords"
+  when 'add user', 'add user details and cancel', 'add user, edit and delete', 'add user with invalid passwords', 'edit user with invalid passwords'
     add_cms_user(page_name)
   else
     raise("Case statement required: #{page_name}")
@@ -34,10 +34,10 @@ end
 
 def open_app(env)
   visit(env)
-  if page.text.match("Log in")
-    enter("user_email", ENV["USER_ADMIN"])
-    enter("user_password", ENV["USER_ADMNP"])
-    click_on "commit"
+  if page.text.match?('Log in')
+    enter('user_email', ENV['USER_ADMIN'])
+    enter('user_password', ENV['USER_ADMNP'])
+    click_on 'commit'
   end
 end
 
@@ -63,27 +63,27 @@ end
 
 def list_items(page_name)
   case page_name
-  when "help for early years providers", "7 areas of learning blocks"
+  when 'help for early years providers', '7 areas of learning blocks'
     search(HELP_FOR_EARLY_YEARS_PROVIDERS, LI_VALUES)
-  when "learning areas"
+  when 'learning areas'
     search(LEFT_PANE_MENU, LP_LEARNING_AREAS)
-  when "sub-areas"
+  when 'sub-areas'
     search(LEFT_PANE_MENU, LI_VALUES)
-  when "mobile menu learning areas"
+  when 'mobile menu learning areas'
     search(MOBILE_MENU, LP_LEARNING_AREAS)
-  when "mobile menu"
+  when 'mobile menu'
     search(MOBILE_MENU, UL_VALUES)
   else
-    @ul = ""
+    @ul = ''
   end
-  if @ul != ""
+  if @ul != ''
     @menu = @ul.collect(&:text)
   end
 end
 
 def check_page_obj(type, tbl)
   case type.downcase
-  when "links"
+  when 'links'
     expect_links(tbl)
   else
     raise ArgumentError, "Argument not known: '#{type}'"
@@ -105,7 +105,7 @@ end
 
 def clk(obj)
   case obj.downcase
-  when "btn"
+  when 'btn'
     click_button obj
   else
     first(:link, obj, visible: true).click
@@ -121,7 +121,7 @@ end
 def process_func(func, table)
   tbl = table.raw
   case func
-  when "displayed"
+  when 'displayed'
     tbl.each do |text|
       display_check(text[0])
     end
@@ -137,9 +137,9 @@ end
 def lnk_string(lnk)
   @lnk = lnk
   @lnk_count = 1
-  if lnk.index("[")
-    @lnk_count = lnk[lnk.index("[")..lnk.index("]")].gsub("[", "").gsub(" times]", "")
-    @lnk = lnk[0..lnk.index("[") - 1]
+  if lnk.index('[')
+    @lnk_count = lnk[lnk.index('[')..lnk.index(']')].delete('[').gsub(' times]', '')
+    @lnk = lnk[0..lnk.index('[') - 1]
   end
 end
 
@@ -155,13 +155,13 @@ end
 def check_value(actual, expected)
   if actual != expected
     puts "FAIL Expected: '#{actual}'  Actual: '#{expected}'"
-    @excep = "e"
+    @excep = 'e'
   end
 end
 
 def check_value_proc(obj, value)
-  @excep = ""
-  actual = find(Object.const_get(obj.upcase.gsub!(" ", "_"))).text
+  @excep = ''
+  actual = find(Object.const_get(obj.upcase.tr!(' ', '_'))).text
   check_value(value, actual)
   exception_call("'#{obj}' #{__method__}")
 end
@@ -169,25 +169,25 @@ end
 def check_item(pos, desc)
   if @menu[pos - 1] != desc
     puts "FAIL Expected: '#{desc}' at position '#{pos}' Actual: '#{@menu[pos - 1]}'"
-    @excep = "e"
+    @excep = 'e'
   end
 end
 
 def check_one_item(list, pos, desc)
-  @excep = ""
+  @excep = ''
   check_item(pos.to_i, desc)
   exception_call("#{list.downcase} #{__method__}")
 end
 
 def exception_call(called_by)
-  if @excep != ""
+  if @excep != ''
     raise("#{called_by} not as Expected. See 'FAIL(s)'")
   end
 end
 
 def click_value_proc(obj, value)
-  find(Object.const_get(obj.upcase.gsub!(" ", "_"))).click
-  check_page_heading("h1", value)
+  find(Object.const_get(obj.upcase.tr!(' ', '_'))).click
+  check_page_heading('h1', value)
 end
 
 def resize_display(width, height)
@@ -201,13 +201,13 @@ end
 def add_user_details
   date_time
   @user = "A0User#{@time}"
-  @user_p = "0-Ab0-Ba"
-  enter_fields({ "user-first-name-field": "Admin",
+  @user_p = '0-Ab0-Ba'
+  enter_fields({ "user-first-name-field": 'Admin',
                  "user-last-name-field": @user,
                  "user-email-field": "#{@user}@education.gov.uk",
                  "user-password-field": @user_p,
                  "user-password-confirmation-field": @user_p })
-  radio_btn("user-role-admin-field", "false")
+  radio_btn('user-role-admin-field', 'false')
 end
 
 def date_time
@@ -228,22 +228,22 @@ def mobile_menu(link, page_name)
 end
 
 def add_cms_user(page_name)
-  click_on "Admin"
-  click_on "Add user"
-  return unless page_name != "add user"
+  click_on 'Admin'
+  click_on 'Add user'
+  return unless page_name != 'add user'
 
   case page_name
-  when "add user details and cancel"
+  when 'add user details and cancel'
     add_user_details
-    click_on "Cancel"
-  when "add user, edit and delete"
+    click_on 'Cancel'
+  when 'add user, edit and delete'
     add_user_details
-    click_on "Save"
+    click_on 'Save'
     edit_user
     delete_user
-  when "add user with invalid passwords"
+  when 'add user with invalid passwords'
     add_user_details
-  when "edit user with invalid passwords"
+  when 'edit user with invalid passwords'
     edit_user_invalid_password
   else
     raise("Case statement required: #{page_name}")
@@ -265,14 +265,14 @@ def check_fields(obj)
 end
 
 def edit_user
-  find(:id, "add-user").send_keys(:tab, :enter)
-  check_page_heading("h1", "Edit user")
-  check_fields({ "First name": "Admin",
+  find(:id, 'add-user').send_keys(:tab, :enter)
+  check_page_heading('h1', 'Edit user')
+  check_fields({ "First name": 'Admin',
                  "Last name": @user })
 end
 
 def delete_user
-  click_on "Delete"
+  click_on 'Delete'
   # TODO: refactor sleep
   sleep 2
   alert = page.driver.browser.switch_to.alert
@@ -281,8 +281,8 @@ def delete_user
 end
 
 def edit_user_invalid_password
-  click_on "Cancel"
-  find(:id, "add-user").send_keys(:tab, :enter)
-  enter("user-password-field", ENV["USER_ADMNP"])
-  click_on "Save"
+  click_on 'Cancel'
+  find(:id, 'add-user').send_keys(:tab, :enter)
+  enter('user-password-field', ENV['USER_ADMNP'])
+  click_on 'Save'
 end

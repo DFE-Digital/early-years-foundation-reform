@@ -35,7 +35,7 @@ These attributes will provide a secure platform from which children can achieve 
 MARKDOWN_FOR_PERSONAL_SOCIAL_AND_DEVELOPMENT
 
 personal_social_and_emotional_development = {
-  title: "Personal, social and emotional development",
+  title: 'Personal, social and emotional development',
   markdown: markdown_for_personal_social_and_emotional_development,
   position: 3,
 }
@@ -301,7 +301,7 @@ Supporting children’s emotional development and wellbeing is linked to all EYF
 - Consider talking about how children’s emotional outbursts make you feel with other providers.
 MARKDOWN_FOR_EMOTIONS
 emotions = {
-  title: "Emotions",
+  title: 'Emotions',
   markdown: markdown_for_emotions,
   position: 1,
   parent_id: personal_social_and_emotional_development_page.id,
@@ -318,7 +318,7 @@ This page is still being written.
 
 MARKDOWN_FOR_RELATIONSHIPS
 relationships = {
-  title: "Relationships",
+  title: 'Relationships',
   markdown: markdown_for_relationships,
   position: 3,
   parent_id: personal_social_and_emotional_development_page.id,
@@ -461,7 +461,7 @@ Consider how your environment supports children to play independently.
 
 MARKDOWN_FOR_SENSE_OF_SELF
 sense_of_self = {
-  title: "Sense of self",
+  title: 'Sense of self',
   markdown: markdown_for_sense_of_self,
   position: 2,
   parent_id: personal_social_and_emotional_development_page.id,

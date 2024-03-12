@@ -26,15 +26,15 @@ Through conversation, story-telling and role play, where children share their id
 MARKDOWN_FOR_SUPPORT_FOR_STAFF
 
 support_for_staff = {
-  title: "Support for staff mental health and wellbeing",
+  title: 'Support for staff mental health and wellbeing',
   markdown: markdown_for_support_for_staff,
-  description: "Support for staff mental health and wellbeing",
-  featured_alt_text: "Featured alt text",
-  thumbnail_alt_text: "Thumbnail alt text",
+  description: 'Support for staff mental health and wellbeing',
+  featured_alt_text: 'Featured alt text',
+  thumbnail_alt_text: 'Thumbnail alt text',
 }
 support_for_staff_page = Article.new support_for_staff
-support_for_staff_page.featured_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
-support_for_staff_page.thumbnail_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+support_for_staff_page.featured_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
+support_for_staff_page.thumbnail_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
 support_for_staff_page.save!
 
 # rubocop:enable Layout/HeredocIndentation

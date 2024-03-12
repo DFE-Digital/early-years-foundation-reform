@@ -37,7 +37,7 @@ Repeated and varied opportunities to explore and play with small world activitie
 MARKDOWN_FOR_PHYSICAL_DEVELOPMENT
 
 physical_development = {
-  title: "Physical development",
+  title: 'Physical development',
   markdown: markdown_for_physical_development,
   position: 2,
 }
@@ -51,7 +51,7 @@ markdown_for_core_strength = <<-MARKDOWN_FOR_CORE_STRENGTH
 ### To be completed
 MARKDOWN_FOR_CORE_STRENGTH
 core_strength = {
-  title: "Core strength and co-ordination",
+  title: 'Core strength and co-ordination',
   markdown: markdown_for_core_strength,
   position: 1,
   parent_id: physical_development_page.id,
@@ -63,7 +63,7 @@ markdown_for_fine_motor_skills = <<-MARKDOWN_FOR_FINE_MOTOR_SKILS
 ### To be completed
 MARKDOWN_FOR_FINE_MOTOR_SKILS
 fine_motor_skills = {
-  title: "Fine motor skills",
+  title: 'Fine motor skills',
   markdown: markdown_for_fine_motor_skills,
   position: 3,
   parent_id: physical_development_page.id,
@@ -75,7 +75,7 @@ markdown_for_gross_motor_skills = <<-MARKDOWN_FOR_GROSS_MOTOR_SKILLS
 ### To be completed
 MARKDOWN_FOR_GROSS_MOTOR_SKILLS
 gross_motor_skills = {
-  title: "Gross motor skills",
+  title: 'Gross motor skills',
   markdown: markdown_for_gross_motor_skills,
   position: 2,
   parent_id: physical_development_page.id,

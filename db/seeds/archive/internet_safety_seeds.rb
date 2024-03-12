@@ -26,15 +26,15 @@ Through conversation, story-telling and role play, where children share their id
 MARKDOWN_FOR_INTERNET_SAFETY
 
 internet_safety = {
-  title: "Internet safety at home and in nursery",
+  title: 'Internet safety at home and in nursery',
   markdown: markdown_for_internet_safety,
-  description: "Internet safety at home and in nursery",
-  featured_alt_text: "Featured alt text",
-  thumbnail_alt_text: "Thumbnail alt text",
+  description: 'Internet safety at home and in nursery',
+  featured_alt_text: 'Featured alt text',
+  thumbnail_alt_text: 'Thumbnail alt text',
 }
 internet_safety_page = Article.new internet_safety
-internet_safety_page.featured_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
-internet_safety_page.thumbnail_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+internet_safety_page.featured_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
+internet_safety_page.thumbnail_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
 internet_safety_page.save!
 
 # rubocop:enable Layout/HeredocIndentation

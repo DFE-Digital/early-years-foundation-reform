@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 ruby '3.2.2'
 
@@ -8,7 +8,7 @@ gem 'audited', '~> 5.4'
 gem 'bcrypt', '~> 3.1.16'
 gem 'bootsnap', '>= 1.17.1', require: false
 gem 'canonical-rails', '~> 0.2'
-gem "contentful_rails", "~> 0.5.0"
+gem 'contentful_rails', '~> 0.5.0'
 gem 'cssbundling-rails'
 gem 'devise', '>= 4.9.3'
 gem 'devise-security', '~> 0.18.0'
@@ -18,21 +18,18 @@ gem 'dry-initializer'
 gem 'dry-struct'
 gem 'dry-types'
 gem 'friendly_id', '~> 5.5'
-gem 'govspeak', '~> 8.3'
 gem 'govuk-components'
 gem 'govuk_design_system_formbuilder'
-gem 'govuk_markdown', '~> 2.0'
-gem 'haml', '~> 5.2'
+gem 'govuk_markdown'
 gem 'htmlentities', '4.3.4'
 gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.6'
-gem 'pundit', '~> 2.1'
 gem 'rails', '~> 7.0.8'
 gem 'sentry-rails'
 gem 'sentry-ruby'
-gem 'slim-rails', '~> 3.6'
-gem "sprockets-rails", "~> 3.4"
+gem 'slim-rails'
+gem 'sprockets-rails', '~> 3.4'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
@@ -52,9 +49,14 @@ group :development, :test do
 end
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'brakeman'
   gem 'listen', '>= 3.0.5', '< 3.8'
+  gem 'pry-doc'
   gem 'rladr'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
+  gem 'yard-junk'
 end
 
 group :test do
