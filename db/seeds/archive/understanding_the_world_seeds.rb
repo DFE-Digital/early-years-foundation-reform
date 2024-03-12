@@ -27,7 +27,7 @@ Enriching and widening children’s vocabulary will support later reading compre
 MARKDOWN_FOR_UNDERSTANDING_THE_WORLD
 
 understanding_the_world = {
-  title: "Understanding the world",
+  title: 'Understanding the world',
   markdown: markdown_for_understanding_the_world,
   position: 6,
 }
@@ -43,7 +43,7 @@ This page is still being written.
 
 MARKDOWN_FOR_PERSONAL_EXPERIENCES
 personal_experiences = {
-  title: "Personal experiences",
+  title: 'Personal experiences',
   markdown: markdown_for_personal_experiences,
   position: 1,
   parent_id: understanding_the_world_page.id,
@@ -60,7 +60,7 @@ This page is still being written.
 
 MARKDOWN_FOR_DIVERSE_WORLD
 diverse_world = {
-  title: "Diverse world",
+  title: 'Diverse world',
   markdown: markdown_for_diverse_world,
   position: 2,
   parent_id: understanding_the_world_page.id,
@@ -77,7 +77,7 @@ This page is still being written.
 
 MARKDOWN_FOR_WIDENING_VOCABULARY
 widening_vocabulary = {
-  title: "Widening vocabulary",
+  title: 'Widening vocabulary',
   markdown: markdown_for_widening_vocabulary,
   position: 3,
   parent_id: understanding_the_world_page.id,

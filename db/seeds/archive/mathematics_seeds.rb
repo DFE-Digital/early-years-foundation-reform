@@ -29,7 +29,7 @@ It is important that children develop positive attitudes and interests in mathem
 MARKDOWN_FOR_MATHEMATICS
 
 mathematics = {
-  title: "Mathematics",
+  title: 'Mathematics',
   markdown: markdown_for_mathematics,
   position: 5,
 }
@@ -106,7 +106,7 @@ The children are now offered a counting collection in a different area of pre-sc
 - Praise children for effort rather than talent. This shows them that by working hard they can always improve
 MARKDOWN_FOR_COUNTING
 counting = {
-  title: "Patterns and connections",
+  title: 'Patterns and connections',
   markdown: markdown_for_counting,
   position: 2,
   parent_id: mathematics_page.id,
@@ -123,7 +123,7 @@ This page is still being written.
 
 MARKDOWN_FOR_NUMBER_PATTERNS
 number_patterns = {
-  title: "Numbers in context",
+  title: 'Numbers in context',
   markdown: markdown_for_number_patterns,
   position: 1,
   parent_id: mathematics_page.id,
@@ -140,7 +140,7 @@ This page is still being written.
 
 MARKDOWN_FOR_SPATIAL_REASONING
 spatial_reasoning = {
-  title: "Reasoning",
+  title: 'Reasoning',
   markdown: markdown_for_spatial_reasoning,
   position: 3,
   parent_id: mathematics_page.id,

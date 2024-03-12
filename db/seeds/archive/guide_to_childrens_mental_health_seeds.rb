@@ -26,15 +26,15 @@ Through conversation, story-telling and role play, where children share their id
 MARKDOWN_FOR_GUIDE_TO_CHILDRENS_MENTAL_HEALTH
 
 guide_to_childrens_mental_health = {
-  title: "Guide to childrens mental health in the early years",
+  title: 'Guide to childrens mental health in the early years',
   markdown: markdown_for_guide_to_childrens_mental_health,
-  description: "Guide to childrens mental health in the early years",
-  featured_alt_text: "Featured alt text",
-  thumbnail_alt_text: "Thumbnail alt text",
+  description: 'Guide to childrens mental health in the early years',
+  featured_alt_text: 'Featured alt text',
+  thumbnail_alt_text: 'Thumbnail alt text',
 }
 guide_to_childrens_mental_health_page = Article.new guide_to_childrens_mental_health
-guide_to_childrens_mental_health_page.featured_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
-guide_to_childrens_mental_health_page.thumbnail_image.attach(io: File.open("spec/fixtures/sample.jpeg"), filename: "sample.jpeg", content_type: "image/jpeg")
+guide_to_childrens_mental_health_page.featured_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
+guide_to_childrens_mental_health_page.thumbnail_image.attach(io: File.open('spec/fixtures/sample.jpeg'), filename: 'sample.jpeg', content_type: 'image/jpeg')
 guide_to_childrens_mental_health_page.save!
 
 # rubocop:enable Layout/HeredocIndentation

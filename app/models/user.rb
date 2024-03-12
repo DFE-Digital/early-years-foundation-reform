@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   acts_as_paranoid
 
-  ADMIN = "admin".freeze
-  EDITOR = "editor".freeze
+  ADMIN = 'admin'.freeze
+  EDITOR = 'editor'.freeze
   APPROVED_DOMAINS = %w[@education.gov.uk @digital.education.gov.uk].freeze
   ROLES = %w[reader editor admin].freeze
   EMAIL_ERROR_MESSAGE = "You must provide a valid DfE email address (#{APPROVED_DOMAINS.to_sentence})".freeze
@@ -25,7 +25,7 @@ class User < ApplicationRecord
   validates :role, with: :ensure_at_least_one_user_has_admin_role
 
   def name
-    [first_name, last_name].join(" ")
+    [first_name, last_name].join(' ')
   end
 
   def reset_password(new_password, new_password_confirmation)
@@ -44,13 +44,13 @@ class User < ApplicationRecord
   end
 
   def self.valid_roles
-    roles.slice("editor", "admin").transform_values do |value|
-      I18n.translate(value, scope: :roles, default: "Unknown role")
+    roles.slice('editor', 'admin').transform_values do |value|
+      I18n.translate(value, scope: :roles, default: 'Unknown role')
     end
   end
 
   def ensure_at_least_one_user_has_admin_role
-    if changes["role"] && (changes["role"].first == ADMIN) && (User.admin.count <= 1)
+    if changes['role'] && (changes['role'].first == ADMIN) && (User.admin.count <= 1)
       errors.add(:role, "Can not remove the 'admin' role, there would be no admin left")
     end
   end

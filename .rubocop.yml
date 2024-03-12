@@ -15,14 +15,6 @@ require: rubocop-performance
 
 AllCops:
   TargetRubyVersion: 3.2.2
-  Exclude:
-    - "**/*.erb"
-    - 'bin/*'
-    - 'db/schema.rb'
-    - 'node_modules/**/*'
-    - 'config/application.rb'
-    - 'config/puma.rb'
-    - 'vendor/**/*'
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes

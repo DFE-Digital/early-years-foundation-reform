@@ -1,9 +1,0 @@
-<!-- Google tag (gtag.js) -->
-<script async src=<%= Rails.configuration.js_url %>></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  gtag('config', '<%= Rails.configuration.tracking_id %>');
-</script>

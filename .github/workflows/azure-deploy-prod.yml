@@ -11,9 +11,6 @@ on:
         description: 'Release candidate to deploy ("rcx.x.x")'
         type: string
         required: true
-  push:
-    tags:
-      - v*
 
 # Permissions for OIDC authentication
 permissions:

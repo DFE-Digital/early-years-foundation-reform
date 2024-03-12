@@ -7,7 +7,7 @@ module Rack
     end
 
     def call(env)
-      return @app.call(env) unless env["REQUEST_METHOD"] == "TRACE"
+      return @app.call(env) unless env['REQUEST_METHOD'] == 'TRACE'
 
       [405, {}, []]
     end

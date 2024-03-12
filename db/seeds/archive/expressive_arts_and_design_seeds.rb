@@ -29,7 +29,7 @@ It is important that children develop positive attitudes and interests in mathem
 MARKDOWN_FOR_EXPRESSIVE_ARTS_AND_DESIGN
 
 expressive_arts_and_design = {
-  title: "Expressive arts and design",
+  title: 'Expressive arts and design',
   markdown: markdown_for_expressive_arts_and_design,
   position: 7,
 }
@@ -45,7 +45,7 @@ This page is still being written.
 
 MARKDOWN_FOR_IMAGINATION_AND_CREATIVITY
 imagination_and_creativity = {
-  title: "Imagination and creativity",
+  title: 'Imagination and creativity',
   markdown: markdown_for_imagination_and_creativity,
   position: 1,
   parent_id: expressive_arts_and_design_page.id,
@@ -62,7 +62,7 @@ This page is still being written.
 
 MARKDOWN_FOR_SELF_EXPRESSION
 self_expression = {
-  title: "Self expression",
+  title: 'Self expression',
   markdown: markdown_for_self_expression,
   position: 2,
   parent_id: expressive_arts_and_design_page.id,
@@ -79,7 +79,7 @@ This page is still being written.
 
 MARKDOWN_FOR_COMMUNICATING_THROUGH_ARTS
 communicating_through_arts = {
-  title: "Communicating through arts",
+  title: 'Communicating through arts',
   markdown: markdown_for_communicating_through_arts,
   position: 3,
   parent_id: expressive_arts_and_design_page.id,

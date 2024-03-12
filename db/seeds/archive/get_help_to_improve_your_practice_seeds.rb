@@ -20,7 +20,7 @@ Working in partnership with parents
 MARKDOWN
 
 attrs = {
-  title: "Get help to improve your practice",
+  title: 'Get help to improve your practice',
   markdown: markdown,
   position: 8,
 }
@@ -39,7 +39,7 @@ The content will give advice for nursery leaders on providing staff training on 
 MARKDOWN
 
 attrs = {
-  title: "Planning",
+  title: 'Planning',
   markdown: markdown,
   position: 1,
   parent_id: parent_page.id,
@@ -59,7 +59,7 @@ The content may include links to the relevant parts of Development Matters, info
 MARKDOWN
 
 attrs = {
-  title: "Reducing paperwork",
+  title: 'Reducing paperwork',
   markdown: markdown,
   position: 2,
   parent_id: parent_page.id,
@@ -79,7 +79,7 @@ There will be links to useful resources including the SEND Code of Practice.
 MARKDOWN
 
 attrs = {
-  title: "Identifying and supporting children with special educational needs and disability",
+  title: 'Identifying and supporting children with special educational needs and disability',
   markdown: markdown,
   position: 3,
   parent_id: parent_page.id,
@@ -98,7 +98,7 @@ This page will also contain links to useful resources in the area of oral health
 MARKDOWN
 
 attrs = {
-  title: "Promoting oral health as part of the safeguarding and welfare requirements",
+  title: 'Promoting oral health as part of the safeguarding and welfare requirements',
   markdown: markdown,
   position: 4,
   parent_id: parent_page.id,
@@ -125,7 +125,7 @@ We may also link to other helpful resources.
 MARKDOWN
 
 attrs = {
-  title: "Working in partnership with parents",
+  title: 'Working in partnership with parents',
   markdown: markdown,
   position: 5,
   parent_id: parent_page.id,

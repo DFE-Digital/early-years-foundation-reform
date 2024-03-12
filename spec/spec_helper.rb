@@ -1,25 +1,25 @@
-require "simplecov"
+require 'simplecov'
+# SimpleCov.minimum_coverage 99
+SimpleCov.start 'rails'
 
-require "capybara/rspec"
-require "axe-rspec"
-require "webdrivers/chromedriver"
+require 'pry'
+require 'capybara/rspec'
+require 'axe-rspec'
+require 'webdrivers/chromedriver'
 
-SimpleCov.start
-
-# This configuration seems to work well in CI environments:
 Capybara.register_driver :chrome_headless do |app|
-  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome
-  capabilities["goog:chromeOptions"] = {
-    args: %w[
+  options = Selenium::WebDriver::Options.chrome(
+    accept_insecure_certs: true,
+    'goog:chromeOptions': %w[
+      disable-cache
+      disable-dev-shm-usage
       headless
       no-sandbox
-      disable-dev-shm-usage
       window-size=1400,1400
-      disable-cache
     ],
-  }
+  )
 
-  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: capabilities)
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 Capybara.javascript_driver = :chrome_headless
