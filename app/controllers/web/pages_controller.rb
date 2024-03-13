@@ -1,7 +1,5 @@
 module Web
   class PagesController < ApplicationController
-    before_action { page }
-
     helper_method :page, :slug, :section, :breadcrumbs
 
     def index; end
