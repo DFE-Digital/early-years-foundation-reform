@@ -3,7 +3,7 @@
 class CustomPreprocessor < GovukMarkdown::Preprocessor
   # @return [CustomPreprocessor]
   def apply_all
-    inject_inset_text.inject_details.two_thirds.button.external.quote.brain.book.info
+    inject_inset_text.inject_details.two_thirds.button.external.quote.video
   end
 
   # @example
@@ -79,24 +79,17 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
     self
   end
 
-  # @return [CustomPreprocessor]
-  def brain
-    pattern = build_regexp('brain')
-    @output = output.gsub(pattern) { learning_prompt 'brain', Regexp.last_match(1) }
-    self
-  end
-
-  # @return [CustomPreprocessor]
-  def book
-    pattern = build_regexp('book')
-    @output = output.gsub(pattern) { learning_prompt 'book', Regexp.last_match(1) }
-    self
-  end
-
-  # @return [CustomPreprocessor]
-  def info
-    pattern = build_regexp('info')
-    @output = output.gsub(pattern) { learning_prompt 'info', Regexp.last_match(1) }
+  # @example
+  #   {video}fsWEHuDpE8g{/video}
+  #
+  # @return [CustomPreprocessor] Embedded YouTube
+  def video
+    pattern = build_regexp('video')
+    @output = output.gsub(pattern) do
+      params = { enablejsapi: 1, origin: ENV['DOMAIN'] }.to_param
+      video_url = "https://www.youtube.com/embed/#{Regexp.last_match(1)}?#{params}"
+      video_template.render(nil, url: video_url)
+    end
     self
   end
 
@@ -106,7 +99,7 @@ private
   # @return [Array<String>]
   def split_content(content)
     content_end = content.split("\n").last
-    content_start = content.gsub(content_end, Types::EMPTY_STRING)
+    content_start = content.gsub(content_end, '')
     [content_start, content_end]
   end
 
@@ -117,26 +110,14 @@ private
     [Regexp.last_match(1), Regexp.last_match(2)]
   end
 
-  # @param type [String]
-  # @param content [String]
-  # @return [String]
-  def learning_prompt(type, content)
-    prompt_template.render(nil, icon: type, body: nested_markdown(content))
-  end
-
-  # @return [Slim::Template]
-  def two_thirds_template
-    @two_thirds_template ||= Slim::Template.new('app/views/markup/_two_thirds.html.slim')
-  end
-
-  # @return [Slim::Template]
-  def prompt_template
-    @prompt_template ||= Slim::Template.new('app/views/markup/_prompt.html.slim')
-  end
-
   # @return [Slim::Template]
   def quote_template
     @quote_template ||= Slim::Template.new('app/views/markup/_quote.html.slim')
+  end
+
+  # @return [Slim::Template]
+  def video_template
+    @video_template ||= Slim::Template.new('app/views/markup/_video.html.slim')
   end
 end
 

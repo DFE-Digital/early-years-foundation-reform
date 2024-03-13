@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 private
 
   def page
-    @page = Web::Page.home
+    Web::Page.home
   end
 
   def section

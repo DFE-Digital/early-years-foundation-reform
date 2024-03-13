@@ -3,6 +3,7 @@
 
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: page.hero }
+
 .govuk-grid-row
   .govuk-grid-column-one-quarter.sticky.mob-section 
     input#menu-icon-chk.menu-btn[type="checkbox" name="menu-icon" checked]
@@ -26,8 +27,7 @@
         .contents-on-page
           p#contents-list-heading class='govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold'
             | Contents on this page 
-          ul.contents-list__list
-            = m(page.content_list)
+          = m(page.content_list)
 
     p.govuk-body = m(page.body)
 

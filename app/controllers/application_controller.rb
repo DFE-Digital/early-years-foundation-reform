@@ -2,10 +2,13 @@ class ApplicationController < ActionController::Base
   layout 'application'
 
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
+
   before_action { cookies.delete :track_google_analytics }
-  before_action do |_controller|
-    @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
-  end
+
+  # before_action do |_controller|
+  #   @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
+  # end
+
   before_action :prepare_cms
 
   helper_method :menu_item, :section
@@ -28,7 +31,7 @@ protected
   end
 
   def release_version
-    ENV['RELEASE_VERSION'] || '-'
+    ENV.fetch('RELEASE_VERSION', '-')
   end
 
 private

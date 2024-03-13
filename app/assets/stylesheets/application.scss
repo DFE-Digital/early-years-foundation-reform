@@ -27,6 +27,9 @@ $light-blue: tint($department-for-education-websafe, 90%);
 @import 'dfe-header';
 @import 'hfeyp-v2';
 
+@import 'video';
+@import 'page-contents';
+
 @import 'dfe/print';
 @import 'dfe/about';
 @import 'dfe/card';
@@ -56,20 +59,6 @@ $light-blue: tint($department-for-education-websafe, 90%);
 main img {
   max-width: 100%;
 }
-
-/*
-Default layout
------------------------------------------------
-*/
-
-#default-layout {
-  // noop
-}
-
-/*
-Hero layout
------------------------------------------------
-*/
 
 #hero-layout {
   .govuk-notification-banner {
@@ -159,12 +148,6 @@ ul>li>ul>li {
 .form-container {
   padding: 30px;
   background: #f3f2f1;
-}
-
-#js-timeout-warning:focus {
-  outline: 3px solid #ffdd00;
-  outline-offset: 0;
-  box-shadow: inset 0 0 0 2px;
 }
 
 .white-space-pre-wrap {

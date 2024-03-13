@@ -17,7 +17,7 @@ module Web
       )
     end
 
-    # @param name [String]
+    # @param slug [String]
     # @return [Web::Page]
     def self.by_slug(slug)
       return find_by(slug: slug.to_s)&.first if Rails.env.production?
