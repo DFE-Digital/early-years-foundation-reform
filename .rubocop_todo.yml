@@ -30,3 +30,10 @@ RSpec/StubbedMock:
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/lib/rack/reject_trace_spec.rb'
+
+# Offense count: 1
+# Configuration parameters: Include.
+# Include: db/**/*.rb
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - 'db/migrate/20240314090000_create_releases.rb'
