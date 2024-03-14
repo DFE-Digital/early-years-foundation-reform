@@ -7,6 +7,8 @@
 .govuk-grid-row
   = render partial: 'shared/card', collection: page.pages
 
+= m(page.body)
+
 = render 'shared/ctas'
 
 = render 'shared/other_resources'

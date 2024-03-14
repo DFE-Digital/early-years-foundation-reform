@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_18_115523) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_14_090000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,6 +87,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_18_115523) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "releases", force: :cascade do |t|
+    t.string "name", null: false
+    t.jsonb "properties", default: {}, null: false
+    t.datetime "time", null: false
+    t.index ["name", "time"], name: "index_releases_on_name_and_time"
+    t.index ["properties"], name: "index_releases_on_properties", opclass: :jsonb_path_ops, using: :gin
   end
 
   create_table "users", force: :cascade do |t|
