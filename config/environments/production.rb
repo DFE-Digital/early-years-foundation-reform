@@ -37,6 +37,11 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
+  if Rails.application.preview?
+    # Contentful Live-Preview of secured pages
+    config.action_dispatch.cookies_same_site_protection = :none
+  end
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"

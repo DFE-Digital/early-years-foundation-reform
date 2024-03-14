@@ -20,8 +20,6 @@ module Web
     # @param slug [String]
     # @return [Web::Page]
     def self.by_slug(slug)
-      return find_by(slug: slug.to_s)&.first if Rails.env.production?
-
       fetch_or_store to_key(slug) do
         find_by(slug: slug.to_s)&.first
       end

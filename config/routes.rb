@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get '/check' => 'application#check'
-  get '/health' => 'application#check'
+  get '/check', to: 'application#check'
+  get '/health', to: 'application#check'
 
-  # Note These have to be above the wildcard route
   get '/404', to: 'errors#not_found', via: :all
   get '/422', to: 'errors#unprocessable_entity', via: :all
   get '/500', to: 'errors#internal_server_error', via: :all
@@ -15,9 +14,16 @@ Rails.application.routes.draw do
 
   resources :feedbacks, only: %i[create]
 
-  get '/:section' => 'web/pages#index'
-  get '/:section/:slug' => 'web/pages#show'
-  get '/:section/:overview/:slug' => 'web/pages#show'
+  constraints proc { Rails.application.preview? || Rails.env.test? } do
+    resources :resources, id: /[^\/]+/, only: %i[show]
+  end
+
+  get '/:section', to: 'web/pages#index'
+  get '/:section/:slug', to: 'web/pages#show'
+  get '/:section/:overview/:slug', to: 'web/pages#show'
+
+  post 'change', to: 'hook#change'
+  post 'release', to: 'hook#release'
 
   root to: 'home#index'
 end
