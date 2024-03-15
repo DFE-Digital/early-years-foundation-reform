@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
 
   before_action { cookies.delete :track_google_analytics }
 
-  # before_action do |_controller|
-  #   @page = OpenStruct.new(title: t(params[:action], default: params[:action].humanize, scope: params[:controller].parameterize))
-  # end
-
   before_action :prepare_cms
 
   helper_method :menu_item, :section
@@ -24,8 +20,8 @@ protected
     # ensure correct API for each request
     ContentfulModel.use_preview_api = Rails.application.preview?
 
-    Web::Resource.reset_cache_key!
-    Web::Page.reset_cache_key!
+    Resource.reset_cache_key!
+    Page.reset_cache_key!
 
     :done
   end

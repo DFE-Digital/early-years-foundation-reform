@@ -1,15 +1,7 @@
 class SettingsController < ApplicationController
-  before_action do |_controller|
-    @page = OpenStruct.new(title: t(params[:id], scope: params[:controller].parameterize))
-  end
-
   def create
     set_cookie_pref
     redirect_to params[:return_url]
-  end
-
-  def show
-    render template: "settings/#{params[:id]}"
   end
 
 private

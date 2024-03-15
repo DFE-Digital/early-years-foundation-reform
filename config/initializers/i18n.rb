@@ -16,9 +16,9 @@ module I18n::Backend::Content
 
 private
 
-  # @return [Web::Resource, nil]
+  # @return [Resource, nil]
   def find_resource(resource_name)
-    Web::Resource.by_name(resource_name)
+    Resource.by_name(resource_name)
   end
 end
 

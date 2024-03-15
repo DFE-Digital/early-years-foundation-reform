@@ -4,7 +4,7 @@
 
 # Help For Early Years Providers
 
-This is an application, written in Ruby on Rails (Version 7), based on the [DFE-Digital](rails-template) template. It uses a [Contenful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help For Early Years Providers service.
+This is an application, written in Ruby on Rails (Version 7), based on the [DFE-Digital](rails-template) template. It uses a [Contentful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help For Early Years Providers service.
 
 Optionally create `.env` to override or set default variables.
 
@@ -139,6 +139,6 @@ settings the following classes can be added:
 
 <!-- GH workflows -->
 
-[ci-workflow]: https://github.com/DFE-Digital/early-years-foundation-recovery/actions/workflows/ci.yml
+[ci-workflow]: https://github.com/DFE-Digital/early-years-foundation-reform/actions/workflows/test.yml
 [production-workflow]: https://github.com/DFE-Digital/early-years-foundation-reform/actions/workflows/azure-deploy-prod.yml
 [staging-workflow]: https://github.com/DFE-Digital/early-years-foundation-reform/actions/workflows/azure-deploy-stage.yml
