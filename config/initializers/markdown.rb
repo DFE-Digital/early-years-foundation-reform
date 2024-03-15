@@ -80,14 +80,16 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   end
 
   # @example
-  #   {video}fsWEHuDpE8g{/video}
+  #   {video}872080640{/video}
   #
-  # @return [CustomPreprocessor] Embedded YouTube
+  # @return [CustomPreprocessor]
   def video
     pattern = build_regexp('video')
     @output = output.gsub(pattern) do
       params = { enablejsapi: 1, origin: ENV['DOMAIN'] }.to_param
-      video_url = "https://www.youtube.com/embed/#{Regexp.last_match(1)}?#{params}"
+      video_id = Regexp.last_match(1)
+      video_url = %(https://www.youtube.com/embed/#{video_id}?#{params})
+      # video_url = %(https://player.vimeo.com/video/#{video_id}?#{params})
       video_template.render(nil, url: video_url)
     end
     self

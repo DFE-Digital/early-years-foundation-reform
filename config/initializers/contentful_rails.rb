@@ -1,7 +1,7 @@
 require 'caching'
 
-require 'web/page'
-require 'web/resource'
+require 'page'
+require 'resource'
 
 ContentfulModel.use_preview_api = Rails.application.preview?
 
@@ -30,8 +30,8 @@ ContentfulRails.configure do |config|
     management_api: { timeout_connect: 3, timeout_read: 100, timeout_write: 200 },
 
     entry_mapping: {
-      'page' => Web::Page,
-      'resource' => Web::Resource,
+      'helpPage' => Page,
+      'helpResource' => Resource,
     },
   }
 end

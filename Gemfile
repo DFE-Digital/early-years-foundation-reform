@@ -2,47 +2,46 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
-gem 'acts_as_paranoid', '~> 0.9'
-gem 'acts_as_tree', '~> 2.9'
-gem 'audited', '~> 5.4'
-gem 'bcrypt', '~> 3.1.16'
-gem 'bootsnap', '>= 1.17.1', require: false
-gem 'canonical-rails', '~> 0.2'
-gem 'contentful_rails', '~> 0.5.0'
+gem 'puma', '~> 5.6'
+gem 'rails', '~> 7.0.8'
+
+gem 'bootsnap', require: false
+gem 'slim-rails'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'canonical-rails'
 gem 'cssbundling-rails'
-gem 'devise', '>= 4.9.3'
-gem 'devise-security', '~> 0.18.0'
-gem 'dibber'
+gem 'jsbundling-rails'
+gem 'sprockets-rails'
+gem 'turbo-rails'
+
+gem 'devise'
+gem 'devise-security'
+gem 'pg'
+
 gem 'dry-core'
 gem 'dry-initializer'
 gem 'dry-struct'
 gem 'dry-types'
-gem 'friendly_id', '~> 5.5'
+
+gem 'contentful_rails'
 gem 'govuk-components'
 gem 'govuk_design_system_formbuilder'
 gem 'govuk_markdown'
-gem 'htmlentities', '4.3.4'
-gem 'jsbundling-rails'
-gem 'pg', '~> 1.1'
-gem 'puma', '~> 5.6'
-gem 'rails', '~> 7.0.8'
+
 gem 'sentry-rails'
 gem 'sentry-ruby'
-gem 'slim-rails'
-gem 'sprockets-rails', '~> 3.4'
-gem 'turbo-rails'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'axe-matchers', '~> 2.6'
+  gem 'axe-matchers'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'cucumber', '~> 6.1'
-  gem 'dotenv-rails', '~> 2.7'
-  gem 'factory_bot_rails', '~> 6.2'
-  gem 'faker', '~> 2.18'
-  gem 'pry-byebug', '~> 3.9'
-  gem 'rspec', '~> 3.10'
-  gem 'rspec-expectations', '~> 3.10'
+  gem 'cucumber'
+  gem 'dotenv-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-byebug'
+  gem 'rspec'
+  gem 'rspec-expectations'
   gem 'rubocop-govuk', require: false
   gem 'rubocop-performance', require: false
   gem 'scss_lint-govuk'
@@ -52,7 +51,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman'
-  gem 'listen', '>= 3.0.5', '< 3.8'
+  gem 'listen'
   gem 'pry-doc'
   gem 'rladr'
   gem 'web-console'
@@ -63,10 +62,10 @@ group :test do
   gem 'axe-core-capybara'
   gem 'axe-core-rspec'
   gem 'axe-core-selenium'
-  gem 'capybara', '~> 3.36'
+  gem 'capybara'
   gem 'launchy'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
-  gem 'simplecov', '~> 0.21', require: false
+  gem 'simplecov', require: false
   gem 'webdrivers'
 end

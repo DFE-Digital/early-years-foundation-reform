@@ -42,7 +42,14 @@ Rails.application.config.content_security_policy do |policy|
 
   policy.default_src :self, :https, *GOVUK_DOMAINS
   policy.font_src    :self, :https, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, :data
-  policy.frame_src   :self, *GOOGLE_ANALYTICS_DOMAINS, *OPTIMIZE_DOMAINS
+
+  policy.frame_src   :self,
+                     *GOOGLE_ANALYTICS_DOMAINS,
+                     *OPTIMIZE_DOMAINS,
+                     'i.vimeocdn.com',
+                     'player.vimeo.com',
+                     'www.vimeo.com'
+
   policy.img_src     :self,
                      'images.ctfassets.net',
                      'placehold.co',
@@ -57,10 +64,6 @@ Rails.application.config.content_security_policy do |policy|
                      *GOOGLE_ANALYTICS_DOMAINS,
                      *GOOGLE_STATIC_DOMAINS,
                      *OPTIMIZE_DOMAINS,
-                     # Allow YouTube Embeds (Govspeak turns YouTube links into embeds)
-                     '*.ytimg.com',
-                     'www.youtube.com',
-                     'www.youtube-nocookie.com',
                      # Allow all inline scripts until we can conclusively
                      # document all the inline scripts we use,
                      # and there's a better way to filter out junk reports

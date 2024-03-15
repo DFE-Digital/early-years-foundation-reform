@@ -48,7 +48,6 @@ module GovukRailsBoilerplate
     config.tracking_id = ENV.fetch('TRACKING_ID', config_for(:configuration)['tracking_id'] || '#TRACKING_ID_env_var_missing')
     config.js_url = "https://www.googletagmanager.com/ns.html?id=#{config.tracking_id}"
     config.content = config_for(:content)
-    config.root_slug = ENV.fetch('ROOT_SLUG', config_for(:content)['root_slug']) || 'home'
 
     # Contentful
     config.contentful_space                   = ENV.fetch('CONTENTFUL_SPACE', credentials.dig(:contentful, :space))

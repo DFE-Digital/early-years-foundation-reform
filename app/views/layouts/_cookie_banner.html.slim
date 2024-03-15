@@ -6,7 +6,7 @@
       - m.with_action do 
         = govuk_button_to t('cookie_banner.reject'), settings_path, params: {track_analytics: 'No', return_url: request.path }
       - m.with_action do 
-        = govuk_link_to t('cookie_banner.policy'), setting_path('cookie-policy')
+        = govuk_link_to t('cookie_banner.policy'), '/cookie-policy'
 
       = t('cookie_banner.body.html')
         
