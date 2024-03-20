@@ -164,3 +164,26 @@ The following was govspeak and custom kramdown for the list of page content anch
 }
 
 */
+
+.contents-on-page ul {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.contents-on-page li {
+  padding-top: 10px;
+  line-height: 1.3;
+  list-style-type: none;
+  position: relative;
+  padding-left: 25px;
+  padding-right: 25px
+}
+
+.contents-on-page li:before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  width: 20px;
+  overflow: hidden
+}
