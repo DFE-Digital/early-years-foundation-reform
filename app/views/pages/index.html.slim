@@ -4,8 +4,9 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: page.hero }
 
-.govuk-grid-row
-  = render partial: 'shared/card', collection: page.pages
+- page.pages.each_slice(3).with_index do |row, index|
+  .govuk-grid-row class=('govuk-!-margin-bottom-6' unless index == (page.pages.count / 3.0 - 1).ceil)
+    = render partial: 'shared/card', collection: row
 
 = m(page.body)
 
