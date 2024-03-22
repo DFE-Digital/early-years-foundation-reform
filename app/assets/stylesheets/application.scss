@@ -29,6 +29,7 @@ $light-blue: tint($department-for-education-websafe, 90%);
 
 @import 'video';
 @import 'page-contents';
+@import '_metadata';
 
 @import 'dfe/print';
 @import 'dfe/about';
