@@ -69,7 +69,7 @@ GEM
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
-    axe-core-api (4.7.0)
+    axe-core-api (4.8.2)
       dumb_delegator
       virtus
     axe-core-capybara (4.3.2)
@@ -79,7 +79,7 @@ GEM
       axe-core-api
       dumb_delegator
       virtus
-    axe-core-selenium (4.7.0)
+    axe-core-selenium (4.8.2)
       axe-core-api
       dumb_delegator
     axe-matchers (2.6.1)
