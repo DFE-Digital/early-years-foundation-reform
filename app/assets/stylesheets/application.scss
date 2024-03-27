@@ -115,27 +115,6 @@ main img {
 
 }
 
-.light-blue-box {
-  margin-right: 0;
-  padding-left: govuk-spacing(4);
-  margin-bottom: govuk-spacing(5);
-  background: $light-blue;
-
-  @include govuk-media-query($until: tablet) {
-    margin-top: govuk-spacing(6);
-    margin-bottom: govuk-spacing(6);
-  }
-
-  &.enrol-box {
-    border-radius: 6px;
-
-    .govuk-button {
-      margin: 0;
-    }
-  }
-
-}
-
 .float-right {
   float: right;
   display: block;
