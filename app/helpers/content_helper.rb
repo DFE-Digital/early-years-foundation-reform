@@ -63,8 +63,8 @@ module ContentHelper
     Resource.by_name('ctas.feedback') || null_resource('ctas.feedback')
   end
 
-  def child_development_training
-    Resource.by_name('ctas.child_development_training') || null_resource('ctas.child_development_training')
+  def content_footer
+    Resource.by_name('ctas.content_footer') || null_resource('ctas.content_footer')
   end
 
   def other_useful_resources
