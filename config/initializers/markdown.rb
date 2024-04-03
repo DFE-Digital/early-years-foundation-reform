@@ -3,7 +3,7 @@
 class CustomPreprocessor < GovukMarkdown::Preprocessor
   # @return [CustomPreprocessor]
   def apply_all
-    inject_inset_text.inject_details.two_thirds.image_card.button.external.quote.video
+    inject_inset_text.inject_details.two_thirds.image_card.button.external.quote.blockquote.video
   end
 
   # @example
@@ -87,12 +87,27 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   #   This is the citation
   #   {/quote}
   #
-  # @return [CustomPreprocessor]
+  # @return [CustomPreprocessor] CDT style
   def quote
     pattern = build_regexp('quote')
     @output = output.gsub(pattern) do
       quote, citation = split_content Regexp.last_match(1)
       quote_template.render(nil, quote: nested_markdown(quote), citation: citation)
+    end
+    self
+  end
+
+  # @example
+  #   {blockquote}
+  #   This is the quote and the citation
+  #   {/blockquote}
+  #
+  # @return [CustomPreprocessor] Govspeak style
+  def blockquote
+    pattern = build_regexp('blockquote')
+    @output = output.gsub(pattern) do
+      quote, citation = split_content Regexp.last_match(1)
+      blockquote_template.render(nil, quote: nested_markdown(quote), citation: citation)
     end
     self
   end
@@ -143,6 +158,11 @@ private
   # @return [Slim::Template]
   def quote_template
     @quote_template ||= Slim::Template.new('app/views/markup/_quote.html.slim')
+  end
+
+  # @return [Slim::Template]
+  def blockquote_template
+    @blockquote_template ||= Slim::Template.new('app/views/markup/_blockquote.html.slim')
   end
 
   # @return [Slim::Template]
