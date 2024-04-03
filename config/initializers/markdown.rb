@@ -3,7 +3,7 @@
 class CustomPreprocessor < GovukMarkdown::Preprocessor
   # @return [CustomPreprocessor]
   def apply_all
-    inject_inset_text.inject_details.two_thirds.button.external.quote.blockquote.video
+    inject_inset_text.inject_details.two_thirds.image_card.button.external.quote.blockquote.video
   end
 
   # @example
@@ -22,6 +22,24 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
       right_markup = nested_markdown("#{image}\n")
 
       two_thirds_template.render(nil, left: left_markup, right: right_markup)
+    end
+    self
+  end
+
+  # @example
+  #   {image_card}
+  #   This is the body copy
+  #
+  #   //path/to/image
+  #   {/image_card}
+  #
+  # @return [CustomPreprocessor]
+  def image_card
+    pattern = build_regexp('image_card')
+    @output = output.gsub(pattern) do
+      text, image = split_content Regexp.last_match(1)
+
+      image_card_template.render(nil, text: text, image: image)
     end
     self
   end
@@ -125,6 +143,16 @@ private
   def hyperlink(content)
     content =~ %r{\[(.*)\]\((.*)\)}
     [Regexp.last_match(1), Regexp.last_match(2)]
+  end
+
+  # @return [Slim::Template]
+  def image_card_template
+    @image_card_template ||= Slim::Template.new('app/views/markup/_image_card.html.slim')
+  end
+
+  # @return [Slim::Template]
+  def two_thirds_template
+    @two_thirds_template ||= Slim::Template.new('app/views/markup/_two_thirds.html.slim')
   end
 
   # @return [Slim::Template]
