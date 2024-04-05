@@ -10,7 +10,7 @@ section.gem-c-attachment class='govuk-!-display-none-print govuk-!-margin-bottom
         | PDF download
 
       a.govuk-link.gem-c-attachment__link target='_self' href=pdf_url
-        | A healthy balanced diet for children
+        = file_title
 
     p.gem-c-attachment__metadata
       span.gem-c-attachment__attribute
@@ -19,22 +19,8 @@ section.gem-c-attachment class='govuk-!-display-none-print govuk-!-margin-bottom
 
       = ', '
       span.gem-c-attachment__attribute
-        | 605 KB
+        = file_size
 
       = ', '
       span.gem-c-attachment__attribute
         | 1 page
-
-
-
-/.certificate-details
-  h2.certificate-title
-    = govuk_link_to 'Download or print your certificate', training_module_page_path(mod.name, mod.certificate_page.name, format: :pdf), aria: { describedby: 'pdf-details' }, class: 'certificate-link'
-
-  p.certificate-metadata
-    span.certificate-attribute
-      abbr.certificate-abbr title='Portable Document Format' PDF
-    = ', '
-    span.certificate-attribute aria-label='file size' 0.4 MB
-    = ', '
-    span.certificate-attribute aria-label='page size' 1 page
