@@ -1,0 +1,26 @@
+section.gem-c-attachment class='govuk-!-display-none-print govuk-!-margin-bottom-6 govuk-!-margin-top-'
+  .gem-c-attachment__thumbnail
+
+    a.govuk-link target='_self' tabindex='-1' aria-hidden='true' href=pdf_url
+      img.gem-c-attachment__thumbnail-image.gem-c-attachment__thumbnail-image--custom alt='' src=thumb_url
+
+  .gem-c-attachment__details
+    h2.gem-c-attachment__title
+      span.govuk-caption-m
+        | PDF download
+
+      a.govuk-link.gem-c-attachment__link target='_self' href=pdf_url
+        = file_title
+
+    p.gem-c-attachment__metadata
+      span.gem-c-attachment__attribute
+        abbr.gem-c-attachment__abbr title='Portable Document Format'
+          | PDF
+
+      = ', '
+      span.gem-c-attachment__attribute
+        = file_size
+
+      = ', '
+      span.gem-c-attachment__attribute
+        | 1 page

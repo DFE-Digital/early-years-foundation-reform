@@ -3,7 +3,30 @@
 class CustomPreprocessor < GovukMarkdown::Preprocessor
   # @return [CustomPreprocessor]
   def apply_all
-    inject_inset_text.inject_details.two_thirds.image_card.button.external.quote.blockquote.video
+    inject_inset_text.inject_details.download.two_thirds.image_card.button.external.quote.blockquote.video
+  end
+
+  # @example
+  #   {download}
+  #   A healthy balanced diet for children
+  #   605 KB
+  #   //assets.ctfassets.net/xxx.pdf
+  #   //images.ctfassets.net/xxx.png
+  #   {/download}
+  #
+  # @return [CustomPreprocessor]
+  def download
+    pattern = build_regexp('download')
+    @output = output.gsub(pattern) do
+      file_title, file_size, pdf_url, thumb_url = *Regexp.last_match(1).strip.split("\n")
+
+      download_template.render(nil,
+                               file_title: file_title,
+                               file_size: file_size,
+                               pdf_url: pdf_url,
+                               thumb_url: thumb_url)
+    end
+    self
   end
 
   # @example
@@ -143,6 +166,11 @@ private
   def hyperlink(content)
     content =~ %r{\[(.*)\]\((.*)\)}
     [Regexp.last_match(1), Regexp.last_match(2)]
+  end
+
+  # @return [Slim::Template]
+  def download_template
+    @download_template ||= Slim::Template.new('app/views/markup/_downloadable_media.html.slim')
   end
 
   # @return [Slim::Template]
