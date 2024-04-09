@@ -2,7 +2,7 @@ section class=".govuk-!-margin-top-7 govuk-!-margin-bottom-7"
   div class="govuk-grid-row"
     div class="govuk-grid-column-full"
       div class="cta-banner"
-        .govuk-grid-column-two-thirds.div class="cta-banner-text"
+        .div class="cta-banner-text"
           span class="govuk-caption-m" Other early years resources from the Department for Education
           h2 class="govuk-heading-l"
             = content_footer.title
@@ -10,6 +10,6 @@ section class=".govuk-!-margin-top-7 govuk-!-margin-bottom-7"
             = content_footer.body
           p
             = govuk_link_to content_footer.link_to_text, content_footer.link_to, class: "govuk-!-font-weight-bold"
-        .govuk-grid-column-one-third.div class="cta-banner-img"
+        .div class="cta-banner-img"
           img
             = image_tag content_footer.image.url, class: "full-width-image", alt: content_footer.image.description, title: content_footer.image.title
