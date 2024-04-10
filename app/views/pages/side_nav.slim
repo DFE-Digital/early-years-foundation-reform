@@ -29,6 +29,11 @@
             | Contents on this page 
           = m(page.content_list)
 
+        = render 'shared/print'
+
     = m(page.body)
+
+    - if page.content_list.present?
+      = render 'shared/print'
 
 = render 'shared/ctas'
