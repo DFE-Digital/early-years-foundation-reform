@@ -15,9 +15,7 @@
           | Contents on this page 
         = m(page.content_list)
 
-      div class='gem-c-print-link print-button govuk-!-margin-top-7'
-        button.govuk-link.print-link-button class="govuk-link gem-c-print-link__button" onclick="window.print()" data-module="print-link"
-          | Print this page
+      = render 'shared/print'
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   .govuk-grid-column-full
@@ -35,8 +33,6 @@
       dd.gem-c-metadata__definition data-module="ga4-link-tracker" data-ga4-track-links-only="" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;content history&quot;,&quot;section&quot;:&quot;Top&quot;,&quot;action&quot;:&quot;opened&quot;}" data-ga4-link-tracker-module-started="true" #{page.updated_at.to_s(:long)}
 
 - if page.content_list.present?
-    div class='gem-c-print-link print-button govuk-!-margin-top-7'
-      button.govuk-link.print-link-button class='govuk-link gem-c-print-link__button' onclick='window.print()' data-module='print-link'
-        | Print this page
+   = render 'shared/print'
 
 = render 'shared/ctas'
