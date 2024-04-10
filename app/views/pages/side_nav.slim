@@ -29,7 +29,12 @@
             | Contents on this page 
           = m(page.content_list)
 
+        = render 'shared/print'
+
     = m(page.body)
+
+    - if page.content_list.present?
+      = render 'shared/print'
 
 .govuk-grid-column-full
   hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
