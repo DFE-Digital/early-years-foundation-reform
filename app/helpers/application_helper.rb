@@ -12,6 +12,14 @@ module ApplicationHelper
           classes: %w[dfe-header__navigation-item],
         )
       end
+
+      # menu.each do |item|
+      #   header.with_action_link(
+      #     text: item.title,
+      #     href: item.path,
+      #     options: { inverse: true }
+      #   )
+      # end
     end
   end
 
