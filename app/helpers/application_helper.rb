@@ -11,6 +11,12 @@ module ApplicationHelper
           active: item.slug == section,
           classes: %w[dfe-header__navigation-item],
         )
+
+        # header.with_action_link(
+        #   text: item.title,
+        #   href: item.path,
+        #   options: { inverse: true }
+        # )
       end
 
       # menu.each do |item|

@@ -25,24 +25,23 @@ $govuk-page-width: 1200px;
 $light-blue: tint($department-for-education-websafe, 90%);
 
 @import 'dfe-header';
-@import 'hfeyp-v2';
+// @import 'hfeyp-v2';
 
 @import 'video';
 @import 'page-contents';
-@import '_metadata';
+@import 'metadata';
 
-@import 'dfe/print';
-@import 'dfe/about';
-@import 'dfe/card';
-@import 'dfe/side-nav';
+@import 'print';
+// @import 'about';
+@import 'card';
+@import 'side-nav';
+@import 'other-resources';
+@import 'cta';
 
-@import '_subnav';
-@import '_eyfs-header';
-@import '_eyfs-mobile-navigation';
-@import '_cookie-banner';
-@import '_links';
-@import '_flash';
-
+@import 'subnav';
+// @import 'eyfs-header';
+// @import 'eyfs-mobile-navigation';
+@import 'links';
 
 * {
   font-family:
