@@ -235,3 +235,9 @@ label.menu-icon svg {
     margin-top: 0px;
   }
 }
+
+.govuk-list--bullet {
+  padding-left: 20px;
+  list-style-type: disc;
+  max-width: 44em;
+}
