@@ -32,11 +32,7 @@ private
   end
 
   def request_path
-    if params[:request_path]
-      params[:request_path]
-    else
-      params[:return_url]
-    end
+    params[:request_path] || params[:return_url]
   end
 
   def settings_params
