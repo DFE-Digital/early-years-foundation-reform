@@ -8,7 +8,12 @@
   .govuk-grid-row class=('govuk-!-margin-bottom-6' unless index == (page.pages.count / 3.0 - 1).ceil)
     = render partial: 'shared/card', collection: row
 
+= render 'layouts/flash'
+
 = m(page.body)
+
+if page.slug == 'cookie-policy'
+  = render 'settings/cookie_policy'
 
 = render 'shared/ctas'
 
