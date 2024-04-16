@@ -59,6 +59,22 @@ module ContentHelper
     Resource.by_name('ctas.signup') || null_resource('ctas.signup')
   end
 
+  def not_found
+    Resource.by_name('error.not_found') || null_resource('error.not_found')
+  end
+
+  def internal_server_error
+    Resource.by_name('error.internal_server_error') || null_resource('error.internal_server_error')
+  end
+
+  def unprocessable_entity
+    Resource.by_name('error.unprocessable_entity') || null_resource('error.unprocessable_entity')
+  end
+
+  def service_unavailable
+    Resource.by_name('error.service_unavailable') || null_resource('error.service_unavailable')
+  end
+
   def feedback
     Resource.by_name('ctas.feedback') || null_resource('ctas.feedback')
   end

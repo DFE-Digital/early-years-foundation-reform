@@ -1,12 +1,7 @@
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    h1.govuk-heading-xl Page not found
+    h1.govuk-heading-xl
+      = not_found.title
 
     p.govuk-body
-      | Use this link to go back to the homepage 
-      = govuk_link_to 'Help for early years providers', root_path
-
-    p.govuk-body
-      | If the web address is correct or you selected a link or button, contact 
-      = govuk_link_to 'help_for_early_years_providers@digital.education.gov.uk', 'mailto:help_for_early_years_providers@digital.education.gov.uk'
-      |  to report a fault about the service.
+      = m(not_found.body)

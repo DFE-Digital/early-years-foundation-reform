@@ -1,8 +1,7 @@
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    h1.govuk-heading-xl The change you wanted was rejected
+    h1.govuk-heading-xl
+      = unprocessable_entity.title
 
-    p.govuk-body Maybe you tried to change something you didn't have access to.
-
-    p.govuk-body If you are the application owner check the logs for more information.
-
+    p.govuk-body
+      = m(unprocessable_entity.body)

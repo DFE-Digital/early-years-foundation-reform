@@ -2,12 +2,8 @@
   .govuk-grid-column-two-thirds
     h1.govuk-heading-l Help for early years providers
 
-    h2.govuk-heading-m Sorry, the site is unavailable
-
-    p.govuk-body You will be able to use the website later.
-
-    p.govuk-body Please contact the Help for early years team on:
+    h2.govuk-heading-m
+      = service_unavailable.title
 
     p.govuk-body
-      a.govuk-link.email href='mailto:help_for_early_years_providers@digital.education.gov.uk' target='_blank' rel='noopener noreferrer' help_for_early_years_providers@digital.education.gov.uk
-
+      = m(service_unavailable.body)
