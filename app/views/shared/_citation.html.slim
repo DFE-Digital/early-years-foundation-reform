@@ -5,6 +5,6 @@
       dd.gem-c-metadata__definition
         a.govuk-link href="https://www.gov.uk/government/organisations/department-for-education" Department for Education
       dt.gem-c-metadata__term Published:
-      dd.gem-c-metadata__definition = page.created_at.to_s(:long)
+      dd.gem-c-metadata__definition = (page.released_at || page.created_at).to_fs(:long)
       dt.gem-c-metadata__term Updated:
-      dd.gem-c-metadata__definition data-module="ga4-link-tracker" data-ga4-track-links-only="" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;content history&quot;,&quot;section&quot;:&quot;Top&quot;,&quot;action&quot;:&quot;opened&quot;}" data-ga4-link-tracker-module-started="true" #{page.updated_at.to_s(:long)}
+      dd.gem-c-metadata__definition data-module="ga4-link-tracker" data-ga4-track-links-only="" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;content history&quot;,&quot;section&quot;:&quot;Top&quot;,&quot;action&quot;:&quot;opened&quot;}" data-ga4-link-tracker-module-started="true" #{page.updated_at.to_fs(:long)}

@@ -30,11 +30,10 @@
           = m(page.content_list)
 
         = render 'shared/print'
-
     = m(page.body)
 
     - if page.content_list.present?
-      / = render 'shared/citation'
+      = render 'shared/citation'
       = render 'shared/back_to_top'
       = render 'shared/print'
 
