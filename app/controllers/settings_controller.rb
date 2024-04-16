@@ -1,13 +1,4 @@
 class SettingsController < ApplicationController
-  def show
-    if template_valid?
-      track('static_page')
-      render template
-    else
-      render 'errors/not_found'
-    end
-  end
-
   def create
     set_cookie_pref
 
