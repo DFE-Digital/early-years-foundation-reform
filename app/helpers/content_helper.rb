@@ -11,7 +11,7 @@ module ContentHelper
   end
 
   def nav_list(page)
-    if page.children.any?
+    if page.children?
       [page] + page.children
     else
       [page.parent] + page.parent.children
