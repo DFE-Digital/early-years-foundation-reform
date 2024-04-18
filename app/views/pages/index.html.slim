@@ -8,6 +8,7 @@
   .govuk-grid-row class=('govuk-!-margin-bottom-6' unless index == (page.pages.count / 3.0 - 1).ceil)
     = render partial: 'shared/card', collection: row
 
+= render 'debug'
 = m(page.body)
 
 = render 'shared/ctas'
