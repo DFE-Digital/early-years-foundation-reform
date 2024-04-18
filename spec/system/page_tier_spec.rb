@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'First/Second/Third tier pages' do
   describe 'First tier page' do
-
     before do
       visit '/areas-of-learning'
     end
@@ -30,7 +29,6 @@ RSpec.describe 'First/Second/Third tier pages' do
         expect(page).to have_text('Other early years resources from the Department for Education')
       end
     end
-
   end
 
   describe 'Second tier page' do
