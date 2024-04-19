@@ -1,0 +1,13 @@
+section class='govuk-!-margin-top-7 govuk-!-margin-bottom-7'
+  .govuk-grid-row
+    .govuk-grid-column-full
+      .cta-banner
+        .cta-banner-text
+          span.govuk-caption-m Other early years resources from the Department for Education
+          h2.govuk-heading-l
+            = content_footer.title
+          = m(content_footer.body)
+          p
+            = govuk_link_to content_footer.link_to_text, content_footer.link_to, class: 'govuk-!-font-weight-bold'
+        .cta-banner-img
+          = image_tag content_footer.image.url, class: 'full-width-image', alt: content_footer.image.description, title: content_footer.image.title

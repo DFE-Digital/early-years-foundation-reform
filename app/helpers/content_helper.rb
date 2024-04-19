@@ -1,19 +1,17 @@
 module ContentHelper
   # @see [CustomMarkdown config/initializers/markdown.rb]
-  # @param key [String]
+  # @param markdown [String]
   # @return [String]
-  def m(key, headings_start_with: 'l', **args)
-    return '' if key.nil?
-
-    markdown = I18n.exists?(key, scope: args[:scope]) ? t(key, **args) : key.to_s
-
-    CustomMarkdown.render(markdown, headings_start_with:, filter_html: false).html_safe
-  rescue Contentful::Error
-    CustomMarkdown.render(key).html_safe
+  def m(markdown, headings_start_with: 'l')
+    CustomMarkdown.render(
+      markdown,
+      headings_start_with: headings_start_with,
+      filter_html: false,
+    ).html_safe
   end
 
   def nav_list(page)
-    if page.children.any?
+    if page.children?
       [page] + page.children
     else
       [page.parent] + page.parent.children
@@ -63,8 +61,8 @@ module ContentHelper
     Resource.by_name('ctas.feedback') || null_resource('ctas.feedback')
   end
 
-  def child_development_training
-    Resource.by_name('ctas.child_development_training') || null_resource('ctas.child_development_training')
+  def content_footer
+    Resource.by_name('ctas.content_footer') || null_resource('ctas.content_footer')
   end
 
   def other_useful_resources
