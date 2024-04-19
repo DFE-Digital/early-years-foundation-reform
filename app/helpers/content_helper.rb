@@ -1,19 +1,17 @@
 module ContentHelper
   # @see [CustomMarkdown config/initializers/markdown.rb]
-  # @param key [String]
+  # @param markdown [String]
   # @return [String]
-  def m(key, headings_start_with: 'l', **args)
-    return '' if key.nil?
-
-    markdown = I18n.exists?(key, scope: args[:scope]) ? t(key, **args) : key.to_s
-
-    CustomMarkdown.render(markdown, headings_start_with:, filter_html: false).html_safe
-  rescue Contentful::Error
-    CustomMarkdown.render(key).html_safe
+  def m(markdown, headings_start_with: 'l')
+    CustomMarkdown.render(
+      markdown,
+      headings_start_with: headings_start_with,
+      filter_html: false,
+    ).html_safe
   end
 
   def nav_list(page)
-    if page.children.any?
+    if page.children?
       [page] + page.children
     else
       [page.parent] + page.parent.children

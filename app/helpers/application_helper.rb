@@ -30,4 +30,9 @@ module ApplicationHelper
   def footer_menu
     @footer_menu ||= Page.footer.pages
   end
+
+  # @return [Boolean]
+  def debug?
+    Dry::Types['params.bool'][ENV.fetch('DEBUG', false)]
+  end
 end
