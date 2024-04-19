@@ -56,6 +56,14 @@ $light-blue: tint($department-for-education-websafe, 90%);
     sans-serif !important;
 }
 
+.debug_dump {
+  background: beige;
+
+  &,
+  * {
+    font-family: monospace !important;
+  }
+}
 
 main img {
   max-width: 100%;
