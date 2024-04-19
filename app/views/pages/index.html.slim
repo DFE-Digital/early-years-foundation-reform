@@ -4,13 +4,16 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { hero: page.hero }
 
-- page.pages.each_slice(3).with_index do |row, index|
-  .govuk-grid-row class=('govuk-!-margin-bottom-6' unless index == (page.pages.count / 3.0 - 1).ceil)
-    = render partial: 'shared/card', collection: row
+= render 'debug'
 
 = render 'layouts/flash'
 
-= m(page.body)
+- if page.pages.any?
+  - page.pages.each_slice(3).with_index do |row, index|
+    .govuk-grid-row class=('govuk-!-margin-bottom-6' unless index == (page.pages.count / 3.0 - 1).ceil)
+      = render partial: 'shared/card', collection: row
+- else
+  = m(page.body)
 
 - if page.slug == 'cookie-policy'
   = render 'settings/cookie_policy'

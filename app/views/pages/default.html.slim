@@ -10,15 +10,12 @@
 - if page.content_list.present?
   .govuk-grid-row
     .govuk-grid-column-three-quarters 
-      .contents-on-page
-        p#contents-list-heading class='govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold'
-          | Contents on this page 
-        = m(page.content_list)
-
+      = render 'contents'
       = render 'shared/print'
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
   .govuk-grid-column-full
+    = render 'debug'
     = m(page.body)
 
 = render 'shared/citation'
@@ -31,5 +28,4 @@
   hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
 = render 'shared/ctas'
-
 = render 'shared/content_footer'
