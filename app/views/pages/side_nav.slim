@@ -30,7 +30,11 @@
     = render 'debug'
     = m(page.body)
 
+    - if !page.children?
+      = render 'shared/citation'
+
     - if page.content_list.present?
+      = render 'shared/back_to_top'
       = render 'shared/print'
 
 .govuk-grid-column-full

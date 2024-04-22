@@ -14,22 +14,14 @@
       = render 'shared/print'
 
 .govuk-grid-row class='govuk-!-margin-top-4 govuk-!-margin-bottom-5'
-  .govuk-grid-column-full
+  .govuk-grid-column-three-quarters
     = render 'debug'
     = m(page.body)
 
-.hf-citation
-  .gem-c-metadata data-module="gem-toggle metadata" data-gem-toggle-module-started="true" data-metadata-module-started="true"
-    dl.gem-c-metadata__list data-module="gem-track-click" data-gem-track-click-module-started="true"
-      dt.gem-c-metadata__term From:
-      dd.gem-c-metadata__definition
-        a.govuk-link href="https://www.gov.uk/government/organisations/department-for-education" Department for Education
-      dt.gem-c-metadata__term Published:
-      dd.gem-c-metadata__definition = page.created_at.to_s(:long)
-      dt.gem-c-metadata__term Updated:
-      dd.gem-c-metadata__definition data-module="ga4-link-tracker" data-ga4-track-links-only="" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;content history&quot;,&quot;section&quot;:&quot;Top&quot;,&quot;action&quot;:&quot;opened&quot;}" data-ga4-link-tracker-module-started="true" #{page.updated_at.to_s(:long)}
+= render 'shared/citation'
 
 - if page.content_list.present?
+  = render 'shared/back_to_top'
   = render 'shared/print'
 
 .govuk-grid-column-full

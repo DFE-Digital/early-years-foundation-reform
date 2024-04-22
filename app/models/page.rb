@@ -24,6 +24,10 @@ class Page < ContentfulModel::Base
     end
   end
 
+  def created_at
+    released_at || super
+  end
+
   def path
     ['/', parent&.parent&.slug, parent&.slug, slug].join('/').gsub(/home/, '').squeeze('/')
   end
