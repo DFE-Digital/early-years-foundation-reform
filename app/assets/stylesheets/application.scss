@@ -79,6 +79,10 @@ main img {
     margin-bottom: govuk-spacing(8);
   }
 
+  #flash .govuk-notification-banner {
+    margin-bottom: govuk-spacing(4);
+  }
+
   @include govuk-media-query($until: tablet) {
 
     .govuk-grid-column-one-half>p,
@@ -177,4 +181,8 @@ ul>li>ul>li {
     position: sticky;
     top: 1.5rem;
   }
+}
+
+.govuk-footer__copyright-logo {
+  display: none;
 }
