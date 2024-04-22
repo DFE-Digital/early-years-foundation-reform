@@ -3,7 +3,7 @@ class SettingsController < ApplicationController
     set_cookie_pref
 
     if settings_params[:settings_updated].present?
-      flash[:notice] = t(:flash, scope: 'cookie_policy')
+      flash[:notice] = t(:preferences_saved_html, scope: 'settings')
     end
 
     redirect_to request_path

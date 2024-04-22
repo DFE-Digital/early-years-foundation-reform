@@ -132,10 +132,6 @@ en:
               blank: First name must not be blank
             last_name:
               blank: Last name must not be blank
-  cookie_policy:
-    title: Cookie policy
-    legend: Do you want to accept analytics cookies?
-    flash: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>
   settings:
-    cookie-policy: Cookies
+    cookie_policy_legend: Do you want to accept analytics cookies?
     preferences_saved_html: Your cookie settings were saved</br><a class='govuk-link' href='%{return_url}'>Go back to Help for early years providers</a>

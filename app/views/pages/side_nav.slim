@@ -30,7 +30,7 @@
     = render 'debug'
     = m(page.body)
 
-    - if page.pages.blank?
+    - if !page.children?
       = render 'shared/citation'
 
     - if page.content_list.present?
