@@ -1,10 +1,6 @@
 .govuk-grid-row
   .govuk-grid-column-two-thirds
-    h1.govuk-heading-xl Sorry, there is a problem with the website
+    h1.govuk-heading-xl
+      = internal_server_error.title
 
-    p.govuk-body Please try again later.
-
-    p.govuk-body Please contact the Help for early years team on:
-
-    p.govuk-body
-      = govuk_link_to 'help_for_early_years_providers@digital.education.gov.uk', 'mailto:help_for_early_years_providers@digital.education.gov.uk'
+    = m(internal_server_error.body)
