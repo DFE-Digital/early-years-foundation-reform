@@ -1,0 +1,137 @@
+name: 'App Deploy [Azure - REVIEW]'
+
+on:
+  pull_request:
+    types:
+      - labeled # uses 'review'
+      - synchronize
+    paths-ignore:
+      - '**/*.md'
+      - .docker*
+      - .env.example
+      - .gitignore
+      - .tool-versions
+      - .yardopts
+      - bin/*
+      - docker-compose.*
+      - Dockerfile
+      - terraform-azure
+      - uml/*
+
+# Permissions for OIDC authentication and URL comment step
+permissions:
+  id-token: write
+  contents: write
+  packages: write
+  pull-requests: write
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  DOCKER_IMAGE: ghcr.io/dfe-digital/help-for-early-years-providers
+  PR_NUMBER: pr-${{ github.event.number }}
+
+jobs:
+  build-and-deploy:
+    if: contains(github.event.pull_request.labels.*.name, 'review')
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # Create and boot Docker image builder
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          version: v0.9.1
+
+      # Login to the container registry
+      - name: Login to Github Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build and push image
+      # - name: Build and push dependencies
+      #   uses: docker/build-push-action@v5
+      #   with:
+      #     target: deps
+      #     context: .
+      #     push: true
+      #     build-args: |
+      #       BUILDKIT_INLINE_CACHE=1
+      #       SHA=${{ github.event.pull_request.head.sha }}
+      #     cache-from: |
+      #       ${{ env.DOCKER_IMAGE }}:deps
+      #     tags: ${{ env.DOCKER_IMAGE }}:deps
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          target: app
+          context: .
+          push: true
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
+            SHA=${{ github.event.pull_request.head.sha }}
+          cache-from: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.event.pull_request.head.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ env.PR_NUMBER }}
+            ${{ env.DOCKER_IMAGE }}:latest
+          tags: |
+            ${{ env.DOCKER_IMAGE }}:${{ github.event.pull_request.head.sha }}
+            ${{ env.DOCKER_IMAGE }}:${{ env.PR_NUMBER }}
+
+      # Login to Azure using OIDC
+      - name: Login to Azure CLI
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Deploy Web Application
+      - name: Deploy to Azure App Services
+        uses: azure/CLI@v2
+        with:
+          azcliversion: 2.50.0
+          inlineScript: |
+            az postgres flexible-server db create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --server-name ${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs \
+              --database-name ${{ env.PR_NUMBER }} \
+              --output none
+            az webapp config appsettings set --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --name ${{ vars.REVIEWAPP_NAME }} \
+              --settings DATABASE_URL="postgresql://${{ secrets.PSQLFS_USERNAME }}:${{ secrets.PSQLFS_PASSWORD }}@${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs.postgres.database.azure.com/${{ env.PR_NUMBER }}?sslmode=require" \
+              --output none
+            az webapp deployment slot create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --name ${{ vars.REVIEWAPP_NAME }} \
+              --slot ${{ env.PR_NUMBER }} \
+              --configuration-source ${{ vars.REVIEWAPP_NAME }} \
+              --deployment-container-image-name ${{ env.DOCKER_IMAGE }}:${{ env.PR_NUMBER }} \
+              --output none
+            az webapp vnet-integration add --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --name ${{ vars.REVIEWAPP_NAME }} \
+              --slot ${{ env.PR_NUMBER }} \
+              --subnet ${{ secrets.AZURE_REVIEW_APP_SUBNET }} \
+              --vnet ${{ secrets.AZURE_VNET }}
+            az webapp config appsettings set --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+              --name ${{ vars.REVIEWAPP_NAME }} \
+              --slot ${{ env.PR_NUMBER }} \
+              --slot-settings DOMAIN="${{ vars.REVIEWAPP_NAME }}-${{ env.PR_NUMBER }}.azurewebsites.net" \
+              --output none
+
+      # Add URL to Pull Request
+      - name: Comment URL to PR
+        uses: mshick/add-pr-comment@v2
+        with:
+          message: https://${{ vars.REVIEWAPP_NAME }}-${{ env.PR_NUMBER }}.azurewebsites.net
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
