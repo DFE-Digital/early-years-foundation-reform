@@ -5376,7 +5376,7 @@ __metadata:
     jquery: "npm:^3.7.1"
     npm-run-all: "npm:^4.1.5"
     sass: "npm:^1.70.0"
-    stimulus-character-counter: "npm:^4.2.0"
+    stimulus-reveal-controller: "npm:^4.1.0"
   languageName: unknown
   linkType: soft
 
@@ -10963,12 +10963,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stimulus-character-counter@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "stimulus-character-counter@npm:4.2.0"
+"stimulus-reveal-controller@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "stimulus-reveal-controller@npm:4.1.0"
   peerDependencies:
     "@hotwired/stimulus": ^3.2.1
-  checksum: c1e07ab5e1249289c45246d969b505c108472d10cc43f20e16c784fc94bce6e14adbd507622004b0447f5b1f64e01dcad045df5ec81a87e428d376ce2f9d9f64
+  checksum: 6fd11260a48954fada9089f043af0507d3156ffb1a7a7ac1c7d1e4e146af2f41bc80bd26396ed86cf090484ea01f95c43a7b1aeadbfde086f1948eb2c7bc2c64
   languageName: node
   linkType: hard
 

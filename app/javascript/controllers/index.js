@@ -1,5 +1,5 @@
 import { Application } from '@hotwired/stimulus'
-import CharacterCounter from 'stimulus-character-counter'
+import Reveal from 'stimulus-reveal-controller'
 
 const application = Application.start()
-application.register('character-counter', CharacterCounter)
+application.register('reveal', Reveal)
