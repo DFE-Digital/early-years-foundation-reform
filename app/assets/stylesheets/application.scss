@@ -25,22 +25,18 @@ $govuk-page-width: 1200px;
 $light-blue: tint($department-for-education-websafe, 90%);
 
 @import 'dfe-header';
-// @import 'hfeyp-v2';
 
 @import 'video';
 @import 'page-contents';
 @import 'metadata';
 
 @import 'print';
-// @import 'about';
 @import 'card';
 @import 'side-nav';
 @import 'other-resources';
 @import 'cta';
 
 @import 'subnav';
-// @import 'eyfs-header';
-// @import 'eyfs-mobile-navigation';
 @import 'links';
 
 * {
