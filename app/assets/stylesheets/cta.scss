@@ -16,6 +16,26 @@
 }
 
 @media (max-width: 40.0525em) {
+  .cta-banner {
+    flex-direction: column;
+  }
+
+  .cta-banner-img {
+    width: 100%;
+    order: 1;
+  }
+
+  .cta-banner-text {
+    order: 2;
+    padding: 20px;
+  }
+
+  .table-scroll {
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 40.0525em) {
   .hf-card {
     margin-bottom: govuk-spacing(6);
   }
@@ -33,4 +53,20 @@
   border-left: 10px solid #b1b4b6;
   padding: 1em 0 1em 1em;
   margin: 2em 0;
+}
+
+.hf-ctas {
+  padding-top: govuk-spacing(9);
+  padding-bottom: govuk-spacing(4);
+}
+
+.hf-icon {
+  background: #ebf2f6;
+  display: flex;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.hf-icon path {
+  fill: #347CA9;
 }

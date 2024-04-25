@@ -3,11 +3,6 @@
   padding-bottom: govuk-spacing(9);
 }
 
-.hf-ctas {
-  padding-top: govuk-spacing(9);
-  padding-bottom: govuk-spacing(4);
-}
-
 .hf-second-color {
   color: $govuk-secondary-text-colour
 }
@@ -15,17 +10,6 @@
 .hf-cta-block {
   display: flex;
   column-gap: 20px;
-}
-
-.hf-icon {
-  background: #ebf2f6;
-  display: flex;
-  padding: 10px;
-  border-radius: 50%;
-}
-
-.hf-icon path {
-  fill: #347CA9;
 }
 
 .chevron-card-list {
