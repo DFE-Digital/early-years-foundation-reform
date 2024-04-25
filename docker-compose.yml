@@ -1,40 +1,45 @@
-version: "3"
-
-volumes:
-  db_data:
-  clamd_data:
-
+# ------------------------------------------------------------------------------
+#
+#
+---
+version: '3.8'
 services:
   app:
+    container_name: reform_prod
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    image: eyfs-reform-spike-web:latest
-    command: ./entrypoints/docker-entrypoint.sh
+      target: app
+    image: reform:prod
     depends_on:
-      - database
+      - db
     ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-    env_file: .env
+      - 3000:3000
+    environment:
+      - EDITOR=vi
+      - RAILS_ENV=production
+      - NODE_ENV=production
+      - WEB_CONCURRENCY=0
+      - PROXY_CERT
+    networks:
+      - reform
 
-  database:
-    image: postgres:13.1
+  db:
+    container_name: reform_db
+    image: postgres:13.1-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    healthcheck:
+      test: pg_isready
     volumes:
-      - db_data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
-    env_file: .env
+      - 5432:5432
+    networks:
+      - reform
 
-  webpack:
-    image: eyfs-reform-spike-web:latest
-    command: sh -c "npm rebuild node-sass && ./bin/webpack-dev-server"
-    depends_on:
-      - app
-    volumes:
-      - .:/app
-    ports:
-      - '3035:3035'
-    env_file: .env
+volumes:
+  db:
+
+networks:
+  reform:

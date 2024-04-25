@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# ------------------------------------------------------------------------------
+set -e
+
+if docker container ls | grep reform_dev; then
+  echo "Already running development container"
+  docker exec -it reform_dev rails "$@"
+else
+  echo "Starting development container"
+  docker-compose \
+    -f docker-compose.yml \
+    -f docker-compose.dev.yml \
+    --project-name reform \
+    run \
+    --name reform_rails \
+    --rm app \
+    rails "$@"
+fi
