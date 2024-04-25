@@ -28,7 +28,8 @@ $light-blue: tint($department-for-education-websafe, 90%);
 
 @import 'video';
 @import 'page-contents';
-@import 'metadata';
+@import 'citation';
+@import 'downloadable-media';
 
 @import 'print';
 @import 'card';
@@ -36,8 +37,7 @@ $light-blue: tint($department-for-education-websafe, 90%);
 @import 'other-resources';
 @import 'cta';
 
-@import 'subnav';
-@import 'links';
+@import 'breadcrumbs';
 
 * {
   font-family:
