@@ -176,6 +176,12 @@ The following was govspeak and custom kramdown for the list of page content anch
   font-size: 16px;
 }
 
+@media (max-width: 40.0525em) {
+  .contents-on-page ul {
+     font-size: 14px;
+   }
+ }
+
 .contents-on-page li {
   padding-top: 10px;
   line-height: 1.3;
