@@ -24,11 +24,21 @@
       = m(page.introduction)
 
     - if page.content_list.present?
-        .contents-on-page
-          p#contents-list-heading class='govuk-body govuk-!-margin-bottom-1 govuk-!-font-weight-bold'
-            | Contents on this page 
-          = m(page.content_list)
+      = render 'contents'
+      = render 'shared/print'
 
+    = render 'debug'
     = m(page.body)
 
+    - if !page.children?
+      = render 'shared/citation'
+
+    - if page.content_list.present?
+      = render 'shared/back_to_top'
+      = render 'shared/print'
+
+.govuk-grid-column-full
+  hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
+
 = render 'shared/ctas'
+= render 'shared/content_footer'

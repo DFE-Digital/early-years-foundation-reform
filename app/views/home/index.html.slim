@@ -15,9 +15,7 @@
 
     = m(page.body)
 
-- page.pages.each_slice(3).with_index do |row, index|
-  .govuk-grid-row class=('govuk-!-margin-bottom-6' unless index == (page.pages.count / 3.0 - 1).ceil)
-    = render partial: 'shared/card', collection: row
+= render 'pages/cards'
 
 = render 'shared/ctas'
 
