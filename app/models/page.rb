@@ -37,12 +37,9 @@ class Page < ContentfulModel::Base
 
   # @return [String]
   def path
-    ['/', parent&.parent&.slug, parent&.slug, slug].join('/').gsub(/home/, '').squeeze('/')
-  end
-
-  # @return [String]
-  def footer_path
-    ['/', parent&.parent&.slug, parent&.slug, slug].join('/').gsub(/footer/, '').squeeze('/')
+    root = footer? ? self.class.footer.slug : self.class.home.slug
+    list = ['/', parent&.parent&.slug, parent&.slug, slug].join('/')
+    list.gsub(%r'/#{root}/', '').squeeze('/')
   end
 
   # @return [String] TODO: update model field with default and snake_case values
@@ -54,8 +51,8 @@ class Page < ContentfulModel::Base
   def breadcrumbs
     list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
     list.shift
-    list.each_with_object({ 'Home' => '/' }) do |page, memo|
-      memo[page.title] = page.footer? ? page.footer_path : page.path
+    list.each_with_object({ 'Home' => '/' }) do |page, crumbs|
+      crumbs[page.title] = page.path
     end
   end
 

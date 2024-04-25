@@ -4,7 +4,7 @@ module ApplicationHelper
       header.with_navigation_item(
         text: 'Home', href: '/', active: request.path == root_path, classes: %w[dfe-header__navigation-item],
       )
-      menu.each do |item|
+      Page.home.pages.each do |item|
         header.with_navigation_item(
           text: item.title,
           href: item.path,
@@ -13,14 +13,6 @@ module ApplicationHelper
         )
       end
     end
-  end
-
-  def menu
-    @menu ||= Page.home.pages
-  end
-
-  def footer_menu
-    @footer_menu ||= Page.footer.pages
   end
 
   def track_analytics?

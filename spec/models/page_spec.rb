@@ -71,9 +71,9 @@ RSpec.describe Page, type: :model do
 
       specify do
         expect(page.breadcrumbs).to be_a Hash
-        expect(page.breadcrumbs.keys).to eq [
-          'Home',
-          'Accessibility',
+        expect(page.breadcrumbs.keys).to eq %w[
+          Home
+          Accessibility
         ]
         expect(page.breadcrumbs.values).to eq [
           '/',
@@ -104,7 +104,7 @@ RSpec.describe Page, type: :model do
   end
 
   describe '#path' do
-    context 'when tier 3' do
+    context 'when tier 1' do
       let(:slug) { 'areas-of-learning' }
 
       specify { expect(page.path).to eq '/areas-of-learning' }
@@ -121,12 +121,6 @@ RSpec.describe Page, type: :model do
 
       specify { expect(page.path).to eq '/areas-of-learning/communication-and-language/interactions' }
     end
-  end
-
-  describe '#footer_path' do
-    let(:slug) { 'accessibility' }
-
-    specify { expect(page.footer_path).to eq '/accessibility' }
   end
 
   describe '#to_partial_path' do
