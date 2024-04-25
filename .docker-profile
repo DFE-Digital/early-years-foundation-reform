@@ -1,3 +1,0 @@
-echo "Welcome to the Help for Early Years Providers Application"
-
-export PATH=$PATH:/usr/local/bin:/user/local/bundle/bin

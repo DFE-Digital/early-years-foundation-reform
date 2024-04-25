@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Take down all project services.
+# ------------------------------------------------------------------------------
+set -e
+
+for env in dev test; do
+  docker-compose \
+    -f docker-compose.yml \
+    -f docker-compose.$env.yml \
+    --project-name reform \
+    down --remove-orphans
+done

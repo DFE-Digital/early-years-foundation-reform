@@ -15,8 +15,6 @@ locals {
     "ENVIRONMENT"                         = var.environment
     "DATABASE_URL"                        = var.webapp_database_url
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-    "GOVUK_APP_DOMAIN"                    = "london.cloudapps.digital" #TODO: Remove this dependency post-migration to Azure
-    "GOVUK_WEBSITE_ROOT"                  = "eyfs-dev"                 #TODO: Remove this dependency post-migration to Azure
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
     "NODE_ENV"                            = var.webapp_config_node_env
@@ -34,8 +32,6 @@ locals {
     "ENVIRONMENT"                         = var.environment
     "DATABASE_URL"                        = var.webapp_slot_database_url
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-    "GOVUK_APP_DOMAIN"                    = "london.cloudapps.digital" #TODO: Remove this dependency post-migration to Azure
-    "GOVUK_WEBSITE_ROOT"                  = "ey-recovery-dev"          #TODO: Remove this dependency post-migration to Azure
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
     "NODE_ENV"                            = var.webapp_config_node_env

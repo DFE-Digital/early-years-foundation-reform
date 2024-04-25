@@ -1,15 +1,15 @@
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Base - AMD64 & ARM64 compatible
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 FROM ruby:3.2.2-alpine AS base
 
 RUN apk add --no-cache --no-progress --no-check-certificate build-base less curl tzdata gcompat
 
 ENV TZ Europe/London
 
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Dependencies
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 FROM base as deps
 
 LABEL org.opencontainers.image.description "Application Dependencies"
@@ -33,22 +33,20 @@ RUN bundle config set no-cache true
 RUN bundle config set without development test
 RUN bundle install --no-binstubs --retry=10 --jobs=4
 
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Production Stage 
-# ------------------------------------------------------------
+# ------------------------------------------------------------------------------
 FROM base AS app
 
 LABEL org.opencontainers.image.source=https://github.com/DFE-Digital/early-years-foundation-reform
 LABEL org.opencontainers.image.description "Help for Early Years Providers Rails Application"
 
 RUN echo "Welcome to the EYFS HfEYP Application" > /etc/motd
-RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn openssh
+RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn openssh chromium
 RUN echo "root:Docker!" | chpasswd && cd /etc/ssh/ && ssh-keygen -A
 
 ENV APP_HOME /srv
 ENV RAILS_ENV ${RAILS_ENV:-production}
-ENV GOVUK_APP_DOMAIN www.gov.uk 
-ENV GOVUK_WEBSITE_ROOT https://www.gov.uk
 ENV AUTHORIZED_HOSTS 127.0.0.1
 ENV IGNORE_SECRETS_FOR_BUILD=1
 
