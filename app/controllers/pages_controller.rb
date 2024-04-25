@@ -9,7 +9,11 @@ class PagesController < ApplicationController
   end
 
   def show
-    render page.to_partial_path
+    if page.nil?
+      render 'errors/not_found'
+    else
+      render page.to_partial_path
+    end
   end
 
 private
