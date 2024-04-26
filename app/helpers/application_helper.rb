@@ -23,6 +23,10 @@ module ApplicationHelper
     @footer_menu ||= Page.footer.pages
   end
 
+  def track_analytics?
+    cookies[:track_analytics] == 'Yes'
+  end
+
   # @return [Boolean]
   def debug?
     Dry::Types['params.bool'][ENV.fetch('DEBUG', false)]

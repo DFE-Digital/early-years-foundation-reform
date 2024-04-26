@@ -5,6 +5,11 @@
   background-color: #F3F2F150;
 }
 
+@media (max-width: 40.0525em) {
+  .contents-on-page {
+      padding: 20px;
+  }
+}
 
 /*
 The following was govspeak and custom kramdown for the list of page content anchors

@@ -1,8 +1,0 @@
----
-applications:
-  - name: eyfs-clamav-rest-private
-    instances: 3
-    docker:
-      image: niilo/clamav-rest
-    routes:
-      - route: eyfs-clamav-rest-private.apps.internal

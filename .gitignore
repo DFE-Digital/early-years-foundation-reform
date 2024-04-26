@@ -33,14 +33,9 @@ yarn-debug.log*
 .yarn-integrity
 .yarn/install-state.gz*
 
-.env
-.env.docker
-.env.localhost
-.env.development
+.env*
 *.log
-/.idea
-.DS_Store
-/coverage
+coverage
 
 # Terraform
 *.tfstate
@@ -59,3 +54,5 @@ tokens
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+nscacert.pem

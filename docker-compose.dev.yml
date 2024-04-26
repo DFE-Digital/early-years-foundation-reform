@@ -1,0 +1,41 @@
+---
+services:
+  app:
+    container_name: reform_dev
+    build:
+      target: dev
+    image: reform:dev
+    command: foreman start -f Procfile.dev
+    healthcheck:
+      test: curl --fail http://localhost:3000/health || exit 1
+    restart: on-failure
+    environment:
+      - ENVIRONMENT=
+      # - RUBY_DEBUG_OPEN=true
+      # psql client
+      - PGUSER=postgres
+      - PGPASSWORD=password
+      - PGHOST=db
+      - PGDATABASE=early_years_foundation_reform_development
+      # app config
+      - DATABASE_URL=postgres://postgres:password@db:5432/early_years_foundation_reform_development
+      - RAILS_ENV=development
+      - DOMAIN=localhost:3000
+      - RAILS_SERVE_STATIC_FILES=true
+    volumes:
+      - .:/srv
+    tty: true
+    stdin_open: true
+
+  doc:
+    container_name: reform_doc
+    image: reform:dev
+    command: yard server
+    healthcheck:
+      test: curl --fail http://localhost:8808 || exit 1
+    volumes:
+      - .:/srv
+    ports:
+      - 8808:8808
+    networks:
+      - reform
