@@ -45,7 +45,7 @@ class Page < ContentfulModel::Base
     list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
     list.shift
     list.each_with_object({ 'Home' => '/' }) do |obj, memo|
-      memo[obj.title] = obj.path
+      memo[obj.title] = obj.path.gsub(/footer/, '').squeeze('/')
     end
   end
 

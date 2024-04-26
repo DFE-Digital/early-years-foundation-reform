@@ -39,6 +39,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'foreman'
   gem 'pry-byebug'
   gem 'rspec'
   gem 'rspec-expectations'

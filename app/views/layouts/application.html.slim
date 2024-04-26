@@ -2,7 +2,7 @@ doctype html
 html.govuk-template lang='en'
   head 
     title= [t('service.name'), yield(:page_title).presence].compact.join(' : ')
-    = csrf_meta_tags 
+    = csrf_meta_tags
     = csp_meta_tag
 
     = tag.meta content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'

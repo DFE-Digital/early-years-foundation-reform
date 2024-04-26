@@ -60,19 +60,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Build and push image
-      # - name: Build and push dependencies
-      #   uses: docker/build-push-action@v5
-      #   with:
-      #     target: deps
-      #     context: .
-      #     push: true
-      #     build-args: |
-      #       BUILDKIT_INLINE_CACHE=1
-      #       SHA=${{ github.event.pull_request.head.sha }}
-      #     cache-from: |
-      #       ${{ env.DOCKER_IMAGE }}:deps
-      #     tags: ${{ env.DOCKER_IMAGE }}:deps
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:

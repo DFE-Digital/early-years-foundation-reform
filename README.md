@@ -27,17 +27,19 @@ Suggest using [asdf](asdf) for local development.
 7. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
 8. Run `bin/dev` to launch the app on http://localhost:3000
 
-## Running specs, linter(without auto correct) and annotate models and serializers
+## Using Docker
 
-```sh
-bundle exec 
-```
+There are a number of convenience scripts to make working with **Docker** easier.
+All containers for the project are named with the prefix `reform_`.
 
-## Running specs
+- `bin/docker-build` creates tagged images for all the services
+- `bin/docker-down` stops any active services
+- `bin/docker-rails console` drops into a running development environment or starts one,
+    containerised equivalent of `bin/rails console`
+- `bin/docker-dev` starts `Procfile.dev`, containerised equivalent of `bin/dev`
+- `bin/docker-rspec -f doc` runs the test suite with optional arguments, containerised
+    equivalent of `bin/rspec`
 
-```sh
-bundle exec rspec
-```
 
 ## Credentials & Environment Variables
 

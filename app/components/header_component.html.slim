@@ -6,15 +6,21 @@
         = image_tag 'dfe-logo-alt.png', class: 'dfe-logo-hover', alt: 'DfE homepage'
     #service-name
       = link_to service_name, service_url, class: 'dfe-header__link dfe-header__link--service'
-    - if action_links.any?
-      #content-header.dfe-header__content.dfe-header-f-dtonly.dfe-header-f-toplinks
-        .dfe-header-f-top-links
-          ul.dfe-header__action-links
-            - action_links.each do |item|
-              = item 
-        .dfe-header__menu
-          button#toggle-menu.dfe-header__menu-toggle aria-controls='header-navigation' aria-expanded='false' data-action='click->reveal#toggle'
-            | Menu
+    / Original header template
+      - if action_links.any?
+       #content-header.dfe-header__content.dfe-header-f-dtonly.dfe-header-f-toplinks
+         .dfe-header-f-top-links
+           ul.dfe-header__action-links
+             - action_links.each do |item|
+               = item
+         .dfe-header__menu
+           button#toggle-menu.dfe-header__menu-toggle aria-controls='header-navigation' aria-expanded='false' data-action='click->reveal#toggle'
+             | Menu
+      Custom service template
+    #content-header.dfe-header__content.dfe-header-f-dtonly.dfe-header-f-toplinks
+      .dfe-header__menu
+        button#toggle-menu.dfe-header__menu-toggle aria-controls='header-navigation' aria-expanded='false' data-action='click->reveal#toggle'
+          | Menu
   - if navigation_items.any?
     = tag.nav(**navigation_html_attributes) do
       .dfe-width-container

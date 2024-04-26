@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------------
+# If the working directory is not mounted as a volume, then the test environment
+# RAILS_MASTER_KEY variable must be passed in.
+#
+# This behaviour is used in a GitHub workflow, however this script adds the mount
+#
+set -e
+
+docker-compose \
+  -f docker-compose.yml \
+  -f docker-compose.test.yml \
+  --project-name reform \
+  run \
+  --volume="$PWD:/srv" \
+  --name reform_rspec \
+  --rm app \
+  rspec "$@"
