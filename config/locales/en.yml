@@ -134,4 +134,4 @@ en:
               blank: Last name must not be blank
   settings:
     cookie_policy_legend: Do you want to accept analytics cookies?
-    preferences_saved_html: Your cookie settings were saved. [Go back to Help for early years providers](%{return_url}).
+    preferences_saved_html: Your cookie settings were saved.</br><a class='govuk-link' href='/'>Go back to Help for early years providers</a>
