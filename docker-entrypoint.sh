@@ -57,7 +57,7 @@ else
 
     case ${ENVIRONMENT} in
       "development" )
-        bundle exec rails db:seed
+        # no op
         ;;
       "staging" )
         # no op

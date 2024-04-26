@@ -1,4 +1,4 @@
-# rake --tasks eyfs:cms
+# rake --tasks hfeyp:cms
 #
 require 'upload'
 

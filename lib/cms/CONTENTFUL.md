@@ -1,6 +1,6 @@
 # Contentful
 
-- [EY Recovery Service](https://app.contentful.com/spaces/dvmeh832nmjc)
+- [EY Reform Service](https://app.contentful.com/spaces/dvmeh832nmjc)
 - [API Keys](https://app.contentful.com/spaces/dvmeh832nmjc/api/keys/) are granted access to new environments but targeting aliases is preferred.
 - [User roles](https://app.contentful.com/spaces/dvmeh832nmjc/settings/users).
 

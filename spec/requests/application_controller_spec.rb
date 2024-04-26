@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe ApplicationController, type: :request do
   let(:json) { JSON.parse(response.body, symbolize_names: true) }
 
-  describe 'GET /check' do
-    before { get check_path }
+  describe 'GET /health' do
+    before { get '/health' }
 
     it 'renders successfully' do
       expect(response).to be_successful

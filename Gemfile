@@ -34,18 +34,17 @@ gem 'sentry-ruby'
 
 group :development, :test do
   gem 'axe-matchers'
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'cucumber'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'foreman'
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec'
   gem 'rspec-expectations'
   gem 'rubocop-govuk', require: false
   gem 'rubocop-performance', require: false
-  gem 'scss_lint-govuk'
 end
 
 group :development do

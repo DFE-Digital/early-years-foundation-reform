@@ -2,7 +2,7 @@
   = page.title
 
 - content_for(:hero) do 
-  = render partial: 'hero', locals: { hero: page.hero }
+  = render partial: 'hero', locals: { title: page.hero_title, description: page.hero_description }
 
 - if page.introduction.present?
   = m(page.introduction)
