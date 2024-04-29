@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'check', to: 'application#check'
   get 'health', to: 'application#check'
 
   get '404', to: 'errors#not_found', via: :all

@@ -7,7 +7,7 @@ RSpec.describe Rack::RejectTrace do
     let(:reject_trace) { described_class.new(app) }
 
     it 'calls app' do
-      expect(app).to receive(:call).with(env).and_return(true)
+      allow(app).to receive(:call).with(env).and_return(true)
       expect(reject_trace.call(env)).to be(true)
     end
 

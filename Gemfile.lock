@@ -327,6 +327,8 @@ GEM
     pry-doc (1.5.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
+    pry-rails (0.3.9)
+      pry (>= 0.10.4)
     public_suffix (5.0.4)
     puma (5.6.8)
       nio4r (~> 2.0)
@@ -438,15 +440,6 @@ GEM
       rubocop (~> 1.40)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    scss_lint (0.59.0)
-      sass (~> 3.5, >= 3.5.5)
-    scss_lint-govuk (0.2.0)
-      scss_lint
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -540,7 +533,6 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   brakeman
-  byebug
   canonical-rails
   capybara
   contentful_rails
@@ -565,6 +557,7 @@ DEPENDENCIES
   pg
   pry-byebug
   pry-doc
+  pry-rails
   puma (~> 5.6)
   rails (~> 7.0.8)
   rladr
@@ -573,7 +566,6 @@ DEPENDENCIES
   rspec-rails
   rubocop-govuk
   rubocop-performance
-  scss_lint-govuk
   selenium-webdriver
   sentry-rails
   sentry-ruby

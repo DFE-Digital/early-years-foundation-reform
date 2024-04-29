@@ -5,15 +5,14 @@ class Page < ContentfulModel::Base
 
   has_many_nested :pages, root: -> { Page.home }
 
+  # @return [Page]
   def self.home
-    by_slug('home') || null_object
+    by_slug 'home'
   end
 
-  def self.null_object
-    OpenStruct.new(
-      pages: [],
-      hero: OpenStruct.new(title: 'no title', body: 'no body'),
-    )
+  # @return [Page]
+  def self.footer
+    by_slug 'footer'
   end
 
   # @param slug [String]
@@ -24,16 +23,11 @@ class Page < ContentfulModel::Base
     end
   end
 
-  def created_at
-    released_at || super
-  end
-
+  # @return [String]
   def path
-    ['/', parent&.parent&.slug, parent&.slug, slug].join('/').gsub(/home/, '').squeeze('/')
-  end
-
-  def footer_path
-    ['/', parent&.parent&.slug, parent&.slug, slug].join('/').gsub(/footer/, '').squeeze('/')
+    root = footer? ? self.class.footer.slug : self.class.home.slug
+    list = ['/', parent&.parent&.slug, parent&.slug, slug].join('/')
+    list.gsub(%r{/#{root}/}, '').squeeze('/')
   end
 
   # @return [String] TODO: update model field with default and snake_case values
@@ -41,28 +35,24 @@ class Page < ContentfulModel::Base
     page_style ? page_style.underscore : 'default'
   end
 
+  # @return [Hash{String=>String}]
   def breadcrumbs
+    root = { 'Home' => '/' }
     list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
     list.shift
-    list.each_with_object({ 'Home' => '/' }) do |obj, memo|
-      memo[obj.title] = obj.path.gsub(/footer/, '').squeeze('/')
+    list.each_with_object(root) do |page, crumbs|
+      crumbs[page.title] = page.path
     end
   end
 
-  def hero
-    OpenStruct.new(title: hero_title, body: hero_description)
-  end
-
+  # @return [Boolean]
   def cards?
     page_style == 'cards'
   end
 
+  # @return [Boolean]
   def navigation?
     page_style == 'side-nav'
-  end
-
-  def self.footer
-    by_slug('footer') || null_object
   end
 
   # @return [ContentfulModel::Asset]
@@ -72,5 +62,29 @@ class Page < ContentfulModel::Base
     fetch_or_store self.class.to_key(fields[:image].id) do
       ContentfulModel::Asset.find(fields[:image].id)
     end
+  end
+
+  # @return [Boolean] child of the 'footer' page
+  def footer?
+    parent.eql?(self.class.footer)
+  end
+
+  # @return [Boolean]
+  def tier1?
+    parent&.root?
+  end
+
+  # @return [Boolean]
+  def tier2?
+    parent&.tier1?
+  end
+
+  # @return [Boolean]
+  def tier3?
+    parent&.tier2?
+  end
+
+  def created_at
+    released_at || super
   end
 end

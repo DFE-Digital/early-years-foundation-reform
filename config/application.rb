@@ -38,11 +38,10 @@ module GovukRailsBoilerplate
 
     config.i18n.load_path += Dir[Rails.root.join('config/locales/content/*.{rb,yml}').to_s]
 
-    config.feedback_url = ENV.fetch('FEEDBACK_URL', config_for(:configuration)['feedback_url'] || '#FEEDBACK_env_var_missing')
-    config.signup_url = ENV.fetch('SIGNUP_URL', config_for(:configuration)['signup_url'] || '#SIGNUP_env_var_missing')
-    config.tracking_id = ENV.fetch('TRACKING_ID', config_for(:configuration)['tracking_id'] || '#TRACKING_ID_env_var_missing')
+    config.feedback_url = ENV.fetch('FEEDBACK_URL', '#FEEDBACK_env_var_missing')
+    config.signup_url = ENV.fetch('SIGNUP_URL', '#SIGNUP_env_var_missing')
+    config.tracking_id = ENV.fetch('TRACKING_ID', '#TRACKING_ID_env_var_missing')
     config.js_url = "https://www.googletagmanager.com/ns.html?id=#{config.tracking_id}"
-    config.content = config_for(:content)
 
     # Contentful
     config.contentful_space                   = ENV.fetch('CONTENTFUL_SPACE', credentials.dig(:contentful, :space))

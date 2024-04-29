@@ -68,8 +68,4 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::IntegrationHelpers
-  config.include ViewComponent::TestHelpers, type: :component
-  config.include ViewComponent::SystemTestHelpers, type: :component
-  config.include Capybara::RSpecMatchers, type: :component
 end
