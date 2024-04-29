@@ -26,7 +26,7 @@ html.govuk-template lang='en'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
     = yield :head
 
-  body#default-layout.govuk-template__body
+  body#hero-layout.govuk-template__body
     script
       | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
@@ -37,9 +37,12 @@ html.govuk-template lang='en'
     
     = navigation
 
-    .dfe-width-container
-      = render 'layouts/banner'
+    .dfe-content-page--header class='govuk-!-padding-bottom-7'
+      .dfe-width-container
+        = render 'layouts/banner'
+        = yield :hero
 
+    .dfe-width-container
       main#main-content.govuk-main-wrapper role='main'
         = yield
 

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   helper_method :section,
                 :page
+  layout 'hero'
 
   def index; end
 

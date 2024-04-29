@@ -42,6 +42,7 @@
   .mob-section {
     background: #f1f2f350;
     margin-top: -20px;
+    margin-bottom: 20px;
     padding: 20px 15px 0px;
     border-bottom: 1px solid #ccc;
   }
@@ -49,6 +50,21 @@
   .contents-on-page {
     padding: 20px;
   }
+}
+
+@media (max-width: 40.0525em) {
+  .contents-on-page ul {
+     font-size: 14px;
+   }
+ }
+
+.contents-on-page li {
+  padding-top: 10px;
+  line-height: 1.3;
+  list-style-type: none;
+  position: relative;
+  padding-left: 25px;
+  padding-right: 25px
 }
 
 .app-back-to-top {

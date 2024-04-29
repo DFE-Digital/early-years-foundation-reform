@@ -31,4 +31,10 @@ module ApplicationHelper
   def debug?
     Dry::Types['params.bool'][ENV.fetch('DEBUG', false)]
   end
+
+  # @param parts [Array<String>]
+  # @return [String]
+  def html_title(*parts)
+    [t('service.name'), *parts].join(' : ')
+  end
 end

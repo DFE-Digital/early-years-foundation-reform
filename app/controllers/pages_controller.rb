@@ -3,13 +3,18 @@ class PagesController < ApplicationController
                 :slug,
                 :section,
                 :breadcrumbs
+  layout 'hero'
 
   def index
-    render 'errors/not_found' if page.nil?
+    render 'errors/not_found', layout: 'application' if page.nil?
   end
 
   def show
-    render page.to_partial_path
+    if page.nil?
+      render 'errors/not_found', layout: 'application'
+    else
+      render page.to_partial_path
+    end
   end
 
 private
