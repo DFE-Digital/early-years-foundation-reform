@@ -17,7 +17,7 @@ html.govuk-template lang='en'
     = tag.meta name: 'theme-color', content: '#0b0c0c'
 
     = favicon_link_tag image_path('dfe_favicon.ico')
-    = favicon_link_tag asset_path('images/govuk-mask-icon.svg'), rel: 'mask-icon', type: 'image/svg', color: '#0b0c0c'
+    = favicon_link_tag asset_path('images/govuk-mask-icon.svg'), rel: 'mask-icon', type: 'image/svg', color: "#0b0c0c"
     = favicon_link_tag asset_path('images/govuk-apple-touch-icon.png'), rel: 'apple-touch-icon', type: 'image/png'
     = favicon_link_tag asset_path('images/govuk-apple-touch-icon-152x152.png'), rel: 'apple-touch-icon', type: 'image/png', size: '152x152'
     = favicon_link_tag asset_path('images/govuk-apple-touch-icon-167x167.png'), rel: 'apple-touch-icon', type: 'image/png', size: '167x167'
@@ -26,7 +26,7 @@ html.govuk-template lang='en'
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
     = yield :head
 
-  body#default-layout.govuk-template__body
+  body#hero-layout.govuk-template__body
     script
       | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
@@ -37,12 +37,15 @@ html.govuk-template lang='en'
     
     = navigation
 
-    .dfe-width-container
-      = render 'layouts/banner'
+    .dfe-content-page--header class='govuk-!-padding-bottom-7'
+      .dfe-width-container
+        = render 'layouts/banner'
+        = yield :hero
 
+    .dfe-width-container
       main#main-content.govuk-main-wrapper role='main'
         = yield
 
     = yield :other_resources
 
-    = render 'layouts/footer'
+    = render FooterComponent.new(pages: Page.footer.pages)
