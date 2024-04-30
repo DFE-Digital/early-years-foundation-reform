@@ -1,5 +1,5 @@
 .gem-c-metadata {
-  color: #0b0c0c;
+  color: $department-for-education-pre-header;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -78,11 +78,11 @@
 }
 
 .gem-c-metadata a:link {
-  color: #1d70b8
+  color: $department-for-education-pre-header;
 }
 
 .gem-c-metadata a:visited {
-  color: #4c2c92
+  color: $department-for-education-pre-header;
 }
 
 .gem-c-metadata a:hover {
@@ -90,11 +90,11 @@
 }
 
 .gem-c-metadata a:active {
-  color: #0b0c0c
+  color: $department-for-education-pre-header;
 }
 
 .gem-c-metadata a:focus {
-  color: #0b0c0c
+  color: $department-for-education-pre-header;
 }
 
 .gem-c-metadata .gem-c-metadata__definition-link {

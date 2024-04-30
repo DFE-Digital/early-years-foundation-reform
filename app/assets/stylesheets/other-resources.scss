@@ -3,13 +3,13 @@
   padding-bottom: govuk-spacing(9);
 }
 
-.hf-second-color {
-  color: $govuk-secondary-text-colour
-}
-
 .hf-cta-block {
   display: flex;
   column-gap: 20px;
+}
+
+.hf-cta-block p {
+  font-size: 1.1875em;
 }
 
 .chevron-card-list {
