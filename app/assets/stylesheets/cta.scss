@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ebf2f6;
+  background-color: $department-for-education-white-background;
 }
 
 .cta-banner-text {
@@ -11,7 +11,7 @@
 }
 
 .govuk-caption-m {
-  color: $department-for-education-pre-header;
+  color: $govuk-text-colour
 }
 
 .cta-banner-img {
@@ -50,7 +50,7 @@
 }
 
 .info-notice {
-  border-left: 10px solid #b1b4b6;
+  border-left: 10px solid $govuk-border-colour;
   padding: 1em 0 1em 1em;
   margin: 2em 0;
 }
@@ -61,12 +61,12 @@
 }
 
 .hf-icon {
-  background: #ebf2f6;
+  background: $department-for-education-white-background;
   display: flex;
   padding: 10px;
   border-radius: 50%;
 }
 
 .hf-icon path {
-  fill: #347CA9;
+  fill: $department-for-education-websafe;
 }

@@ -1,8 +1,8 @@
 .contents-on-page {
   padding: 40px;
-  border: 1px solid #b1b4b6;
+  border: 1px solid $govuk-border-colour;
   border-radius: 6px;
-  background-color: #F3F2F150;
+  background-color: $department-for-education-grey-background;
 }
 
 @media (max-width: 40.0525em) {

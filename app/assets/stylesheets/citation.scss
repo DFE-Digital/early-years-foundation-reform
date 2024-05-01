@@ -1,5 +1,5 @@
 .gem-c-metadata {
-  color: $department-for-education-pre-header;
+  color: $govuk-text-colour;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -10,7 +10,7 @@
 
 @media print {
   .gem-c-metadata {
-    color: #000
+    color: $department-for-education-black;
   }
 }
 
@@ -69,32 +69,32 @@
 
 .gem-c-metadata a:focus {
   outline: 3px solid transparent;
-  color: #0b0c0c;
-  background-color: #fd0;
-  box-shadow: 0 -2px #fd0,0 4px #0b0c0c;
+  color: $govuk-text-colour;
+  background-color: $department-for-education-yellow;
+  box-shadow: 0 -2px $department-for-education-yellow,0 4px $govuk-text-colour;
   text-decoration: none;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone
 }
 
 .gem-c-metadata a:link {
-  color: $department-for-education-pre-header;
+  color: $govuk-text-colour;
 }
 
 .gem-c-metadata a:visited {
-  color: $department-for-education-pre-header;
+  color: $govuk-text-colour;
 }
 
 .gem-c-metadata a:hover {
-  color: #003078
+  color: $govuk-link-hover-colour;
 }
 
 .gem-c-metadata a:active {
-  color: $department-for-education-pre-header;
+  color: $govuk-text-colour
 }
 
 .gem-c-metadata a:focus {
-  color: $department-for-education-pre-header;
+  color: $govuk-text-colour
 }
 
 .gem-c-metadata .gem-c-metadata__definition-link {
@@ -107,11 +107,11 @@
 }
 
 .gem-c-metadata--inverse {
-  color: #fff
+  color: $department-for-education-white
 }
 
 .gem-c-metadata--inverse a:link,.gem-c-metadata--inverse a:visited {
-  color: #fff
+  color: $department-for-education-white
 }
 
 .gem-c-metadata--inverse a:hover,.gem-c-metadata--inverse a:active {
@@ -119,7 +119,7 @@
 }
 
 .gem-c-metadata--inverse a:focus {
-  color: #0b0c0c
+  color: $govuk-text-colour
 }
 
 .gem-c-metadata--inverse-padded {
@@ -197,8 +197,8 @@ dl.gem-c-metadata__list {
 }
 
 .hf-citation {
-  background: #eeeeee75;
+  background: $department-for-education-grey;
   padding: 15px 10px 15px 20px;
   margin-top: 60px;
-  border-left: 5px solid #347ca9;
+  border-left: 5px solid $department-for-education-websafe;
 }

@@ -72,10 +72,10 @@
   height: auto;
   border: rgba(11, 12, 12, 0.1);
   outline: 5px solid rgba(11, 12, 12, 0.1);
-  background: #fff;
+  background: $department-for-education-white;
   box-shadow: 0 2px 2px rgba(11, 12, 12, 0.4);
-  fill: #b1b4b6;
-  stroke: #b1b4b6
+  fill: $govuk-border-colour;
+  stroke: $govuk-border-colour;
 }
 
 .gem-c-attachment__details {
@@ -132,7 +132,7 @@
   font-size: 1rem;
   line-height: 1.25;
   margin: 0 0 15px;
-  color: #505a5f;
+  color: $govuk-secondary-text-colour;
 }
 
 @media print {

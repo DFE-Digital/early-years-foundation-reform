@@ -29,13 +29,13 @@ header #service-name {
 
   .dfe-header__link--service,
   .dfe-header__link--service:hover {
-    color: #fff;
+    color: $department-for-education-white;
     font-size: 1.125em;
     margin-top: 12px;
   }
 
   .dfe-header__link--service:focus {
-    color: #000;
+    color: $department-for-education-black;
   }
 
   @media (min-width: 61.875em) {

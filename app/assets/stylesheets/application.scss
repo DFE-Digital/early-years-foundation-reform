@@ -13,7 +13,14 @@ $department-for-education: #003a69;
 $department-for-education-websafe: #347ca9;
 
 $department-for-education-link: #155084;
-$department-for-education-pre-header: #0b0c0c;
+
+$department-for-education-yellow: #fd0;
+$department-for-education-white: #fff;
+$department-for-education-grey: #eeeeee75;
+$department-for-education-white-background: #ebf2f6;
+
+$department-for-education-black: #000;
+$department-for-education-grey-background: #F3F2F150;
 
 $govuk-new-link-styles: true;
 $govuk-page-width: 1200px;
@@ -151,14 +158,14 @@ ul>li>ul>li {
 
 .log-entry {
   border: 0.5px solid;
-  border-color: #b1b4b6;
+  border-color: $govuk-border-colour;
   padding: 20px;
   margin-bottom: 40px;
 }
 
 .form-container {
   padding: 30px;
-  background: #f3f2f1;
+  background: govuk-colour('light-grey');
 }
 
 .white-space-pre-wrap {
@@ -187,4 +194,12 @@ ul>li>ul>li {
 
 .govuk-link {
   color: $department-for-education-link;
+}
+
+.govuk-link.phase-banner {
+  color: $department-for-education-link;
+}
+
+.govuk-link:visited.phase-banner {
+  color: $govuk-link-visited-colour;
 }

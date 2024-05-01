@@ -143,7 +143,7 @@
 
 .hf-card-container {
   background-color: govuk-colour("light-grey");
-  border-bottom: 3px solid #003A69;
+  border-bottom: 3px solid $department-for-education;
 }
 
 .hf-card-details {
@@ -164,7 +164,7 @@
 }
 
 a:hover .hf-card-container {
-  background-color: #003A69;
+  background-color: $department-for-education;
 }
 
 a:hover .hf-card-container .hf-card-details p,

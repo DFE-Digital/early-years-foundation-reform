@@ -19,7 +19,7 @@
 }
 
 .chevron-card {
-  border-top: 1px solid #b1b4b6;
+  border-top: 1px solid $govuk-border-colour;
   margin: 0 15px;
   padding: 5px 0 20px 0
 }
@@ -59,8 +59,8 @@
 }
 
 .chevron-card__link::before {
-  border-right: 3px solid #1d70b8;
-  border-top: 3px solid #1d70b8;
+  border-right: 3px solid $govuk-link-colour;
+  border-top: 3px solid $govuk-link-colour;
   content: "";
   display: block;
   height: 7px;
@@ -75,9 +75,9 @@
 }
 
 .chevron-card__link:hover::before {
-  border-color: #003078
+  border-color: $govuk-link-hover-colour;
 }
 
 .chevron-card__link:focus::before {
-  border-color: #0b0c0c
+  border-color: $govuk-text-colour
 }
