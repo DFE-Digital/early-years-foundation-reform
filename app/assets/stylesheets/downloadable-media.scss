@@ -14,38 +14,6 @@
   position: relative
 }
 
-@media print {
-  .gem-c-attachment {
-    font-family: sans-serif
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .gem-c-attachment {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.3157894737
-  }
-
-  .gem-c-attachment__thumbnail {
-    position: relative;
-    width: 140px;
-    height: auto;
-    max-width: 140px;
-    margin-right: 20px;
-    margin-bottom: 15px;
-    padding: 5px;
-    float: left
-  }
-}
-
-@media print {
-  .gem-c-attachment {
-    font-size: 14pt;
-    line-height: 1.15
-  }
-}
-
 .gem-c-attachment:after {
   content: "";
   display: block;
@@ -98,26 +66,6 @@
   margin: 0 0 15px
 }
 
-@media print {
-  .gem-c-attachment__title {
-    font-family: sans-serif
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .gem-c-attachment__title {
-    font-size: 27px;
-    font-size: 1.6875rem;
-    line-height: 1.1111111111;
-  }
-}
-
-@media print {
-  .gem-c-attachment__title {
-    font-size: 18pt;
-    line-height: 1.15;
-  }
-}
 
 .gem-c-attachment__link {
   line-height: 1.29;
@@ -133,22 +81,6 @@
   line-height: 1.25;
   margin: 0 0 15px;
   color: $govuk-secondary-text-colour;
-}
-
-@media print {
-  .gem-c-attachment__metadata {
-    font-family: sans-serif;
-    font-size: 14pt;
-    line-height: 1.15;
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .gem-c-attachment__metadata {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.3157894737;
-  }
 }
 
 .gem-c-attachment__metadata:last-of-type {
@@ -167,4 +99,67 @@
 .gem-c-attachment__abbr {
   text-decoration: none;
   cursor: help;
+}
+
+/*
+  ???
+  ==============================================================================
+
+  Alternative to collating the media query like this is to use the "include" within each definition as an override
+  @include govuk-media-query
+*/
+@media (min-width: 40.0625em) {
+  .gem-c-attachment {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737;
+  }
+
+  .gem-c-attachment__thumbnail {
+    position: relative;
+    width: 140px;
+    height: auto;
+    max-width: 140px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    padding: 5px;
+    float: left;
+  }
+
+  .gem-c-attachment__title {
+    font-size: 27px;
+    font-size: 1.6875rem;
+    line-height: 1.1111111111;
+  }
+
+  .gem-c-attachment__metadata {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737;
+  }
+}
+
+
+/*
+  ???
+  ==============================================================================
+*/
+@media print {
+  .gem-c-attachment {
+    font-family: sans-serif;
+    font-size: 14pt;
+    line-height: 1.15;
+  }
+
+  .gem-c-attachment__title {
+    font-family: sans-serif;
+    font-size: 18pt;
+    line-height: 1.15;
+  }
+
+  .gem-c-attachment__metadata {
+    font-family: sans-serif;
+    font-size: 14pt;
+    line-height: 1.15;
+  }
 }
