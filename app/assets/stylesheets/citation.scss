@@ -1,101 +1,87 @@
 .gem-c-metadata {
-  color: $govuk-text-colour;
+  color: $department-for-education-pre-header;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-size: 14px;
   font-size: .875rem;
   line-height: 1.1428571429;
+
+  a {
+    font-family: "GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: underline;
+    text-decoration-thickness: max(1px, .0625rem);
+    text-underline-offset: .1578em;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration-thickness: max(3px, .1875rem, .12em);
+    -webkit-text-decoration-skip-ink: none;
+    text-decoration-skip-ink: none;
+    -webkit-text-decoration-skip: none;
+    text-decoration-skip: none;
+  }
+
+  a:focus {
+    outline: 3px solid transparent;
+    color: #0b0c0c;
+    background-color: #fd0;
+    box-shadow: 0 -2px #fd0,0 4px #0b0c0c;
+    text-decoration: none;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    color: $department-for-education-pre-header;
+  }
+
+  a:link {
+    color: $department-for-education-pre-header;
+  }
+
+  a:visited {
+    color: $department-for-education-pre-header;
+  }
+
+  a:hover {
+    color: #003078; // $govuk-link-hover-colour (so is this even needed)
+  }
+
+  a:active {
+    color: $department-for-education-pre-header;
+  }
+
+  .gem-c-metadata:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
 }
 
 @media print {
   .gem-c-metadata {
-    color: $department-for-education-black;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 14pt;
+    line-height: 1.2;
   }
 }
 
-@media print {
-  .gem-c-metadata {
-    font-family: sans-serif
-  }
-}
 
 @media (min-width: 40.0625em) {
   .gem-c-metadata {
     font-size:16px;
     font-size: 1rem;
-    line-height: 1.25
+    line-height: 1.25;
+
+    a {
+      font-family: sans-serif
+    }
   }
 }
 
-@media print {
-  .gem-c-metadata {
-    font-size: 14pt;
-    line-height: 1.2
-  }
-}
-
-
-
-.gem-c-metadata:after {
-  content: "";
-  display: block;
-  clear: both
-}
-
-.gem-c-metadata a {
-  font-family: "GDS Transport",arial,sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-decoration: underline;
-  text-decoration-thickness: max(1px, .0625rem);
-  text-underline-offset: .1578em;
-  font-weight: bold
-}
-
-@media print {
-  .gem-c-metadata a {
-    font-family: sans-serif
-  }
-}
-
-.gem-c-metadata a:hover {
-  text-decoration-thickness: max(3px, .1875rem, .12em);
-  -webkit-text-decoration-skip-ink: none;
-  text-decoration-skip-ink: none;
-  -webkit-text-decoration-skip: none;
-  text-decoration-skip: none
-}
-
-.gem-c-metadata a:focus {
-  outline: 3px solid transparent;
-  color: $govuk-text-colour;
-  background-color: $department-for-education-yellow;
-  box-shadow: 0 -2px $department-for-education-yellow,0 4px $govuk-text-colour;
-  text-decoration: none;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone
-}
-
-.gem-c-metadata a:link {
-  color: $govuk-text-colour;
-}
-
-.gem-c-metadata a:visited {
-  color: $govuk-text-colour;
-}
-
-.gem-c-metadata a:hover {
-  color: $govuk-link-hover-colour;
-}
-
-.gem-c-metadata a:active {
-  color: $govuk-text-colour
-}
-
-.gem-c-metadata a:focus {
-  color: $govuk-text-colour
-}
 
 .gem-c-metadata .gem-c-metadata__definition-link {
   font-weight: normal
@@ -107,11 +93,11 @@
 }
 
 .gem-c-metadata--inverse {
-  color: $department-for-education-white
+  color: #fff
 }
 
 .gem-c-metadata--inverse a:link,.gem-c-metadata--inverse a:visited {
-  color: $department-for-education-white
+  color: #fff
 }
 
 .gem-c-metadata--inverse a:hover,.gem-c-metadata--inverse a:active {
@@ -119,7 +105,7 @@
 }
 
 .gem-c-metadata--inverse a:focus {
-  color: $govuk-text-colour
+  color: #0b0c0c
 }
 
 .gem-c-metadata--inverse-padded {
@@ -197,8 +183,8 @@ dl.gem-c-metadata__list {
 }
 
 .hf-citation {
-  background: $department-for-education-grey;
+  background: #eeeeee75;
   padding: 15px 10px 15px 20px;
   margin-top: 60px;
-  border-left: 5px solid $department-for-education-websafe;
+  border-left: 5px solid #347ca9;
 }
