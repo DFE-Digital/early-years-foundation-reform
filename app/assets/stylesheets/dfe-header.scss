@@ -7,6 +7,14 @@
   }
 }
 
+.dfe-header__logo {
+  order: 1;
+}
+
+.dfe-header__menu-toggle {
+  right: 0px;
+}
+
 .dfe-width-container {
   margin: 0 auto;
   max-width: $govuk-page-width;
@@ -50,14 +58,6 @@ header #service-name {
       margin-top: 0;
     }
   }
-}
-
-.dfe-header__logo {
-  order: 1;
-}
-
-.dfe-header__menu-toggle {
-  right: 0px;
 }
 
 @media (min-width: 61.875em) {
