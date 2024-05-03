@@ -93,19 +93,19 @@
 }
 
 .gem-c-metadata--inverse {
-  color: #fff
+  color: govuk-colour('white');
 }
 
 .gem-c-metadata--inverse a:link,.gem-c-metadata--inverse a:visited {
-  color: #fff
+  color: govuk-colour('white');
 }
 
 .gem-c-metadata--inverse a:hover,.gem-c-metadata--inverse a:active {
-  color: rgba(255,255,255,0.99)
+  color: govuk-colour('white');
 }
 
 .gem-c-metadata--inverse a:focus {
-  color: #0b0c0c
+  color: govuk-colour('black');
 }
 
 .gem-c-metadata--inverse-padded {
