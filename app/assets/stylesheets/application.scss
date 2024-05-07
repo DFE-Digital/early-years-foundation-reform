@@ -9,8 +9,6 @@ https://design-system.service.gov.uk/styles/colour/
 
 https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colours.scss
 */
-$department-for-education: #003a69;
-$department-for-education-websafe: #347ca9;
 
 $department-for-education-link: #155084;
 $department-for-education-pre-header: #0b0c0c;
@@ -31,7 +29,7 @@ $govuk-page-width: 1200px;
 @import 'govuk-frontend/govuk/all';
 @import 'dfe-frontend-alpha/packages/dfefrontend';
 
-$light-blue: tint($department-for-education-websafe, 90%);
+$light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
 @import 'dfe-header';
 
