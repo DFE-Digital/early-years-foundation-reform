@@ -11,13 +11,7 @@ https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colo
 */
 
 $department-for-education-link: #155084;
-$department-for-education-pre-header: #0b0c0c;
-
-$department-for-education-grey: #eeeeee75;
 $department-for-education-white-background: #ebf2f6;
-
-$department-for-education-black: #000;
-$department-for-education-grey-background: #F3F2F150;
 
 $govuk-new-link-styles: true;
 $govuk-page-width: 1200px;
@@ -34,15 +28,16 @@ $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 @import 'dfe-header';
 
 @import 'video';
-@import 'page-contents';
-@import 'citation';
 @import 'downloadable-media';
+@import 'image-card';
 
 @import 'print';
 @import 'card';
 @import 'side-nav';
 @import 'other-resources';
 @import 'cta';
+@import 'page-contents';
+@import 'citation';
 
 @import 'breadcrumbs';
 
@@ -191,12 +186,15 @@ ul>li>ul>li {
 
 .govuk-link {
   color: $department-for-education-link;
-}
 
-.govuk-link.phase-banner {
-  color: $department-for-education-link;
-}
+  .phase-banner {
+    color: $department-for-education-link;
+  }
 
-.govuk-link:visited.phase-banner {
-  color: $govuk-link-visited-colour;
+  :visited {
+    .phase-banner {
+      color: $govuk-link-visited-colour;
+    }
+  }
+
 }

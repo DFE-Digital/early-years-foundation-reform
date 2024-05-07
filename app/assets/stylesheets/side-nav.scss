@@ -4,22 +4,159 @@
   font-weight: 400;
   font-size: 16px;
   font-size: .875rem;
-  line-height: 1.14286
-}
+  line-height: 1.14286;
 
-.dfe-vertical-nav .dfe-vertical-nav--section-header {
-  color: $govuk-secondary-text-colour;
-  font-size: 19px;
-  line-height: 1.25;
-  font-weight: 600;
-  color: $govuk-secondary-text-colour;
-  margin-bottom: 15px;
-  padding-top: 0
-}
+  @include govuk-media-query($from: tablet) {
+    padding-left: 15px;
 
-@media (min-width: 40.0625em) {
-  .dfe-vertical-nav {
-    padding-left: 15px
+    &__theme {
+      font-size: 19px;
+      font-size: 1.1875rem;
+      line-height: 1.31579
+    }
+  }
+
+  @include govuk-media-query($until: tablet) {
+    margin-left: -15px;
+  }
+
+  &--section-header {
+    color: $govuk-secondary-text-colour;
+    font-size: 19px;
+    line-height: 1.25;
+    font-weight: 600;
+    color: $govuk-secondary-text-colour;
+    margin-bottom: 15px;
+    padding-top: 0;
+  }
+
+  &__section {
+    margin: 0 0 20px;
+    padding: 0;
+    list-style-type: none;
+
+    &--nested {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 7px 30px 8px 10px;
+    text-decoration: none;
+    margin-bottom: 5px;
+    color: govuk-organisation-colour('department-for-education', false);
+
+    :focus {
+      // background: inherit;
+      background: govuk-colour('yellow');
+      color: $govuk-text-colour;
+      text-decoration: none;
+      box-shadow: none;
+      outline: 0;
+    }
+
+    :active,
+    :hover {
+      color: $govuk-link-colour;
+      border-left-color: govuk-organisation-colour('department-for-education');
+      text-decoration: none;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+
+  &__section-item {
+    border-left: 4px solid $govuk-border-colour;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.25;
+
+    :hover {
+      border-left: 4px solid govuk-organisation-colour('department-for-education');
+    }
+
+    &--current {
+      border-left: 4px solid govuk-organisation-colour('department-for-education', false);
+      font-weight: 700;
+      background: $department-for-education-white-background;
+    }
+  }
+
+  &--count {
+    float: right;
+    background: $govuk-border-colour;
+    padding: 9px 5px 9px 5px;
+    border-radius: 0;
+    color: $govuk-text-colour;
+    font-weight: 700;
+    min-width: 25px;
+    text-align: center;
+    font-size: 12px;
+  
+    @include govuk-media-query($from: tablet) {
+      padding: 12px 8px 12px 8px;
+    }
+  }
+
+  &__section-item--current,
+  &__link {
+    border-left-color: govuk-organisation-colour('department-for-education', false);
+    font-weight: 700;
+    color: govuk-organisation-colour('department-for-education', false);
+  }
+
+  &__section-item--current,
+  &__link:hover {
+    text-decoration: none;
+  }
+
+  &__section--nested,
+  &__link {
+    padding-left: 20px;
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: -5px;
+  }
+
+  &__section--nested,
+  &__section-item::before {
+    content: "—";
+    margin-left: -20px;
+    color: $govuk-secondary-text-colour;
+  }
+
+  &__section,
+  &__section-item--current--child-active,
+  &__link {
+    font-weight: 400;
+  }
+
+  &__section {
+    margin-bottom: 0;
+  }
+
+  &__section,
+  &__section-item {
+    border-left: none;
+
+    :before {
+      content: "—";
+      margin-left: 0;
+      margin-right: 5px;
+    }
+  }
+
+  &__section,
+  &__section.dfe-vertical-nav__section-item--current {
+    border-left: none;
+    background: govuk-organisation-colour('department-for-education');
+  }
+
+  &__section,
+  &__section.dfe-vertical-nav__section-item--current,
+  &__link {
+    font-weight: 700;
   }
 }
 
@@ -28,106 +165,7 @@
     font-size: 14pt;
     line-height: 1.2
   }
-}
 
-@media (min-width: 40.0625em) {
-  .dfe-vertical-nav {
-    margin-left: -15px
-  }
-}
-
-.dfe-vertical-nav__section {
-  margin: 0 0 20px;
-  padding: 0;
-  list-style-type: none
-}
-
-.dfe-vertical-nav__link {
-  display: block;
-  padding: 7px 30px 8px 10px;
-  text-decoration: none;
-  margin-bottom: 5px;
-  color: govuk-organisation-colour('department-for-education', false);
-}
-
-.dfe-vertical-nav__section-item {
-  border-left: 4px solid $govuk-border-colour;
-  font-size: 16px;
-  font-size: 1rem;
-  line-height: 1.25
-}
-
-.dfe-vertical-nav__section-item:hover {
-  border-left: 4px solid govuk-organisation-colour('department-for-education');
-}
-
-.dfe-vertical-nav__link:focus {
-  background: inherit
-}
-
-.dfe-vertical-nav__section-item--current {
-  border-left: 4px solid govuk-organisation-colour('department-for-education', false);
-  font-weight: 700;
-  background: $department-for-education-white-background;
-}
-
-.dfe-vertical-nav__link:active,
-.dfe-vertical-nav__link:hover {
-  color: $govuk-link-colour;
-  border-left-color: govuk-organisation-colour('department-for-education');
-  text-decoration: none;
-  box-shadow: none;
-  outline: 0
-}
-
-.dfe-vertical-nav__link:focus {
-  background: govuk-colour('yellow');
-  color: $govuk-text-colour;
-  text-decoration: none;
-  box-shadow: none;
-  outline: 0
-}
-
-.dfe-vertical-nav__section-item--current .dfe-vertical-nav__link {
-  border-left-color: govuk-organisation-colour('department-for-education', false);
-  font-weight: 700;
-  color: govuk-organisation-colour('department-for-education', false);
-}
-
-.dfe-vertical-nav__section-item--current .dfe-vertical-nav__link:hover {
-  text-decoration: none
-}
-
-.dfe-vertical-nav__section--nested {
-  margin-bottom: 5px
-}
-
-.dfe-vertical-nav__section--nested .dfe-vertical-nav__link {
-  padding-left: 20px;
-  font-weight: 400;
-  margin-bottom: 0;
-  margin-top: -5px
-}
-
-.dfe-vertical-nav__section--nested .dfe-vertical-nav__section-item::before {
-  content: "—";
-  margin-left: -20px;
-  color: $govuk-secondary-text-colour;
-}
-
-.dfe-vertical-nav--count {
-  float: right;
-  background: $govuk-border-colour;
-  padding: 9px 5px 9px 5px;
-  border-radius: 0;
-  color: $govuk-text-colour;
-  font-weight: 700;
-  min-width: 25px;
-  text-align: center;
-  font-size: 12px
-}
-
-@media print {
   .dfe-vertical-nav__theme {
     font-family: sans-serif
   }
@@ -139,37 +177,6 @@
     font-size: 1.1875rem;
     line-height: 1.31579
   }
-
-  .dfe-vertical-nav--count {
-    padding: 12px 8px 12px 8px
-  }
-}
-
-.dfe-vertical-nav__section .dfe-vertical-nav__section-item--current--child-active .dfe-vertical-nav__link {
-  font-weight: 400
-}
-
-.dfe-vertical-nav__section .dfe-vertical-nav__section {
-  margin-bottom: 0
-}
-
-.dfe-vertical-nav__section .dfe-vertical-nav__section .dfe-vertical-nav__section-item {
-  border-left: none
-}
-
-.dfe-vertical-nav__section .dfe-vertical-nav__section .dfe-vertical-nav__section-item :before {
-  content: "—";
-  margin-left: 0;
-  margin-right: 5px
-}
-
-.dfe-vertical-nav__section .dfe-vertical-nav__section.dfe-vertical-nav__section-item--current {
-  border-left: none;
-  background: govuk-organisation-colour('department-for-education');
-}
-
-.dfe-vertical-nav__section .dfe-vertical-nav__section.dfe-vertical-nav__section-item--current .dfe-vertical-nav__link {
-  font-weight: 700
 }
 
 .dfe-vertical-nav,
@@ -179,31 +186,32 @@
 
 .menu-btn {
   display: none;
+
+  &:checked~.dfe-vertical-nav,
+  &:checked~.menu-icon .sm-close,
+  &:not(:checked)~.menu-icon .sm-open {
+    display: block;
+  }
+
+  &:not(:checked)~.dfe-vertical-nav,
+  &:checked~.menu-icon .sm-open,
+  &:not(:checked)~.menu-icon .sm-close {
+    display: none;
+  }
+
+  @include govuk-media-query($from: tablet) {
+    &:checked~.dfe-vertical-nav,
+    &:not(:checked)~.dfe-vertical-nav {
+      display: block;
+    }
+  }
 }
 
-.menu-btn:checked~.dfe-vertical-nav {
-  display: block;
-
-}
-
-.menu-btn:not(:checked)~.dfe-vertical-nav {
-  display: none
-}
-
-.menu-btn:checked~.menu-icon .sm-open {
-  display: none
-}
-
-.menu-btn:checked~.menu-icon .sm-close {
-  display: block
-}
-
-.menu-btn:not(:checked)~.menu-icon .sm-open {
-  display: block
-}
-
-.menu-btn:not(:checked)~.menu-icon .sm-close {
-  display: none
+@media (min-width: 40.0625em) {
+  .dfe-vertical-nav,
+  .content-with-side-menu {
+    margin-top: 0px;
+  }
 }
 
 label.menu-icon {
@@ -211,27 +219,12 @@ label.menu-icon {
   align-items: center;
   color: $govuk-link-colour;
   font-weight: bold;
-}
 
-label.menu-icon svg {
-  margin-right: 10px;
-}
-
-@media (min-width: 40.0625em) {
-  label.menu-icon {
+  @include govuk-media-query($from: tablet) {
     display: none;
   }
 
-  .menu-btn:checked~.dfe-vertical-nav {
-    display: block
-  }
-
-  .menu-btn:not(:checked)~.dfe-vertical-nav {
-    display: block
-  }
-
-  .dfe-vertical-nav,
-  .content-with-side-menu {
-    margin-top: 0px;
+  svg {
+    margin-right: 10px;
   }
 }

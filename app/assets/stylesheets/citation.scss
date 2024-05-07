@@ -1,5 +1,5 @@
 .gem-c-metadata {
-  color: $department-for-education-pre-header;
+  color: govuk-colour('black');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -33,15 +33,15 @@
     text-decoration: none;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
-    color: $department-for-education-pre-header;
+    color: govuk-colour('black');
   }
 
   a:link {
-    color: $department-for-education-pre-header;
+    color: govuk-colour('black');
   }
 
   a:visited {
-    color: $department-for-education-pre-header;
+    color: govuk-colour('black');
   }
 
   a:hover {
@@ -49,7 +49,7 @@
   }
 
   a:active {
-    color: $department-for-education-pre-header;
+    color: govuk-colour('black');
   }
 
   .gem-c-metadata:after {
@@ -58,17 +58,55 @@
     clear: both;
   }
 
-}
-
-@media print {
-  .gem-c-metadata {
-    color: #000;
-    font-family: sans-serif;
-    font-size: 14pt;
-    line-height: 1.2;
+  .direction-rtl {
+    direction: rtl;
+    text-align: start
   }
+
+  &-inverse {
+    color: govuk-colour('white');
+
+    a:link,
+    a:hover,
+    a:visited,
+    a:active {
+        color: govuk-colour('white');
+      }
+
+    a:focus {
+      color: govuk-colour('black');
+    }
+
+    &-padded {
+      padding: 10px;
+
+      .gem-c-metadata__list {
+        margin: 10px;
+      }
+    }
+  }
+
+  &__term {
+    margin-top: .5em;
+
+    .gem-c-metadata__definition {
+      line-height: 1.4;
+    }
+  }
+
+  &__definition {
+    margin: 0;
+  }
+
+  &__toggle-wrap {
+    display: none;
+  }
+
 }
 
+.gem-c-metadata .gem-c-metadata__definition-link {
+  font-weight: normal
+}
 
 @media (min-width: 40.0625em) {
   .gem-c-metadata {
@@ -80,53 +118,19 @@
       font-family: sans-serif
     }
   }
-}
 
-.gem-c-metadata .gem-c-metadata__definition-link {
-  font-weight: normal
-}
-
-.gem-c-metadata.direction-rtl {
-  direction: rtl;
-  text-align: start
-}
-
-.gem-c-metadata--inverse {
-  color: govuk-colour('white');
-}
-
-.gem-c-metadata--inverse a:link,.gem-c-metadata--inverse a:visited {
-  color: govuk-colour('white');
-}
-
-.gem-c-metadata--inverse a:hover,.gem-c-metadata--inverse a:active {
-  color: govuk-colour('white');
-}
-
-.gem-c-metadata--inverse a:focus {
-  color: govuk-colour('black');
-}
-
-.gem-c-metadata--inverse-padded {
-  padding: 10px
-}
-
-.gem-c-metadata--inverse-padded .gem-c-metadata__list {
-  margin: 10px
-}
-
-@media (min-width: 40.0625em) {
   .gem-c-metadata--inverse-padded .gem-c-metadata__list {
     margin:15px
   }
 }
 
-.gem-c-metadata__term,.gem-c-metadata__definition {
-  line-height: 1.4
-}
-
-.gem-c-metadata__term {
-  margin-top: .5em
+@media print {
+  .gem-c-metadata {
+    color: #000;
+    font-family: sans-serif;
+    font-size: 14pt;
+    line-height: 1.2;
+  }
 }
 
 @media (min-width: 40.0625em) {
@@ -135,13 +139,8 @@
     float: left;
     clear: left;
     padding-right: 5px;
-    margin-top: 0
+    margin-top: 0;
   }
-}
-
-.gem-c-metadata.direction-rtl .gem-c-metadata__term {
-  float: right;
-  clear: right
 }
 
 @media (min-width: 40.0625em) {
@@ -149,13 +148,7 @@
     padding-left:5px;
     padding-right: 0
   }
-}
 
-.gem-c-metadata__definition {
-  margin: 0
-}
-
-@media (min-width: 40.0625em) {
   .gem-c-metadata__definition:not(:last-of-type) {
     margin-bottom:5px
   }
@@ -165,16 +158,16 @@
   float: right
 }
 
-.gem-c-metadata__toggle-wrap {
-  display: none
-}
+.js-enabled {
+  .gem-c-metadata__toggle-wrap {
+    display: block;
+  }
 
-.js-enabled .gem-c-metadata__toggle-wrap {
-  display: block
-}
-
-.js-enabled .gem-c-metadata__toggle-items.js-hidden {
-  display: none
+  .gem-c-metadata__toggle-items {
+    .js-hidden {
+      display: none;
+    }
+  }
 }
 
 dl.gem-c-metadata__list {
