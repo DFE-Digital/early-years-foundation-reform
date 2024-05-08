@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $light-blue-background;
+  background-color: $light-blue;
 
   @include govuk-media-query($until: tablet) {
     flex-direction: column;
@@ -55,7 +55,7 @@
 }
 
 .hf-icon {
-  background: $light-blue-background;
+  background: $light-blue;
   display: flex;
   padding: 10px;
   border-radius: 50%;

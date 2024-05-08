@@ -21,12 +21,8 @@ $govuk-page-width: 1200px;
 $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
 // Colour with 7:1 contrast to meet WCAG 2.2 - this should be applied to all links with a blue background
-// $light-blue-link: #155084;
-$light-blue-link: tint(govuk-colour('dark-blue'), 10%);
-
-// Colour that should be used for cta-banner and side-nav current section item
-// $light-blue-background: #ebf2f6;
-$light-blue-background: tint(govuk-colour('light-blue'), 90%);
+// Original colour for light blue link - $light-blue-link: #155084;
+$light-blue-link: darken(govuk-colour('blue'), 11%);
 
 @import 'dfe-header';
 @import 'breadcrumbs';
