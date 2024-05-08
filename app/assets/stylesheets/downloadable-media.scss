@@ -14,7 +14,7 @@
   position: relative
 }
 
-.gem-c-attachment:after {
+.gem-c-attachment::after {
   content: "";
   display: block;
   clear: both

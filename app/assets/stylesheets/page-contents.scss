@@ -26,7 +26,7 @@
     padding-left: 25px;
     padding-right: 25px;
 
-    :before {
+    ::before {
       content: "—";
       position: absolute;
       left: 0;
@@ -51,15 +51,15 @@
 
 @media (max-width: 40.0525em) {
   .content-with-side-menu {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .mob-section {
     background: #f1f2f350;
     margin-top: -20px;
     margin-bottom: 20px;
-    padding: 20px 15px 0px;
-    border-bottom: 1px solid #ccc;
+    padding: 20px 15px 0;
+    border-bottom: 1px solid #cccccc;
   }
 }
 

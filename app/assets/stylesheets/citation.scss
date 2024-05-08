@@ -27,9 +27,8 @@
 
   a:focus {
     outline: 3px solid transparent;
-    color: #0b0c0c;
-    background-color: #fd0;
-    box-shadow: 0 -2px #fd0,0 4px #0b0c0c;
+    background-color: #ffdd00;
+    box-shadow: 0 -2px #ffdd00,0 4px #0b0c0c;
     text-decoration: none;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
@@ -52,7 +51,7 @@
     color: govuk-colour('black');
   }
 
-  .gem-c-metadata:after {
+  .gem-c-metadata::after {
     content: "";
     display: block;
     clear: both;
@@ -126,7 +125,7 @@
 
 @media print {
   .gem-c-metadata {
-    color: #000;
+    color: #000000;
     font-family: sans-serif;
     font-size: 14pt;
     line-height: 1.2;

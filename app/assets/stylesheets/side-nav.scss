@@ -21,7 +21,6 @@
   }
 
   &--section-header {
-    color: $govuk-secondary-text-colour;
     font-size: 19px;
     line-height: 1.25;
     font-weight: 600;
@@ -86,7 +85,7 @@
   &--count {
     float: right;
     background: $govuk-border-colour;
-    padding: 9px 5px 9px 5px;
+    padding: 9px 5px;
     border-radius: 0;
     color: $govuk-text-colour;
     font-weight: 700;
@@ -95,7 +94,7 @@
     font-size: 12px;
   
     @include govuk-media-query($from: tablet) {
-      padding: 12px 8px 12px 8px;
+      padding: 12px 8px;
     }
   }
 
@@ -140,7 +139,7 @@
   &__section-item {
     border-left: none;
 
-    :before {
+    ::before {
       content: "—";
       margin-left: 0;
       margin-right: 5px;
@@ -210,7 +209,7 @@
 @media (min-width: 40.0625em) {
   .dfe-vertical-nav,
   .content-with-side-menu {
-    margin-top: 0px;
+    margin-top: 0;
   }
 }
 

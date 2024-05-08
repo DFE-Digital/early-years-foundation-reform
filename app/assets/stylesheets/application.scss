@@ -81,7 +81,6 @@ main img {
   }
 
   @include govuk-media-query($until: tablet) {
-
     .govuk-grid-column-one-half>p,
     .govuk-grid-column-one-half>h2 {
       margin-left: govuk-spacing(2);
