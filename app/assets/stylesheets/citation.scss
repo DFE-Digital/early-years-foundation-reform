@@ -5,7 +5,37 @@
   font-weight: 400;
   font-size: 14px;
   font-size: .875rem;
-  line-height: 1.1428571429;
+  line-height: 1.1429;
+
+  @include govuk-media-query($from: tablet) {
+    font-size:16px;
+    font-size: 1rem;
+    line-height: 1.25;
+
+    a {
+      font-family: sans-serif;
+    }
+
+    &--inverse-padded .gem-c-metadata__list {
+      margin: 15px;
+    }
+
+    &__term {
+      box-sizing:border-box;
+      float: left;
+      clear: left;
+      padding-right: 5px;
+      margin-top: 0;
+    }
+
+    &__term .gem-c-metadata__definition {
+      line-height: 1.4;
+    }
+
+    &__definition:not(:last-of-type) {
+      margin-bottom:5px
+    }
+  }
 
   a {
     font-family: "GDS Transport",arial,sans-serif;
@@ -23,6 +53,7 @@
     text-decoration-skip-ink: none;
     -webkit-text-decoration-skip: none;
     text-decoration-skip: none;
+    color: $govuk-link-hover-colour;
   }
 
   a:focus {
@@ -41,10 +72,6 @@
 
   a:visited {
     color: govuk-colour('black');
-  }
-
-  a:hover {
-    color: #003078; // $govuk-link-hover-colour (so is this even needed)
   }
 
   a:active {
@@ -78,18 +105,10 @@
 
     &-padded {
       padding: 10px;
-
-      .gem-c-metadata__list {
-        margin: 10px;
-      }
     }
-  }
 
-  &__term {
-    margin-top: .5em;
-
-    .gem-c-metadata__definition {
-      line-height: 1.4;
+    &-padded &.gem-c-metadata__list {
+      margin: 10px;
     }
   }
 
@@ -107,19 +126,20 @@
   font-weight: normal
 }
 
+.gem-c-metadata.direction-rtl .gem-c-metadata__definition {
+  float: right
+}
+
 @media (min-width: 40.0625em) {
-  .gem-c-metadata {
-    font-size:16px;
-    font-size: 1rem;
-    line-height: 1.25;
-
-    a {
-      font-family: sans-serif
-    }
-  }
-
   .gem-c-metadata--inverse-padded .gem-c-metadata__list {
     margin:15px
+  }
+}
+
+@media (min-width: 40.0625em) {
+  .gem-c-metadata.direction-rtl .gem-c-metadata__term {
+    padding-left:5px;
+    padding-right: 0
   }
 }
 
@@ -130,31 +150,6 @@
     font-size: 14pt;
     line-height: 1.2;
   }
-}
-
-@media (min-width: 40.0625em) {
-  .gem-c-metadata__term {
-    box-sizing:border-box;
-    float: left;
-    clear: left;
-    padding-right: 5px;
-    margin-top: 0;
-  }
-}
-
-@media (min-width: 40.0625em) {
-  .gem-c-metadata.direction-rtl .gem-c-metadata__term {
-    padding-left:5px;
-    padding-right: 0
-  }
-
-  .gem-c-metadata__definition:not(:last-of-type) {
-    margin-bottom:5px
-  }
-}
-
-.gem-c-metadata.direction-rtl .gem-c-metadata__definition {
-  float: right
 }
 
 .js-enabled {

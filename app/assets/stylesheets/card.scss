@@ -17,18 +17,14 @@
     }
 
     .hf-card-details h3 {
-      color: $department-for-education-link;
+      color: $light-blue-link;
     }
 
-    &:hover {
-      .hf-card-container {
-        background-color: govuk-organisation-colour('department-for-education', false);
+    &:hover .hf-card-container {
+      background-color: govuk-organisation-colour('department-for-education', false);
 
-        .hf-card-details {
-          p, h3 {
-            color: govuk-colour('white');
-          }
-        }
+      .hf-card-details p, h3 {
+          color: govuk-colour('white');
       }
     }
   }

@@ -4,7 +4,7 @@
   font-weight: 400;
   font-size: 16px;
   font-size: .875rem;
-  line-height: 1.14286;
+  line-height: 1.1429;
 
   @include govuk-media-query($from: tablet) {
     padding-left: 15px;
@@ -12,7 +12,7 @@
     &__theme {
       font-size: 19px;
       font-size: 1.1875rem;
-      line-height: 1.31579
+      line-height: 1.3158;
     }
   }
 
@@ -33,6 +33,7 @@
     margin: 0 0 20px;
     padding: 0;
     list-style-type: none;
+    margin-bottom: 0;
 
     &--nested {
       margin-bottom: 5px;
@@ -46,7 +47,7 @@
     margin-bottom: 5px;
     color: govuk-organisation-colour('department-for-education', false);
 
-    :focus {
+    &:focus {
       // background: inherit;
       background: govuk-colour('yellow');
       color: $govuk-text-colour;
@@ -55,8 +56,8 @@
       outline: 0;
     }
 
-    :active,
-    :hover {
+    &:active,
+    &:hover {
       color: $govuk-link-colour;
       border-left-color: govuk-organisation-colour('department-for-education');
       text-decoration: none;
@@ -78,7 +79,7 @@
     &--current {
       border-left: 4px solid govuk-organisation-colour('department-for-education', false);
       font-weight: 700;
-      background: $department-for-education-white-background;
+      background: $light-blue-background;
     }
   }
 
@@ -131,10 +132,6 @@
     font-weight: 400;
   }
 
-  &__section {
-    margin-bottom: 0;
-  }
-
   &__section,
   &__section-item {
     border-left: none;
@@ -174,7 +171,7 @@
   .dfe-vertical-nav__theme {
     font-size: 19px;
     font-size: 1.1875rem;
-    line-height: 1.31579
+    line-height: 1.3158;
   }
 }
 

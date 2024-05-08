@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $department-for-education-white-background;
+  background-color: $light-blue-background;
 
   @include govuk-media-query($until: tablet) {
     flex-direction: column;
@@ -55,7 +55,7 @@
 }
 
 .hf-icon {
-  background: $department-for-education-white-background;
+  background: $light-blue-background;
   display: flex;
   padding: 10px;
   border-radius: 50%;

@@ -1,17 +1,12 @@
-/* $govuk-global-styles: true;
-$govuk-assets-path: "/";
-*/
+// $govuk-global-styles: true;
+// $govuk-assets-path: "/";
 
-/*
-https://frontend.design-system.service.gov.uk/sass-api-reference
-https://design.education.gov.uk/design-system/dfe-frontend
-https://design-system.service.gov.uk/styles/colour/
+// https://frontend.design-system.service.gov.uk/sass-api-reference
+// https://design.education.gov.uk/design-system/dfe-frontend
+// https://design-system.service.gov.uk/styles/colour/
 
-https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colours.scss
-*/
+// https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colours.scss
 
-$department-for-education-link: #155084;
-$department-for-education-white-background: #ebf2f6;
 
 $govuk-new-link-styles: true;
 $govuk-page-width: 1200px;
@@ -25,21 +20,29 @@ $govuk-page-width: 1200px;
 
 $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
+// Colour with 7:1 contrast to meet WCAG 2.2 - this should be applied to all links with a blue background
+// $light-blue-link: #155084;
+$light-blue-link: tint(govuk-colour('dark-blue'), 10%);
+
+// Colour that should be used for cta-banner and side-nav current section item
+// $light-blue-background: #ebf2f6;
+$light-blue-background: tint(govuk-colour('light-blue'), 90%);
+
 @import 'dfe-header';
+@import 'breadcrumbs';
 
 @import 'video';
 @import 'downloadable-media';
 @import 'image-card';
 
-@import 'print';
 @import 'card';
 @import 'side-nav';
+
+@import 'citation';
 @import 'other-resources';
+@import 'print';
 @import 'cta';
 @import 'page-contents';
-@import 'citation';
-
-@import 'breadcrumbs';
 
 * {
   font-family:
@@ -70,10 +73,6 @@ main img {
   .govuk-notification-banner {
     margin-top: govuk-spacing(6);
     margin-bottom: govuk-spacing(-4);
-  }
-
-  #assessment-results .govuk-notification-banner {
-    margin-bottom: govuk-spacing(8);
   }
 
   #flash .govuk-notification-banner {
@@ -120,7 +119,6 @@ main img {
       margin: 0;
     }
   }
-
 }
 
 .float-right {
@@ -181,19 +179,4 @@ ul>li>ul>li {
 
 .govuk-footer__copyright-logo {
   display: none;
-}
-
-.govuk-link {
-  color: $department-for-education-link;
-
-  .phase-banner {
-    color: $department-for-education-link;
-  }
-
-  :visited {
-    .phase-banner {
-      color: $govuk-link-visited-colour;
-    }
-  }
-
 }

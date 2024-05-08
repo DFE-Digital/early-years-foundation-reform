@@ -11,26 +11,39 @@
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25;
-  position: relative
-}
-
-.gem-c-attachment::after {
-  content: "";
-  display: block;
-  clear: both
-}
-
-.gem-c-attachment .govuk-details {
-  margin: 15px 0
-}
-
-.gem-c-attachment__thumbnail {
   position: relative;
-  width: auto;
-  margin-right: 25px;
-  margin-bottom: 15px;
-  padding: 5px;
-  float: left
+
+  @include govuk-media-query($from: tablet) {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.3158;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  &__thumbnail {
+    position: relative;
+    width: auto;
+    margin-right: 25px;
+    margin-bottom: 15px;
+    padding: 5px;
+    float: left;
+
+    @include govuk-media-query($from: tablet) {
+      position: relative;
+      width: 140px;
+      height: auto;
+      max-width: 140px;
+      margin-right: 20px;
+      margin-bottom: 15px;
+      padding: 5px;
+      float: left;
+    }
+  }
 }
 
 .gem-c-attachment__thumbnail-image {
@@ -62,13 +75,14 @@
   font-weight: 400;
   font-size: 18px;
   font-size: 1.125rem;
-  line-height: 1.1111111111;
-  margin: 0 0 15px
-}
+  line-height: 1.1111;
+  margin: 0 0 15px;
 
-
-.gem-c-attachment__link {
-  line-height: 1.29;
+  @include govuk-media-query($from: tablet) {
+    font-size: 27px;
+    font-size: 1.6875rem;
+    line-height: 1.1111;
+  }
 }
 
 .gem-c-attachment__metadata {
@@ -81,10 +95,16 @@
   line-height: 1.25;
   margin: 0 0 15px;
   color: $govuk-secondary-text-colour;
-}
 
-.gem-c-attachment__metadata:last-of-type {
-  margin-bottom: 0
+  @include govuk-media-query($from: tablet) {
+    font-size: 19px;
+    font-size: 1.1875rem;
+    line-height: 1.3158;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }
 
 .gem-c-attachment__metadata .gem-c-attachment__attribute {
@@ -96,54 +116,19 @@
   margin-bottom: 0;
 }
 
+.gem-c-attachment__link {
+  line-height: 1.29;
+}
+
 .gem-c-attachment__abbr {
   text-decoration: none;
   cursor: help;
 }
 
-/*
-  ???
-  ==============================================================================
-
-  Alternative to collating the media query like this is to use the "include" within each definition as an override
-  @include govuk-media-query
-*/
-@media (min-width: 40.0625em) {
-  .gem-c-attachment {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.3157894737;
-  }
-
-  .gem-c-attachment__thumbnail {
-    position: relative;
-    width: 140px;
-    height: auto;
-    max-width: 140px;
-    margin-right: 20px;
-    margin-bottom: 15px;
-    padding: 5px;
-    float: left;
-  }
-
-  .gem-c-attachment__title {
-    font-size: 27px;
-    font-size: 1.6875rem;
-    line-height: 1.1111111111;
-  }
-
-  .gem-c-attachment__metadata {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.3157894737;
-  }
+.gem-c-attachment .govuk-details {
+  margin: 15px 0
 }
 
-
-/*
-  ???
-  ==============================================================================
-*/
 @media print {
   .gem-c-attachment {
     font-family: sans-serif;

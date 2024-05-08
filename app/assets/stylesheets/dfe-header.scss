@@ -98,6 +98,15 @@ header #service-name {
 .dfe-content-page--header {
   background: $light-blue;
 
+  .govuk-phase-banner__text a:active {
+    color: $light-blue-link; // Background contrast 7:1 to meet WCAG 2.2
+  }
+
+  // Using this to check link colour
+  // .govuk-phase-banner__text a:visited {
+  //   color: $light-blue-link;
+  // }
+
   img {
     max-width: 100%;
     width: 100%;
