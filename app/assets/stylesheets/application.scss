@@ -22,7 +22,7 @@ $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
 // Colour with 7:1 contrast to meet WCAG 2.2 - this should be applied to all links with a blue background
 // Original colour for light blue link - $light-blue-link: #155084;
-$light-blue-link: darken(govuk-colour('blue'), 11%);
+$light-blue-link: darken($govuk-link-colour, 11%);
 
 @import 'dfe-header';
 @import 'breadcrumbs';
