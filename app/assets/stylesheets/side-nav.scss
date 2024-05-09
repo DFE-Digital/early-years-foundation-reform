@@ -44,7 +44,7 @@
     &:active,
     &:hover {
       color: $govuk-link-colour;
-      border-left-color: $govuk-link-colour;;
+      border-left-color: $govuk-link-colour;
       text-decoration: none;
       box-shadow: none;
       outline: 0;
@@ -102,7 +102,7 @@
 }
 
 .dfe-vertical-nav__section--nested .dfe-vertical-nav__section-item::before {
-  content: "—";
+  content: '—';
   margin-left: -20px;
   color: $govuk-secondary-text-colour;
 }
@@ -120,7 +120,7 @@
 }
 
 .dfe-vertical-nav__section .dfe-vertical-nav__section .dfe-vertical-nav__section-item ::before {
-  content: "—";
+  content: '—';
   margin-left: 0;
   margin-right: 5px;
 }
