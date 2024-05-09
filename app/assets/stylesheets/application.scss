@@ -24,7 +24,7 @@ $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 // Original colour for light blue link - $light-blue-link: #155084;
 $light-blue-link: darken($govuk-link-colour, 11%);
 
-@import 'dfe-header';
+@import 'header';
 @import 'breadcrumbs';
 
 @import 'video';

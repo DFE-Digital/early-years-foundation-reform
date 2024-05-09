@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-xdescribe 'ApplicationHelper', type: :helper do
+describe 'ApplicationHelper', type: :helper do
   describe '#html_title' do
     it 'shows content' do
-      expect(page).to have_content 'content within html_title'
+      expect(helper.html_title(:foo, 'bar')).to have_content 'Help for early years providers : foo : bar'
     end
   end
 end

@@ -66,6 +66,7 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'show_me_the_cookies'
   gem 'simplecov', require: false
   gem 'webdrivers'
 end
