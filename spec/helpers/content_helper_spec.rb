@@ -78,4 +78,54 @@ describe 'ContentHelper', type: :helper do
       end
     end
   end
+
+  describe 'Not found error' do
+    subject(:not_found_resource) { helper.not_found }
+
+    context 'with plain text' do
+      it 'returns text for not found' do
+        expect(not_found_resource.title).to eq 'Page not found'
+      end
+    end
+  end
+
+  describe 'Internal server error' do
+    subject(:internal_server_resource) { helper.internal_server_error }
+
+    context 'with plain text' do
+      it 'returns text for internal server error' do
+        expect(internal_server_resource.title).to eq 'Sorry, there is a problem with the website'
+      end
+    end
+  end
+
+  describe 'Unprocessable entity error' do
+    subject(:unprocessable_entity_resource) { helper.unprocessable_entity }
+
+    context 'with plain text' do
+      it 'returns text for unprocessible entity error' do
+        expect(unprocessable_entity_resource.title).to eq 'The change you wanted was rejected'
+      end
+    end
+  end
+
+  describe 'Service unavailable error' do
+    subject(:service_unavailable_resource) { helper.service_unavailable }
+
+    context 'with plain text' do
+      it 'returns text for service unavailable' do
+        expect(service_unavailable_resource.title).to eq 'Sorry, the site is unavailable'
+      end
+    end
+  end
+
+  describe 'Null resource' do
+    subject(:null_resource) { helper.null_resource('example') }
+
+    context 'with name passed in' do
+      it 'returns content using name' do
+        expect(null_resource.title).to eq 'Title for example'
+      end
+    end
+  end
 end

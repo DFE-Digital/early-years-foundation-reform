@@ -1,9 +1,7 @@
 .govuk-breadcrumbs li {
   font-size: 16px;
-}
 
-@media (max-width: 40.0525em) {
- .govuk-breadcrumbs li {
+  @include govuk-media-query($until: tablet) {
     font-size: 14px;
   }
 }

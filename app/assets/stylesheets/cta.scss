@@ -2,36 +2,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ebf2f6;
+  background-color: $light-blue;
+
+  @include govuk-media-query($until: tablet) {
+    flex-direction: column;
+  }
 }
 
 .cta-banner-text {
   padding-left: 40px;
   padding-right: 40px;
-}
 
-.govuk-caption-m {
-  color: $department-for-education-pre-header;
+  @include govuk-media-query($until: tablet) {
+    order: 2;
+    padding: 20px;
+  }
 }
 
 .cta-banner-img {
   width: 40%;
   display: flex;
-}
 
-@media (max-width: 40.0525em) {
-  .cta-banner {
-    flex-direction: column;
-  }
-
-  .cta-banner-img {
+  @include govuk-media-query($until: tablet) {
     width: 100%;
     order: 1;
-  }
-
-  .cta-banner-text {
-    order: 2;
-    padding: 20px;
   }
 }
 
@@ -50,7 +44,7 @@
 }
 
 .info-notice {
-  border-left: 10px solid #b1b4b6;
+  border-left: 10px solid $govuk-border-colour;
   padding: 1em 0 1em 1em;
   margin: 2em 0;
 }
@@ -61,12 +55,16 @@
 }
 
 .hf-icon {
-  background: #ebf2f6;
+  background: $light-blue;
   display: flex;
   padding: 10px;
   border-radius: 50%;
+
+  path {
+    fill: govuk-organisation-colour('department-for-education');
+  }
 }
 
-.hf-icon path {
-  fill: #347CA9;
+.govuk-caption-m {
+  color: $govuk-text-colour
 }

@@ -1,6 +1,6 @@
 @media print {
   @page {
-    size: A4 landscape;
+    size: a4 landscape;
     margin-top: 0;
   }
 
@@ -22,7 +22,7 @@
   font-weight: 400;
   font-size: 14px;
   font-size: .875rem;
-  line-height: 1.1428571429;
+  line-height: 1.1429;
 
   &:hover {
     background-color: govuk-colour('light-grey');

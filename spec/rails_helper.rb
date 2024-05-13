@@ -68,4 +68,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Devise::Test::ControllerHelpers, type: :controller
+
+  # enable cookie banner
+  config.include ShowMeTheCookies, type: :system
 end

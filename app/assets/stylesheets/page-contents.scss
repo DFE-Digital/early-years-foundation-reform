@@ -1,83 +1,66 @@
 .contents-on-page {
   padding: 40px;
-  border: 1px solid #b1b4b6;
+  border: 1px solid $govuk-border-colour;
   border-radius: 6px;
-  background-color: #F3F2F150;
-}
+  background-color:  tint(govuk-colour('light-grey'), 50%);
 
-@media (max-width: 40.0525em) {
-  .contents-on-page {
-      padding: 20px;
+  @include govuk-media-query($until: tablet) {
+    padding: 20px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+
+    @include govuk-media-query($until: tablet) {
+      font-size: 14px;
+    }
+  }
+
+  li {
+    padding-top: 10px;
+    line-height: 1.3;
+    list-style-type: none;
+    position: relative;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    ::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      width: 20px;
+      overflow: hidden
+    }
   }
 }
 
-.contents-on-page ul {
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-}
+.app-back-to-top {
+  margin-top: govuk-spacing(9);
 
-.contents-on-page li {
-  padding-top: 10px;
-  line-height: 1.3;
-  list-style-type: none;
-  position: relative;
-  padding-left: 25px;
-  padding-right: 25px
-}
-
-.contents-on-page li:before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  width: 20px;
-  overflow: hidden
+  &__icon {
+    display: inline-block;
+    width: .8em;
+    height: 1em;
+    margin-top: -5px;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
 }
 
 @media (max-width: 40.0525em) {
   .content-with-side-menu {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .mob-section {
     background: #f1f2f350;
     margin-top: -20px;
     margin-bottom: 20px;
-    padding: 20px 15px 0px;
-    border-bottom: 1px solid #ccc;
+    padding: 20px 15px 0;
+    border-bottom: 1px solid #cccccc;
   }
-
-  .contents-on-page {
-    padding: 20px;
-  }
-}
-
-@media (max-width: 40.0525em) {
-  .contents-on-page ul {
-     font-size: 14px;
-   }
- }
-
-.contents-on-page li {
-  padding-top: 10px;
-  line-height: 1.3;
-  list-style-type: none;
-  position: relative;
-  padding-left: 25px;
-  padding-right: 25px
-}
-
-.app-back-to-top {
-  margin-top: govuk-spacing(9);
-}
-
-.app-back-to-top__icon {
-  display: inline-block;
-  width: .8em;
-  height: 1em;
-  margin-top: -5px;
-  margin-right: 10px;
-  vertical-align: middle;
 }
 
 ul li ol,

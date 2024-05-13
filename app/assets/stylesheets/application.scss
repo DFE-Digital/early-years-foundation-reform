@@ -1,19 +1,12 @@
-/* $govuk-global-styles: true;
-$govuk-assets-path: "/";
-*/
+// $govuk-global-styles: true;
+// $govuk-assets-path: '/';
 
-/*
-https://frontend.design-system.service.gov.uk/sass-api-reference
-https://design.education.gov.uk/design-system/dfe-frontend
-https://design-system.service.gov.uk/styles/colour/
+// https://frontend.design-system.service.gov.uk/sass-api-reference
+// https://design.education.gov.uk/design-system/dfe-frontend
+// https://design-system.service.gov.uk/styles/colour/
 
-https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colours.scss
-*/
-$department-for-education: #003a69;
-$department-for-education-websafe: #347ca9;
+// https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colours.scss
 
-$department-for-education-link: #155084;
-$department-for-education-pre-header: #0b0c0c;
 
 $govuk-new-link-styles: true;
 $govuk-page-width: 1200px;
@@ -25,22 +18,27 @@ $govuk-page-width: 1200px;
 @import 'govuk-frontend/govuk/all';
 @import 'dfe-frontend-alpha/packages/dfefrontend';
 
-$light-blue: tint($department-for-education-websafe, 90%);
+$light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
-@import 'dfe-header';
+// Colour with 7:1 contrast to meet WCAG 2.2 - this should be applied to all links with a blue background
+// Original colour for light blue link - $light-blue-link: #155084;
+$light-blue-link: darken($govuk-link-colour, 11%);
+
+@import 'header';
+@import 'breadcrumbs';
 
 @import 'video';
-@import 'page-contents';
-@import 'citation';
 @import 'downloadable-media';
+@import 'image-card';
 
-@import 'print';
 @import 'card';
 @import 'side-nav';
-@import 'other-resources';
-@import 'cta';
 
-@import 'breadcrumbs';
+@import 'citation';
+@import 'other-resources';
+@import 'print';
+@import 'cta';
+@import 'page-contents';
 
 * {
   font-family:
@@ -73,16 +71,11 @@ main img {
     margin-bottom: govuk-spacing(-4);
   }
 
-  #assessment-results .govuk-notification-banner {
-    margin-bottom: govuk-spacing(8);
-  }
-
   #flash .govuk-notification-banner {
     margin-bottom: govuk-spacing(4);
   }
 
   @include govuk-media-query($until: tablet) {
-
     .govuk-grid-column-one-half>p,
     .govuk-grid-column-one-half>h2 {
       margin-left: govuk-spacing(2);
@@ -122,7 +115,6 @@ main img {
       margin: 0;
     }
   }
-
 }
 
 .float-right {
@@ -151,14 +143,14 @@ ul>li>ul>li {
 
 .log-entry {
   border: 0.5px solid;
-  border-color: #b1b4b6;
+  border-color: $govuk-border-colour;
   padding: 20px;
   margin-bottom: 40px;
 }
 
 .form-container {
   padding: 30px;
-  background: #f3f2f1;
+  background: govuk-colour('light-grey');
 }
 
 .white-space-pre-wrap {
@@ -183,8 +175,4 @@ ul>li>ul>li {
 
 .govuk-footer__copyright-logo {
   display: none;
-}
-
-.govuk-link {
-  color: $department-for-education-link;
 }
