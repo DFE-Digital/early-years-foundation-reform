@@ -11,7 +11,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
     "dfe-frontend-alpha": "^1.0.1",
-    "esbuild": "^0.19.11",
+    "esbuild": "^0.21.3",
     "govuk-frontend": "^4.7.0",
     "jquery": "^3.7.1",
     "sass": "^1.70.0",
