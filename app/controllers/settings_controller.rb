@@ -6,7 +6,7 @@ class SettingsController < ApplicationController
       flash[:notice] = t(:preferences_saved_html, scope: 'settings')
     end
 
-    redirect_to request_path
+    redirect_to request_path || root_path
   end
 
 private
