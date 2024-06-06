@@ -37,15 +37,17 @@ html.govuk-template lang='en'
     
     = navigation
 
-    .dfe-content-page--header class='govuk-!-padding-bottom-7'
+    main role='main'
+      .dfe-content-page--header class='govuk-!-padding-bottom-7'
+        .dfe-width-container
+          = render 'layouts/banner'
+          = yield :hero
+
       .dfe-width-container
-        = render 'layouts/banner'
-        = yield :hero
+        main#main-content.govuk-main-wrapper role='main'
+          = yield
 
-    .dfe-width-container
-      main#main-content.govuk-main-wrapper role='main'
-        = yield
-
-    = yield :other_resources
+    aside role='complementary'
+      = yield :other_resources
 
     = render 'layouts/footer'
