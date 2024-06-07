@@ -40,7 +40,7 @@ html.govuk-template lang='en'
     .dfe-width-container
       = render 'layouts/banner'
 
-      main#main-content.govuk-main-wrapper role='main'
+      .govuk-main-wrapper
         = yield
 
     = yield :other_resources

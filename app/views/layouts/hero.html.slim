@@ -43,11 +43,9 @@ html.govuk-template lang='en'
           = render 'layouts/banner'
           = yield :hero
 
-      .dfe-width-container
-        main#main-content.govuk-main-wrapper role='main'
-          = yield
+      .dfe-width-container.govuk-main-wrapper
+        = yield
 
-    aside role='complementary'
-      = yield :other_resources
+    = yield :other_resources
 
     = render 'layouts/footer'
