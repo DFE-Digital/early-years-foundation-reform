@@ -5471,7 +5471,7 @@ __metadata:
     "@hotwired/turbo-rails": "npm:^7.3.0"
     dfe-frontend-alpha: "npm:^1.0.1"
     esbuild: "npm:^0.19.11"
-    govuk-frontend: "npm:^4.7.0"
+    govuk-frontend: "npm:^5.4.0"
     jquery: "npm:^3.7.1"
     npm-run-all: "npm:^4.1.5"
     postcss: "npm:8"
@@ -6191,10 +6191,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"govuk-frontend@npm:^4.5.0, govuk-frontend@npm:^4.7.0":
+"govuk-frontend@npm:^4.5.0":
   version: 4.7.0
   resolution: "govuk-frontend@npm:4.7.0"
   checksum: 02038b797e157dfa2c959464ecb5b9998ec5b1e126a97f14315b504e0b5a9d1d962c7490dca38b53b6f6bbc2fa13944d9974244ab2f819328e94782ac66bf505
+  languageName: node
+  linkType: hard
+
+"govuk-frontend@npm:^5.4.0":
+  version: 5.4.0
+  resolution: "govuk-frontend@npm:5.4.0"
+  checksum: 4ba7a0458e1501f63bf198c4982a2ee35beefb1f8707234a8643e58e4579c2a0ddf3985252185f48221d389401a380a28a81ed92865470021faea622d549fbd7
   languageName: node
   linkType: hard
 
