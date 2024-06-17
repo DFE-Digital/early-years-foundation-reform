@@ -40,6 +40,7 @@
 .govuk-grid-column-full
   hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
 
-aside role='complementary'
-  = render 'shared/ctas'
-  = render 'shared/content_footer'
+  - content_for(:shared_ctas) do
+    .dfe-width-container
+      = render partial: 'shared/ctas'
+      = render partial: 'shared/content_footer'

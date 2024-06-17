@@ -1,7 +1,7 @@
 - content_for(:page_title) do 
   = page.title
 
-- content_for(:hero) do 
+- content_for(:hero) do
   = render partial: 'hero', locals: { title: page.hero_title, description: page.hero_description }
 
 = render 'debug'
@@ -16,7 +16,7 @@
 - if page.slug == 'cookie-policy'
   = render 'settings/cookie_policy'
 
-aside role='complementary'
-  = render 'shared/ctas'
-
-  = render 'shared/other_resources'
+- content_for(:shared_ctas) do
+  .dfe-width-container
+    = render partial: 'shared/ctas'
+    = render partial: 'shared/other_resources'
