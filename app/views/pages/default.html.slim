@@ -4,6 +4,11 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { title: page.hero_title, description: page.hero_description }
 
+- content_for(:aside) do
+  .dfe-width-container
+    = render partial: 'shared/ctas'
+    = render partial: 'shared/content_footer'
+
 - if page.introduction.present?
   = m(page.introduction)
 
@@ -26,8 +31,3 @@
 
 .govuk-grid-column-full
   hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
-
-- content_for(:shared_ctas) do
-  .dfe-width-container
-    = render partial: 'shared/ctas'
-    = render partial: 'shared/content_footer'

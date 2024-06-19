@@ -4,6 +4,11 @@
 - content_for(:hero) do
   = render partial: 'hero', locals: { title: page.hero_title, description: page.hero_description }
 
+- content_for(:aside) do
+  .dfe-width-container
+    = render partial: 'shared/ctas'
+    = render partial: 'shared/other_resources'
+
 = render 'debug'
 
 = render 'layouts/flash'
@@ -15,8 +20,3 @@
 
 - if page.slug == 'cookie-policy'
   = render 'settings/cookie_policy'
-
-- content_for(:shared_ctas) do
-  .dfe-width-container
-    = render partial: 'shared/ctas'
-    = render partial: 'shared/other_resources'
