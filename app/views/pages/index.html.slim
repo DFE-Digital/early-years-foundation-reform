@@ -5,8 +5,8 @@
   = render partial: 'hero', locals: { title: page.hero_title, description: page.hero_description }
 
 - content_for(:aside) do
-  .dfe-width-container
-    = render partial: 'shared/ctas'
+    .dfe-width-container
+      = render partial: 'shared/ctas'
     = render partial: 'shared/other_resources'
 
 = render 'debug'
