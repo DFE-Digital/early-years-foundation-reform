@@ -33,16 +33,14 @@ html.govuk-template lang='en'
     = render 'layouts/analytics_body'
     = render 'layouts/cookie_banner'
 
-    = govuk_skip_link 
+    = govuk_skip_link(href: '#main-content')
     
     = navigation
 
     .dfe-width-container
       = render 'layouts/banner'
 
-      main#main-content.govuk-main-wrapper role='main'
+      .dfe-width-container class='govuk-!-padding-top-7 govuk-!-padding-bottom-7'
         = yield
-
-    = yield :other_resources
 
     = render 'layouts/footer'

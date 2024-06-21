@@ -33,19 +33,19 @@ html.govuk-template lang='en'
     = render 'layouts/analytics_body'
     = render 'layouts/cookie_banner'
 
-    = govuk_skip_link 
+    = govuk_skip_link(href: '#main-content')
     
     = navigation
 
-    .dfe-content-page--header class='govuk-!-padding-bottom-7'
-      .dfe-width-container
-        = render 'layouts/banner'
-        = yield :hero
+    main#main-content role='main'
+      .dfe-content-page--header class='govuk-!-padding-bottom-7'
+        .dfe-width-container
+          = render 'layouts/banner'
+          = yield :hero
 
-    .dfe-width-container
-      main#main-content.govuk-main-wrapper role='main'
+      .dfe-width-container class='govuk-!-padding-top-7 govuk-!-padding-bottom-7'
         = yield
-
-    = yield :other_resources
+    aside role='complementary'
+      = yield :aside
 
     = render 'layouts/footer'

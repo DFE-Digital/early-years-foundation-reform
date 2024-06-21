@@ -4,6 +4,11 @@
 - content_for(:hero) do 
   = render partial: 'hero', locals: { title: page.hero_title, description: page.hero_description }
 
+- content_for(:aside) do
+  .dfe-width-container
+    = render partial: 'shared/ctas'
+    = render partial: 'shared/content_footer'
+
 .govuk-grid-row
   .govuk-grid-column-one-quarter.sticky.mob-section
     input#menu-icon-chk.menu-btn[type="checkbox" name="menu-icon" checked]
@@ -39,6 +44,3 @@
 
 .govuk-grid-column-full
   hr.govuk-section-break.govuk-section-break--xl.govuk-section-break--visible
-
-= render 'shared/ctas'
-= render 'shared/content_footer'

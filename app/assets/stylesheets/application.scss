@@ -61,7 +61,12 @@ $light-blue-link: darken($govuk-link-colour, 11%);
   }
 }
 
-main img {
+main img,
+aside img {
+  max-width: 100%;
+}
+
+.full-width-image {
   max-width: 100%;
 }
 

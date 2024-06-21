@@ -1,6 +1,9 @@
 - content_for(:page_title) do 
   = page.title
 
+- content_for(:aside) do 
+  = render partial: 'shared/other_resources'
+
 - content_for :hero do
   .govuk-grid-row class='govuk-!-margin-top-9'
     .govuk-grid-column-three-quarters
@@ -17,6 +20,5 @@
 
 = render 'pages/cards'
 
-= render 'shared/ctas'
-
-= render 'shared/other_resources'
+.dfe-width-container
+  = render 'shared/ctas'
