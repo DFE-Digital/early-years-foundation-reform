@@ -15,19 +15,9 @@
   right: 0;
 }
 
-.dfe-width-container {
-  margin: 0 auto;
-  max-width: $govuk-page-width;
-
-  @include govuk-media-query($until: tablet) {
-    padding-left: govuk-spacing(3);
-    padding-right: govuk-spacing(3);
-  }
-
-  &.dfe-header__container.dfe-header-f-header-flex {
-    display: flex;
-    flex-wrap: wrap;
-  }
+.dfe-width-container .dfe-header__container .dfe-header-f-header-flex {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 header #service-name {

@@ -28,7 +28,7 @@ html.govuk-template lang='en'
 
   body#hero-layout.govuk-template__body
     script
-      | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+      | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled govuk-frontend-supported' : 'js-enabled govuk-frontend-supported');
 
     = render 'layouts/analytics_body'
     = render 'layouts/cookie_banner'

@@ -3,16 +3,16 @@
   "packageManager": "yarn@4.0.2",
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules --quiet-deps",
+    "build:css": "sass app/assets/stylesheets/application.scss app/assets/builds/application.css --no-source-map --load-path=node_modules --quiet-deps",
     "preinstall": "mkdir -p app/assets/builds",
-    "postinstall": "cp -R node_modules/govuk-frontend/govuk/assets/fonts/. app/assets/builds/fonts && cp -R node_modules/govuk-frontend/govuk/assets/images/. app/assets/builds/images"
+    "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets/fonts/. app/assets/builds/fonts && cp -R node_modules/govuk-frontend/dist/govuk/assets/images/. app/assets/builds/images"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^7.3.0",
-    "dfe-frontend-alpha": "^1.0.1",
+    "dfe-frontend": "^2.0.1",
     "esbuild": "^0.21.5",
-    "govuk-frontend": "^4.7.0",
+    "govuk-frontend": "^5.3.1",
     "jquery": "^3.7.1",
     "sass": "^1.77.5",
     "stimulus-reveal-controller": "^4.1.0"

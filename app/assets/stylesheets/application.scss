@@ -11,12 +11,8 @@
 $govuk-new-link-styles: true;
 $govuk-page-width: 1200px;
 
-.govuk-width-container {
-  max-width: $govuk-page-width;
-}
-
-@import 'govuk-frontend/govuk/all';
-@import 'dfe-frontend-alpha/packages/dfefrontend';
+@import 'govuk-frontend/dist/govuk/all';
+@import 'dfe-frontend/packages/dfefrontend';
 
 $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
@@ -68,6 +64,17 @@ aside img {
 
 .full-width-image {
   max-width: 100%;
+}
+
+.govuk-width-container,
+.dfe-width-container {
+  margin: 0 auto;
+  max-width: 1200px;
+
+  @include govuk-media-query($until: tablet) {
+    padding-left: govuk-spacing(3);
+    padding-right: govuk-spacing(3);
+  }
 }
 
 #hero-layout {
