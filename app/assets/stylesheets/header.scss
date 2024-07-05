@@ -98,10 +98,6 @@ header #service-name {
     color: $light-blue-link;
   }
 
-  @include govuk-media-query($until: tablet) {
-    padding: govuk-spacing(2);
-  }
-
   img {
     max-width: 100%;
     width: 100%;
