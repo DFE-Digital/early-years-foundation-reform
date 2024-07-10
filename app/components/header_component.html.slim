@@ -1,6 +1,6 @@
 = tag.header(role: 'banner', data: { module: 'dfe-header', controller: 'reveal', 'reveal-hidden-class': 'js-show' }, **html_attributes) do
   = tag.div(**container_html_attributes) do
-    div class = 'dfe-header__logo'
+    .dfe-header__logo
       = link_to(root_path, class: 'dfe-header__link', aria: { label: 'DfE homepage' }) do
         = image_tag 'dfe-logo.png', class: 'dfe-logo', alt: 'DfE homepage'
         = image_tag 'dfe-logo-alt.png', class: 'dfe-logo-hover', alt: 'DfE homepage'
@@ -19,7 +19,7 @@
       .dfe-header__menu
         button#toggle-menu.dfe-header__menu-toggle aria-controls='header-navigation' aria-expanded='false' data-action='click->reveal#toggle'
           | Menu
-  div class = 'dfe-width-container dfe-header__service-name'
+  .dfe-width-container.dfe-header__service-name
     = link_to service_name, service_url, class: 'dfe-header__link--service'
   - if navigation_items.any?
     = tag.nav(**navigation_html_attributes) do
