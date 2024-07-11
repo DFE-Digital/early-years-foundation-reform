@@ -50,7 +50,7 @@ private
       tag.li(**html_attributes) do
         if link?
           link_to(href, class: 'dfe-header__navigation-link', **options) do
-            text.concat(chevron).html_safe
+            (text + chevron).html_safe
           end
         else
           text
