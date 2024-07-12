@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+#
+# Support for new DfE Frontend
+# @see https://design.education.gov.uk/design-system/dfe-frontend
+#
 class HeaderComponent < GovukComponent::HeaderComponent
   include Devise::Controllers::Helpers
 
@@ -18,15 +22,7 @@ private
   end
 
   def container_html_attributes
-    { class: %w[dfe-header__container dfe-width-container] << custom_container_classes.compact }
-  end
-
-  def crown_fallback_image_attributes
-    {
-      class: 'dfe-header__logo-crown-fallback-image',
-      width: '36',
-      height: '32',
-    }
+    { class: %w[dfe-header__container dfe-width-container] }
   end
 
   class ActionLinkItem < GovukComponent::HeaderComponent::NavigationItem
@@ -35,9 +31,9 @@ private
     end
 
     def call
-      tag.li(**html_attributes) do
+      tag.li do
         if link?
-          govuk_link_to(text, href, class: 'dfe-header__action-link', **options)
+          govuk_link_to(text, href, **options)
         else
           text
         end
@@ -53,7 +49,9 @@ private
     def call
       tag.li(**html_attributes) do
         if link?
-          link_to(text, href, class: 'dfe-header__navigation-link', **options)
+          link_to(href, class: 'dfe-header__navigation-link', **options) do
+            (text + chevron).html_safe
+          end
         else
           text
         end
@@ -61,6 +59,12 @@ private
     end
 
   private
+
+    def chevron
+      tag.svg class: 'dfe-icon dfe-icon__chevron-right', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', width: 34, height: 34, aria: { hidden: true } do
+        tag.path d: 'M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z'
+      end
+    end
 
     def default_attributes
       { class: %w[dfe-header__navigation-item] }

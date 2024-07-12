@@ -1,6 +1,6 @@
 module ApplicationHelper
   def navigation
-    render(HeaderComponent.new(service_name: t('service.name'), classes: 'dfe-header noprint', container_classes: %w[dfe-header-f-header-flex], navigation_label: 'Primary navigation')) do |header|
+    render(HeaderComponent.new(service_name: t('service.name'), classes: 'dfe-header noprint', navigation_label: 'Primary navigation')) do |header|
       header.with_navigation_item(
         text: 'Home', href: '/', active: request.path == root_path, classes: %w[dfe-header__navigation-item],
       )

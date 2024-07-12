@@ -1,34 +1,11 @@
 doctype html 
 html.govuk-template lang='en'
   head 
-    title= [t('service.name'), yield(:page_title).presence].compact.join(' : ')
-    = csrf_meta_tags
-    = csp_meta_tag
-
-    = tag.meta content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'
-    = render 'layouts/analytics_header'
-    = render 'layouts/hotjar'
-
-    = tag.meta content: 'width=device-width,initial-scale=1', name: 'viewport'
-    = tag.meta name: 'robots', content: 'noindex,nofollow' unless Rails.application.live?
-    = tag.meta property: 'og:image', content: image_path('hfeyp_opengraph.png')
-    = tag.meta name: 'description', content: @page&.meta_description if @page&.meta_description.present?
-    = csrf_meta_tags
-    = tag.meta name: 'theme-color', content: '#0b0c0c'
-
-    = favicon_link_tag image_path('dfe_favicon.ico')
-    = favicon_link_tag asset_path('images/govuk-mask-icon.svg'), rel: 'mask-icon', type: 'image/svg', color: '#0b0c0c'
-    = favicon_link_tag asset_path('images/govuk-apple-touch-icon.png'), rel: 'apple-touch-icon', type: 'image/png'
-    = favicon_link_tag asset_path('images/govuk-apple-touch-icon-152x152.png'), rel: 'apple-touch-icon', type: 'image/png', size: '152x152'
-    = favicon_link_tag asset_path('images/govuk-apple-touch-icon-167x167.png'), rel: 'apple-touch-icon', type: 'image/png', size: '167x167'
-    = favicon_link_tag asset_path('images/govuk-apple-touch-icon-180x180.png'), rel: 'apple-touch-icon', type: 'image/png', size: '180x180'
-    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
-    = yield :head
+    = render 'layouts/head'
 
   body#default-layout.govuk-template__body
     script
-      | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+      | document.body.className = ((document.body.className) ? document.body.className + ' js-enabled govuk-frontend-supported' : 'js-enabled govuk-frontend-supported');
 
     = render 'layouts/analytics_body'
     = render 'layouts/cookie_banner'

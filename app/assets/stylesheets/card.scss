@@ -4,11 +4,6 @@
     border-bottom: 3px solid govuk-organisation-colour('department-for-education', false);
   }
 
-  &-details {
-    padding: govuk-spacing(6);
-    min-height: 190px;
-  }
-
   a {
     text-decoration: none;
 
@@ -27,5 +22,15 @@
           color: govuk-colour('white');
       }
     }
+  }
+}
+
+.hf-card-details {
+  padding: govuk-spacing(6);
+  min-height: 190px;
+
+  @include govuk-media-query($until: tablet) {
+    padding: govuk-spacing(5);
+    min-height: 170px;
   }
 }
