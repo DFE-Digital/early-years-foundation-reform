@@ -12,7 +12,7 @@
     "@hotwired/turbo-rails": "^8.0.4",
     "@stimulus-components/reveal": "^5.0.0",
     "dfe-frontend": "^2.0.1",
-    "esbuild": "^0.21.5",
+    "esbuild": "^0.23.0",
     "govuk-frontend": "^5.3.1",
     "sass": "^1.77.6"
   },
