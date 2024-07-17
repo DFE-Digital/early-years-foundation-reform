@@ -1,0 +1,78 @@
+@startuml
+<style>
+  .app {
+    BackgroundColor LightBlue
+  }
+  .platform {
+    BackgroundColor DarkSlateGray
+    FontColor White
+  }
+  .subscription {
+    BackgroundColor Yellow
+  }
+  .resource {
+    BackgroundColor LightGreen
+  }
+  .service {
+    BackgroundColor LightSlateGray
+    FontStyle italic
+  }
+}
+</style>
+
+
+legend top left
+|<back:DarkSlateGray><color:White>Platform|
+|<back:Yellow>Subscription|
+|<back:LightGreen>Resource Group|
+|<back:LightBlue>Application|
+endlegend
+
+
+rectangle "Help for Early Years Providers" {
+
+  rectangle "Github" as github <<service>>
+
+  rectangle "Deployment" as deployment <<app>> {
+    rectangle "AppService" as web
+  }
+
+  rectangle "Azure" as azure <<platform>> {
+    rectangle "s195-hfeyp-production" as prod-sub <<subscription>> {
+      rectangle "s195p01-hfeyp-rg" as prod-rg <<resource>> {
+        artifact "help-for-early-years-providers.education.gov.uk" as prod <<app>>
+        artifact "hfeyp-prod-green.azurewebsites.net" as prod_green <<app>>
+      }
+    }
+
+    rectangle "s195-hfeyp-test" as test-sub <<subscription>> {
+      rectangle "s195t01-hfeyp-rg" as test-rg <<resource>> {
+        artifact "staging.help-for-early-years-providers.education.gov.uk" as test <<app>>
+      }
+    }
+
+    rectangle "s195-hfeyp-development" as dev-sub <<subscription>> {
+      rectangle "s195d01-hfeyp-rg" as dev-rg <<resource>> {
+        artifact "hfeyp-dev.azurewebsites.net" as dev <<app>>
+
+        artifact "hfeyp-review-pr-123.azurewebsites.net" as pr123 <<app>>
+        artifact "hfeyp-review-pr-124.azurewebsites.net" as pr124 <<app>>
+        artifact "hfeyp-review-pr-125.azurewebsites.net" as pr125 <<app>>
+      }
+    }
+  }
+}
+
+
+note bottom of dev: main
+note bottom of pr123: ER-456-new-feature
+note bottom of test: rc0.2.10
+note bottom of prod_green: pre-release
+note bottom of prod: v1.0.0
+
+github --> pr123: Active Branch (feature)
+github --> dev: Development Branch (integration)
+github --> test: Staging Release (candidate)
+github --> prod: Production Release (public)
+
+@enduml

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# https://plantuml.com/command-line
+#
+# ./bin/docker-uml -svg
+# ------------------------------------------------------------------------------
+set -e
+
+docker run -v $PWD/uml:/uml plantuml/plantuml $@ /uml
