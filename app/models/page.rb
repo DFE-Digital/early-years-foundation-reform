@@ -57,7 +57,7 @@ class Page < ContentfulModel::Base
 
   # @return [ContentfulModel::Asset]
   def thumbnail
-    return OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png') if fields[:image].blank?
+    return ::OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png') if fields[:image].blank?
 
     fetch_or_store self.class.to_key(fields[:image].id) do
       ContentfulModel::Asset.find(fields[:image].id)
