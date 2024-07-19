@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class Page < ContentfulModel::Base
   extend ::Caching
 
@@ -55,7 +57,7 @@ class Page < ContentfulModel::Base
     page_style == 'side-nav'
   end
 
-  # @return [ContentfulModel::Asset]
+  # @return [ContentfulModel::Asset, OpenStruct]
   def thumbnail
     return ::OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png') if fields[:image].blank?
 
