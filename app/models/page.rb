@@ -66,6 +66,17 @@ class Page < ContentfulModel::Base
     end
   end
 
+  # WIP: proposed change for thumbnail refactor
+  # # @return [OpenStruct]
+  def placeholder_thumbnail
+    ::OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png', name: 'default')
+  end
+
+  # # @return [Boolean]
+  # def no_thumbnail?
+  #   fields[:image].eql?(nil)
+  # end
+
   # @return [Boolean] child of the 'footer' page
   def footer?
     parent.eql?(self.class.footer)

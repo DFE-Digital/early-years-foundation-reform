@@ -164,4 +164,20 @@ RSpec.describe Page, type: :model do
       specify { expect(page.pages.count).to be 0 }
     end
   end
+
+  describe 'Thumbnail' do
+    let(:slug) { 'reducing-paperwork' }
+
+    context 'when help page with no image' do
+      it 'use default image' do
+        expect(page.thumbnail.type).to eql('Asset')
+      end
+    end
+
+    context 'when help page with image' do
+      it 'show thumbnail as expected' do
+        expect(page.placeholder_thumbnail.name).to eq 'default'
+      end
+    end
+  end
 end
