@@ -2,12 +2,7 @@
   .hf-card
     a href=card.path
       .hf-card-container
-        = image_tag(card.thumbnail.url, class: 'full-width-image', alt: card.thumbnail.description, title: card.thumbnail.title)
-        / - if page.no_thumbnail?
-        /   = image_tag(card.placeholder_thumbnail.url, class: 'full-width-image', alt: 'default', title: 'default')
-        / - else
-        /   = image_tag(card.thumbnail.url, class: 'full-width-image', alt: card.thumbnail.description, title: card.thumbnail.title)
-        / end
+        = card_thumbnail(card)
 
         .hf-card-details
           h3.govuk-heading-m

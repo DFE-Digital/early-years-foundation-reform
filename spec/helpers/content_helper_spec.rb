@@ -119,13 +119,30 @@ describe 'ContentHelper', type: :helper do
     end
   end
 
-  describe 'Null resource' do
+  describe '#null_resource' do
     subject(:null_resource) { helper.null_resource('example') }
 
     context 'with name passed in' do
       it 'returns content using name' do
         expect(null_resource.title).to eq 'Title for example'
       end
+    end
+  end
+
+  describe '#card_thumbnail' do
+    let(:null_resource) { helper.null_resource('example') }
+
+    let(:empty_resource) { helper.card_thumbnail(null_resource) }
+
+    it do
+      expect(empty_resource).to be_a String
+    end
+  end
+
+  describe '#placeholder_thumbnail' do
+    it do
+      expect(helper.placeholder_thumbnail).to be_a OpenStruct
+      expect(helper.placeholder_thumbnail.url).to eql 'https://placehold.co/380x254/347ca9/FFFFFF/png'
     end
   end
 end

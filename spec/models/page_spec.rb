@@ -165,18 +165,20 @@ RSpec.describe Page, type: :model do
     end
   end
 
-  describe 'Thumbnail' do
-    let(:slug) { 'reducing-paperwork' }
+  describe '#thumbnail' do
+    context 'when help page with image' do
+      let(:slug) { 'reducing-paperwork' }
 
-    context 'when help page with no image' do
-      it 'use default image' do
-        expect(page.thumbnail.type).to eql('Asset')
+      it do
+        expect(page.thumbnail).to be_a ContentfulModel::Asset
       end
     end
 
-    context 'when help page with image' do
-      it 'show thumbnail as expected' do
-        expect(page.placeholder_thumbnail.name).to eq 'default'
+    context 'when help page with no image' do
+      let(:slug) { 'interactions' }
+
+      it do
+        expect(page.thumbnail).to be_nil
       end
     end
   end

@@ -1,5 +1,3 @@
-require 'ostruct'
-
 class Page < ContentfulModel::Base
   extend ::Caching
 
@@ -57,25 +55,14 @@ class Page < ContentfulModel::Base
     page_style == 'side-nav'
   end
 
-  # @return [ContentfulModel::Asset, OpenStruct]
+  # @return [ContentfulModel::Asset, nil]
   def thumbnail
-    return ::OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png') if fields[:image].blank?
+    return nil if fields[:image].blank?
 
     fetch_or_store self.class.to_key(fields[:image].id) do
       ContentfulModel::Asset.find(fields[:image].id)
     end
   end
-
-  # WIP: proposed change for thumbnail refactor
-  # # @return [OpenStruct]
-  def placeholder_thumbnail
-    ::OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png', name: 'default')
-  end
-
-  # # @return [Boolean]
-  # def no_thumbnail?
-  #   fields[:image].eql?(nil)
-  # end
 
   # @return [Boolean] child of the 'footer' page
   def footer?
@@ -97,6 +84,7 @@ class Page < ContentfulModel::Base
     parent&.tier2?
   end
 
+  # @return [Date]
   def created_at
     released_at || super
   end
