@@ -95,6 +95,7 @@ module ContentHelper
     Resource.by_name('other_useful_resources') || placeholder_resource('other_useful_resources')
   end
 
+  # @param name [String]
   # @return [OpenStruct]
   def placeholder_resource(name)
     ::OpenStruct.new(
