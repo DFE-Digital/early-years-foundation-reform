@@ -166,7 +166,7 @@ RSpec.describe Page, type: :model do
   end
 
   describe '#thumbnail' do
-    context 'when help page with image' do
+    context 'with linked asset' do
       let(:slug) { 'reducing-paperwork' }
 
       it do
@@ -174,7 +174,7 @@ RSpec.describe Page, type: :model do
       end
     end
 
-    context 'when help page with no image' do
+    context 'without linked asset' do
       let(:slug) { 'interactions' }
 
       it do
