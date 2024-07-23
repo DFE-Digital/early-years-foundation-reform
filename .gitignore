@@ -55,4 +55,8 @@ tokens
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# Infrastructure
+uml/*.*
+!uml/*.puml
+
 nscacert.pem
