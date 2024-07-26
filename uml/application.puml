@@ -1,0 +1,49 @@
+@startuml
+!theme sketchy-outline
+hide stereotype
+
+<style>
+  .app {
+    BackgroundColor LightBlue
+  }
+  .process {
+    BackgroundColor LightGreen
+    FontColor Black
+  }
+  .cache {
+    BackgroundColor Yellow
+  }
+  .service {
+    BackgroundColor LightSlateGray
+    FontStyle italic
+  }
+}
+</style>
+
+
+legend top left
+|<back:LightBlue>Container|
+|<back:LightGreen>Process|
+|<back:Yellow>Cache|
+|<back:LightSlateGrey>Third-party|
+endlegend
+
+
+rectangle "Help for Early Years Providers" {
+  rectangle "Container" as app <<app>> {
+    node "Application" as web <<process>>
+    database "Memory" as app_cache <<cache>>
+  }
+
+  rectangle "Contentful CMS" as content <<service>>
+
+  rectangle "Sentry" as alert <<service>>
+}
+
+note left of app: Ruby 3.2.2 (alpine)
+note bottom of web: Rails v7.0.8
+
+app <-- content: Preview/Delivery
+app --> alert
+
+@enduml

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# ------------------------------------------------------------------------------
+set -e
+
+# Regenerate diagrams
+./bin/docker-uml -svg
+
+docker-compose \
+  -f docker-compose.yml \
+  -f docker-compose.dev.yml \
+  --project-name reform \
+  up doc
