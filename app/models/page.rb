@@ -57,7 +57,7 @@ class Page < ContentfulModel::Base
 
   # @return [ContentfulModel::Asset, nil]
   def thumbnail
-    return nil if fields[:image].blank?
+    return if fields[:image].blank?
 
     fetch_or_store self.class.to_key(fields[:image].id) do
       ContentfulModel::Asset.find(fields[:image].id)

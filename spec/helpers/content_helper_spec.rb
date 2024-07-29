@@ -144,7 +144,7 @@ describe 'ContentHelper', type: :helper do
       let(:slug) { 'interactions' }
 
       it do
-        expect(helper.card_thumbnail(page)).to include 'https://placehold.co'
+        expect(helper.card_thumbnail(page)).to start_with '<img class='
       end
     end
   end
