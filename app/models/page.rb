@@ -55,9 +55,9 @@ class Page < ContentfulModel::Base
     page_style == 'side-nav'
   end
 
-  # @return [ContentfulModel::Asset]
+  # @return [ContentfulModel::Asset, nil]
   def thumbnail
-    return ::OpenStruct.new(url: 'https://placehold.co/380x254/347ca9/FFFFFF/png') if fields[:image].blank?
+    return if fields[:image].blank?
 
     fetch_or_store self.class.to_key(fields[:image].id) do
       ContentfulModel::Asset.find(fields[:image].id)
@@ -84,6 +84,7 @@ class Page < ContentfulModel::Base
     parent&.tier2?
   end
 
+  # @return [Date]
   def created_at
     released_at || super
   end

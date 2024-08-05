@@ -164,4 +164,22 @@ RSpec.describe Page, type: :model do
       specify { expect(page.pages.count).to be 0 }
     end
   end
+
+  describe '#thumbnail' do
+    context 'with linked asset' do
+      let(:slug) { 'reducing-paperwork' }
+
+      it do
+        expect(page.thumbnail).to be_a ContentfulModel::Asset
+      end
+    end
+
+    context 'without linked asset' do
+      let(:slug) { 'interactions' }
+
+      it do
+        expect(page.thumbnail).to be_nil
+      end
+    end
+  end
 end

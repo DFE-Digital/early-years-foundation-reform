@@ -119,13 +119,40 @@ describe 'ContentHelper', type: :helper do
     end
   end
 
-  describe 'Null resource' do
-    subject(:null_resource) { helper.null_resource('example') }
+  describe '#placeholder_resource' do
+    subject(:placeholder_resource) { helper.placeholder_resource('example') }
 
     context 'with name passed in' do
       it 'returns content using name' do
-        expect(null_resource.title).to eq 'Title for example'
+        expect(placeholder_resource.title).to eq 'Title for example'
       end
+    end
+  end
+
+  describe '#card_thumbnail' do
+    let(:page) { Page.by_slug(slug) }
+
+    context 'with image' do
+      let(:slug) { 'reducing-paperwork' }
+
+      it do
+        expect(helper.card_thumbnail(page)).to include 'images.ctfassets'
+      end
+    end
+
+    context 'with placeholder' do
+      let(:slug) { 'interactions' }
+
+      it do
+        expect(helper.card_thumbnail(page)).to start_with '<img class='
+      end
+    end
+  end
+
+  describe '#placeholder_thumbnail' do
+    it do
+      expect(helper.placeholder_thumbnail).to be_a OpenStruct
+      expect(helper.placeholder_thumbnail.url).to eql 'https://placehold.co/380x254/347ca9/FFFFFF/png'
     end
   end
 end

@@ -1,8 +1,8 @@
 .govuk-grid-column-one-third
   .hf-card
     a href=card.path
-      .hf-card-container 
-        = image_tag(card.thumbnail.url, class: 'full-width-image', alt: card.thumbnail.description, title: card.thumbnail.title)
+      .hf-card-container
+        = card_thumbnail(card)
 
         .hf-card-details
           h3.govuk-heading-m
