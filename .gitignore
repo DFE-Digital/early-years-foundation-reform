@@ -60,3 +60,7 @@ uml/*.*
 !uml/*.puml
 
 nscacert.pem
+
+# YARD documentation files
+*.yardoc
+
