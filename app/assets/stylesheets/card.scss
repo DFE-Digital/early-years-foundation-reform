@@ -1,7 +1,8 @@
 .hf-card {
   &-container {
     background-color: govuk-colour('light-grey');
-    border-bottom: 3px solid govuk-organisation-colour('department-for-education', false);
+    border-bottom: 3px solid
+      govuk-organisation-colour('department-for-education', false);
   }
 
   a {
@@ -11,15 +12,21 @@
       color: $govuk-text-colour;
     }
 
-    .hf-card-details h3 {
+    .hf-card-details h2,
+    h3 {
       color: $light-blue-link;
     }
 
     &:hover .hf-card-container {
-      background-color: govuk-organisation-colour('department-for-education', false);
+      background-color: govuk-organisation-colour(
+        'department-for-education',
+        false
+      );
 
-      .hf-card-details p, h3 {
-          color: govuk-colour('white');
+      .hf-card-details p,
+      .hf-card-details h2,
+      .hf-card-details h3 {
+        color: govuk-colour('white');
       }
     }
   }

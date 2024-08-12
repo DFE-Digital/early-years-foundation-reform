@@ -3,9 +3,12 @@
     a href=card.path
       .hf-card-container
         = card_thumbnail(card)
-
         .hf-card-details
-          h3.govuk-heading-m
-            = card.title
+          - if card.tier1?
+            h3.govuk-heading-m
+              = card.title
+          - else
+            h2.govuk-heading-m
+              = card.title
           p.govuk-body
             = card.meta_description || card.hero_description
