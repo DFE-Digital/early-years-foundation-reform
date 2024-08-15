@@ -109,4 +109,34 @@ RSpec.describe 'First/Second/Third tier pages' do
       end
     end
   end
+
+  describe 'First tier when route is in incorrect format' do
+    before do
+      visit '/randompage.yml'
+    end
+
+    it 'has a heading' do
+      expect(page).to have_text('Page not found')
+    end
+  end
+
+  describe 'Second tier when route is in incorrect format' do
+    before do
+      visit '/route/randompage.yml'
+    end
+
+    it 'has a heading' do
+      expect(page).to have_text('Page not found')
+    end
+  end
+
+  describe 'Third tier when route is in incorrect format' do
+    before do
+      visit '/route/route/randompage.yml'
+    end
+
+    it 'has a heading' do
+      expect(page).to have_text('Page not found')
+    end
+  end
 end
