@@ -1,5 +1,7 @@
 # Test Automation (Functional)
 
+Update - This is not currently being used. This should be removed or updated to reflect the new content
+
 Two parts:
 - Service (7 areas of landing ordering, left menu pane ordering, previous / next buttons, header and footer links, page headings, number times a link appears,  mobile menu)
 - CMS 
