@@ -85,7 +85,7 @@ module ContentHelper
     Resource.by_name('ctas.feedback') || placeholder_resource('ctas.feedback')
   end
 
- # @return [Resource, OpenStruct]
+  # @return [Resource, OpenStruct]
   def content_footer
     Resource.by_name('ctas.content_footer') || placeholder_resource('ctas.content_footer')
   end

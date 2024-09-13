@@ -1,0 +1,7 @@
+#feedback-cta
+  .dfe-width-container
+    .govuk-grid-row
+      .govuk-grid-column-full
+        =  m(t('feedback.cta'))
+
+        = govuk_link_to 'Give Feedback', Rails.configuration.feedback_url, class: 'govuk-button'
