@@ -2,6 +2,8 @@
   - footer.with_navigation do
     .govuk-footer__section.govuk-grid-column-two-thirds
       ul.govuk-footer__list.govuk-footer__list--columns-3
+        li.govuk-footer__list-item
+          = govuk_link_to t('links.footer.feedback'), Rails.configuration.feedback_url, class: 'govuk-footer__link'
         - Page.footer.pages.each do |page|
           li.govuk-footer__list-item
             = govuk_link_to page.title, page.path, class: 'govuk-footer__link'

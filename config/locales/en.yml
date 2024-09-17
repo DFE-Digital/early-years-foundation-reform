@@ -16,7 +16,12 @@ en:
   service:
     name: Help for early years providers
     email: help-for-early-years-providers@digital.education.gov.uk
-  phase_banner_html: This is a new service, your %{feedback_link} will help us improve it.
+  feedback:
+    cta: |
+      Give feedback to help us improve this website
+  links:
+    footer:
+      feedback: Feedback
   admin:
     articles:
       create:

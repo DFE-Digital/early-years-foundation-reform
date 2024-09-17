@@ -1,6 +1,6 @@
-doctype html 
+doctype html
 html.govuk-template lang='en'
-  head 
+  head
     = render 'layouts/head'
 
   body#default-layout.govuk-template__body
@@ -11,13 +11,11 @@ html.govuk-template lang='en'
     = render 'layouts/cookie_banner'
 
     = govuk_skip_link(href: '#main-content')
-    
+
     = navigation
 
     main#main-content role='main'
       .dfe-width-container
-        = render 'layouts/banner'
-
         .dfe-width-container class='govuk-!-padding-top-7 govuk-!-padding-bottom-7'
           = yield
 
