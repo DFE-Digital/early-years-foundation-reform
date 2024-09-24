@@ -53,6 +53,9 @@ module GovukRailsBoilerplate
     config.active_record.legacy_connection_handling = false
     config.generators.test_framework = :rspec
 
+    # Sentry
+    config.sentry_dsn = ENV.fetch('SENTRY_DSN', '#SENTRY_DSN_env_var_missing')
+
     #
     # Azure Environments
     #
