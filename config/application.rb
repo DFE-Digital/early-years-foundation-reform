@@ -39,6 +39,7 @@ module GovukRailsBoilerplate
     config.i18n.load_path += Dir[Rails.root.join('config/locales/content/*.{rb,yml}').to_s]
 
     config.feedback_url = ENV.fetch('FEEDBACK_URL', '#FEEDBACK_env_var_missing')
+    config.privacy_policy_url = ENV.fetch('PRIVACY_POLICY_URL', '#PRIVACY_POLICY_env_var_missing')
     config.signup_url = ENV.fetch('SIGNUP_URL', '#SIGNUP_env_var_missing')
     config.tracking_id = ENV.fetch('TRACKING_ID', '#TRACKING_ID_env_var_missing')
     config.js_url = "https://www.googletagmanager.com/gtag/js?id=#{config.tracking_id}"

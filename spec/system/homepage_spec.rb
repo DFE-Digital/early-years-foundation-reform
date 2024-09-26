@@ -18,4 +18,13 @@ RSpec.describe 'Homepage' do
     # Check for the feedback link/button
     expect(page).to have_link(href: Rails.configuration.feedback_url)
   end
+
+  # Check for the footer links
+  it 'displays the feedback link' do
+    expect(page).to have_link(I18n.t('links.footer.feedback'), href: Rails.configuration.feedback_url)
+  end
+
+  it 'displays the privacy policy link' do
+    expect(page).to have_link(I18n.t('links.footer.privacy_policy'), href: Rails.configuration.privacy_policy_url)
+  end
 end

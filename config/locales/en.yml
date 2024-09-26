@@ -22,6 +22,7 @@ en:
   links:
     footer:
       feedback: Feedback
+      privacy_policy: Privacy policy
   admin:
     articles:
       create:
