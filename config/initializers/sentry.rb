@@ -1,5 +1,5 @@
 Sentry.init do |config|
-  config.dsn = 'https://77cb385b90b249718df362e6dcdfdc46@o1115461.ingest.sentry.io/6274627'
+  config.dsn = Rails.application.config.sentry_dsn
   config.breadcrumbs_logger = %i[active_support_logger http_logger]
   config.enabled_environments = %w[production]
 
