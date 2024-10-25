@@ -40,13 +40,6 @@ RSpec.describe 'First/Second/Third tier pages' do
       expect(page).to have_text('Overview')
     end
 
-    # This currently renders govuk-heading-l for this h2 (does not match styling for third tier page)
-    xit 'renders h2 as govuk-heading-m' do
-      within '#communication-and-language-resources' do
-        expect(page).to include 'govuk-heading-m'
-      end
-    end
-
     it 'has a body' do
       expect(page.body).to be_present
     end
