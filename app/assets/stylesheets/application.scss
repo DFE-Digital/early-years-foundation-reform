@@ -204,5 +204,7 @@ ul>li>ul>li {
 }
 
 .govuk-table {
-  overflow-wrap: anywhere;
+  @include govuk-media-query($until: tablet) {
+    overflow-wrap: anywhere;
+  }
 }
