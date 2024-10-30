@@ -198,3 +198,15 @@ ul>li>ul>li {
     box-shadow: none;
   }
 }
+
+.govuk-back-link {
+  min-width: 24px;
+  min-height: 24px;
+  line-height: 1.5;
+  font-size: 1rem;
+
+  // Adjustments for various screen sizes
+  @include govuk-media-query($until: tablet) {
+    padding: govuk-spacing(1) govuk-spacing(2);
+    margin: govuk-spacing(1) 0;
+  }}
