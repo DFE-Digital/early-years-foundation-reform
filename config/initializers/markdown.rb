@@ -149,7 +149,7 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
       video_id, video_title = split_content Regexp.last_match(1)
       video_url = %(https://www.youtube.com/embed/#{video_id}?#{params})
       # video_url = %(https://player.vimeo.com/video/#{video_id}?#{params})
-      video_template.render(nil, url: video_url, video_title: video_title || 'A video')
+      video_template.render(nil, url: video_url, video_title: video_title)
     end
     self
   end
