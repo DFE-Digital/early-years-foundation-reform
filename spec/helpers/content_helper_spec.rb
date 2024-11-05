@@ -77,6 +77,25 @@ describe 'ContentHelper', type: :helper do
         end
       end
     end
+
+    describe 'Video markup' do
+      let(:input) do
+        <<~MARKUP
+          {video}
+          video
+          This is a video title
+          {/video}
+        MARKUP
+      end
+
+      it 'renders the embedded video' do
+        expect(html).to have_selector('iframe')
+      end
+
+      it 'renders an iframe with a title' do
+        expect(html).to include 'title="This is a video title"'
+      end
+    end
   end
 
   describe 'Not found error' do
