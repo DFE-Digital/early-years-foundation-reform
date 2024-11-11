@@ -12,19 +12,20 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   #   605 KB
   #   //assets.ctfassets.net/xxx.pdf
   #   //images.ctfassets.net/xxx.png
+  #   2 pages
   #   {/download}
   #
   # @return [CustomPreprocessor]
   def download
     pattern = build_regexp('download')
     @output = output.gsub(pattern) do
-      file_title, file_size, pdf_url, thumb_url = *Regexp.last_match(1).strip.split("\n")
-
+      file_title, file_size, pdf_url, thumb_url, page_count = *Regexp.last_match(1).strip.split("\n")
       download_template.render(nil,
                                file_title: file_title,
                                file_size: file_size,
                                pdf_url: pdf_url,
-                               thumb_url: thumb_url)
+                               thumb_url: thumb_url,
+                               page_count: page_count)
     end
     self
   end
