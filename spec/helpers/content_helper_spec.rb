@@ -96,6 +96,24 @@ describe 'ContentHelper', type: :helper do
         expect(html).to include 'title="This is a video title"'
       end
     end
+
+    describe 'Downloads' do
+      let(:input) do
+        <<~MARKUP
+          {download}
+          title
+          size
+          pdf_url_text
+          thumb_url_text
+          2 Pages
+          {/download}
+        MARKUP
+      end
+
+      it 'has pages' do
+        expect(html).to include '2 Pages'
+      end
+    end
   end
 
   describe 'Not found error' do
