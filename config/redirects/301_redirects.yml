@@ -1,0 +1,139 @@
+redirects:
+  - old: /communication-and-language
+    new: /areas-of-learning/communication-and-language
+
+  - old: /communication-and-language/interactions
+    new: /areas-of-learning/communication-and-language/interactions
+
+  - old: /communication-and-language/exploring-language
+    new: /areas-of-learning/communication-and-language/exploring-language
+
+  - old: /communication-and-language/listening-and-understanding
+    new: /areas-of-learning/communication-and-language/listening-and-understanding
+
+  - old: /physical-development
+    new: /areas-of-learning/physical-development
+
+  - old: /physical-development/core-strength-and-co-ordination
+    new: /areas-of-learning/physical-development/core-strength-and-co-ordination
+
+  - old: /physical-development/gross-motor-skills
+    new: /areas-of-learning/physical-development/gross-motor-skills
+
+  - old: /physical-development/fine-motor-skills
+    new: /areas-of-learning/physical-development/fine-motor-skills
+
+  - old: /personal-social-and-emotional-development
+    new: /areas-of-learning/personal-social-and-emotional-development
+
+  - old: /personal-social-and-emotional-development/emotions
+    new: /areas-of-learning/personal-social-and-emotional-development/emotions
+
+  - old: /personal-social-and-emotional-development/sense-of-self
+    new: /areas-of-learning/personal-social-and-emotional-development/sense-of-self
+
+  - old: /personal-social-and-emotional-development/relationships
+    new: /areas-of-learning/personal-social-and-emotional-development/relationships
+
+  - old: /literacy
+    new: /areas-of-learning/literacy
+
+  - old: /literacy/reading-comprehension
+    new: /areas-of-learning/literacy/reading-comprehension
+
+  - old: /literacy/exploring-words
+    new: /areas-of-learning/literacy/exploring-words
+
+  - old: /literacy/writing
+    new: /areas-of-learning/literacy/writing
+
+  - old: /mathematics
+    new: /areas-of-learning/mathematics
+
+  - old: /mathematics/numbers
+    new: /areas-of-learning/mathematics/numbers
+
+  - old: /mathematics/patterns-and-connections
+    new: /areas-of-learning/mathematics/patterns-and-connections
+
+  - old: /mathematics/spacial-reasoning
+    new: /areas-of-learning/mathematics/spacial-reasoning
+
+  - old: /understanding-the-world
+    new: /areas-of-learning/understanding-the-world
+
+  - old: /understanding-the-world/personal-experiences
+    new: /areas-of-learning/understanding-the-world/personal-experiences
+
+  - old: /understanding-the-world/diverse-world
+    new: /areas-of-learning/understanding-the-world/diverse-world
+
+  - old: /understanding-the-world/widening-vocabulary
+    new: /areas-of-learning/understanding-the-world/widening-vocabulary
+
+  - old: /expressive-arts-and-design
+    new: /areas-of-learning/expressive-arts-and-design
+
+  - old: /expressive-arts-and-design/imagination-and-creativity
+    new: /areas-of-learning/expressive-arts-and-design/imagination-and-creativity
+
+  - old: /expressive-arts-and-design/self-expression
+    new: /areas-of-learning/expressive-arts-and-design/self-expression
+
+  - old: /expressive-arts-and-design/communicating-through-arts
+    new: /areas-of-learning/expressive-arts-and-design/communicating-through-arts
+
+  - old: /get-help-to-improve-your-practice
+    new: /support-for-practitioners
+
+  - old: /get-help-to-improve-your-practice/curriculum-planning
+    new: /support-for-practitioners/curriculum-planning
+
+  - old: /get-help-to-improve-your-practice/reducing-paperwork
+    new: /support-for-practitioners/reducing-paperwork
+
+  - old: /get-help-to-improve-your-practice/working-in-partnership-with-parents-and-carers
+    new: /support-for-practitioners/working-in-partnership-with-parents-and-carers
+
+  - old: /get-help-to-improve-your-practice/english-as-an-additional-language-eal
+    new: /support-for-practitioners/english-as-an-additional-language-eal
+
+  - old: /get-help-to-improve-your-practice/meeting-the-needs-of-all-children
+    new: /support-for-practitioners/meeting-the-needs-of-all-children
+
+  - old: /get-help-to-improve-your-practice/sensory-food-education
+    new: /support-for-practitioners/sensory-food-education
+
+  - old: /get-help-to-improve-your-practice/integrated-reviews
+    new: /support-for-practitioners/integrated-reviews
+
+  - old: /get-help-to-improve-your-practice/early-years-practitioner-wellbeing-support
+    new: /support-for-practitioners/early-years-practitioner-wellbeing-support
+
+  - old: /get-help-to-improve-your-practice/training-qualifications-support-and-guidance
+    new: /support-for-practitioners/training-qualifications-support-and-guidance
+
+  - old: /get-help-to-improve-your-practice/changes-to-the-early-years-foundation-stage-eyfs-framework-january-2024
+    new: /support-for-practitioners/changes-to-the-eyfs-framework-january-2024
+
+  - old: /safeguarding-and-welfare
+    new: /health-and-wellbeing
+
+  - old: /safeguarding-and-welfare/oral-health
+    new: /health-and-wellbeing/oral-health
+
+  - old: /safeguarding-and-welfare/food-safety
+    new: /health-and-wellbeing/food-safety
+
+  - old: /safeguarding-and-welfare/internet-safety
+    new: /health-and-wellbeing/internet-safety
+
+  - old: /safeguarding-and-welfare/mental-health-for-early-years-children
+    new: /health-and-wellbeing/mental-health-for-early-years-children
+
+  - old: /accessibility-statement
+    new: /accessibility
+
+  - old: /settings/cookie-policy
+    new: /cookie-policy
+
