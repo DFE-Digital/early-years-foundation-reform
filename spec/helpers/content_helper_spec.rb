@@ -114,6 +114,25 @@ describe 'ContentHelper', type: :helper do
         expect(html).to include '2 Pages'
       end
     end
+
+    describe 'Image card' do
+      let(:input) do
+        <<~MARKUP
+          {image_card}
+          This is the image card title
+
+          This is image text
+
+          //This is the image
+
+          {/image_card}
+        MARKUP
+      end
+
+      it 'renders a title' do
+        expect(html).to include 'title="This is the image card title"'
+      end
+    end
   end
 
   describe 'Not found error' do
