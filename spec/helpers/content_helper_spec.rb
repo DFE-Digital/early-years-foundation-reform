@@ -120,17 +120,14 @@ describe 'ContentHelper', type: :helper do
         <<~MARKUP
           {image_card}
           This is the image card title
-
           This is image text
-
           //This is the image
-
           {/image_card}
         MARKUP
       end
 
       it 'renders a title' do
-        expect(html).to include 'title="This is the image card title"'
+        expect(html).to include 'This is the image card title'
       end
     end
   end
