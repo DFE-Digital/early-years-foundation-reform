@@ -53,9 +53,7 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   # @example
   #   {image_card}
   #   This is the title
-  #
   #   This is the body copy
-  #
   #   //path/to/image
   #   {/image_card}
   #
