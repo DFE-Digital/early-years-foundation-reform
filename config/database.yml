@@ -79,6 +79,3 @@ test: &test
 #
 production:
   <<: *default
-
-# cucumber:
-#   <<: *test
