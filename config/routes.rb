@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   # explicit redirect for old link
   get 'get-help-to-improve-your-practice/send-meeting-the-needs-of-all-children', to: redirect('/get-help-to-improve-your-practice/meeting-the-needs-of-all-children')
 
+  # 301 redirects
+  redirects = YAML.load_file(Rails.root.join('config/redirects/301_redirects.yml'))['redirects']
+  redirects.each do |redirect|
+    get redirect['old'], to: redirect(redirect['new'], status: 301)
+  end
+
   constraints proc { Rails.application.preview? || Rails.env.test? } do
     resources :resources, id: /[^\/]+/, only: %i[show]
   end

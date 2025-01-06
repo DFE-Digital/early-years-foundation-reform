@@ -52,8 +52,8 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
 
   # @example
   #   {image_card}
+  #   This is the title
   #   This is the body copy
-  #
   #   //path/to/image
   #   {/image_card}
   #
@@ -61,9 +61,8 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   def image_card
     pattern = build_regexp('image_card')
     @output = output.gsub(pattern) do
-      text, image = split_content Regexp.last_match(1)
-
-      image_card_template.render(nil, text: text, image: image)
+      title, text, image = *Regexp.last_match(1).strip.split("\n")
+      image_card_template.render(nil, title: title, text: text, image: image)
     end
     self
   end
