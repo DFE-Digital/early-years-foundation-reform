@@ -11,11 +11,11 @@ Node version `20.18.x`
 PostgreSQL version `13.1`
 Yarn version `4.0.x`
 
-Suggest using [asdf](asdf) for local development.
+Suggest using [asdf][asdf] for local development.
 
 ## Getting started
 
-1. Clone the [repository](app-repo)
+1. Clone the [repository][app-repo]
 2. Obtain master key
 3. Run `bundle install` to install the gem dependencies
 4. Run `yarn` to install node dependencies
