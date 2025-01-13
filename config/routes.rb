@@ -21,14 +21,9 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[create]
 
-  get ':section', to: 'pages#index', format: 'html'
-  get ':section/:slug', to: 'pages#show', format: 'html'
-  get ':section/:overview/:slug', to: 'pages#show', format: 'html'
-
-  # Handle unmatched route
-  get '/*unmatched_route', to: 'errors#not_found', via: :get, format: 'html'
-  get '/*unmatched_route/*unmatched_route', to: 'errors#not_found', via: :get, format: 'html'
-  get '/*unmatched_route/*unmatched_route/*unmatched_route', to: 'errors#not_found', via: :get, format: 'html'
+  get ':section', to: 'pages#index'
+  get ':section/:slug', to: 'pages#show'
+  get ':section/:overview/:slug', to: 'pages#show'
 
   post 'change', to: 'hook#change'
   post 'release', to: 'hook#release'
