@@ -1,31 +1,62 @@
-[![Deploy to Development](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-dev/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
-[![Deploy to Staging](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-stage/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
-[![Deploy to Production](https://github.com/DFE-Digital/early-years-foundation-reform/workflows/azure-deploy-prod/badge.svg)](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
-
 # Help For Early Years Providers
 
-This is an application, written in Ruby on Rails (Version 7), based on the [DFE-Digital](rails-template) template. It uses a [Contentful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help For Early Years Providers service.
+This is an application, written in Ruby on Rails (Version 7), based on the [DFE-Digital][rails-template] template. It uses a [Contentful](https://app.contentful.com/spaces/dvmeh832nmjc/) workspace for the content, managed by the content editors in the Help For Early Years Providers service.
 
 Optionally create `.env` to override or set default variables.
 
 ## Dependencies
 
-Ruby version `3.2.x`
-Node version `20.11.x`
+Ruby version `3.3.x`
+Node version `20.18.x`
 PostgreSQL version `13.1`
 Yarn version `4.0.x`
 
-Suggest using [asdf](asdf) for local development.
+Suggest using [asdf][asdf] for local development.
 
 ## Getting started
 
-1. Clone the [repository](app-repo)
+1. Clone the [repository][app-repo]
 2. Obtain master key
 3. Run `bundle install` to install the gem dependencies
 4. Run `yarn` to install node dependencies
 5. Copy the .env.development.example settings into the .env file
 7. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
 8. Run `bin/dev` to launch the app on http://localhost:3000
+
+## Useful Links
+- The Project Documentation is located within the EYFS Steady State team intranet 'site'
+- [Production Environment][production]
+- [Staging Environment][staging]
+- [Prototype Repo][prototype-repo]
+- [Deploy to Development](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
+- [Deploy to Staging](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
+- [Deploy to Production](https://github.com/DFE-Digital/early-years-foundation-reform/actions)
+
+---
+
+## Working locally
+
+```sh
+$ asdf plugin add ruby
+$ asdf install ruby
+$ asdf plugin add postgres
+$ asdf install postgres
+$ asdf plugin add nodejs
+$ asdf install nodejs
+```
+
+**Development**
+
+> Gemfile group :development
+
+Use `bin/dev` to start the process workers (watching for changes to asset files).
+
+**Testing**
+
+> Gemfile group :test
+
+Use `bin/rspec` to run the test suite under `/spec`.
+Rails system specs use RackTest only for efficiency.
 
 ## Using Docker
 
@@ -134,7 +165,7 @@ settings the following classes can be added:
 
 <!-- Deployments -->
 
-[prototype-app]: https://ey-hfeyp-prototype-3ac4ece6c97b.herokuapp.com/ 
+[prototype-repo]: https://github.com/DFE-Digital/ey-reform-prototype
 [production]: https://help-for-early-years-providers.education.gov.uk
 [staging]: https://staging.help-for-early-years-providers.education.gov.uk
 [development]: https://hfeyp-dev.azurewebsites.net
