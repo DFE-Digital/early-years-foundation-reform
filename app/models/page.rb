@@ -38,7 +38,7 @@ class Page < ContentfulModel::Base
   # @return [Hash{String=>String}]
   def breadcrumbs
     root = { 'Home' => '/' }
-    list = [self, self&.parent, self&.parent&.parent, self&.parent&.parent&.parent].compact.reverse
+    list = [self, parent, parent&.parent, parent&.parent&.parent].compact.reverse
     list.shift
     list.each_with_object(root) do |page, crumbs|
       crumbs[page.title] = page.path
