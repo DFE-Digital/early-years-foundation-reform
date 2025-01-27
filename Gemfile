@@ -34,7 +34,6 @@ gem 'sentry-ruby'
 
 group :development, :test do
   gem 'axe-matchers'
-  gem 'cucumber'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
