@@ -321,7 +321,7 @@ GEM
       date
       stringio
     public_suffix (6.0.1)
-    puma (6.4.3)
+    puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.9)
@@ -557,7 +557,7 @@ DEPENDENCIES
   pry-byebug
   pry-doc
   pry-rails
-  puma (~> 6.4)
+  puma (~> 6.6)
   rails (~> 7.1.5.1)
   rladr
   rspec
