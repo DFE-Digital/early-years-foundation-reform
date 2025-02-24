@@ -8,7 +8,7 @@ Optionally create `.env` to override or set default variables.
 
 Ruby version `3.3.x`
 Node version `20.18.x`
-PostgreSQL version `13.1`
+PostgreSQL version `15.4`
 Yarn version `4.0.x`
 
 Suggest using [asdf][asdf] for local development.
