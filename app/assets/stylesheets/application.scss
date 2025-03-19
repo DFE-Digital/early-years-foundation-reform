@@ -181,6 +181,10 @@ ul>li>ul>li {
   }
 }
 
+.govuk-footer__copyright-logo {
+  display: none;
+}
+
 #feedback-cta {
   padding: govuk-spacing(5);
   background-color: govuk-organisation-colour('department-for-education');
