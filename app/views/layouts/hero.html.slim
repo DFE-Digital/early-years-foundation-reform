@@ -14,12 +14,19 @@ html.govuk-template lang='en'
 
     = navigation
 
+    - if page.tier1? || page.tier2? || page.tier3?
+      .dfe-content-page--header class='govuk-!-padding-top-1 govuk-!-padding-bottom-1'
+        .dfe-width-container
+          - if page.tier1? || page.tier2? || page.tier3?
+              = govuk_breadcrumbs(breadcrumbs: breadcrumbs, collapse_on_mobile: true)
+
     main#main-content role='main'
       .dfe-content-page--header class='govuk-!-padding-top-1 govuk-!-padding-bottom-1'
         .dfe-width-container
           = yield :hero
       .dfe-width-container class='govuk-!-padding-top-7 govuk-!-padding-bottom-7'
         = yield
+
     aside role='complementary'
       = yield :aside
     = render 'home/feedback'
