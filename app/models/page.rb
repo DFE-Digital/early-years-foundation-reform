@@ -84,6 +84,14 @@ class Page < ContentfulModel::Base
     parent&.tier2?
   end
 
+  def main_content_link
+    if tier1? || tier2? || tier3?
+      [path, '#main-content'].join('')
+    else
+      '#main-content'
+    end
+  end
+
   # @return [Date]
   def created_at
     released_at || super
