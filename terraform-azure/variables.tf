@@ -166,6 +166,10 @@ variable "webapp_config_feedback_url" {
   type = string
 }
 
+variable "webapp_config_privacy_policy_url" {
+  type = string
+}
+
 variable "webapp_config_node_env" {
   type = string
 }

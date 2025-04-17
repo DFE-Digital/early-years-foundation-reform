@@ -17,6 +17,7 @@ locals {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
+    "PRIVACY_POLICY_URL"                  = var.webapp_config_privacy_policy_url
     "NODE_ENV"                            = var.webapp_config_node_env
     "RAILS_ENV"                           = var.webapp_config_rails_env
     "RAILS_LOG_TO_STDOUT"                 = var.webapp_config_rails_log_to_stdout
@@ -34,6 +35,7 @@ locals {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
+    "PRIVACY_POLICY_URL"                  = var.webapp_config_privacy_policy_url
     "NODE_ENV"                            = var.webapp_config_node_env
     "RAILS_ENV"                           = var.webapp_config_rails_env
     "RAILS_LOG_TO_STDOUT"                 = var.webapp_config_rails_log_to_stdout
