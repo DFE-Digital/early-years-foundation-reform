@@ -10,9 +10,14 @@ html.govuk-template lang='en'
     = render 'layouts/analytics_body'
     = render 'layouts/cookie_banner'
 
-    = govuk_skip_link(href: '#main-content')
+    = govuk_skip_link(href: (page.main_content_link))
 
     = navigation
+
+    - if page.tier1? || page.tier2? || page.tier3?
+      .dfe-content-page--header class='govuk-!-padding-top-1 govuk-!-padding-bottom-1'
+        .dfe-width-container
+          = govuk_breadcrumbs(breadcrumbs: breadcrumbs, collapse_on_mobile: true)
 
     main#main-content role='main'
       .dfe-content-page--header class='govuk-!-padding-top-1 govuk-!-padding-bottom-1'
@@ -20,6 +25,7 @@ html.govuk-template lang='en'
           = yield :hero
       .dfe-width-container class='govuk-!-padding-top-7 govuk-!-padding-bottom-7'
         = yield
+
     aside role='complementary'
       = yield :aside
     = render 'home/feedback'

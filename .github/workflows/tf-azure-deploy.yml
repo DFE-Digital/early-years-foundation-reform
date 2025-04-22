@@ -137,7 +137,7 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ github.TOKEN }}
-          approvers: ebrett,jack-coggin,peterdavidhamilton,sunny-sidhu-and
+          approvers: David-DfE,martikat,benvand
           minimum-approvals: 1
           issue-title: "Terraform deployment to ${{ inputs.environment }}"
           issue-body: "Please review the Terraform Plan on the task summary and approve or deny the deployment"

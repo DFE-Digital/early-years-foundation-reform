@@ -11,7 +11,7 @@ inherit_mode:
   merge:
     - Exclude
 
-require: rubocop-performance
+plugins: rubocop-performance
 
 AllCops:
   TargetRubyVersion: 3.3.4

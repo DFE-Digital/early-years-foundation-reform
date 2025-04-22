@@ -182,4 +182,30 @@ RSpec.describe Page, type: :model do
       end
     end
   end
+
+  describe '#main-content' do
+    context 'when tier 1' do
+      let(:slug) { 'areas-of-learning' }
+
+      it 'has the skip to main content link' do
+        expect(page.main_content_link).to eq '/areas-of-learning#main-content'
+      end
+    end
+
+    context 'when tier 2' do
+      let(:slug) { 'communication-and-language' }
+
+      it 'has the skip to main content link' do
+        expect(page.main_content_link).to eq '/areas-of-learning/communication-and-language#main-content'
+      end
+    end
+
+    context 'when tier 3' do
+      let(:slug) { 'interactions' }
+
+      it 'has the skip to main content link' do
+        expect(page.main_content_link).to eq '/areas-of-learning/communication-and-language/interactions#main-content'
+      end
+    end
+  end
 end
