@@ -64,7 +64,7 @@ module GovukRailsBoilerplate
 
     # @return [Boolean]
     config.environment = ENV['ENVIRONMENT']
-    
+
     def live?
       config.environment.eql?('production')
     end
