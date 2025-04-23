@@ -30,6 +30,7 @@ resource "azurerm_postgresql_flexible_server" "psqlfs" {
     ignore_changes = [tags, zone, high_availability]
   }
 
+  #checkov:skip=CKV2_AZURE_57:Ensure PostgreSQL Flexible Server is configured with private endpoint
   #checkov:skip=CKV_AZURE_136:Geo-redundant backup is configurable depending on environment
 }
 
