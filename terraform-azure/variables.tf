@@ -166,6 +166,10 @@ variable "webapp_config_feedback_url" {
   type = string
 }
 
+variable "webapp_config_privacy_policy_url" {
+  type = string
+}
+
 variable "webapp_config_node_env" {
   type = string
 }
@@ -189,6 +193,10 @@ variable "webapp_config_rails_max_threads" {
 
 variable "webapp_config_rails_serve_static_files" {
   type = bool
+}
+
+variable "webapp_config_sentry_dsn" {
+  type = string
 }
 
 variable "webapp_config_web_concurrency" {

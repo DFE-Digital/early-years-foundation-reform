@@ -154,7 +154,7 @@ RSpec.describe Page, type: :model do
       let(:slug) { 'support-for-practitioners' }
 
       specify { expect(page).to be_children }
-      specify { expect(page.pages.count).to be 10 }
+      specify { expect(page.pages.count).to be 11 }
     end
 
     describe 'Tier 2' do
