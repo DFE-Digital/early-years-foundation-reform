@@ -4,6 +4,7 @@ on: [push]
 
 env:
   RAILS_ENV: test
+  ENVIRONMENT: test
 
 jobs:
   tests:
