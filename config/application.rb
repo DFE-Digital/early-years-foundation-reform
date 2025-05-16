@@ -63,18 +63,20 @@ module GovukRailsBoilerplate
     #
 
     # @return [Boolean]
+    config.environment = ENV.fetch('ENVIRONMENT')
+
     def live?
-      ENV['ENVIRONMENT'].eql?('production')
+      config.environment.eql?('production')
     end
 
     # @return [Boolean]
     def staging?
-      ENV['ENVIRONMENT'].eql?('staging')
+      config.environment.eql?('staging')
     end
 
     # @return [Boolean]
     def dev?
-      ENV['ENVIRONMENT'].eql?('development')
+      config.environment.eql?('development')
     end
 
     # @return [Boolean]
