@@ -1028,7 +1028,7 @@ __metadata:
     "@stimulus-components/reveal": "npm:^5.0.0"
     dfe-frontend: "npm:^2.0.1"
     esbuild: "npm:^0.25.3"
-    govuk-frontend: "npm:^5.9.0"
+    govuk-frontend: "npm:^5.10.1"
     postcss: "npm:8"
     sass: "npm:^1.85.1"
     stylelint: "npm:^16.14.1"
@@ -1215,17 +1215,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"govuk-frontend@npm:^5.10.1":
+  version: 5.10.1
+  resolution: "govuk-frontend@npm:5.10.1"
+  checksum: d39ea1359964c84e91fb820fdac54911c6daea594f4f3abbf64c0a76bbc4e2cdd325f333315a448e8a0b53aae15a75f3befcd7cf448d69e2eb6bda8e4f16e587
+  languageName: node
+  linkType: hard
+
 "govuk-frontend@npm:^5.3.1":
   version: 5.4.0
   resolution: "govuk-frontend@npm:5.4.0"
   checksum: 4ba7a0458e1501f63bf198c4982a2ee35beefb1f8707234a8643e58e4579c2a0ddf3985252185f48221d389401a380a28a81ed92865470021faea622d549fbd7
-  languageName: node
-  linkType: hard
-
-"govuk-frontend@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "govuk-frontend@npm:5.9.0"
-  checksum: dc6275eae0e9f2858ae7c1ea062df6d2119c9857847f89ef5bbce55f65c64b7ea03c484c8132e40b7972a2f371135d6718f58fa907c94860a819e0fde7842883
   languageName: node
   linkType: hard
 
