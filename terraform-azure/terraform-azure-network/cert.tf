@@ -164,4 +164,5 @@ resource "azurerm_key_vault_certificate" "kv_cert" {
       validity_in_months = 12
     }
   }
+  depends_on                  = [azurerm_key_vault_access_policy.kv_gh_ap]
 }
