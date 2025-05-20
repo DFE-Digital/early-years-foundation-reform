@@ -32,7 +32,8 @@ resource "azurerm_user_assigned_identity" "kv_mi" {
   resource_group_name = var.resource_group
 }
 
-resource "azurerm_key_vault_access_policy" "kv_ap" {
+# Access Policy for GitHub Actions
+resource "azurerm_key_vault_access_policy" "kv_gh_ap" {
   # Key Vault only deployed to the Test and Production subscription
   count = var.environment != "development" ? 1 : 0
 
@@ -60,33 +61,6 @@ resource "azurerm_key_vault_access_policy" "kv_ap" {
   lifecycle {
     ignore_changes = [object_id]
   }
-}
-
-# Access Policy for GitHub Actions
-resource "azurerm_key_vault_access_policy" "kv_gh_ap" {
-  # Key Vault only deployed to the Test and Production subscription
-  count = var.environment != "development" ? 1 : 0
-
-  key_vault_id = azurerm_key_vault.kv[0].id
-  tenant_id    = data.azurerm_client_config.az_config.tenant_id
-  object_id    = data.azurerm_client_config.az_config.object_id
-
-  secret_permissions = [
-    "Get"
-  ]
-
-  certificate_permissions = [
-    "Create",
-    "Get",
-    "GetIssuers",
-    "Import",
-    "List",
-    "ListIssuers",
-    "ManageContacts",
-    "ManageIssuers",
-    "SetIssuers",
-    "Update"
-  ]
 }
 
 resource "azurerm_key_vault_access_policy" "kv_mi_ap" {
