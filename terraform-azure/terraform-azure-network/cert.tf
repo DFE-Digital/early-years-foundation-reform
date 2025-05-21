@@ -137,5 +137,8 @@ resource "azurerm_key_vault_certificate" "kv_cert" {
       subject            = var.kv_certificate_subject
       validity_in_months = 12
     }
+
+  lifecycle {
+    ignore_changes = [secret_id]
   }
 }
