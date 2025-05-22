@@ -156,10 +156,36 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_logs_monitor" {
 
   enabled_log {
     category = "AppServiceConsoleLogs"
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
   }
 
   enabled_log {
     category = "AppServicePlatformLogs"
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+  
+  log {
+    category = "AppServiceAuthenticationLogs"
+    enabled  = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+    enabled  = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
   }
 
   timeouts {
@@ -178,10 +204,81 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_slot_logs_monitor" {
 
   enabled_log {
     category = "AppServiceConsoleLogs"
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
   }
 
   enabled_log {
     category = "AppServicePlatformLogs"
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+  log {
+    category = "AppServiceAppLogs"
+    enabled = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+  log {
+    category = "AppServiceAuditLogs"
+    enabled = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+  log {
+    category = "AppServiceConsoleLogs"
+    enabled = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+    log {
+    category = "AppServiceHTTPLogs"
+    enabled = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+    log {
+    category = "AppServiceIPSecAuditLogs"
+    enabled = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+    log {
+    category = "AppServicePlatformLogs"
+    enabled = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+    enabled  = true
+    retention_policy {
+      days    = 30
+      enabled = true
+    }
   }
 
   timeouts {
