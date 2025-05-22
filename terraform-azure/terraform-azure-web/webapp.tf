@@ -154,7 +154,7 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_logs_monitor" {
   target_resource_id         = azurerm_linux_web_app.webapp.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.webapp_logs.id
 
-  enabled_log {
+  log {
     category = "AppServiceConsoleLogs"
     retention_policy {
       days    = 30
@@ -162,7 +162,7 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_logs_monitor" {
     }
   }
 
-  enabled_log {
+  log {
     category = "AppServicePlatformLogs"
     retention_policy {
       days    = 30
@@ -202,7 +202,7 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_slot_logs_monitor" {
   target_resource_id         = azurerm_linux_web_app_slot.webapp_slot.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.webapp_logs.id
 
-  enabled_log {
+  log {
     category = "AppServiceConsoleLogs"
     retention_policy {
       days    = 30
@@ -210,7 +210,7 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_slot_logs_monitor" {
     }
   }
 
-  enabled_log {
+  log {
     category = "AppServicePlatformLogs"
     retention_policy {
       days    = 30
