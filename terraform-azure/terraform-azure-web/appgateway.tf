@@ -113,7 +113,7 @@ resource "azurerm_web_application_firewall_policy" "agw_wafp" {
     enabled                     = true
     file_upload_limit_in_mb     = 100
     max_request_body_size_in_kb = 128
-    mode                        = "Prevention"
+    mode                        = "Detection"
     request_body_check          = true
   }
 
