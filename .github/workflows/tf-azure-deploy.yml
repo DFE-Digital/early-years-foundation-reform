@@ -12,6 +12,11 @@ on:
           - development
           - staging
           - production
+      refresh:
+        description: 'Use the refresh-only flag on this plan'
+        type: boolean
+        required: false
+        default: false
 
 defaults:
   run:
@@ -82,7 +87,13 @@ jobs:
         id: tf-plan
         run: |
           export exitcode=0
-          terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+
+
+          if ${{ inputs.refresh }}; then
+            terraform plan -detailed-exitcode -no-color -refresh-only -out tfplan || export exitcode=$?
+          else
+            terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+          fi
           
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
           
