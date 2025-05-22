@@ -62,7 +62,7 @@ resource "azurerm_key_vault_access_policy" "kv_ap" {
   }
 }
 
-# Access Policy for GitHub Actions
+/* # Access Policy for GitHub Actions
 resource "azurerm_key_vault_access_policy" "kv_gh_ap" {
   # Key Vault only deployed to the Test and Production subscription
   count = var.environment != "development" ? 1 : 0
@@ -87,7 +87,7 @@ resource "azurerm_key_vault_access_policy" "kv_gh_ap" {
     "SetIssuers",
     "Update"
   ]
-}
+} */
 
 resource "azurerm_key_vault_access_policy" "kv_mi_ap" {
   # Key Vault only deployed to the Test and Production subscription
