@@ -154,38 +154,21 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_logs_monitor" {
   target_resource_id         = azurerm_linux_web_app.webapp.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.webapp_logs.id
 
-  log {
+  enabled_log {
     category = "AppServiceConsoleLogs"
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-  log {
+  enabled_log {
     category = "AppServicePlatformLogs"
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
   
-  log {
+  enabled_log {
     category = "AppServiceAuthenticationLogs"
-    enabled  = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
   metric {
     category = "AllMetrics"
     enabled  = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
   timeouts {
@@ -202,83 +185,41 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_slot_logs_monitor" {
   target_resource_id         = azurerm_linux_web_app_slot.webapp_slot.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.webapp_logs.id
 
-  log {
+  enabled_log {
     category = "AppServiceConsoleLogs"
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-  log {
+  enabled_log {
     category = "AppServicePlatformLogs"
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-  log {
+  enabled_log {
     category = "AppServiceAppLogs"
-    enabled = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-  log {
+  enabled_log {
     category = "AppServiceAuditLogs"
-    enabled = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-  log {
+  enabled_log {
     category = "AppServiceConsoleLogs"
-    enabled = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-    log {
+  enabled_log {
     category = "AppServiceHTTPLogs"
-    enabled = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-    log {
+  enabled_log {
     category = "AppServiceIPSecAuditLogs"
-    enabled = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
-    log {
+  enabled_log {
     category = "AppServicePlatformLogs"
-    enabled = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
   metric {
     category = "AllMetrics"
     enabled  = true
-    retention_policy {
-      days    = 30
-      enabled = true
-    }
   }
 
   timeouts {
