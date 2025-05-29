@@ -47,6 +47,7 @@ RUN echo "root:Docker!" | chpasswd && cd /etc/ssh/ && ssh-keygen -A
 
 ENV APP_HOME /srv
 ENV RAILS_ENV ${RAILS_ENV:-production}
+ENV ENVIRONMENT ${ENVIRONMENT:-production}
 ENV AUTHORIZED_HOSTS 127.0.0.1
 ENV IGNORE_SECRETS_FOR_BUILD=1
 
