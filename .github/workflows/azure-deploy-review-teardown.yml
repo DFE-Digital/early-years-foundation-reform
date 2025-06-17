@@ -34,7 +34,7 @@ jobs:
       - name: Destroy Azure Web Application
         uses: azure/CLI@v2
         with:
-          azcliversion: 2.50.0
+          azcliversion: 2.74.0
           inlineScript: |
             az webapp deployment slot delete --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
               --name ${{ vars.REVIEWAPP_NAME }} \
