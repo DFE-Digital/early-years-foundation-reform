@@ -89,7 +89,7 @@ jobs:
       - name: Deploy to Azure App Services
         uses: azure/CLI@v2
         with:
-          azcliversion: 2.50.0
+          azcliversion: 2.74.0
           inlineScript: |
             az postgres flexible-server db create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
               --server-name ${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs \
