@@ -13,7 +13,7 @@
     "@stimulus-components/reveal": "^5.0.0",
     "dfe-frontend": "^2.0.1",
     "esbuild": "^0.25.3",
-    "govuk-frontend": "^5.9.0",
+    "govuk-frontend": "^5.11.0",
     "sass": "^1.85.1"
   },
   "devDependencies": {
