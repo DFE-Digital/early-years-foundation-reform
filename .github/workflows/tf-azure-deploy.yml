@@ -113,6 +113,6 @@ jobs:
 
       # Terraform Apply
       - name: Terraform Apply
-        if: ${{ inputs.action == 'plan and apply' }} && ! ${{ inputs.refresh }}
+        if: ${{ inputs.action == 'plan and apply' && ! inputs.refresh }}
         run: echo "Action is ${{inputs.action}}, refresh is ${{ inputs.refresh }}" # ...for now, avoid accidentally running apply if the conditions are wrong
         #run: terraform apply -auto-approve tfplan/tfplan
