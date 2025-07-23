@@ -162,10 +162,6 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_logs_monitor" {
     category = "AppServicePlatformLogs"
   }
 
-  enabled_log {
-    category = "AppServiceAuthenticationLogs"
-  }
-
   timeouts {
     read = "30m"
   }
@@ -186,10 +182,6 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_slot_logs_monitor" {
 
   enabled_log {
     category = "AppServicePlatformLogs"
-  }
-
-  enabled_log {
-    category = "AppServiceAuthenticationLogs"
   }
 
   timeouts {
