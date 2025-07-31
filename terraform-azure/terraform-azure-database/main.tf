@@ -38,7 +38,7 @@ resource "azurerm_postgresql_flexible_server" "psqlfs" {
 resource "azurerm_postgresql_flexible_server_configuration" "psqlfs_config" {
   name      = "azure.extensions"
   server_id = azurerm_postgresql_flexible_server.psqlfs.id
-  value     = "CITEXT,FUZZYSTRMATCH,PGCRYPTO,UUID-OSSP"
+  value     = "CITEXT,FUZZYSTRMATCH,PGCRYPTO,PLPGSQL,UUID-OSSP"
 }
 
 # Create Database
