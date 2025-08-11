@@ -344,6 +344,10 @@ resource "azurerm_key_vault_access_policy" "webapp_kv_ap" {
   object_id               = var.as_service_principal_object_id
   secret_permissions      = ["Get"]
   certificate_permissions = ["Get"]
+
+  lifecycle {
+    ignore_changes = [tenant_id]
+  }
 }
 
 resource "azurerm_app_service_certificate" "webapp_custom_domain_cert" {
