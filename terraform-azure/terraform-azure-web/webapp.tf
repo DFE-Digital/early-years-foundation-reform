@@ -1,3 +1,11 @@
+locals {
+  populated_webapp_app_settings = {
+    for key, value in var.webapp_app_settings :
+    key => value if value != null
+    // ...don't include settings whose value is null
+  }
+}
+
 # Create App Service Plan
 resource "azurerm_service_plan" "asp" {
   name                = "${var.resource_name_prefix}-asp"
@@ -61,7 +69,7 @@ resource "azurerm_linux_web_app" "webapp" {
   }
 
   sticky_settings {
-    app_setting_names = keys(var.webapp_app_settings)
+    app_setting_names = keys(local.populated_webapp_app_settings)
   }
 
   logs {
