@@ -12,8 +12,9 @@ locals {
 
   # Web Application Configuration
   webapp_app_settings = {
-    "CONTENTFUL_ENVIRONMENT"              = var.environment
-    "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : "false"
+    // Only set CONTENTFUL_ENVIRONMENT and CONTENTFUL_PREVIEW in staging
+    "CONTENTFUL_ENVIRONMENT"              = var.environment == "staging" ? "staging" : null
+    "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : null
     "ENVIRONMENT"                         = var.environment
     "DATABASE_URL"                        = var.webapp_database_url
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
