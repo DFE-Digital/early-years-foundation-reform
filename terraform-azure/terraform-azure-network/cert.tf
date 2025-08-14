@@ -106,11 +106,22 @@ resource "azurerm_key_vault_access_policy" "kv_mi_ap" {
   object_id    = azurerm_user_assigned_identity.kv_mi[0].principal_id
 
   secret_permissions = [
-    "Get"
+    "Get",
+    "List",
+    "Set"
   ]
 
   certificate_permissions = [
-    "Get"
+    "Get",
+    "List",
+    "Update",
+    "Create",
+    "Import",
+    "ManageContacts",
+    "ManageIssuers",
+    "GetIssuers",
+    "ListIssuers",
+    "SetIssuers",
   ]
 }
 
