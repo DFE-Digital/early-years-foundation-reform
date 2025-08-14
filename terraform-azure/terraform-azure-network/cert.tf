@@ -41,9 +41,7 @@ resource "azurerm_key_vault_access_policy" "kv_ap" {
   object_id    = data.azurerm_client_config.az_config.object_id
 
   secret_permissions = [
-    "Get",
-    "List",
-    "Set"
+    "Get"
   ]
 
   certificate_permissions = [
@@ -74,7 +72,9 @@ resource "azurerm_key_vault_access_policy" "kv_gh_ap" {
   object_id    = data.azurerm_client_config.az_config.object_id
 
   secret_permissions = [
-    "Get"
+    "Get",
+    "List",
+    "Set"
   ]
 
   certificate_permissions = [
