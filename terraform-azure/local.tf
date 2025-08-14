@@ -34,6 +34,9 @@ locals {
   }
 
   webapp_slot_app_settings = {
+    // Only set CONTENTFUL_ENVIRONMENT and CONTENTFUL_PREVIEW in staging
+    "CONTENTFUL_ENVIRONMENT"              = var.environment == "staging" ? "staging" : null
+    "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : null
     "ENVIRONMENT"                         = var.environment
     "DATABASE_URL"                        = var.webapp_slot_database_url
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
