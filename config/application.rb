@@ -81,7 +81,9 @@ module GovukRailsBoilerplate
 
     # @return [Boolean]
     def preview?
-      Dry::Types['params.bool'][ENV.fetch('CONTENTFUL_PREVIEW', false)]
+      ActiveModel::Type::Boolean.new.cast(ENV.fetch('CONTENTFUL_PREVIEW', false))
+
+      # Dry::Types['params.bool'][ENV.fetch('CONTENTFUL_PREVIEW', false)]
     end
   end
 end
