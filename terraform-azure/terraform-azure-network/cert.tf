@@ -68,7 +68,7 @@ resource "azurerm_key_vault_access_policy" "kv_gh_ap" {
   secret_permissions = [
     "Get",
     "List",
-    "Create"
+    "Set"
   ]
 
   certificate_permissions = [
