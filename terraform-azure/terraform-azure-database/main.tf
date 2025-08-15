@@ -4,7 +4,7 @@ resource "random_pet" "name" {
 
 # Create Database Server
 resource "azurerm_postgresql_flexible_server" "psqlfs" {
-  name                         = "${var.resource_name_prefix}-psqlfs"
+  name                         = var.environment == "development" ? "${var.resource_name_prefix}-psqlfs" : "${var.resource_name_prefix}-psqls"
   resource_group_name          = var.resource_group
   location                     = var.location
   version                      = "13"
@@ -38,7 +38,7 @@ resource "azurerm_postgresql_flexible_server" "psqlfs" {
 resource "azurerm_postgresql_flexible_server_configuration" "psqlfs_config" {
   name      = "azure.extensions"
   server_id = azurerm_postgresql_flexible_server.psqlfs.id
-  value     = "CITEXT,FUZZYSTRMATCH,PGCRYPTO,UUID-OSSP"
+  value     = var.environment == "production" ? "CITEXT,FUZZYSTRMATCH,PGCRYPTO,PLPGSQL,UUID-OSSP" : "CITEXT,FUZZYSTRMATCH,PGCRYPTO,UUID-OSSP"
 }
 
 # Create Database

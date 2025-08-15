@@ -1,3 +1,11 @@
+locals {
+  populated_webapp_app_settings = {
+    for key, value in var.webapp_app_settings :
+    key => value if value != null
+    // ...don't include settings whose value is null
+  }
+}
+
 # Create App Service Plan
 resource "azurerm_service_plan" "asp" {
   name                = "${var.resource_name_prefix}-asp"
@@ -61,7 +69,7 @@ resource "azurerm_linux_web_app" "webapp" {
   }
 
   sticky_settings {
-    app_setting_names = keys(var.webapp_app_settings)
+    app_setting_names = keys(local.populated_webapp_app_settings)
   }
 
   logs {
@@ -162,6 +170,10 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_logs_monitor" {
     category = "AppServicePlatformLogs"
   }
 
+  enabled_log {
+    category = "AppServiceHTTPLogs"
+  }
+
   timeouts {
     read = "30m"
   }
@@ -182,6 +194,10 @@ resource "azurerm_monitor_diagnostic_setting" "webapp_slot_logs_monitor" {
 
   enabled_log {
     category = "AppServicePlatformLogs"
+  }
+
+  enabled_log {
+    category = "AppServiceHTTPLogs"
   }
 
   timeouts {
@@ -336,6 +352,10 @@ resource "azurerm_key_vault_access_policy" "webapp_kv_ap" {
   object_id               = var.as_service_principal_object_id
   secret_permissions      = ["Get"]
   certificate_permissions = ["Get"]
+
+  lifecycle {
+    ignore_changes = [tenant_id]
+  }
 }
 
 resource "azurerm_app_service_certificate" "webapp_custom_domain_cert" {
