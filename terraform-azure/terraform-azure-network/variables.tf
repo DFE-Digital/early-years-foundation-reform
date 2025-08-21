@@ -72,3 +72,10 @@ variable "kv_certificate_subject" {
   description = "Subject of the Certificate"
   type        = string
 }
+
+variable "as_service_principal_object_id" {
+  description = "Object ID of the service principal for Azure App Service"
+  type        = string
+  sensitive   = true
+}
+
