@@ -18,12 +18,6 @@ variable "resource_name_prefix" {
   type        = string
 }
 
-variable "as_service_principal_object_id" {
-  description = "Object ID of the service principal for App Service"
-  type        = string
-  sensitive   = true
-}
-
 variable "asp_sku" {
   description = "SKU name for the App Service Plan"
   type        = string
