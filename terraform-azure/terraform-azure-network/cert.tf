@@ -33,7 +33,7 @@ resource "azurerm_user_assigned_identity" "kv_mi" {
 }
 
 resource "azurerm_key_vault_access_policy" "kv_ap" {
-  # Custom hostname only deployed to the Test and Production subscription
+  # Key vault only deployed to the Test and Production subscription
   count = var.environment != "development" ? 1 : 0
 
   key_vault_id = azurerm_key_vault.kv[0].id
