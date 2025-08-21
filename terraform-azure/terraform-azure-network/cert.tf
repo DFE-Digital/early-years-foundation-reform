@@ -48,7 +48,14 @@ resource "azurerm_key_vault_access_policy" "kv_ap" {
   certificate_permissions = [
     "Create",
     "Get",
+    "GetIssuers",
+    "Import",
     "List",
+    "ListIssuers",
+    "ManageContacts",
+    "ManageIssuers",
+    "SetIssuers",
+    "Update"
   ]
 
   lifecycle {
