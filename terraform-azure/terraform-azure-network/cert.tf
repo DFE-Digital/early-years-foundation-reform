@@ -33,32 +33,18 @@ resource "azurerm_user_assigned_identity" "kv_mi" {
 }
 
 resource "azurerm_key_vault_access_policy" "kv_ap" {
-  # Key Vault only deployed to the Test and Production subscription
+  # Key vault only deployed to the Test and Production subscription
   count = var.environment != "development" ? 1 : 0
 
   key_vault_id = azurerm_key_vault.kv[0].id
   tenant_id    = data.azurerm_client_config.az_config.tenant_id
-  object_id    = data.azurerm_client_config.az_config.object_id
-
-  secret_permissions = [
-    "Get"
-  ]
-
-  certificate_permissions = [
-    "Create",
-    "Get",
-    "GetIssuers",
-    "Import",
-    "List",
-    "ListIssuers",
-    "ManageContacts",
-    "ManageIssuers",
-    "SetIssuers",
-    "Update"
-  ]
+  # Can be retrieved using 'az ad sp show --id abfa0a7c-a6b6-4736-8310-5855508787cd --query id'
+  object_id               = var.as_service_principal_object_id
+  secret_permissions      = ["Get"]
+  certificate_permissions = ["Get"]
 
   lifecycle {
-    ignore_changes = [object_id]
+    ignore_changes = [tenant_id]
   }
 }
 
