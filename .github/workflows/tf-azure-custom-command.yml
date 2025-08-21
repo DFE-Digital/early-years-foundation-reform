@@ -1,0 +1,81 @@
+name: 'Run Custom Terraform Command [Azure]'
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Azure deployment environment'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+      command:
+        description: "Enter a terraform command without the terraform prefix"
+        required: true
+        type: string
+
+defaults:
+  run:
+    working-directory: ./terraform-azure
+
+# Permissions for OIDC authentication
+permissions:
+  id-token: write
+  contents: write
+  issues: write
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_USE_OIDC: true
+  ARM_SKIP_PROVIDER_REGISTRATION: true
+
+jobs:
+  terraform-custom-command:
+    name: 'Run Custom Terraform Command'
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install the latest version of the Terraform CLI
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.5.6
+          terraform_wrapper: false
+
+      # Initialise a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        run: >
+          terraform init
+          -backend-config="resource_group_name=${{ secrets.TERRAFORM_STATE_RESOURCE_GROUP }}"
+          -backend-config="storage_account_name=${{ secrets.TERRAFORM_STATE_STORAGE_ACCOUNT_NAME }}"
+          -backend-config="container_name=${{ secrets.TERRAFORM_STATE_STORAGE_CONTAINER_NAME }}"
+          -backend-config="key=${{ secrets.TERRAFORM_STATE_KEY }}"
+      # Checks that all Terraform configuration files adhere to a canonical format
+      # Will fail the build if not
+      - name: Terraform Format
+        run: terraform fmt -check
+
+      # Generates Terraform input variables
+      - name: Generate Terraform Variables
+        shell: bash
+        env:
+          WEB_SECRETS: ${{ toJSON(secrets) }}
+          WEB_VARS: ${{ toJSON(vars) }}
+        run: |
+          printf '%s\n' "$WEB_SECRETS" > tmp-secrets.json
+          printf '%s\n' "$WEB_VARS" > tmp-vars.json
+          jq 'with_entries(.key |= ascii_downcase)' tmp-secrets.json > web-secrets.auto.tfvars.json
+          jq 'with_entries(.key |= ascii_downcase)' tmp-vars.json > web-vars.auto.tfvars.json
+      # Run custom Terraform command
+      - name: Custom Terraform Command
+        run: terraform ${{ github.event.inputs.command }}
