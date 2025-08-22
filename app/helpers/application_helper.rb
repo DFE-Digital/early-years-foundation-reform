@@ -10,10 +10,8 @@ module ApplicationHelper
         header.with_navigation_item(
           text: item.title,
           href: item.path,
-          classes: [
-            'govuk-service-navigation__item',
-            ('govuk-service-navigation__item--current' if current_page?(item.path)),
-          ].compact,
+          active: item.slug == section,
+          classes: %w[govuk-service-navigation__item],
         )
       end
     end
