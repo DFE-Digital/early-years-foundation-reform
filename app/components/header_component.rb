@@ -12,45 +12,43 @@ class HeaderComponent < GovukComponent::HeaderComponent
 private
 
   def default_attributes
-    { class: %w[dfe-header] }
+    { class: %w[govuk-header] }
   end
 
   def navigation_html_attributes
-    nc = %w[dfe-header__navigation] << custom_navigation_classes.compact
+    nc = %w[govuk-service-navigation__list] << custom_navigation_classes.compact
 
-    { id: 'header-navigation', class: nc, data: { 'reveal-target': 'item' }, aria: { label: navigation_label, labelledby: 'label-navigation' } }
+    { id: 'navigation', class: nc, aria: { label: navigation_label } }
   end
 
   def container_html_attributes
-    { class: %w[dfe-header__container dfe-width-container] }
+    { class: %w[govuk-header__container govuk-width-container] }
   end
 
   class ActionLinkItem < GovukComponent::HeaderComponent::NavigationItem
     def active_class
-      ['dfe-header__action-item--current'] if active?
+      ['govuk-header__navigation-item--current'] if active?
     end
 
     def call
-      tag.li do
-        if link?
-          govuk_link_to(text, href, **options)
-        else
-          text
-        end
+      if link?
+        govuk_link_to(text, href, **options)
+      else
+        text
       end
     end
   end
 
   class NavigationItem < GovukComponent::HeaderComponent::NavigationItem
     def active_class
-      %w[dfe-header__navigation-item--current] if active?
+      ['govuk-service-navigation__item--current'] if active?
     end
 
     def call
       tag.li(**html_attributes) do
         if link?
-          link_to(href, class: 'dfe-header__navigation-link', **options) do
-            (text + chevron).html_safe
+          link_to(href, class: 'govuk-service-navigation__link', **options) do
+            text
           end
         else
           text
@@ -60,14 +58,8 @@ private
 
   private
 
-    def chevron
-      tag.svg class: 'dfe-icon dfe-icon__chevron-right', xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', width: 34, height: 34, aria: { hidden: true } do
-        tag.path d: 'M15.5 12a1 1 0 0 1-.29.71l-5 5a1 1 0 0 1-1.42-1.42l4.3-4.29-4.3-4.29a1 1 0 0 1 1.42-1.42l5 5a1 1 0 0 1 .29.71z'
-      end
-    end
-
     def default_attributes
-      { class: %w[dfe-header__navigation-item] }
+      { class: %w[govuk-service__navigation-item] }
     end
   end
 end

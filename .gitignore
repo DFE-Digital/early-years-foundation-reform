@@ -64,3 +64,5 @@ nscacert.pem
 # YARD documentation files
 *.yardoc
 
+.DS_Store
+
