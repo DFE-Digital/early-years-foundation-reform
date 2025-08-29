@@ -17,6 +17,8 @@ $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 // Original colour for light blue link - $light-blue-link: #155084;
 $light-blue-link: color.adjust($govuk-link-colour, $lightness: -11%);
 
+$govuk-new-organisation-colours: true;
+
 @import 'header';
 @import 'breadcrumbs';
 
@@ -35,14 +37,7 @@ $light-blue-link: color.adjust($govuk-link-colour, $lightness: -11%);
 
 * {
   font-family:
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen-Sans,
-    Ubuntu,
-    Cantarell,
-    'Helvetica Neue',
-    sans-serif !important;
+    'Inter', sans-serif !important;
 }
 
 .debug_dump {
@@ -203,7 +198,7 @@ ul>li>ul>li {
     }
 
     &:hover {
-      background-color: lighten(govuk-organisation-colour('department-for-education'), 10%);
+      background-color: color.adjust(govuk-organisation-colour('department-for-education'), $lightness: 10%)
     }
   }
 }

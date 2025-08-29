@@ -4,7 +4,6 @@
 }
 
 .gem-c-attachment {
-  font-family: 'GDS Transport', arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -69,7 +68,6 @@
 }
 
 .gem-c-attachment__title {
-  font-family: 'GDS Transport', arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -86,7 +84,6 @@
 }
 
 .gem-c-attachment__metadata {
-  font-family: 'GDS Transport', arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -131,19 +128,16 @@
 
 @media print {
   .gem-c-attachment {
-    font-family: sans-serif;
     font-size: 14pt;
     line-height: 1.15;
   }
 
   .gem-c-attachment__title {
-    font-family: sans-serif;
     font-size: 18pt;
     line-height: 1.15;
   }
 
   .gem-c-attachment__metadata {
-    font-family: sans-serif;
     font-size: 14pt;
     line-height: 1.15;
   }
