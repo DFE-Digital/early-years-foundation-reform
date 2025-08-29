@@ -13,6 +13,7 @@ title= [t('service.name'), yield(:page_title).presence].compact.join(' : ')
 = tag.meta name: 'description', content: @page&.meta_description if @page&.meta_description.present?
 
 = csrf_meta_tags
+
 = tag.meta name: 'theme-color', content: '#0b0c0c'
 
 = favicon_link_tag image_path('dfe_favicon.ico')
