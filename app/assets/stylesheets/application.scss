@@ -178,14 +178,14 @@ ul>li>ul>li {
 
 #feedback-cta {
   padding: govuk-spacing(5);
-  background-color: govuk-organisation-colour('department-for-education');
+  background-color: $color_dfe-secondary-blue;
 
   * {
     color: govuk-colour('white');
   }
 
   .govuk-button {
-    background-color: govuk-organisation-colour('department-for-education');
+    background-color: $color_dfe-secondary-blue;
     border-color: govuk-colour('white');
     box-shadow: none;
 
@@ -198,7 +198,7 @@ ul>li>ul>li {
     }
 
     &:hover {
-      background-color: color.adjust(govuk-organisation-colour('department-for-education'), $lightness: 10%)
+      background-color: color.adjust($color_dfe-secondary-blue, $lightness: 10%)
     }
   }
 }
