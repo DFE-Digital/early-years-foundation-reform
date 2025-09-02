@@ -20,7 +20,6 @@ protected
     # ensure correct API for each request
     ContentfulModel.use_preview_api = Rails.application.preview?
 
-    Resource.reset_cache_key!
     Page.reset_cache_key!
 
     :done
