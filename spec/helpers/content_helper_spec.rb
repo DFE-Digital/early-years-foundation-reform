@@ -153,11 +153,11 @@ describe 'ContentHelper', type: :helper do
   end
 
   describe 'Unprocessable entity error' do
-    subject(:unprocessable_entity_resource) { helper.unprocessable_entity }
+    subject(:unprocessable_content_resource) { helper.unprocessable_content }
 
     context 'with plain text' do
       it 'returns text for unprocessible entity error' do
-        expect(unprocessable_entity_resource.title).to eq 'The change you wanted was rejected'
+        expect(unprocessable_content_resource.title).to eq 'The change you wanted was rejected'
       end
     end
   end
