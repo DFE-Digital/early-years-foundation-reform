@@ -40,7 +40,7 @@ rectangle "Help for Early Years Providers" {
   rectangle "Sentry" as alert <<service>>
 }
 
-note left of app: Ruby 3.3.4 (alpine)
+note left of app: Ruby 3.4.5 (alpine)
 note bottom of web: Rails v7.0.8
 
 app <-- content: Preview/Delivery
