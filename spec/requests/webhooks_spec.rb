@@ -57,7 +57,7 @@ RSpec.describe 'Webhooks', type: :request do
 
     it 'returns 422 and logs an error' do
       post '/release', params: release, as: :json, headers: headers
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       expect(JSON.parse(response.body)).to eq('error' => 'Failed to save release')
       expect(Rails.logger).to have_received(:error).with(
         a_string_including('[Webhook] Failed to create Release record'),

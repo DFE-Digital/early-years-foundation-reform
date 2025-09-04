@@ -40,7 +40,7 @@ private
   # Handle validation errors when saving Release record, log and respond with 422
   rescue ActiveRecord::RecordInvalid => e
     Rails.logger.error("[Webhook] Failed to create Release record: #{e.message}")
-    render json: { error: 'Failed to save release' }, status: :unprocessable_entity
+    render json: { error: 'Failed to save release' }, status: :unprocessable_content
 
   # Catch all other unexpected errors, log and respond with 500 Internal Server Error
   rescue StandardError => e

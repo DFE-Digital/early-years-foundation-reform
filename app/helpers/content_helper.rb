@@ -71,7 +71,7 @@ module ContentHelper
   end
 
   # @return [Resource, OpenStruct]
-  def unprocessable_entity
+  def unprocessable_content
     Resource.by_name('error.unprocessable_entity') || placeholder_resource('error.unprocessable_entity')
   end
 
