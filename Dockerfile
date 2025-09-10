@@ -14,7 +14,7 @@ FROM base as deps
 
 LABEL org.opencontainers.image.description "Application Dependencies"
 
-RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn yaml-dev
+RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn
 
 ENV APP_HOME /build
 
