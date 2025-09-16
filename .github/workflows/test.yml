@@ -58,7 +58,7 @@ jobs:
           DATABASE_URL: postgres://postgres:password@localhost:5432/test
 
       - name: Compile assets
-        run: bin/rails assets:precompile
+        run: bundle exec rails assets:precompile
 
       - name: Run rubocop
         run: bundle exec rubocop
