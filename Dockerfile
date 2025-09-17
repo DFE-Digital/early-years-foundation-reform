@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # Base - AMD64 & ARM64 compatible
 # ------------------------------------------------------------------------------
-FROM ruby:3.3.4-alpine AS base
+FROM ruby:3.4.5-alpine AS base
 
 RUN apk add --no-cache --no-progress --no-check-certificate build-base less curl tzdata gcompat
 
@@ -14,7 +14,7 @@ FROM base as deps
 
 LABEL org.opencontainers.image.description "Application Dependencies"
 
-RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn
+RUN apk add --no-cache --no-progress --no-check-certificate postgresql-dev yarn yaml-dev
 
 ENV APP_HOME /build
 
