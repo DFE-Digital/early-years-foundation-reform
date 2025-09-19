@@ -5,7 +5,6 @@ title= [t('service.name'), yield(:page_title).presence].compact.join(' : ')
 
 = tag.meta content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'
 = render 'layouts/analytics_header'
-= render 'layouts/hotjar'
 
 = tag.meta content: 'width=device-width,initial-scale=1', name: 'viewport'
 = tag.meta name: 'robots', content: 'noindex,nofollow' unless Rails.application.live?

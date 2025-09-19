@@ -143,16 +143,6 @@ Console access:
     | 6274651 | eyf-recovery | early-years-foundation-reform | eyf-recovery |
     +---------+--------------+-------------------------------+--------------+
 
-## Hotjar
-
-This project uses Hotjar for user insight. Hotjar records user journeys and
-automatically redacts certain user information on recordings. All personally
-identifiable information should be redacted. In order to override the default
-settings the following classes can be added:
-
-- `data-hj-suppress` to redact additional user information
-- `data-hj-allow` to allow data that is automatically redacted
-
 ---
 
 [app-repo]: https://github.com/DFE-Digital/early-years-foundation-reform
