@@ -1030,7 +1030,7 @@ __metadata:
     esbuild: "npm:^0.25.3"
     govuk-frontend: "npm:^5.11.2"
     postcss: "npm:8"
-    sass: "npm:^1.85.1"
+    sass: "npm:^1.92.1"
     stylelint: "npm:^16.14.1"
     stylelint-config-gds: "npm:^2.0.0"
   languageName: unknown
@@ -2033,9 +2033,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.85.1":
-  version: 1.85.1
-  resolution: "sass@npm:1.85.1"
+"sass@npm:^1.92.1":
+  version: 1.92.1
+  resolution: "sass@npm:1.92.1"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^4.0.0"
@@ -2046,7 +2046,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: f843aa1df1dca2f0e9cb2fb247e4939fd514ae4c182cdd1900a0622c0d71b40dfb1c4225f78b78e165a318287ca137ec597695db3e496408bd16a921a2bc2b3f
+  checksum: 4c43975580f6bd5511bb140ec8445d936663ffacc7d0513aae65b95e2a46a954268177406b2dd4ac32494e868520ac5ea929c3521f04bc10293fb16dc25b2935
   languageName: node
   linkType: hard
 
