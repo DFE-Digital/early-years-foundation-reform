@@ -27,14 +27,13 @@ GOOGLE_ANALYTICS_DOMAINS = %w[*.google-analytics.com
                               *.googletagmanager.com
                               *.ytimg.com
                               www.youtube.com
-                              www.youtube-nocookie.com
-                              *.hotjar.com].freeze
+                              www.youtube-nocookie.com].freeze
 
 OPTIMIZE_DOMAINS = %w[www.googleoptimize.com
                       optimize.google.com
                       fonts.googleapis.com].freeze
 
-GOOGLE_STATIC_DOMAINS = %w[fonts.gstatic.com www.gstatic.com *.hotjar.com].freeze
+GOOGLE_STATIC_DOMAINS = %w[fonts.gstatic.com www.gstatic.com].freeze
 
 Rails.application.config.content_security_policy do |policy|
   # @see https://www.contentful.com/developers/docs/tutorials/general/live-preview/#set-up-live-preview
