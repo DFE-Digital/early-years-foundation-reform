@@ -156,7 +156,7 @@ GEM
       rails (>= 4.2)
       redcarpet (~> 3.2)
     crass (1.0.6)
-    cssbundling-rails (1.4.3)
+    cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
     date (3.4.1)
     debug_inspector (1.2.0)
