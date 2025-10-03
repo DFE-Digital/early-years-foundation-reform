@@ -14,7 +14,7 @@ inherit_mode:
 plugins: rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 3.4.5
+  TargetRubyVersion: 3.3.4
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes
