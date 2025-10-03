@@ -616,7 +616,7 @@ DEPENDENCIES
   yard-junk
 
 RUBY VERSION
-   ruby 3.4.5p51
+   ruby 3.3.4p94
 
 BUNDLED WITH
    2.7.2
