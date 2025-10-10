@@ -14,7 +14,7 @@ RSpec.describe 'Selecting cookie options' do
 
     context 'when cookie banner is displayed' do
       it 'visitor can click to read cookie policy' do
-        click_on 'Read the cookie policy'
+        click_on 'View cookies'
         expect(page).to have_content('Cookies')
         expect(page).to have_current_path('/cookie-policy')
       end

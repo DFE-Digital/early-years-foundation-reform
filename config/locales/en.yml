@@ -8,7 +8,7 @@ en:
     heading: Cookies on %{service}
     accept: Accept analytics cookies
     reject: Reject analytics cookies
-    policy: Read the cookie policy
+    policy: View cookies
     body:
       html: |
         <p>We use some essential cookies to make this service work.</p>
