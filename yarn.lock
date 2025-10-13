@@ -258,20 +258,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:^8.0.12":
-  version: 8.0.12
-  resolution: "@hotwired/turbo-rails@npm:8.0.12"
+"@hotwired/turbo-rails@npm:^8.0.18":
+  version: 8.0.18
+  resolution: "@hotwired/turbo-rails@npm:8.0.18"
   dependencies:
-    "@hotwired/turbo": "npm:^8.0.12"
-    "@rails/actioncable": "npm:^7.0"
-  checksum: 9a1bb2356edaed85a96c23f057468aa744f1f61339df60cb3db536fc2da64ade9d3cf2ad2524c656eb162908f77d9c0273b0dcdde0a65b812fb9f6d4def6ebb5
+    "@hotwired/turbo": "npm:^8.0.18"
+    "@rails/actioncable": "npm:>=7.0"
+  checksum: 5a2ec94f5d2c530366bc4b8139eaae1764694a31509e7c754cda03ea0c03b56cc4f0da0d759b9e13acb11f963b2ae9aeb0b624e1db75c187fd3fc236cfb83f22
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^8.0.12":
-  version: 8.0.12
-  resolution: "@hotwired/turbo@npm:8.0.12"
-  checksum: 59fb5f87620a8819968fa54797d672bd59694dc5813bac6070cab204c6845fde50b36c308f6478e187665fd0550c63e674b8d55b9bb92951e56c9159783b5bf3
+"@hotwired/turbo@npm:^8.0.18":
+  version: 8.0.18
+  resolution: "@hotwired/turbo@npm:8.0.18"
+  checksum: 5021e77441cc1730629c4c4b25113d8cc765f4ebcdc173c3fcab53124a36c682f89c1c918be8f90c1e19175e7ac0391216728135b29ebdf1e701ec27d6acc70c
   languageName: node
   linkType: hard
 
@@ -488,10 +488,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/actioncable@npm:^7.0":
-  version: 7.1.3
-  resolution: "@rails/actioncable@npm:7.1.3"
-  checksum: 6019097498387a9c0684df0be380182820a0480173e05a5c5a830cef6cf3e40c9ec75b834af0396b0f57b4e658891c820163e84b9f2bd1ac293c90f5a12ce488
+"@rails/actioncable@npm:>=7.0":
+  version: 8.0.300
+  resolution: "@rails/actioncable@npm:8.0.300"
+  checksum: b93b63c57909ff5b17154a0d564ef0e68b36bcfe416c68e140c6c74bc4f156a9bc38c253d9e37ae0b8f80a29d7c6034e6296c3882735d0b8bcdfe1f256c54d80
   languageName: node
   linkType: hard
 
@@ -1024,7 +1024,7 @@ __metadata:
   resolution: "eyfs-reform@workspace:."
   dependencies:
     "@hotwired/stimulus": "npm:^3.2.1"
-    "@hotwired/turbo-rails": "npm:^8.0.12"
+    "@hotwired/turbo-rails": "npm:^8.0.18"
     "@stimulus-components/reveal": "npm:^5.0.0"
     dfe-frontend: "npm:^2.0.1"
     esbuild: "npm:^0.25.3"
