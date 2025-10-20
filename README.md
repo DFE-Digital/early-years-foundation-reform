@@ -20,8 +20,7 @@ Suggest using [asdf][asdf] for local development.
 3. Run `bundle install` to install the gem dependencies
 4. Run `yarn` to install node dependencies
 5. Copy the .env.development.example settings into the .env file
-7. Run `bin/rails db:setup` to set up the database development and test schemas, and seed with test data
-8. Run `bin/dev` to launch the app on http://localhost:3000
+6. Run `bin/dev` to launch the app on http://localhost:3000
 
 ## Useful Links
 - The Project Documentation is located within the EYFS Steady State team intranet 'site'

@@ -6,7 +6,6 @@ services:
       target: test
     image: reform:test
     environment:
-      - DATABASE_URL=postgres://postgres:password@db:5432/early_years_foundation_reform_test
       - RAILS_ENV=test
       - DOMAIN=reform.app
       - DEBUG=false
