@@ -6,7 +6,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require 'devise'
+# require 'devise'
 require 'view_component/test_helpers'
 require 'view_component/system_test_helpers'
 require 'capybara/rspec'
@@ -40,7 +40,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 # end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = Rails.root.join('spec/fixtures').to_s
+  # config.fixture_path = Rails.root.join('spec/fixtures').to_s
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -67,7 +67,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.include Devise::Test::ControllerHelpers, type: :controller
+  # config.include Devise::Test::ControllerHelpers, type: :controller
 
   # enable cookie banner
   config.include ShowMeTheCookies, type: :system

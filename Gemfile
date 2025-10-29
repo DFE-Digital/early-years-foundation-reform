@@ -15,9 +15,9 @@ gem 'jsbundling-rails'
 gem 'sprockets-rails'
 gem 'turbo-rails'
 
-gem 'devise'
-gem 'devise-security'
-gem 'pg'
+# gem 'devise'
+# gem 'devise-security'
+# gem 'pg'
 
 gem 'dry-core'
 gem 'dry-initializer'
