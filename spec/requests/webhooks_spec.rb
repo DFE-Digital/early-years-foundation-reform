@@ -17,7 +17,6 @@ RSpec.describe 'Webhooks', type: :request do
     it 'persists the latest release event and logs it' do
       post '/release', params: release, as: :json, headers: headers
       expect(response).to have_http_status(:ok)
-      # expect(Release.last.name).to eql 'release'
       expect(Resource).to have_received(:reset_cache_key!).at_least(:once)
       expect(Page).to have_received(:reset_cache_key!).at_least(:once)
       expect(Rails.logger).to have_received(:info).with(
@@ -28,7 +27,6 @@ RSpec.describe 'Webhooks', type: :request do
     it 'persists the latest change event and logs it' do
       post '/change', params: change, as: :json, headers: headers
       expect(response).to have_http_status(:ok)
-      # expect(Release.last.name).to eql 'change'
       expect(Resource).to have_received(:reset_cache_key!).at_least(:once)
       expect(Page).to have_received(:reset_cache_key!).at_least(:once)
       expect(Rails.logger).to have_received(:info).with(

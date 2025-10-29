@@ -20,13 +20,6 @@ private
     # If JSON parsing failed, respond with 400 Bad Request and log it
     return render json: { error: 'Invalid JSON payload' }, status: :bad_request if payload_data.nil?
 
-    # Create a new Release record with relevant data from the webhook payload
-    # Release.create!(
-    #   name: payload_data.dig('sys', 'id'), # Unique ID for the release/change event
-    #   time: payload_data.dig('sys', time_field), # Timestamp from webhook (completedAt or updatedAt)
-    #   properties: payload_data, # Store full payload for reference
-    # )
-
     # Invalidate cached CMS content so fresh data loads on next request
     Resource.reset_cache_key!
     Page.reset_cache_key!
@@ -36,11 +29,6 @@ private
 
     # Respond with 200 OK and a status message so Contentful knows webhook received
     render json: { status: "content #{action_name} received" }, status: :ok
-
-  # Handle validation errors when saving Release record, log and respond with 422
-  # rescue ActiveRecord::RecordInvalid => e
-  #   Rails.logger.error("[Webhook] Failed to create Release record: #{e.message}")
-  #   render json: { error: 'Failed to save release' }, status: :unprocessable_entity
 
   # Catch all other unexpected errors, log and respond with 500 Internal Server Error
   rescue StandardError => e

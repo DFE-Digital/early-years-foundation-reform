@@ -46,8 +46,6 @@ else
     /usr/sbin/sshd
     eval $(printenv | xargs 2>/dev/null | export > /root/.profile)
 
-    # bundle exec rails db:create db:migrate
-
     case ${ENVIRONMENT} in
       "development" )
         # no op
