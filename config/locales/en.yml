@@ -60,7 +60,6 @@ en:
     editor: Editor
   static_pages:
     accessibility_statement: Accessibility statement for the Help for early years providers service
-  activerecord:
     errors:
       models:
         article:

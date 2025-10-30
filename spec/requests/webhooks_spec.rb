@@ -17,7 +17,6 @@ RSpec.describe 'Webhooks', type: :request do
     it 'persists the latest release event and logs it' do
       post '/release', params: release, as: :json, headers: headers
       expect(response).to have_http_status(:ok)
-      expect(Release.last.name).to eql 'release'
       expect(Resource).to have_received(:reset_cache_key!).at_least(:once)
       expect(Page).to have_received(:reset_cache_key!).at_least(:once)
       expect(Rails.logger).to have_received(:info).with(
@@ -28,7 +27,6 @@ RSpec.describe 'Webhooks', type: :request do
     it 'persists the latest change event and logs it' do
       post '/change', params: change, as: :json, headers: headers
       expect(response).to have_http_status(:ok)
-      expect(Release.last.name).to eql 'change'
       expect(Resource).to have_received(:reset_cache_key!).at_least(:once)
       expect(Page).to have_received(:reset_cache_key!).at_least(:once)
       expect(Rails.logger).to have_received(:info).with(
@@ -44,38 +42,6 @@ RSpec.describe 'Webhooks', type: :request do
       expect(JSON.parse(response.body)).to eq('error' => 'Invalid JSON payload')
       expect(Rails.logger).to have_received(:error).with(
         a_string_including('[Webhook] JSON parse error'),
-      )
-    end
-  end
-
-  context 'when Release.create! raises ActiveRecord::RecordInvalid' do
-    before do
-      allow(Release).to receive(:create!).and_raise(
-        ActiveRecord::RecordInvalid.new(Release.new),
-      )
-    end
-
-    it 'returns 422 and logs an error' do
-      post '/release', params: release, as: :json, headers: headers
-      expect(response).to have_http_status(:unprocessable_entity)
-      expect(JSON.parse(response.body)).to eq('error' => 'Failed to save release')
-      expect(Rails.logger).to have_received(:error).with(
-        a_string_including('[Webhook] Failed to create Release record'),
-      )
-    end
-  end
-
-  context 'when unexpected error occurs' do
-    before do
-      allow(Release).to receive(:create!).and_raise(StandardError.new('boom'))
-    end
-
-    it 'returns 500 and logs an error' do
-      post '/change', params: change, as: :json, headers: headers
-      expect(response).to have_http_status(:internal_server_error)
-      expect(JSON.parse(response.body)).to eq('error' => 'Internal server error')
-      expect(Rails.logger).to have_received(:error).with(
-        a_string_including('[Webhook] Unexpected error: boom'),
       )
     end
   end

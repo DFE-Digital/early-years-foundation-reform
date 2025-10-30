@@ -91,13 +91,8 @@ jobs:
         with:
           azcliversion: 2.74.0
           inlineScript: |
-            az postgres flexible-server db create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-              --server-name ${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs \
-              --database-name ${{ env.PR_NUMBER }} \
-              --output none
             az webapp config appsettings set --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
               --name ${{ vars.REVIEWAPP_NAME }} \
-              --settings DATABASE_URL="postgresql://${{ secrets.PSQLFS_USERNAME }}:${{ secrets.PSQLFS_PASSWORD }}@${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs.postgres.database.azure.com/${{ env.PR_NUMBER }}?sslmode=require" \
               --output none
             az webapp deployment slot create --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
               --name ${{ vars.REVIEWAPP_NAME }} \

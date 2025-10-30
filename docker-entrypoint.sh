@@ -29,13 +29,6 @@ then
     bundle exec rails yarn:install
   fi
 
-  if [ -z ${DATABASE_URL} ]
-  then
-    echo "DATABASE_URL is not defined and cannot be prepared"
-  else
-    bundle exec rails db:create db:migrate
-  fi
-
   rm -f tmp/pids/server.pid
 
 # ------------------------------------------------------------------------------
@@ -52,8 +45,6 @@ else
     # Azure WebSSH
     /usr/sbin/sshd
     eval $(printenv | xargs 2>/dev/null | export > /root/.profile)
-
-    bundle exec rails db:create db:migrate
 
     case ${ENVIRONMENT} in
       "development" )
