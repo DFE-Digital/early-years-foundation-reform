@@ -11,14 +11,6 @@ services:
     restart: on-failure
     environment:
       - ENVIRONMENT=
-      # - RUBY_DEBUG_OPEN=true
-      # psql client
-      - PGUSER=postgres
-      - PGPASSWORD=password
-      - PGHOST=db
-      - PGDATABASE=early_years_foundation_reform_development
-      # app config
-      - DATABASE_URL=postgres://postgres:password@db:5432/early_years_foundation_reform_development
       - RAILS_ENV=development
       - DOMAIN=localhost:3000
       - RAILS_SERVE_STATIC_FILES=true

@@ -39,7 +39,3 @@ jobs:
             az webapp deployment slot delete --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
               --name ${{ vars.REVIEWAPP_NAME }} \
               --slot ${{ env.PR_NUMBER }}
-            az postgres flexible-server db delete --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
-              --server-name ${{ vars.RESOURCE_NAME_PREFIX }}-psqlfs \
-              --database-name ${{ env.PR_NUMBER }} \
-              --yes

@@ -5,8 +5,6 @@
 # @see https://design.education.gov.uk/design-system/dfe-frontend
 #
 class HeaderComponent < GovukComponent::HeaderComponent
-  include Devise::Controllers::Helpers
-
   renders_many :action_links, 'ActionLinkItem'
 
 private

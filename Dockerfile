@@ -64,7 +64,6 @@ COPY public ${APP_HOME}/public
 COPY bin ${APP_HOME}/bin
 COPY lib ${APP_HOME}/lib
 COPY config ${APP_HOME}/config
-COPY db ${APP_HOME}/db
 COPY app ${APP_HOME}/app
 
 COPY package.json ${APP_HOME}/package.json

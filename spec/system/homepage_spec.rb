@@ -15,6 +15,10 @@ RSpec.describe 'Homepage' do
     expect(page).to have_link(href: '#main-content')
   end
 
+  it 'renders the page header' do
+    expect(page).to have_content('Home')
+  end
+
   it 'displays the feedback section on the page' do
     # Check for specific content on the page
     expect(page).to have_content('Give feedback to help us improve this website')
