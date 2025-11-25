@@ -92,6 +92,7 @@ module "webapp" {
   agw_pip_id                               = module.network.agw_pip_id
   kv_id                                    = module.network.kv_id
   kv_cert_secret_id                        = module.network.kv_cert_secret_id
+  kv_cert_versionless_secret_id            = module.network.kv_cert_versionless_secret_id
   kv_mi_id                                 = module.network.kv_mi_id
   depends_on                               = [module.network, module.database]
 }
