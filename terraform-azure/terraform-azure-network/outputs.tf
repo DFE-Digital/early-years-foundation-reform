@@ -43,6 +43,11 @@ output "kv_cert_secret_id" {
   value       = var.environment != "development" ? azurerm_key_vault_certificate.kv_cert[0].secret_id : null
 }
 
+output "kv_cert_versionless_secret_id" {
+  description = "SSL certificate Secret ID"
+  value       = var.environment != "development" ? azurerm_key_vault_certificate.kv_cert[0].versionless_secret_id : null
+}
+
 output "kv_mi_id" {
   description = "ID of the Managed Identity for the Key Vault"
   value       = var.environment != "development" ? azurerm_user_assigned_identity.kv_mi[0].id : null
