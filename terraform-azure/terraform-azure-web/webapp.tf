@@ -16,7 +16,10 @@ resource "azurerm_service_plan" "asp" {
   worker_count        = var.webapp_worker_count
 
   lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = [
+      tags,
+      worker_count
+    ]
   }
 
   #checkov:skip=CKV_AZURE_212:Argument not available
