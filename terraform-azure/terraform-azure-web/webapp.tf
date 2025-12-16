@@ -16,7 +16,10 @@ resource "azurerm_service_plan" "asp" {
   worker_count        = var.webapp_worker_count
 
   lifecycle {
-    ignore_changes = [tags]
+    ignore_changes = [
+      tags,
+      worker_count
+    ]
   }
 
   #checkov:skip=CKV_AZURE_212:Argument not available
@@ -347,6 +350,7 @@ resource "azurerm_app_service_certificate" "webapp_custom_domain_cert" {
   name                = var.webapp_custom_domain_cert_secret_label
   resource_group_name = var.resource_group
   location            = var.location
+  app_service_plan_id = azurerm_service_plan.asp.id
   key_vault_secret_id = var.kv_cert_secret_id
 }
 

@@ -122,6 +122,11 @@ variable "kv_cert_secret_id" {
   type        = string
 }
 
+variable "kv_cert_versionless_secret_id" {
+  description = "SSL certificate versionless Secret ID"
+  type        = string
+}
+
 variable "kv_mi_id" {
   description = "ID of the Managed Identity for the Key Vault"
   type        = string
