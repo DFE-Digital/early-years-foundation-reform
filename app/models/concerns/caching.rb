@@ -22,9 +22,11 @@ module Caching
   # memoise latest release timestamp & prevent cache overload
   # (increase as CMS entries/assets grow)
   #
+  # @param timestamp [Time, nil] optional timestamp from webhook payload
   # @return [String] old key
-  def reset_cache_key!
+  def reset_cache_key!(timestamp = nil)
     cache.clear if cache.size > 2_000
-    cache.get_and_set('cache_key', cache_key)
+    new_key = timestamp&.strftime('%d-%m-%Y-%H-%M') || Time.current.strftime('%d-%m-%Y-%H-%M')
+    cache.get_and_set('cache_key', new_key)
   end
 end
