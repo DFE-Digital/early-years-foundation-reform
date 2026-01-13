@@ -1,15 +1,12 @@
-# 1. Record architecture decisions
-
-Date: 2024-01-23
+# Record architecture decisions
 
 ## Status
 
-Accepted
+Rejected, superseded by [ADR-0002](0002-madr.md)
 
 ## Context
 
-We need to record the architectural decisions made on this
-project.
+We need to record the architectural decisions made on this project.
 
 ## Decision
 
