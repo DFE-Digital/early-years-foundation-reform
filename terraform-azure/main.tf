@@ -46,25 +46,6 @@ module "network" {
   as_service_principal_object_id            = var.as_service_principal_object_id
 }
 
-# Create Database resources
-module "database" {
-  source = "./terraform-azure-database"
-
-  environment                 = var.environment
-  location                    = var.azure_region
-  resource_group              = azurerm_resource_group.rg.name
-  resource_name_prefix        = var.resource_name_prefix
-  psqlfs_subnet_id            = module.network.psqlfs_subnet_id
-  psqlfs_dns_zone_id          = module.network.psqlfs_dns_zone_id
-  psqlfs_sku                  = var.psqlfs_sku
-  psqlfs_storage              = var.psqlfs_storage
-  psqlfs_username             = var.psqlfs_username
-  psqlfs_password             = var.psqlfs_password
-  psqlfs_geo_redundant_backup = var.psqlfs_geo_redundant_backup
-  psqlfs_ha_enabled           = var.psqlfs_ha_enabled
-  depends_on                  = [module.network]
-}
-
 # Create Web Application resources
 module "webapp" {
   source = "./terraform-azure-web"
@@ -94,5 +75,4 @@ module "webapp" {
   kv_cert_secret_id                        = module.network.kv_cert_secret_id
   kv_cert_versionless_secret_id            = module.network.kv_cert_versionless_secret_id
   kv_mi_id                                 = module.network.kv_mi_id
-  depends_on                               = [module.network, module.database]
 }

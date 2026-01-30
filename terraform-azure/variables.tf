@@ -67,42 +67,6 @@ variable "kv_certificate_subject" {
   type        = string
 }
 
-variable "psqlfs_sku" {
-  default     = "B_Standard_B1ms"
-  description = "SKU name for the Database Server"
-  type        = string
-}
-
-variable "psqlfs_storage" {
-  default     = 32768
-  description = "Max storage allowed for the Database Server"
-  type        = number
-}
-
-variable "psqlfs_username" {
-  description = "Username of the Database Server"
-  type        = string
-  sensitive   = true
-}
-
-variable "psqlfs_password" {
-  description = "Password of the Database Server"
-  type        = string
-  sensitive   = true
-}
-
-variable "psqlfs_geo_redundant_backup" {
-  default     = false
-  description = "Geo-redundant backup storage enabled for the Database Server"
-  type        = bool
-}
-
-variable "psqlfs_ha_enabled" {
-  default     = false
-  description = "Enable high availability for the Database Server"
-  type        = bool
-}
-
 variable "as_service_principal_object_id" {
   description = "Object ID of the service principal for App Service"
   type        = string
@@ -124,18 +88,6 @@ variable "webapp_worker_count" {
 variable "webapp_name" {
   description = "Name for the Web Application"
   type        = string
-}
-
-variable "webapp_database_url" {
-  description = "URL to the Database"
-  type        = string
-  sensitive   = true
-}
-
-variable "webapp_slot_database_url" {
-  description = "URL to the Database"
-  type        = string
-  sensitive   = true
 }
 
 variable "webapp_docker_registry_url" {

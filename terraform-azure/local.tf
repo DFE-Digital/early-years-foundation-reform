@@ -16,7 +16,6 @@ locals {
     "CONTENTFUL_ENVIRONMENT"              = var.environment == "staging" ? "staging" : null
     "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : null
     "ENVIRONMENT"                         = var.environment
-    "DATABASE_URL"                        = var.webapp_database_url
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
@@ -38,7 +37,6 @@ locals {
     "CONTENTFUL_ENVIRONMENT"              = var.environment == "staging" ? "staging" : null
     "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : null
     "ENVIRONMENT"                         = var.environment
-    "DATABASE_URL"                        = var.webapp_slot_database_url
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
