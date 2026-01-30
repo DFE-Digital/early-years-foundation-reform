@@ -1,13 +1,13 @@
-run-name: 'Terraform Deploy [Azure] - ${{ inputs.environment }} (${{ inputs.action }})'
-name: 'Terraform Deploy [Azure]'
+run-name: "Terraform Deploy [Azure] - ${{ inputs.environment }} (${{ inputs.action }})"
+name: "Terraform Deploy [Azure]"
 
 on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Azure deployment environment'
+        description: "Azure deployment environment"
         required: true
-        default: 'development'
+        default: "development"
         type: choice
         options:
           - development
@@ -15,13 +15,13 @@ on:
           - production
       action:
         description: Plan the changes or plan and apply the changes
-        default: 'plan only'
+        default: "plan only"
         type: choice
         options:
-          - 'plan only'
-          - 'plan and apply'
+          - "plan only"
+          - "plan and apply"
       refresh:
-        description: 'Use the refresh-only flag on this plan (and do not apply)'
+        description: "Use the refresh-only flag on this plan (and do not apply)"
         type: boolean
         required: false
         default: false
@@ -45,7 +45,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Terraform Plan and Apply'
+    name: "Terraform Plan and Apply"
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     outputs:
@@ -102,13 +102,13 @@ jobs:
           else
             terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
           fi
-          
+
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
-          
+
           if [ $exitcode -eq 1 ]; then
             echo Terraform Plan Failed!
             exit 1
-          else 
+          else
             exit 0
           fi
 
