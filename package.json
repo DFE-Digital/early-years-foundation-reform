@@ -9,7 +9,7 @@
   },
   "resolutions": {
     "glob": "^10.5.0",
-    "tar": "7.5.4"
+    "tar": "7.5.7"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
