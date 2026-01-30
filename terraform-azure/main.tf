@@ -42,8 +42,6 @@ module "network" {
   kv_certificate_authority_admin_last_name  = var.kv_certificate_authority_admin_last_name
   kv_certificate_authority_admin_phone_no   = var.kv_certificate_authority_admin_phone_no
   kv_certificate_label                      = var.kv_certificate_label
-  kv_certificate_subject                    = var.kv_certificate_subject
-  as_service_principal_object_id            = var.as_service_principal_object_id
 }
 
 # Create Database resources
