@@ -8,15 +8,6 @@ output "vnet_name" {
   value       = azurerm_virtual_network.vnet.name
 }
 
-output "psqlfs_subnet_id" {
-  description = "ID of the delegated Subnet for the Database Server"
-  value       = azurerm_subnet.psqlfs_snet.id
-}
-
-output "psqlfs_dns_zone_id" {
-  description = "ID of the Private DNS Zone for the Database Server"
-  value       = azurerm_private_dns_zone.psqlfs_dnsz.id
-}
 
 output "webapp_subnet_id" {
   description = "ID of the delegated Subnet for the Web Application"
