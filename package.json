@@ -8,7 +8,8 @@
     "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets/fonts/. app/assets/builds/fonts && cp -R node_modules/govuk-frontend/dist/govuk/assets/images/. app/assets/builds/images"
   },
   "resolutions": {
-    "glob": "^10.5.0"
+    "glob": "^10.5.0",
+    "tar": "7.5.4"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
