@@ -97,6 +97,46 @@ describe 'ContentHelper', type: :helper do
       end
     end
 
+    describe 'Video markup with vimeo video provider specified' do
+      let(:input) do
+        <<~MARKUP
+          {video}
+          video
+          This is a vimeo video title
+          vimeo
+          {/video}
+        MARKUP
+      end
+
+      it 'renders the embedded video' do
+        expect(html).to have_selector('iframe')
+      end
+
+      it 'renders an iframe with a title' do
+        expect(html).to include 'title="This is a vimeo video title"'
+      end
+    end
+
+    describe 'Video markup with youtube video provider specified' do
+      let(:input) do
+        <<~MARKUP
+          {video}
+          video
+          This is a youtube video title
+          youtube
+          {/video}
+        MARKUP
+      end
+
+      it 'renders the embedded video' do
+        expect(html).to have_selector('iframe')
+      end
+
+      it 'renders an iframe with a title' do
+        expect(html).to include 'title="This is a youtube video title"'
+      end
+    end
+
     describe 'Downloads' do
       let(:input) do
         <<~MARKUP

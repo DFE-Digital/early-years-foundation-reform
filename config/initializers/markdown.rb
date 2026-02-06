@@ -139,6 +139,7 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   #   {video}
   #   video
   #   This is a video title
+  #   This is the video provider (YouTube or Vimeo)
   #   {/video}
   #
   # @return [CustomPreprocessor]
@@ -146,15 +147,25 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
     pattern = build_regexp('video')
     @output = output.gsub(pattern) do
       params = { enablejsapi: 1, origin: ENV['DOMAIN'] }.to_param
-      video_id, video_title = split_content Regexp.last_match(1)
-      video_url = %(https://www.youtube.com/embed/#{video_id}?#{params})
-      # video_url = %(https://player.vimeo.com/video/#{video_id}?#{params})
+      video_id, video_title, video_provider = Regexp.last_match(1).strip.split("\n")
+      video_site_url = !video_provider.nil? ? video_provider_url(video_provider) : 'https://www.youtube.com/embed'
+      video_url = %(#{video_site_url}/#{video_id}?#{params})
+
       video_template.render(nil, url: video_url, video_title: video_title)
     end
     self
   end
 
 private
+
+  # @return [String]
+  def video_provider_url(video_provider)
+    if video_provider.casecmp?('vimeo')
+      'https://player.vimeo.com/video'
+    else
+      'https://www.youtube.com/embed'
+    end
+  end
 
   # @param content [String]
   # @return [Array<String>]
