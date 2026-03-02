@@ -58,7 +58,7 @@ jobs:
 
       # Install the latest version of the Terraform CLI
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: 1.12.2
           terraform_wrapper: false
