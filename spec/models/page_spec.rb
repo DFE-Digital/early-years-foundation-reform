@@ -183,7 +183,7 @@ RSpec.describe Page, type: :model do
     end
   end
 
-  describe '#main-content' do
+  describe '#main_content_link' do
     context 'when tier 1' do
       let(:slug) { 'areas-of-learning' }
 
