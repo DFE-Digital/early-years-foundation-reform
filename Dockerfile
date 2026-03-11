@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # Base - AMD64 & ARM64 compatible
 # ------------------------------------------------------------------------------
-FROM ruby:3.3.9-alpine AS base
+FROM ruby:3.4.8-alpine AS base
 
 RUN apk add --no-cache --no-progress --no-check-certificate build-base less curl tzdata gcompat
 
