@@ -3,7 +3,7 @@
 class CustomPreprocessor < GovukMarkdown::Preprocessor
   # @return [CustomPreprocessor]
   def apply_all
-    inject_inset_text.inject_details.download.two_thirds.image_card.button.external.quote.blockquote.video
+    inject_inset_text.inject_details.download.two_thirds.image_card.button.external.quote.blockquote.transcript.video
   end
 
   # @example
@@ -136,6 +136,21 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   end
 
   # @example
+  #   {transcript}
+  #   This is a transcript for the video content
+  #   {/transcript}
+  #
+  # @return [CustomPreprocessor]
+  def transcript
+    pattern = build_regexp('transcript')
+    @output = output.gsub(pattern) do
+      transcript = Regexp.last_match(1)
+      transcript_template.render(nil, transcript: nested_markdown(transcript))
+    end
+    self
+  end
+
+  # @example
   #   {video}
   #   video
   #   This is a video title
@@ -205,6 +220,11 @@ private
   # @return [Slim::Template]
   def blockquote_template
     @blockquote_template ||= Slim::Template.new('app/views/markup/_blockquote.html.slim')
+  end
+
+  # @return [Slim::Template]
+  def transcript_template
+    @transcript_template ||= Slim::Template.new('app/views/markup/_transcript.html.slim')
   end
 
   # @return [Slim::Template]

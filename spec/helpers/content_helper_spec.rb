@@ -170,6 +170,20 @@ describe 'ContentHelper', type: :helper do
         expect(html).to include 'This is the image card title'
       end
     end
+
+    describe 'Transcript markup' do
+      let(:input) do
+        <<~MARKUP
+          {transcript}
+          This is transcript text
+          {/transcript}
+        MARKUP
+      end
+
+      it 'builds semantic markup' do
+        expect(html).to include '<span class="govuk-details__summary-text">Transcript</span>'
+      end
+    end
   end
 
   describe 'Not found error' do
