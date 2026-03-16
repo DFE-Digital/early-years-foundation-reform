@@ -145,7 +145,7 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
     pattern = build_regexp('transcript')
     @output = output.gsub(pattern) do
       transcript = Regexp.last_match(1)
-      transcript_template.render(nil, transcript: transcript)
+      transcript_template.render(nil, transcript: nested_markdown(transcript))
     end
     self
   end
