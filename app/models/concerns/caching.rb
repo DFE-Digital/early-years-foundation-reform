@@ -3,9 +3,28 @@
 # @see https://github.com/dry-rb/dry-core/blob/main/lib/dry/core/cache.rb
 #
 module Caching
+  # Retry Contentful API calls on rate limit
+  def with_contentful_retry(max_retries = 3, &block)
+    self.class.with_contentful_retry(max_retries, &block)
+  end
+
   # @api private
   def self.extended(klass)
     klass.send :extend, Dry::Core::Cache
+    klass.define_singleton_method(:with_contentful_retry) do |max_retries = 3, &block|
+      retries = 0
+      begin
+        block.call
+      rescue Contentful::RateLimitExceeded
+        if retries < max_retries
+          sleep(2)
+          retries += 1
+          retry
+        else
+          raise
+        end
+      end
+    end
   end
 
   # @param key [String] entry id / collection

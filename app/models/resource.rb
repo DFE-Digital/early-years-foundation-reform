@@ -9,7 +9,7 @@ class Resource < ContentfulModel::Base
   # @return [Resource]
   def self.by_name(name)
     fetch_or_store to_key(name) do
-      find_by(name: name.to_s).first
+      with_contentful_retry { find_by(name: name.to_s).first }
     end
   end
 end

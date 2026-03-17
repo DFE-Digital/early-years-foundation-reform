@@ -19,7 +19,7 @@ class Page < ContentfulModel::Base
   # @return [Page]
   def self.by_slug(slug)
     fetch_or_store to_key(slug) do
-      find_by(slug: slug.to_s)&.first
+      with_contentful_retry { find_by(slug: slug.to_s)&.first }
     end
   end
 
@@ -60,7 +60,7 @@ class Page < ContentfulModel::Base
     return if fields[:image].blank?
 
     fetch_or_store self.class.to_key(fields[:image].id) do
-      ContentfulModel::Asset.find(fields[:image].id)
+      self.class.with_contentful_retry { ContentfulModel::Asset.find(fields[:image].id) }
     end
   end
 
