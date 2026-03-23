@@ -65,9 +65,12 @@ module ContentHelper
     Resource.by_name('error.not_found') || placeholder_resource('error.not_found')
   end
 
-  # @return [Resource, OpenStruct]
+  # @return [OpenStruct]
   def internal_server_error
-    Resource.by_name('error.internal_server_error') || placeholder_resource('error.internal_server_error')
+    ::OpenStruct.new(
+      title: 'Internal Server Error',
+      body: 'Sorry, something went wrong. Please try again later.'
+    )
   end
 
   # @return [Resource, OpenStruct]
