@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "postcss": "8",
-    "stylelint": "^16.26.1",
+    "stylelint": "^17.5.0",
     "stylelint-config-gds": "^2.0.0"
   },
   "stylelint": {
