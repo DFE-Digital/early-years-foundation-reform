@@ -12,7 +12,10 @@ class Page < ContentfulModel::Base
 
   # @return [Page]
   def self.footer
-    by_slug 'footer'
+    by_slug('footer')
+  rescue ::HTTP::TimeoutError, ::Contentful::Error => e
+    Rails.logger.error("Contentful timeout or error in Page.footer: #{e.class} - #{e.message}")
+    nil
   end
 
   # @param slug [String]
@@ -20,6 +23,9 @@ class Page < ContentfulModel::Base
   def self.by_slug(slug)
     fetch_or_store to_key(slug) do
       find_by(slug: slug.to_s)&.first
+    rescue ::HTTP::TimeoutError, ::Contentful::Error => e
+      Rails.logger.error("Contentful timeout or error in Page.by_slug('#{slug}'): #{e.class} - #{e.message}")
+      nil
     end
   end
 

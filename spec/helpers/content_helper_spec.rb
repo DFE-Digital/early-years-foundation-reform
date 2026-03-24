@@ -201,7 +201,7 @@ describe 'ContentHelper', type: :helper do
 
     context 'with plain text' do
       it 'returns text for internal server error' do
-        expect(internal_server_resource.title).to eq 'Sorry, there is a problem with the website'
+        expect(internal_server_resource.title).to eq 'Internal Server Error'
       end
     end
   end
