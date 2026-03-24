@@ -69,7 +69,7 @@ module ContentHelper
   def internal_server_error
     ::OpenStruct.new(
       title: 'Internal Server Error',
-      body: 'Sorry, something went wrong. Please try again later.'
+      body: 'Sorry, something went wrong. Please try again later.',
     )
   end
 
