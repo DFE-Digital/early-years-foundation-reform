@@ -43,6 +43,7 @@ module GovukRailsBoilerplate
     config.signup_url = ENV.fetch('SIGNUP_URL', '#SIGNUP_env_var_missing')
     config.tracking_id = ENV.fetch('TRACKING_ID', '#TRACKING_ID_env_var_missing')
     config.js_url = "https://www.googletagmanager.com/gtag/js?id=#{config.tracking_id}"
+    config.clarity_tracking_id = ENV.fetch('CLARITY_TRACKING_ID', '#CLARITY_TRACKING_ID_env_var_missing')
 
     # Contentful
     config.contentful_space                   = ENV.fetch('CONTENTFUL_SPACE', credentials.dig(:contentful, :space))
