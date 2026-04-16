@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action { cookies.delete :track_google_analytics }
 
-  before_action :prepare_cms
+  before_action :set_analytics_tracking_id,
+                :prepare_cms
 
   helper_method :menu_item, :section
 
@@ -23,6 +24,10 @@ protected
     Page.reset_cache_key!
 
     :done
+  end
+
+  def set_analytics_tracking_id
+    @clarity_tracking_id = Rails.configuration.clarity_tracking_id
   end
 
   def release_version

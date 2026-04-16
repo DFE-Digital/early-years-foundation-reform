@@ -12,7 +12,7 @@ class SettingsController < ApplicationController
 private
 
   def set_cookie_pref
-    cookies[:track_analytics] = {
+    cookies[:track_analytics_v2] = {
       value: settings_params[:track_analytics],
       expires: 6.months.from_now,
     }

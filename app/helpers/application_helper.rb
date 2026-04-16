@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def track_analytics?
-    cookies[:track_analytics] == 'Yes'
+    cookies[:track_analytics_v2] == 'Yes'
   end
 
   # @return [Boolean]
