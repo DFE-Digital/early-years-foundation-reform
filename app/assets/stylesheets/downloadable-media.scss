@@ -54,8 +54,8 @@
   outline: 5px solid rgba(11, 12, 12, 0.1);
   background: govuk-colour('white');
   box-shadow: 0 2px 2px rgba(11, 12, 12, 0.4);
-  fill: $govuk-border-colour;
-  stroke: $govuk-border-colour;
+  fill: govuk-functional-colour(border);
+  stroke: govuk-functional-colour(border);
 }
 
 .gem-c-attachment__details {
@@ -91,7 +91,7 @@
   font-size: 1rem;
   line-height: 1.25;
   margin: 0 0 15px;
-  color: $govuk-secondary-text-colour;
+  color: govuk-functional-colour(secondary-text);
 
   @include govuk-media-query($from: tablet) {
     font-size: 19px;

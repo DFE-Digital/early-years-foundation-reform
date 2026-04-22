@@ -15,7 +15,8 @@ $light-blue: tint(govuk-organisation-colour('department-for-education'), 90%);
 
 // Colour with 7:1 contrast to meet WCAG 2.2 - this should be applied to all links with a blue background
 // Original colour for light blue link - $light-blue-link: #155084;
-$light-blue-link: color.adjust($govuk-link-colour, $lightness: -11%);
+// $light-blue-link: color.adjust($govuk-link-colour, $lightness: -11%);
+$light-blue-link: govuk-functional-colour(link);
 
 $govuk-new-organisation-colours: true;
 
@@ -146,7 +147,7 @@ ul>li>ul>li {
 
 .log-entry {
   border: 0.5px solid;
-  border-color: $govuk-border-colour;
+  border-color: govuk-functional-colour(border);
   padding: 20px;
   margin-bottom: 40px;
 }
@@ -165,7 +166,7 @@ ul>li>ul>li {
 }
 
 .text-secondary {
-  color: $govuk-secondary-text-colour;
+  color: govuk-functional-colour(secondary-text);
 }
 
 @media (min-width: 40.0625em) {
