@@ -28,6 +28,7 @@ locals {
     "RAILS_SERVE_STATIC_FILES"            = var.webapp_config_rails_serve_static_files
     "SENTRY_DSN"                          = var.webapp_config_sentry_dsn
     "TRACKING_ID"                         = var.tracking_id
+    "CLARITY_TRACKING_ID"                 = var.clarity_tracking_id
     "WEB_CONCURRENCY"                     = var.webapp_config_web_concurrency
     "WEBSITES_CONTAINER_START_TIME_LIMIT" = 1800
   }
@@ -49,6 +50,7 @@ locals {
     "RAILS_SERVE_STATIC_FILES"            = var.webapp_config_rails_serve_static_files
     "SENTRY_DSN"                          = var.webapp_config_sentry_dsn
     "TRACKING_ID"                         = var.tracking_id
+    "CLARITY_TRACKING_ID"                 = var.clarity_tracking_id
     "WEB_CONCURRENCY"                     = var.webapp_config_web_concurrency
     "WEBSITES_CONTAINER_START_TIME_LIMIT" = 1800
   }

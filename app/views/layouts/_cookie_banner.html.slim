@@ -1,4 +1,4 @@
-- if cookies[:track_analytics].nil?
+- if cookies[:track_analytics_v2].nil?
   = govuk_cookie_banner do |cb|
     - cb.with_message(heading_text: t('cookie_banner.heading', service: t('service.name'))) do |m|
       - m.with_action do 

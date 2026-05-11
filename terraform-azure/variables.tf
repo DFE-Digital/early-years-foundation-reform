@@ -27,6 +27,11 @@ variable "tracking_id" {
   type        = string
 }
 
+variable "clarity_tracking_id" {
+  description = "Microsoft Clarity tracking ID"
+  type        = string
+}
+
 variable "kv_certificate_authority_username" {
   description = "Username for the Certificate provider"
   type        = string

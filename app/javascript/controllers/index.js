@@ -5,6 +5,10 @@ const application = Application.start()
 
 application.register('reveal', Reveal)
 
-application.debug = true
+if (process.env.NODE_ENV === 'development') {
+	application.debug = true
+} else {
+	application.debug = false
+}
 window.Stimulus = application
 export { application }

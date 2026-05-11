@@ -1,6 +1,6 @@
-require 'simplecov'
+# Require nocov config to exclude images from coverage
+require_relative 'simplecov_nocov'
 SimpleCov.minimum_coverage 91
-SimpleCov.start 'rails'
 
 require 'pry'
 require 'capybara/rspec'

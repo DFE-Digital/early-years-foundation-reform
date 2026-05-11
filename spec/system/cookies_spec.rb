@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Selecting cookie options' do
-  let(:track_analytics_cookie) { get_me_the_cookie('track_analytics')[:value] }
+  let(:track_analytics_cookie) { get_me_the_cookie('track_analytics_v2')[:value] }
 
   context 'when I am a visitor that has not selected their cookie options' do
     before do
@@ -35,7 +35,7 @@ RSpec.describe 'Selecting cookie options' do
 
   context 'when I am a visitor that has rejected cookie option and visit cookie page' do
     before do
-      cookies[:track_analytics] = 'No'
+      cookies[:track_analytics_v2] = 'No'
       visit '/cookie-policy'
     end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Selecting cookie options' do
 
   context 'when I am a visitor that has accepted cookie option and visit cookie page' do
     before do
-      cookies[:track_analytics] = 'Yes'
+      cookies[:track_analytics_v2] = 'Yes'
       visit '/cookie-policy'
     end
 
