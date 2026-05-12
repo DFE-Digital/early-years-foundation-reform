@@ -4,8 +4,8 @@
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
     "build:css": "sass app/assets/stylesheets/application.scss app/assets/builds/application.css --no-source-map --load-path=node_modules --quiet-deps",
-    "preinstall": "mkdir -p app/assets/builds",
-    "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets/fonts/. app/assets/builds/fonts && cp -R node_modules/govuk-frontend/dist/govuk/assets/images/. app/assets/builds/images"
+    "preinstall": "mkdir -p app/assets/builds public/govuk-assets/fonts public/govuk-assets/images",
+    "postinstall": "cp -R node_modules/govuk-frontend/dist/govuk/assets/fonts/. public/govuk-assets/fonts && cp -R node_modules/govuk-frontend/dist/govuk/assets/images/. public/govuk-assets/images"
   },
   "resolutions": {
     "glob": "^10.5.0",

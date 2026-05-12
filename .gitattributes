@@ -1,3 +1,8 @@
+*.sh                 text eol=lf
+bin/*                text eol=lf
+Procfile             text eol=lf
+Procfile.*           text eol=lf
+
 /.yarn/**            linguist-vendored
 /.yarn/releases/*    binary
 /.yarn/plugins/**/*  binary
