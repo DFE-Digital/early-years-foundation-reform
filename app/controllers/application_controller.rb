@@ -20,9 +20,6 @@ protected
   def prepare_cms
     # ensure correct API for each request
     ContentfulModel.use_preview_api = Rails.application.preview?
-
-    Page.reset_cache_key!
-
     :done
   end
 

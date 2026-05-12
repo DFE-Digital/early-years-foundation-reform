@@ -15,6 +15,7 @@
 /storage/*
 
 /public/assets
+/public/govuk-assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
