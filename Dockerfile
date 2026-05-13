@@ -66,6 +66,8 @@ COPY lib ${APP_HOME}/lib
 COPY config ${APP_HOME}/config
 COPY app ${APP_HOME}/app
 
+COPY --from=deps /build/public/govuk-assets ${APP_HOME}/public/govuk-assets
+
 COPY package.json ${APP_HOME}/package.json
 COPY yarn.lock ${APP_HOME}/yarn.lock
 COPY .yarnrc.yml ${APP_HOME}/.yarnrc.yml

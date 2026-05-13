@@ -1,5 +1,8 @@
 // $govuk-global-styles: true;
-// $govuk-assets-path: '/';
+
+// Serve govuk assets from public/govuk-assets/ 
+// This lets us keep config.assets.compile = false in production.
+$govuk-assets-path: '/govuk-assets/';
 
 // https://frontend.design-system.service.gov.uk/sass-api-reference
 // https://design.education.gov.uk/design-system/dfe-frontend
