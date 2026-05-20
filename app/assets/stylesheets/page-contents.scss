@@ -1,6 +1,6 @@
 .contents-on-page {
   padding: 40px;
-  border: 1px solid $govuk-border-colour;
+  border: 1px solid govuk-functional-colour(border);
   border-radius: 6px;
   background-color:  tint(govuk-colour('light-grey'), 50%);
 
