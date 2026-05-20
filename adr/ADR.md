@@ -16,6 +16,7 @@ This log lists the architectural decisions for EYFS Recovery
 * [ADR-0009](0009-ci-cd-strategy.md) - CI/CD strategy: GitHub Actions + Review App Deployments on Azure
 * [ADR-0010](0010-contentful.md) - Use Contentful CMS for content storage
 * [ADR-0011](0011-sentry-monitoring.md) - Monitoring with Sentry
+* [ADR-0012](0012-asset-pipeline-static-paths.md) - Serve govuk-frontend assets statically and disable runtime asset compilation
 
 <!-- adrlogstop -->
 
