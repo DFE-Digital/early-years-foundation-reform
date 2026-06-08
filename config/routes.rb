@@ -21,9 +21,12 @@ Rails.application.routes.draw do
 
   resources :settings, only: %i[create]
 
-  get ':section', to: 'pages#index'
-  get ':section/:slug', to: 'pages#show'
-  get ':section/:overview/:slug', to: 'pages#show'
+  get ':section', to: 'pages#index',
+                  constraints: { section: %r{[^/.]+} }
+  get ':section/:slug', to: 'pages#show',
+                        constraints: { section: %r{[^/.]+}, slug: %r{[^/.]+} }
+  get ':section/:overview/:slug', to: 'pages#show',
+                                  constraints: { section: %r{[^/.]+}, overview: %r{[^/.]+}, slug: %r{[^/.]+} }
 
   post 'change', to: 'hook#change'
   post 'release', to: 'hook#release'
