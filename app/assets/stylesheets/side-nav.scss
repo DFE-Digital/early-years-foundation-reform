@@ -18,7 +18,7 @@
   }
 
   &__section-item {
-    border-left: 4px solid $govuk-border-colour;
+    border-left: 4px solid govuk-functional-colour(border);
     font-size: 16px;
     font-size: 1rem;
     line-height: 1.25;
@@ -43,8 +43,8 @@
 
     &:active,
     &:hover {
-      color: $govuk-link-colour;
-      border-left-color: $govuk-link-colour;
+      color: govuk-functional-colour(link);
+      border-left-color: govuk-functional-colour(link);
       text-decoration: none;
       box-shadow: none;
       outline: 0;
@@ -52,7 +52,7 @@
 
     &:focus {
       background: govuk-colour('yellow');
-      color: $govuk-text-colour;
+      color: govuk-functional-colour(text);
       text-decoration: none;
       box-shadow: none;
       outline: 0
@@ -61,10 +61,10 @@
 
   &--count {
     float: right;
-    background: $govuk-border-colour;
+    background: govuk-functional-colour(border);
     padding: 9px 5px;
     border-radius: 0;
-    color: $govuk-text-colour;
+    color: govuk-functional-colour(text);
     font-weight: 700;
     min-width: 25px;
     text-align: center;
@@ -104,7 +104,7 @@
 .dfe-vertical-nav__section--nested .dfe-vertical-nav__section-item::before {
   content: '—';
   margin-left: -20px;
-  color: $govuk-secondary-text-colour;
+  color: govuk-functional-colour(secondary-text);
 }
 
 .dfe-vertical-nav__section .dfe-vertical-nav__section-item--current--child-active .dfe-vertical-nav__link {
@@ -165,7 +165,7 @@
 label.menu-icon {
   display: flex;
   align-items: center;
-  color: $govuk-link-colour;
+  color: govuk-functional-colour(link);
   font-weight: bold;
 
   @include govuk-media-query($from: tablet) {
