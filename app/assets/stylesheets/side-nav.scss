@@ -140,7 +140,6 @@
 }
 
 .menu-btn {
-  display: none;
 
   @include govuk-media-query($from: tablet) {
     &:checked~.dfe-vertical-nav,
