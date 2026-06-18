@@ -154,6 +154,14 @@
     display: block;
   }
 
+  &:focus~.focusable-btn {
+    outline: 3px solid govuk-colour('yellow');
+    outline-offset: 2px;
+    box-shadow: none;
+    color: govuk-colour('black');
+    background-color: govuk-colour('yellow');
+  }
+
   &:not(:checked)~.dfe-vertical-nav,
   &:checked~.menu-icon .sm-open,
   &:not(:checked)~.menu-icon .sm-close {
