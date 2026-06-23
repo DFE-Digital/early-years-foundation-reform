@@ -225,4 +225,36 @@ RSpec.describe Page, type: :model do
       end
     end
   end
+
+  describe '.navigation_items' do
+    before { described_class.cache.clear }
+
+    it 'returns an empty list when a timeout occurs' do
+      allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
+
+      expect(described_class.navigation_items).to eq([])
+    end
+
+    it 'returns an empty list when home is unavailable' do
+      allow(described_class).to receive(:home).and_return(nil)
+
+      expect(described_class.navigation_items).to eq([])
+    end
+  end
+
+  describe '.footer_items' do
+    before { described_class.cache.clear }
+
+    it 'returns an empty list when a timeout occurs' do
+      allow(described_class).to receive(:footer).and_raise(HTTP::TimeoutError)
+
+      expect(described_class.footer_items).to eq([])
+    end
+
+    it 'returns an empty list when footer is unavailable' do
+      allow(described_class).to receive(:footer).and_return(nil)
+
+      expect(described_class.footer_items).to eq([])
+    end
+  end
 end

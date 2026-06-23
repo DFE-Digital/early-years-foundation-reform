@@ -29,11 +29,33 @@ class Page < ContentfulModel::Base
     end
   end
 
+  # @return [Array<Page>]
+  def self.navigation_items
+    fetch_or_store to_key('navigation_items') do
+      home&.pages.to_a
+    end
+  rescue ::HTTP::TimeoutError, ::Contentful::Error => e
+    Rails.logger.error("Contentful timeout or error in Page.navigation_items: #{e.class} - #{e.message}")
+    []
+  end
+
+  # @return [Array<Page>]
+  def self.footer_items
+    fetch_or_store to_key('footer_items') do
+      footer&.pages.to_a
+    end
+  rescue ::HTTP::TimeoutError, ::Contentful::Error => e
+    Rails.logger.error("Contentful timeout or error in Page.footer_items: #{e.class} - #{e.message}")
+    []
+  end
+
   # @return [String]
   def path
-    root = footer? ? self.class.footer.slug : self.class.home.slug
+    root_slug = root&.slug
     list = ['/', parent&.parent&.slug, parent&.slug, slug].join('/')
-    list.gsub(%r{/#{root}/}, '').squeeze('/')
+    return list.squeeze('/') if root_slug.blank?
+
+    list.gsub(%r{/#{root_slug}/}, '').squeeze('/')
   end
 
   # @return [String] TODO: update model field with default and snake_case values
@@ -68,11 +90,14 @@ class Page < ContentfulModel::Base
     fetch_or_store self.class.to_key(fields[:image].id) do
       ContentfulModel::Asset.find(fields[:image].id)
     end
+  rescue ::HTTP::TimeoutError, ::Contentful::Error => e
+    Rails.logger.error("Contentful timeout or error in Page#thumbnail for '#{slug}': #{e.class} - #{e.message}")
+    nil
   end
 
   # @return [Boolean] child of the 'footer' page
   def footer?
-    parent.eql?(self.class.footer)
+    parent&.slug == 'footer'
   end
 
   # @return [Boolean]
