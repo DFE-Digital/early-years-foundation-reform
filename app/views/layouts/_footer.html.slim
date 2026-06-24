@@ -6,6 +6,13 @@
           = govuk_link_to t('links.footer.feedback'), Rails.configuration.feedback_url, class: 'govuk-footer__link'
         li.govuk-footer__list-item
           = govuk_link_to t('links.footer.privacy_policy'), Rails.configuration.privacy_policy_url, class: 'govuk-footer__link'
-        - Page.footer.pages.each do |page|
-          li.govuk-footer__list-item
-            = govuk_link_to page.title, page.path, class: 'govuk-footer__link'
+        li.govuk-footer__list-item
+          = govuk_link_to 'Accessibility', '/accessibility', class: 'govuk-footer__link'
+        li.govuk-footer__list-item
+          = govuk_link_to 'Cookies', '/cookie-policy', class: 'govuk-footer__link'
+        li.govuk-footer__list-item
+          = govuk_link_to 'Contact us', '/contact-us', class: 'govuk-footer__link'
+        li.govuk-footer__list-item
+          = govuk_link_to 'Disclaimer', '/disclaimer', class: 'govuk-footer__link'
+        li.govuk-footer__list-item
+          = govuk_link_to 'Free internet, wifi and data resources', '/wifi-and-data', class: 'govuk-footer__link'
