@@ -21,7 +21,7 @@ class Page < ContentfulModel::Base
   # @param slug [String]
   # @return [Page]
   def self.by_slug(slug)
-    fetch_or_store to_key(slug) do
+    fetch_or_store_non_nil to_key(slug) do
       find_by(slug: slug.to_s)&.first
     rescue ::HTTP::TimeoutError, ::Contentful::Error => e
       Rails.logger.error("Contentful timeout or error in Page.by_slug('#{slug}'): #{e.class} - #{e.message}")

@@ -19,6 +19,17 @@ module Caching
     cache.get_or_default('cache_key', 'initial')
   end
 
+  # @param args [Array<Object>] cache key parts
+  # @return [Object, nil]
+  def fetch_or_store_non_nil(*args)
+    key = args.hash
+    return cache[key] if cache.key?(key)
+
+    result = yield
+    cache[key] = result unless result.nil?
+    result
+  end
+
   # memoise latest release timestamp & prevent cache overload
   # (increase as CMS entries/assets grow)
   #
