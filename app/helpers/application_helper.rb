@@ -6,7 +6,7 @@ module ApplicationHelper
         ('govuk-service-navigation__item--current' if current_page?(root_path)),
       ].compact)
 
-      Page.home.pages.each do |item|
+      Page.home&.pages&.each do |item|
         header.with_navigation_item(
           text: item.title,
           href: item.path,

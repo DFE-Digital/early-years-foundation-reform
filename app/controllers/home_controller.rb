@@ -3,17 +3,23 @@ class HomeController < ApplicationController
                 :page
   layout 'hero'
 
-  def index; end
+  def index
+    return if page
+
+    render 'errors/service_unavailable', layout: 'application', status: :service_unavailable
+  end
 
 private
 
   # @return [Page]
   def page
-    Page.home
+    return @page if defined?(@page)
+
+    @page = Page.home
   end
 
   # @return [String]
   def section
-    page.slug
+    page&.slug.to_s
   end
 end

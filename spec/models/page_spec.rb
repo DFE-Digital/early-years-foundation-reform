@@ -3,6 +3,23 @@ require 'rails_helper'
 RSpec.describe Page, type: :model do
   subject(:page) { described_class.by_slug(slug) }
 
+  describe '.by_slug' do
+    before { described_class.cache.clear }
+    after { described_class.cache.clear }
+
+    it 'does not cache nil results' do
+      contentful_page = instance_double(described_class)
+
+      allow(described_class).to receive(:find_by)
+        .with(slug: 'home')
+        .and_return([], [contentful_page])
+
+      expect(described_class.by_slug('home')).to be_nil
+      expect(described_class.by_slug('home')).to eq contentful_page
+      expect(described_class).to have_received(:find_by).twice
+    end
+  end
+
   describe 'hierarchy' do
     context 'when home' do
       let(:slug) { 'home' }
