@@ -17,6 +17,7 @@ This log lists the architectural decisions for EYFS Recovery
 * [ADR-0010](0010-contentful.md) - Use Contentful CMS for content storage
 * [ADR-0011](0011-sentry-monitoring.md) - Monitoring with Sentry
 * [ADR-0012](0012-asset-pipeline-static-paths.md) - Serve govuk-frontend assets statically and disable runtime asset compilation
+* [ADR-0013](0013-azure-managed-redis-via-azapi-temporarily.md) - Use AzAPI for Azure Managed Redis temporarily
 
 <!-- adrlogstop -->
 
