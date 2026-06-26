@@ -10,5 +10,18 @@ services:
       - DOMAIN=reform.app
       - DEBUG=false
       - CONTENTFUL_MANAGEMENT_TOKEN=
+      - REDIS_URL=redis://redis:6379/0
     tty: true
     stdin_open: true
+    depends_on:
+      - redis
+    networks:
+      - reform
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - reform
+
+networks:
+  reform:

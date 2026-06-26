@@ -105,7 +105,7 @@ class Page < ContentfulModel::Base
   def thumbnail
     return if fields[:image].blank?
 
-    fetch_or_store self.class.to_key(fields[:image].id), expires_in: 30.minutes do
+    self.class.fetch_or_store_non_nil self.class.to_key(fields[:image].id), expires_in: 30.minutes do
       self.class.with_contentful_resilience(context: "Page#thumbnail('#{slug}')") do
         ContentfulModel::Asset.find(fields[:image].id)
       end
@@ -147,52 +147,52 @@ class Page < ContentfulModel::Base
     released_at || super
   end
 
-private_class_method def self.read_collection_with_stale_fallback(key)
-  fresh_key = to_key("#{key}:fresh")
-  stale_key = to_key("#{key}:stale")
+  private_class_method def self.read_collection_with_stale_fallback(key, &block)
+    fresh_key = to_key("#{key}:fresh")
+    stale_key = to_key("#{key}:stale")
 
-  fresh = Rails.cache.read(fresh_key)
-  return fresh if fresh.present?
+    fresh = Rails.cache.read(fresh_key)
+    return fresh if fresh.present?
 
-  stale = Rails.cache.read(stale_key)
-  if stale.present?
-    enqueue_refresh(key)
-    return stale
+    stale = Rails.cache.read(stale_key)
+    if stale.present?
+      enqueue_refresh(key)
+      return stale
+    end
+
+    data = with_contentful_resilience(context: "Page.#{key}", &block)
+    write_collection_caches(key, data)
+    data
+  rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
+    stale || []
   end
 
-  data = with_contentful_resilience(context: "Page.#{key}") { yield }
-  write_collection_caches(key, data)
-  data
-rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
-  stale || []
-end
+  private_class_method def self.write_collection_caches(key, data)
+    payload = data || []
+    ttl_with_jitter = LAYOUT_CACHE_TTL + rand(15..75).seconds
 
-private_class_method def self.write_collection_caches(key, data)
-  payload = data || []
-  ttl_with_jitter = LAYOUT_CACHE_TTL + rand(15..75).seconds
+    Rails.cache.write(to_key("#{key}:fresh"), payload, expires_in: ttl_with_jitter)
+    Rails.cache.write(to_key("#{key}:stale"), payload, expires_in: LAYOUT_STALE_TTL)
+  end
 
-  Rails.cache.write(to_key("#{key}:fresh"), payload, expires_in: ttl_with_jitter)
-  Rails.cache.write(to_key("#{key}:stale"), payload, expires_in: LAYOUT_STALE_TTL)
-end
+  private_class_method def self.enqueue_refresh(key)
+    return unless acquire_refresh_lock(key)
 
-private_class_method def self.enqueue_refresh(key)
-  return unless acquire_refresh_lock(key)
+    ContentfulLayoutCacheRefreshJob.perform_later(key)
+  rescue StandardError => e
+    Rails.logger.warn("Unable to queue ContentfulLayoutCacheRefreshJob for #{key}: #{e.class} - #{e.message}")
+    release_refresh_lock(key)
+  end
 
-  ContentfulLayoutCacheRefreshJob.perform_later(key)
-rescue StandardError => e
-  Rails.logger.warn("Unable to queue ContentfulLayoutCacheRefreshJob for #{key}: #{e.class} - #{e.message}")
-  release_refresh_lock(key)
-end
+  private_class_method def self.acquire_refresh_lock(key)
+    Rails.cache.write(refresh_lock_key(key), true, expires_in: LAYOUT_REFRESH_LOCK_TTL, unless_exist: true)
+  end
 
-private_class_method def self.acquire_refresh_lock(key)
-  Rails.cache.write(refresh_lock_key(key), true, expires_in: LAYOUT_REFRESH_LOCK_TTL, unless_exist: true)
-end
+  private_class_method def self.release_refresh_lock(key)
+    Rails.cache.delete(refresh_lock_key(key))
+  end
 
-private_class_method def self.release_refresh_lock(key)
-  Rails.cache.delete(refresh_lock_key(key))
-end
-
-private_class_method def self.refresh_lock_key(key)
-  to_key("#{key}:refresh_lock")
-end
+  private_class_method def self.refresh_lock_key(key)
+    to_key("#{key}:refresh_lock")
+  end
 end

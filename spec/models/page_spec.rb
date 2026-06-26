@@ -18,6 +18,39 @@ RSpec.describe Page, type: :model do
       expect(described_class.by_slug('home')).to eq contentful_page
       expect(described_class).to have_received(:find_by).twice
     end
+
+    context 'with a shared (Redis-style) cache' do
+      around do |example|
+        previous_cache = Rails.cache
+        Rails.cache = ActiveSupport::Cache::MemoryStore.new
+        example.run
+        Rails.cache = previous_cache
+      end
+
+      before { Rails.cache.clear }
+
+      it 'stores the result in the shared cache and reuses it' do
+        allow(described_class).to receive(:find_by)
+          .with(slug: 'home')
+          .and_return([{ title: 'Home' }])
+
+        expect(described_class.by_slug('home')).to eq({ title: 'Home' })
+        expect(described_class.by_slug('home')).to eq({ title: 'Home' })
+        expect(described_class).to have_received(:find_by).once
+        expect(Rails.cache.read(described_class.send(:shared_key, described_class.to_key('home'))))
+          .to eq({ title: 'Home' })
+      end
+
+      it 'does not cache nil results' do
+        allow(described_class).to receive(:find_by)
+          .with(slug: 'home')
+          .and_return([], [{ title: 'Home' }])
+
+        expect(described_class.by_slug('home')).to be_nil
+        expect(described_class.by_slug('home')).to eq({ title: 'Home' })
+        expect(described_class).to have_received(:find_by).twice
+      end
+    end
   end
 
   describe 'hierarchy' do
@@ -249,7 +282,7 @@ RSpec.describe Page, type: :model do
     end
 
     it 'returns stale values and enqueues a background refresh when fresh cache has expired' do
-      stale_items = ['cached-navigation-item']
+      stale_items = %w[cached-navigation-item]
       Rails.cache.write(described_class.to_key('navigation_items:stale'), stale_items, expires_in: 30.minutes)
       allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
       allow(ContentfulLayoutCacheRefreshJob).to receive(:perform_later)
@@ -311,16 +344,16 @@ RSpec.describe Page, type: :model do
       allow(described_class).to receive(:contentful_sleep)
 
       5.times do
-        expect do
+        expect {
           described_class.with_contentful_resilience(context: 'spec-circuit', max_retries: 0) do
             raise HTTP::TimeoutError
           end
-        end.to raise_error(HTTP::TimeoutError)
+        }.to raise_error(HTTP::TimeoutError)
       end
 
-      expect do
+      expect {
         described_class.with_contentful_resilience(context: 'spec-circuit', max_retries: 0) { :ok }
-      end.to raise_error(Caching::CIRCUIT_BREAKER_ERROR)
+      }.to raise_error(Caching::CIRCUIT_BREAKER_ERROR)
     end
   end
 end

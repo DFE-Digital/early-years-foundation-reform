@@ -15,13 +15,11 @@ module Caching
 
   # @param key [String]
   # @param expires_in [ActiveSupport::Duration]
-  def fetch_or_store(key, expires_in: 15.minutes, race_condition_ttl: 5.seconds)
+  def fetch_or_store(key, expires_in: 15.minutes, race_condition_ttl: 5.seconds, &block)
     if shared_cache?
-      Rails.cache.fetch(shared_key(key), expires_in:, race_condition_ttl:) do
-        yield
-      end
+      Rails.cache.fetch(shared_key(key), expires_in:, race_condition_ttl:, &block)
     else
-      cache.fetch_or_store(key) { yield }
+      cache.fetch_or_store(key, &block)
     end
   end
 
@@ -40,15 +38,24 @@ module Caching
     end
   end
 
+  # Caches the block result, but never caches a nil result, so transient
+  # Contentful failures (which return nil) are retried on the next request
+  # rather than being remembered.
+  #
   # @param args [Array<Object>] cache key parts
+  # @param expires_in [ActiveSupport::Duration]
   # @return [Object, nil]
-  def fetch_or_store_non_nil(*args)
-    key = args.hash
-    return cache[key] if cache.key?(key)
+  def fetch_or_store_non_nil(*args, expires_in: 15.minutes, race_condition_ttl: 5.seconds, &block)
+    if shared_cache?
+      Rails.cache.fetch(shared_key(args.join(':')), expires_in:, race_condition_ttl:, skip_nil: true, &block)
+    else
+      key = args.hash
+      return cache[key] if cache.key?(key)
 
-    result = yield
-    cache[key] = result unless result.nil?
-    result
+      result = yield
+      cache[key] = result unless result.nil?
+      result
+    end
   end
 
   # memoise latest release timestamp & prevent cache overload
@@ -60,7 +67,7 @@ module Caching
     new_key = timestamp&.strftime('%d-%m-%Y-%H-%M') || Time.current.strftime('%d-%m-%Y-%H-%M')
 
     if shared_cache?
-      Rails.cache.write(shared_key('cache_key'), new_key)
+      Rails.cache.write(shared_key('cache_key'), new_key, expires_in: 30.days)
     else
       cache.clear if cache.size > 2_000
       cache.get_and_set('cache_key', new_key)

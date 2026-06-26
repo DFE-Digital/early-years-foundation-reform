@@ -59,16 +59,17 @@ Rails.application.configure do
 
   # Use Redis for cross-instance cache sharing when configured.
   config.cache_store = if ENV['REDIS_URL'].present?
-                         [:redis_cache_store, {
-                           url: ENV['REDIS_URL'],
-                           connect_timeout: 1,
-                           read_timeout: 1,
-                           write_timeout: 1,
-                           reconnect_attempts: 2,
-                           error_handler: ->(method:, returning:, exception:) {
-                             Rails.logger.warn("Redis cache failure in #{method}: #{exception.class} - #{exception.message}; returning #{returning.inspect}")
-                           },
-                         }]
+                         [:redis_cache_store,
+                          {
+                            url: ENV['REDIS_URL'],
+                            connect_timeout: 1,
+                            read_timeout: 1,
+                            write_timeout: 1,
+                            reconnect_attempts: 2,
+                            error_handler: lambda { |method:, returning:, exception:|
+                              Rails.logger.warn("Redis cache failure in #{method}: #{exception.class} - #{exception.message}; returning #{returning.inspect}")
+                            },
+                          }]
                        else
                          [:memory_store, { size: 128.megabytes }]
                        end
