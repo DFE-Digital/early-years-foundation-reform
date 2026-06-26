@@ -227,7 +227,14 @@ RSpec.describe Page, type: :model do
   end
 
   describe '.navigation_items' do
-    before { described_class.cache.clear }
+    around do |example|
+      previous_cache = Rails.cache
+      Rails.cache = ActiveSupport::Cache::MemoryStore.new
+      example.run
+      Rails.cache = previous_cache
+    end
+
+    before { Rails.cache.clear }
 
     it 'returns an empty list when a timeout occurs' do
       allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
@@ -240,10 +247,27 @@ RSpec.describe Page, type: :model do
 
       expect(described_class.navigation_items).to eq([])
     end
+
+    it 'returns stale values and enqueues a background refresh when fresh cache has expired' do
+      stale_items = ['cached-navigation-item']
+      Rails.cache.write(described_class.to_key('navigation_items:stale'), stale_items, expires_in: 30.minutes)
+      allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
+      allow(ContentfulLayoutCacheRefreshJob).to receive(:perform_later)
+
+      expect(described_class.navigation_items).to eq(stale_items)
+      expect(ContentfulLayoutCacheRefreshJob).to have_received(:perform_later).with('navigation_items')
+    end
   end
 
   describe '.footer_items' do
-    before { described_class.cache.clear }
+    around do |example|
+      previous_cache = Rails.cache
+      Rails.cache = ActiveSupport::Cache::MemoryStore.new
+      example.run
+      Rails.cache = previous_cache
+    end
+
+    before { Rails.cache.clear }
 
     it 'returns an empty list when a timeout occurs' do
       allow(described_class).to receive(:footer).and_raise(HTTP::TimeoutError)
@@ -255,6 +279,48 @@ RSpec.describe Page, type: :model do
       allow(described_class).to receive(:footer).and_return(nil)
 
       expect(described_class.footer_items).to eq([])
+    end
+  end
+
+  describe '.with_contentful_resilience' do
+    around do |example|
+      previous_cache = Rails.cache
+      Rails.cache = ActiveSupport::Cache::MemoryStore.new
+      example.run
+      Rails.cache = previous_cache
+    end
+
+    before { Rails.cache.clear }
+
+    it 'retries timeout failures with backoff before succeeding' do
+      attempts = 0
+      allow(described_class).to receive(:contentful_sleep)
+
+      result = described_class.with_contentful_resilience(context: 'spec-check', max_retries: 2) do
+        attempts += 1
+        raise HTTP::TimeoutError if attempts < 3
+
+        :ok
+      end
+
+      expect(result).to eq(:ok)
+      expect(described_class).to have_received(:contentful_sleep).twice
+    end
+
+    it 'opens the circuit after repeated failures' do
+      allow(described_class).to receive(:contentful_sleep)
+
+      5.times do
+        expect do
+          described_class.with_contentful_resilience(context: 'spec-circuit', max_retries: 0) do
+            raise HTTP::TimeoutError
+          end
+        end.to raise_error(HTTP::TimeoutError)
+      end
+
+      expect do
+        described_class.with_contentful_resilience(context: 'spec-circuit', max_retries: 0) { :ok }
+      end.to raise_error(Caching::CIRCUIT_BREAKER_ERROR)
     end
   end
 end
