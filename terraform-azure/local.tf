@@ -29,6 +29,7 @@ locals {
     "REDIS_HOST"                          = "${azapi_resource.redis.name}.${var.azure_region}.redisenterprise.cache.azure.net"
     "REDIS_PASSWORD"                      = var.redis_access_keys_authentication_enabled ? data.azurerm_redis_enterprise_database.redis_default.primary_access_key : null
     "REDIS_PORT"                          = "10000"
+    "REDIS_URL"                           = var.redis_access_keys_authentication_enabled ? "rediss://default:${urlencode(data.azurerm_redis_enterprise_database.redis_default.primary_access_key)}@${azapi_resource.redis.name}.${var.azure_region}.redisenterprise.cache.azure.net:10000/0" : "rediss://${azapi_resource.redis.name}.${var.azure_region}.redisenterprise.cache.azure.net:10000/0"
     "REDIS_USERNAME"                      = var.redis_access_keys_authentication_enabled ? "default" : null
     "SENTRY_DSN"                          = var.webapp_config_sentry_dsn
     "TRACKING_ID"                         = var.tracking_id
@@ -55,6 +56,7 @@ locals {
     "REDIS_HOST"                          = "${azapi_resource.redis.name}.${var.azure_region}.redisenterprise.cache.azure.net"
     "REDIS_PASSWORD"                      = var.redis_access_keys_authentication_enabled ? data.azurerm_redis_enterprise_database.redis_default.primary_access_key : null
     "REDIS_PORT"                          = "10000"
+    "REDIS_URL"                           = var.redis_access_keys_authentication_enabled ? "rediss://default:${urlencode(data.azurerm_redis_enterprise_database.redis_default.primary_access_key)}@${azapi_resource.redis.name}.${var.azure_region}.redisenterprise.cache.azure.net:10000/0" : "rediss://${azapi_resource.redis.name}.${var.azure_region}.redisenterprise.cache.azure.net:10000/0"
     "REDIS_USERNAME"                      = var.redis_access_keys_authentication_enabled ? "default" : null
     "SENTRY_DSN"                          = var.webapp_config_sentry_dsn
     "TRACKING_ID"                         = var.tracking_id
