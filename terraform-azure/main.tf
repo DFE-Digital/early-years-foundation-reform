@@ -44,6 +44,7 @@ module "network" {
   kv_certificate_label                      = var.kv_certificate_label
   kv_certificate_subject                    = var.kv_certificate_subject
   as_service_principal_object_id            = var.as_service_principal_object_id
+  redis_private_endpoint_subnet_cidr        = var.redis_private_endpoint_subnet_cidr
 }
 
 # Create Web Application resources
