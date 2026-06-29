@@ -20,7 +20,7 @@ resource "azapi_resource" "redis" {
 }
 
 resource "azapi_resource" "redis_default_database" {
-  type      = "Microsoft.Cache/redisEnterprise/databases@2025-04-01"
+  type      = "Microsoft.Cache/redisEnterprise/databases@2025-07-01"
   name      = "default"
   parent_id = azapi_resource.redis.id
 
