@@ -165,3 +165,9 @@ variable "redis_access_keys_authentication_enabled" {
   type        = bool
   default     = true
 }
+
+variable "redis_private_endpoint_subnet_cidr" {
+  description = "CIDR for Redis private endpoint subnet (must not overlap existing VNet subnets)"
+  type        = string
+  default     = "172.1.254.0/27"
+}
