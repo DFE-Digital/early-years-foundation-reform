@@ -12,7 +12,8 @@ resource "azapi_resource" "redis" {
       publicNetworkAccess = "Disabled"
     }
     sku = {
-      name = "Balanced_B0"
+      name     = "Enterprise_E10"
+      capacity = 2
     }
   }
 
