@@ -12,8 +12,7 @@ resource "azapi_resource" "redis" {
       publicNetworkAccess = "Disabled"
     }
     sku = {
-      name     = "Enterprise_E10"
-      capacity = 2
+      name = "Balanced_B0"
     }
   }
 
@@ -29,7 +28,7 @@ resource "azapi_resource" "redis_default_database" {
     properties = {
       accessKeysAuthentication = var.redis_access_keys_authentication_enabled ? "Enabled" : "Disabled"
       clientProtocol           = "Encrypted"
-      clusteringPolicy         = "EnterpriseCluster"
+      clusteringPolicy         = "OSSCluster"
       evictionPolicy           = "AllKeysLRU"
       port                     = 10000
     }
