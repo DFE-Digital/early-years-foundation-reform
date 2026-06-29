@@ -12,7 +12,7 @@ resource "azapi_resource" "redis" {
       publicNetworkAccess = "Disabled"
     }
     sku = {
-      name = "Enterprise_E1"
+      name = var.environment != "development" ? "Enterprise_E1" : "Balanced_B0"
     }
   }
 
