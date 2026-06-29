@@ -32,10 +32,11 @@ resource "azurerm_subnet" "webapp_snet" {
 
 # Create Subnet for Redis Private Endpoint
 resource "azurerm_subnet" "redis_pe_snet" {
-  name                 = "${var.resource_name_prefix}-redis-pe-snet"
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  resource_group_name  = var.resource_group
-  address_prefixes     = [var.redis_private_endpoint_subnet_cidr]
+  name                                      = "${var.resource_name_prefix}-redis-pe-snet"
+  virtual_network_name                      = azurerm_virtual_network.vnet.name
+  resource_group_name                       = var.resource_group
+  address_prefixes                          = [var.redis_private_endpoint_subnet_cidr]
+  private_endpoint_network_policies_enabled = false
 
   #checkov:skip=CKV2_AZURE_31:NSG not required
 }
