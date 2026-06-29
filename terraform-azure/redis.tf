@@ -1,47 +1,38 @@
-resource "azapi_resource" "redis" {
-  type      = "Microsoft.Cache/redisEnterprise@2025-07-01"
-  name      = "${var.resource_name_prefix}-redis"
-  location  = var.azure_region
-  parent_id = azurerm_resource_group.rg.id
-  tags      = local.common_tags
-
-  body = {
-    properties = {
-      highAvailability    = "Disabled"
-      minimumTlsVersion   = "1.2"
-      publicNetworkAccess = "Disabled"
-    }
-    sku = {
-      name = "Balanced_B0"
-    }
-  }
-
-  schema_validation_enabled = false
+# Classic Azure Cache for Redis (Premium tier).
+#
+# This replaces the previous Microsoft.Cache/redisEnterprise (Azure Managed Redis)
+# implementation. Redis Enterprise creation is retired, and Azure Managed Redis
+# Balanced SKUs could not be provisioned in this subscription/region (West Europe) —
+# both returned errors. Classic Premium uses the separate Microsoft.Cache/Redis
+# resource type, is available in West Europe, and is supported by the azurerm
+# provider directly (no azapi).
+#
+# NOTE: This is a bridge. New classic Azure Cache for Redis creation is blocked from
+# 1 Oct 2026 and the tier retires 30 Sep 2028. Migrate to Azure Managed Redis once it
+# is available/enabled for this subscription and region.
+#
+# Tier by environment: dev uses Standard C1 (1 GB) for cost; everything else uses
+# Premium P1 (6 GB) for the better SLA and private-link maturity.
+locals {
+  redis_is_dev   = var.environment == "development"
+  redis_family   = local.redis_is_dev ? "C" : "P"
+  redis_sku_name = local.redis_is_dev ? "Standard" : "Premium"
 }
 
-resource "azapi_resource" "redis_default_database" {
-  type      = "Microsoft.Cache/redisEnterprise/databases@2025-07-01"
-  name      = "default"
-  parent_id = azapi_resource.redis.id
+resource "azurerm_redis_cache" "redis" {
+  name                          = "${var.resource_name_prefix}-redis"
+  location                      = var.azure_region
+  resource_group_name           = azurerm_resource_group.rg.name
+  capacity                      = 1 # Standard C1 = 1 GB (dev) / Premium P1 = 6 GB (non-dev)
+  family                        = local.redis_family
+  sku_name                      = local.redis_sku_name
+  minimum_tls_version           = "1.2"
+  public_network_access_enabled = false
+  tags                          = local.common_tags
 
-  body = {
-    properties = {
-      accessKeysAuthentication = var.redis_access_keys_authentication_enabled ? "Enabled" : "Disabled"
-      clientProtocol           = "Encrypted"
-      clusteringPolicy         = "OSSCluster"
-      evictionPolicy           = "AllKeysLRU"
-      port                     = 10000
-    }
+  lifecycle {
+    ignore_changes = [tags]
   }
-
-  schema_validation_enabled = false
-}
-
-data "azurerm_redis_enterprise_database" "redis_default" {
-  name       = "default"
-  cluster_id = azapi_resource.redis.id
-
-  depends_on = [azapi_resource.redis_default_database]
 }
 
 resource "azurerm_private_endpoint" "redis" {
@@ -53,9 +44,9 @@ resource "azurerm_private_endpoint" "redis" {
 
   private_service_connection {
     name                           = "${var.resource_name_prefix}-redis-psc"
-    private_connection_resource_id = azapi_resource.redis.id
+    private_connection_resource_id = azurerm_redis_cache.redis.id
     is_manual_connection           = false
-    subresource_names              = ["redisEnterprise"]
+    subresource_names              = ["redisCache"]
   }
 
   private_dns_zone_group {
