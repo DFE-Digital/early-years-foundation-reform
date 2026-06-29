@@ -1,5 +1,5 @@
 resource "azapi_resource" "redis" {
-  type      = "Microsoft.Cache/redisEnterprise@2025-04-01"
+  type      = "Microsoft.Cache/redisEnterprise@2025-07-01"
   name      = "${var.resource_name_prefix}-redis"
   location  = var.azure_region
   parent_id = azurerm_resource_group.rg.id
@@ -20,7 +20,7 @@ resource "azapi_resource" "redis" {
 }
 
 resource "azapi_resource" "redis_default_database" {
-  type      = "Microsoft.Cache/redisEnterprise/databases@2025-04-01"
+  type      = "Microsoft.Cache/redisEnterprise/databases@2025-07-01"
   name      = "default"
   parent_id = azapi_resource.redis.id
 
@@ -28,7 +28,7 @@ resource "azapi_resource" "redis_default_database" {
     properties = {
       accessKeysAuthentication = var.redis_access_keys_authentication_enabled ? "Enabled" : "Disabled"
       clientProtocol           = "Encrypted"
-      clusteringPolicy         = "EnterpriseCluster"
+      clusteringPolicy         = "OSSCluster"
       evictionPolicy           = "AllKeysLRU"
       port                     = 10000
     }
@@ -38,9 +38,8 @@ resource "azapi_resource" "redis_default_database" {
 }
 
 data "azurerm_redis_enterprise_database" "redis_default" {
-  name                = "default"
-  cluster_id          = azapi_resource.redis.id
-  resource_group_name = azurerm_resource_group.rg.name
+  name       = "default"
+  cluster_id = azapi_resource.redis.id
 
   depends_on = [azapi_resource.redis_default_database]
 }

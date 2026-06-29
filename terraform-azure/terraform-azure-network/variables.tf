@@ -79,3 +79,8 @@ variable "as_service_principal_object_id" {
   sensitive   = true
 }
 
+variable "redis_private_endpoint_subnet_cidr" {
+  description = "CIDR for Redis private endpoint subnet (must not overlap existing VNet subnets)"
+  type        = string
+}
+
