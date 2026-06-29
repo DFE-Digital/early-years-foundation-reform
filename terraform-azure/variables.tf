@@ -159,3 +159,9 @@ variable "webapp_config_sentry_dsn" {
 variable "webapp_config_web_concurrency" {
   type = string
 }
+
+variable "redis_access_keys_authentication_enabled" {
+  description = "Enable Redis access-key authentication for application compatibility"
+  type        = bool
+  default     = true
+}
