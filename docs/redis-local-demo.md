@@ -16,55 +16,63 @@ caching itself works.
 
 ## Prerequisites
 
-- Docker or Podman (for a throwaway Redis), or a Redis already running locally.
-- `redis-cli` (ships with the `redis` package; or use `docker exec` into the container).
+- You run the app the usual way, via `bin/docker-dev`.
 - `config/master.key` present (so Contentful is reachable and there's real data to cache).
+
+A `redis` service is wired into `docker-compose.dev.yml`, so `bin/docker-dev` brings one
+up alongside the app on the same network — nothing separate to start, and no host
+`redis-cli` needed (we use `docker exec`).
 
 ---
 
 ## Setup
 
+The dev app runs **inside a container**, so it reaches Redis by the service name
+`redis`, **not** `localhost` (inside the container `localhost` is the app itself).
+
 ```bash
-# 1. Start a throwaway Redis
-docker run --rm -p 6379:6379 redis:7-alpine        # or: podman run --rm -p 6379:6379 redis:7-alpine
+# 1. Tell the app to use Redis (dotenv loads .env on boot).
+#    Host is the service name `redis` because the app runs in a container.
+echo 'REDIS_URL=redis://redis:6379/0' >> .env
 
-# 2. Point the app at it via .env (dotenv-rails loads this on boot)
-echo 'REDIS_URL=redis://localhost:6379/0' >> .env
-
-# 3. (Re)start the server so dotenv picks up the new value
-bin/rails server
+# 2. Start the dev stack — brings up the app + redis
+bin/docker-dev
 ```
 
-To confirm the app actually switched stores, in a console:
+Confirm the app actually switched stores (run inside the app container):
 
 ```bash
-REDIS_URL=redis://localhost:6379/0 bin/rails runner 'puts Rails.cache.class'
+docker exec -it reform_dev bin/rails runner 'puts Rails.cache.class'
 # => ActiveSupport::Cache::RedisCacheStore
 ```
 
-(If it prints `NullStore`/`MemoryStore`, `REDIS_URL` isn't set in the process — see
+(If it prints `NullStore`/`MemoryStore`, `REDIS_URL` isn't set in the container — see
 Troubleshooting.)
+
+> Running Rails directly on a host instead of via Docker? Then use
+> `REDIS_URL=redis://localhost:6379/0`, your own local Redis, and host `redis-cli`.
 
 ---
 
 ## The demo — watch it fill, then watch it serve from cache
 
-Open a second terminal with a live view of every command Redis receives:
+All `redis-cli` commands run inside the redis container via `docker exec`. Open a second
+terminal with a live view of every command Redis receives:
 
 ```bash
-redis-cli monitor
+docker exec -it reform_redis_dev redis-cli monitor
 ```
 
 Then run through this with the app:
 
 | Step | Do this | What proves the point |
 |------|---------|-----------------------|
-| 1 | `redis-cli dbsize` | **0** — cache starts empty |
+| 1 | `docker exec -it reform_redis_dev redis-cli dbsize` | **0** — cache starts empty |
 | 2 | Load the homepage / a tier page in the browser | `monitor` streams `SET page:home-…`, `SET page:navigation_items:fresh-…`, etc. — it's **filling** |
-| 3 | `redis-cli keys '*'` | shows the populated keys (see below) |
-| 4 | `redis-cli dbsize` | now **N** — it filled |
+| 3 | `docker exec -it reform_redis_dev redis-cli keys '*'` | shows the populated keys (see below) |
+| 4 | `docker exec -it reform_redis_dev redis-cli dbsize` | now **N** — it filled |
 | 5 | **Reload the same page** | `monitor` now shows `GET`s, not `SET`s — it's **served from cache**, not re-fetched from Contentful (and the page renders faster) |
-| 6 | `redis-cli ttl page:navigation_items:fresh-initial` | shows the ~5‑min fresh TTL (the stale‑while‑revalidate window) |
+| 6 | `docker exec -it reform_redis_dev redis-cli ttl page:navigation_items:fresh-initial` | shows the ~5‑min fresh TTL (the stale‑while‑revalidate window) |
 
 Empty → fills on first visit → reads on second visit *is* the proof it works.
 
@@ -87,21 +95,25 @@ resource:…-initial                  # any Resource.by_name lookups
 
 ## Teardown
 
+Remove (or re-comment) the `REDIS_URL` line in `.env` and restart the stack — dev then
+goes back to its normal null/memory store. To clear what's in Redis without restarting:
+
 ```bash
-# stop using Redis locally — remove the line from .env and restart the server
-# (then dev goes back to its normal null/memory store)
+docker exec -it reform_redis_dev redis-cli flushall
 ```
-The `docker run --rm …` Redis disappears as soon as you stop it; nothing persists.
+The `redis` container holds nothing important and is recreated on each `bin/docker-dev`.
 
 ---
 
 ## Troubleshooting — "nothing is populating"
 
-- **`Rails.cache` is NullStore/MemoryStore** → `REDIS_URL` isn't in the process. Did you
-  restart the server after editing `.env`? dotenv only loads at boot.
-- **Connection warnings in the Rails log, `dbsize` stays 0** → Redis isn't actually
-  running on that host/port. `redis-cli ping` should return `PONG`. (The app won't crash
-  if Redis is down — it logs and behaves like a cache miss.)
+- **`Rails.cache` is NullStore/MemoryStore** → `REDIS_URL` isn't set in the container.
+  Did you restart the stack after editing `.env`? dotenv only loads at boot.
+- **Connection warnings in the Rails log, `dbsize` stays 0** → the app can't reach Redis.
+  Make sure `REDIS_URL` uses the service name (`redis://redis:6379/0`), not `localhost`
+  (inside the container `localhost` points at the app itself). Check the service is up:
+  `docker exec -it reform_redis_dev redis-cli ping` → `PONG`. (The app won't crash if
+  Redis is down — it logs and behaves like a cache miss.)
 - **Keys appear but data looks empty / pages error** → Contentful isn't reachable. Check
   `config/master.key` is present so the CMS lookups return data to cache.
 - **Only `thumbnail` keys miss on read** → expected (the asset no‑op above), not a bug.
