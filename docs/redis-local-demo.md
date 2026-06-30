@@ -30,24 +30,22 @@ up alongside the app on the same network — nothing separate to start, and no h
 The dev app runs **inside a container**, so it reaches Redis by the service name
 `redis`, **not** `localhost` (inside the container `localhost` is the app itself).
 
-```bash
-# 1. Tell the app to use Redis (dotenv loads .env on boot).
-#    Host is the service name `redis` because the app runs in a container.
-echo 'REDIS_URL=redis://redis:6379/0' >> .env
-
-# 2. Start the dev stack — brings up the app + redis
-bin/docker-dev
-```
-
-Confirm the app actually switched stores (run inside the app container):
+> ⚠️ The app reads `.env` only when it **boots**, and `bin/docker-dev` re-attaches to
+> an already-running container — so re-running it alone won't reload `.env`. If the
+> stack is already up you must **recreate** the app container. The `docker rm -f`
+> below does that; it's the single most common reason "nothing populates".
 
 ```bash
+# 1. Turn Redis on (safe to run repeatedly — adds the line only if missing)
+grep -q '^REDIS_URL=' .env || echo 'REDIS_URL=redis://redis:6379/0' >> .env
+
+# 2. Start FRESH so the app boots WITH it (the recreate is the bit people miss)
+docker rm -f reform_dev 2>/dev/null; bin/docker-dev
+
+# 3. Confirm the app actually switched to Redis
 docker exec -it reform_dev bin/rails runner 'puts Rails.cache.class'
-# => ActiveSupport::Cache::RedisCacheStore
+# => ActiveSupport::Cache::RedisCacheStore   (NullStore/MemoryStore => see Troubleshooting)
 ```
-
-(If it prints `NullStore`/`MemoryStore`, `REDIS_URL` isn't set in the container — see
-Troubleshooting.)
 
 > Running Rails directly on a host instead of via Docker? Then use
 > `REDIS_URL=redis://localhost:6379/0`, your own local Redis, and host `redis-cli`.
@@ -107,8 +105,9 @@ The `redis` container holds nothing important and is recreated on each `bin/dock
 
 ## Troubleshooting — "nothing is populating"
 
-- **`Rails.cache` is NullStore/MemoryStore** → `REDIS_URL` isn't set in the container.
-  Did you restart the stack after editing `.env`? dotenv only loads at boot.
+- **`Rails.cache` is NullStore/MemoryStore** → the app booted without `REDIS_URL`.
+  Recreate the container (re-running `bin/docker-dev` alone won't reload `.env`):
+  `docker rm -f reform_dev && bin/docker-dev`.
 - **Connection warnings in the Rails log, `dbsize` stays 0** → the app can't reach Redis.
   Make sure `REDIS_URL` uses the service name (`redis://redis:6379/0`), not `localhost`
   (inside the container `localhost` points at the app itself). Check the service is up:
