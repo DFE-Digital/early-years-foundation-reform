@@ -13,28 +13,16 @@
 #
 # Sizing: Standard C0 (250 MB) for every environment, chosen for cost. Standard
 # supports the private endpoint we use, and we rely on no Premium-only feature.
+#
+# NOTE: Azure Cache for Redis cannot scale *down* or change tier in place (e.g.
+# C1 -> C0, or Premium -> Standard) — the API rejects it with "Capacity cannot be
+# updated". Changing the SKU/size of an existing cache therefore requires it to be
+# recreated: delete it in the portal (it's just a cache) and re-run apply, or run
+# `terraform apply -replace=azurerm_redis_cache.redis`. A plain apply will fail.
 locals {
   redis_family   = "C"
   redis_sku_name = "Standard"
   redis_capacity = 0
-}
-
-# Azure Cache for Redis cannot scale *down* or change tier in place (e.g. C1 -> C0,
-# or Premium -> Standard) — the API rejects it with
-# "properties.sku.Capacity cannot be updated". Tracking the SKU here and wiring it
-# into replace_triggered_by below forces a destroy + recreate when the size/tier
-# changes, instead of a doomed in-place update.
-#
-# NB: this only fires for *subsequent* changes once both resources already exist in
-# state. Migrating an already-deployed cache to a smaller size for the FIRST time
-# still needs a one-off `terraform apply -replace=azurerm_redis_cache.redis` (or
-# delete the existing cache and let apply recreate it).
-resource "terraform_data" "redis_sku" {
-  triggers_replace = {
-    family   = local.redis_family
-    sku_name = local.redis_sku_name
-    capacity = local.redis_capacity
-  }
 }
 
 resource "azurerm_redis_cache" "redis" {
@@ -49,8 +37,7 @@ resource "azurerm_redis_cache" "redis" {
   tags                          = local.common_tags
 
   lifecycle {
-    ignore_changes       = [tags]
-    replace_triggered_by = [terraform_data.redis_sku]
+    ignore_changes = [tags]
   }
 }
 
