@@ -1,10 +1,6 @@
 class Page < ContentfulModel::Base
   extend ::Caching
 
-  LAYOUT_CACHE_TTL = 5.minutes
-  LAYOUT_STALE_TTL = 30.minutes
-  LAYOUT_REFRESH_LOCK_TTL = 30.seconds
-
   self.content_type_id = 'helpPage'
 
   has_many_nested :pages, root: -> { Page.home }
@@ -36,35 +32,12 @@ class Page < ContentfulModel::Base
 
   # @return [Array<Page>]
   def self.navigation_items
-    read_collection_with_stale_fallback('navigation_items') do
-      home&.pages.to_a
-    end
+    layout_collection('navigation_items') { home&.pages }
   end
 
   # @return [Array<Page>]
   def self.footer_items
-    read_collection_with_stale_fallback('footer_items') do
-      footer&.pages.to_a
-    end
-  end
-
-  # @param key [String]
-  # @return [void]
-  def self.refresh_layout_collection!(key)
-    write_collection_caches(key, with_contentful_resilience(context: "Page.refresh_layout_collection!(#{key})") do
-      case key
-      when 'navigation_items'
-        home&.pages.to_a
-      when 'footer_items'
-        footer&.pages.to_a
-      else
-        []
-      end
-    end)
-  rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
-    nil
-  ensure
-    release_refresh_lock(key)
+    layout_collection('footer_items') { footer&.pages }
   end
 
   # @return [String]
@@ -105,7 +78,7 @@ class Page < ContentfulModel::Base
   def thumbnail
     return if fields[:image].blank?
 
-    self.class.fetch_or_store_non_nil self.class.to_key(fields[:image].id), expires_in: 30.minutes do
+    self.class.fetch_or_store_non_nil self.class.to_key(fields[:image].id) do
       self.class.with_contentful_resilience(context: "Page#thumbnail('#{slug}')") do
         ContentfulModel::Asset.find(fields[:image].id)
       end
@@ -147,52 +120,19 @@ class Page < ContentfulModel::Base
     released_at || super
   end
 
-  private_class_method def self.read_collection_with_stale_fallback(key, &block)
-    fresh_key = to_key("#{key}:fresh")
-    stale_key = to_key("#{key}:stale")
-
-    fresh = Rails.cache.read(fresh_key)
-    return fresh if fresh.present?
-
-    stale = Rails.cache.read(stale_key)
-    if stale.present?
-      enqueue_refresh(key)
-      return stale
-    end
-
-    data = with_contentful_resilience(context: "Page.#{key}", &block)
-    write_collection_caches(key, data)
-    data
-  rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
-    stale || []
-  end
-
-  private_class_method def self.write_collection_caches(key, data)
-    payload = data || []
-    ttl_with_jitter = LAYOUT_CACHE_TTL + rand(15..75).seconds
-
-    Rails.cache.write(to_key("#{key}:fresh"), payload, expires_in: ttl_with_jitter)
-    Rails.cache.write(to_key("#{key}:stale"), payload, expires_in: LAYOUT_STALE_TTL)
-  end
-
-  private_class_method def self.enqueue_refresh(key)
-    return unless acquire_refresh_lock(key)
-
-    ContentfulLayoutCacheRefreshJob.perform_later(key)
-  rescue StandardError => e
-    Rails.logger.warn("Unable to queue ContentfulLayoutCacheRefreshJob for #{key}: #{e.class} - #{e.message}")
-    release_refresh_lock(key)
-  end
-
-  private_class_method def self.acquire_refresh_lock(key)
-    Rails.cache.write(refresh_lock_key(key), true, expires_in: LAYOUT_REFRESH_LOCK_TTL, unless_exist: true)
-  end
-
-  private_class_method def self.release_refresh_lock(key)
-    Rails.cache.delete(refresh_lock_key(key))
-  end
-
-  private_class_method def self.refresh_lock_key(key)
-    to_key("#{key}:refresh_lock")
+  # In-process memoized list (per process) with circuit-breaker resilience. The
+  # underlying Contentful responses are cached cross-instance at the HTTP layer, so
+  # this just avoids re-deserialising within a process. An empty or failed result is
+  # never memoized, so it's retried on the next request (and a layout collection
+  # never gets stuck empty after a blip).
+  #
+  # @param key [String]
+  # @return [Array<Page>]
+  private_class_method def self.layout_collection(key)
+    fetch_or_store_non_nil(to_key(key)) do
+      with_contentful_resilience(context: "Page.#{key}") { yield&.to_a.presence }
+    rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
+      nil
+    end || []
   end
 end

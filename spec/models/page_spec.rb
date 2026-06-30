@@ -19,37 +19,16 @@ RSpec.describe Page, type: :model do
       expect(described_class).to have_received(:find_by).twice
     end
 
-    context 'with a shared (Redis-style) cache' do
-      around do |example|
-        previous_cache = Rails.cache
-        Rails.cache = ActiveSupport::Cache::MemoryStore.new
-        example.run
-        Rails.cache = previous_cache
-      end
+    it 'reuses a cached non-nil result (in-process)' do
+      contentful_page = instance_double(described_class)
 
-      before { Rails.cache.clear }
+      allow(described_class).to receive(:find_by)
+        .with(slug: 'home')
+        .and_return([contentful_page])
 
-      it 'stores the result in the shared cache and reuses it' do
-        allow(described_class).to receive(:find_by)
-          .with(slug: 'home')
-          .and_return([{ title: 'Home' }])
-
-        expect(described_class.by_slug('home')).to eq({ title: 'Home' })
-        expect(described_class.by_slug('home')).to eq({ title: 'Home' })
-        expect(described_class).to have_received(:find_by).once
-        expect(Rails.cache.read(described_class.send(:shared_key, described_class.to_key('home'))))
-          .to eq({ title: 'Home' })
-      end
-
-      it 'does not cache nil results' do
-        allow(described_class).to receive(:find_by)
-          .with(slug: 'home')
-          .and_return([], [{ title: 'Home' }])
-
-        expect(described_class.by_slug('home')).to be_nil
-        expect(described_class.by_slug('home')).to eq({ title: 'Home' })
-        expect(described_class).to have_received(:find_by).twice
-      end
+      expect(described_class.by_slug('home')).to eq contentful_page
+      expect(described_class.by_slug('home')).to eq contentful_page
+      expect(described_class).to have_received(:find_by).once
     end
   end
 
@@ -260,17 +239,12 @@ RSpec.describe Page, type: :model do
   end
 
   describe '.navigation_items' do
-    around do |example|
-      previous_cache = Rails.cache
-      Rails.cache = ActiveSupport::Cache::MemoryStore.new
-      example.run
-      Rails.cache = previous_cache
-    end
-
-    before { Rails.cache.clear }
+    before { described_class.cache.clear }
+    after { described_class.cache.clear }
 
     it 'returns an empty list when a timeout occurs' do
       allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
+      allow(described_class).to receive(:contentful_sleep)
 
       expect(described_class.navigation_items).to eq([])
     end
@@ -281,29 +255,23 @@ RSpec.describe Page, type: :model do
       expect(described_class.navigation_items).to eq([])
     end
 
-    it 'returns stale values and enqueues a background refresh when fresh cache has expired' do
-      stale_items = %w[cached-navigation-item]
-      Rails.cache.write(described_class.to_key('navigation_items:stale'), stale_items, expires_in: 30.minutes)
-      allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
-      allow(ContentfulLayoutCacheRefreshJob).to receive(:perform_later)
+    it 'does not memoize an empty result, so it retries next time' do
+      allow(described_class).to receive(:home).and_return(nil)
 
-      expect(described_class.navigation_items).to eq(stale_items)
-      expect(ContentfulLayoutCacheRefreshJob).to have_received(:perform_later).with('navigation_items')
+      described_class.navigation_items
+      described_class.navigation_items
+
+      expect(described_class).to have_received(:home).twice
     end
   end
 
   describe '.footer_items' do
-    around do |example|
-      previous_cache = Rails.cache
-      Rails.cache = ActiveSupport::Cache::MemoryStore.new
-      example.run
-      Rails.cache = previous_cache
-    end
-
-    before { Rails.cache.clear }
+    before { described_class.cache.clear }
+    after { described_class.cache.clear }
 
     it 'returns an empty list when a timeout occurs' do
       allow(described_class).to receive(:footer).and_raise(HTTP::TimeoutError)
+      allow(described_class).to receive(:contentful_sleep)
 
       expect(described_class.footer_items).to eq([])
     end

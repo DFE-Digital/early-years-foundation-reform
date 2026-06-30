@@ -1,5 +1,16 @@
 #
-# Use class-level in memory caching provided by dry-core
+# Class-level caching split by what is marshal-safe:
+#
+#   * Cross-instance content caching lives at the HTTP layer — raw Contentful API
+#     responses (JSON) are cached in Redis (see
+#     config/initializers/contentful_response_cache.rb). ContentfulModel objects
+#     themselves are NOT cached in Redis because they hold a live client and don't
+#     survive Marshal -> Redis -> unmarshal (you get back nil fields).
+#   * Object memoization (fetch_or_store / fetch_or_store_non_nil) is in-process
+#     only, via dry-core, so the live objects are never serialised.
+#   * The cache_key version pointer and the Contentful circuit breaker ARE shared
+#     across instances via Redis — both are plain, marshal-safe values.
+#
 # @see https://github.com/dry-rb/dry-core/blob/main/lib/dry/core/cache.rb
 #
 module Caching
@@ -13,14 +24,12 @@ module Caching
     klass.send :extend, Dry::Core::Cache
   end
 
+  # In-process memoization (per process). See the module comment for why object
+  # caches are not stored in Redis.
+  #
   # @param key [String]
-  # @param expires_in [ActiveSupport::Duration]
-  def fetch_or_store(key, expires_in: 15.minutes, race_condition_ttl: 5.seconds, &block)
-    if shared_cache?
-      Rails.cache.fetch(shared_key(key), expires_in:, race_condition_ttl:, &block)
-    else
-      cache.fetch_or_store(key, &block)
-    end
+  def fetch_or_store(key, &block)
+    cache.fetch_or_store(key, &block)
   end
 
   # @param key [String] entry id / collection
@@ -38,24 +47,18 @@ module Caching
     end
   end
 
-  # Caches the block result, but never caches a nil result, so transient
-  # Contentful failures (which return nil) are retried on the next request
-  # rather than being remembered.
+  # As #fetch_or_store, but never memoizes a nil result, so a transient Contentful
+  # failure (which returns nil) is retried on the next call rather than remembered.
   #
   # @param args [Array<Object>] cache key parts
-  # @param expires_in [ActiveSupport::Duration]
   # @return [Object, nil]
-  def fetch_or_store_non_nil(*args, expires_in: 15.minutes, race_condition_ttl: 5.seconds, &block)
-    if shared_cache?
-      Rails.cache.fetch(shared_key(args.join(':')), expires_in:, race_condition_ttl:, skip_nil: true, &block)
-    else
-      key = args.hash
-      return cache[key] if cache.key?(key)
+  def fetch_or_store_non_nil(*args)
+    key = args.hash
+    return cache[key] if cache.key?(key)
 
-      result = yield
-      cache[key] = result unless result.nil?
-      result
-    end
+    result = yield
+    cache[key] = result unless result.nil?
+    result
   end
 
   # memoise latest release timestamp & prevent cache overload
