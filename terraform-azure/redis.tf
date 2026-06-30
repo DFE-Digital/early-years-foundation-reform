@@ -15,15 +15,15 @@
 # Premium P1 (6 GB) for the better SLA and private-link maturity.
 locals {
   redis_is_dev   = var.environment == "development"
-  redis_family   = local.redis_is_dev ? "C" : "P"
-  redis_sku_name = local.redis_is_dev ? "Standard" : "Premium"
+  redis_family   =  "C"
+  redis_sku_name = "Standard"
 }
 
 resource "azurerm_redis_cache" "redis" {
   name                          = "${var.resource_name_prefix}-redis"
   location                      = var.azure_region
   resource_group_name           = azurerm_resource_group.rg.name
-  capacity                      = 1 # Standard C1 = 1 GB (dev) / Premium P1 = 6 GB (non-dev)
+  capacity                      = 0
   family                        = local.redis_family
   sku_name                      = local.redis_sku_name
   minimum_tls_version           = "1.2"
