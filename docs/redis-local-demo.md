@@ -66,28 +66,21 @@ Then run through this with the app:
 | Step | Do this | What proves the point |
 |------|---------|-----------------------|
 | 1 | `docker exec -it reform_redis_dev redis-cli dbsize` | **0** — cache starts empty |
-| 2 | Load the homepage / a tier page in the browser | `monitor` streams `SET page:home-…`, `SET page:navigation_items:fresh-…`, etc. — it's **filling** |
-| 3 | `docker exec -it reform_redis_dev redis-cli keys '*'` | shows the populated keys (see below) |
+| 2 | Load the homepage / a tier page in the browser | `monitor` streams `SET contentful:resp:…` — the raw Contentful API responses being cached. It's **filling** |
+| 3 | `docker exec -it reform_redis_dev redis-cli keys 'contentful:resp:*'` | shows the cached responses |
 | 4 | `docker exec -it reform_redis_dev redis-cli dbsize` | now **N** — it filled |
 | 5 | **Reload the same page** | `monitor` now shows `GET`s, not `SET`s — it's **served from cache**, not re-fetched from Contentful (and the page renders faster) |
-| 6 | `docker exec -it reform_redis_dev redis-cli ttl page:navigation_items:fresh-initial` | shows the ~5‑min fresh TTL (the stale‑while‑revalidate window) |
 
 Empty → fills on first visit → reads on second visit *is* the proof it works.
 
 ### Keys you should see
 ```
-page:cache_key                      # the cache-version pointer
-page:home-initial                   # Page.by_slug('home')
-page:areas-of-learning-initial      # other pages you visited
-page:navigation_items:fresh-initial # header nav (fresh copy)
-page:navigation_items:stale-initial # header nav (stale copy)
-resource:…-initial                  # any Resource.by_name lookups
+page:cache_key             # the content version pointer (bumped by CMS webhooks)
+contentful:resp:<ver>:<…>  # one per cached Contentful API response (pages, assets, collections)
 ```
-
-> Expected wrinkle: you'll see `thumbnail` keys get `SET` but their reads miss. A
-> `ContentfulModel::Asset` marshals on write but doesn't deserialise back, so the
-> thumbnail cache is a no‑op (it just re‑fetches). Everything else shows clean `GET`
-> hits on the second load. This is documented as future work in `redis-caching.md`.
+We cache the raw Contentful **responses** (JSON), not the model objects — so the keys are
+opaque digests of the request URL, not `page:home` etc. See [`redis-caching.md`](redis-caching.md)
+for why. Reload a page and you'll see clean `GET` hits on those `contentful:resp:*` keys.
 
 ---
 
@@ -115,7 +108,9 @@ The `redis` container holds nothing important and is recreated on each `bin/dock
   Redis is down — it logs and behaves like a cache miss.)
 - **Keys appear but data looks empty / pages error** → Contentful isn't reachable. Check
   `config/master.key` is present so the CMS lookups return data to cache.
-- **Only `thumbnail` keys miss on read** → expected (the asset no‑op above), not a bug.
+- **`contentful:resp:*` keys appear but reloads still `SET` (never `GET`)** → the content
+  version is changing every request. Check `Page.cache_key` is stable (it should only change
+  on a CMS webhook).
 
 ---
 
