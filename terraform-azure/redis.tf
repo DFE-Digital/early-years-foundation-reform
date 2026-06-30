@@ -15,7 +15,7 @@
 # Premium P1 (6 GB) for the better SLA and private-link maturity.
 locals {
   redis_is_dev   = var.environment == "development"
-  redis_family   =  "C"
+  redis_family   = "C"
   redis_sku_name = "Standard"
 }
 
