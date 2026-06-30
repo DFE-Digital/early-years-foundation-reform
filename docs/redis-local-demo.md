@@ -98,15 +98,30 @@ The `redis` container holds nothing important and is recreated on each `bin/dock
 
 ## Troubleshooting — "nothing is populating"
 
-- **`Rails.cache` is NullStore/MemoryStore** → the app booted without `REDIS_URL`.
-  Recreate the container (re-running `bin/docker-dev` alone won't reload `.env`):
+`redis-cli monitor` shows only your own commands and nothing streams when you browse?
+Run this one diagnostic first — it tells you which case you're in:
+
+```bash
+docker exec -it reform_dev bin/rails runner 'puts "cache=#{Rails.cache.class}"; puts "patched=#{Contentful::Client.singleton_class.ancestors.include?(ContentfulResponseCache)}"; puts "preview=#{Rails.application.preview?}"'
+```
+> If that throws a syntax error, your terminal is converting the straight `'` quotes to
+> curly ones — turn off macOS smart quotes (System Settings → Keyboard → Text Input).
+
+- **`cache=…NullStore` / `…MemoryStore`** → the app booted without `REDIS_URL`. Check
+  `grep REDIS_URL .env` shows `REDIS_URL=redis://redis:6379/0` (no `#`), then recreate —
+  re-running `bin/docker-dev` alone won't reload `.env`:
   `docker rm -f reform_dev && bin/docker-dev`.
-- **Connection warnings in the Rails log, `dbsize` stays 0** → the app can't reach Redis.
-  Make sure `REDIS_URL` uses the service name (`redis://redis:6379/0`), not `localhost`
-  (inside the container `localhost` points at the app itself). Check the service is up:
-  `docker exec -it reform_redis_dev redis-cli ping` → `PONG`. (The app won't crash if
-  Redis is down — it logs and behaves like a cache miss.)
-- **Keys appear but data looks empty / pages error** → Contentful isn't reachable. Check
+- **`patched=false`** (or `NameError: uninitialized constant ContentfulResponseCache`) →
+  you're on old code. `git pull` then `docker rm -f reform_dev && bin/docker-dev`.
+- **`preview=true`** → you have `CONTENTFUL_PREVIEW=true` in `.env`. That hits
+  `preview.contentful.com`, which the cache skips by design (delivery only). Remove the line
+  and recreate.
+- **`cache=…RedisCacheStore`, `patched=true`, `preview=false`, but still nothing** → check
+  the app can reach Redis by service name: `docker exec -it reform_redis_dev redis-cli ping`
+  → `PONG`. (`REDIS_URL` must use `redis://redis:6379/0`, not `localhost` — inside the
+  container `localhost` is the app itself. The app won't crash if Redis is down; it logs and
+  behaves like a cache miss.)
+- **Keys appear but pages error / look empty** → Contentful isn't reachable. Check
   `config/master.key` is present so the CMS lookups return data to cache.
 - **`contentful:resp:*` keys appear but reloads still `SET` (never `GET`)** → the content
   version is changing every request. Check `Page.cache_key` is stable (it should only change
@@ -120,4 +135,4 @@ If you want it verified in an actual deployed env before merging, add the **`rev
 label to the PR — `azure-deploy-review.yml` deploys a review app with its own Redis.
 Verify that one from **inside** the environment (App Service → SSH/Kudu console, which is
 on the VNet and can reach the private Redis), e.g. a `rails runner` that reads back a
-`page:*` key after you browse the review URL — not from your laptop.
+`contentful:resp:*` key after you browse the review URL — not from your laptop.
