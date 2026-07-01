@@ -24,6 +24,7 @@ gem 'contentful_rails'
 gem 'govuk-components'
 gem 'govuk_design_system_formbuilder'
 gem 'govuk_markdown'
+gem 'redis'
 
 gem 'sentry-rails'
 gem 'sentry-ruby'

@@ -18,6 +18,18 @@ services:
       - .:/srv
     tty: true
     stdin_open: true
+    depends_on:
+      - redis
+
+  # Optional shared cache for local development. The app only uses it when
+  # REDIS_URL is set (see config/environments/development.rb); otherwise dev
+  # falls back to its usual null/memory store. Reachable from the app container
+  # as host `redis` — i.e. REDIS_URL=redis://redis:6379/0
+  redis:
+    container_name: reform_redis_dev
+    image: redis:7-alpine
+    networks:
+      - reform
 
   doc:
     container_name: reform_doc

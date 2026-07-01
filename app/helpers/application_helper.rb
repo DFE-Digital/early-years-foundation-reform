@@ -1,16 +1,18 @@
 module ApplicationHelper
   def navigation
+    current_section = respond_to?(:section) ? section : ''
+
     render(HeaderComponent.new(service_name: t('service.name'), classes: 'govuk-header noprint', navigation_label: 'Primary navigation')) do |header|
       header.with_navigation_item(text: 'Home', href: root_path, classes: [
         'govuk-service-navigation__item',
         ('govuk-service-navigation__item--current' if current_page?(root_path)),
       ].compact)
 
-      Page.home&.pages&.each do |item|
+      Page.navigation_items.each do |item|
         header.with_navigation_item(
           text: item.title,
           href: item.path,
-          active: item.slug == section,
+          active: item.slug == current_section,
           classes: %w[govuk-service-navigation__item],
         )
       end
