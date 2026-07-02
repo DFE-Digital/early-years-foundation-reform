@@ -7,7 +7,11 @@
 # String — Redis stores it perfectly, and the gem rebuilds fresh, fully-working
 # objects from it on every cache hit. This gives genuine cross-instance content
 # caching without the marshalling wall.
+require 'uri'
+
 module ContentfulResponseCache
+  TRACER_NAME = 'contentful-client'.freeze
+
   # Stand-in for the `http` gem's response, exposing only what Contentful::Response
   # reads off it: #status, #to_s (body) and #headers.
   CachedResponse = Struct.new(:status, :body, :headers) do
@@ -20,24 +24,42 @@ module ContentfulResponseCache
 
   # Overrides Contentful::Client.get_http (a stateless class method).
   def get_http(url, query, headers = {}, proxy = {}, timeout = {})
-    return super unless cacheable?(url)
+    tracer.in_span('contentful.http.get', kind: :client) do |span|
+      uri = URI.parse(url.to_s)
+      span.set_attribute('http.method', 'GET')
+      span.set_attribute('http.url', url.to_s)
+      span.set_attribute('peer.service', 'contentful')
+      span.set_attribute('server.address', uri.host.to_s)
+      span.set_attribute('url.path', uri.path.to_s)
 
-    key = response_key(url, query)
+      return super unless cacheable?(url)
 
-    if (hit = safe_read(key))
-      return CachedResponse.new(hit[:status], hit[:body], hit[:headers])
+      key = response_key(url, query)
+
+      if (hit = safe_read(key))
+        span.set_attribute('cache.hit', true)
+        span.set_attribute('http.status_code', hit[:status].to_i)
+        return CachedResponse.new(hit[:status], hit[:body], hit[:headers])
+      end
+
+      span.set_attribute('cache.hit', false)
+
+      raw = super
+      span.set_attribute('http.status_code', raw.status.to_i)
+      return raw unless raw.status == 200 # don't cache errors
+
+      payload = {
+        status: raw.status,
+        body: raw.to_s,
+        headers: { 'Content-Encoding' => raw.headers['Content-Encoding'] },
+      }
+      safe_write(key, payload)
+      CachedResponse.new(payload[:status], payload[:body], payload[:headers])
+    rescue StandardError => e
+      span.record_exception(e)
+      span.status = OpenTelemetry::Trace::Status.error("#{e.class}: #{e.message}")
+      raise
     end
-
-    raw = super
-    return raw unless raw.status == 200 # don't cache errors
-
-    payload = {
-      status: raw.status,
-      body: raw.to_s,
-      headers: { 'Content-Encoding' => raw.headers['Content-Encoding'] },
-    }
-    safe_write(key, payload)
-    CachedResponse.new(payload[:status], payload[:body], payload[:headers])
   end
 
 private
@@ -74,6 +96,10 @@ private
     Rails.cache.write(key, payload, expires_in: TTL)
   rescue StandardError => e
     Rails.logger.warn("contentful response cache write failed: #{e.class} - #{e.message}")
+  end
+
+  def tracer
+    OpenTelemetry.tracer_provider.tracer(TRACER_NAME)
   end
 end
 

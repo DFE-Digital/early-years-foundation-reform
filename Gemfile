@@ -29,6 +29,14 @@ gem 'redis'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 
+gem 'opentelemetry-exporter-otlp'
+gem 'opentelemetry-instrumentation-active_record'
+gem 'opentelemetry-instrumentation-http'
+gem 'opentelemetry-instrumentation-net_http'
+gem 'opentelemetry-instrumentation-rack'
+gem 'opentelemetry-instrumentation-rails'
+gem 'opentelemetry-sdk'
+
 group :development, :test do
   gem 'axe-matchers'
   gem 'dotenv-rails'

@@ -26,6 +26,10 @@ locals {
     "RAILS_MASTER_KEY"                    = var.webapp_config_rails_master_key
     "RAILS_MAX_THREADS"                   = var.webapp_config_rails_max_threads
     "RAILS_SERVE_STATIC_FILES"            = var.webapp_config_rails_serve_static_files
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.appinsights.connection_string
+    "APPLICATION_INSIGHTS_CONNECTION_STRING" = azurerm_application_insights.appinsights.connection_string
+    "OTEL_SERVICE_NAME"                    = var.webapp_name
+    "OTEL_EXPORTER_OTLP_ENDPOINT"          = var.webapp_config_otel_exporter_otlp_endpoint
     "REDIS_HOST"                          = azurerm_redis_cache.redis.hostname
     "REDIS_PASSWORD"                      = azurerm_redis_cache.redis.primary_access_key
     "REDIS_PORT"                          = azurerm_redis_cache.redis.ssl_port
@@ -53,6 +57,10 @@ locals {
     "RAILS_MASTER_KEY"                    = var.webapp_config_rails_master_key
     "RAILS_MAX_THREADS"                   = var.webapp_config_rails_max_threads
     "RAILS_SERVE_STATIC_FILES"            = var.webapp_config_rails_serve_static_files
+    "APPLICATIONINSIGHTS_CONNECTION_STRING" = azurerm_application_insights.appinsights.connection_string
+    "APPLICATION_INSIGHTS_CONNECTION_STRING" = azurerm_application_insights.appinsights.connection_string
+    "OTEL_SERVICE_NAME"                    = "${var.webapp_name}-green"
+    "OTEL_EXPORTER_OTLP_ENDPOINT"          = var.webapp_config_otel_exporter_otlp_endpoint
     "REDIS_HOST"                          = azurerm_redis_cache.redis.hostname
     "REDIS_PASSWORD"                      = azurerm_redis_cache.redis.primary_access_key
     "REDIS_PORT"                          = azurerm_redis_cache.redis.ssl_port

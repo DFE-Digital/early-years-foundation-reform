@@ -160,6 +160,12 @@ variable "webapp_config_web_concurrency" {
   type = string
 }
 
+variable "webapp_config_otel_exporter_otlp_endpoint" {
+  description = "OTLP endpoint used by Rails OpenTelemetry exporter"
+  type        = string
+  default     = null
+}
+
 variable "redis_access_keys_authentication_enabled" {
   description = "Enable Redis access-key authentication for application compatibility"
   type        = bool
