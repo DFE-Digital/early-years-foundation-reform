@@ -66,4 +66,4 @@ nscacert.pem
 *.yardoc
 
 .DS_Store
-
+.vscode/

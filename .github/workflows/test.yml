@@ -12,6 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      # CI-ONLY: points at the ephemeral `redis` service container below, which is
+      # created and destroyed with this job. This is NOT a real environment's Redis —
+      # the deployed REDIS_URL is injected by Terraform into the App Service settings
+      # (see terraform-azure/local.tf). It exists so the Redis-backed specs actually
+      # run in CI instead of skipping.
+      REDIS_URL: redis://localhost:6379/0
+    # CI-ONLY throwaway Redis used by the test suite (spun up by GitHub Actions for the
+    # duration of this job). Not used by, or related to, any deployed environment.
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

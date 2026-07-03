@@ -18,6 +18,18 @@ RSpec.describe Page, type: :model do
       expect(described_class.by_slug('home')).to eq contentful_page
       expect(described_class).to have_received(:find_by).twice
     end
+
+    it 'reuses a cached non-nil result (in-process)' do
+      contentful_page = instance_double(described_class)
+
+      allow(described_class).to receive(:find_by)
+        .with(slug: 'home')
+        .and_return([contentful_page])
+
+      expect(described_class.by_slug('home')).to eq contentful_page
+      expect(described_class.by_slug('home')).to eq contentful_page
+      expect(described_class).to have_received(:find_by).once
+    end
   end
 
   describe 'hierarchy' do
@@ -223,6 +235,93 @@ RSpec.describe Page, type: :model do
       it 'has the skip to main content link' do
         expect(page.main_content_link).to eq '/areas-of-learning/communication-and-language/interactions#main-content'
       end
+    end
+  end
+
+  describe '.navigation_items' do
+    before { described_class.cache.clear }
+    after { described_class.cache.clear }
+
+    it 'returns an empty list when a timeout occurs' do
+      allow(described_class).to receive(:home).and_raise(HTTP::TimeoutError)
+      allow(described_class).to receive(:contentful_sleep)
+
+      expect(described_class.navigation_items).to eq([])
+    end
+
+    it 'returns an empty list when home is unavailable' do
+      allow(described_class).to receive(:home).and_return(nil)
+
+      expect(described_class.navigation_items).to eq([])
+    end
+
+    it 'does not memoize an empty result, so it retries next time' do
+      allow(described_class).to receive(:home).and_return(nil)
+
+      described_class.navigation_items
+      described_class.navigation_items
+
+      expect(described_class).to have_received(:home).twice
+    end
+  end
+
+  describe '.footer_items' do
+    before { described_class.cache.clear }
+    after { described_class.cache.clear }
+
+    it 'returns an empty list when a timeout occurs' do
+      allow(described_class).to receive(:footer).and_raise(HTTP::TimeoutError)
+      allow(described_class).to receive(:contentful_sleep)
+
+      expect(described_class.footer_items).to eq([])
+    end
+
+    it 'returns an empty list when footer is unavailable' do
+      allow(described_class).to receive(:footer).and_return(nil)
+
+      expect(described_class.footer_items).to eq([])
+    end
+  end
+
+  describe '.with_contentful_resilience' do
+    around do |example|
+      previous_cache = Rails.cache
+      Rails.cache = ActiveSupport::Cache::MemoryStore.new
+      example.run
+      Rails.cache = previous_cache
+    end
+
+    before { Rails.cache.clear }
+
+    it 'retries timeout failures with backoff before succeeding' do
+      attempts = 0
+      allow(described_class).to receive(:contentful_sleep)
+
+      result = described_class.with_contentful_resilience(context: 'spec-check', max_retries: 2) do
+        attempts += 1
+        raise HTTP::TimeoutError if attempts < 3
+
+        :ok
+      end
+
+      expect(result).to eq(:ok)
+      expect(described_class).to have_received(:contentful_sleep).twice
+    end
+
+    it 'opens the circuit after repeated failures' do
+      allow(described_class).to receive(:contentful_sleep)
+
+      5.times do
+        expect {
+          described_class.with_contentful_resilience(context: 'spec-circuit', max_retries: 0) do
+            raise HTTP::TimeoutError
+          end
+        }.to raise_error(HTTP::TimeoutError)
+      end
+
+      expect {
+        described_class.with_contentful_resilience(context: 'spec-circuit', max_retries: 0) { :ok }
+      }.to raise_error(Caching::CIRCUIT_BREAKER_ERROR)
     end
   end
 end

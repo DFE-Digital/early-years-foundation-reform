@@ -22,18 +22,31 @@ class Page < ContentfulModel::Base
   # @return [Page]
   def self.by_slug(slug)
     fetch_or_store_non_nil to_key(slug) do
-      find_by(slug: slug.to_s)&.first
-    rescue ::HTTP::TimeoutError, ::Contentful::Error => e
-      Rails.logger.error("Contentful timeout or error in Page.by_slug('#{slug}'): #{e.class} - #{e.message}")
+      with_contentful_resilience(context: "Page.by_slug('#{slug}')") do
+        find_by(slug: slug.to_s)&.first
+      end
+    rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
       nil
     end
   end
 
+  # @return [Array<Page>]
+  def self.navigation_items
+    layout_collection('navigation_items') { home&.pages }
+  end
+
+  # @return [Array<Page>]
+  def self.footer_items
+    layout_collection('footer_items') { footer&.pages }
+  end
+
   # @return [String]
   def path
-    root = footer? ? self.class.footer.slug : self.class.home.slug
+    root_slug = root&.slug
     list = ['/', parent&.parent&.slug, parent&.slug, slug].join('/')
-    list.gsub(%r{/#{root}/}, '').squeeze('/')
+    return list.squeeze('/') if root_slug.blank?
+
+    list.gsub(%r{/#{root_slug}/}, '').squeeze('/')
   end
 
   # @return [String] TODO: update model field with default and snake_case values
@@ -65,14 +78,18 @@ class Page < ContentfulModel::Base
   def thumbnail
     return if fields[:image].blank?
 
-    fetch_or_store self.class.to_key(fields[:image].id) do
-      ContentfulModel::Asset.find(fields[:image].id)
+    self.class.fetch_or_store_non_nil self.class.to_key(fields[:image].id) do
+      self.class.with_contentful_resilience(context: "Page#thumbnail('#{slug}')") do
+        ContentfulModel::Asset.find(fields[:image].id)
+      end
     end
+  rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
+    nil
   end
 
   # @return [Boolean] child of the 'footer' page
   def footer?
-    parent.eql?(self.class.footer)
+    parent&.slug == 'footer'
   end
 
   # @return [Boolean]
@@ -101,5 +118,21 @@ class Page < ContentfulModel::Base
   # @return [Date]
   def created_at
     released_at || super
+  end
+
+  # In-process memoized list (per process) with circuit-breaker resilience. The
+  # underlying Contentful responses are cached cross-instance at the HTTP layer, so
+  # this just avoids re-deserialising within a process. An empty or failed result is
+  # never memoized, so it's retried on the next request (and a layout collection
+  # never gets stuck empty after a blip).
+  #
+  # @param key [String]
+  # @return [Array<Page>]
+  private_class_method def self.layout_collection(key)
+    fetch_or_store_non_nil(to_key(key)) do
+      with_contentful_resilience(context: "Page.#{key}") { yield&.to_a.presence }
+    rescue ::HTTP::TimeoutError, ::Contentful::Error, Caching::CIRCUIT_BREAKER_ERROR
+      nil
+    end || []
   end
 end

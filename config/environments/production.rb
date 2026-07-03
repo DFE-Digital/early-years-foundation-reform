@@ -57,8 +57,22 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [:request_id]
 
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  # Use Redis for cross-instance cache sharing when configured.
+  config.cache_store = if ENV['REDIS_URL'].present?
+                         [:redis_cache_store,
+                          {
+                            url: ENV['REDIS_URL'],
+                            connect_timeout: 1,
+                            read_timeout: 1,
+                            write_timeout: 1,
+                            reconnect_attempts: 2,
+                            error_handler: lambda { |method:, returning:, exception:|
+                              Rails.logger.warn("Redis cache failure in #{method}: #{exception.class} - #{exception.message}; returning #{returning.inspect}")
+                            },
+                          }]
+                       else
+                         [:memory_store, { size: 128.megabytes }]
+                       end
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque

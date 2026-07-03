@@ -374,6 +374,10 @@ GEM
       erb
       psych (>= 4.0.0)
     redcarpet (3.6.1)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
+    redis-client (0.30.0)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.2)
       io-console (~> 0.5)
@@ -569,6 +573,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 7.2.1)
   rails
+  redis
   rladr
   rspec
   rspec-expectations

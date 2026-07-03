@@ -1,47 +1,44 @@
-resource "azapi_resource" "redis" {
-  type      = "Microsoft.Cache/redisEnterprise@2025-07-01"
-  name      = "${var.resource_name_prefix}-redis"
-  location  = var.azure_region
-  parent_id = azurerm_resource_group.rg.id
-  tags      = local.common_tags
-
-  body = {
-    properties = {
-      highAvailability    = "Disabled"
-      minimumTlsVersion   = "1.2"
-      publicNetworkAccess = "Disabled"
-    }
-    sku = {
-      name = "Balanced_B0"
-    }
-  }
-
-  schema_validation_enabled = false
+# Classic Azure Cache for Redis (Standard C0).
+#
+# This replaces the previous Microsoft.Cache/redisEnterprise (Azure Managed Redis)
+# implementation. Redis Enterprise creation is retired, and Azure Managed Redis
+# Balanced SKUs could not be provisioned in this subscription/region (West Europe) —
+# both returned errors. Classic uses the separate Microsoft.Cache/Redis resource
+# type, is available in West Europe, and is supported by the azurerm provider
+# directly (no azapi).
+#
+# NOTE: This is a bridge. New classic Azure Cache for Redis creation is blocked from
+# 1 Oct 2026 and the tier retires 30 Sep 2028. Migrate to Azure Managed Redis once it
+# is available/enabled for this subscription and region.
+#
+# Sizing: Standard C0 (250 MB) for every environment, chosen for cost. Standard
+# supports the private endpoint we use, and we rely on no Premium-only feature.
+#
+# NOTE: Azure Cache for Redis cannot scale *down* or change tier in place (e.g.
+# C1 -> C0, or Premium -> Standard) — the API rejects it with "Capacity cannot be
+# updated". Changing the SKU/size of an existing cache therefore requires it to be
+# recreated: delete it in the portal (it's just a cache) and re-run apply, or run
+# `terraform apply -replace=azurerm_redis_cache.redis`. A plain apply will fail.
+locals {
+  redis_family   = "C"
+  redis_sku_name = "Standard"
+  redis_capacity = 0
 }
 
-resource "azapi_resource" "redis_default_database" {
-  type      = "Microsoft.Cache/redisEnterprise/databases@2025-07-01"
-  name      = "default"
-  parent_id = azapi_resource.redis.id
+resource "azurerm_redis_cache" "redis" {
+  name                          = "${var.resource_name_prefix}-redis"
+  location                      = var.azure_region
+  resource_group_name           = azurerm_resource_group.rg.name
+  capacity                      = local.redis_capacity # Standard C0 = 250 MB
+  family                        = local.redis_family
+  sku_name                      = local.redis_sku_name
+  minimum_tls_version           = "1.2"
+  public_network_access_enabled = false
+  tags                          = local.common_tags
 
-  body = {
-    properties = {
-      accessKeysAuthentication = var.redis_access_keys_authentication_enabled ? "Enabled" : "Disabled"
-      clientProtocol           = "Encrypted"
-      clusteringPolicy         = "OSSCluster"
-      evictionPolicy           = "AllKeysLRU"
-      port                     = 10000
-    }
+  lifecycle {
+    ignore_changes = [tags]
   }
-
-  schema_validation_enabled = false
-}
-
-data "azurerm_redis_enterprise_database" "redis_default" {
-  name       = "default"
-  cluster_id = azapi_resource.redis.id
-
-  depends_on = [azapi_resource.redis_default_database]
 }
 
 resource "azurerm_private_endpoint" "redis" {
@@ -53,9 +50,9 @@ resource "azurerm_private_endpoint" "redis" {
 
   private_service_connection {
     name                           = "${var.resource_name_prefix}-redis-psc"
-    private_connection_resource_id = azapi_resource.redis.id
+    private_connection_resource_id = azurerm_redis_cache.redis.id
     is_manual_connection           = false
-    subresource_names              = ["redisEnterprise"]
+    subresource_names              = ["redisCache"]
   }
 
   private_dns_zone_group {

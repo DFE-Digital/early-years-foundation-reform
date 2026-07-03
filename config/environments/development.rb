@@ -19,7 +19,12 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
+  if ENV['REDIS_URL'].present?
+    # Opt in to the real Redis store locally to exercise shared caching:
+    #   REDIS_URL=redis://localhost:6379/0 bin/rails server
+    config.action_controller.perform_caching = true
+    config.cache_store = [:redis_cache_store, { url: ENV['REDIS_URL'] }]
+  elsif Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
