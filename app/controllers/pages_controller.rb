@@ -6,18 +6,22 @@ class PagesController < ApplicationController
   layout 'hero'
 
   def index
-    render 'errors/not_found', layout: 'application' if page.nil?
+    render_not_found if page.nil?
   end
 
   def show
     if page.nil?
-      render 'errors/not_found', layout: 'application'
+      render_not_found
     else
       render page.to_partial_path
     end
   end
 
 private
+
+  def render_not_found
+    render 'errors/not_found', layout: 'application', status: :not_found, formats: [:html]
+  end
 
   def breadcrumbs
     page.breadcrumbs
