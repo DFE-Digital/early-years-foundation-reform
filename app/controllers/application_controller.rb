@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   default_form_builder(GOVUKDesignSystemFormBuilder::FormBuilder)
 
+  include BotAuthProtection
+
   before_action { cookies.delete :track_google_analytics }
 
   before_action :set_analytics_tracking_id,
