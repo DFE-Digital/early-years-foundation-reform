@@ -1,10 +1,9 @@
 class ResourcesController < ApplicationController
   def show
-    if Rails.application.preview? || Rails.env.test?
-      render html: resource, layout: true
-    else
-      render 'errors/not_found'
-    end
+    return render_not_found unless Rails.application.preview? || Rails.env.test?
+    return render_not_found if resource.blank?
+
+    render html: resource, layout: true
   end
 
 private
@@ -16,6 +15,13 @@ private
 
   # @return [String]
   def resource
-    helpers.m(resource_name)
+    resource = Resource.by_name(resource_name)
+    return if resource.blank? || resource.body.blank?
+
+    helpers.m(resource.body)
+  end
+
+  def render_not_found
+    render 'errors/not_found', status: :not_found
   end
 end
