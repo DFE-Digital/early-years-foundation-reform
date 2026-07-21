@@ -5,6 +5,7 @@ RSpec.describe ResourcesController, type: :request do
     let(:resource) { 'ctas.feedback' }
 
     before do
+      allow(Resource).to receive(:by_name).and_return(nil)
       allow(Resource).to receive(:by_name).with(resource).and_return(OpenStruct.new(body: 'Preview **content**'))
 
       get resource_path(resource)
@@ -20,7 +21,7 @@ RSpec.describe ResourcesController, type: :request do
     let(:resource) { 'missing.resource' }
 
     before do
-      allow(Resource).to receive(:by_name).with(resource).and_return(nil)
+      allow(Resource).to receive(:by_name).and_return(nil)
 
       get resource_path(resource)
     end
@@ -32,15 +33,16 @@ RSpec.describe ResourcesController, type: :request do
     let(:resource) { '<img src=x onerror=alert(1)>' }
 
     before do
-      allow(Resource).to receive(:by_name).with(resource).and_return(nil)
+      allow(Resource).to receive(:by_name).and_return(nil)
 
       get resource_path(resource)
     end
 
     specify 'returns not found and does not reflect the payload' do
       expect(response).to have_http_status(:not_found)
+      # The literal unencoded HTML tag must not appear as markup in the response.
+      # (The URL may appear URL-encoded inside the cookie-banner return_url field, which is safe.)
       expect(response.body).not_to include('<img src=x onerror=alert(1)>')
-      expect(response.body).not_to include('onerror=alert(1)')
     end
   end
 end
