@@ -94,6 +94,11 @@ module ContentHelper
   end
 
   # @return [Resource, OpenStruct]
+  def important_information_banner
+    Resource.by_name('important_information_banner') || placeholder_resource('important_information_banner')
+  end
+
+  # @return [Resource, OpenStruct]
   def other_useful_resources
     Resource.by_name('other_useful_resources') || placeholder_resource('other_useful_resources')
   end
