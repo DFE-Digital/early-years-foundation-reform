@@ -17,6 +17,7 @@ locals {
     "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : null
     "ENVIRONMENT"                         = var.environment
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
+    "BOT_TOKEN"                           = var.webapp_config_bot_token
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
     "PRIVACY_POLICY_URL"                  = var.webapp_config_privacy_policy_url
@@ -44,6 +45,7 @@ locals {
     "CONTENTFUL_PREVIEW"                  = var.environment == "staging" ? "true" : null
     "ENVIRONMENT"                         = var.environment
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
+    "BOT_TOKEN"                           = var.webapp_config_bot_token
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
     "PRIVACY_POLICY_URL"                  = var.webapp_config_privacy_policy_url
