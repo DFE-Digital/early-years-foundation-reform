@@ -12,7 +12,7 @@
     "tar": "7.5.19",
     "minimatch": "^10.2.3",
     "js-yaml": "4.3.0",
-    "brace-expansion": "5.0.7",
+    "brace-expansion": "5.0.8",
     "immutable": "5.1.8"
   },
   "dependencies": {
@@ -25,7 +25,7 @@
     "sass": "^1.97.3"
   },
   "devDependencies": {
-    "postcss": "8",
+    "postcss": "8.5.12",
     "stylelint": "^16.26.1",
     "stylelint-config-gds": "^2.0.0"
   },
