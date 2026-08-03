@@ -25,8 +25,8 @@
     "sass": "^1.97.3"
   },
   "devDependencies": {
-    "postcss": "8.5.12",
-    "stylelint": "^16.26.1",
+    "postcss": "8.5.18",
+    "stylelint": "17.14.1",
     "stylelint-config-gds": "^2.0.0"
   },
   "stylelint": {
