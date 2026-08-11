@@ -84,3 +84,9 @@ variable "redis_private_endpoint_subnet_cidr" {
   type        = string
 }
 
+variable "tags" {
+  description = "Tags to apply to resources managed by the network module"
+  type        = map(string)
+  default     = {}
+}
+
