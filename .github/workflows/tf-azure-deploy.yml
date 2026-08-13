@@ -33,8 +33,7 @@ defaults:
 # Permissions for OIDC authentication
 permissions:
   id-token: write
-  contents: write
-  issues: write
+  contents: read
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -63,6 +62,13 @@ jobs:
           terraform_version: 1.12.2
           terraform_wrapper: false
 
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
       # Initialise a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
         run: >
@@ -77,30 +83,114 @@ jobs:
       - name: Terraform Format
         run: terraform fmt -check
 
-      # Generates Terraform input variables
-      - name: Generate Terraform Variables
-        shell: bash
-        env:
-          WEB_SECRETS: ${{ toJSON(secrets) }}
-          WEB_VARS: ${{ toJSON(vars) }}
-        run: |
-          printf '%s\n' "$WEB_SECRETS" > tmp-secrets.json
-          printf '%s\n' "$WEB_VARS" > tmp-vars.json
-          jq 'with_entries(.key |= ascii_downcase)' tmp-secrets.json > web-secrets.auto.tfvars.json
-          jq 'with_entries(.key |= ascii_downcase)' tmp-vars.json > web-vars.auto.tfvars.json
-
       # Generates an execution plan for Terraform
       # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
       - name: Terraform Plan
         id: tf-plan
+        env:
+          TF_VAR_environment: ${{ inputs.environment }}
+          RESOURCE_NAME_PREFIX: ${{ vars.RESOURCE_NAME_PREFIX }}
+          ADMIN_EMAIL_ADDRESS: ${{ secrets.ADMIN_EMAIL_ADDRESS }}
+          TRACKING_ID: ${{ vars.TRACKING_ID }}
+          CLARITY_TRACKING_ID: ${{ vars.CLARITY_TRACKING_ID }}
+          KV_CERTIFICATE_AUTHORITY_USERNAME: ${{ secrets.KV_CERTIFICATE_AUTHORITY_USERNAME }}
+          KV_CERTIFICATE_AUTHORITY_PASSWORD: ${{ secrets.KV_CERTIFICATE_AUTHORITY_PASSWORD }}
+          KV_CERTIFICATE_AUTHORITY_ADMIN_FIRST_NAME: ${{ secrets.KV_CERTIFICATE_AUTHORITY_ADMIN_FIRST_NAME }}
+          KV_CERTIFICATE_AUTHORITY_ADMIN_LAST_NAME: ${{ secrets.KV_CERTIFICATE_AUTHORITY_ADMIN_LAST_NAME }}
+          KV_CERTIFICATE_AUTHORITY_ADMIN_PHONE_NO: ${{ secrets.KV_CERTIFICATE_AUTHORITY_ADMIN_PHONE_NO }}
+          KV_CERTIFICATE_LABEL: ${{ vars.KV_CERTIFICATE_LABEL }}
+          KV_CERTIFICATE_SUBJECT: ${{ vars.KV_CERTIFICATE_SUBJECT }}
+          AS_SERVICE_PRINCIPAL_OBJECT_ID: ${{ secrets.AS_SERVICE_PRINCIPAL_OBJECT_ID }}
+          WEBAPP_NAME: ${{ vars.WEBAPP_NAME }}
+          WEBAPP_DOCKER_REGISTRY_URL: ${{ vars.WEBAPP_DOCKER_REGISTRY_URL }}
+          WEBAPP_DOCKER_IMAGE: ${{ vars.WEBAPP_DOCKER_IMAGE }}
+          WEBAPP_DOCKER_IMAGE_TAG: ${{ vars.WEBAPP_DOCKER_IMAGE_TAG }}
+          CUSTOM_DOMAIN_NAME: ${{ vars.CUSTOM_DOMAIN_NAME }}
+          WEBAPP_CONFIG_DOMAIN: ${{ vars.WEBAPP_CONFIG_DOMAIN }}
+          WEBAPP_CONFIG_FEEDBACK_URL: ${{ vars.WEBAPP_CONFIG_FEEDBACK_URL }}
+          WEBAPP_CONFIG_PRIVACY_POLICY_URL: ${{ vars.WEBAPP_CONFIG_PRIVACY_POLICY_URL }}
+          WEBAPP_CONFIG_NODE_ENV: ${{ vars.WEBAPP_CONFIG_NODE_ENV }}
+          WEBAPP_CONFIG_RAILS_ENV: ${{ vars.WEBAPP_CONFIG_RAILS_ENV }}
+          WEBAPP_CONFIG_RAILS_LOG_TO_STDOUT: ${{ vars.WEBAPP_CONFIG_RAILS_LOG_TO_STDOUT }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          WEBAPP_CONFIG_WEB_CONCURRENCY: ${{ vars.WEBAPP_CONFIG_WEB_CONCURRENCY }}
         run: |
+          existing_app_settings="$(az webapp config appsettings list --name "$WEBAPP_NAME" --resource-group "${RESOURCE_NAME_PREFIX}-rg" --output json 2>/dev/null || true)"
+          existing_clarity_tracking_id="$(printf '%s' "$existing_app_settings" | jq -r '.[] | select(.name=="CLARITY_TRACKING_ID").value // empty' 2>/dev/null || true)"
+          existing_sentry_dsn="$(printf '%s' "$existing_app_settings" | jq -r '.[] | select(.name=="SENTRY_DSN").value // empty' 2>/dev/null || true)"
+
+          CLARITY_TRACKING_ID="${CLARITY_TRACKING_ID:-$existing_clarity_tracking_id}"
+          SENTRY_DSN="${SENTRY_DSN:-$existing_sentry_dsn}"
+
+          jq -n \
+            --arg environment "$TF_VAR_environment" \
+            --arg resource_name_prefix "$RESOURCE_NAME_PREFIX" \
+            --arg admin_email_address "$ADMIN_EMAIL_ADDRESS" \
+            --arg tracking_id "$TRACKING_ID" \
+            --arg clarity_tracking_id "$CLARITY_TRACKING_ID" \
+            --arg kv_certificate_authority_username "$KV_CERTIFICATE_AUTHORITY_USERNAME" \
+            --arg kv_certificate_authority_password "$KV_CERTIFICATE_AUTHORITY_PASSWORD" \
+            --arg kv_certificate_authority_admin_first_name "$KV_CERTIFICATE_AUTHORITY_ADMIN_FIRST_NAME" \
+            --arg kv_certificate_authority_admin_last_name "$KV_CERTIFICATE_AUTHORITY_ADMIN_LAST_NAME" \
+            --arg kv_certificate_authority_admin_phone_no "$KV_CERTIFICATE_AUTHORITY_ADMIN_PHONE_NO" \
+            --arg kv_certificate_label "$KV_CERTIFICATE_LABEL" \
+            --arg kv_certificate_subject "$KV_CERTIFICATE_SUBJECT" \
+            --arg as_service_principal_object_id "$AS_SERVICE_PRINCIPAL_OBJECT_ID" \
+            --arg webapp_name "$WEBAPP_NAME" \
+            --arg webapp_docker_registry_url "$WEBAPP_DOCKER_REGISTRY_URL" \
+            --arg webapp_docker_image "$WEBAPP_DOCKER_IMAGE" \
+            --arg webapp_docker_image_tag "$WEBAPP_DOCKER_IMAGE_TAG" \
+            --arg custom_domain_name "$CUSTOM_DOMAIN_NAME" \
+            --arg webapp_config_domain "$WEBAPP_CONFIG_DOMAIN" \
+            --arg webapp_config_feedback_url "$WEBAPP_CONFIG_FEEDBACK_URL" \
+            --arg webapp_config_privacy_policy_url "$WEBAPP_CONFIG_PRIVACY_POLICY_URL" \
+            --arg webapp_config_node_env "$WEBAPP_CONFIG_NODE_ENV" \
+            --arg webapp_config_rails_env "$WEBAPP_CONFIG_RAILS_ENV" \
+            --arg webapp_config_rails_log_to_stdout "$WEBAPP_CONFIG_RAILS_LOG_TO_STDOUT" \
+            --arg webapp_config_rails_master_key "$RAILS_MASTER_KEY" \
+            --arg webapp_config_sentry_dsn "$SENTRY_DSN" \
+            --arg webapp_config_web_concurrency "$WEBAPP_CONFIG_WEB_CONCURRENCY" \
+            --arg webapp_config_rails_max_threads "5" \
+            --argjson webapp_config_rails_serve_static_files true \
+            '{
+              environment: $environment,
+              resource_name_prefix: $resource_name_prefix,
+              admin_email_address: $admin_email_address,
+              tracking_id: $tracking_id,
+              clarity_tracking_id: $clarity_tracking_id,
+              kv_certificate_authority_username: $kv_certificate_authority_username,
+              kv_certificate_authority_password: $kv_certificate_authority_password,
+              kv_certificate_authority_admin_first_name: $kv_certificate_authority_admin_first_name,
+              kv_certificate_authority_admin_last_name: $kv_certificate_authority_admin_last_name,
+              kv_certificate_authority_admin_phone_no: $kv_certificate_authority_admin_phone_no,
+              kv_certificate_label: $kv_certificate_label,
+              kv_certificate_subject: $kv_certificate_subject,
+              as_service_principal_object_id: $as_service_principal_object_id,
+              webapp_name: $webapp_name,
+              webapp_docker_registry_url: $webapp_docker_registry_url,
+              webapp_docker_image: $webapp_docker_image,
+              webapp_docker_image_tag: $webapp_docker_image_tag,
+              custom_domain_name: $custom_domain_name,
+              webapp_config_domain: $webapp_config_domain,
+              webapp_config_feedback_url: $webapp_config_feedback_url,
+              webapp_config_privacy_policy_url: $webapp_config_privacy_policy_url,
+              webapp_config_node_env: $webapp_config_node_env,
+              webapp_config_rails_env: $webapp_config_rails_env,
+              webapp_config_rails_log_to_stdout: $webapp_config_rails_log_to_stdout,
+              webapp_config_rails_master_key: $webapp_config_rails_master_key,
+              webapp_config_rails_max_threads: $webapp_config_rails_max_threads,
+              webapp_config_rails_serve_static_files: $webapp_config_rails_serve_static_files,
+              webapp_config_sentry_dsn: $webapp_config_sentry_dsn,
+              webapp_config_web_concurrency: $webapp_config_web_concurrency
+            }' > terraform.auto.tfvars.json
+
           export exitcode=0
 
-
           if ${{ inputs.refresh }}; then
-            terraform plan -detailed-exitcode -no-color -refresh-only -out tfplan || export exitcode=$?
+            terraform plan -detailed-exitcode -no-color -refresh-only -out tfplan -input=false || export exitcode=$?
           else
-            terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+            terraform plan -detailed-exitcode -no-color -out tfplan -input=false || export exitcode=$?
           fi
 
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
