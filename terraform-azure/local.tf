@@ -1,7 +1,7 @@
 locals {
   # Common tags to be assigned to resources
   common_tags = {
-    "Environment"      = var.environment == "development" ? "Dev" : var.environment
+    "Environment"      = var.environment
     "Parent Business"  = "Children’s Care"
     "Portfolio"        = "Newly Onboarded"
     "Product"          = "Help for Early Years Providers"
