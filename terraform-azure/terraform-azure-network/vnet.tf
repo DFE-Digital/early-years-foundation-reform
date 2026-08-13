@@ -62,6 +62,10 @@ resource "azurerm_private_dns_zone" "redis" {
   name                = "privatelink.redis.cache.windows.net"
   resource_group_name = var.resource_group
   tags                = var.tags
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "redis" {
@@ -70,4 +74,8 @@ resource "azurerm_private_dns_zone_virtual_network_link" "redis" {
   resource_group_name   = var.resource_group
   virtual_network_id    = azurerm_virtual_network.vnet.id
   tags                  = var.tags
+
+  lifecycle {
+    ignore_changes = [tags]
+  }
 }
