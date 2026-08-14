@@ -28,6 +28,11 @@ module ApplicationHelper
     Dry::Types['params.bool'][ENV.fetch('DEBUG', false)]
   end
 
+  # @return [Boolean]
+  def show_important_banner?
+    ENV['SHOW_IMPORTANT_BANNER'] == 'true'
+  end
+
   # @param parts [Array<String>]
   # @return [String]
   def html_title(*parts)
