@@ -14,11 +14,11 @@ This addresses the ITHC 2026 finding 5.1.1 "Public Network Access Enabled" by si
 
 The ITHC report also recommends removing the public endpoint entirely and routing traffic through a private endpoint within the VNet. This is the fuller fix, but it has a hard dependency on the GitHub Actions pipeline.
 
-### The GitHub Actions problem
+### How GitHub Actions still works
 
-Certificate creation and renewal is managed by Terraform and runs in GitHub Actions using GitHub-hosted runners. These runners operate on GitHub's infrastructure — public IP addresses with no route into our VNet.
+Certificate creation and renewal is managed by Terraform and runs in GitHub Actions using GitHub-hosted runners. These runners operate on GitHub's infrastructure with public egress IPs. The `ip_rules` in the current `network_acls` configuration are dynamically populated from GitHub's published IP ranges on each Terraform apply, so GitHub Actions runners are explicitly allowed to reach the Key Vault for cert/secret management. This allows the pipeline to continue operating without a self-hosted runner.
 
-Both the current `network_acls { default_action = "Deny" }` config and the fuller `public_network_access_enabled = false` approach block GitHub-hosted runners from Key Vault data-plane operations (cert/secret management). The `bypass = "AzureServices"` only covers trusted Azure services such as App Gateway — it does not cover GitHub Actions. The Terraform apply that manages certificates will be blocked in either case until the runner situation is resolved.
+The fuller `public_network_access_enabled = false` approach (complete private endpoint-only access) would require a self-hosted runner, which is why that remains deferred.
 
 ### What the fuller fix requires
 
