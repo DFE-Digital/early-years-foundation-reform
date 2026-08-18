@@ -20,6 +20,7 @@ locals {
     "BOT_TOKEN"                           = var.webapp_config_bot_token
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
+    "SHOW_IMPORTANT_BANNER"               = var.webapp_config_show_important_banner
     "PRIVACY_POLICY_URL"                  = var.webapp_config_privacy_policy_url
     "NODE_ENV"                            = var.webapp_config_node_env
     "RAILS_ENV"                           = var.webapp_config_rails_env
@@ -48,6 +49,7 @@ locals {
     "BOT_TOKEN"                           = var.webapp_config_bot_token
     "DOMAIN"                              = var.webapp_config_domain
     "FEEDBACK_URL"                        = var.webapp_config_feedback_url
+    "SHOW_IMPORTANT_BANNER"               = var.webapp_config_show_important_banner
     "PRIVACY_POLICY_URL"                  = var.webapp_config_privacy_policy_url
     "NODE_ENV"                            = var.webapp_config_node_env
     "RAILS_ENV"                           = var.webapp_config_rails_env
