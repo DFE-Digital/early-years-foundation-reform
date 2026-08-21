@@ -1,7 +1,7 @@
 # 0014. Microsoft Defender for Cloud Plans
 
-**Status:** Accepted  
-**Date Created:** 2026-08-21  
+**Status:** Accepted
+**Date Created:** 2026-08-21
 **ITHC Reference:** Issues 5.1.1 & 5.1.2, 2026 ITHC Report (pages 9–17)
 
 ---
@@ -21,7 +21,7 @@ Both provide critical security monitoring aligned with DfE baseline security req
 
 - **ITHC Finding:** Microsoft Defender plans not enabled in Azure subscription
 - **Current State:** Only basic Azure monitoring is configured (diagnostic logs for App Gateway, Web App, and App Service Plan autoscaling); no threat detection or anomaly detection capabilities
-- **Impact:** 
+- **Impact:**
   - No runtime threat detection for the App Service hosting the application
   - No anomaly detection on Key Vault secret access (used for certificate retrieval and potential secrets storage)
   - Reduced visibility into suspicious administrative changes
