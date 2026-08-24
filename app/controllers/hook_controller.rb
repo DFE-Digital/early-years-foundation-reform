@@ -17,7 +17,7 @@ class HookController < ApplicationController
 private
 
   def authenticate_webhook!
-    enforce_bot_auth!(scope: webhook_auth_scope, valid: webhook_token?)
+    enforce_token_auth!(scope: webhook_auth_scope, valid: webhook_token?)
   end
 
   def webhook_auth_scope
