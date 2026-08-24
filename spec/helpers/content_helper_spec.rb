@@ -115,6 +115,10 @@ describe 'ContentHelper', type: :helper do
       it 'renders an iframe with a title' do
         expect(html).to include 'title="This is a vimeo video title"'
       end
+
+      it 'limits embed quality to 1080p' do
+        expect(html).to include 'max_quality=1080p'
+      end
     end
 
     describe 'Video markup with youtube video provider specified' do
@@ -134,6 +138,10 @@ describe 'ContentHelper', type: :helper do
 
       it 'renders an iframe with a title' do
         expect(html).to include 'title="This is a youtube video title"'
+      end
+
+      it 'does not add the vimeo quality cap parameter' do
+        expect(html).not_to include 'max_quality=1080p'
       end
     end
 
