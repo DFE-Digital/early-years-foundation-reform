@@ -24,7 +24,7 @@
     "dfe-frontend": "^2.0.1",
     "esbuild": "^0.28.1",
     "govuk-frontend": "^5.11.2",
-    "sass": "^1.97.3"
+    "sass": "^1.103.1"
   },
   "devDependencies": {
     "postcss": "8.5.23",
