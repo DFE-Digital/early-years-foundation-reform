@@ -43,7 +43,7 @@ Both provide critical security monitoring aligned with DfE baseline security req
 - **Low friction:** These are subscription-level Azure settings with no code refactoring required
 - **Auditability:** Full code review trail and Terraform state history for compliance and debugging
 - **Risk:** Enablement presents no risk to application functionality
-- **Cost:** Defender plans typically included in Azure Security Center standard tier; minimal or no incremental cost
+- **Cost:** Defender plans are paid workload-protection plans with ongoing monthly charges;
 
 ### Implementation Method
 
@@ -125,7 +125,7 @@ resource "azurerm_security_center_subscription_pricing" "appservice" {
 
 - **Terraform Provider Version:** Requires Azure provider v2.5.0+ (supports `azurerm_security_center_subscription_pricing`)
 - **Azure Subscription:** DfE must have Azure Security Center (Microsoft Defender for Cloud) available in their subscription tier
-- **Cost Verification:** Defender plans typically included in Azure Security Center standard tier; no incremental cost expected but confirm with DfE cloud ops
+- **Cost Verification:** Microsoft publishes explicit billing for these plans (for example, App Service billed per instance/month and Key Vault billed per vault/month). Charges apply after trial periods and vary by agreement/currency; confirm exact rates and commit-unit coverage with DfE cloud ops/finance before production enablement
 - **Timeline:** Terraform apply immediately after merge; alerts may take 24–48 hours to become active
 - **Risk:** Minimal – enablement does not modify application code or existing infrastructure resources
 
@@ -148,7 +148,7 @@ resource "azurerm_security_center_subscription_pricing" "appservice" {
 - Consistent with existing Terraform patterns
 
 **Neutral:**
-- Defender plans may incur cost depending on DfE Azure subscription tier (typically included in standard tier)
+- Defender plans introduce ongoing monthly cost (plan pricing is published by Microsoft and may differ by agreement, currency, and pre-purchase discounts)
 - Alerts may take 24–48 hours to become active after deployment
 
 **Negative:**
