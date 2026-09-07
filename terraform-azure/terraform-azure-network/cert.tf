@@ -1,6 +1,20 @@
 # Create Key Vault
 data "azurerm_client_config" "az_config" {}
 
+# Fetch GitHub's published runner IP ranges to allowlist CI access to Key Vault
+data "http" "github_meta" {
+  count = var.environment != "development" ? 1 : 0
+  url   = "https://api.github.com/meta"
+}
+
+locals {
+  # Key Vault ip_rules only accepts IPv4; filter out IPv6 ranges
+  github_actions_ipv4 = var.environment != "development" ? [
+    for cidr in jsondecode(data.http.github_meta[0].response_body).actions :
+    cidr if !strcontains(cidr, ":")
+  ] : []
+}
+
 resource "azurerm_key_vault" "kv" {
   # Key Vault only deployed to the Test and Production subscription
   count = var.environment != "development" ? 1 : 0
@@ -14,13 +28,19 @@ resource "azurerm_key_vault" "kv" {
   purge_protection_enabled    = true
   sku_name                    = "standard"
 
+  network_acls {
+    bypass         = "AzureServices"
+    default_action = "Deny"
+    ip_rules       = local.github_actions_ipv4
+  }
+
   lifecycle {
     ignore_changes = [tags]
   }
 
   #checkov:skip=CKV_AZURE_109:Access Policies configured
   #checkov:skip=CKV_AZURE_189:Access Policies configured
-  #checkov:skip=CKV2_AZURE_32:VNET configuration adequate
+  #checkov:skip=CKV2_AZURE_32:Private endpoint deferred until self-hosted runner is available; see docs/key-vault-network-access.md
 }
 
 resource "azurerm_user_assigned_identity" "kv_mi" {
