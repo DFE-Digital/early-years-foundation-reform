@@ -161,9 +161,9 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   def video
     pattern = build_regexp('video')
     @output = output.gsub(pattern) do
-      params = { enablejsapi: 1, origin: ENV['DOMAIN'] }.to_param
       video_id, video_title, video_provider = Regexp.last_match(1).strip.split("\n")
       video_site_url = !video_provider.nil? ? video_provider_url(video_provider) : 'https://www.youtube.com/embed'
+      params = video_provider_params(video_provider).to_param
       video_url = %(#{video_site_url}/#{video_id}?#{params})
 
       video_template.render(nil, url: video_url, video_title: video_title)
@@ -172,6 +172,15 @@ class CustomPreprocessor < GovukMarkdown::Preprocessor
   end
 
 private
+
+  # @return [Hash]
+  def video_provider_params(video_provider)
+    params = { enablejsapi: 1, origin: ENV['DOMAIN'] }
+
+    return params unless video_provider&.casecmp?('vimeo')
+
+    params.merge(max_quality: '1080p')
+  end
 
   # @return [String]
   def video_provider_url(video_provider)

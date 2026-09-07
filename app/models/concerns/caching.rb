@@ -1,3 +1,5 @@
+require 'securerandom'
+
 #
 # Class-level caching split by what is marshal-safe:
 #
@@ -33,7 +35,7 @@ module Caching
   end
 
   # @param key [String] entry id / collection
-  # @return [String] timestamped cache key
+  # @return [String] versioned cache key
   def to_key(key)
     "#{key}-#{cache_key}"
   end
@@ -61,13 +63,12 @@ module Caching
     result
   end
 
-  # memoise latest release timestamp & prevent cache overload
-  # (increase as CMS entries/assets grow)
+  # Change the cache version so subsequent reads cannot reuse stale entries.
   #
-  # @param timestamp [Time, nil] optional timestamp from webhook payload
+  # @param _timestamp [Time, nil] retained for compatibility with webhook callers
   # @return [String] old key
-  def reset_cache_key!(timestamp = nil)
-    new_key = timestamp&.strftime('%d-%m-%Y-%H-%M') || Time.current.strftime('%d-%m-%Y-%H-%M')
+  def reset_cache_key!(_timestamp = nil)
+    new_key = SecureRandom.uuid
 
     if shared_cache?
       Rails.cache.write(shared_key('cache_key'), new_key, expires_in: 30.days)

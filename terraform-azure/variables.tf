@@ -123,6 +123,11 @@ variable "webapp_config_feedback_url" {
   type = string
 }
 
+variable "webapp_config_show_important_banner" {
+  default = false
+  type    = string
+}
+
 variable "webapp_config_privacy_policy_url" {
   type = string
 }

@@ -27,6 +27,7 @@ variable "webapp_admin_email_address" {
   description = "Email Address of the Admin"
   type        = string
   sensitive   = true
+  default     = ""
 }
 
 variable "webapp_worker_count" {

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Homepage' do
   before do
+    allow(ENV).to receive(:[]).with('SHOW_IMPORTANT_BANNER').and_return('false')
     visit '/'
   end
 
@@ -13,6 +14,10 @@ RSpec.describe 'Homepage' do
 
   it 'has the skip to main content link' do
     expect(page).to have_link(href: '#main-content')
+  end
+
+  it 'does not render the important banner' do
+    expect(page).not_to have_content('This is important information')
   end
 
   it 'renders the page header' do

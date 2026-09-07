@@ -320,7 +320,7 @@ resource "azurerm_monitor_autoscale_setting" "asp_as" {
     email {
       send_to_subscription_administrator    = true
       send_to_subscription_co_administrator = true
-      custom_emails                         = [var.webapp_admin_email_address]
+      custom_emails                         = var.webapp_admin_email_address != "" ? [var.webapp_admin_email_address] : []
     }
   }
 
