@@ -15,7 +15,7 @@
     "brace-expansion": "5.0.9",
     "immutable": "5.1.8",
     "ip-address": "10.3.1",
-    "postcss": "8.5.23"
+    "postcss": "8.5.26"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
@@ -27,7 +27,7 @@
     "sass": "^1.97.3"
   },
   "devDependencies": {
-    "postcss": "8.5.23",
+    "postcss": "8.5.26",
     "stylelint": "^16.26.1",
     "stylelint-config-gds": "^2.0.0"
   },
