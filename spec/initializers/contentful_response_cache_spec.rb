@@ -15,7 +15,8 @@ RSpec.describe ContentfulResponseCache do
 
         def get_http(_url, _query = {}, _headers = {}, _proxy = {}, _timeout = {})
           self.hits += 1
-          raws.shift
+          response = raws.shift
+          response.respond_to?(:call) ? response.call : response
         end
       end
     }.tap do |klass|
@@ -104,5 +105,51 @@ RSpec.describe ContentfulResponseCache do
     client.get_http(delivery_url, {})
 
     expect(client.hits).to eq(2)
+  end
+
+  it 'falls back to stale cached delivery response when upstream times out' do
+    client.raws = [
+      raw(200, 'v1-body'),
+      -> { raise HTTP::TimeoutError, 'execution expired' },
+    ]
+
+    expect(client.get_http(delivery_url, {}).to_s).to eq('v1-body')
+
+    # Simulate cache namespace invalidation so only the stale copy remains.
+    allow(Page).to receive(:cache_key).and_return('v2')
+
+    fallback = client.get_http(delivery_url, {})
+
+    expect(fallback.status).to eq(200)
+    expect(fallback.to_s).to eq('v1-body')
+    expect(client.hits).to eq(2)
+  end
+
+  it 'retries on Contentful rate-limit errors using reset delay' do
+    client.raws = [
+      -> {
+        raise Contentful::RateLimitExceeded,
+              'HTTP status code: 429 Too Many Requests '\
+              'Time until reset (seconds): 1'
+      },
+      raw(200, 'after-retry'),
+    ]
+
+    expect(client).to receive(:contentful_rate_limit_sleep).with(1.0)
+
+    response = client.get_http(delivery_url, {})
+
+    expect(response.status).to eq(200)
+    expect(response.to_s).to eq('after-retry')
+    expect(client.hits).to eq(2)
+  end
+
+  it 're-raises timeout when no stale cached response exists' do
+    allow(Page).to receive(:cache_key).and_return('v2')
+    client.raws = [-> { raise HTTP::TimeoutError, 'execution expired' }]
+
+    expect {
+      client.get_http(delivery_url, {})
+    }.to raise_error(HTTP::TimeoutError)
   end
 end
