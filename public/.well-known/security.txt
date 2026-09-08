@@ -1,0 +1,8 @@
+Policy: https://www.gov.uk/guidance/report-a-vulnerability-on-a-department-for-education-system
+Contact: https://hackerone.com/41ff5198-0e21-4656-9f54-03cce570d7ff/embedded_submissions/new
+Acknowledgments: https://vdp.security.education.gov.uk/thanks.txt
+
+Hiring: https://www.civilservicejobs.service.gov.uk
+Last-Updated: 2026-08-18T16:38:03+00:00
+Expires: 2027-08-18T16:38:03+00:00
+Generated at: https://github.com/dfe-digital/vulnerability-disclosure-program
