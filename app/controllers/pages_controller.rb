@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   def show
     if page.nil?
       render_not_found
+    elsif request.path != page.path
+      redirect_to page.path, status: :moved_permanently
     else
       render page.to_partial_path
     end
