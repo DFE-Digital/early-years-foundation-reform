@@ -120,6 +120,7 @@ variable "custom_domain_name" {
   description = "Custom domain hostname"
   type        = string
 }
+
 variable "webapp_config_domain" {
   type = string
 }

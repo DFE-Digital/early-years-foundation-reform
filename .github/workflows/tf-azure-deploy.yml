@@ -116,6 +116,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           WEBAPP_CONFIG_WEB_CONCURRENCY: ${{ vars.WEBAPP_CONFIG_WEB_CONCURRENCY }}
           ASP_SKU: ${{ vars.ASP_SKU }}
+          TF_VAR_webapp_config_bot_token: ${{ secrets.BOT_TOKEN }}
         run: |
           existing_app_settings="$(az webapp config appsettings list --name "$WEBAPP_NAME" --resource-group "${RESOURCE_NAME_PREFIX}-rg" --output json 2>/dev/null || true)"
           existing_clarity_tracking_id="$(printf '%s' "$existing_app_settings" | jq -r '.[] | select(.name=="CLARITY_TRACKING_ID").value // empty' 2>/dev/null || true)"
@@ -153,6 +154,7 @@ jobs:
             --arg webapp_config_sentry_dsn "$SENTRY_DSN" \
             --arg webapp_config_web_concurrency "$WEBAPP_CONFIG_WEB_CONCURRENCY" \
             --arg asp_sku "$ASP_SKU" \
+            --arg webapp_config_bot_token "$WEBAPP_CONFIG_BOT_TOKEN" \
             --arg webapp_config_rails_max_threads "5" \
             --argjson webapp_config_rails_serve_static_files true \
             '{
@@ -185,7 +187,8 @@ jobs:
               webapp_config_rails_serve_static_files: $webapp_config_rails_serve_static_files,
               webapp_config_sentry_dsn: $webapp_config_sentry_dsn,
               webapp_config_web_concurrency: $webapp_config_web_concurrency,
-              asp_sku: $asp_sku
+              asp_sku: $asp_sku,
+              webapp_config_bot_token: $webapp_config_bot_token
             }' > terraform.auto.tfvars.json
 
           export exitcode=0
