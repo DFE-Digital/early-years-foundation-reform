@@ -154,7 +154,7 @@ jobs:
             --arg webapp_config_sentry_dsn "$SENTRY_DSN" \
             --arg webapp_config_web_concurrency "$WEBAPP_CONFIG_WEB_CONCURRENCY" \
             --arg asp_sku "$ASP_SKU" \
-            --arg webapp_config_bot_token "$WEBAPP_CONFIG_BOT_TOKEN" \
+            --arg webapp_config_bot_token "$TF_VAR_webapp_config_bot_token" \
             --arg webapp_config_rails_max_threads "5" \
             --argjson webapp_config_rails_serve_static_files true \
             '{
