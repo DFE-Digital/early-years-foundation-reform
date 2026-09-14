@@ -111,10 +111,16 @@ variable "webapp_docker_image_tag" {
   type        = string
 }
 
+variable "webapp_config_bot_token" {
+  type      = string
+  sensitive = true
+}
+
 variable "custom_domain_name" {
   description = "Custom domain hostname"
   type        = string
 }
+
 variable "webapp_config_domain" {
   type = string
 }
