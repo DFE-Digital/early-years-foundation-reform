@@ -18,6 +18,9 @@ This log lists the architectural decisions for EYFS Recovery
 * [ADR-0011](0011-sentry-monitoring.md) - Monitoring with Sentry
 * [ADR-0012](0012-asset-pipeline-static-paths.md) - Serve govuk-frontend assets statically and disable runtime asset compilation
 * [ADR-0013](0013-classic-azure-cache-for-redis-bridge.md) - Use classic Azure Cache for Redis as a bridge
+* [ADR-0014](0014-accept-key-vault-public-network-access-risk.md) - Accept Key Vault public network access risk for now
+* [ADR-0015](0015-reject-self-hosted-runner-for-key-vault-private-endpoint.md) - Reject self-hosted GitHub Actions runner for Key Vault private endpoint access
+* [ADR-0016](0016-reject-microsoft-defender-for-key-vault-and-app-service.md) - Reject enabling Microsoft Defender for Key Vault and App Service
 
 <!-- adrlogstop -->
 
