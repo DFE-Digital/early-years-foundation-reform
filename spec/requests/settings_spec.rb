@@ -16,5 +16,14 @@ RSpec.describe 'Settings', type: :request do
 
       expect(response).to redirect_to(root_path)
     end
+
+    it 'falls back to root for an unsafe protocol-relative return_url' do
+      post '/settings', params: {
+        track_analytics: 'Yes',
+        return_url: '//evil.test',
+      }
+
+      expect(response).to redirect_to(root_path)
+    end
   end
 end
