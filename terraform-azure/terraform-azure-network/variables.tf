@@ -18,6 +18,12 @@ variable "resource_name_prefix" {
   type        = string
 }
 
+variable "github_runner_ip" {
+  description = "Temporary public IP address of the GitHub Actions runner"
+  type        = string
+  default     = ""
+}
+
 variable "domain_name_label" {
   description = "DNS name label for assignment to Application Gateway"
   type        = string
