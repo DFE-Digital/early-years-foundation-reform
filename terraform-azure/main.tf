@@ -44,6 +44,7 @@ module "network" {
   kv_certificate_label                      = var.kv_certificate_label
   kv_certificate_subject                    = var.kv_certificate_subject
   as_service_principal_object_id            = var.as_service_principal_object_id
+  github_runner_ip                          = var.github_runner_ip
   redis_private_endpoint_subnet_cidr        = var.redis_private_endpoint_subnet_cidr
 }
 
