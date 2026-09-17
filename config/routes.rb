@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     get redirect['old'], to: redirect(redirect['new'], status: 301)
   end
 
+  get '/.well-known/security.txt',
+      to: redirect('https://vdp.security.education.gov.uk/.well-known/security.txt', status: 301)
+
   constraints proc { Rails.application.preview? || Rails.env.test? } do
     resources :resources, id: /[^\/]+/, only: %i[show]
   end
