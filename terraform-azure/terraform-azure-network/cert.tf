@@ -14,13 +14,20 @@ resource "azurerm_key_vault" "kv" {
   purge_protection_enabled    = true
   sku_name                    = "standard"
 
+  network_acls {
+    bypass                     = "AzureServices"
+    default_action             = "Deny"
+    ip_rules                   = var.github_runner_ip != "" ? ["${var.github_runner_ip}/32"] : []
+    virtual_network_subnet_ids = [azurerm_subnet.agw_snet[0].id]
+  }
+
   lifecycle {
     ignore_changes = [tags]
   }
 
   #checkov:skip=CKV_AZURE_109:Access Policies configured
   #checkov:skip=CKV_AZURE_189:Access Policies configured
-  #checkov:skip=CKV2_AZURE_32:VNET configuration adequate
+  #checkov:skip=CKV2_AZURE_32:Private endpoint requires a self-hosted runner
 }
 
 resource "azurerm_user_assigned_identity" "kv_mi" {

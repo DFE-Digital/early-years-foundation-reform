@@ -50,7 +50,7 @@ resource "azurerm_subnet" "agw_snet" {
   virtual_network_name = azurerm_virtual_network.vnet.name
   resource_group_name  = var.resource_group
   address_prefixes     = ["172.1.3.0/24"]
-  service_endpoints    = ["Microsoft.Storage", "Microsoft.Web"]
+  service_endpoints    = ["Microsoft.Storage", "Microsoft.Web", "Microsoft.KeyVault"]
 
   #checkov:skip=CKV2_AZURE_31:NSG not required
 }

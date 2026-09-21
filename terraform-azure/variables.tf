@@ -78,6 +78,12 @@ variable "as_service_principal_object_id" {
   sensitive   = true
 }
 
+variable "github_runner_ip" {
+  description = "Temporary public IP address of the GitHub Actions runner"
+  type        = string
+  default     = ""
+}
+
 variable "asp_sku" {
   default     = "S1"
   description = "SKU name for the App Service Plan"
