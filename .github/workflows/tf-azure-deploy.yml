@@ -81,10 +81,14 @@ jobs:
           GITHUB_RUNNER_IP="$(curl --fail --silent --show-error https://api.ipify.org)"
           echo "GITHUB_RUNNER_IP=$GITHUB_RUNNER_IP" >> "$GITHUB_ENV"
           echo "TF_VAR_github_runner_ip=$GITHUB_RUNNER_IP" >> "$GITHUB_ENV"
-          az keyvault network-rule add \
-            --name "${RESOURCE_NAME_PREFIX}-kv" \
-            --resource-group "${RESOURCE_NAME_PREFIX}-rg" \
-            --ip-address "$GITHUB_RUNNER_IP"
+
+          # On first deployment the vault doesn't exist yet; Terraform will create it with the runner IP already allow-listed.
+          if az keyvault show --name "${RESOURCE_NAME_PREFIX}-kv" --resource-group "${RESOURCE_NAME_PREFIX}-rg" &>/dev/null; then
+            az keyvault network-rule add \
+              --name "${RESOURCE_NAME_PREFIX}-kv" \
+              --resource-group "${RESOURCE_NAME_PREFIX}-rg" \
+              --ip-address "$GITHUB_RUNNER_IP"
+          fi
 
       # Initialise a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
@@ -235,7 +239,7 @@ jobs:
         env:
           RESOURCE_NAME_PREFIX: ${{ vars.RESOURCE_NAME_PREFIX }}
         run: |
-          if [ -n "${GITHUB_RUNNER_IP:-}" ]; then
+          if [ -n "${GITHUB_RUNNER_IP:-}" ] && az keyvault show --name "${RESOURCE_NAME_PREFIX}-kv" --resource-group "${RESOURCE_NAME_PREFIX}-rg" &>/dev/null; then
             az keyvault network-rule remove \
               --name "${RESOURCE_NAME_PREFIX}-kv" \
               --resource-group "${RESOURCE_NAME_PREFIX}-rg" \
