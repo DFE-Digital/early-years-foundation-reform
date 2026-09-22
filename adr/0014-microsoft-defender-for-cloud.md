@@ -20,7 +20,6 @@ This provides critical security monitoring aligned with DfE baseline security re
 - **ITHC Finding:** Microsoft Defender plans not enabled in Azure subscription
 - **Current State:** Only basic Azure monitoring is configured (diagnostic logs for App Gateway, Web App, and App Service Plan autoscaling); no threat detection or anomaly detection capabilities
 - **Impact:**
-  - No runtime threat detection for the App Service hosting the application
   - No anomaly detection on Key Vault secret access (used for certificate retrieval and potential secrets storage)
   - Reduced visibility into suspicious administrative changes
   - Compliance gap against DfE security baseline
@@ -40,7 +39,7 @@ This provides critical security monitoring aligned with DfE baseline security re
 - **Low friction:** These are subscription-level Azure settings with no code refactoring required
 - **Auditability:** Full code review trail and Terraform state history for compliance and debugging
 - **Risk:** Enablement presents no risk to application functionality
-- **Cost:** Defender plans are paid workload-protection plans with ongoing monthly charges;
+- **Cost:** Defender for Key Vault is a paid workload-protection plan with ongoing monthly charges;
 
 ### Implementation Method
 
@@ -49,9 +48,11 @@ The Defender plan is managed via an `azurerm_security_center_subscription_pricin
 ```hcl
 # Microsoft Defender for Key Vault
 resource "azurerm_security_center_subscription_pricing" "keyvault" {
+   count         = var.environment != "development" ? 1 : 0
   tier          = "Standard"
   resource_type = "KeyVaults"
-  depends_on = [azurerm_resource_group.rg]
+
+   depends_on = [azurerm_resource_group.rg]
 }
 
 ```
@@ -115,7 +116,7 @@ resource "azurerm_security_center_subscription_pricing" "keyvault" {
 
 - **Terraform Provider Version:** Requires Azure provider v2.5.0+ (supports `azurerm_security_center_subscription_pricing`)
 - **Azure Subscription:** DfE must have Azure Security Center (Microsoft Defender for Cloud) available in their subscription tier
-- **Cost Verification:** Microsoft publishes explicit billing for these plans (for example, App Service billed per instance/month and Key Vault billed per vault/month). Charges apply after trial periods and vary by agreement/currency; confirm exact rates and commit-unit coverage with DfE cloud ops/finance before production enablement
+- **Cost Verification:** Microsoft publishes explicit billing for Defender for Key Vault. Charges vary by agreement/currency; confirm exact rates and commit-unit coverage with DfE cloud ops/finance before production enablement
 - **Timeline:** Terraform apply immediately after merge; alerts may take 24–48 hours to become active
 - **Risk:** Minimal – enablement does not modify application code or existing infrastructure resources
 
@@ -133,13 +134,12 @@ resource "azurerm_security_center_subscription_pricing" "keyvault" {
 **Positive:**
 - Closes ITHC findings 5.1.1 & 5.1.2 with production-grade threat detection
 - Enables anomaly detection on Key Vault access patterns (unusual locations, high-volume retrievals)
-- Enables runtime threat detection for App Service (command injection, suspicious file access)
 - Infrastructure-as-Code managed for auditability and reproducibility
 - Consistent with existing Terraform patterns
 
 **Neutral:**
-- Defender plans introduce ongoing monthly cost (plan pricing is published by Microsoft and may differ by agreement, currency, and pre-purchase discounts)
+- Defender for Key Vault introduces ongoing monthly cost (pricing may differ by agreement, currency, and pre-purchase discounts)
 - Alerts may take 24–48 hours to become active after deployment
 
 **Negative:**
-- None identified; enablement presents no functional or operational risk
+- Defender for Key Vault is intentionally not enabled in the development subscription to avoid unnecessary cost
