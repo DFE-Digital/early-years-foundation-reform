@@ -14,7 +14,8 @@
 = render 'layouts/flash'
 
 - if page.children?
-  = render 'cards'
+  .dfe-grid-container
+    = render 'cards'
 - else
   = m(page.body)
 
