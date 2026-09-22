@@ -6,6 +6,7 @@
 # Provides anomaly detection on secret access patterns, alerting on access from unusual locations,
 # high volumes of secret retrievals, and visibility into suspicious administrative changes
 resource "azurerm_security_center_subscription_pricing" "keyvault" {
+  count         = var.environment != "development" ? 1 : 0
   tier          = "Standard"
   resource_type = "KeyVaults"
 

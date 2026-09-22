@@ -212,6 +212,16 @@ jobs:
               webapp_config_bot_token: $webapp_config_bot_token
             }' > terraform.auto.tfvars.json
 
+          # Adopt the subscription-level pricing resource if it was enabled outside Terraform.
+          defender_pricing_id="/subscriptions/${ARM_SUBSCRIPTION_ID}/providers/Microsoft.Security/pricings/KeyVaults"
+
+          if [ "$TF_VAR_environment" != "development" ] \
+            && [ "${{ inputs.refresh }}" != "true" ] \
+            && ! terraform state show 'azurerm_security_center_subscription_pricing.keyvault[0]' >/dev/null 2>&1 \
+            && az rest --method get --url "https://management.azure.com${defender_pricing_id}?api-version=2023-01-01" --only-show-errors >/dev/null 2>&1; then
+            terraform import 'azurerm_security_center_subscription_pricing.keyvault[0]' "$defender_pricing_id"
+          fi
+
           export exitcode=0
 
           if ${{ inputs.refresh }}; then
