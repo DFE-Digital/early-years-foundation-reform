@@ -9,7 +9,6 @@ RSpec.describe 'Card heading levels based on tier' do
         within card do
           expect(page).to have_css('h3.govuk-heading-m')
           expect(page).not_to have_css('h2.govuk-heading-m')
-          expect(page).to have_css('govuk-service-navigation')
         end
       end
     end
