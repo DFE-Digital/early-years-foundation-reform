@@ -1,14 +1,12 @@
-.govuk-grid-column-one-third
-  .hf-card
-    a href=card.path
-      .hf-card-container
-        = card_thumbnail(card)
-        .hf-card-details
-          - if card.tier1?
-            h3.govuk-heading-m
-              = card.title
-          - else
-            h2.govuk-heading-m
-              = card.title
-          p.govuk-body
-            = card.meta_description || card.hero_description
+.dfe-card
+  = card_thumbnail(card)
+  .dfe-card-container
+    - if card.tier1?
+      h3.govuk-heading-m
+        = govuk_link_to card.title, card.path, no_visited_state: true, class: 'dfe-card-link--header'
+    - else
+      h2.govuk-heading-m
+        = govuk_link_to card.title, card.path, no_visited_state: true, class: 'dfe-card-link--header'
+
+    p.govuk-body
+      = card.meta_description || card.hero_description
