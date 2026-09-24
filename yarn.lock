@@ -325,24 +325,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/stimulus@npm:^3.2.1":
-  version: 3.2.2
-  resolution: "@hotwired/stimulus@npm:3.2.2"
-  checksum: 3793919e353d28424f57d07e6b634bf6e8821c227acfa2a608aaa8bdfe7e80479acef12705168ca866f3c231399f4a939fb0cd089aaae04c406b3d885a3b35ea
+"@hotwired/stimulus@npm:3.2.1":
+  version: 3.2.1
+  resolution: "@hotwired/stimulus@npm:3.2.1"
+  checksum: ddb2a720cfa1d411523c3218c9a4d2a3891201cac3dd4963095e5aa1f2e46ce09b3824c997a7437f524d66fe83736c5feab91ebab8532247bdd99dd75837658d
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:^8.0.21":
-  version: 8.0.23
-  resolution: "@hotwired/turbo-rails@npm:8.0.23"
+"@hotwired/turbo-rails@npm:8.0.21":
+  version: 8.0.21
+  resolution: "@hotwired/turbo-rails@npm:8.0.21"
   dependencies:
-    "@hotwired/turbo": "npm:^8.0.23"
+    "@hotwired/turbo": "npm:^8.0.21"
     "@rails/actioncable": "npm:>=7.0"
-  checksum: 58f46b787674029bc70e7a8efd734036214258805686384c8969d360320c33886c90c4da3c08abee3dc9c3ec2672e9c088d9205a2fe1f8b5fee230ce23cfb188
+  checksum: 530279ecf1cdf0a91396706e4b636f53d55892cc586214343b2b726bbaee327c81abca1aa051dbbf48dd51fd399c4bad390d4a252fec8c38ca50a51b07fbea06
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^8.0.23":
+"@hotwired/turbo@npm:^8.0.21":
   version: 8.0.23
   resolution: "@hotwired/turbo@npm:8.0.23"
   checksum: 600ba4ba7632e27c3ed9e80a2114715df94302d3d3b72b0a70efcd7c31477b377228a7fad629eeb2e4b2d778bf65571b176fc76a6bc5603dfc814810c0a815d6
@@ -588,7 +588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stimulus-components/reveal@npm:^5.0.0":
+"@stimulus-components/reveal@npm:5.0.0":
   version: 5.0.0
   resolution: "@stimulus-components/reveal@npm:5.0.0"
   peerDependencies:
@@ -937,7 +937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dfe-frontend@npm:^2.0.1":
+"dfe-frontend@npm:2.0.1":
   version: 2.0.1
   resolution: "dfe-frontend@npm:2.0.1"
   dependencies:
@@ -1008,7 +1008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.28.2":
+"esbuild@npm:0.28.2":
   version: 0.28.2
   resolution: "esbuild@npm:0.28.2"
   dependencies:
@@ -1115,16 +1115,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "eyfs-reform@workspace:."
   dependencies:
-    "@hotwired/stimulus": "npm:^3.2.1"
-    "@hotwired/turbo-rails": "npm:^8.0.21"
-    "@stimulus-components/reveal": "npm:^5.0.0"
-    dfe-frontend: "npm:^2.0.1"
-    esbuild: "npm:^0.28.2"
+    "@hotwired/stimulus": "npm:3.2.1"
+    "@hotwired/turbo-rails": "npm:8.0.21"
+    "@stimulus-components/reveal": "npm:5.0.0"
+    dfe-frontend: "npm:2.0.1"
+    esbuild: "npm:0.28.2"
     govuk-frontend: "npm:6.5.1"
     postcss: "npm:8.5.28"
-    sass: "npm:^1.104.1"
-    stylelint: "npm:^16.26.1"
-    stylelint-config-gds: "npm:^3.0.0"
+    sass: "npm:1.104.1"
+    stylelint: "npm:16.26.1"
+    stylelint-config-gds: "npm:3.0.0"
   languageName: unknown
   linkType: soft
 
@@ -1241,7 +1241,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.5.0":
+"glob@npm:10.5.0":
   version: 10.5.0
   resolution: "glob@npm:10.5.0"
   dependencies:
@@ -1677,12 +1677,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^10.2.3":
-  version: 10.2.4
-  resolution: "minimatch@npm:10.2.4"
+"minimatch@npm:10.2.3":
+  version: 10.2.3
+  resolution: "minimatch@npm:10.2.3"
   dependencies:
     brace-expansion: "npm:^5.0.2"
-  checksum: 35f3dfb7b99b51efd46afd378486889f590e7efb10e0f6a10ba6800428cf65c9a8dedb74427d0570b318d749b543dc4e85f06d46d2858bc8cac7e1eb49a95945
+  checksum: d9ae5f355e8bb77a42dd8c20b950141cec8773ef8716a2bb6df7a6840cc44a00ed828883884e4f1c7b5cb505fa06a17e3ea9ca2edb18fd1dec865ea7f9fcf0e5
   languageName: node
   linkType: hard
 
@@ -2099,9 +2099,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.104.1":
-  version: 1.105.0
-  resolution: "sass@npm:1.105.0"
+"sass@npm:1.104.1":
+  version: 1.104.1
+  resolution: "sass@npm:1.104.1"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^5.0.0"
@@ -2112,7 +2112,7 @@ __metadata:
       optional: true
   bin:
     sass: sass.js
-  checksum: ddd6a8cc70d325fe7465036de32cb3506b578e131719c8bcfd4c225e051b7e8f5b231c3be450e293043876db58a247b9c354ecc1ca466a8274e2d9a8d4bc1ae1
+  checksum: d04e1898a9470a7a5052e67cbe5fc4ec342374f6d65a75eb180a5a60d0ee1af85bb2df6d877087169c4d53e358ff0864f2343fd594dc60474ce7a6467ee41961
   languageName: node
   linkType: hard
 
@@ -2257,7 +2257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint-config-gds@npm:^3.0.0":
+"stylelint-config-gds@npm:3.0.0":
   version: 3.0.0
   resolution: "stylelint-config-gds@npm:3.0.0"
   dependencies:
@@ -2343,7 +2343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylelint@npm:^16.26.1":
+"stylelint@npm:16.26.1":
   version: 16.26.1
   resolution: "stylelint@npm:16.26.1"
   dependencies:
