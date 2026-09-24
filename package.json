@@ -29,7 +29,7 @@
   "devDependencies": {
     "postcss": "8.5.26",
     "stylelint": "^16.26.1",
-    "stylelint-config-gds": "^2.0.0"
+    "stylelint-config-gds": "^3.0.0"
   },
   "stylelint": {
     "extends": [
