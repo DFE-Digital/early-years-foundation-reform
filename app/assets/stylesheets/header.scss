@@ -98,9 +98,3 @@
     @include govuk-media-query($until: tablet) { padding-top: govuk-spacing(4); }
   }
 }
-
-@media (min-width: 550px) {
-  .govuk-template--rebranded .govuk-service-navigation__service-name {
-    padding-bottom: 0;
-  }
-}
