@@ -75,21 +75,15 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     ast (2.4.3)
-    axe-core-api (4.10.2)
+    axe-core-api (4.13.0)
       dumb_delegator
-      ostruct
-      virtus
     axe-core-capybara (4.3.2)
       axe-core-api
       dumb_delegator
-    axe-core-rspec (4.10.2)
-      axe-core-api (= 4.10.2)
-      dumb_delegator
-      ostruct
-      virtus
-    axe-core-selenium (4.7.0)
-      axe-core-api
-      dumb_delegator
+    axe-core-rspec (4.13.0)
+      axe-core-api (= 4.13.0)
+    axe-core-selenium (4.13.0)
+      axe-core-api (= 4.13.0)
     axe-matchers (2.6.1)
       dumb_delegator (~> 0.8)
       virtus (~> 1.0)
@@ -97,7 +91,6 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    backports (3.25.0)
     base64 (0.3.0)
     benchmark (0.5.0)
     better_errors (2.10.1)
@@ -108,9 +101,9 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
-    bootsnap (1.18.4)
-      msgpack (~> 1.2)
-    brakeman (6.1.2)
+    bootsnap (1.26.0)
+      msgpack (~> 1.5)
+    brakeman (8.0.6)
       racc
     builder (3.3.0)
     byebug (12.0.0)
@@ -271,7 +264,7 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    msgpack (1.8.0)
+    msgpack (1.8.5)
     multi_json (1.17.0)
     net-imap (0.6.6)
       date
@@ -299,7 +292,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-musl)
       racc (~> 1.4)
-    ostruct (0.6.1)
+    ostruct (0.6.3)
     pagy (9.4.0)
     parallel (1.28.0)
     parser (3.3.12.0)
@@ -526,9 +519,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yard (0.9.43)
-    yard-junk (0.0.9)
-      backports (>= 3.18)
+    yard (0.9.45)
+    yard-junk (0.1.0)
+      benchmark
+      ostruct
       rainbow
       yard
     zeitwerk (2.8.3)
