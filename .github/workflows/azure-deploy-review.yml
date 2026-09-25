@@ -47,7 +47,7 @@ jobs:
 
       # Create and boot Docker image builder
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
         with:
           version: v0.31.1
 
