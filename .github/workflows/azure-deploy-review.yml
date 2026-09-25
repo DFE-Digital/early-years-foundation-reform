@@ -113,7 +113,7 @@ jobs:
 
       # Add URL to Pull Request
       - name: Comment URL to PR
-        uses: mshick/add-pr-comment@v2
+        uses: mshick/add-pr-comment@v3
         with:
           message: https://${{ vars.REVIEWAPP_NAME }}-${{ env.PR_NUMBER }}.azurewebsites.net
           repo-token: ${{ secrets.GITHUB_TOKEN }}
