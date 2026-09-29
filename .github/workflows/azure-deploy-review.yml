@@ -87,7 +87,7 @@ jobs:
 
       # Deploy Web Application
       - name: Deploy to Azure App Services
-        uses: azure/CLI@v2
+        uses: azure/CLI@v3
         with:
           azcliversion: 2.74.0
           inlineScript: |

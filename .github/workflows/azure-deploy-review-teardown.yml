@@ -32,7 +32,7 @@ jobs:
 
       # Destroy Web Application
       - name: Destroy Azure Web Application
-        uses: azure/CLI@v2
+        uses: azure/CLI@v3
         with:
           azcliversion: 2.74.0
           inlineScript: |
