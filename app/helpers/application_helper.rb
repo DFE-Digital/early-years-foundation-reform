@@ -2,19 +2,19 @@ module ApplicationHelper
   def navigation
     current_section = respond_to?(:section) ? section : ''
 
-    render(HeaderComponent.new(service_name: t('service.name'), classes: 'govuk-header noprint', navigation_label: 'Primary navigation')) do |header|
-      header.with_navigation_item(text: 'Home', href: root_path, classes: [
-        'govuk-service-navigation__item',
-        ('govuk-service-navigation__item--current' if current_page?(root_path)),
-      ].compact)
-
-      Page.navigation_items.each do |item|
-        header.with_navigation_item(
-          text: item.title,
-          href: item.path,
-          active: item.slug == current_section,
-          classes: %w[govuk-service-navigation__item],
-        )
+    render(HeaderComponent.new) do |header|
+      header.with_service_navigation(
+        service_name: t('service.name'),
+        service_url: root_path,
+        classes: 'noprint',
+      ) do |navigation|
+        Page.navigation_items.each do |item|
+          navigation.with_navigation_item(
+            text: item.title,
+            href: item.path,
+            current: item.slug == current_section,
+          )
+        end
       end
     end
   end

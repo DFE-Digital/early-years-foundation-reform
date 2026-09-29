@@ -13,17 +13,4 @@ header.govuk-super-navigation-header
               .govuk-super-navigation-header__navigation-item
                 = item
 
-- if service_name.present? || navigation_items.any?
-  section.govuk-service-navigation aria-label='Service information' data-module='govuk-service-navigation'
-    .govuk-width-container
-      .govuk-service-navigation__container
-        - if service_name.present?
-          span.govuk-service-navigation__service-name
-            = link_to service_name, service_url, class: 'govuk-service-navigation__link govuk-service-navigation__item--active'
-        - if navigation_items.any?
-          nav.govuk-service-navigation__wrapper aria-label='Menu'
-            button.govuk-service-navigation__toggle.govuk-js-service-navigation-toggle type='button' aria-controls='navigation' hidden=""
-              | Menu
-            ul#navigation.govuk-service-navigation__list
-              - navigation_items.each do |item|
-                = item
+= service_navigation
