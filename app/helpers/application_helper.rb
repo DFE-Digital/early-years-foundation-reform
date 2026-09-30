@@ -8,6 +8,11 @@ module ApplicationHelper
         service_url: root_path,
         classes: 'noprint',
       ) do |navigation|
+        navigation.with_navigation_item(
+          text: 'Home',
+          href: root_path,
+          current: current_page?(root_path),
+        )
         Page.navigation_items.each do |item|
           navigation.with_navigation_item(
             text: item.title,
