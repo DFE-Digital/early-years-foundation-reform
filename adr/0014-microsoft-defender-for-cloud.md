@@ -74,18 +74,18 @@ resource "azurerm_security_center_subscription_pricing" "keyvault" {
 
 ### Next Steps
 
-3. **Apply Terraform:**
+1. **Apply Terraform:**
    ```bash
    run terraform apply
    ```
 
-4. **Validation:**
+2. **Validation:**
    - [X] Check Azure Portal: **Microsoft Defender for Cloud** → **Environment Settings**
    - [X] Confirm Defender for Key Vault shows as **Enabled** with **Standard** tier
    - [X] Monitor for alerts (may take 24–48 hours for initial data)
    - [X] Verify no errors in Azure Activity Log
 
-5. **Close ITHC Findings:**
+3. **Close ITHC Findings:**
    - [X] Document completion with evidence of enablement
    - [X] Mark ITHC 5.1.1 & 5.1.2 as **Resolved**
 
