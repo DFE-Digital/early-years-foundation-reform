@@ -68,47 +68,37 @@ resource "azurerm_security_center_subscription_pricing" "keyvault" {
 - [x] Created `terraform-azure/security.tf` with the Defender for Key Vault resource
 - [x] Branch: `HEYP-206/microsoft-defender`
 
-### In Progress
-
-- [ ] PR review by infrastructure team
-- [ ] Merge to `main`
-- [ ] Apply Terraform to production subscription
+- [X] PR review by infrastructure team
+- [X] Merge to `main`
+- [X] Apply Terraform to production subscription
 
 ### Next Steps
 
-1. **Create Pull Request** from branch `HEYP-206/microsoft-defender`
-   - Reference this ADR (0014) and ITHC findings (5.1.1 & 5.1.2)
-   - Include link to original ticket
-
-2. **Code Review & Approval** by infrastructure team
-
 3. **Apply Terraform:**
    ```bash
-   cd terraform-azure
-   terraform plan
-   terraform apply
+   run terraform apply
    ```
 
 4. **Validation:**
-   - [ ] Check Azure Portal: **Microsoft Defender for Cloud** → **Environment Settings**
-   - [ ] Confirm Defender for Key Vault shows as **Enabled** with **Standard** tier
-   - [ ] Monitor for alerts (may take 24–48 hours for initial data)
-   - [ ] Verify no errors in Azure Activity Log
+   - [X] Check Azure Portal: **Microsoft Defender for Cloud** → **Environment Settings**
+   - [X] Confirm Defender for Key Vault shows as **Enabled** with **Standard** tier
+   - [X] Monitor for alerts (may take 24–48 hours for initial data)
+   - [X] Verify no errors in Azure Activity Log
 
 5. **Close ITHC Findings:**
-   - [ ] Document completion with evidence of enablement
-   - [ ] Mark ITHC 5.1.1 & 5.1.2 as **Resolved**
+   - [X] Document completion with evidence of enablement
+   - [X] Mark ITHC 5.1.1 & 5.1.2 as **Resolved**
 
 ---
 
 ## Acceptance Criteria
 
-- [ ] PR with `terraform-azure/security.tf` is merged to `main`
-- [ ] Terraform is successfully applied to production subscription
-- [ ] Microsoft Defender for Key Vault shows **Enabled** and **Standard** tier in Azure Portal > Environment Settings
-- [ ] No errors or warnings in Azure Portal Health Check
-- [ ] Terraform state reflects the enabled Key Vault plan
-- [ ] ITHC findings 5.1.1 & 5.1.2 can be closed with evidence of enablement
+- [X] PR with `terraform-azure/security.tf` is merged to `main`
+- [X] Terraform is successfully applied to production subscription
+- [X] Microsoft Defender for Key Vault shows **Enabled** and **Standard** tier in Azure Portal > Environment Settings
+- [X] No errors or warnings in Azure Portal Health Check
+- [X] Terraform state reflects the enabled Key Vault plan
+- [X] ITHC findings 5.1.1 & 5.1.2 can be closed with evidence of enablement
 
 ---
 
@@ -139,7 +129,6 @@ resource "azurerm_security_center_subscription_pricing" "keyvault" {
 
 **Neutral:**
 - Defender for Key Vault introduces ongoing monthly cost (pricing may differ by agreement, currency, and pre-purchase discounts)
-- Alerts may take 24–48 hours to become active after deployment
 
 **Negative:**
 - Defender for Key Vault is intentionally not enabled in the development subscription to avoid unnecessary cost
