@@ -1,5 +1,5 @@
 .about-module-box {
-  background: $light-blue;
+  background: govuk-colour('blue', $variant: 'tint-95');
   display: flex;
   flex-direction: column-reverse;
   margin-bottom: govuk-spacing(6);

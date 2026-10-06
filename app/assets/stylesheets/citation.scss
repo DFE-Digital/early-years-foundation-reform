@@ -130,8 +130,8 @@ dl.gem-c-metadata__list {
 }
 
 .hf-citation {
-  background: #eeeeee75;
+  background: govuk-colour('black', $variant: 'tint-95');
   padding: 15px 10px 15px 20px;
   margin-top: 60px;
-  border-left: 5px solid #347ca9;
+  border-left: 5px solid govuk-colour('blue');
 }

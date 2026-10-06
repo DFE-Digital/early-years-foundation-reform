@@ -57,6 +57,14 @@
   &:not(:focus) { background-color: govuk-colour('blue'); }
 }
 
+.govuk-header__link--homepage:focus {
+  background-color: govuk-functional-colour('focus');
+
+  .dfe-rebrand-logo {
+    background-color: govuk-functional-colour('focus');
+  }
+}
+
 .training-signout-link {
   display: inline-block;
   margin: 0;
@@ -65,7 +73,7 @@
 }
 
 .dfe-content-page--header {
-  background: $light-blue;
+  background: govuk-colour('blue', $variant: 'tint-95');
   img {
     max-width: 100%;
     width: 100%;
