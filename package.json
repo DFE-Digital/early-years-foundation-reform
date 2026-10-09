@@ -18,17 +18,17 @@
     "postcss": "8.5.28"
   },
   "dependencies": {
-    "@hotwired/stimulus": "3.2.1",
+    "@hotwired/stimulus": "3.2.2",
     "@hotwired/turbo-rails": "8.0.21",
     "@stimulus-components/reveal": "5.0.0",
     "dfe-frontend": "2.0.1",
     "esbuild": "0.28.2",
     "govuk-frontend": "6.5.1",
-    "sass": "1.104.1"
+    "sass": "1.105.1"
   },
   "devDependencies": {
     "postcss": "8.5.28",
-    "stylelint": "17.15.0",
+    "stylelint": "17.16.0",
     "stylelint-config-gds": "3.0.0"
   },
   "stylelint": {
