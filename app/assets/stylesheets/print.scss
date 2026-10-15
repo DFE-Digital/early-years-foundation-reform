@@ -1,7 +1,15 @@
 @media print {
-  @page {
+  @page upright {
+    size: a4 portrait;
+    page-orientation: upright;
+  }
+  @page left {
     size: a4 landscape;
-    margin-top: 0;
+    page-orientation: rotate-left;
+  }
+  @page right {
+    size: a4 landscape;
+    page-orientation: rotate-right;
   }
 
   .noprint {
