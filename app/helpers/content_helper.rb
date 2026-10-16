@@ -103,6 +103,16 @@ module ContentHelper
     Resource.by_name('other_useful_resources') || placeholder_resource('other_useful_resources')
   end
 
+  # WIP: Will confirm approach around rendering link
+  # @return html
+  def accessibility_footer_content
+    <<~HTML
+      <a class="govuk-footer__link" href="#{Rails.configuration.accessibility_url}" target="_blank" rel="noopener noreferrer">
+        Accessibility<span class="govuk-visually-hidden">(opens in new tab)</span>
+      </a>
+    HTML
+  end
+
   # @param name [String]
   # @return [OpenStruct]
   def placeholder_resource(name)

@@ -144,6 +144,10 @@ variable "webapp_config_privacy_policy_url" {
   type = string
 }
 
+variable "webapp_config_accessibility_url" {
+  type = string
+}
+
 variable "webapp_config_node_env" {
   type = string
 }
