@@ -1,17 +1,4 @@
 @media print {
-  @page upright {
-    size: a4 portrait;
-    page-orientation: upright;
-  }
-  @page left {
-    size: a4 landscape;
-    page-orientation: rotate-left;
-  }
-  @page right {
-    size: a4 landscape;
-    page-orientation: rotate-right;
-  }
-
   .noprint {
     display: none !important;
   }
