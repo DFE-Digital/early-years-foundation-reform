@@ -1,9 +1,4 @@
 @media print {
-  @page {
-    size: a4 landscape;
-    margin-top: 0;
-  }
-
   .noprint {
     display: none !important;
   }
