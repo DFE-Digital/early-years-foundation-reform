@@ -7,7 +7,10 @@
         li.govuk-footer__list-item
           = govuk_link_to t('links.footer.privacy_policy'), Rails.configuration.privacy_policy_url, class: 'govuk-footer__link'
         li.govuk-footer__list-item
-          = govuk_link_to 'Accessibility', '/accessibility', class: 'govuk-footer__link'
+          = govuk_link_to Rails.configuration.accessibility_url, class: 'govuk-footer__link', target: '_blank', rel: 'noopener noreferrer' do
+            | Accessibility
+            span.govuk-visually-hidden
+              | (opens in a new tab)
         li.govuk-footer__list-item
           = govuk_link_to 'Cookies', '/cookie-policy', class: 'govuk-footer__link'
         li.govuk-footer__list-item

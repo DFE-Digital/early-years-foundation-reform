@@ -130,6 +130,7 @@ jobs:
           WEBAPP_CONFIG_DOMAIN: ${{ vars.WEBAPP_CONFIG_DOMAIN }}
           WEBAPP_CONFIG_FEEDBACK_URL: ${{ vars.WEBAPP_CONFIG_FEEDBACK_URL }}
           WEBAPP_CONFIG_PRIVACY_POLICY_URL: ${{ vars.WEBAPP_CONFIG_PRIVACY_POLICY_URL }}
+          WEBAPP_CONFIG_ACCESSIBILITY_URL: ${{ vars.WEBAPP_CONFIG_ACCESSIBILITY_URL }}
           WEBAPP_CONFIG_NODE_ENV: ${{ vars.WEBAPP_CONFIG_NODE_ENV }}
           WEBAPP_CONFIG_RAILS_ENV: ${{ vars.WEBAPP_CONFIG_RAILS_ENV }}
           WEBAPP_CONFIG_RAILS_LOG_TO_STDOUT: ${{ vars.WEBAPP_CONFIG_RAILS_LOG_TO_STDOUT }}
@@ -168,6 +169,7 @@ jobs:
             --arg webapp_config_domain "$WEBAPP_CONFIG_DOMAIN" \
             --arg webapp_config_feedback_url "$WEBAPP_CONFIG_FEEDBACK_URL" \
             --arg webapp_config_privacy_policy_url "$WEBAPP_CONFIG_PRIVACY_POLICY_URL" \
+            --arg webapp_config_accessibility_url "$WEBAPP_CONFIG_ACCESSIBILITY_URL" \
             --arg webapp_config_node_env "$WEBAPP_CONFIG_NODE_ENV" \
             --arg webapp_config_rails_env "$WEBAPP_CONFIG_RAILS_ENV" \
             --arg webapp_config_rails_log_to_stdout "$WEBAPP_CONFIG_RAILS_LOG_TO_STDOUT" \
@@ -200,6 +202,7 @@ jobs:
               webapp_config_domain: $webapp_config_domain,
               webapp_config_feedback_url: $webapp_config_feedback_url,
               webapp_config_privacy_policy_url: $webapp_config_privacy_policy_url,
+              webapp_config_accessibility_url: $webapp_config_accessibility_url,
               webapp_config_node_env: $webapp_config_node_env,
               webapp_config_rails_env: $webapp_config_rails_env,
               webapp_config_rails_log_to_stdout: $webapp_config_rails_log_to_stdout,
