@@ -9,7 +9,7 @@ env:
 jobs:
   tests:
     name: Run rspec and rubocop
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       # CI-ONLY: points at the ephemeral `redis` service container below, which is
