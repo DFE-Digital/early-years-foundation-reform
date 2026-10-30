@@ -2,6 +2,9 @@ name: Test
 
 on: [push]
 
+permissions:
+  contents: read
+
 env:
   RAILS_ENV: test
   ENVIRONMENT: test
