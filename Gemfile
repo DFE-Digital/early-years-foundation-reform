@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '3.4.8'
 
-gem 'puma', '~> 7.2.1'
+gem 'puma', '~> 8.0.2'
 gem 'rails'
 
 gem 'bootsnap', require: false
