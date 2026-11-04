@@ -104,13 +104,13 @@ async function main() {
       const message = [
         `${reason}: ${url}`,
         ...sourcePages.map((source) => `Found on: ${source}`),
-      ].join("\n");
+      ].join("\n\n");
 
       if (process.env.GITHUB_ACTIONS === "true") {
         const level = label === "WARN" ? "warning" : "error";
         console.log(`::${level}::${escapeAnnotation(message)}`);
       } else {
-        console.log(`\n${label}: ${message}`);
+        console.log(`\n${label}: ${message}\n`);
       }
     }
   }
