@@ -28,15 +28,6 @@ async function main() {
       });
       console.log(`${response.status}: ${url}`);
 
-      if (response.status === 307) {
-        console.log({
-          requestedUrl: url,
-          finalUrl: response.url,
-          location: response.headers.get("location"),
-          redirected: response.redirected,
-        });
-      }
-
       if (!response.ok) {
         const results = warningStatuses.has(response.status)
           ? warnings
@@ -98,15 +89,28 @@ async function main() {
     }
   }
 
+  const escapeAnnotation = (value) =>
+    String(value)
+      .replaceAll("%", "%25")
+      .replaceAll("\r", "%0D")
+      .replaceAll("\n", "%0A");
+
   for (const [label, results] of [
     ["WARN", warnings],
     ["FAIL", failures],
   ]) {
     for (const [url, reason] of results) {
-      console.log(`\n${label}: ${url}\n  Reason: ${reason}`);
+      const sourcePages = [...sources.get(url)];
+      const message = [
+        `${reason}: ${url}`,
+        ...sourcePages.map((source) => `Found on: ${source}`),
+      ].join("\n");
 
-      for (const source of sources.get(url)) {
-        console.log(`  Found on: ${source}`);
+      if (process.env.GITHUB_ACTIONS === "true") {
+        const level = label === "WARN" ? "warning" : "error";
+        console.log(`::${level}::${escapeAnnotation(message)}`);
+      } else {
+        console.log(`\n${label}: ${message}`);
       }
     }
   }
