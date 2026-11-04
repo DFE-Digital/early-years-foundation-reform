@@ -1,0 +1,38 @@
+name: Link validation check
+
+on:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1-5' # Run at 3am every weekday
+
+permissions:
+  contents: read
+
+concurrency:
+  group: link-validation-check
+  cancel-in-progress: false
+
+jobs:
+  check-links:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env: 
+      WEBSITE_ROOT: https://help-for-early-years-providers.education.gov.uk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '20.19.0'
+        
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Check links
+        run: yarn check:links 
