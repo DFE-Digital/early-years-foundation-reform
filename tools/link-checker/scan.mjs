@@ -102,8 +102,9 @@ async function main() {
     for (const [url, reason] of results) {
       const sourcePages = [...sources.get(url)];
       const message = [
-        `\n${reason}: ${url}`,
+        `${reason}: ${url}`,
         ...sourcePages.map((source) => `Found on: ${source}`),
+        `\n`,
       ].join("\n");
 
       if (process.env.GITHUB_ACTIONS === "true") {
