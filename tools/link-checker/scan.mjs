@@ -30,6 +30,15 @@ async function main() {
       console.log(`${response.status}: ${url}`);
 
       if (!response.ok) {
+        console.log("Unsuccessful response:", {
+          requestedUrl: url,
+          finalUrl: response.url,
+          status: response.status,
+          redirected: response.redirected,
+          server: response.headers.get("server"),
+          location: response.headers.get("location"),
+          challenge: response.headers.get("cf-mitigated"),
+        });
         const results = warningStatuses.has(response.status)
           ? warnings
           : failures;
@@ -95,8 +104,6 @@ async function main() {
       .replaceAll("%", "%25")
       .replaceAll("\r", "%0D")
       .replaceAll("\n", "%0A");
-
-  console.log("\n");
 
   for (const [label, results] of [
     ["WARN", warnings],
