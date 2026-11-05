@@ -105,7 +105,7 @@ async function main() {
         [
           `${reason}: ${url}`,
           ...sourcePages.map((source) => `Found on: ${source}`),
-        ].join("\n") + "\n\n";
+        ].join("\n") + "\n";
 
       if (process.env.GITHUB_ACTIONS === "true") {
         const level = label === "WARN" ? "warning" : "error";
