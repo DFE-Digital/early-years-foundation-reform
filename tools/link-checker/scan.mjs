@@ -84,11 +84,12 @@ async function main() {
         }
         sources.get(destination).add(url);
       }
-      console.log("\n");
     } catch (error) {
       failures.set(url, error.cause?.message ?? error.message);
     }
   }
+
+  console.log("\n");
 
   const escapeAnnotation = (value) =>
     String(value)
