@@ -24,6 +24,7 @@ async function main() {
   for (const url of queue) {
     try {
       const response = await fetch(url, {
+        headers: { "User-Agent": "HfEYP-Link-Checker/1.0" },
         signal: AbortSignal.timeout(15_000),
       });
       console.log(`${response.status}: ${url}`);
@@ -89,13 +90,13 @@ async function main() {
     }
   }
 
-  console.log("\n");
-
   const escapeAnnotation = (value) =>
     String(value)
       .replaceAll("%", "%25")
       .replaceAll("\r", "%0D")
       .replaceAll("\n", "%0A");
+
+  console.log("\n");
 
   for (const [label, results] of [
     ["WARN", warnings],
