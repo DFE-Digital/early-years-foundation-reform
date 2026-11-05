@@ -102,9 +102,9 @@ async function main() {
     for (const [url, reason] of results) {
       const sourcePages = [...sources.get(url)];
       const message = [
-        `${reason}: ${url}`,
+        `\n${reason}: ${url}`,
         ...sourcePages.map((source) => `Found on: ${source}`),
-      ].join("\n\n");
+      ].join("\n");
 
       if (process.env.GITHUB_ACTIONS === "true") {
         const level = label === "WARN" ? "warning" : "error";
