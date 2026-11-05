@@ -83,8 +83,8 @@ async function main() {
           queue.push(destination);
         }
         sources.get(destination).add(url);
-        console.log("\n");
       }
+      console.log("\n");
     } catch (error) {
       failures.set(url, error.cause?.message ?? error.message);
     }
