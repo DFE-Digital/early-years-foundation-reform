@@ -104,7 +104,6 @@ async function main() {
       const message = [
         `${reason}: ${url}`,
         ...sourcePages.map((source) => `Found on: ${source}`),
-        `\n`,
       ].join("\n");
 
       if (process.env.GITHUB_ACTIONS === "true") {
@@ -113,6 +112,8 @@ async function main() {
       } else {
         console.log(`\n${label}: ${message}\n`);
       }
+
+      console.log(); // Blank line after this error/warning
     }
   }
 
