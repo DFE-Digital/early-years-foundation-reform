@@ -43,7 +43,12 @@ async function main() {
           ? warnings
           : failures;
 
-        results.set(url, `HTTP ${response.status}`);
+        const reason =
+          response.headers.get("cf-mitigated") === "challenge"
+            ? `HTTP ${response.status} — Cloudflare challenge; check manually`
+            : `HTTP ${response.status}`;
+
+        results.set(url, reason);
         await response.body?.cancel();
         continue;
       }
