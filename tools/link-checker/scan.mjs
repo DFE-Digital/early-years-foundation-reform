@@ -17,7 +17,7 @@ async function main() {
   const sources = new Map([[root.href, new Set()]]);
   const failures = new Map();
   const warnings = new Map();
-  const warningStatuses = new Set([301, 403, 307]);
+  const warningStatuses = new Set([403, 307]);
   const maxUrls = 1000;
   let incomplete = false;
 
@@ -43,10 +43,16 @@ async function main() {
           ? warnings
           : failures;
 
-        const reason =
-          response.headers.get("cf-mitigated") === "challenge"
-            ? `HTTP ${response.status} — Cloudflare challenge; check manually`
-            : `HTTP ${response.status}`;
+        let reason = `HTTP ${response.status} ${response.statusText}`;
+
+        if (response.headers.get("cf-mitigated") === "challenge") {
+          reason += " — Cloudflare challenge; check manually";
+        } else if (
+          response.status === 307 &&
+          !response.headers.get("location")
+        ) {
+          reason += " — redirect without a Location header; check manually";
+        }
 
         results.set(url, reason);
         await response.body?.cancel();
