@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env: 
-      WEBSITE_ROOT: https://help-for-early-years-providers.education.gov.uk
+      WEBSITE_ROOT: ${{ vars.WEBSITE_ROOT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
