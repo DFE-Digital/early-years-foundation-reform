@@ -1,7 +1,6 @@
 name: Link validation check
 
 on:
-  pull_request:
   workflow_dispatch:
   schedule:
     - cron: '0 3 * * 1-5' # Run at 3am every weekday
