@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '3.4.8'
 
 gem 'puma', '~> 8.0.2'
-gem 'rails'
+gem 'rails', '~> 8.0.5.2'
 
 gem 'bootsnap', require: false
 gem 'slim-rails'
