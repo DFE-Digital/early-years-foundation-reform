@@ -106,7 +106,15 @@ async function main() {
         sources.get(destination).add(url);
       }
     } catch (error) {
-      failures.set(url, error.cause?.message ?? error.message);
+      const reason =
+        error.name === "TimeoutError"
+          ? "Request timed out after 15 seconds"
+          : error.cause?.message ||
+            error.cause?.code ||
+            error.message ||
+            error.name ||
+            "Unknown request error";
+      failures.set(url, reason);
     }
   }
 
