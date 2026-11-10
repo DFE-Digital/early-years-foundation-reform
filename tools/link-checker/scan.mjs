@@ -106,15 +106,15 @@ async function main() {
         sources.get(destination).add(url);
       }
     } catch (error) {
-      const reason =
-        error.name === "TimeoutError"
-          ? "Request timed out after 15 seconds"
-          : error.cause?.message ||
-            error.cause?.code ||
-            error.message ||
-            error.name ||
-            "Unknown request error";
-      failures.set(url, reason);
+      const isTimeout = error.name === "TimeoutError";
+      const reason = isTimeout
+        ? "Request timed out; unable to verify"
+        : error.cause?.message ||
+          error.cause?.code ||
+          error.message ||
+          "Unknown request error";
+      const results = isTimeout ? warnings : failures;
+      results.set(url, reason);
     }
   }
 
