@@ -106,7 +106,15 @@ async function main() {
         sources.get(destination).add(url);
       }
     } catch (error) {
-      failures.set(url, error.cause?.message ?? error.message);
+      const isTimeout = error.name === "TimeoutError";
+      const reason = isTimeout
+        ? "Request timed out; unable to verify"
+        : error.cause?.message ||
+          error.cause?.code ||
+          error.message ||
+          "Unknown request error";
+      const results = isTimeout ? warnings : failures;
+      results.set(url, reason);
     }
   }
 
