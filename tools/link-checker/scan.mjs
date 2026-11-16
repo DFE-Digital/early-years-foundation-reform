@@ -24,7 +24,10 @@ async function main() {
   for (const url of queue) {
     try {
       const response = await fetch(url, {
-        headers: { "User-Agent": "HfEYP-Link-Checker/1.0" },
+        headers: {
+          "User-Agent": "HfEYP-Link-Checker/1.0",
+          "Accept-Language": "en-GB",
+        },
         signal: AbortSignal.timeout(15_000),
       });
       console.log(`${response.status}: ${url}`);
