@@ -67,3 +67,6 @@ nscacert.pem
 
 .DS_Store
 .vscode/
+
+# AI agent instructions
+/AGENTS.md
