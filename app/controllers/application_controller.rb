@@ -26,6 +26,7 @@ protected
   end
 
   def set_analytics_tracking_id
+    @tracking_id = Rails.configuration.tracking_id
     @clarity_tracking_id = Rails.configuration.clarity_tracking_id
   end
 
