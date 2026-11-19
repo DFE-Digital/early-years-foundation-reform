@@ -566,7 +566,7 @@ DEPENDENCIES
   pry-doc
   pry-rails
   puma (~> 8.0.2)
-  rails
+  rails (~> 8.0.5.2)
   redis
   rladr
   rspec
@@ -588,7 +588,7 @@ DEPENDENCIES
   yard-junk
 
 RUBY VERSION
-   ruby 3.4.8p72
+   ruby 3.4.13p195
 
 BUNDLED WITH
    2.7.2
