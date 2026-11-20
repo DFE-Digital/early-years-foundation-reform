@@ -133,6 +133,6 @@ docker exec -it reform_dev bin/rails runner 'puts "cache=#{Rails.cache.class}"; 
 
 If you want it verified in an actual deployed env before merging, add the **`review`**
 label to the PR — `azure-deploy-review.yml` deploys a review app with its own Redis.
-Verify that one from **inside** the environment (App Service → SSH/Kudu console, which is
+Verify that one from **inside** the environment (App Service → SSH/Kudu console (requires your IP in `scm_admin_ip_ranges`), which is
 on the VNet and can reach the private Redis), e.g. a `rails runner` that reads back a
 `contentful:resp:*` key after you browse the review URL — not from your laptop.

@@ -108,6 +108,12 @@ variable "agw_subnet_id" {
   type        = string
 }
 
+variable "scm_admin_ip_ranges" {
+  description = "CIDR ranges allowed to reach the SCM/Kudu site (SSH and Advanced Tools)"
+  type        = list(string)
+  default     = []
+}
+
 variable "agw_pip_id" {
   description = "ID of the Public IP address for the App Gateway"
   type        = string

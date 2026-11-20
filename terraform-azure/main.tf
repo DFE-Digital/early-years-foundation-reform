@@ -72,6 +72,7 @@ module "webapp" {
   webapp_health_check_path                 = "/health"
   webapp_health_check_eviction_time_in_min = 10
   agw_subnet_id                            = module.network.agw_subnet_id
+  scm_admin_ip_ranges                      = var.scm_admin_ip_ranges
   agw_pip_id                               = module.network.agw_pip_id
   kv_id                                    = module.network.kv_id
   kv_cert_secret_id                        = module.network.kv_cert_secret_id
