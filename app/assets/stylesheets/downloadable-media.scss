@@ -25,22 +25,22 @@
   }
 
   &__thumbnail {
-    position: relative;
-    width: auto;
-    margin-right: 25px;
-    margin-bottom: 15px;
-    padding: 5px;
+    // position: relative;
+    // width: auto;
+    // margin-right: 25px;
+    // margin-bottom: 15px;
+    // padding: 5px;
     float: left;
 
     @include govuk-media-query($from: tablet) {
-      position: relative;
-      width: 140px;
-      height: auto;
-      max-width: 140px;
-      margin-right: 20px;
-      margin-bottom: 15px;
-      padding: 5px;
-      float: left;
+      // position: relative;
+      // width: 140px;
+      // height: auto;
+      // max-width: 140px;
+      // margin-right: 20px;
+      // margin-bottom: 15px;
+      // padding: 5px;
+      // float: left;
     }
   }
 }
@@ -48,8 +48,8 @@
 .gem-c-attachment__thumbnail-image {
   display: block;
   max-width: 280px;
-  width: 140px;
-  height: auto;
+  width: 110px;
+  height: 150px;
   border: rgba(11, 12, 12, 0.1);
   outline: 5px solid rgba(11, 12, 12, 0.1);
   background: govuk-colour('white');
@@ -59,12 +59,9 @@
 }
 
 .gem-c-attachment__details {
-  padding-left: 134px
-}
-
-.gem-c-attachment__details .gem-c-detailss {
+  padding-left: 164px;
   word-break: break-word;
-  word-wrap: break-word
+  word-wrap: break-word;
 }
 
 .gem-c-attachment__title {
