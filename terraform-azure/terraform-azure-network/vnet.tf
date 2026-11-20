@@ -26,19 +26,16 @@ resource "azurerm_subnet" "webapp_snet" {
       actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
     }
   }
-
-  #checkov:skip=CKV2_AZURE_31:NSG not required
 }
 
 # Create Subnet for Redis Private Endpoint
 resource "azurerm_subnet" "redis_pe_snet" {
-  name                                      = "${var.resource_name_prefix}-redis-pe-snet"
-  virtual_network_name                      = azurerm_virtual_network.vnet.name
-  resource_group_name                       = var.resource_group
-  address_prefixes                          = [var.redis_private_endpoint_subnet_cidr]
-  private_endpoint_network_policies_enabled = false
-
-  #checkov:skip=CKV2_AZURE_31:NSG not required
+  name                 = "${var.resource_name_prefix}-redis-pe-snet"
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = var.resource_group
+  address_prefixes     = [var.redis_private_endpoint_subnet_cidr]
+  # Enables NSG enforcement for private endpoint traffic
+  private_endpoint_network_policies_enabled = true
 }
 
 # Create Subnet for App Gateway
@@ -51,8 +48,6 @@ resource "azurerm_subnet" "agw_snet" {
   resource_group_name  = var.resource_group
   address_prefixes     = ["172.1.3.0/24"]
   service_endpoints    = ["Microsoft.Storage", "Microsoft.Web", "Microsoft.KeyVault"]
-
-  #checkov:skip=CKV2_AZURE_31:NSG not required
 }
 
 # Create Private DNS Zone for classic Azure Cache for Redis (Microsoft.Cache/Redis).
