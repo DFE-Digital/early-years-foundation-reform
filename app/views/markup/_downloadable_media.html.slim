@@ -12,7 +12,7 @@ section.gem-c-attachment class='govuk-!-display-none-print govuk-!-margin-bottom
       a.govuk-link.gem-c-attachment__link target='_self' href=pdf_url
         = file_title
 
-    p.gem-c-attachment__metadata class="govuk-!-margin-left-6"
+    p.gem-c-attachment__metadata
       span.gem-c-attachment__attribute
         abbr.gem-c-attachment__abbr title='Portable Document Format'
           | PDF
@@ -25,16 +25,16 @@ section.gem-c-attachment class='govuk-!-display-none-print govuk-!-margin-bottom
       span.gem-c-attachment__attribute
         = page_count
 
-      p.gem-c-attachment__attribute
-        | This file may not be suitable for users of assistive technology.
+  p.gem-c-attachment__metadata class="govuk-!-margin-top-8"
+    | This file may not be suitable for users of assistive technology.
 
-      details.govuk-details class="govuk-!-margin-left-7" data-module='govuk-details'
-        summary.govuk-details__summary
-          span.govuk-details__summary-text
-            | Request an accessible format
-        .govuk-details__text
-          | If you use assistive technology (such as a screen reader) and need a version
-            of this document in a more accessible format, please email
-          a.govuk-link href="mailto:help-for-early-years.providers@education.gov.uk"
-            |  help-for-early-years.providers@education.gov.uk
-          | . Please tell us what format you need. It will help us if you say what assistive technology you use.
+  details.govuk-details class="govuk-!-margin-top-4" data-module='govuk-details'
+    summary.govuk-details__summary
+      span.govuk-details__summary-text
+        | Request an accessible format
+    .govuk-details__text
+      | If you use assistive technology (such as a screen reader) and need a version
+        of this document in a more accessible format, please email
+      a.govuk-link href="mailto:help-for-early-years.providers@education.gov.uk"
+        |  help-for-early-years.providers@education.gov.uk
+      | . Please tell us what format you need. It will help us if you say what assistive technology you use.
