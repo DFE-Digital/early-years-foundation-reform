@@ -49,7 +49,7 @@
   display: block;
   max-width: 280px;
   width: 110px;
-  height: 150px;
+  max-height: 150px;
   border: rgba(11, 12, 12, 0.1);
   outline: 5px solid rgba(11, 12, 12, 0.1);
   background: govuk-colour('white');
