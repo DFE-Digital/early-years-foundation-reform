@@ -25,23 +25,7 @@
   }
 
   &__thumbnail {
-    // position: relative;
-    // width: auto;
-    // margin-right: 25px;
-    // margin-bottom: 15px;
-    // padding: 5px;
     float: left;
-
-    @include govuk-media-query($from: tablet) {
-      // position: relative;
-      // width: 140px;
-      // height: auto;
-      // max-width: 140px;
-      // margin-right: 20px;
-      // margin-bottom: 15px;
-      // padding: 5px;
-      // float: left;
-    }
   }
 }
 
