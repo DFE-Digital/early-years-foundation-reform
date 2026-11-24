@@ -90,6 +90,12 @@ variable "asp_sku" {
   type        = string
 }
 
+variable "scm_admin_ip_ranges" {
+  default     = []
+  description = "CIDR ranges allowed to reach the SCM/Kudu site (SSH and Advanced Tools)"
+  type        = list(string)
+}
+
 variable "webapp_worker_count" {
   default     = 1
   description = "Number of Workers for the App Service Plan"
