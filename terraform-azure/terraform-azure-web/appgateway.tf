@@ -20,7 +20,7 @@ resource "azurerm_web_application_firewall_policy" "agw_wafp" {
         }
       }
 
-      # HEYP-1931: log previously disabled rules while assessing false positives.
+      # HEYP-193: log previously disabled rules while assessing false positives.
       # Keep the policy in Prevention mode so existing protections remain enforced.
       rule_group_override {
         rule_group_name = "REQUEST-932-APPLICATION-ATTACK-RCE"
