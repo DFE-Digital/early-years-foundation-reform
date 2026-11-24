@@ -121,7 +121,7 @@ Individual branches may also be used as the source for the deployment, so you ca
 
 ## Azure
 
-Console access:
+Outside development, console access (SCM/Kudu) is restricted only after a non-empty `scm_admin_ip_ranges` Terraform allowlist is configured and applied. Once enabled, requests from other addresses are denied, including Azure portal SSH and Advanced Tools. With the default empty list, this configuration adds no SCM access restrictions; development is exempt regardless of the list. See [the SCM/Kudu ADR](adr/0015-scm-kudu-site-access-restriction.md#open-items) for pending rollout steps.
 
 - https://hfeyp-dev.scm.azurewebsites.net/webssh/host
 - https://hfeyp-stage.scm.azurewebsites.net/webssh/host

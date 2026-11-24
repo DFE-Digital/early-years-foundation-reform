@@ -187,7 +187,7 @@ resource "azurerm_application_gateway" "agw" {
 
   ssl_policy {
     policy_type = "Predefined"
-    policy_name = "AppGwSslPolicy20220101"
+    policy_name = "AppGwSslPolicy20220101S"
   }
 
   probe {

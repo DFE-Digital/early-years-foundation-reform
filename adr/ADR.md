@@ -18,6 +18,8 @@ This log lists the architectural decisions for EYFS Recovery
 * [ADR-0011](0011-sentry-monitoring.md) - Monitoring with Sentry
 * [ADR-0012](0012-asset-pipeline-static-paths.md) - Serve govuk-frontend assets statically and disable runtime asset compilation
 * [ADR-0013](0013-classic-azure-cache-for-redis-bridge.md) - Use classic Azure Cache for Redis as a bridge
+* [ADR-0014](0014-microsoft-defender-for-cloud.md) - Microsoft Defender for Cloud plans
+* [ADR-0015](0015-scm-kudu-site-access-restriction.md) - Restrict access to the SCM/Kudu management site
 
 <!-- adrlogstop -->
 

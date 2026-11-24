@@ -69,6 +69,26 @@ resource "azurerm_linux_web_app" "webapp" {
         ip_address = "0.0.0.0/0"
       }
     }
+
+    dynamic "scm_ip_restriction" {
+      for_each = var.environment != "development" ? { for i, cidr in var.scm_admin_ip_ranges : tostring(i) => cidr } : {}
+      content {
+        name       = "Allow admin ${scm_ip_restriction.key}"
+        action     = "Allow"
+        priority   = 100 + tonumber(scm_ip_restriction.key)
+        ip_address = scm_ip_restriction.value
+      }
+    }
+
+    dynamic "scm_ip_restriction" {
+      for_each = var.environment != "development" && length(var.scm_admin_ip_ranges) > 0 ? [1] : []
+      content {
+        name       = "Deny public"
+        action     = "Deny"
+        priority   = 500
+        ip_address = "0.0.0.0/0"
+      }
+    }
   }
 
   sticky_settings {
@@ -122,6 +142,26 @@ resource "azurerm_linux_web_app_slot" "webapp_slot" {
     application_stack {
       docker_image_name   = "${var.webapp_docker_image}:${var.webapp_docker_image_tag}"
       docker_registry_url = var.webapp_docker_registry_url
+    }
+
+    dynamic "scm_ip_restriction" {
+      for_each = var.environment != "development" ? { for i, cidr in var.scm_admin_ip_ranges : tostring(i) => cidr } : {}
+      content {
+        name       = "Allow admin ${scm_ip_restriction.key}"
+        action     = "Allow"
+        priority   = 100 + tonumber(scm_ip_restriction.key)
+        ip_address = scm_ip_restriction.value
+      }
+    }
+
+    dynamic "scm_ip_restriction" {
+      for_each = var.environment != "development" && length(var.scm_admin_ip_ranges) > 0 ? [1] : []
+      content {
+        name       = "Deny public"
+        action     = "Deny"
+        priority   = 500
+        ip_address = "0.0.0.0/0"
+      }
     }
   }
 
