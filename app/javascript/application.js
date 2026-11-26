@@ -5,9 +5,19 @@ import './modules/in_page_links';
 
 import { initAll } from 'govuk-frontend';
 
-document.addEventListener('turbo:load', function () {
+const initialisedBodies = new WeakSet();
+
+function initialiseGovukFrontend() {
+  const body = document.body;
+  if (initialisedBodies.has(body)) return;
+
+  body.classList.add('js-enabled', 'govuk-frontend-supported');
   initAll();
-});
+  initialisedBodies.add(body);
+}
+
+document.addEventListener('turbo:load', initialiseGovukFrontend);
+document.addEventListener('turbo:render', initialiseGovukFrontend);
 
 document.addEventListener('click', (event) => {
   if (
