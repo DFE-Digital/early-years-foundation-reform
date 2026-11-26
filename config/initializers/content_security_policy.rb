@@ -73,12 +73,8 @@ Rails.application.config.content_security_policy do |policy|
                      *GOOGLE_ANALYTICS_DOMAINS,
                      *GOOGLE_STATIC_DOMAINS,
                      *OPTIMIZE_DOMAINS,
-                     *CLARITY_DOMAINS,
-                     # Allow all inline scripts until we can conclusively
-                     # document all the inline scripts we use,
-                     # and there's a better way to filter out junk reports
-                     :unsafe_inline
-  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, *OPTIMIZE_DOMAINS, :unsafe_inline
+                     *CLARITY_DOMAINS
+  policy.style_src   :self, *GOVUK_DOMAINS, *GOOGLE_STATIC_DOMAINS, *OPTIMIZE_DOMAINS
   if Rails.env.development?
     # :nocov: by definition will not run in test
     policy.connect_src :self,
@@ -101,10 +97,10 @@ Rails.application.config.content_security_policy do |policy|
 end
 
 # If you are using UJS then enable automatic nonce generation
-# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
+Rails.application.config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }
 
 # Set the nonce only to specific directives
-# Rails.application.config.content_security_policy_nonce_directives = %w(script-src)
+Rails.application.config.content_security_policy_nonce_directives = %w[script-src style-src]
 
 # Report CSP violations to a specified URI
 # For further information see the following documentation:

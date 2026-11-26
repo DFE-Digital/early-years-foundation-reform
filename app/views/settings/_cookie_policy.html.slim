@@ -1,6 +1,6 @@
 .govuk-grid-row class='govuk-!-margin-bottom-7'
   .govuk-grid-column-two-thirds-from-desktop
-    = form_with url: settings_path, method: :post, local: true do |f|
+    = form_with url: settings_path, method: :post, local: true, data: { turbo: false } do |f|
       = f.hidden_field :request_path, value: request.path
       = f.hidden_field :settings_updated, value: 'Yes'
       = f.govuk_radio_buttons_fieldset(:checked, legend: { size: 'm', text: t('settings.cookie_policy_legend') }, inline: true ) do
